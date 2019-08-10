@@ -1,5 +1,7 @@
 # Dotfiles  
 
+If you use this repository, please back up your dotfiles before.  
+
 Clone repository and load submodules needed for vim  
 ```
 git clone --recursive-submodules -j8 https://github.com/smallwat3r/dotfiles.git
@@ -18,5 +20,5 @@ ln -fs ~/.vim/vimrc ~/.vimrc
 ## Dotfiles  
 Symlink rest of the files using:  
 ```
-ln -fs <file> ~/.<file>
+ln -fs <fullpath>/<filename> ~/.<file>
 ```
