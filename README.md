@@ -5,18 +5,18 @@ Clone repository and load submodules needed for vim
 git clone --recursive-submodules -j8 https://github.com/smallwat3r/dotfiles.git
 ```
 
-Symlink vim config to `~/.vimrc`  
+# Vim  
+Copy vim config to `~/.vim/`  
 ```
-ln -fs ~/dotfiles/vim/vimrc ~/.vimrc
+cp -R vim/* ~/.vim
+```
+Symlink config to `~/.vimrc`
+```
+ln -fs ~/.vim/vimrc ~/.vimrc
 ```
 
-Symlink alacritty config to `~/.config/alacritty/alacritty.yml`  
-```
-ln -fs ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
-```
-
+## Dotfiles  
 Symlink rest of the files using:  
 ```
 ln -fs <file> ~/.<file>
 ```
-
