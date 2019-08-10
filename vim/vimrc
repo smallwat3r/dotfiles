@@ -1,0 +1,12 @@
+" File              : vimrc
+" Author            : smallwat3r
+" Date              : Wed  7 Aug 19:49:35 2019
+
+execute pathogen#infect()
+
+" Source files
+" ----------------------------------------------------------------
+source ~/.vim/settings.vim
+source ~/.vim/keybindings.vim
+source ~/.vim/functions.vim
+source ~/.vim/plugin-config.vim
