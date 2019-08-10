@@ -5,7 +5,7 @@ Clone repository and load submodules needed for vim
 git clone --recursive-submodules -j8 https://github.com/smallwat3r/dotfiles.git
 ```
 
-# Vim  
+## Vim  
 Copy vim config to `~/.vim/`  
 ```
 cp -R vim/* ~/.vim
