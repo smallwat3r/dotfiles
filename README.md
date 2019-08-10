@@ -21,5 +21,5 @@ ln -fs <fullpath>/<name> <destination-path>/.<name>
 
 ie.  
 ```
-:x
+ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
