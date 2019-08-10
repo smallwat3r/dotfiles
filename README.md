@@ -14,7 +14,7 @@ cp -R vim/* ~/.vim && ln -fs ~/.vim/vimrc ~/.vimrc
 ```
 
 ## Dotfiles  
-Symlink rest of the files using:  
+Symlink using:  
 ```
 ln -fs <fullpath>/<filename> ~/.<file>
 ```
