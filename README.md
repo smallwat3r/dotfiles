@@ -8,13 +8,9 @@ git clone --recursive-submodules -j8 https://github.com/smallwat3r/dotfiles.git
 ```
 
 ## Vim  
-Copy vim config to `~/.vim/`  
+Copy vim config to `~/.vim/` & Symlink config to `~/.vimrc`
 ```
-cp -R vim/* ~/.vim
-```
-Symlink config to `~/.vimrc`
-```
-ln -fs ~/.vim/vimrc ~/.vimrc
+cp -R vim/* ~/.vim && ln -fs ~/.vim/vimrc ~/.vimrc
 ```
 
 ## Dotfiles  
