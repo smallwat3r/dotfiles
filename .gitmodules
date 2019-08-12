@@ -4,9 +4,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = https://github.com/dense-analysis/ale
-[submodule "vim/bundle/impsort"]
-	path = vim/bundle/impsort
-	url = https://github.com/tweekmonster/impsort.vim
 [submodule "vim/bundle/indentLine"]
 	path = vim/bundle/indentLine
 	url = https://github.com/Yggdroot/indentLine
@@ -34,3 +31,6 @@
 [submodule "vim/bundle/vim-color-paramount"]
 	path = vim/bundle/vim-color-paramount
 	url = https://github.com/owickstrom/vim-colors-paramount.git
+[submodule "vim/bundle/vim-isort"]
+	path = vim/bundle/vim-isort
+	url = https://github.com/fisadev/vim-isort.git
