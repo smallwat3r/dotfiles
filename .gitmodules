@@ -28,3 +28,6 @@
 [submodule "vim/bundle/vim-color-paramount"]
 	path = vim/bundle/vim-color-paramount
 	url = https://github.com/owickstrom/vim-colors-paramount.git
+[submodule "vim/bundle/vim-eunuch"]
+	path = vim/bundle/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch.git
