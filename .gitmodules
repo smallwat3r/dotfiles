@@ -31,6 +31,3 @@
 [submodule "vim/bundle/vim-color-paramount"]
 	path = vim/bundle/vim-color-paramount
 	url = https://github.com/owickstrom/vim-colors-paramount.git
-[submodule "vim/bundle/vim-isort"]
-	path = vim/bundle/vim-isort
-	url = https://github.com/fisadev/vim-isort.git
