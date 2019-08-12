@@ -4,14 +4,6 @@
 
 " Plugins Configs
 
-" isort
-let g:vim_isort_config_overrides = {
-      \ 'include_trailing_comma': 1,
-      \ 'multi_line_output': 3 }
-let g:vim_isort_python_version = 'python3'
-autocmd BufWritePre *.py :Isort
-
-
 " vim git-gutter
 let g:gitgutter_sign_added='▴'
 let g:gitgutter_sign_modified='▴'
