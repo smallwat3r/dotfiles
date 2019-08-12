@@ -4,9 +4,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = https://github.com/dense-analysis/ale
-[submodule "vim/bundle/indentLine"]
-	path = vim/bundle/indentLine
-	url = https://github.com/Yggdroot/indentLine
 [submodule "vim/bundle/vim-autoformat"]
 	path = vim/bundle/vim-autoformat
 	url = https://github.com/Chiel92/vim-autoformat
