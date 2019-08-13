@@ -68,11 +68,13 @@ set whichwrap+=<,>,h,l
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[3 q"
 
+" Ignore files
+set wildignore=*.o,*.a,*.so,*.pyc,*.swp,.git/,*.class,*.DS_Store
+
 " Netrw
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_winsize=20
-let g:netrw_list_hide= '.*\.swp$,*\.DS_Store$,*\.so$,*\.zip$,*.git$,^\.\.\=/\=$'
 let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 
 " Full python highlighting
