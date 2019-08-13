@@ -72,7 +72,7 @@ let &t_EI = "\e[3 q"
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_winsize=20
-let g:netrw_list_hide= '.*\.swp$,.DS_Store,*/tmp/*,*.so,*.swp,*.zip,*.git,^\.\.\=/\=$'
+let g:netrw_list_hide= '.*\.swp$,*\.DS_Store$,*\.so$,*\.zip$,*.git$,^\.\.\=/\=$'
 let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 
 " Full python highlighting
