@@ -95,6 +95,7 @@ endif
 
 set t_Co=256
 set bg=dark
-colo ambient
+colo molokai
 
+" Transparent background on term mode.
 hi Normal ctermbg=None

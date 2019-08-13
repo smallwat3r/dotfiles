@@ -31,3 +31,6 @@
 [submodule "vim/bundle/ambient"]
 	path = vim/bundle/ambient
 	url = https://github.com/vim-scripts/Ambient-Color-Scheme.git
+[submodule "vim/bundle/molokai"]
+	path = vim/bundle/molokai
+	url = https://github.com/tomasr/molokai.git

@@ -73,6 +73,7 @@ tabspaces: 4
 font:
   normal:
     family: Andale Mono SwFix
+    style: Regular
 
   # Bold font face
   # bold:
@@ -84,7 +85,7 @@ font:
   #   family: Andale Mono SwFix
   #   style: Italic
 
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -116,7 +117,7 @@ font:
   use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night Bright)
 colors:
