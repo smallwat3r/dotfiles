@@ -19,11 +19,16 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
 
+alias vi="vim"
+alias edit="vim"
 alias p="pwd"
 alias s="sketch"
 alias n="nnn"
+alias c="clear"
+alias ..="cd .."
 
 source /sw/bin/init.sh
+
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 if command -v tmux>/dev/null; then

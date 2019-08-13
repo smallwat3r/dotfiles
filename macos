@@ -2,9 +2,37 @@
 defaults -currentHost write -g AppleFontSmoothing -int 0
 defaults write com.apple.Terminal AppleFontSmoothing -int 0
 defaults write org.vim.MacVim AppleFontSmoothing -int 0
+defaults write NSGlobalDomain AppleFontSmoothing -int 0
+
+# Dark UI
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
 # MacVim padding
 defaults write org.vim.MacVim MMTextInsetTop '15'
 defaults write org.vim.MacVim MMTextInsetLeft '15'
 defaults write org.vim.MacVim MMTextInsetBottom '15'
 defaults write org.vim.MacVim MMTextInsetRight '15'
+
+# Disable [ ] in mac terminal
+defaults write com.apple.Terminal AutoMarkPromptLines -bool false
+defaults write com.apple.Terminal ShowLineMarks -bool false
+# Terminal scrollbars
+defaults write com.apple.Terminal AppleShowScrollBars -string "Automatic"
+
+# Don't show recent
+defaults write com.apple.dock show-recents -bool false
+
+# Keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+# Disable auto capitalize
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+# Disable iuto period insert
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable ihe system alert sound
+defaults write NSGlobalDomain com.apple.sound.beep.volume -int 0
+defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0

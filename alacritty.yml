@@ -75,14 +75,14 @@ font:
     family: Andale Mono SwFix
 
   # Bold font face
-  bold:
-    family: Andale Mono SwFix
-    style: Bold
+  # bold:
+  #   family: Andale Mono SwFix
+  #   style: Bold
 
   # Italic font face
-  italic:
-    family: Andale Mono SwFix
-    style: Italic
+  # italic:
+  #   family: Andale Mono SwFix
+  #   style: Italic
 
   size: 11.0
 
@@ -113,7 +113,7 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true

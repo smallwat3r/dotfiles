@@ -25,9 +25,9 @@
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "vim/bundle/vim-color-paramount"]
-	path = vim/bundle/vim-color-paramount
-	url = https://github.com/owickstrom/vim-colors-paramount.git
 [submodule "vim/bundle/vim-eunuch"]
 	path = vim/bundle/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch.git
+[submodule "vim/bundle/ambient"]
+	path = vim/bundle/ambient
+	url = https://github.com/vim-scripts/Ambient-Color-Scheme.git

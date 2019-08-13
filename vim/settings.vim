@@ -95,6 +95,6 @@ endif
 
 set t_Co=256
 set bg=dark
-colo paramount
+colo ambient
 
 hi Normal ctermbg=None
