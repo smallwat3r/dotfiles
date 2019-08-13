@@ -1,19 +1,43 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
 #
+# TERM variable
+# This value is used to set the `$TERM` environment variable for
+# each instance of Alacritty. If it is not present, alacritty will
+# check the local terminfo database and use `alacritty` if it is
+# available, otherwise `xterm-256color` is used.
 env:
   TERM: xterm-256color
 
 window:
-
+  # Window dimensions (changes require restart)
+  #
+  # Specified in number of columns/lines, not pixels.
+  # If both are `0`, this setting is ignored.
   dimensions:
     columns: 140
     lines: 50
 
+  # Window position (changes require restart)
+  #
+  # Specified in number of pixels.
+  # If the position is not set, the window manager will handle the placement.
+  #position:
+  #  x: 0
+  #  y: 0
+
+  # Window padding (changes require restart)
+  #
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 15
     y: 15
 
-  # Spread additional padding evenly around the terminal content.
+  # Spread additional padding ndow position (changes require restart)
   dynamic_padding: true
 
   # Window decorations
@@ -27,17 +51,31 @@ window:
   #     - buttonless: Title bar, transparent background, but no title bar buttons
   decorations: buttonless
 
+  # Startup Mode (changes require restart)
+  #
   # Values for `startup_mode`:
   #   - Windowed
   #   - Maximized
   #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
   startup_mode: Windowed
 
   # Window title
   #title: Alacritty
 
   # Window class (Linux only):
-  #class: Alacritty
+  #class:
+    # Application instance name
+      #instance: Alacritty
+    # General application class
+      #general: Alacritty
+
+  # GTK theme variant (Linux only)
+  #
+  # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
+  # Set this to `None` to use the default theme variant.
+  #gtk_theme_variant: None
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.

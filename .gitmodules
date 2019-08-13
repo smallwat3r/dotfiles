@@ -28,9 +28,6 @@
 [submodule "vim/bundle/vim-eunuch"]
 	path = vim/bundle/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch.git
-[submodule "vim/bundle/ambient"]
-	path = vim/bundle/ambient
-	url = https://github.com/vim-scripts/Ambient-Color-Scheme.git
-[submodule "vim/bundle/molokai"]
-	path = vim/bundle/molokai
-	url = https://github.com/tomasr/molokai.git
+[submodule "vim/bundle/vim-python-pep8-indent"]
+	path = vim/bundle/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent.git

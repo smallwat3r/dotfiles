@@ -5,7 +5,15 @@
 " General settings
 
 syntax on
-filetype indent plugin on
+filetype plugin indent on
+
+" Indents
+set sw=2 ts=2 sts=2
+set expandtab
+set autoindent
+set smartindent
+autocmd FileType python :setlocal sw=4 ts=4 sts=4 ai si
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 " Leader
 let mapleader=','
@@ -28,9 +36,6 @@ set incsearch
 set hlsearch
 set clipboard=unnamed
 set ruler
-set expandtab
-set autoindent
-set si
 set wrap
 set showbreak=>\
 set lazyredraw
@@ -48,11 +53,6 @@ set noerrorbells
 set visualbell
 set t_vb=
 set tm=500
-
-" Indents
-set sw=2 ts=2 sts=2
-autocmd FileType python :setlocal sw=4 ts=4 sts=4
-autocmd FileType py :setlocal sw=4 ts=4 sts=4
 
 " No swp files / backups etc
 set noswapfile
