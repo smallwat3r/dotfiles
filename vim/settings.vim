@@ -8,11 +8,13 @@ syntax on
 filetype plugin indent on
 
 " Indents
-set sw=2 ts=2 sts=2
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-autocmd FileType python :setlocal sw=4 ts=4 sts=4 ai si
+autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 " Leader
