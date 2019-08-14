@@ -1,6 +1,6 @@
 # Dotfiles  
 
-If you use this repository, please back up your dotfiles before.  
+**If you use this repository, please back up your dotfiles before.**  
 
 Clone repository and load submodules needed for vim  
 ```
