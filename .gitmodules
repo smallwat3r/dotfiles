@@ -34,3 +34,6 @@
 [submodule "vim/bundle/rust"]
 	path = vim/bundle/rust
 	url = https://github.com/rust-lang/rust.vim.git
+[submodule "vim/bundle/molokai-sw"]
+	path = vim/bundle/molokai-sw
+	url = https://github.com/smallwat3r/molokai-sw.git

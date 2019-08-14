@@ -92,14 +92,8 @@ let &t_ZR="\e[23m"
 
 " MacVim Gui
 if (has("gui_running"))
-  set termguicolors
-  set transparency=5
   set guifont=DroidSansMonoSW:h13
 endif
 
 set t_Co=256
-set bg=dark
-colo molokai
-
-" Transparent background on term mode.
-hi Normal ctermbg=None
+colo molokai-sw
