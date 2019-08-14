@@ -94,7 +94,7 @@ let &t_ZR="\e[23m"
 if (has("gui_running"))
   set termguicolors
   set transparency=5
-  set guifont=AndaleMonoSwFix:h13
+  set guifont=DroidSansMonoSW:h13
 endif
 
 set t_Co=256
