@@ -34,3 +34,6 @@
 [submodule "vim/bundle/molokai-sw"]
 	path = vim/bundle/molokai-sw
 	url = https://github.com/smallwat3r/molokai-sw
+[submodule "fonts/droid-sans-mono-sw"]
+	path = fonts/droid-sans-mono-sw
+	url = https://github.com/smallwat3r/droid-sans-mono-sw.git
