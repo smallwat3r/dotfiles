@@ -84,7 +84,7 @@ set t_Co=256
 colo molokai-sw
 
 " Statusline (must be after colorscheme)
-hi User1 ctermfg=197   guifg=#ff005f
+hi User1 ctermfg=199   guifg=#ff00af
 hi User2 ctermfg=190   guifg=#d7ff00
 hi User3 ctermfg=193   guifg=#d7ffaf
 set statusline=%1*%{fugitive#statusline()}
