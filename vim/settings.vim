@@ -80,11 +80,19 @@ let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 " Full python highlighting
 let python_highlight_all=1
 
-" Statusline
-set statusline=%F%m%r%h%w\
-set statusline+=%{fugitive#statusline()}\
-set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
-set statusline+=\ [line\ %l\/%L]
+set t_Co=256
+colo molokai-sw
+
+" Statusline (must be after colorscheme)
+hi User1 ctermfg=197   guifg=#ff005f
+hi User2 ctermfg=190   guifg=#d7ff00
+hi User3 ctermfg=193   guifg=#d7ffaf
+set statusline=%1*%{fugitive#statusline()}
+set statusline+=\ %3*[
+set statusline+=%2*%f%3*
+set statusline+=\ %l:%c,\%L
+set statusline+=\ %{strlen(&ft)?&ft:'none'}
+set statusline+=\ %{strlen(&fenc)?&fenc:&enc}]
 
 " Italics
 let &t_ZH="\e[3m"
@@ -95,5 +103,3 @@ if (has("gui_running"))
   set guifont=DroidSansMonoSW:h13
 endif
 
-set t_Co=256
-colo molokai-sw
