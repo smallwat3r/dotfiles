@@ -115,12 +115,12 @@ font:
 
   # Bold font face
   # bold:
-  #   family: Andale Mono SwFix
+  #   family: Droid Sans Mono SW
   #   style: Bold
 
   # Italic font face
   # italic:
-  #   family: Andale Mono SwFix
+  #   family: Droid Sans Mono SW
   #   style: Italic
 
   size: 12.0
@@ -128,15 +128,15 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
-    x: 0
-    y: 0
+    x: 1
+    y: 1
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: 0
+    y: 1
 
   # Thin stroke font rendering (macOS only)
   #
@@ -152,16 +152,16 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   primary:
-    background: '0x0b0b0b'
+    background: '0x000000'
     foreground: '0xd4d4d4'
 
     # Bright and dim foreground colors
