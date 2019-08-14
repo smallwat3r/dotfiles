@@ -1,16 +1,11 @@
+# Zshrc
+
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
 PROMPT='%{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}$ '
 
-ZSH_THEME_GIT_PROMPT_PREFIX="("
-ZSH_THEME_GIT_PROMPT_SUFFIX=")"
-ZSH_THEME_GIT_PROMPT_DIRTY="ko"
-ZSH_THEME_GIT_PROMPT_CLEAN="ok"
-
-# DISABLE_LS_COLORS="true"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
-
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git)
@@ -21,15 +16,21 @@ export EDITOR='vim'
 
 alias vi="vim"
 alias edit="vim"
+
 alias p="pwd"
 alias s="sketch"
 alias n="nnn"
 alias c="clear"
+
+alias g=git
+alias ga="git add"
+
 alias ..="cd .."
+alias ...="cd ../.."
 
-source /sw/bin/init.sh
-
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+if command -v fink>/dev/null; then
+  source /sw/bin/init.sh
+fi
 
 if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux

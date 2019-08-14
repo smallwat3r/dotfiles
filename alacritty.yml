@@ -110,7 +110,7 @@ tabspaces: 4
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Andale Mono SwFix
+    family: Droid Sans Mono SW
     style: Regular
 
   # Bold font face
