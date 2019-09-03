@@ -1,4 +1,4 @@
-# Zshrc
+# Zshrc config
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 

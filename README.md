@@ -23,3 +23,6 @@ ie.
 ```
 ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
+
+
+![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/screenshot/preview.png)  
