@@ -20,6 +20,9 @@ alias edit="vim"
 alias p="pwd"
 alias s="sketch"
 alias n="nnn"
+alias lg="lazygit"
+alias q="ddgr"
+
 alias c="clear"
 
 alias g=git

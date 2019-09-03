@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+brew install \
+  tmux \
+  redis \
+  nnn \
+  lazygit \
+  git \
+  python3 \
+  ruby \
+  ddgr \
+  vim \
+  wget \
+  yabai \
+  zsh \
+  mysql \
+  macvim \
+  sqlite \
+  fzf \
+  exa
+
+brew services start yabai
+brew services start redis
+brew services start mysql
