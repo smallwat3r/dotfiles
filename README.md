@@ -24,5 +24,5 @@ ie.
 ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
 
-
+## Preview  
 ![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/screenshot/preview.png)  
