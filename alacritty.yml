@@ -152,7 +152,7 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -628,6 +628,6 @@ key_bindings:
   - { key: NumpadEnter,             chars: "\n"                              }
 
     # Fix weird hash key bug not working on MacOS
-  - { key: Key3,     mods: Alt,     chars: "\x23"                        }
+  - { key: Key3,     mods: Alt,     chars: "\x23"                            }
     # Open new window easily
   - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/Alacritty.app"] } }
