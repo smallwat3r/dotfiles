@@ -30,6 +30,8 @@ alias ga="git add"
 
 alias ..="cd .."
 alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 if command -v fink>/dev/null; then
   source /sw/bin/init.sh
