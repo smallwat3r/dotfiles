@@ -20,6 +20,8 @@ brew install \
   fzf \
   exa
 
+brew cask install alacritty
+
 brew services start yabai
 brew services start redis
 brew services start mysql
