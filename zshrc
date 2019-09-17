@@ -2,7 +2,7 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
-PROMPT='%{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}$ '
+PROMPT='%{$fg[red]%}$(git_prompt_info) %20<...<%~%<< %{$reset_color%}$ '
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
@@ -12,7 +12,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR='vim'
+export EDITOR=/usr/local/bin/vim
 
 alias vi="vim"
 alias edit="vim"
