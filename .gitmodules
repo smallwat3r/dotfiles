@@ -37,3 +37,9 @@
 [submodule "fonts/droid-sans-mono-sw"]
 	path = fonts/droid-sans-mono-sw
 	url = https://github.com/smallwat3r/droid-sans-mono-sw.git
+[submodule "vim/bundle/impsort.vim"]
+	path = vim/bundle/impsort.vim
+	url = https://github.com/tweekmonster/impsort.vim
+[submodule "vim/bundle/vim-header"]
+	path = vim/bundle/vim-header
+	url = https://github.com/alpertuna/vim-header

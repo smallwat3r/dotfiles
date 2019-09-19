@@ -92,6 +92,7 @@ set statusline+=\ %3*[
 set statusline+=%2*%f%3*
 set statusline+=\ %l:%c,\%L
 set statusline+=\ %{strlen(&ft)?&ft:'none'}
+set statusline+=\ %{LinterStatus()}
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}]
 
 " Italics
