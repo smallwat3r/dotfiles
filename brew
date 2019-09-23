@@ -1,11 +1,14 @@
 #!/bin/bash
 
-set -e
+set -e -x
+brew update
 brew install \
+  postgresql \
   tmux \
   redis \
   nnn \
   lazygit \
+  lazydocker \
   git \
   python3 \
   ruby \
@@ -19,8 +22,11 @@ brew install \
   sqlite \
   fzf \
   exa
-
-brew cask install alacritty
+brew cask install \
+  alacritty \
+  slack \
+  alfred \
+  ngrok
 
 brew services start yabai
 brew services start redis
