@@ -81,7 +81,10 @@ let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 let python_highlight_all=1
 
 set t_Co=256
-colo molokai-sw
+" colo molokai-sw
+set background=dark
+let g:solarized_termtrans=1
+colo solarized8
 
 " Statusline (must be after colorscheme)
 hi User1 ctermfg=199   guifg=#ff00af

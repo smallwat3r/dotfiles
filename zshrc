@@ -2,13 +2,17 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
-PROMPT='%{$fg[red]%}$(git_prompt_info) %20<...<%~%<< %{$reset_color%}$ '
+PROMPT='%{$fg[blue]%}$(git_prompt_info) %20<...<%~%<< %{$reset_color%}$ '
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git)
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 

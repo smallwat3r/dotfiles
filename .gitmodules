@@ -43,3 +43,6 @@
 [submodule "vim/bundle/vim-header"]
 	path = vim/bundle/vim-header
 	url = https://github.com/alpertuna/vim-header
+[submodule "vim/bundle/vim-solarized8"]
+	path = vim/bundle/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8
