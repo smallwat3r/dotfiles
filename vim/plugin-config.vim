@@ -35,6 +35,7 @@ let g:fzf_colors={
       \ 'header':  ['fg', 'Comment'] }
 
 " Sort Python imports on save
+let g:impsort_relative_last=1
 autocmd BufWritePre *.py ImpSort!
 
 " Auto Headers on F5
