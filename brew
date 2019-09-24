@@ -24,6 +24,7 @@ brew install \
   exa \
   curl
 brew cask install \
+  docker \
   alacritty \
   slack \
   alfred \
