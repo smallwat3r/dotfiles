@@ -25,4 +25,5 @@ ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
 
 ## Preview  
+24.09.19  
 ![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/preview.png)  
