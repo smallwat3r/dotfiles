@@ -81,10 +81,11 @@ let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 let python_highlight_all=1
 
 set t_Co=256
-" colo molokai-sw
 set background=dark
-let g:solarized_termtrans=1
-colo solarized8
+colo gruvbox
+
+" Transparent background in Terminal
+hi Normal ctermbg=None
 
 " Statusline (must be after colorscheme)
 hi User1 ctermfg=199   guifg=#ff00af
@@ -106,4 +107,3 @@ let &t_ZR="\e[23m"
 if (has("gui_running"))
   set guifont=DroidSansMonoSW:h13
 endif
-

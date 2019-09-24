@@ -46,3 +46,6 @@
 [submodule "vim/bundle/vim-solarized8"]
 	path = vim/bundle/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8
+[submodule "vim/bundle/gruvbox"]
+	path = vim/bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox
