@@ -2,7 +2,7 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
-PROMPT='%{$fg[yellow]%}$(git_prompt_info) %20<...<%~%<< %{$reset_color%}$ '
+PROMPT='%{$reset_color%}$(git_prompt_info) %20<...<%~%<< %% '
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
