@@ -21,6 +21,8 @@ export EDITOR=/usr/local/bin/vim
 alias vi="vim"
 alias edit="vim"
 
+alias ls="ls -F"
+
 alias p="pwd"
 alias s="sketch"
 alias n="nnn"

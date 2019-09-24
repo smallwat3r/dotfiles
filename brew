@@ -21,12 +21,15 @@ brew install \
   macvim \
   sqlite \
   fzf \
-  exa
+  exa \
+  curl
 brew cask install \
   alacritty \
   slack \
   alfred \
-  ngrok
+  ngrok \
+  firefox \
+  filezilla
 
 brew services start yabai
 brew services start redis
