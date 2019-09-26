@@ -23,7 +23,8 @@ brew install \
   fzf \
   exa \
   curl \
-  bash
+  bash \
+  gnu-sed
 brew cask install \
   docker \
   alacritty \
