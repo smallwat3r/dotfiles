@@ -2,7 +2,8 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
-PROMPT='%{$reset_color%}$(git_prompt_info) %20<...<%~%<< %% '
+ZSH_THEME=powerlevel10k/powerlevel10k
+# PROMPT='%{$reset_color%}$(git_prompt_info) %20<...<%~%<< %% '
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
@@ -15,6 +16,9 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$(go env GOPATH)
 
 export EDITOR=/usr/local/bin/vim
 
@@ -46,3 +50,6 @@ fi
 if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
