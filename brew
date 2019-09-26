@@ -22,7 +22,8 @@ brew install \
   sqlite \
   fzf \
   exa \
-  curl
+  curl \
+  bash
 brew cask install \
   docker \
   alacritty \
