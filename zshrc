@@ -8,6 +8,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+CASE_SENSITIVE="true"
 
 plugins=(
   git
@@ -34,6 +35,7 @@ alias lg="lazygit"
 alias q="ddgr"
 
 alias c="clear"
+alias :q="exit"
 
 alias g=git
 alias ga="git add"
@@ -51,5 +53,4 @@ if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
