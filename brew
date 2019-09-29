@@ -24,7 +24,8 @@ brew install \
   exa \
   curl \
   bash \
-  gnu-sed
+  gnu-sed \
+  tree
 brew cask install \
   docker \
   alacritty \
