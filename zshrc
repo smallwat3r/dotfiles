@@ -8,13 +8,13 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-CASE_SENSITIVE="true"
 
 plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
+
 
 source $ZSH/oh-my-zsh.sh
 
