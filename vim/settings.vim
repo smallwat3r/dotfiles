@@ -44,7 +44,7 @@ set lazyredraw
 set ignorecase
 set scrolljump=8
 set autochdir
-set linespace=-1
+set linespace=1
 set list
 set nonu
 set fillchars=vert:┃
@@ -105,5 +105,5 @@ let &t_ZR="\e[23m"
 
 " MacVim Gui
 if (has("gui_running"))
-  set guifont=DroidSansMonoSW:h13
+  set guifont=ProggyCleanTTSZBP:h15
 endif
