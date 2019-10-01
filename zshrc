@@ -2,8 +2,9 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
-ZSH_THEME=powerlevel10k/powerlevel10k
-# PROMPT='%{$reset_color%}$(git_prompt_info) %20<...<%~%<< %% '
+# PROMPT='%{$fg[red]%}$(git_prompt_info) %{$reset_color%}%20<...<%~%<< %% '
+ZSH_THEME=agkozak
+AGKOZAK_COLORS_USER_HOST=yellow
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
@@ -14,7 +15,6 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
-
 
 source $ZSH/oh-my-zsh.sh
 
@@ -52,5 +52,3 @@ fi
 if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
 fi
-
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
