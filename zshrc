@@ -2,7 +2,9 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
+local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 PROMPT='%{$fg[green]%}$(git_prompt_info) %20<...<%~%<< %{$reset_color%}%% '
+RPS1="${return_code}"
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
