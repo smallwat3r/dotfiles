@@ -2,9 +2,7 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
-# PROMPT='%{$fg[red]%}$(git_prompt_info) %{$reset_color%}%20<...<%~%<< %% '
-ZSH_THEME=agkozak
-AGKOZAK_COLORS_USER_HOST=yellow
+PROMPT='%{$fg[green]%}$(git_prompt_info) %20<...<%~%<< %{$reset_color%}%% '
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"

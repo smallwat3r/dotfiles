@@ -115,14 +115,14 @@ font:
     style: Regular
 
   # Bold font face
-  # bold:
-  #   family: Droid Sans Mono SW
-  #   style: Bold
+  bold:
+    family: ProggyCleanTTSZBP
+    style: Bold
 
   # Italic font face
-  # italic:
-  #   family: Droid Sans Mono SW
-  #   style: Italic
+  italic:
+    family: ProggyCleanTTSZBP
+    style: Italic
 
   size: 16.0
 

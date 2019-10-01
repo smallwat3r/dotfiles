@@ -25,7 +25,8 @@ brew install \
   curl \
   bash \
   gnu-sed \
-  tree
+  tree \
+  jsonnet
 brew cask install \
   docker \
   alacritty \

@@ -49,3 +49,6 @@
 [submodule "vim/bundle/gruvbox"]
 	path = vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
+[submodule "vim/bundle/vim-jsonnet"]
+	path = vim/bundle/vim-jsonnet
+	url = https://github.com/google/vim-jsonnet.git
