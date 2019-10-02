@@ -85,7 +85,7 @@ set background=dark
 colo mono_sw
 
 " Transparent background in Terminal
-" hi Normal ctermbg=None
+hi Normal ctermbg=None
 
 " Statusline (must be after colorscheme)
 hi User1 ctermfg=199 ctermbg=0  guifg=#ff00af guibg=#000000
