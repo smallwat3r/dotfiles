@@ -65,8 +65,8 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
 " Change cursor format on insert
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[3 q"
+" let &t_SI = "\e[6 q"
+" let &t_EI = "\e[3 q"
 
 " Ignore files
 set wildignore=*.o,*.a,*.so,*.pyc,*.swp,.git/,*.class,*.DS_Store
@@ -82,15 +82,15 @@ let python_highlight_all=1
 
 set t_Co=256
 set background=dark
-colo gruvbox
+colo mono_sw
 
 " Transparent background in Terminal
-hi Normal ctermbg=None
+" hi Normal ctermbg=None
 
 " Statusline (must be after colorscheme)
-hi User1 ctermfg=199   guifg=#ff00af
-hi User2 ctermfg=190   guifg=#d7ff00
-hi User3 ctermfg=193   guifg=#d7ffaf
+hi User1 ctermfg=199 ctermbg=0  guifg=#ff00af guibg=#000000
+hi User2 ctermfg=190 ctermbg=0  guifg=#d7ff00 guibg=#000000
+hi User3 ctermfg=193 ctermbg=0  guifg=#d7ffaf guibg=#000000
 set statusline=%1*%{fugitive#statusline()}
 set statusline+=\ %3*[
 set statusline+=%2*%f%3*
@@ -105,5 +105,5 @@ let &t_ZR="\e[23m"
 
 " MacVim Gui
 if (has("gui_running"))
-  set guifont=ProggyCleanTTSZBP:h15
+  set guifont=ProggyCleanTTSZBP:h17
 endif

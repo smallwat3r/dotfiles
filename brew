@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e -x
+
 brew update
 brew install \
   postgresql \

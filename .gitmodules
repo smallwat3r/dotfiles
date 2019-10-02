@@ -52,3 +52,21 @@
 [submodule "vim/bundle/vim-jsonnet"]
 	path = vim/bundle/vim-jsonnet
 	url = https://github.com/google/vim-jsonnet.git
+[submodule "vim/bundle/minimal"]
+	path = vim/bundle/minimal
+	url = https://github.com/wolverian/minimal
+[submodule "vim/bundle/vim-mayanfog"]
+	path = vim/bundle/vim-mayanfog
+	url = https://github.com/arzg/vim-mayanfog
+[submodule "vim/bundle/vim-monotonic"]
+	path = vim/bundle/vim-monotonic
+	url = https://github.com/treycucco/vim-monotonic
+[submodule "vim/bundle/nofrils"]
+	path = vim/bundle/nofrils
+	url = https://github.com/robertmeta/nofrils
+[submodule "vim/bundle/eink.vim"]
+	path = vim/bundle/eink.vim
+	url = https://github.com/clinstid/eink.vim
+[submodule "vim/bundle/vim-mono-sw"]
+	path = vim/bundle/vim-mono-sw
+	url = https://github.com/smallwat3r/vim-mono-sw

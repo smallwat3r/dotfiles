@@ -2,9 +2,11 @@
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
+# prompt ----------------------------------------------------
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='%{$fg[green]%}$(git_prompt_info) %20<...<%~%<< %{$reset_color%}%% '
+PROMPT='%{$fg[red]%}$(git_prompt_info)%20<...<%~%<< %{$reset_color%}%% '
 RPS1="${return_code}"
+
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
@@ -20,9 +22,9 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
-
 export EDITOR=/usr/local/bin/vim
 
+# aliases ---------------------------------------------------
 alias vi="vim"
 alias edit="vim"
 
@@ -44,6 +46,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+
+# load tools ------------------------------------------------
 
 if command -v fink>/dev/null; then
   source /sw/bin/init.sh
