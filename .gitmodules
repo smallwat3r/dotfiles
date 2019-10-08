@@ -31,9 +31,6 @@
 [submodule "vim/bundle/vim-python-pep8-indent"]
 	path = vim/bundle/vim-python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
-[submodule "vim/bundle/molokai-sw"]
-	path = vim/bundle/molokai-sw
-	url = https://github.com/smallwat3r/molokai-sw
 [submodule "fonts/droid-sans-mono-sw"]
 	path = fonts/droid-sans-mono-sw
 	url = https://github.com/smallwat3r/droid-sans-mono-sw.git
@@ -43,30 +40,15 @@
 [submodule "vim/bundle/vim-header"]
 	path = vim/bundle/vim-header
 	url = https://github.com/alpertuna/vim-header
-[submodule "vim/bundle/vim-solarized8"]
-	path = vim/bundle/vim-solarized8
-	url = https://github.com/lifepillar/vim-solarized8
-[submodule "vim/bundle/gruvbox"]
-	path = vim/bundle/gruvbox
-	url = https://github.com/morhetz/gruvbox
 [submodule "vim/bundle/vim-jsonnet"]
 	path = vim/bundle/vim-jsonnet
 	url = https://github.com/google/vim-jsonnet.git
-[submodule "vim/bundle/minimal"]
-	path = vim/bundle/minimal
-	url = https://github.com/wolverian/minimal
-[submodule "vim/bundle/vim-mayanfog"]
-	path = vim/bundle/vim-mayanfog
-	url = https://github.com/arzg/vim-mayanfog
-[submodule "vim/bundle/vim-monotonic"]
-	path = vim/bundle/vim-monotonic
-	url = https://github.com/treycucco/vim-monotonic
-[submodule "vim/bundle/nofrils"]
-	path = vim/bundle/nofrils
-	url = https://github.com/robertmeta/nofrils
-[submodule "vim/bundle/eink.vim"]
-	path = vim/bundle/eink.vim
-	url = https://github.com/clinstid/eink.vim
 [submodule "vim/bundle/vim-mono-sw"]
 	path = vim/bundle/vim-mono-sw
 	url = https://github.com/smallwat3r/vim-mono-sw
+[submodule "vim/bundle/gruvbox"]
+	path = vim/bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox
+[submodule "vim/bundle/vim-colors-github"]
+	path = vim/bundle/vim-colors-github
+	url = https://github.com/cormacrelf/vim-colors-github.git

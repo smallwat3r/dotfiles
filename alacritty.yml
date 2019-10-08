@@ -110,16 +110,19 @@ tabspaces: 4
 # Font configuration (changes require restart)
 font:
   normal:
-    family: ProggyCleanTTSZBP
+    family: Menlo
+    #family: ProggyCleanTTSZBP
     style: Regular
   bold:
-    family: ProggyCleanTTSZBP
+    family: Menlo
+    #family: ProggyCleanTTSZBP
     style: Bold
   italic:
-    family: ProggyCleanTTSZBP
+    family: Menlo
+    #family: ProggyCleanTTSZBP
     style: Italic
 
-  size: 17.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

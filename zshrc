@@ -26,6 +26,7 @@ export EDITOR=/usr/local/bin/vim
 
 # aliases ---------------------------------------------------
 alias vi="vim"
+alias mvi="mvim"
 alias edit="vim"
 
 alias ls="ls -F"

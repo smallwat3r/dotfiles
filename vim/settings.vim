@@ -80,14 +80,27 @@ let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 " Full python highlighting
 let python_highlight_all=1
 
-set t_Co=256
-set background=dark
-colo mono_sw
+" Gui
+if (has("gui_running"))
+  set guifont=Menlo:h13A
+  let g:github_colors_block_diffmark=1
+  let g:github_colors_soft=1
+  colo github
+  " Apply same background color than gitter background
+  hi Normal  guibg=#eaeff4
+  hi NonText guibg=NONE
+else
+  set t_Co=256
+  set background=dark
+  colo gruvbox
+  " Transparent background in Terminal
+  hi Normal ctermbg=None
+endif
 
-" Transparent background in Terminal
-hi Normal ctermbg=None
+" All the below must be set after colorschemes
+" --------------------------------------------
 
-" Statusline (must be after colorscheme)
+" Statusline
 hi User1 ctermfg=199 ctermbg=0  guifg=#ff00af guibg=#000000
 hi User2 ctermfg=190 ctermbg=0  guifg=#d7ff00 guibg=#000000
 hi User3 ctermfg=193 ctermbg=0  guifg=#d7ffaf guibg=#000000
@@ -102,8 +115,3 @@ set statusline+=\ %{strlen(&fenc)?&fenc:&enc}]
 " Italics
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
-
-" MacVim Gui
-if (has("gui_running"))
-  set guifont=ProggyCleanTTSZBP:h17
-endif
