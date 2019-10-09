@@ -80,21 +80,19 @@ let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 " Full python highlighting
 let python_highlight_all=1
 
+set t_Co=256
+colo github
+
+" hi Normal  ctermbg=none
+" hi NonText ctermbg=none
+
 " Gui
 if (has("gui_running"))
-  set guifont=Menlo:h13A
-  let g:github_colors_block_diffmark=1
-  let g:github_colors_soft=1
-  colo github
+  set guifont=Menlo:h13
+  set transparency=5
   " Apply same background color than gitter background
-  hi Normal  guibg=#eaeff4
-  hi NonText guibg=NONE
-else
-  set t_Co=256
-  set background=dark
-  colo gruvbox
-  " Transparent background in Terminal
-  hi Normal ctermbg=None
+  " hi Normal  guibg=#eaeff4
+  " hi NonText guibg=NONE
 endif
 
 " All the below must be set after colorschemes
