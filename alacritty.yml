@@ -110,19 +110,16 @@ tabspaces: 4
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Menlo
-    #family: ProggyCleanTTSZBP
+    family: ProggyCleanTTSZBP
     style: Regular
   bold:
-    family: Menlo
-    #family: ProggyCleanTTSZBP
+    family: ProggyCleanTTSZBP
     style: Bold
   italic:
-    family: Menlo
-    #family: ProggyCleanTTSZBP
+    family: ProggyCleanTTSZBP
     style: Italic
 
-  size: 12.0
+  size: 17.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -159,34 +156,34 @@ draw_bold_text_with_bright_colors: true
 
 colors:
   # Default colors
-  # primary:
-  #   background: '0x000000'
-  #   foreground: '0xf0f0f0'
   primary:
-    background: '0xeaeff4'
-    foreground: '0x000000'
+    background: '0x000000'
+    foreground: '0xf0f0f0'
   cursor:
     background: '0xf0f0f0'
     foreground: '0x26282a'
 
+  # Normal colors
   normal:
-    black:   '0x212121'
-    red:     '0xc30771'
-    green:   '0x10a778'
-    yellow:  '0xa89c14'
-    blue:    '0x008ec4'
-    magenta: '0x523c79'
-    cyan:    '0x20a5ba'
-    white:   '0xe0e0e0'
-  bright:
-    black:   '0x212121'
-    red:     '0xfb007a'
-    green:   '0x5fd7af'
-    yellow:  '0xf3e430'
-    blue:    '0x20bbfc'
-    magenta: '0x6855de'
-    cyan:    '0x4fb8cc'
+    black:   '0x26282a'
+    red:     '0xff8878'
+    green:   '0xb4fb73'
+    yellow:  '0xfffcb7'
+    blue:    '0x8bbce5'
+    magenta: '0xffb2fe'
+    cyan:    '0xa2e1f8'
     white:   '0xf1f1f1'
+
+  # Bright colors
+  bright:
+    black:   '0x6f6f6f'
+    red:     '0xfe978b'
+    green:   '0xd6fcba'
+    yellow:  '0xfffed5'
+    blue:    '0xc2e3ff'
+    magenta: '0xffc6ff'
+    cyan:    '0xc0e9f8'
+    white:   '0xffffff'
 
 # Visual Bell
 #

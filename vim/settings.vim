@@ -81,18 +81,13 @@ let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 let python_highlight_all=1
 
 set t_Co=256
-colo github
-
-" hi Normal  ctermbg=none
-" hi NonText ctermbg=none
+colo mono_sw
 
 " Gui
 if (has("gui_running"))
-  set guifont=Menlo:h13
+  colo tempus_dawn
+  set guifont=ProggyCleanTTSZBP:h20
   set transparency=5
-  " Apply same background color than gitter background
-  " hi Normal  guibg=#eaeff4
-  " hi NonText guibg=NONE
 endif
 
 " All the below must be set after colorschemes

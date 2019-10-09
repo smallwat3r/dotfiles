@@ -3,6 +3,7 @@
 set -e -x
 
 brew update
+
 brew install \
   postgresql \
   tmux \
@@ -28,6 +29,7 @@ brew install \
   gnu-sed \
   tree \
   jsonnet
+
 brew cask install \
   docker \
   alacritty \
