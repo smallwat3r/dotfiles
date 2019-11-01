@@ -1,8 +1,8 @@
-" File              : functions.vim
-" Author            : smallwat3r
-" Date              : Thu  8 Aug 20:10:13 2019
+" File  : functions.vim
+" Author: smallwat3r
+" Date  : Thu  8 Aug 20:10:13 2019
 
-" Custom functions
+" Custom functions.
 
 " Remove trailing whitespaces.
 fun! StripTrailingWhitespaces()
@@ -19,6 +19,7 @@ endfun
 autocmd BufWritePre * :call StripTrailingWhitespaces()
 autocmd FileType markdown let b:noStripWhitespace=1
 
+" Count errors in status bar.
 fun! LinterStatus() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error

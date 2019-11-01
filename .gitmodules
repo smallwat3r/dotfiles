@@ -49,12 +49,36 @@
 [submodule "vim/bundle/gruvbox"]
 	path = vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
-[submodule "vim/bundle/vim-colors-github"]
-	path = vim/bundle/vim-colors-github
-	url = https://github.com/cormacrelf/vim-colors-github.git
-[submodule "vim/bundle/vim-color-github"]
-	path = vim/bundle/vim-color-github
-	url = https://github.com/smallwat3r/vim-colors-github.git
-[submodule "vim/bundle/vim-github-colorscheme"]
-	path = vim/bundle/vim-github-colorscheme
-	url = https://github.com/endel/vim-github-colorscheme
+[submodule "vim/bundle/onedark"]
+	path = vim/bundle/onedark
+	url = https://github.com/joshdick/onedark.vim
+[submodule "vim/bundle/lightline"]
+	path = vim/bundle/lightline
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim/bundle/soda"]
+	path = vim/bundle/soda
+	url = https://github.com/DAddYE/soda.vim
+[submodule "vim/bundle/vim-yami"]
+	path = vim/bundle/vim-yami
+	url = https://github.com/danishprakash/vim-yami
+[submodule "vim/bundle/Muon"]
+	path = vim/bundle/Muon
+	url = https://github.com/gregsexton/Muon
+[submodule "vim/bundle/shoji"]
+	path = vim/bundle/shoji
+	url = https://github.com/nightsense/shoji
+[submodule "vim/bundle/vim-newsprint-theme"]
+	path = vim/bundle/vim-newsprint-theme
+	url = https://github.com/bruth/vim-newsprint-theme
+[submodule "vim/bundle/photon.vim"]
+	path = vim/bundle/photon.vim
+	url = https://github.com/axvr/photon.vim
+[submodule "vim/bundle/vim-colorschemes"]
+	path = vim/bundle/vim-colorschemes
+	url = https://github.com/flazz/vim-colorschemes
+[submodule "vim/bundle/shades-of-purple.vim"]
+	path = vim/bundle/shades-of-purple.vim
+	url = https://github.com/Rigellute/shades-of-purple.vim
+[submodule "fonts/cherry"]
+	path = fonts/cherry
+	url = https://github.com/turquoise-hexagon/cherry

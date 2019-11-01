@@ -1,10 +1,15 @@
-# Zshrc config
+#!/bin/zsh
+# File  : zshrc
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 26.10.2019
+#
+# Zshrc config.
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
 # prompt ----------------------------------------------------
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='%{$fg[red]%}$(git_prompt_info)%20<...<%~%<< %{$reset_color%}%% '
+PROMPT='$(git_prompt_info)%20<...<%~%<< %{$reset_color%}%% '
 RPS1="${return_code}"
 
 
@@ -24,12 +29,10 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
 export EDITOR=/usr/local/bin/vim
 
-# aliases ---------------------------------------------------
+
 alias vi="vim"
 alias mvi="mvim"
 alias edit="vim"
-
-alias ls="ls -F"
 
 alias p="pwd"
 alias s="sketch"
@@ -46,9 +49,7 @@ alias ga="git add"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias .....="cd ../../../.."
 
-# load tools ------------------------------------------------
 
 if command -v fink>/dev/null; then
   source /sw/bin/init.sh

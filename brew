@@ -1,4 +1,7 @@
 #!/bin/bash
+# File  : brew
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 26.10.2019
 
 set -e -x
 

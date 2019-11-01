@@ -110,16 +110,36 @@ tabspaces: 4
 # Font configuration (changes require restart)
 font:
   normal:
-    family: ProggyCleanTTSZBP
-    style: Regular
+    # family: ProggyCleanTTSZBP
+    # family: Monaco
+    # family: Droid Sans Mono SW
+    # family: Menlo
+    # family: Hack
+    # family: Fira Code
+    # family: UnifontMedium
+    # family: CodingFontTobi
+    family: cherry
+    style: Medium
   bold:
-    family: ProggyCleanTTSZBP
+    # family: ProggyCleanTTSZBP
+    # family: Monaco
+    # family: Droid Sans Mono SW
+    # family: Menlo
+    # family: Hack
+    # family: Fira Code
+    family: cherry
     style: Bold
   italic:
-    family: ProggyCleanTTSZBP
-    style: Italic
+    # family: ProggyCleanTTSZBP
+    # family: Monaco
+    # family: Droid Sans Mono SW
+    # family: Menlo
+    # family: Hack
+    # family: Fira Code
+    family: cherry
+    style: Medium
 
-  size: 17.0
+  size: 13.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -148,42 +168,45 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-
+# Colors
 colors:
   # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xf0f0f0'
+    background: "0x1E1E3F"
+    foreground: "0xE1EFFF"
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    background: '0xf0f0f0'
-    foreground: '0x26282a'
+    text: "0x1E1E3F"
+    cursor: "0xFAD000"
 
   # Normal colors
   normal:
-    black:   '0x26282a'
-    red:     '0xff8878'
-    green:   '0xb4fb73'
-    yellow:  '0xfffcb7'
-    blue:    '0x8bbce5'
-    magenta: '0xffb2fe'
-    cyan:    '0xa2e1f8'
-    white:   '0xf1f1f1'
+    black: "0x000000"
+    red: "0xEC3A37"
+    green: "0x75e44c"
+    yellow: "0xFAD000"
+    blue: "0x6943FF"
+    magenta: "0xFF2C70"
+    cyan: "0x80FCFF"
+    white: "0xFFFFFF"
 
   # Bright colors
   bright:
-    black:   '0x6f6f6f'
-    red:     '0xfe978b'
-    green:   '0xd6fcba'
-    yellow:  '0xfffed5'
-    blue:    '0xc2e3ff'
-    magenta: '0xffc6ff'
-    cyan:    '0xc0e9f8'
-    white:   '0xffffff'
+    black: "0x5C5C61"
+    red: "0xEC3A37F5"
+    green: "0x3AD900"
+    yellow: "0xFAD000"
+    blue: "0x6943FF"
+    magenta: "0xFB94FF"
+    cyan: "0x80FCFF"
+    white: "0x2D2B55
+    "
 
 # Visual Bell
 #
