@@ -43,39 +43,9 @@
 [submodule "vim/bundle/vim-jsonnet"]
 	path = vim/bundle/vim-jsonnet
 	url = https://github.com/google/vim-jsonnet.git
-[submodule "vim/bundle/vim-mono-sw"]
-	path = vim/bundle/vim-mono-sw
-	url = https://github.com/smallwat3r/vim-mono-sw
-[submodule "vim/bundle/gruvbox"]
-	path = vim/bundle/gruvbox
-	url = https://github.com/morhetz/gruvbox
-[submodule "vim/bundle/onedark"]
-	path = vim/bundle/onedark
-	url = https://github.com/joshdick/onedark.vim
 [submodule "vim/bundle/lightline"]
 	path = vim/bundle/lightline
 	url = https://github.com/itchyny/lightline.vim
-[submodule "vim/bundle/soda"]
-	path = vim/bundle/soda
-	url = https://github.com/DAddYE/soda.vim
-[submodule "vim/bundle/vim-yami"]
-	path = vim/bundle/vim-yami
-	url = https://github.com/danishprakash/vim-yami
-[submodule "vim/bundle/Muon"]
-	path = vim/bundle/Muon
-	url = https://github.com/gregsexton/Muon
-[submodule "vim/bundle/shoji"]
-	path = vim/bundle/shoji
-	url = https://github.com/nightsense/shoji
-[submodule "vim/bundle/vim-newsprint-theme"]
-	path = vim/bundle/vim-newsprint-theme
-	url = https://github.com/bruth/vim-newsprint-theme
-[submodule "vim/bundle/photon.vim"]
-	path = vim/bundle/photon.vim
-	url = https://github.com/axvr/photon.vim
-[submodule "vim/bundle/vim-colorschemes"]
-	path = vim/bundle/vim-colorschemes
-	url = https://github.com/flazz/vim-colorschemes
 [submodule "vim/bundle/shades-of-purple.vim"]
 	path = vim/bundle/shades-of-purple.vim
 	url = https://github.com/Rigellute/shades-of-purple.vim
