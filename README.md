@@ -26,5 +26,5 @@ ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
 
 ## Preview  
-01/11/19  
+02/12/19  
 ![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/_s1.png)  
