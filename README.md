@@ -27,4 +27,4 @@ ln -fs ~/dotfiles/zshrc ~/.zshrc
 
 ## Preview  
 02/12/19  
-![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/_s1.png)  
+![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/s1.png)  

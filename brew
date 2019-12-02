@@ -31,7 +31,10 @@ brew install \
   bash \
   gnu-sed \
   tree \
-  jsonnet
+  jsonnet \
+  tidy-html5 \
+  chunkwm
+
 
 brew cask install \
   docker \

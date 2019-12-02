@@ -187,13 +187,37 @@ colors:
   # Default colors
   primary:
     background: '0x121212'
-    foreground: '0xeeeeee'
+    foreground: '0xffffff'
+
+  cursor:
+    text: '0x121212'
+    cursor: '0x00ffff'
+
+  normal:
+    black:   '0x020202'
+    red:     '0xff0410'
+    green:   '0xff8b8b'
+    yellow:  '0xFFC620'
+    blue:    '0x1BA6FA'
+    magenta: '0xff00ce'
+    cyan:    '0xff00a7'
+    white:   '0xffffff'
+
+  bright:
+    black:   '0x020202'
+    red:     '0xff0410'
+    green:   '0xff009a'
+    yellow:  '0xFFC620'
+    blue:    '0x1BA6FA'
+    magenta: '0xff00ce'
+    cyan:    '0xff00a7'
+    white:   '0xffffff'
 
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
+background_opacity: 0.95
 
 # Mouse bindings
 #
