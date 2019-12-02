@@ -85,15 +85,11 @@ let python_highlight_all=1
 set t_Co=256
 set bg=dark
 colo efficient
-" hi LineNr ctermbg=None
-" hi Normal ctermbg=None
 
 " Gui
 if (has("gui_running"))
-  "set guifont=LucidaConsole:h12
   colo efficient
   set guifont=sq:h15
-  hi Comment gui=italic
   " set transparency=5
 endif
 
@@ -101,12 +97,11 @@ endif
 " --------------------------------------------
 " Statusline
 set statusline=%{fugitive#statusline()}
-set statusline+=\ [
-set statusline+=%f
+set statusline+=\ %f
 set statusline+=\ %l:%c,\%L
 set statusline+=\ %{strlen(&ft)?&ft:'none'}
 set statusline+=\ %{LinterStatus()}
-set statusline+=\ %{strlen(&fenc)?&fenc:&enc}]
+set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
 
 " Italics
 let &t_ZH="\e[3m"
