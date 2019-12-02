@@ -34,9 +34,6 @@
 [submodule "fonts/droid-sans-mono-sw"]
 	path = fonts/droid-sans-mono-sw
 	url = https://github.com/smallwat3r/droid-sans-mono-sw.git
-[submodule "vim/bundle/impsort.vim"]
-	path = vim/bundle/impsort.vim
-	url = https://github.com/tweekmonster/impsort.vim
 [submodule "vim/bundle/vim-header"]
 	path = vim/bundle/vim-header
 	url = https://github.com/alpertuna/vim-header
@@ -52,3 +49,27 @@
 [submodule "fonts/cherry"]
 	path = fonts/cherry
 	url = https://github.com/turquoise-hexagon/cherry
+[submodule "vim/bundle/vim-code-dark"]
+	path = vim/bundle/vim-code-dark
+	url = https://github.com/tomasiser/vim-code-dark
+[submodule "vim/bundle/papercolor-theme"]
+	path = vim/bundle/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme
+[submodule "vim/bundle/nginx.vim"]
+	path = vim/bundle/nginx.vim
+	url = https://github.com/chr4/nginx.vim
+[submodule "vim/bundle/vim-markdown"]
+	path = vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "vim/bundle/vim-jsbeautify"]
+	path = vim/bundle/vim-jsbeautify
+	url = https://github.com/maksimr/vim-jsbeautify
+[submodule "vim/bundle/vim-dadbod"]
+	path = vim/bundle/vim-dadbod
+	url = https://github.com/tpope/vim-dadbod
+[submodule "fonts/sq"]
+	path = fonts/sq
+	url = https://github.com/leahneukirchen/sq
+[submodule "vim/bundle/efficient"]
+	path = vim/bundle/efficient
+	url = https://github.com/smallwat3r/efficient

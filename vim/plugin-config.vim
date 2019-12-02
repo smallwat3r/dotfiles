@@ -35,8 +35,8 @@ let g:fzf_colors={
       \ 'header':  ['fg', 'Comment'] }
 
 " Sort Python imports on save
-let g:impsort_relative_last=1
-autocmd BufWritePre *.py ImpSort!
+" let g:impsort_relative_last=1
+" autocmd BufWritePre *.py ImpSort!
 
 " Auto Headers on F5
 let g:header_auto_add_header=0
@@ -54,17 +54,20 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_pattern_options = {
       \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
       \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-      \}
+      \ }
 
 " Lightline
-let g:shades_of_purple_lightline=1
-let g:lightline = {
-      \ 'colorscheme': 'shades_of_purple',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
+" let g:shades_of_purple_lightline=1
+" let g:lightline = {
+"       \ 'colorscheme': 'shades_of_purple',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'gitbranch': 'fugitive#head'
+"       \ },
+"       \ }
+
+" Markdown
+let g:vim_markdown_folding_disabled=1

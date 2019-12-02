@@ -34,8 +34,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 15
-    y: 15
+    x: 20
+    y: 20
 
   # Spread additional padding ndow position (changes require restart)
   dynamic_padding: true
@@ -110,36 +110,20 @@ tabspaces: 4
 # Font configuration (changes require restart)
 font:
   normal:
-    # family: ProggyCleanTTSZBP
-    # family: Monaco
     # family: Droid Sans Mono SW
-    # family: Menlo
-    # family: Hack
-    # family: Fira Code
-    # family: UnifontMedium
-    # family: CodingFontTobi
-    family: cherry
+    # family: cherry
+    family: sq
     style: Medium
   bold:
-    # family: ProggyCleanTTSZBP
-    # family: Monaco
     # family: Droid Sans Mono SW
-    # family: Menlo
-    # family: Hack
-    # family: Fira Code
-    family: cherry
+    # family: cherry
+    family: sq
     style: Bold
-  italic:
-    # family: ProggyCleanTTSZBP
-    # family: Monaco
+  #italic:
     # family: Droid Sans Mono SW
-    # family: Menlo
-    # family: Hack
-    # family: Fira Code
-    family: cherry
-    style: Medium
+    # style: Italic
 
-  size: 13.0
+  size: 15.0  # sq looks great on 15px
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -168,45 +152,10 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
-
-# Colors
-colors:
-  # Default colors
-  primary:
-    background: "0x1E1E3F"
-    foreground: "0xE1EFFF"
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: "0x1E1E3F"
-    cursor: "0xFAD000"
-
-  # Normal colors
-  normal:
-    black: "0x000000"
-    red: "0xEC3A37"
-    green: "0x75e44c"
-    yellow: "0xFAD000"
-    blue: "0x6943FF"
-    magenta: "0xFF2C70"
-    cyan: "0x80FCFF"
-    white: "0xFFFFFF"
-
-  # Bright colors
-  bright:
-    black: "0x5C5C61"
-    red: "0xEC3A37F5"
-    green: "0x3AD900"
-    yellow: "0xFAD000"
-    blue: "0x6943FF"
-    magenta: "0xFB94FF"
-    cyan: "0x80FCFF"
-    white: "0x2D2B55
-    "
 
 # Visual Bell
 #
@@ -233,6 +182,12 @@ visual_bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
+
+colors:
+  # Default colors
+  primary:
+    background: '0x121212'
+    foreground: '0xeeeeee'
 
 # Background opacity
 #

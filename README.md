@@ -3,6 +3,7 @@
 **If you use this repository, please back up your dotfiles before.**  
 
 Clone repository and load submodules needed for vim  
+
 ```
 git clone --recursive-submodules -j8 https://github.com/smallwat3r/dotfiles.git
 ```
@@ -26,4 +27,4 @@ ln -fs ~/dotfiles/zshrc ~/.zshrc
 
 ## Preview  
 01/11/19  
-![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/screenshot.png)  
+![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/_s1.png)  
