@@ -194,7 +194,7 @@ colors:
     cursor: '0x00ffff'
 
   normal:
-    black:   '0x020202'
+    black:   '0x272727'
     red:     '0xff0410'
     green:   '0xff8b8b'
     yellow:  '0xFFC620'
@@ -204,7 +204,7 @@ colors:
     white:   '0xffffff'
 
   bright:
-    black:   '0x020202'
+    black:   '0x272727'
     red:     '0xff0410'
     green:   '0xff009a'
     yellow:  '0xFFC620'

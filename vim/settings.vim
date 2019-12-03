@@ -82,15 +82,28 @@ let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 " Full python highlighting
 let python_highlight_all=1
 
+" Keep visual selection when reindenting
+xnoremap > >gv
+xnoremap < <gv
+
+" Save as root
+command! WW :w !sudo tee % >/dev/null
+
+" Disable automatic insertion of comment markers
+set fo=cjql
+autocmd FileType * setl fo-=o fo-=r
+autocmd FileType gitcommit setl fo=cjql com+=n:>
+
 set t_Co=256
 set bg=dark
 colo efficient
 
-" Gui
+" Gui settings
 if (has("gui_running"))
-  colo efficient
   set guifont=sq:h15
   " set transparency=5
+  set guioptions-=mTrL  " remove all GUI widgets
+  set gcr=a:blinkon0    " no blinking cursor
 endif
 
 " All the below must be set after colorschemes

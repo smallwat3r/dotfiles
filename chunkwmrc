@@ -131,3 +131,4 @@ chunkc tiling::rule --owner Emacs --except "^$" --state tile &
 chunkc tiling::rule --owner \"Calculator\" --state float &
 chunkc tiling::rule --owner \"GIMP-2.10\" --name "Quit GIMP" --state float &
 chunkc tiling::rule --owner \"Slack\" --state float &
+chunkc tiling::rule --owner \"Giphy Capture\" --state float &
