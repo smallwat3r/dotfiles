@@ -9,7 +9,7 @@ export ZSH="/Users/smallwat3r/.oh-my-zsh"
 
 # prompt ----------------------------------------------------
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='$(git_prompt_info)%20<...<%~%<< %{$reset_color%}%% '
+PROMPT='%{$fg_bold[white]%}$(git_prompt_info)%20<...<%~%<< %{$reset_color%}%% '
 RPS1="${return_code}"
 
 

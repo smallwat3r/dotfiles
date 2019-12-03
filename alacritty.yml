@@ -21,6 +21,7 @@ window:
     columns: 140
     lines: 50
 
+
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
