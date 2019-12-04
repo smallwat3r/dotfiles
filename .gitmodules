@@ -40,21 +40,9 @@
 [submodule "vim/bundle/vim-jsonnet"]
 	path = vim/bundle/vim-jsonnet
 	url = https://github.com/google/vim-jsonnet.git
-[submodule "vim/bundle/lightline"]
-	path = vim/bundle/lightline
-	url = https://github.com/itchyny/lightline.vim
-[submodule "vim/bundle/shades-of-purple.vim"]
-	path = vim/bundle/shades-of-purple.vim
-	url = https://github.com/Rigellute/shades-of-purple.vim
 [submodule "fonts/cherry"]
 	path = fonts/cherry
 	url = https://github.com/turquoise-hexagon/cherry
-[submodule "vim/bundle/vim-code-dark"]
-	path = vim/bundle/vim-code-dark
-	url = https://github.com/tomasiser/vim-code-dark
-[submodule "vim/bundle/papercolor-theme"]
-	path = vim/bundle/papercolor-theme
-	url = https://github.com/NLKNguyen/papercolor-theme
 [submodule "vim/bundle/nginx.vim"]
 	path = vim/bundle/nginx.vim
 	url = https://github.com/chr4/nginx.vim
@@ -73,3 +61,6 @@
 [submodule "vim/bundle/efficient"]
 	path = vim/bundle/efficient
 	url = https://github.com/smallwat3r/efficient
+[submodule "vim/bundle/vim-table-mode"]
+	path = vim/bundle/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode

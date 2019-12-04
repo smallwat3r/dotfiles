@@ -43,9 +43,4 @@ brew cask install \
   alfred \
   ngrok \
   firefox \
-  filezilla \
-  amethyst
-
-brew services start yabai
-brew services start redis
-brew services start mysql
+  filezilla
