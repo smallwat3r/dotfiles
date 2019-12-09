@@ -1,66 +1,9 @@
-[submodule "vim/bundle/auto-pairs"]
-	path = vim/bundle/auto-pairs
-	url = https://github.com/jiangmiao/auto-pairs
-[submodule "vim/bundle/ale"]
-	path = vim/bundle/ale
-	url = https://github.com/dense-analysis/ale
-[submodule "vim/bundle/vim-autoformat"]
-	path = vim/bundle/vim-autoformat
-	url = https://github.com/Chiel92/vim-autoformat
-[submodule "vim/bundle/vim-fugitive"]
-	path = vim/bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
-[submodule "vim/bundle/vim-gitgutter"]
-	path = vim/bundle/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter
-[submodule "vim/bundle/Vim-Jinja2-Syntax"]
-	path = vim/bundle/Vim-Jinja2-Syntax
-	url = https://github.com/Glench/Vim-Jinja2-Syntax
-[submodule "vim/bundle/vim-vinegar"]
-	path = vim/bundle/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar.git
-[submodule "vim/bundle/vim-commentary"]
-	path = vim/bundle/vim-commentary
-	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/bundle/fzf.vim"]
-	path = vim/bundle/fzf.vim
-	url = https://github.com/junegunn/fzf.vim.git
-[submodule "vim/bundle/vim-eunuch"]
-	path = vim/bundle/vim-eunuch
-	url = https://github.com/tpope/vim-eunuch.git
-[submodule "vim/bundle/vim-python-pep8-indent"]
-	path = vim/bundle/vim-python-pep8-indent
-	url = https://github.com/Vimjas/vim-python-pep8-indent.git
 [submodule "fonts/droid-sans-mono-sw"]
 	path = fonts/droid-sans-mono-sw
 	url = https://github.com/smallwat3r/droid-sans-mono-sw.git
-[submodule "vim/bundle/vim-header"]
-	path = vim/bundle/vim-header
-	url = https://github.com/alpertuna/vim-header
-[submodule "vim/bundle/vim-jsonnet"]
-	path = vim/bundle/vim-jsonnet
-	url = https://github.com/google/vim-jsonnet.git
 [submodule "fonts/cherry"]
 	path = fonts/cherry
 	url = https://github.com/turquoise-hexagon/cherry
-[submodule "vim/bundle/nginx.vim"]
-	path = vim/bundle/nginx.vim
-	url = https://github.com/chr4/nginx.vim
-[submodule "vim/bundle/vim-markdown"]
-	path = vim/bundle/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown.git
-[submodule "vim/bundle/vim-jsbeautify"]
-	path = vim/bundle/vim-jsbeautify
-	url = https://github.com/maksimr/vim-jsbeautify
-[submodule "vim/bundle/vim-dadbod"]
-	path = vim/bundle/vim-dadbod
-	url = https://github.com/tpope/vim-dadbod
 [submodule "fonts/sq"]
 	path = fonts/sq
 	url = https://github.com/leahneukirchen/sq
-[submodule "vim/bundle/efficient"]
-	path = vim/bundle/efficient
-	url = https://github.com/smallwat3r/efficient
-[submodule "vim/bundle/vim-table-mode"]
-	path = vim/bundle/vim-table-mode
-	url = https://github.com/dhruvasagar/vim-table-mode
