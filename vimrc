@@ -5,6 +5,10 @@
 " Vim config.
 "
 
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+" Plugins
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 call plug#begin()
 
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -27,6 +31,10 @@ Plug 'tpope/vim-vinegar'
 Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
+
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+" Plugins configs
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 " vim git-gutter
 let g:gitgutter_sign_added='▴'
@@ -76,76 +84,9 @@ let g:ale_pattern_options = {
 " Markdown
 let g:vim_markdown_folding_disabled=1
 
-"
-" Mappings
-"
-
-" Navigate window panels
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
-" Navigate brackets
-map <tab> %
-
-" Go start or end of line
-nmap H ^
-nmap L $
-vmap L g_
-
-" Copy paragraph
-nmap cp yap<S-}>p
-
-" Open netrw
-map <F6> :Vex<cr>
-
-" Remove search highlight
-nmap <leader><space> :nohlsearch<cr>
-
-"
-" Functions
-"
-
-" Remove trailing whitespaces.
-fun! StripTrailingWhitespaces()
-  if exists('b:noStripWhitespace')
-    return
-  endif
-  let _s=@/
-  let l=line(".")
-  let c=col(".")
-  %s/\s\+$//e
-  let @/=_s
-  call cursor(l, c)
-endfun
-autocmd BufWritePre * :call StripTrailingWhitespaces()
-autocmd FileType markdown let b:noStripWhitespace=1
-
-" Count errors in status bar.
-fun! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? 'OK' : printf(
-        \   '%dW %dE',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfun
-
-" Folds
-function! NeatFoldText()
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = printf("%10s", '(' . lines_count . ')') . ' .'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-  let foldtextend = strpart(repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextstart = '+ ' . lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
-set foldtext=NeatFoldText()
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+" General configs
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 syntax on
 filetype plugin indent on
@@ -256,3 +197,75 @@ set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
 " Italics
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
+
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+" Mappings
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+" Navigate window panels
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+" Navigate brackets
+map <tab> %
+
+" Go start or end of line
+nmap H ^
+nmap L $
+vmap L g_
+
+" Copy paragraph
+nmap cp yap<S-}>p
+
+" Open netrw
+map <F6> :Vex<cr>
+
+" Remove search highlight
+nmap <leader><space> :nohlsearch<cr>
+
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+" Functions
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+" Remove trailing whitespaces.
+fun! StripTrailingWhitespaces()
+  if exists('b:noStripWhitespace')
+    return
+  endif
+  let _s=@/
+  let l=line(".")
+  let c=col(".")
+  %s/\s\+$//e
+  let @/=_s
+  call cursor(l, c)
+endfun
+autocmd BufWritePre * :call StripTrailingWhitespaces()
+autocmd FileType markdown let b:noStripWhitespace=1
+
+" Count errors in status bar.
+fun! LinterStatus() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? 'OK' : printf(
+        \   '%dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
+endfun
+
+" Folds
+function! NeatFoldText()
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = printf("%10s", '(' . lines_count . ')') . ' .'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextend = strpart(repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextstart = '+ ' . lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+set foldtext=NeatFoldText()
