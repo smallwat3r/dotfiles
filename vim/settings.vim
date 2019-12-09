@@ -71,7 +71,8 @@ set whichwrap+=<,>,h,l
 " let &t_EI = "\e[3 q"
 
 " Ignore files
-set wildignore=*.o,*.a,*.so,*.pyc,*.swp,.git/,*.class,*.DS_Store
+set wildignore=*.pyc,*.swp,.git/,*.DS_Store
+let g:netrw_list_hide='.*\.swp$,.*\.pyc$,.git/,__pycache__/,.*\.DS_Store$'
 
 " Netrw
 let g:netrw_liststyle=3
@@ -100,7 +101,7 @@ colo efficient
 
 " Gui settings
 if (has("gui_running"))
-  set guifont=sq:h15
+  set guifont=sourcecodepro:h13
   " set transparency=5
   set guioptions-=mTrL  " remove all GUI widgets
   set gcr=a:blinkon0    " no blinking cursor

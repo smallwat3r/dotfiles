@@ -113,18 +113,23 @@ font:
   normal:
     # family: Droid Sans Mono SW
     # family: cherry
-    family: sq
-    style: Medium
+    #family: sq
+    #family: MonacoB2
+    style: Source Code Pro
+    #style: Medium
+    style: Regular
   bold:
     # family: Droid Sans Mono SW
     # family: cherry
-    family: sq
+    #family: sq
+    family: Source Code Pro
+    #family: MonacoB2
     style: Bold
-  #italic:
-    # family: Droid Sans Mono SW
-    # style: Italic
+  italic:
+    family: Source Code Pro
+    style: Italic
 
-  size: 15.0  # sq looks great on 15px
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
