@@ -1,12 +1,6 @@
 # Dotfiles  
 
-**If you use this repository, please back up your dotfiles before.**  
-
-Clone repository and load submodules needed for vim  
-
-```
-git clone --recursive-submodules -j8 https://github.com/smallwat3r/dotfiles.git
-```
+**If you use this repository to overwritte your configs, please back up your dotfiles before.**  
 
 ## Use  
 
@@ -42,5 +36,5 @@ ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
 
 ## Preview  
-02/12/19  
-![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/s1.png)  
+09/12/19  
+![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/screen.png)  
