@@ -1,6 +1,6 @@
 # Dotfiles  
 
-**If you use this repository to overwritte your configs, please back up your dotfiles before.**  
+**Please back up your dotfiles before using any of these commands.**  
 
 ## Use  
 
