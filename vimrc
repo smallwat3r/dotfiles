@@ -29,6 +29,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-vinegar'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-surround'
+Plug 'othree/html5.vim'
+Plug 'alvan/vim-closetag'
 
 call plug#end()
 
@@ -37,9 +40,9 @@ call plug#end()
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 " vim git-gutter
-let g:gitgutter_sign_added='▴'
-let g:gitgutter_sign_modified='▴'
-let g:gitgutter_sign_removed='▴'
+let g:gitgutter_sign_added='+'
+let g:gitgutter_sign_modified='~'
+let g:gitgutter_sign_removed='-'
 
 " FZF
 set rtp+=/usr/local/opt/fzf
@@ -133,6 +136,7 @@ set list
 set nonu
 set fillchars=vert:┃
 set nocompatible
+set showmode
 set foldmethod=indent
 set foldlevel=99
 set wildignore=*.pyc,*.swp,*.DS_Store,dump.rdb,.git/,__pycache__/,venv/,sdist/
@@ -202,7 +206,6 @@ let &t_ZR="\e[23m"
 " Mappings
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
 " Navigate window panels
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -225,6 +228,10 @@ map <F6> :Vex<cr>
 
 " Remove search highlight
 nmap <leader><space> :nohlsearch<cr>
+
+" Editing and reloading of config
+map <leader>e :e! ~/dotfiles/vimrc<cr>
+autocmd! bufwritepost ~/dotfiles/vimrc source ~/dotfiles/vimrc
 
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " Functions
@@ -258,7 +265,7 @@ fun! LinterStatus() abort
 endfun
 
 " Folds
-function! NeatFoldText()
+fun! NeatFoldText()
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
   let lines_count_text = printf("%10s", '(' . lines_count . ')') . ' .'
@@ -267,5 +274,5 @@ function! NeatFoldText()
   let foldtextstart = '+ ' . lines_count_text . repeat(foldchar, 8)
   let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
   return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
+endfun
 set foldtext=NeatFoldText()
