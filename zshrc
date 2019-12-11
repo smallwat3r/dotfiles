@@ -7,7 +7,6 @@
 #
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
-export editor="vim"
 
 # prompt
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
