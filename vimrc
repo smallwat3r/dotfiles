@@ -32,6 +32,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-surround'
 Plug 'othree/html5.vim'
 Plug 'alvan/vim-closetag'
+Plug 'gregsexton/MatchTag'
 
 call plug#end()
 
