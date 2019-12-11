@@ -178,11 +178,11 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 
 set t_Co=256
 set bg=dark
-colo efficient
+colo efficient-lean
 
 " Gui settings
 if (has("gui_running"))
-  set guifont=Menlo:h12
+  set guifont=Hack:h12
   " set transparency=5
   set guioptions-=mTrL  " remove all GUI widgets
   set gcr=a:blinkon0    " no blinking cursor

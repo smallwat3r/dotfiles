@@ -115,18 +115,18 @@ font:
     # family: cherry
     #family: sq
     #family: MonacoB2
-    style: Menlo
+    style: Hack
     #style: Medium
     style: Regular
   bold:
     # family: Droid Sans Mono SW
     # family: cherry
     #family: sq
-    family: Menlo
+    family: Hack
     #family: MonacoB2
     style: Bold
   italic:
-    family: Menlo
+    family: Hack
     style: Italic
 
   size: 12.0
