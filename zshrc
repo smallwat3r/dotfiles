@@ -23,6 +23,7 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
+  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh

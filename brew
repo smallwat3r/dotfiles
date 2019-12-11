@@ -22,6 +22,9 @@ brew install \
   wget \
   yabai \
   zsh \
+  zsh-syntax-highlighting \
+  zsh-completions \
+  zsh-autosuggestions \
   mysql \
   macvim \
   sqlite \
@@ -34,7 +37,6 @@ brew install \
   jsonnet \
   tidy-html5 \
   chunkwm
-
 
 brew cask install \
   docker \
