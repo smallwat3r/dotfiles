@@ -5,8 +5,23 @@
 #
 # Zshrc config.
 #
+# You might need to download antigen if you don't have it already
+# curl -L git.io/antigen > ~/.oh-my-zsh/antigen.zsh
+#
 
 export ZSH="/Users/smallwat3r/.oh-my-zsh"
+
+source $ZSH/antigen.zsh
+antigen use oh-my-zsh
+
+# bundles
+antigen bundle git
+antigen bundle pip
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+
+antigen apply
 
 # prompt
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
@@ -18,13 +33,6 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# plugins
-plugins=(
-  git
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  zsh-completions
-)
 
 source $ZSH/oh-my-zsh.sh
 
