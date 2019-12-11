@@ -113,17 +113,17 @@ font:
   normal:
     # family: Droid Sans Mono SW
     # family: cherry
-    #family: sq
-    #family: MonacoB2
-    style: Hack
-    #style: Medium
+    # family: sq
+    # family: MonacoB2
+    family: Hack
+    # style: Medium
     style: Regular
   bold:
     # family: Droid Sans Mono SW
     # family: cherry
-    #family: sq
+    # family: sq
     family: Hack
-    #family: MonacoB2
+    # family: MonacoB2
     style: Bold
   italic:
     family: Hack
