@@ -22,9 +22,6 @@ brew install \
   wget \
   yabai \
   zsh \
-  zsh-syntax-highlighting \
-  zsh-completions \
-  zsh-autosuggestions \
   mysql \
   macvim \
   sqlite \
