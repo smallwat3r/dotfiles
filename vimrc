@@ -33,6 +33,7 @@ Plug 'tpope/vim-surround'
 Plug 'othree/html5.vim'
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
+Plug 'tweekmonster/impsort.vim'
 
 call plug#end()
 
@@ -87,6 +88,9 @@ let g:ale_pattern_options = {
 
 " Markdown
 let g:vim_markdown_folding_disabled=1
+
+" Impost on save
+autocmd BufWritePre *.py ImpSort!
 
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " General configs
@@ -238,7 +242,7 @@ autocmd! bufwritepost ~/dotfiles/vimrc source ~/dotfiles/vimrc
 " Functions
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-" Remove trailing whitespaces.
+" Remove trailing whitespaces on save, except certain filetype
 fun! StripTrailingWhitespaces()
   if exists('b:noStripWhitespace')
     return
@@ -265,7 +269,7 @@ fun! LinterStatus() abort
         \)
 endfun
 
-" Folds
+" Folds format
 fun! NeatFoldText()
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
@@ -277,3 +281,24 @@ fun! NeatFoldText()
   return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfun
 set foldtext=NeatFoldText()
+
+" Convert rows of numbers or text to tuple
+function! ToTupleFunction() range
+    silent execute a:firstline . "," . a:lastline . "s/^/'/"
+    silent execute a:firstline . "," . a:lastline . "s/$/',/"
+    silent execute a:firstline . "," . a:lastline . "join"
+    silent execute "normal I("
+    silent execute "normal $xa)"
+    silent execute "normal ggVGYY"
+endfunction
+command! -range ToTuple <line1>,<line2> call ToTupleFunction()
+
+" Convert rows of numbers or text to array
+function! ToArrayFunction() range
+    silent execute a:firstline . "," . a:lastline . "s/^/'/"
+    silent execute a:firstline . "," . a:lastline . "s/$/',/"
+    silent execute a:firstline . "," . a:lastline . "join"
+    silent execute "normal I["
+    silent execute "normal $xa]"
+endfunction
+command! -range ToArray <line1>,<line2> call ToArrayFunction()
