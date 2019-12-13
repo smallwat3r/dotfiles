@@ -9,6 +9,7 @@
 " Plugins
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+" Using vim-plug
 call plug#begin()
 
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -191,6 +192,7 @@ set fo=cjql
 autocmd FileType * setl fo-=o fo-=r
 autocmd FileType gitcommit setl fo=cjql com+=n:>
 
+" Colors
 set t_Co=256
 set bg=dark
 colo efficient-lean
@@ -276,8 +278,7 @@ fun! LinterStatus() abort
   return l:counts.total == 0 ? 'OK' : printf(
         \   '%dW %dE',
         \   all_non_errors,
-        \   all_errors
-        \)
+        \   all_errors )
 endfun
 
 " Folds format
