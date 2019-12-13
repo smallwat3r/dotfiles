@@ -95,7 +95,7 @@ autocmd BufWritePre *.py ImpSort!
 
 " SQHell db connection
 " creds out of version control for safety
-source sqh_connections.vim
+source $HOME/.vim/sqh_connections.vim
 " let g:sqh_connections={
 "       \ 'default': {
 "       \   'user': '<user>',
