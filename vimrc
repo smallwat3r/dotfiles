@@ -93,12 +93,14 @@ let g:vim_markdown_folding_disabled=1
 autocmd BufWritePre *.py ImpSort!
 
 " SQHell db connection
+" creds out of version control for safety
 source sqh_connections.vim
 " let g:sqh_connections={
 "       \ 'default': {
 "       \   'user': '<user>',
 "       \   'password': '<pass>,
 "       \   'host': 'localhost' }}
+let g:sqh_results_output='split'
 
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " General configs
@@ -210,6 +212,7 @@ set statusline+=\ %l:%c,\%L
 set statusline+=\ %{strlen(&ft)?&ft:'none'}
 set statusline+=\ %{LinterStatus()}
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
+set statusline+=\ %{sqhell#Host()}
 
 " Italics
 let &t_ZH="\e[3m"
