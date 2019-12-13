@@ -34,6 +34,7 @@ Plug 'othree/html5.vim'
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 Plug 'tweekmonster/impsort.vim'
+Plug 'joereynolds/SQHell.vim'
 
 call plug#end()
 
@@ -78,19 +79,26 @@ let g:header_field_modified_by=0
 map <F5> :AddHeader<CR>
 
 " Ale
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_pattern_options = {
+let g:ale_echo_msg_error_str='E'
+let g:ale_echo_msg_warning_str='W'
+let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
+let g:ale_pattern_options={
       \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-      \ }
+      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}, }
 
 " Markdown
 let g:vim_markdown_folding_disabled=1
 
 " Impost on save
 autocmd BufWritePre *.py ImpSort!
+
+" SQHell db connection
+source sqh_connections.vim
+" let g:sqh_connections={
+"       \ 'default': {
+"       \   'user': '<user>',
+"       \   'password': '<pass>,
+"       \   'host': 'localhost' }}
 
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " General configs
@@ -283,22 +291,22 @@ endfun
 set foldtext=NeatFoldText()
 
 " Convert rows of numbers or text to tuple
-function! ToTupleFunction() range
-    silent execute a:firstline . "," . a:lastline . "s/^/'/"
-    silent execute a:firstline . "," . a:lastline . "s/$/',/"
-    silent execute a:firstline . "," . a:lastline . "join"
-    silent execute "normal I("
-    silent execute "normal $xa)"
-    silent execute "normal ggVGYY"
-endfunction
+fun! ToTupleFunction() range
+  silent execute a:firstline . "," . a:lastline . "s/^/'/"
+  silent execute a:firstline . "," . a:lastline . "s/$/',/"
+  silent execute a:firstline . "," . a:lastline . "join"
+  silent execute "normal I("
+  silent execute "normal $xa)"
+  silent execute "normal ggVGYY"
+endfun
 command! -range ToTuple <line1>,<line2> call ToTupleFunction()
 
 " Convert rows of numbers or text to array
-function! ToArrayFunction() range
-    silent execute a:firstline . "," . a:lastline . "s/^/'/"
-    silent execute a:firstline . "," . a:lastline . "s/$/',/"
-    silent execute a:firstline . "," . a:lastline . "join"
-    silent execute "normal I["
-    silent execute "normal $xa]"
-endfunction
+fun! ToArrayFunction() range
+  silent execute a:firstline . "," . a:lastline . "s/^/'/"
+  silent execute a:firstline . "," . a:lastline . "s/$/',/"
+  silent execute a:firstline . "," . a:lastline . "join"
+  silent execute "normal I["
+  silent execute "normal $xa]"
+endfun
 command! -range ToArray <line1>,<line2> call ToArrayFunction()
