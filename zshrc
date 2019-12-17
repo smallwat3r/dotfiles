@@ -42,10 +42,15 @@ export EDITOR=/usr/local/bin/vim
 
 # aliases
 alias vi="vim"
-alias mvi="mvim"
 alias edit="vim"
 alias e="vim"
-alias viedit="$EDITOR $HOME/dotfiles/vimrc"
+alias mvi="mvim"
+
+alias vie="$EDITOR $HOME/dotfiles/vimrc"
+alias zshe="$EDITOR $HOME/dotfiles/zshrc"
+
+alias python="python3"
+alias pip="pip3"
 
 alias p="pwd"
 alias lg="lazygit"
@@ -55,6 +60,7 @@ alias venv="virtualenv -p python3 venv --no-site-package"
 
 alias c="clear"
 alias :q="exit"
+alias :x="exit"
 
 alias g="git"
 alias ga="git add "

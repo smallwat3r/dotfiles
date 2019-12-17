@@ -26,6 +26,7 @@ brew install \
   macvim \
   sqlite \
   fzf \
+  htop \
   exa \
   curl \
   bash \

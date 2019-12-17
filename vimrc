@@ -118,6 +118,7 @@ set expandtab
 set autoindent
 set smartindent
 autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 " Leader
