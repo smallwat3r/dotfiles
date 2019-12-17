@@ -42,6 +42,7 @@ export EDITOR=/usr/local/bin/vim
 
 # aliases
 alias vi="vim"
+alias svi="sudo vi"
 alias edit="vim"
 alias e="vim"
 alias mvi="mvim"
@@ -52,7 +53,6 @@ alias zshe="$EDITOR $HOME/dotfiles/zshrc"
 alias python="python3"
 alias pip="pip3"
 
-alias p="pwd"
 alias lg="lazygit"
 alias ddg="ddgr"
 
@@ -61,6 +61,18 @@ alias venv="virtualenv -p python3 venv --no-site-package"
 alias c="clear"
 alias :q="exit"
 alias :x="exit"
+
+alias tks='tmux kill-session -t'
+alias tksa='tmux kill-session -a'
+alias tls='tmux list-sessions'
+
+alias rm='rm -i'
+
+alias p="pwd"
+alias ls.="ls -d .*"
+alias hs='history | grep'
+
+alias myip="curl http://ipecho.net/plain; echo"
 
 alias g="git"
 alias ga="git add "
