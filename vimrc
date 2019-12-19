@@ -12,30 +12,25 @@
 " Using vim-plug
 call plug#begin()
 
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'smallwat3r/vim-efficient'
-Plug 'junegunn/fzf.vim'
-Plug 'chr4/nginx.vim'
+Plug 'smallwat3r/vim-simplicity'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'alpertuna/vim-header'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'google/vim-jsonnet'
-Plug 'plasticboy/vim-markdown'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-vinegar'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-surround'
-Plug 'othree/html5.vim'
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 Plug 'tweekmonster/impsort.vim'
-Plug 'joereynolds/SQHell.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -47,28 +42,6 @@ call plug#end()
 let g:gitgutter_sign_added='+'
 let g:gitgutter_sign_modified='~'
 let g:gitgutter_sign_removed='-'
-
-" FZF
-set rtp+=/usr/local/opt/fzf
-let g:fzf_layout={ 'down': '~20%' }
-let g:fzf_action={
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-x': 'split',
-      \ 'ctrl-v': 'vsplit' }
-let g:fzf_colors={
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'SpecialKey'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'SpecialKey'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
 
 " Auto Headers on F5
 let g:header_auto_add_header=0
@@ -92,16 +65,6 @@ let g:vim_markdown_folding_disabled=1
 
 " Impost on save
 autocmd BufWritePre *.py ImpSort!
-
-" SQHell db connection
-" creds out of version control for safety
-source $HOME/.vim/sqh_connections.vim
-" let g:sqh_connections={
-"       \ 'default': {
-"       \   'user': '<user>',
-"       \   'password': '<pass>,
-"       \   'host': 'localhost' }}
-let g:sqh_results_output='split'
 
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " General configs
@@ -148,7 +111,6 @@ set lazyredraw
 set ignorecase
 set scrolljump=8
 set autochdir
-set linespace=0
 set list
 set nonu
 set fillchars=vert:┃
@@ -156,7 +118,8 @@ set nocompatible
 set showmode
 set foldmethod=indent
 set foldlevel=99
-set wildignore=*.pyc,*.swp,*.DS_Store,dump.rdb,.git/,__pycache__/,venv/,sdist/
+set wildignore=*.pyc,*.swp,*.DS_Store,*.rdb
+set wildignore+=.git/,__pycache__/,venv/,sdist/
 
 " Deactivate bells
 set noerrorbells
@@ -196,14 +159,16 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " Colors
 set t_Co=256
 set bg=dark
-colo efficient-lean
+" colo efficient-lean
+colo simplicity
 
 " Gui settings
 if (has("gui_running"))
-  set guifont=Hack:h12
+  set linespace=0
+  set guifont=Metrickal:h12
   " set transparency=5
   set guioptions-=mTrL  " remove all GUI widgets
-  set gcr=a:blinkon0    " no blinking cursor
+  set gcr=a:blinkon0    " no blinking curso2
 endif
 
 " All the below must be set after colorschemes

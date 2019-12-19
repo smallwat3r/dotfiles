@@ -47,6 +47,7 @@ alias edit="vim"
 alias e="vim"
 alias mvi="mvim"
 
+alias dots="cd $HOME/dotfiles"
 alias vie="$EDITOR $HOME/dotfiles/vimrc"
 alias zshe="$EDITOR $HOME/dotfiles/zshrc"
 
@@ -93,3 +94,5 @@ fi
 if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

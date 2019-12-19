@@ -7,3 +7,6 @@
 [submodule "fonts/sq"]
 	path = fonts/sq
 	url = https://github.com/leahneukirchen/sq
+[submodule "fonts/metrickal-typeface"]
+	path = fonts/metrickal-typeface
+	url = https://github.com/robey/metrickal-typeface

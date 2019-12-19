@@ -33,7 +33,6 @@ brew install \
   gnu-sed \
   tree \
   jsonnet \
-  tidy-html5 \
   chunkwm
 
 brew cask install \

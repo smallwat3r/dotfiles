@@ -1,8 +1,6 @@
 # Dotfiles  
 
-**Please back up your dotfiles before using any of these commands.**  
-
-## Use  
+**Please back up your dotfiles if you're using any of these commands.**  
 
 ### Vim  
 
@@ -34,7 +32,3 @@ Ex.
 ```
 ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
-
-## Preview  
-09/12/19  
-![Alt Text](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/screen.png)  

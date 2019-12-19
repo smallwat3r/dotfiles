@@ -110,23 +110,17 @@ tabspaces: 4
 
 # Font configuration (changes require restart)
 font:
+
   normal:
-    # family: Droid Sans Mono SW
-    # family: cherry
-    # family: sq
-    # family: MonacoB2
-    family: Hack
-    # style: Medium
+    family: Metrickal
     style: Regular
+
   bold:
-    # family: Droid Sans Mono SW
-    # family: cherry
-    # family: sq
-    family: Hack
-    # family: MonacoB2
+    family: Metrickal
     style: Bold
+
   italic:
-    family: Hack
+    family: Metrickal
     style: Italic
 
   size: 12.0
@@ -192,7 +186,7 @@ visual_bell:
 colors:
   # Default colors
   primary:
-    background: '0x121212'
+    background: '0x262626'
     foreground: '0xffffff'
 
   cursor:
@@ -200,7 +194,7 @@ colors:
     cursor: '0x00ffff'
 
   normal:
-    black:   '0x272727'
+    black:   '0x444444'
     red:     '0xff0410'
     green:   '0xff8b8b'
     yellow:  '0xFFC620'
@@ -210,7 +204,7 @@ colors:
     white:   '0xffffff'
 
   bright:
-    black:   '0x272727'
+    black:   '0x444444'
     red:     '0xff0410'
     green:   '0xff009a'
     yellow:  '0xFFC620'
