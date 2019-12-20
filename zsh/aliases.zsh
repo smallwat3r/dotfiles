@@ -35,7 +35,7 @@ alias tls='tmux list-sessions'
 alias rm='rm -i'
 
 alias p="pwd"
-alias ls="ls -pG"
+alias ls="ls -p"
 alias ls.="ls -d .*"
 alias hs='history | grep'
 
