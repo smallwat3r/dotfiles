@@ -1,34 +1,9 @@
 # Dotfiles  
 
-**Please back up your dotfiles if you're using any of these commands.**  
+**TODO: Installation scripts.**  
 
-### Vim  
-
-I'm using the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager.  
-Install with:  
-
-```sh
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-Then symlink the vim config.  
+Most of the dotfiles needs symlink  
 ```
 ln -fs ~/dotfiles/vimrc ~/.vimrc
-```
-And in vim install the plugins:  
-```
-:PlugInstall
-```
-
-### Other dotfiles  
-
-Symlink using:  
-```
-ln -fs <fullpath>/<name> <destination-path>/.<name>
-```
-
-Ex.  
-```
 ln -fs ~/dotfiles/zshrc ~/.zshrc
 ```
