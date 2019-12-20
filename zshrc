@@ -9,9 +9,10 @@
 # curl -L git.io/antigen > ~/.oh-my-zsh/antigen.zsh
 #
 
-export ZSH="/Users/smallwat3r/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CONF="$HOME/.zsh"
 
-source $ZSH/antigen.zsh
+source $ZSH_CONF/antigen.zsh
 antigen use oh-my-zsh
 
 # bundles
