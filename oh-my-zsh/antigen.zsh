@@ -1,1 +1,0 @@
-externals/antigen/bin/antigen.zsh
