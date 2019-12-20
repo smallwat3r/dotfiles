@@ -6,6 +6,6 @@
 # ZSH Env
 #
 
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin
 export GOPATH=$(go env GOPATH)
 export EDITOR=/usr/local/bin/vim

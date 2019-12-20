@@ -32,13 +32,5 @@ source $ZSH_CONF/prompt.zsh
 source $ZSH_CONF/env.zsh
 source $ZSH_CONF/aliases.zsh
 
-# loads
-if command -v fink>/dev/null; then
-  source /sw/bin/init.sh
-fi
-
-if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
-fi
-
+[ -f "`which tmux`" ] && tmux
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
