@@ -6,9 +6,6 @@
 # ZSH config.
 #
 
-export CLICOLOR=1
-export EDITOR=/usr/local/bin/vim
-
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CONF="$HOME/.zsh"
 
@@ -23,6 +20,9 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 
 antigen apply
+
+export CLICOLOR=1
+export EDITOR=/usr/local/bin/vim
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
