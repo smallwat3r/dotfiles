@@ -6,6 +6,12 @@
 # ZSH Prompt
 #
 
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+setopt PROMPT_SUBST
+
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='%{$fg_bold[white]%}$(git_prompt_info)%20<...<%~%<< %{$reset_color%}%% '
+PROMPT='%{$fg_bold[white]%}$(parse_git_branch) %20<...<%~%<< %{$reset_color%}%% '
 RPS1="${return_code}"

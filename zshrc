@@ -32,5 +32,5 @@ source $ZSH_CONF/prompt.zsh
 source $ZSH_CONF/env.zsh
 source $ZSH_CONF/aliases.zsh
 
-[ -f "`which tmux`" ] && tmux
+[ -f "`which tmux`" ] && [ -z $TMUX ] && tmux
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
