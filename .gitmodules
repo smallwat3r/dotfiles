@@ -13,3 +13,6 @@
 [submodule "bin/externals/tubestatus"]
 	path = bin/externals/tubestatus
 	url = https://github.com/smallwat3r/tubestatus
+[submodule "bin/externals/sketch"]
+	path = bin/externals/sketch
+	url = https://github.com/smallwat3r/sketch
