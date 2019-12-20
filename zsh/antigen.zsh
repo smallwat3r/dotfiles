@@ -1,1 +1,1 @@
-externals/antigen/bin/antigen.zsh
+external/antigen/bin/antigen.zsh
