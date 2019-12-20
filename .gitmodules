@@ -10,3 +10,6 @@
 [submodule "fonts/metrickal-typeface"]
 	path = fonts/metrickal-typeface
 	url = https://github.com/robey/metrickal-typeface
+[submodule "bin/externals/tubestatus"]
+	path = bin/externals/tubestatus
+	url = https://github.com/smallwat3r/tubestatus
