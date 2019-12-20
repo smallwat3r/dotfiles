@@ -1,0 +1,9 @@
+#!/bin/bash
+# File  : search.sh
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 20.12.2019
+#
+# Grep search in current dir.
+#
+
+grep -rnIi "$1" . --color
