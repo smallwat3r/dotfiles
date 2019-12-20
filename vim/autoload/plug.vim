@@ -1,0 +1,1 @@
+externals/vim-plug/plug.vim

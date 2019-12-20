@@ -28,3 +28,6 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "vim/autoload/externals/vim-plug"]
+	path = vim/autoload/externals/vim-plug
+	url = https://github.com/junegunn/vim-plug
