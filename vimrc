@@ -180,7 +180,6 @@ set statusline+=\ %l:%c,\%L
 set statusline+=\ %{strlen(&ft)?&ft:'none'}
 set statusline+=\ %{LinterStatus()}
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
-set statusline+=\ %{sqhell#Host()}
 
 " Italics
 let &t_ZH="\e[3m"
