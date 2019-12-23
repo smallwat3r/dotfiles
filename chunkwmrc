@@ -1,7 +1,9 @@
 #!/bin/bash
+
+chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
+
 chunkc core::log_file stdout
 chunkc core::log_level warn
-chunkc core::plugin_dir ~/.chunkwm_plugins
 chunkc core::hotload 0
 
 chunkc set custom_bar_enabled            0
@@ -57,9 +59,12 @@ chunkc core::load tiling.so
 chunkc core::load ffm.so
 
 chunkc tiling::rule --owner Finder --state float &
-chunkc tiling::rule --owner \"App Store\" --state float &
-chunkc tiling::rule --owner Emacs --except "^$" --state tile &
-chunkc tiling::rule --owner \"Calculator\" --state float &
-chunkc tiling::rule --owner \"GIMP-2.10\" --name "Quit GIMP" --state float &
-chunkc tiling::rule --owner \"Slack\" --state float &
-chunkc tiling::rule --owner \"Giphy Capture\" --state float &
+chunkc tiling::rule --owner 'App Store' --state float &
+chunkc tiling::rule --owner 'Calculator' --state float &
+chunkc tiling::rule --owner 'GIMP-2.10' --name "Quit GIMP" --state float &
+chunkc tiling::rule --owner 'Slack' --state float &
+
+chunkc tiling::rule --owner 'Alacritty' --desktop 1 &
+chunkc tiling::rule --owner 'MacVim' --desktop 2 &
+chunkc tiling::rule --owner 'Firefox' --desktop 2 &
+chunkc tiling::rule --owner 'Thunderbird' --desktop 3 &
