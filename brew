@@ -16,7 +16,6 @@ brew install \
   lazydocker \
   git \
   python3 \
-  ruby \
   ddgr \
   vim \
   wget \
@@ -36,6 +35,7 @@ brew install \
   chunkwm
 
 brew cask install \
+  sequel-pro \
   docker \
   alacritty \
   slack \
