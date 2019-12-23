@@ -34,3 +34,6 @@
 [submodule "zsh/external/antigen"]
 	path = zsh/external/antigen
 	url = https://github.com/zsh-users/antigen
+[submodule "fonts/monaco-bold"]
+	path = fonts/monaco-bold
+	url = https://github.com/vjpr/monaco-bold
