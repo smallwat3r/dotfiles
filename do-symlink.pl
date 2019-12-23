@@ -8,8 +8,8 @@
 
 use Cwd qw(cwd);
 my $dir = cwd;
-
-my $root = "/Users/smallwat3r";
+my $user = getlogin;
+my $root = "/Users/${user}";
 
 @directories = ("${root}/.pip", "${root}/.zsh");
 foreach $dir (@directories) {
