@@ -108,10 +108,7 @@ set showmode  " show vim mode (insert, visual, replace)
 
 " Special chars
 set showbreak=↪  " wrap lines symbol
-set listchars=tab:➝\
-set listchars+=eol:¬
-set listchars+=extends:>
-set listchars+=precedes:<
+set listchars=tab:➝\ ,eol:¬,extends:>,precedes:<
 
 " Folding
 set foldmethod=indent
