@@ -21,10 +21,10 @@ darwin*)
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     echo "[+] Installing softwares"
-    source $PWD/setup/brew
+    source $PWD/brew
 
     echo "[+] Setting up macOS configs"
-    source $PWD/setup/macos
+    source $PWD/macos
 
     echo "[+] Init and update submodules"
     git submodule init
