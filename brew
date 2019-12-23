@@ -32,7 +32,8 @@ brew install \
   gnu-sed \
   tree \
   jsonnet \
-  chunkwm
+  chunkwm \
+  xclip
 
 brew cask install \
   sequel-pro \
