@@ -44,10 +44,10 @@ let g:gitgutter_sign_modified='~'
 let g:gitgutter_sign_removed='-'
 
 " Auto Headers on F5
-let g:header_auto_add_header=0
 let g:header_field_author='Matthieu Petiteau'
 let g:header_field_author_email='mpetiteau.pro@gmail.com'
 let g:header_field_timestamp_format='%d.%m.%Y'
+let g:header_auto_add_header=0
 let g:header_field_modified_timestamp=0
 let g:header_field_modified_by=0
 map <F5> :AddHeader<CR>
@@ -57,8 +57,8 @@ let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 let g:ale_pattern_options={
-      \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}, }
+            \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+            \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}, }
 
 " Impsort - Python imports sorting on save.
 autocmd BufWritePre *.py ImpSort!
@@ -160,11 +160,11 @@ colo simplicity
 
 " Gui settings
 if (has("gui_running"))
-  set linespace=0
-  set guifont=MonacoB2:h13
-  " set transparency=5
-  set guioptions-=mTrL  " remove all GUI widgets
-  " set gcr=a:blinkon0    " no blinking cursor
+    set linespace=0
+    set guifont=MonacoB2:h13
+    " set transparency=5
+    set guioptions-=mTrL  " remove all GUI widgets
+    " set gcr=a:blinkon0    " no blinking cursor
 endif
 
 " All the below must be set after colorschemes
@@ -216,41 +216,41 @@ autocmd! bufwritepost ~/dotfiles/vimrc source ~/dotfiles/vimrc
 " Functions
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-" Remove trailing whitespaces on save, except certain filetype
+" Remove trailing whitespaces (run on save)
 fun! StripTrailingWhitespaces()
-  if exists('b:noStripWhitespace')
-    return
-  endif
-  let _s=@/
-  let l=line(".")
-  let c=col(".")
-  %s/\s\+$//e
-  let @/=_s
-  call cursor(l, c)
+    if exists('b:noStripWhitespace')
+        return
+    endif
+    let _s=@/
+    let l=line(".")
+    let c=col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
 endfun
 autocmd BufWritePre * :call StripTrailingWhitespaces()
 autocmd FileType markdown let b:noStripWhitespace=1
 
 " Count errors in status bar.
 fun! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? 'OK' : printf(
-        \   '%dW %dE',
-        \   all_non_errors,
-        \   all_errors )
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+                \   '%dW %dE',
+                \   all_non_errors,
+                \   all_errors )
 endfun
 
 " Folds format
 fun! CustomFoldText()
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = printf("%10s", '(' . lines_count . ')') . ' .'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-  let foldtextend = strpart(repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextstart = '+ ' . lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+    let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+    let lines_count = v:foldend - v:foldstart + 1
+    let lines_count_text = printf("%10s", '(' . lines_count . ')') . ' .'
+    let foldchar = matchstr(&fillchars, 'fold:\zs.')
+    let foldtextend = strpart(repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+    let foldtextstart = '+ ' . lines_count_text . repeat(foldchar, 8)
+    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+    return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfun
 set foldtext=CustomFoldText()

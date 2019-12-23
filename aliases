@@ -1,11 +1,3 @@
-#!/bin/zsh
-# File  : aliases.zsh
-# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
-# Date  : 20.12.2019
-#
-# ZSH alias
-#
-
 alias vi="vim"
 alias svi="sudo vi"
 alias edit="vim"
