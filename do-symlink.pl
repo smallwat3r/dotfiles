@@ -31,6 +31,7 @@ my %links = (
     "tmux/plugins/tmux-cpu" => "${root}/.tmux/plugins/tmux-cpu",
     "tmux/plugins/tmux-sensible" => "${root}/.tmux/plugins/tmux-sensible",
     "tmux/plugins/tpm" => "${root}/.tmux/plugins/tpm",
+    "vim/autoload/plug.vim" => "${root}/.vim/autoload/plug.vim",
     "bin/search" => "/usr/local/bin/search",
     "bin/sketch" => "/usr/local/bin/sketch",
     "bin/tubestatus" => "/usr/local/bin/tubestatus"

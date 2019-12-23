@@ -1,0 +1,42 @@
+#!/bin/bash
+# File  : install
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 23.12.2019
+#
+# Install all
+#
+
+case "$OSTYPE" in
+darwin*)
+    which -s brew
+    if [[ $? != 0 ]]; then
+        echo "[+] Installing Homebrew"
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    else
+        echo "[+] Updating Homebrew"
+        brew update
+    fi
+
+    echo "[+] Install oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    echo "[+] Installing softwares"
+    source $PWD/brew
+
+    echo "[+] Setting up macOS configs"
+    source $PWD/macos
+
+    echo "[+] Init and update submodules"
+    git submodule init
+    git submodule update
+
+    echo "[+] Setting up symlinks"
+    perl $PWD/do-symlink.pl
+
+    echo "[v] ALL DONE *****"
+    ;;
+*)
+    echo "This script needs to be run on macOS"
+    ;;
+esac
+exit 0
