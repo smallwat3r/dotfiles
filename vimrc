@@ -60,10 +60,7 @@ let g:ale_pattern_options={
       \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
       \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}, }
 
-" Markdown
-let g:vim_markdown_folding_disabled=1
-
-" Impost on save
+" Impsort - Python imports sorting on save.
 autocmd BufWritePre *.py ImpSort!
 
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -73,55 +70,58 @@ autocmd BufWritePre *.py ImpSort!
 syntax on
 filetype plugin indent on
 
-" Indents
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+" Indents (4 spaces by default)
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
 set smartindent
-autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
-" Leader
+" Remap leader
 let mapleader=','
 
 " General
-set autoread
+set autoread  " reread changed files automatically
 set encoding=utf8
 set ffs=unix
-set fileencoding=utf-8
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set showbreak=↪
+set showbreak=↪  " wrap lines symbol
 set ttyfast
-set laststatus=2
+set laststatus=2  " always show statusline
 set modifiable
-set showcmd
-set showmatch
-set mouse=a
+set showmatch  " matching brackets
+set mouse=a  " mouse support
 set nostartofline
-set incsearch
-set hlsearch
+set incsearch  " search pattern
+set hlsearch  " search highlighting
 set clipboard=unnamed
-set ruler
-set wrap
-set showbreak=>\
-set lazyredraw
+set wrap  " wrap lines
+set lazyredraw  " no redraw
 set ignorecase
-set scrolljump=8
-set autochdir
-set list
-set nonu
+set scrolljump=8  " minimal nb of lines to scroll when cursor gets off the screen
+set autochdir  " auto change working directory
+set list  " show additional characters eol
+set nonu  " deactivate row numbers
 set fillchars=vert:┃
 set nocompatible
-set showmode
+set showmode  " show vim mode (insert, visual, replace)
+
+" Special chars
+set listchars=tab:▸\
+set listchars+=eol:¬
+set listchars+=extends:❯
+set listchars+=precedes:❮
+
+" Folding
 set foldmethod=indent
 set foldlevel=99
+
+" Ignore files and folders
 set wildignore=*.pyc,*.swp,*.DS_Store,*.rdb
 set wildignore+=.git/,__pycache__/,venv/,sdist/
 
-" Deactivate bells
+" Deactivate bells and alerts
 set noerrorbells
 set visualbell
 set t_vb=
@@ -135,7 +135,7 @@ set nobackup
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
-" Netrw
+" Netrw settings
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_winsize=20
@@ -159,16 +159,15 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " Colors
 set t_Co=256
 set bg=dark
-" colo efficient-lean
 colo simplicity
 
 " Gui settings
 if (has("gui_running"))
   set linespace=0
-  set guifont=Metrickal:h12
+  set guifont=MonacoB2:h13
   " set transparency=5
   set guioptions-=mTrL  " remove all GUI widgets
-  set gcr=a:blinkon0    " no blinking curso2
+  " set gcr=a:blinkon0    " no blinking cursor
 endif
 
 " All the below must be set after colorschemes
@@ -247,7 +246,7 @@ fun! LinterStatus() abort
 endfun
 
 " Folds format
-fun! NeatFoldText()
+fun! CustomFoldText()
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
   let lines_count_text = printf("%10s", '(' . lines_count . ')') . ' .'
@@ -257,25 +256,4 @@ fun! NeatFoldText()
   let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
   return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfun
-set foldtext=NeatFoldText()
-
-" Convert rows of numbers or text to tuple
-fun! ToTupleFunction() range
-  silent execute a:firstline . "," . a:lastline . "s/^/'/"
-  silent execute a:firstline . "," . a:lastline . "s/$/',/"
-  silent execute a:firstline . "," . a:lastline . "join"
-  silent execute "normal I("
-  silent execute "normal $xa)"
-  silent execute "normal ggVGYY"
-endfun
-command! -range ToTuple <line1>,<line2> call ToTupleFunction()
-
-" Convert rows of numbers or text to array
-fun! ToArrayFunction() range
-  silent execute a:firstline . "," . a:lastline . "s/^/'/"
-  silent execute a:firstline . "," . a:lastline . "s/$/',/"
-  silent execute a:firstline . "," . a:lastline . "join"
-  silent execute "normal I["
-  silent execute "normal $xa]"
-endfun
-command! -range ToArray <line1>,<line2> call ToArrayFunction()
+set foldtext=CustomFoldText()
