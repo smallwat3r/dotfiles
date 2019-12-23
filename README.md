@@ -1,9 +1,9 @@
 # Dotfiles  
 
-**TODO: Installation scripts.**  
+My config files for macOS.  
 
-Most of the dotfiles needs symlink  
-```
-ln -fs ~/dotfiles/vimrc ~/.vimrc
-ln -fs ~/dotfiles/zshrc ~/.zshrc
+** Please create backups of your current files if you are using the script below **  
+Install with  
+```sh
+chmod +x install && ./install
 ```
