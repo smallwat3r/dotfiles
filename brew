@@ -26,3 +26,4 @@ brew cask install \
 
 brew unlink vim
 brew install macvim
+brew link vim
