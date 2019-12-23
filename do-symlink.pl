@@ -1,9 +1,9 @@
 #!/usr/bin/env perl
-# File  : setup
+# File  : do-symlink.pl
 # Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 # Date  : 23.12.2019
 #
-# Symlink files.
+# Symlink
 #
 
 use Cwd qw(cwd);
