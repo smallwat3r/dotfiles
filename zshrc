@@ -30,9 +30,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 source $ZSH/oh-my-zsh.sh
 
-source $ZSH_CONF/prompt.zsh
-source $ZSH_CONF/env.zsh
-source $ZSH_CONF/aliases.zsh
+source $ZSH_CONF/prompt
+source $ZSH_CONF/env
+source $ZSH_CONF/aliases
 
 [ -f "`which tmux`" ] && [ -z $TMUX ] && tmux
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
