@@ -86,7 +86,6 @@ let mapleader=','
 set autoread  " reread changed files automatically
 set encoding=utf8
 set ffs=unix
-set showbreak=↪  " wrap lines symbol
 set ttyfast
 set laststatus=2  " always show statusline
 set modifiable
@@ -108,10 +107,11 @@ set nocompatible
 set showmode  " show vim mode (insert, visual, replace)
 
 " Special chars
-set listchars=tab:▸\
+set showbreak=↪  " wrap lines symbol
+set listchars=tab:➝\
 set listchars+=eol:¬
-set listchars+=extends:❯
-set listchars+=precedes:❮
+set listchars+=extends:>
+set listchars+=precedes:<
 
 " Folding
 set foldmethod=indent
