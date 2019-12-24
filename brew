@@ -15,6 +15,8 @@ for p in "${packages[@]}"; do
     fi
 done
 
+brew tap homebrew/cask-fonts
+
 brew cask install \
     sequel-pro \
     docker \
@@ -22,7 +24,8 @@ brew cask install \
     slack \
     alfred \
     ngrok \
-    firefox
+    firefox \
+    font-fira-code
 
 brew unlink vim
 brew install macvim

@@ -28,14 +28,14 @@ tabspaces: 4
 
 font:
   normal:
-    family: MonacoB2
+    family: Fira Code
     style: Regular
   bold:
-    family: MonacoB2
+    family: Fira Code
     style: Bold
-  # italic:
-  #   family: MonacoB2
-  #   style: Italic
+  italic:
+    family: Fira Code
+    style: Italic
 
   size: 13.0
 
