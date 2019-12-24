@@ -63,8 +63,3 @@ chunkc tiling::rule --owner 'App Store' --state float &
 chunkc tiling::rule --owner 'Calculator' --state float &
 chunkc tiling::rule --owner 'GIMP-2.10' --name "Quit GIMP" --state float &
 chunkc tiling::rule --owner 'Slack' --state float &
-
-chunkc tiling::rule --owner 'Alacritty' --desktop 1 &
-chunkc tiling::rule --owner 'MacVim' --desktop 2 &
-chunkc tiling::rule --owner 'Firefox' --desktop 2 &
-chunkc tiling::rule --owner 'Thunderbird' --desktop 3 &
