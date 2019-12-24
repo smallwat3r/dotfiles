@@ -7,17 +7,18 @@
 #
 
 use Cwd qw(cwd);
-my $dir = cwd;
+my $current_dir = cwd;
 my $user = getlogin;
 my $root = "/Users/${user}";
 
+# Create directories in advance if they do not exists yet.
 @directories = ("${root}/.pip", "${root}/.zsh", "${root}/.tmux/plugins",
     "${root}/.vim/autoload", "${root}/config/alacritty");
-
 foreach $dir (@directories) {
     mkdir -p $dir unless -d $dir;
 }
 
+# Source <> Links
 my %links = (
     "aliases" => "${root}/.aliases",
     "vimrc" => "${root}/.vimrc",
@@ -40,10 +41,12 @@ my %links = (
     "bin/tubestatus" => "/usr/local/bin/tubestatus"
 );
 
+# Symlink all.
 while (($key, $value) = each (%links)) {
     $value = $links{$key};
-    symlink("${dir}/${key}", $value);
+    symlink("${current_dir}/${key}", $value);
     if ($key=~ m(^bin\/)) {
+        # Make exe if bin script.
         chmod 0755, $value;
     }
     print "[+] ${key} linked to ${value}\n";
