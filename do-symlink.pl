@@ -43,7 +43,7 @@ my %links = (
 while (($key, $value) = each (%links)) {
     $value = $links{$key};
     symlink("${dir}/${key}", $value);
-    if ($key=~ m/^bin\//) {
+    if ($key=~ m(^bin\/)) {
         chmod 0755, $value;
     }
     print "[+] ${key} linked to ${value}\n";
