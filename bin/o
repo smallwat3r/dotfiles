@@ -1,0 +1,8 @@
+#!/bin/bash
+# Open directory (current if not arg)
+
+if [ $# -eq 0 ]; then
+    open .
+else
+    open "$@"
+fi

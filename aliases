@@ -22,6 +22,7 @@ alias venv="virtualenv -p python3 venv --no-site-package"
 
 alias c="clear"
 alias :q="exit"
+alias :Q="exit"
 alias :x="exit"
 
 alias tks='tmux kill-session -t'

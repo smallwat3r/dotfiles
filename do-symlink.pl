@@ -11,9 +11,11 @@ my $dir = cwd;
 my $user = getlogin;
 my $root = "/Users/${user}";
 
-@directories = ("${root}/.pip", "${root}/.zsh");
+@directories = ("${root}/.pip", "${root}/.zsh", "${root}/.tmux/plugins",
+    "${root}/.vim/autoload", "${root}/config/alacritty");
+
 foreach $dir (@directories) {
-    mkdir $dir unless -d $dir;
+    mkdir -p $dir unless -d $dir;
 }
 
 my %links = (
@@ -33,17 +35,16 @@ my %links = (
     "tmux/plugins/tpm" => "${root}/.tmux/plugins/tpm",
     "vim/autoload/plug.vim" => "${root}/.vim/autoload/plug.vim",
     "bin/search" => "/usr/local/bin/search",
+    "bin/o" => "/usr/local/bin/o",
     "bin/sketch" => "/usr/local/bin/sketch",
     "bin/tubestatus" => "/usr/local/bin/tubestatus"
 );
 
 while (($key, $value) = each (%links)) {
     $value = $links{$key};
-    if (-d $value || -e $value) {
-        symlink("${dir}/${key}", $value);
-        print "[+] ${key} linked to ${value}\n";
+    symlink("${dir}/${key}", $value);
+    if ($key=~ m/^bin\//) {
+        chmod 0755, $value;
     }
-    else {
-        print "[-] ${value} do not exists\n";
-    }
+    print "[+] ${key} linked to ${value}\n";
 }
