@@ -28,6 +28,7 @@ my %links = (
     "bashrc" => "${root}/.bashrc",
     "chunkwmrc" => "${root}/.chunkwmrc",
     "git/gitconfig" => "${root}/.gitconfig",
+    "git/gitignore_global" => "${root}/.gitignore_global",
     "alacritty.yml" => "${root}/.config/alacritty/alacritty.yml",
     "pip/pip.conf" => "${root}/.pip/pip.conf",
     "zsh/antigen.zsh" => "${root}/.zsh/antigen.zsh",
@@ -37,7 +38,8 @@ my %links = (
     "tmux/plugins/tpm" => "${root}/.tmux/plugins/tpm",
     "vim/autoload/plug.vim" => "${root}/.vim/autoload/plug.vim",
     "bin/sketch" => "/usr/local/bin/sketch",
-    "bin/tubestatus" => "/usr/local/bin/tubestatus"
+    "bin/tubestatus" => "/usr/local/bin/tubestatus",
+    "bin/256colors" => "/usr/local/bin/256colors"
 );
 
 # Symlink all.

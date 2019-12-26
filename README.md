@@ -8,3 +8,8 @@ Install with
 ```sh
 chmod +x install && ./install
 ```
+
+Symlink only  
+```sh
+perl do-symlink.pl
+```
