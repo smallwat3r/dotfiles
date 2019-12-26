@@ -29,7 +29,7 @@ while (($key, $value) = each (%links)) {
     $key =~ s/__root__/${root}\//ig;
     unlink($key);
     symlink("${current_dir}/${value}", $key);
-    if ($key=~ m(^bin\/)) {
+    if ($key =~ m(^bin\/)) {
         # Make exe if bin script.
         chmod 0755, $value;
     }

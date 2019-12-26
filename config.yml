@@ -1,3 +1,8 @@
+# Mapping of symlinks.
+#
+# __root__ is replaced by user root directory.
+#
+
 directories:
     - __root__.pip
     - __root__.tmux/plugins
