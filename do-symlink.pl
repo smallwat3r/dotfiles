@@ -21,6 +21,7 @@ foreach $dir (@directories) {
 # Source <> Links
 my %links = (
     "aliases" => "${root}/.aliases",
+    "functions" => "${root}/.functions",
     "vimrc" => "${root}/.vimrc",
     "zshrc" => "${root}/.zshrc",
     "tmux.conf" => "${root}/.tmux.conf",
@@ -35,8 +36,6 @@ my %links = (
     "tmux/plugins/tmux-sensible" => "${root}/.tmux/plugins/tmux-sensible",
     "tmux/plugins/tpm" => "${root}/.tmux/plugins/tpm",
     "vim/autoload/plug.vim" => "${root}/.vim/autoload/plug.vim",
-    "bin/search" => "/usr/local/bin/search",
-    "bin/o" => "/usr/local/bin/o",
     "bin/sketch" => "/usr/local/bin/sketch",
     "bin/tubestatus" => "/usr/local/bin/tubestatus"
 );

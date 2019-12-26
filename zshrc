@@ -45,6 +45,7 @@ RPS1="${return_code}"
 
 # Source files.
 [ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.functions ] && source ~/.functions
 
 [ -f "`which tmux`" ] && [ -z $TMUX ] && tmux
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

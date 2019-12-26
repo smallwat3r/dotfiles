@@ -25,16 +25,16 @@ alias :q="exit"
 alias :Q="exit"
 alias :x="exit"
 
-alias tks='tmux kill-session -t'
-alias tksa='tmux kill-session -a'
-alias tls='tmux list-sessions'
+alias tks="tmux kill-session -t"
+alias tksa="tmux kill-session -a"
+alias tls="tmux list-sessions"
 
-alias rm='rm -i'
+alias rm="rm -i"
 
 alias p="pwd"
 alias ls="ls -p"
 alias ls.="ls -d .*"
-alias hs='history | grep'
+alias hs="history | grep"
 
 alias myip="curl http://ipecho.net/plain; echo"
 

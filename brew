@@ -4,7 +4,7 @@
 # Date  : 26.10.2019
 
 packages=(tmux redis nnn lazygit lazydocker git python3 ddgr vim wget zsh mysql sqlite fzf
-    htop exa curl bash gnu-sed tree jsonnet chunkwm xclip)
+    htop exa curl bash gnu-sed tree jsonnet chunkwm xclip jq)
 
 for p in "${packages[@]}"; do
     if ! brew ls --versions $p >/dev/null; then
