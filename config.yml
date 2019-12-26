@@ -1,0 +1,27 @@
+directories:
+    - __root__.pip
+    - __root__.tmux/plugins
+    - __root__.vim/autoload
+    - __root__.config/alacritty
+
+links:
+    __root__.vimrc:                            vim/vimrc
+    __root__.vim/autoload/plug.vim:            vim/autoload/plug.vim
+    __root__.aliases:                          zsh/aliases
+    __root__.functions:                        zsh/functions
+    __root__antigen.zsh:                       zsh/antigen.zsh
+    __root__.zshrc:                            zsh/zshrc
+    __root__.tmux.conf:                        tmux/tmux.conf
+    __root__.chunkwmrc:                        chunkwm/chunkwmrc
+    __root__.gitconfig:                        git/gitconfig
+    __root__.gitignore_global:                 git/gitignore_global
+    __root__.config/alacritty/alacritty.yml:   alacritty/alacritty.yml
+    __root__.pip/pip.conf:                     pip/pip.conf
+    __root__.tmux/plugins/tmux-battery:        tmux/plugins/tmux-battery
+    __root__.tmux/plugins/tmux-cpu:            tmux/plugins/tmux-cpu
+    __root__.tmux/plugins/tmux-sensible:       tmux/plugins/tmux-sensible
+    __root__.tmux/plugins/tpm:                 tmux/plugins/tpm
+    /usr/local/bin/sketch:                     bin/skecth
+    /usr/local/bin/pyzip:                      bin/pyzip
+    /usr/local/bin/tubestatus:                 bin/tubestatus
+    /usr/local/bin/256colors:                  bin/256colors
