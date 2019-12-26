@@ -1,1 +1,1 @@
-/Users/smallwat3r/dotfiles/zsh/antigen.zsh
+external/antigen/bin/antigen.zsh
