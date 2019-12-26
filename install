@@ -21,17 +21,17 @@ darwin*)
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     echo "[+] Installing softwares"
-    source $PWD/brew
+    source $PWD/mac/brew
 
     echo "[+] Setting up macOS configs"
-    source $PWD/macos
+    source $PWD/mac/macos
 
     echo "[+] Init and update submodules"
     git submodule init
     git submodule update
 
     echo "[+] Setting up symlinks"
-    perl $PWD/do-symlink.pl
+    perl $PWD/do-symlink
 
     echo "[v] ALL DONE *****"
     ;;

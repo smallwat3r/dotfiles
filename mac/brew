@@ -1,0 +1,32 @@
+#!/bin/bash
+# File  : brew
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 26.10.2019
+
+packages=(tmux redis nnn lazygit lazydocker git python3 ddgr vim wget zsh mysql sqlite fzf
+    htop exa curl bash gnu-sed tree jsonnet chunkwm xclip jq)
+
+for p in "${packages[@]}"; do
+    if ! brew ls --versions $p >/dev/null; then
+        echo "[+] installing $p"
+        brew install $p
+    else
+        echo "[.] $p already installed"
+    fi
+done
+
+brew tap homebrew/cask-fonts
+
+brew cask install \
+    sequel-pro \
+    docker \
+    alacritty \
+    slack \
+    alfred \
+    ngrok \
+    firefox \
+    font-fira-code
+
+brew unlink vim
+brew install macvim
+brew link vim

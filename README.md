@@ -4,12 +4,18 @@ My config files for macOS.
 
 **Please create backups of your current files if you are using the script below**   
 
-Install with  
+Make files executables  
 ```sh
-chmod +x install && ./install
+chmod +x install
+chmod +x do-symlink
 ```
 
-Symlink only  
+Install with  
 ```sh
-perl do-symlink.pl
+./install
+```
+
+Run symlink only  
+```sh
+./do-symlink
 ```
