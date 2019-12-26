@@ -38,6 +38,7 @@ my %links = (
     "tmux/plugins/tpm" => "${root}/.tmux/plugins/tpm",
     "vim/autoload/plug.vim" => "${root}/.vim/autoload/plug.vim",
     "bin/sketch" => "/usr/local/bin/sketch",
+    "bin/pyzip" => "/usr/local/bin/pyzip",
     "bin/tubestatus" => "/usr/local/bin/tubestatus",
     "bin/256colors" => "/usr/local/bin/256colors"
 );
