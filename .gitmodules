@@ -1,15 +1,9 @@
 [submodule "fonts/droid-sans-mono-sw"]
 	path = fonts/droid-sans-mono-sw
 	url = https://github.com/smallwat3r/droid-sans-mono-sw.git
-[submodule "fonts/cherry"]
-	path = fonts/cherry
-	url = https://github.com/turquoise-hexagon/cherry
 [submodule "fonts/sq"]
 	path = fonts/sq
 	url = https://github.com/leahneukirchen/sq
-[submodule "fonts/metrickal-typeface"]
-	path = fonts/metrickal-typeface
-	url = https://github.com/robey/metrickal-typeface
 [submodule "bin/externals/tubestatus"]
 	path = bin/externals/tubestatus
 	url = https://github.com/smallwat3r/tubestatus
@@ -37,3 +31,9 @@
 [submodule "fonts/monaco-bold"]
 	path = fonts/monaco-bold
 	url = https://github.com/vjpr/monaco-bold
+[submodule "bin/pyzip"]
+	path = bin/pyzip
+	url = https://github.com/smallwat3r/pyzip
+[submodule "bin/externals/pyzip"]
+	path = bin/externals/pyzip
+	url = https://github.com/smallwat3r/pyzip
