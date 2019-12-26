@@ -21,6 +21,9 @@ alias ddg="ddgr"
 alias venv="virtualenv -p python3 venv --no-site-package"
 
 alias c="clear"
+
+alias :sp="tmux splitw -v"
+alias :vs="tmux splitw -h"
 alias :q="exit"
 alias :Q="exit"
 alias :x="exit"
