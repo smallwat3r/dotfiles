@@ -6,7 +6,7 @@ My config files for macOS.
 
 Managed by a YAML config file `config.yml`  
 
-Hence it requires Perl YAML::XS module to run 
+Hence it requires Perl `YAML::XS` module to run 
 ```sh
 perl -MCPAN -e 'install YAML::XS'
 ```
