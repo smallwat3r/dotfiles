@@ -21,12 +21,12 @@ chmod +x install symlink brew
 ./install
 ```
 
-__Run symlinks only__  
+_Run symlinks only_  
 ```sh
 ./symlink
 ```
 
-__Install brew packages and cask only__  
+_Install brew packages and cask only_  
 ```sh
 ./brew
 ```
