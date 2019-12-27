@@ -11,16 +11,20 @@ perl -MCPAN -e 'install YAML::XS'
 
 Make files executables  
 ```sh
-chmod +x install
-chmod +x do-symlink
+chmod +x install symlink brew
 ```
 
-Install everything with  
+Install & symlink everything  
 ```sh
 ./install
 ```
 
 Run symlinks only  
 ```sh
-./do-symlink
+./symlink
+```
+
+Install brew packages and cask  
+```sh
+./brew
 ```
