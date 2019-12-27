@@ -16,17 +16,17 @@ Make files executables
 chmod +x install symlink brew
 ```
 
-Install & symlink everything  
+**Install & symlink everything**  
 ```sh
 ./install
 ```
 
-Run symlinks only  
+__Run symlinks only__  
 ```sh
 ./symlink
 ```
 
-Install brew packages and cask  
+__Install brew packages and cask only__  
 ```sh
 ./brew
 ```
