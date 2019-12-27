@@ -2,7 +2,7 @@
 
 My config files for macOS.  
 
-**Please create backups of your current files if you are using the script below**   
+**Please create backups of your current files if you are using the scripts below**   
 
 Managed by a YAML config file `config.yml`  
 
