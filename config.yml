@@ -30,3 +30,39 @@ links:
     /usr/local/bin/pyzip:                      bin/pyzip
     /usr/local/bin/tubestatus:                 bin/tubestatus
     /usr/local/bin/256colors:                  bin/256colors
+
+brew:
+    - tmux
+    - redis
+    - nnn
+    - lazygit
+    - lazydocker
+    - git
+    - python3
+    - ddgr
+    - vim
+    - wget
+    - zsh
+    - mysql
+    - sqlite
+    - fzf
+    - htop
+    - exa
+    - curl
+    - bash
+    - gnu-sed
+    - tree
+    - jsonnet
+    - chunkwm
+    - xclip
+    - jq
+
+cask:
+    - sequel-pro
+    - docker
+    - alacritty
+    - slack
+    - alfred
+    - ngrok
+    - firefox
+    - fontforge

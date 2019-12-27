@@ -20,7 +20,7 @@ function setup() {
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     echo "[+] Installing softwares"
-    source $PWD/mac/brew
+    perl $PWD/brew
 
     echo "[+] Setting up macOS configs"
     source $PWD/mac/macos
@@ -29,7 +29,7 @@ function setup() {
     git submodule init && git submodule update
 
     echo "[+] Setting up symlinks"
-    perl $PWD/do-symlink
+    perl $PWD/symlink
 
     echo "***** ALL DONE *****"
 }

@@ -1,0 +1,22 @@
+#!/usr/bin/env perl
+# File  : brew.pl
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 27.12.2019
+
+use Cwd qw(cwd);
+use YAML::XS qw(LoadFile);
+
+my $current_dir = cwd;
+my $data = LoadFile("${current_dir}/config.yml");
+
+my @brews=@{$data->{brew}};
+foreach $brew (@brews) {
+    system("sh", "${current_dir}/bin/install-brew.sh", $brew);
+}
+
+my @casks=@{$data->{cask}};
+foreach $cask (@casks) {
+    system("sh", "${current_dir}/bin/install-cask.sh", $cask);
+}
+
+system("sh", "${current_dir}/bin/macvim-hack.sh");
