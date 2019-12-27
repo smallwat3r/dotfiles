@@ -37,3 +37,6 @@
 [submodule "bin/externals/pyzip"]
 	path = bin/externals/pyzip
 	url = https://github.com/smallwat3r/pyzip
+[submodule "fonts/Office-Code-Pro"]
+	path = fonts/Office-Code-Pro
+	url = https://github.com/nathco/Office-Code-Pro

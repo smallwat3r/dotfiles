@@ -162,7 +162,7 @@ colo simplicity
 if (has("gui_running"))
     set linespace=0
     set macligatures
-    set guifont=Fira_Code:h13
+    set guifont=Office_Code_Pro:h13
     " set transparency=5
     set guioptions-=mTrL  " remove all GUI widgets
     " set gcr=a:blinkon0    " no blinking cursor
@@ -210,8 +210,8 @@ map <F6> :Vex<cr>
 nmap <leader><space> :nohlsearch<cr>
 
 " Editing and reloading of config
-map <leader>e :e! ~/dotfiles/vimrc<cr>
-autocmd! bufwritepost ~/dotfiles/vimrc source ~/dotfiles/vimrc
+map <leader>e :e! ~/dotfiles/vim/vimrc<cr>
+autocmd! bufwritepost ~/dotfiles/vim/vimrc source ~/dotfiles/vim/vimrc
 
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " Functions
