@@ -57,17 +57,19 @@ visual_bell:
   color: '0xffffff'
 
 colors:
+
   primary:
     background: '0x262626'
     foreground: '0xffffff'
+
   cursor:
-    text: '0x121212'
+    text:   '0x121212'
     cursor: '0x00ffff'
 
   normal:
-    black:   '0x444444'
+    black:   '0x262626'
     red:     '0xff0410'
-    green:   '0xff8b8b'
+    green:   '0x66ff99'
     yellow:  '0xFFC620'
     blue:    '0x1BA6FA'
     magenta: '0xff00ce'
@@ -75,9 +77,9 @@ colors:
     white:   '0xffffff'
 
   bright:
-    black:   '0x444444'
+    black:   '0x262626'
     red:     '0xff0410'
-    green:   '0xff009a'
+    green:   '0x66ff99'
     yellow:  '0xFFC620'
     blue:    '0x1BA6FA'
     magenta: '0xff00ce'
