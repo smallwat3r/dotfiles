@@ -14,7 +14,13 @@ my $data = LoadFile("${current_dir}/config.yml");
 my $brew;
 my @brews=@{$data->{brew}};
 foreach $brew (@brews) {
-    system("sh", "${current_dir}/bin/install-brew.sh", $brew);
+    if ($brew eq "macvim") {
+        # macvim hack (vim needs to be unlink in order to install
+        # properly, it will be relinked after install).
+        system("sh", "${current_dir}/bin/macvim-hack.sh");
+    } else {
+        system("sh", "${current_dir}/bin/install-brew.sh", $brew);
+    }
 }
 
 my $cask;
@@ -22,5 +28,3 @@ my @casks=@{$data->{cask}};
 foreach $cask (@casks) {
     system("sh", "${current_dir}/bin/install-cask.sh", $cask);
 }
-
-system("sh", "${current_dir}/bin/macvim-hack.sh");

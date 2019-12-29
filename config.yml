@@ -44,7 +44,6 @@ brew:
     - git
     - python3
     - ddgr
-    - vim
     - wget
     - zsh
     - mysql
@@ -60,6 +59,8 @@ brew:
     - chunkwm
     - xclip
     - jq
+    - vim     # vim needs to be before macvim
+    - macvim  # macvim needs to be after vim
 
 # Brew cask installs.
 cask:
