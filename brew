@@ -2,6 +2,8 @@
 # File  : brew.pl
 # Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 # Date  : 27.12.2019
+use strict;
+use warnings;
 
 use Cwd qw(cwd);
 use YAML::XS qw(LoadFile);
@@ -9,11 +11,13 @@ use YAML::XS qw(LoadFile);
 my $current_dir = cwd;
 my $data = LoadFile("${current_dir}/config.yml");
 
+my $brew;
 my @brews=@{$data->{brew}};
 foreach $brew (@brews) {
     system("sh", "${current_dir}/bin/install-brew.sh", $brew);
 }
 
+my $cask;
 my @casks=@{$data->{cask}};
 foreach $cask (@casks) {
     system("sh", "${current_dir}/bin/install-cask.sh", $cask);

@@ -5,6 +5,8 @@
 #
 # Symlink
 #
+use strict;
+use warnings;
 
 use Cwd qw(cwd);
 use YAML::XS qw(LoadFile);
@@ -15,7 +17,8 @@ my $root = "/Users/${user}";
 
 my $data = LoadFile("config.yml");
 
-# Directories.
+# Make sure all non-standard directories exists.
+my $dir;
 my @directories = @{$data->{directories}};
 foreach $dir (@directories) {
     $dir =~ s/__root__/${root}\//ig;
@@ -23,6 +26,8 @@ foreach $dir (@directories) {
 }
 
 # Symlinks.
+my $key;
+my $value;
 my %links = %{$data->{links}};
 while (($key, $value) = each (%links)) {
     $value = $links{$key};

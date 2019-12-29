@@ -1,14 +1,17 @@
 # Mapping of symlinks.
 #
-# __root__ is replaced by user root directory.
+# Notes:
+#     __root__ is replaced by user root directory.
 #
 
+# All non-standard directories, to create if doesn't exist.
 directories:
     - __root__.pip
     - __root__.tmux/plugins
     - __root__.vim/autoload
     - __root__.config/alacritty
 
+# List of all symlinks.
 links:
     __root__.vimrc:                            vim/vimrc
     __root__.vim/autoload/plug.vim:            vim/autoload/plug.vim
@@ -31,6 +34,7 @@ links:
     /usr/local/bin/tubestatus:                 bin/tubestatus
     /usr/local/bin/256colors:                  bin/256colors
 
+# Brew packages.
 brew:
     - tmux
     - redis
@@ -57,6 +61,7 @@ brew:
     - xclip
     - jq
 
+# Brew cask installs.
 cask:
     - sequel-pro
     - docker
