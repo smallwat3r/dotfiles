@@ -20,6 +20,7 @@ antigen bundle zsh-users/zsh-completions
 
 antigen apply
 
+# General
 export CLICOLOR=1
 export EDITOR=/usr/local/bin/vim
 
@@ -34,6 +35,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff"
 
 source $ZSH/oh-my-zsh.sh
 
+# Source aliases and functions.
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.functions ] && source ~/.functions
+
 # Prompt
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -43,9 +48,7 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 PROMPT='%{$fg[white]%}$(parse_git_branch) %20<...<%~%<< %{$reset_color%}%% '
 RPS1="${return_code}"
 
-# Source files.
-[ -f ~/.aliases ] && source ~/.aliases
-[ -f ~/.functions ] && source ~/.functions
-
+# Load tmux on start
 [ -f "`which tmux`" ] && [ -z $TMUX ] && tmux
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
