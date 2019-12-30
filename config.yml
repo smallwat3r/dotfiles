@@ -9,6 +9,7 @@ directories:
     - __root__.pip
     - __root__.tmux/plugins
     - __root__.vim/autoload
+    - __root__.antigen
     - __root__.config/alacritty
 
 # List of all symlinks.
@@ -17,7 +18,7 @@ links:
     __root__.vim/autoload/plug.vim:            vim/autoload/plug.vim
     __root__.aliases:                          zsh/aliases
     __root__.functions:                        zsh/functions
-    __root__antigen.zsh:                       zsh/antigen.zsh
+    __root__.antigen/antigen.zsh:              zsh/antigen.zsh
     __root__.zshrc:                            zsh/zshrc
     __root__.tmux.conf:                        tmux/tmux.conf
     __root__.chunkwmrc:                        chunkwm/chunkwmrc
