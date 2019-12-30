@@ -11,8 +11,8 @@ window:
     lines: 50
 
   padding:
-    x: 20
-    y: 20
+    x: 5
+    y: 5
 
   dynamic_padding: true
   decorations: buttonless
@@ -28,14 +28,14 @@ tabspaces: 4
 
 font:
   normal:
-    family: Office Code Pro
+    family: Menlo
     style: Regular
   bold:
-    family: Office Code Pro
+    family: Menlo
     style: Bold
   italic:
-    family: Office Code Pro
-    style: Regular Italic
+    family: Menlo
+    style: Italic
 
   size: 13.0
 

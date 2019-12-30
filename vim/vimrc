@@ -162,7 +162,7 @@ colo simplicity
 if (has("gui_running"))
     set linespace=0
     set macligatures
-    set guifont=Office_Code_Pro:h13
+    set guifont=Menlo:h13
     " set transparency=5
     set guioptions-=mTrL  " remove all GUI widgets
     " set gcr=a:blinkon0    " no blinking cursor
@@ -173,9 +173,10 @@ endif
 " Statusline
 set statusline=%{fugitive#statusline()}
 set statusline+=\ %f
-set statusline+=\ %l:%c,\%L
 set statusline+=\ %{strlen(&ft)?&ft:'none'}
 set statusline+=\ %{LinterStatus()}
+set statusline+=\ %=
+set statusline+=\ %l/%L\ c%c
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
 
 " Italics
