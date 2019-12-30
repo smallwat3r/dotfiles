@@ -2,6 +2,9 @@
 # File  : brew.pl
 # Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 # Date  : 27.12.2019
+#
+# Install brew and cask from config.yml
+#
 use strict;
 use warnings;
 

@@ -153,6 +153,9 @@ set fo=cjql
 autocmd FileType * setl fo-=o fo-=r
 autocmd FileType gitcommit setl fo=cjql com+=n:>
 
+" Netrw buffer
+autocmd FileType netrw setlocal bufhidden=delete
+
 " Colors
 set t_Co=256
 set bg=dark
@@ -162,7 +165,7 @@ colo simplicity
 if (has("gui_running"))
     set linespace=0
     set macligatures
-    set guifont=Menlo:h13
+    set guifont=Menlo:h14
     " set transparency=5
     set guioptions-=mTrL  " remove all GUI widgets
     " set gcr=a:blinkon0    " no blinking cursor
@@ -177,7 +180,7 @@ set statusline+=\ %{strlen(&ft)?&ft:'none'}
 set statusline+=\ %{LinterStatus()}
 set statusline+=\ %=
 set statusline+=\ %l/%L\ c%c
-set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
+set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ |
 
 " Italics
 let &t_ZH="\e[3m"
