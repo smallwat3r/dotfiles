@@ -30,7 +30,7 @@ links:
     __root__.tmux/plugins/tmux-cpu:            tmux/plugins/tmux-cpu
     __root__.tmux/plugins/tmux-sensible:       tmux/plugins/tmux-sensible
     __root__.tmux/plugins/tpm:                 tmux/plugins/tpm
-    /usr/local/bin/sketch:                     bin/skecth
+    /usr/local/bin/sketch:                     bin/sketch
     /usr/local/bin/pyzip:                      bin/pyzip
     /usr/local/bin/tubestatus:                 bin/tubestatus
     /usr/local/bin/256colors:                  bin/256colors
