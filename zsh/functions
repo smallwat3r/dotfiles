@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # open current directory or the one specified
-function o() {
+o() {
     if [ $# -eq 0 ]; then
         open .
     else
@@ -10,11 +10,11 @@ function o() {
 }
 
 # search from current dir
-function search() {
+search() {
     grep -rnIi "$1" . --color
 }
 
 # preview csv files. source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
-function csvpreview() {
+csvpreview() {
     sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S
 }
