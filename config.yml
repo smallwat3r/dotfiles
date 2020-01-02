@@ -60,6 +60,7 @@ brew:
     - chunkwm
     - xclip
     - jq
+    - fd
     - vim     # vim needs to be before macvim
     - macvim  # macvim needs to be after vim
 
