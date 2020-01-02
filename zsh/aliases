@@ -19,6 +19,8 @@ alias pip="pip3"
 alias lg="lazygit"
 alias ddg="ddgr"
 
+alias fonts="open $HOME/Library/Fonts"
+
 alias venv="virtualenv -p python3 venv --no-site-package"
 
 alias c="clear"

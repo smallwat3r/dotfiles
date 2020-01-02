@@ -27,6 +27,11 @@ export EDITOR=/usr/local/bin/vim
 export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin
 export GOPATH=$(go env GOPATH)
 
+export FZF_DEFAULT_OPTS="
+    --color fg:231,bg:235,hl:199,fg+:231,bg+:237,hl+:201
+    --color info:189,prompt:161,spinner:201,pointer:201,marker:118
+"
+
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
