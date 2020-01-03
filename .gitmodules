@@ -22,9 +22,6 @@
 [submodule "zsh/external/antigen"]
 	path = zsh/external/antigen
 	url = https://github.com/zsh-users/antigen
-[submodule "bin/pyzip"]
-	path = bin/pyzip
-	url = https://github.com/smallwat3r/pyzip
 [submodule "bin/externals/pyzip"]
 	path = bin/externals/pyzip
 	url = https://github.com/smallwat3r/pyzip
