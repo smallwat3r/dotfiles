@@ -28,16 +28,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Menlo
+    family: Fira Code
     style: Regular
   bold:
-    family: Menlo
+    family: Fira Code
     style: Bold
-  italic:
-    family: Menlo
-    style: Italic
+  # italic:
+  #   family: SF Mono
+  #   style: Italic
 
-  size: 14.0
+  size: 13.0
 
   offset:
     x: 0

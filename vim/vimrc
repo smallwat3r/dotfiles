@@ -77,6 +77,12 @@ set softtabstop=4
 set expandtab
 set autoindent
 set smartindent
+autocmd FileType sql set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType json set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType css set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType js set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 " Remap leader
@@ -165,7 +171,7 @@ colo simplicity
 if (has("gui_running"))
     set linespace=0
     set macligatures
-    set guifont=Menlo:h14
+    set guifont=Fira_Code:h13
     " set transparency=5
     set guioptions-=mTrL  " remove all GUI widgets
     " set gcr=a:blinkon0    " no blinking cursor

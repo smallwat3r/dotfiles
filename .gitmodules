@@ -1,9 +1,3 @@
-[submodule "fonts/droid-sans-mono-sw"]
-	path = fonts/droid-sans-mono-sw
-	url = https://github.com/smallwat3r/droid-sans-mono-sw.git
-[submodule "fonts/sq"]
-	path = fonts/sq
-	url = https://github.com/leahneukirchen/sq
 [submodule "bin/externals/tubestatus"]
 	path = bin/externals/tubestatus
 	url = https://github.com/smallwat3r/tubestatus
@@ -28,15 +22,12 @@
 [submodule "zsh/external/antigen"]
 	path = zsh/external/antigen
 	url = https://github.com/zsh-users/antigen
-[submodule "fonts/monaco-bold"]
-	path = fonts/monaco-bold
-	url = https://github.com/vjpr/monaco-bold
 [submodule "bin/pyzip"]
 	path = bin/pyzip
 	url = https://github.com/smallwat3r/pyzip
 [submodule "bin/externals/pyzip"]
 	path = bin/externals/pyzip
 	url = https://github.com/smallwat3r/pyzip
-[submodule "fonts/Office-Code-Pro"]
-	path = fonts/Office-Code-Pro
-	url = https://github.com/nathco/Office-Code-Pro
+[submodule "fonts/externals/FiraCode"]
+	path = fonts/externals/FiraCode
+	url = https://github.com/tonsky/FiraCode
