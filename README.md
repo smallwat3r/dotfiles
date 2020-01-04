@@ -2,9 +2,9 @@
 
 My config files for macOS.  
 
-**Please create backups of your current files if you are using the scripts below**   
+**Please create backups of your current files if you are using the commands below**   
 
-Managed by a YAML config file `config.yml`  
+Dotfiles are managed by a YAML config file `config.yml`  
 
 Hence it requires Perl `YAML::XS` module to run 
 ```sh
