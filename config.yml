@@ -18,6 +18,7 @@ links:
     __root__.vim/autoload/plug.vim:            vim/autoload/plug.vim
     __root__.aliases:                          zsh/aliases
     __root__.functions:                        zsh/functions
+    __root__.prompt:                           zsh/prompt
     __root__.antigen/antigen.zsh:              zsh/antigen.zsh
     __root__.zshrc:                            zsh/zshrc
     __root__.tmux.conf:                        tmux/tmux.conf
