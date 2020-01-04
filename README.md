@@ -11,7 +11,7 @@ Hence it requires Perl `YAML::XS` module to run
 perl -MCPAN -e 'install YAML::XS'
 ```
 
-Clone repo with submodules and make files executables  
+Clone repo with submodules and make files executable  
 ```sh
 git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
     cd dotfiles && \
