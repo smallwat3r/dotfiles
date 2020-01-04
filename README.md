@@ -34,4 +34,4 @@ _Install brew packages and cask only_
 ```
 
 04/01/20
-![screenshot](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/_screenshot.png)
+![screenshot](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/screenshot.png)
