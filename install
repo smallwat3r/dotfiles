@@ -5,6 +5,7 @@
 #
 # Install all
 #
+
 function setup() {
     which -s brew
     if [[ $? != 0 ]]; then
