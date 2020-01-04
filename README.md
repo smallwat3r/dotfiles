@@ -11,9 +11,11 @@ Hence it requires Perl `YAML::XS` module to run
 perl -MCPAN -e 'install YAML::XS'
 ```
 
-Make files executables  
+Clone repo with submodules and make files executables  
 ```sh
-chmod +x install symlink brew
+git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
+    cd dotfiles && \
+    chmod +x install symlink brew
 ```
 
 **Install & symlink everything**  

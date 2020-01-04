@@ -35,8 +35,6 @@ alias tks="tmux kill-session -t"
 alias tksa="tmux kill-session -a"
 alias tls="tmux list-sessions"
 
-alias rm="rm -i"
-
 alias p="pwd"
 alias ls="ls -p"
 alias ls.="ls -d .*"
