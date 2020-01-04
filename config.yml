@@ -15,6 +15,11 @@ directories:
 # List of all symlinks.
 links:
     __root__.vimrc:                            vim/vimrc
+    __root__.vim/plugins.vim:                  vim/plugins.vim
+    __root__.vim/general.vim:                  vim/general.vim
+    __root__.vim/theme.vim:                    vim/theme.vim
+    __root__.vim/keybindings.vim:              vim/keybindings.vim
+    __root__.vim/functions.vim:                vim/functions.vim
     __root__.vim/autoload/plug.vim:            vim/autoload/plug.vim
     __root__.aliases:                          zsh/aliases
     __root__.functions:                        zsh/functions
