@@ -28,3 +28,6 @@
 [submodule "fonts/externals/FiraCode"]
 	path = fonts/externals/FiraCode
 	url = https://github.com/tonsky/FiraCode
+[submodule "fonts/externals/Hack"]
+	path = fonts/externals/Hack
+	url = https://github.com/source-foundry/Hack
