@@ -28,16 +28,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: SF Mono
-    style: Light
-  bold:
-    family: SF Mono
-    style: Bold
-  italic:
-    family: SF Mono
-    style: Italic
+    family: Andale Mono SwFix
+    style: Regular
+  # bold:
+  #   family: SF Mono
+  #   style: Bold
+  # italic:
+  #   family: SF Mono
+  #   style: Italic
 
-  size: 13.0
+  size: 14.0
 
   offset:
     x: 0
