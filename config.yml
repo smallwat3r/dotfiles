@@ -1,7 +1,7 @@
 # Mapping of symlinks.
 #
 # Notes:
-#     __root__ is replaced by user root directory.
+#     __root__ will be replaced by user root directory.
 #
 
 # All non-standard directories, to create if doesn't exist.
