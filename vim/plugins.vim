@@ -11,7 +11,6 @@ call plug#begin()
 
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
-Plug 'smallwat3r/vim-efficient'
 Plug 'smallwat3r/vim-simplicity'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-commentary'

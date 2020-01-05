@@ -23,6 +23,7 @@ autocmd FileType css set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType js set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 " Remap leader
 let mapleader=','
