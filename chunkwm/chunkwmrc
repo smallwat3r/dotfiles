@@ -47,9 +47,9 @@ chunkc set preselect_border_outline      1
 chunkc set focused_border_color          0xffd75f5f
 chunkc set focused_border_width          5
 chunkc set focused_border_radius         5
-chunkc set focused_border_outline        0
+chunkc set focused_border_outline        1
 chunkc set focused_border_skip_floating  0
-chunkc set focused_border_skip_monocle   1
+chunkc set focused_border_skip_monocle   0
 
 chunkc set ffm_bypass_modifier           fn
 chunkc set ffm_standby_on_float          1
