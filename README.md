@@ -33,5 +33,5 @@ _Install brew packages and cask only_
 ./brew
 ```
 
-04/01/20
+06/01/20
 ![screenshot](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/screenshot.png)
