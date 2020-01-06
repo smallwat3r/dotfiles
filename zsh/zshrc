@@ -33,13 +33,37 @@ export FZF_DEFAULT_OPTS="
     --color fg:231,bg:235,hl:199,fg+:231,bg+:237,hl+:201
     --color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
-export FZF_DEFAULT_COMMAND='fd -t f -H -L -E .git -E __pycache__'
+export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
+
+# Overwrite zsh-syntax-highlighting defaults
+typeset -A ZSH_HIGHLIGHT_STYLES
+# underline
+for e (command precommand function builtin alias reserved-word); do
+    ZSH_HIGHLIGHT_STYLES[$e]="underline"; done
+# flash green
+for e (redirection commandseparator); do ZSH_HIGHLIGHT_STYLES[$e]="fg=118"; done
+# none
+for e (globbing rc-quote path path_separator history-expansion command-substitution
+    command-substitution-unquoted command-substitution-quoted command-substitution-delimiter
+    command-substitution-delimiter-unquoted command-substitution-delimiter-quoted
+    process-substitution process-substitution-delimiter single-hyphen-option
+    double-hyphen-option back-quoted-argument back-quoted-argument-unclosed
+    back-quoted-argument-unclosed single-quoted-argument single-quoted-argument-unclosed
+    double-quoted-argument double-quoted-argument-unclosed dollar-quoted-argument
+    dollar-quoted-argument dollar-double-quoted-argument back-double-quoted-argument
+    back-dollar-quoted-argument assign named-fd arg0 path_prefix path_prefix_separator
+    default hashed-command
+    ); do ZSH_HIGHLIGHT_STYLES[$e]="none"; done
+# other
+ZSH_HIGHLIGHT_STYLES[comment]="fg=146"
+ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=161"  # errors
+
 
 source $ZSH/oh-my-zsh.sh
 
