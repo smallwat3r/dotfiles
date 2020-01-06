@@ -25,6 +25,9 @@ antigen apply
 export CLICOLOR=1
 export EDITOR=/usr/local/bin/vim
 
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='0;30;42'
+
 export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin
 export GOPATH=$(go env GOPATH)
 
