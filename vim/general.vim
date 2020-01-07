@@ -84,6 +84,10 @@ let g:netrw_banner=0
 let g:netrw_winsize=20
 let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 
+" Deactivate dbtext plugin error msg on sql completion
+let g:loaded_sql_completion=0
+let g:omni_sql_no_default_maps=1
+
 " Keep visual selection when reindenting
 xnoremap > >gv
 xnoremap < <gv

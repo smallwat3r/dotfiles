@@ -26,6 +26,7 @@ links:
     __root__.prompt:                           zsh/prompt
     __root__.antigen/antigen.zsh:              zsh/antigen.zsh
     __root__.zshrc:                            zsh/zshrc
+    __root__.config/flake8:                    python/flake8
     __root__.tmux.conf:                        tmux/tmux.conf
     __root__.chunkwmrc:                        chunkwm/chunkwmrc
     __root__.gitconfig:                        git/gitconfig

@@ -55,6 +55,8 @@ let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 let g:ale_pattern_options={
             \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
             \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}, }
+let b:ale_linters = ['flake8']
+let b:ale_fixers = ['black']
 
 " Impsort - Python imports sorting on save.
 autocmd BufWritePre *.py ImpSort!
