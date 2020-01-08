@@ -42,3 +42,10 @@
 
 [url "https://gist.github.com/"]
     insteadOf = gist:
+
+[alias]
+    plog = log --pretty=custom
+
+# https://github.com/alrra/dotfiles/blob/master/src/git/gitconfig
+[pretty]
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
