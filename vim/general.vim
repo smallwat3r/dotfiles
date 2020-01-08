@@ -81,8 +81,8 @@ set whichwrap+=<,>,h,l
 " Netrw settings
 let g:netrw_liststyle=3
 let g:netrw_banner=0
-let g:netrw_winsize=20
 let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
+let g:netrw_sort_sequence='[\/]$,*'
 
 " Deactivate dbtext plugin error msg on sql completion
 let g:loaded_sql_completion=0

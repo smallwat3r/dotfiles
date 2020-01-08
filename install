@@ -23,7 +23,7 @@ function setup() {
     perl $PWD/brew
 
     echo "[+] Setting up macOS configs"
-    source $PWD/mac/macos
+    source $PWD/macos/macos
 
     echo "[+] Init and update submodules"
     git submodule init && git submodule update
