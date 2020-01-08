@@ -11,5 +11,5 @@ parse_git_branch() {
 }
 setopt PROMPT_SUBST
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='%{$fg[white]%}$(parse_git_branch) %20<...<%~%<< %{$reset_color%}%% '
+PROMPT='%{$fg[white]%}$(parse_git_branch) %20<...<%~%<< %{$reset_color%}\$ '
 RPS1="${return_code}"
