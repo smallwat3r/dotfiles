@@ -58,5 +58,8 @@ let g:ale_pattern_options={
 let b:ale_linters = ['flake8']
 let b:ale_fixers = ['black']
 
-" Impsort - Python imports sorting on save.
+" Impsort
+let g:impsort_relative_last=1
+let g:impsort_textwidth=86  " black
+let g:impsort_start_nextline=1
 autocmd BufWritePre *.py ImpSort!
