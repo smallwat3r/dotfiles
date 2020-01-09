@@ -25,3 +25,10 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
 ./symlink   # run symlinks only
 ./brew      # run brew & casks only
 ```
+
+**vimrc_server** 
+This is my `vimrc` a but setup for remote server (no plugins and GUI)  
+```sh
+wget -N https://raw.githubusercontent.com/smallwat3r/dotfiles/master/vim/vimrc_server \
+    -O ~/.vimrc
+```
