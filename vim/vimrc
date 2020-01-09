@@ -177,10 +177,10 @@ colo simplicity
 " Gui settings
 if (has("gui_running"))
     set linespace=0
-    " set macligatures      " if font supports ligatures
     set guifont=Andale_Mono_SwFix:h14
-    " set transparency=5
     set guioptions-=mTrL  " remove all GUI widgets
+    " set macligatures      " if font supports ligatures
+    " set transparency=5
     " set gcr=a:blinkon0    " no blinking cursor
 endif
 
@@ -248,9 +248,9 @@ autocmd FileType markdown let b:noStripWhitespace=1
 
 " Count errors in status bar.
 fun! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+    let l:counts=ale#statusline#Count(bufnr(''))
+    let l:all_errors=l:counts.error + l:counts.style_error
+    let l:all_non_errors=l:counts.total - l:all_errors
     return l:counts.total == 0 ? 'OK' : printf(
                 \   '%dW %dE',
                 \   all_non_errors,
@@ -259,13 +259,13 @@ endfun
 
 " Folds format
 fun! CustomFoldText()
-    let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-    let lines_count = v:foldend - v:foldstart + 1
-    let lines_count_text = printf("%10s", '(' . lines_count . ')') . ' .'
-    let foldchar = matchstr(&fillchars, 'fold:\zs.')
-    let foldtextend = strpart(repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-    let foldtextstart = '+ ' . lines_count_text . repeat(foldchar, 8)
-    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+    let line=' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+    let lines_count=v:foldend - v:foldstart + 1
+    let lines_count_text=printf("%10s", '(' . lines_count . ')') . ' .'
+    let foldchar=matchstr(&fillchars, 'fold:\zs.')
+    let foldtextend=strpart(repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+    let foldtextstart='+ ' . lines_count_text . repeat(foldchar, 8)
+    let foldtextlength=strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
     return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfun
 set foldtext=CustomFoldText()
