@@ -45,8 +45,5 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Application window
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move left a space' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move right a space' nil
 
-# Set default wallpaper from ../wallpaper
-WP_LOC='wallpaper/pawel-czerwinski-tMbQpdguDVQ-unsplash.jpg'
-TARGET_PATH=$(echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" | sed 's/[^/]*$//')
-osascript -e "tell application \"System Events\" to set picture of every desktop to \"${TARGET_PATH}${WP_LOC}\""
-killall Dock
+# Set default wallpaper to Stone.
+osascript -e "tell application \"System Events\" to set picture of every desktop to \"/Library/Desktop Pictures/Solid Colors/Stone.png\""
