@@ -16,16 +16,19 @@ function setup() {
         brew update
     fi
 
-    echo "[+] Install oh-my-zsh"
+    echo "[+] Installing oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     echo "[+] Installing softwares"
     perl $PWD/brew
 
+    echo "[+] Installing python packages"
+    pip3 install -r pip/requirements.txt
+
     echo "[+] Setting up macOS configs"
     source $PWD/macos/macos
 
-    echo "[+] Init and update submodules"
+    echo "[+] Initiating and updating submodules"
     git submodule init && git submodule update
 
     echo "[+] Setting up symlinks"
