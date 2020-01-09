@@ -74,12 +74,9 @@ ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=161"  # errors
 #
 # PROMPT
 # --------------------------------------------------------------------------------------
-precmd() {
-    echo
-}
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
+precmd() { echo }
+parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' }
+
 setopt PROMPT_SUBST
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 PROMPT='%{$fg[white]%}$(parse_git_branch) %20<...<%~%<< %{$reset_color%}\$ '
@@ -143,38 +140,16 @@ alias .....="cd ../../../.."
 #
 # FUNCTIONS
 # --------------------------------------------------------------------------------------
-# open current directory or the one specified
-o() {
-    if [ $# -eq 0 ]; then
-        open .
-    else
-        open "$@"
-    fi
-}
-
-# search from current dir
-search() {
-    grep -rnIi "$1" . --color
-}
-
-# create and enter directory
-mkd() {
-    mkdir -p "$@" && cd "$@"
-}
-
+o() { if [ $# -eq 0 ]; then open .; else open "$@"; fi }  # open current dir or the one in args
+search() { grep -rnIi "$1" . --color }  # search (grep) from current dir
+mkd() { mkdir -p "$@" && cd "$@" }  # create and enter directory
 # preview csv files.
 # source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
-csvpreview() {
-    sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S
-}
-
+csvpreview() { sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S }
 # Show Wi-Fi Network Passwords
 # Exchange SSID with the SSID of the access point you wish to query the password from.
 # https://github.com/ahmadawais/dotFiles/blob/7e5b5b632a61837917a5f6194b1929283a43ec91/.zshrc#L2621
-wifipass() {
-    security find-generic-password -D "AirPort network password" -a "$@" -gw
-}
-
+wifipass() { security find-generic-password -D "AirPort network password" -a "$@" -gw }
 # extract file.
 # source: http://nparikh.org/notes/zshrc.txt
 extract() {
