@@ -5,44 +5,32 @@
 #
 # Install all
 #
+install_homebrew () { ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
+install_oh_my_zsh () { sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; }
+install_brew_packages () { perl $PWD/brew; }
+install_python_packages () { pip3 install -r pip/requirements.txt; }
+set_macos () { source $PWD/macos/macos; }
+upd_submodules () { git submodule init && git submodule update; }
+set_symlinks () { perl $PWD/symlink; }
 
-function setup() {
+setup() {
     which -s brew
     if [[ $? != 0 ]]; then
-        echo "[+] Installing Homebrew"
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        printf "[+] Installing Homebrew\n"; install_homebrew;
     else
-        echo "[+] Updating Homebrew"
-        brew update
+        printf "[+] Updating Homebrew\n"; brew update;
     fi
 
-    echo "[+] Installing oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-    echo "[+] Installing softwares"
-    perl $PWD/brew
-
-    echo "[+] Installing python packages"
-    pip3 install -r pip/requirements.txt
-
-    echo "[+] Setting up macOS configs"
-    source $PWD/macos/macos
-
-    echo "[+] Initiating and updating submodules"
-    git submodule init && git submodule update
-
-    echo "[+] Setting up symlinks"
-    perl $PWD/symlink
-
-    echo "***** ALL DONE *****"
+    printf "[+] Installing oh-my-zsh\n"; install_oh_my_zsh;
+    printf "[+] Installing brew packages\n"; install_brew_packages;
+    printf "[+] Installing python packages\n"; install_python_packages;
+    printf "[+] Setting up macOS configs\n"; set_macos;
+    printf "[+] Initiating and updating submodules\n"; upd_submodules;
+    printf "[+] Setting up symlinks\n"; set_symlinks;
+    printf "\n***** ALL DONE *****\n"
 }
 
 case "$OSTYPE" in
-    darwin*)
-        setup
-        ;;
-    *)
-        echo "This script needs to run on macOS"
-        ;;
+    darwin* ) setup; exit 0;;
+    *       ) printf "This script needs to run on macOS\n"; exit 1;;
 esac
-exit 0
