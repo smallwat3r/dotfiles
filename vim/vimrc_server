@@ -157,8 +157,6 @@ if exists("syntax on")
   syntax reset
 endif
 
-let g:colors_name="simplicity"
-"
 " Colors
 "
 hi Normal              ctermfg=231  ctermbg=235  cterm=NONE       guifg=#ffffff  guibg=#262626  gui=NONE
@@ -246,5 +244,3 @@ hi Typedef             ctermfg=NONE ctermbg=NONE cterm=NONE       guifg=NONE    
 hi Underlined          ctermfg=NONE ctermbg=NONE cterm=NONE       guifg=NONE     guibg=NONE     gui=NONE
 hi Tooltip             ctermfg=NONE ctermbg=NONE cterm=NONE       guifg=NONE     guibg=NONE     gui=NONE
 hi Menu                ctermfg=NONE ctermbg=NONE cterm=NONE       guifg=NONE     guibg=NONE     gui=NONE
-
-colo simplicity
