@@ -59,6 +59,7 @@ brew:
     - chunkwm
     - xclip
     - jq
+    - make
     - fd
     - gawk
     - translate-shell
