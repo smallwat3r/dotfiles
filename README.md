@@ -32,6 +32,3 @@ _Install brew packages and cask only_
 ```sh
 ./brew
 ```
-
-06/01/20
-![screenshot](https://github.com/smallwat3r/dotfiles/blob/master/_screenshot/screenshot.png)
