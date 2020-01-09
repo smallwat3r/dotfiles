@@ -2,11 +2,11 @@
 
 My config files for macOS.  
 
-**Please create backups of your current files if you are using the commands below**   
+**Please create backups of your current files if you are using any of the commands below**   
 
 Dotfiles are managed by a YAML config file `config.yml`  
 
-Hence it requires Perl `YAML::XS` module to run 
+Hence it requires Perl `YAML::XS` 
 ```sh
 perl -MCPAN -e 'install YAML::XS'
 ```
@@ -18,17 +18,10 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
     chmod +x install symlink brew
 ```
 
-**Install & symlink everything**  
+**Commands**  
 ```sh
-./install
-```
+./install   # installs everything
 
-_Run symlinks only_  
-```sh
-./symlink
-```
-
-_Install brew packages and cask only_  
-```sh
-./brew
+./symlink   # run symlinks only
+./brew      # run brew & casks only
 ```
