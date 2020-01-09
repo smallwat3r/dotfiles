@@ -14,7 +14,7 @@ colo simplicity
 " Gui settings
 if (has("gui_running"))
     set linespace=0
-    set macligatures
+    " set macligatures      " if font supports ligatures
     set guifont=Andale_Mono_SwFix:h14
     " set transparency=5
     set guioptions-=mTrL  " remove all GUI widgets

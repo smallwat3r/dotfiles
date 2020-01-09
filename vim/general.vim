@@ -9,24 +9,26 @@
 syntax on
 filetype plugin indent on
 
-" Indents (4 spaces by default)
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+" Remap leader
+let mapleader=','
+
+" Default indentation
 set expandtab
 set autoindent
 set smartindent
-autocmd FileType sql set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType json set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType css set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType js set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType html set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+set ts=4
+set sw=4
+set sts=4
 
-" Remap leader
-let mapleader=','
+" Indentation other filetypes
+autocmd FileType sql    setlocal ts=2 sw=2 sts=2
+autocmd FileType json   setlocal ts=2 sw=2 sts=2
+autocmd FileType xml    setlocal ts=2 sw=2 sts=2
+autocmd FileType css    setlocal ts=2 sw=2 sts=2
+autocmd FileType js     setlocal ts=2 sw=2 sts=2
+autocmd FileType html   setlocal ts=2 sw=2 sts=2
+autocmd FileType make   setlocal ts=8 sw=8 sts=0 noexpandtab
+autocmd FileType go     setlocal ts=8 sw=8 sts=0 noexpandtab
 
 " General
 set autoread  " reread changed files automatically
@@ -54,7 +56,7 @@ set showmode  " show vim mode (insert, visual, replace)
 
 " Special chars
 set showbreak=↪  " wrap lines symbol
-set listchars=tab:➝\ ,eol:¬,extends:>,precedes:<
+set listchars=eol:¬,extends:>,precedes:<
 
 " Folding
 set foldmethod=indent
@@ -84,6 +86,7 @@ let g:netrw_banner=0
 let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir="rm -r"
+autocmd FileType netrw setlocal bufhidden=delete " Netrw buffer
 
 " Deactivate dbtext plugin error msg on sql completion
 let g:loaded_sql_completion=0
@@ -98,8 +101,5 @@ command! WW :w !sudo tee % >/dev/null
 
 " Disable automatic insertion of comment markers
 set fo=cjql
-autocmd FileType * setl fo-=o fo-=r
+autocmd FileType *         setl fo-=o fo-=r
 autocmd FileType gitcommit setl fo=cjql com+=n:>
-
-" Netrw buffer
-autocmd FileType netrw setlocal bufhidden=delete
