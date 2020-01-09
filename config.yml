@@ -71,6 +71,7 @@ cask:
     - sequel-pro
     - docker
     - alacritty
+    - rectangle
     - slack
     - alfred
     - ngrok
