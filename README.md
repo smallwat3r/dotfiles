@@ -26,6 +26,7 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
 ./brew      # run brew & casks only
 ```
 
+
 **vim/vimrc_server**   
 This is my actual vim config but setup for remote server (no plugins and GUI)  
 ```sh
