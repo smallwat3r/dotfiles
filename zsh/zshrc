@@ -37,7 +37,7 @@ export GREP_COLOR='0;30;42'
 
 export FZF_DEFAULT_OPTS="
     --height 40% --layout=reverse --border
-    --color fg:231,bg:235,hl:199,fg+:231,bg+:237,hl+:201
+    --color fg:231,bg:24,hl:199,fg+:231,bg+:24,hl+:201
     --color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
 export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
@@ -74,13 +74,20 @@ ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=161"  # errors
 #
 # PROMPT
 # --------------------------------------------------------------------------------------
-precmd() { echo }
-parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' }
-
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+}
+local_ip() {
+    ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+}
+precmd() {
+    local preprompt_left='%n@$(local_ip) %30<...<%~%<<%F{yellow}$(parse_git_branch)'
+    print -Pr $'\n'"$preprompt_left"
+}
 setopt PROMPT_SUBST
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='%{$fg[white]%}$(parse_git_branch) %20<...<%~%<< %{$reset_color%}\$ '
-RPS1="${return_code}"
+PROMPT='$ '
+RPS1='${return_code}'
 
 #
 # ALIASES

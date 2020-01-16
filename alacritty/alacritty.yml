@@ -59,8 +59,8 @@ visual_bell:
 colors:
 
   primary:
-    background: '0x262626'
-    foreground: '0xffffff'
+    background: '0x00005f'
+    foreground: '0xeeeeee'
 
   cursor:
     text:   '0x121212'
@@ -86,7 +86,7 @@ colors:
     cyan:    '0xff00a7'
     white:   '0xffffff'
 
-background_opacity: 1
+background_opacity: 0.95
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }

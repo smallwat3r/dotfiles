@@ -84,6 +84,7 @@ set sts=4
 
 " Indentation other filetypes
 autocmd FileType sql    setlocal ts=2 sw=2 sts=2
+autocmd FileType yaml   setlocal ts=2 sw=2 sts=2
 autocmd FileType json   setlocal ts=2 sw=2 sts=2
 autocmd FileType xml    setlocal ts=2 sw=2 sts=2
 autocmd FileType css    setlocal ts=2 sw=2 sts=2
@@ -117,7 +118,7 @@ set nocompatible
 set showmode  " show vim mode (insert, visual, replace)
 
 " Special chars
-set showbreak=↪  " wrap lines symbol
+set showbreak=\>  " wrap lines symbol
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 
 " Folding
@@ -172,10 +173,11 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " Colors
 set t_Co=256
 set bg=dark
-colo simplicity
+colo simplicity-blue
 
 " Gui settings
 if (has("gui_running"))
+    colo simplicity-blue
     set linespace=0
     set guifont=Andale_Mono_SwFix:h14
     set guioptions-=mTrL  " remove all GUI widgets
