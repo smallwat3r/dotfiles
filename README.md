@@ -18,18 +18,20 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
     chmod +x install symlink brew
 ```
 
-**Commands**  
+## Commands
 ```sh
 ./install   # installs everything
 
 ./symlink   # run symlinks only
 ./brew      # run brew & casks only
 ```
-
-------
-**vim/vimrc_server**   
-This is my actual vim config but setup for remote server (no plugins and GUI)  
+  
 ```sh
+# installs vim/vimrc_server: this is the vim config I use on remote server (no plugins)
+
 wget -N https://raw.githubusercontent.com/smallwat3r/dotfiles/master/vim/vimrc_server \
      -O ~/.vimrc
 ```
+
+## Screen (16.01.20)
+![config](https://i.imgur.com/PPT0BII.png)  
