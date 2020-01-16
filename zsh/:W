@@ -32,7 +32,6 @@ export EDITOR=/usr/local/bin/vim
 export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin
 export GOPATH=$(go env GOPATH)
 
-# grep colors
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
 
@@ -48,10 +47,9 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# zsh suggestions colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 
-# Overwrite zsh-syntax-highlighting default defaults
+# Overwrite zsh-syntax-highlighting defaults
 typeset -A ZSH_HIGHLIGHT_STYLES
 
 # underline
@@ -154,31 +152,16 @@ alias .....="cd ../../../.."
 #
 # FUNCTIONS
 # --------------------------------------------------------------------------------------
-
-# open current dir or the one in args
-o() {
-    if [ $# -eq 0 ]; then open .; else open "$@"; fi
-}
-
-# search (grep) from current dir or specified
-search() { grep -rnIi "$1" . --color }
-
-# create and enter directory
-mkd() { mkdir -p "$@" && cd "$@" }
-
+o() { if [ $# -eq 0 ]; then open .; else open "$@"; fi }  # open current dir or the one in args
+search() { grep -rnIi "$1" . --color }  # search (grep) from current dir
+mkd() { mkdir -p "$@" && cd "$@" }  # create and enter directory
 # preview csv files.
 # source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
-csvpreview() {
-    sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S
-}
-
+csvpreview() { sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S }
 # Show Wi-Fi Network Passwords
 # Exchange SSID with the SSID of the access point you wish to query the password from.
 # https://github.com/ahmadawais/dotFiles/blob/7e5b5b632a61837917a5f6194b1929283a43ec91/.zshrc#L2621
-wifipass() {
-    security find-generic-password -D "AirPort network password" -a "$@" -gw
-}
-
+wifipass() { security find-generic-password -D "AirPort network password" -a "$@" -gw }
 # extract file.
 # source: http://nparikh.org/notes/zshrc.txt
 extract() {
@@ -205,8 +188,9 @@ extract() {
     fi
 }
 
+
 #
-# EOF scripts
+# END
 # --------------------------------------------------------------------------------------
 source $ZSH/oh-my-zsh.sh
 [ -f "`which tmux`" ] && [ -z $TMUX ] && tmux  # load tmux on start
