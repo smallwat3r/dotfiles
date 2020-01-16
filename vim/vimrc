@@ -130,7 +130,7 @@ set foldlevel=99
 
 " Ignore files and folders
 set wildignore=*.swp,*.bak
-set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*,*.DS_Store,*.rdb
+set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.DS_Store,*.rdb
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*,*/__pycache__/**/*,*/venv/**/*
 set wildignore+=tags
 set wildignore+=*.tar.*
@@ -147,11 +147,10 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
 " Netrw settings
-let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir="rm -r"
-autocmd FileType netrw setl bufhidden=wipe  " delete netrw buffer
+autocmd FileType netrw setl bufhidden=delete  " delete netrw buffer
 
 " Deactivate dbtext plugin error msg on sql completion
 let g:loaded_sql_completion=0
