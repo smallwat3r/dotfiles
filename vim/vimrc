@@ -114,6 +114,7 @@ set nonu  " deactivate row numbers
 set fillchars=vert:┃
 set nocompatible
 set showmode  " show vim mode (insert, visual, replace)
+set wildignorecase
 
 " Special chars
 set showbreak=\\>  " wrap lines symbol
@@ -124,8 +125,11 @@ set foldmethod=indent
 set foldlevel=99
 
 " Ignore files and folders
-set wildignore=*.pyc,*.swp,*.DS_Store,*.rdb
-set wildignore+=.git/,__pycache__/,venv/,sdist/
+set wildignore=*.swp,*.bak
+set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*,*.DS_Store,*.rdb
+set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*,*/__pycache__/**/*,*/venv/**/*
+set wildignore+=tags
+set wildignore+=*.tar.*
 
 " Deactivate bells and alerts
 set noerrorbells
@@ -227,10 +231,18 @@ nmap <leader><space> :nohlsearch<cr>
 map <leader>e :e! ~/dotfiles/vim/vimrc<cr>
 autocmd! bufwritepost ~/dotfiles/vim/vimrc source ~/dotfiles/vim/vimrc
 
+" Navigate files and buffers (fzf)
+nmap gb :Buffers<CR>
+nmap gf :Files<CR>
+nmap gl :BLines<CR>
+
+" Delete buffer mapping
+nmap gd :ls<CR> :bd<space>
+
 "
 " FUNCTIONS
 " --------------------------------------------------------------------
-" Remove trailing whitespaces (run on save)
+" Remove trailing whitespaces (run on savenes)
 fun! StripTrailingWhitespaces()
     if exists('b:noStripWhitespace')
         return
