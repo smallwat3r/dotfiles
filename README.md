@@ -27,7 +27,7 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
 ```
   
 ```sh
-# installs vim/vimrc_server: this is the vim config I use on remote server (no plugins)_  
+# installs vim/vimrc_server: this is the vim config I use on remote server (no plugins)
 
 wget -N https://raw.githubusercontent.com/smallwat3r/dotfiles/master/vim/vimrc_server \
      -O ~/.vimrc
