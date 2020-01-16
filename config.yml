@@ -61,6 +61,8 @@ brew:
     - fd
     - gawk
     - translate-shell
+    - the_silver_searcher  # ag
+    - ripgrep
     - vim     # vim needs to be before macvim
     - macvim  # macvim needs to be after vim
 
