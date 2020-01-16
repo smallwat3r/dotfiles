@@ -116,6 +116,19 @@ map <F6> :Vex<cr>
 " Remove search highlight
 nmap <leader><space> :nohlsearch<cr>
 
+" Case insensitive replace word (aka multiple cursors)
+nmap <Leader>x /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
+nmap <Leader>X ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
+
+" cd vim into current buffer directory
+nmap <leader>cd :cd %:p:h<CR>
+
+" save current file
+nmap ;; :w<CR>
+
+" delete current buffer, keep window layout
+nmap <leader>d :bp\|bd #<CR>
+
 " Remove trailing whitespaces (run on save)
 fun! StripTrailingWhitespaces()
     if exists('b:noStripWhitespace')
