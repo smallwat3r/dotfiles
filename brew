@@ -18,8 +18,7 @@ my $brew;
 my @brews=@{$data->{brew}};
 foreach $brew (@brews) {
     if ($brew eq "macvim") {
-        # macvim hack (vim needs to be unlink in order to install
-        # properly, it will be relinked after install).
+        # macvim hack (vim needs to be unlink in order to install properly, it will be relinked after install).
         system("sh", "${current_dir}/bin/macvim-hack.sh");
     } else {
         system("sh", "${current_dir}/bin/install-brew.sh", $brew);

@@ -29,6 +29,7 @@ Plug 'gregsexton/MatchTag'
 Plug 'tweekmonster/impsort.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ap/vim-buftabline'
 
 call plug#end()
 
@@ -61,9 +62,12 @@ let b:ale_fixers = ['black']
 
 " Impsort
 let g:impsort_relative_last=1
-let g:impsort_textwidth=86  " black
+let g:impsort_textwidth=86  " black python syntax
 let g:impsort_start_nextline=1
 autocmd BufWritePre *.py ImpSort!
+
+" buftabline
+let g:buftabline_numbers=1
 
 "
 " GENERAL BEHAVIOUR
@@ -132,9 +136,6 @@ set wildignore+=tags
 set wildignore+=*.tar.*
 
 " Deactivate bells and alerts
-set noerrorbells
-set visualbell
-set t_vb=
 set tm=500
 
 " No swp files / backups etc
@@ -148,10 +149,9 @@ set whichwrap+=<,>,h,l
 " Netrw settings
 let g:netrw_liststyle=3
 let g:netrw_banner=0
-let g:netrw_bufsettings='noma nomod nonu nowrap ro nobl'
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir="rm -r"
-autocmd FileType netrw setlocal bufhidden=delete " Netrw buffer
+autocmd FileType netrw setl bufhidden=wipe  " delete netrw buffer
 
 " Deactivate dbtext plugin error msg on sql completion
 let g:loaded_sql_completion=0
@@ -232,16 +232,35 @@ map <leader>e :e! ~/dotfiles/vim/vimrc<cr>
 autocmd! bufwritepost ~/dotfiles/vim/vimrc source ~/dotfiles/vim/vimrc
 
 " Navigate files and buffers (fzf)
-nmap gb :Buffers<CR>
-nmap gf :Files<CR>
-nmap gl :BLines<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader>f :Files<CR>
+nmap <leader>l :BLines<CR>
 
-" Delete buffer mapping
-nmap gd :ls<CR> :bd<space>
+" Case insensitive replace word (aka multiple cursors)
+nmap <Leader>x /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
+nmap <Leader>X ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
+
+" cd vim into current buffer directory
+nmap <leader>cd :cd %:p:h<CR>
+
+" save current file
+nmap ;; :w<CR>
+
+" delete current buffer, keep window layout
+nmap <leader>d :bp\|bd #<CR>
 
 "
 " FUNCTIONS
 " --------------------------------------------------------------------
+" Allow switching to buffer #<n> by typing <n>e (buftabline)
+function! s:bufSwitch(count)
+    if count >=# 1
+        return ":\<C-U>" . count . "b\<CR>"
+    endif
+    return 'e'
+endfunction
+nmap <expr> e <SID>bufSwitch(v:count)
+
 " Remove trailing whitespaces (run on savenes)
 fun! StripTrailingWhitespaces()
     if exists('b:noStripWhitespace')
