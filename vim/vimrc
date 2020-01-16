@@ -175,7 +175,6 @@ colo simplicity-blue
 
 " Gui settings
 if (has("gui_running"))
-    colo simplicity-blue
     set linespace=0
     set guifont=Andale_Mono_SwFix:h14
     set guioptions-=mTrL  " remove all GUI widgets
