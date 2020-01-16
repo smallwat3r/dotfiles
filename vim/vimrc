@@ -118,7 +118,7 @@ set nocompatible
 set showmode  " show vim mode (insert, visual, replace)
 
 " Special chars
-set showbreak=\>  " wrap lines symbol
+set showbreak=\\>  " wrap lines symbol
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 
 " Folding
