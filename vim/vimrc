@@ -130,10 +130,8 @@ set foldlevel=99
 
 " Ignore files and folders
 set wildignore=*.swp,*.bak
-set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.DS_Store,*.rdb
-set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*,*/__pycache__/**/*,*/venv/**/*
-set wildignore+=tags
-set wildignore+=*.tar.*
+set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb
+set wildignore+=*/__pycache__/,*/venv/*
 
 " Deactivate bells and alerts
 set tm=500

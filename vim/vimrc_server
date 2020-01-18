@@ -59,8 +59,9 @@ set foldmethod=indent
 set foldlevel=99
 
 " Ignore files and folders
-set wildignore=*.pyc,*.swp,*.DS_Store,*.rdb
-set wildignore+=.git/,__pycache__/,venv/,sdist/
+set wildignore=*.swp,*.bak
+set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb
+set wildignore+=*/__pycache__/,*/venv/*
 
 " Deactivate bells and alerts
 set noerrorbells
