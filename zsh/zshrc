@@ -29,7 +29,7 @@ antigen apply
 export CLICOLOR=1
 export EDITOR=/usr/local/bin/vim
 
-export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin
+export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.7/bin
 export GOPATH=$(go env GOPATH)
 
 # grep colors
