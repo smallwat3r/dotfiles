@@ -76,5 +76,7 @@ cask:
     - slack
     - alfred
     - ngrok
+    - thunderbird
     - firefox
+    - google-chrome
     - fontforge
