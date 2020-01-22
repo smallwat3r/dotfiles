@@ -26,7 +26,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
-Plug 'tweekmonster/impsort.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-buftabline'
@@ -59,12 +58,6 @@ let g:ale_pattern_options={
             \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}, }
 let b:ale_linters = ['flake8']
 let b:ale_fixers = ['black']
-
-" Impsort
-let g:impsort_relative_last=1
-let g:impsort_textwidth=86  " black python syntax
-let g:impsort_start_nextline=1
-autocmd BufWritePre *.py ImpSort!
 
 " buftabline
 let g:buftabline_numbers=1
@@ -121,7 +114,7 @@ set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
 
 " Special chars
-set showbreak=\\>  " wrap lines symbol
+set showbreak=\>/  " wrap lines symbol
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 
 " Folding
@@ -177,11 +170,11 @@ colo simplicity-blue
 " Gui settings
 if (has("gui_running"))
     set linespace=0
-    set guifont=Andale_Mono_SwFix:h14
+    set guifont=Hack_Nerd_Font_Mono:h12
     set guioptions-=mTrL  " remove all GUI widgets
-    " set macligatures      " if font supports ligatures
+    set macligatures      " if font supports ligatures
     " set transparency=5
-    " set gcr=a:blinkon0    " no blinking cursor
+    set gcr=a:blinkon0    " no blinking cursor
 endif
 
 " The below config for statusline must be set after colorscheme

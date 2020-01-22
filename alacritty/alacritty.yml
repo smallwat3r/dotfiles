@@ -28,16 +28,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Andale Mono SwFix
+    family: Hack Nerd Font Mono
     style: Regular
-  # bold:
-  #   family: SF Mono
-  #   style: Bold
-  # italic:
-  #   family: SF Mono
-  #   style: Italic
+  bold:
+    family: Hack Nerd Font Mono
+    style: Bold
+  italic:
+    family: Hack Nerd Font Mono
+    style: Italic
 
-  size: 14.0
+  size: 12.0
 
   offset:
     x: 0
@@ -60,6 +60,7 @@ colors:
 
   primary:
     background: '0x00005f'
+    # background: '0x262626'
     foreground: '0xeeeeee'
 
   cursor:
