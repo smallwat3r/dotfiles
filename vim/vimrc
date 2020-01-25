@@ -19,16 +19,14 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'alpertuna/vim-header'
-Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'tpope/vim-vinegar'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-buftabline'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 
@@ -40,27 +38,14 @@ let g:gitgutter_sign_added='+'
 let g:gitgutter_sign_modified='~'
 let g:gitgutter_sign_removed='-'
 
-" Auto Headers on F5
-let g:header_field_author='Matthieu Petiteau'
-let g:header_field_author_email='mpetiteau.pro@gmail.com'
-let g:header_field_timestamp_format='%d.%m.%Y'
-let g:header_auto_add_header=0
-let g:header_field_modified_timestamp=0
-let g:header_field_modified_by=0
-map <F5> :AddHeader<CR>
-
 " Ale
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
-let g:ale_pattern_options={
-            \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-            \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}, }
-let b:ale_linters = ['flake8']
-let b:ale_fixers = ['black']
 
 " buftabline
 let g:buftabline_numbers=1
+let g:buftabline_separators=1
 
 "
 " GENERAL BEHAVIOUR
@@ -73,20 +58,12 @@ let mapleader=','
 
 " Default indentation
 set expandtab
-set autoindent
-set smartindent
-set ts=4
-set sw=4
-set sts=4
+set shiftwidth=4
+set tabstop=4
 
 " Indentation other filetypes
-autocmd FileType sql    setlocal ts=2 sw=2 sts=2
-autocmd FileType yaml   setlocal ts=2 sw=2 sts=2
-autocmd FileType xml    setlocal ts=2 sw=2 sts=2
-autocmd FileType css    setlocal ts=2 sw=2 sts=2
-autocmd FileType html   setlocal ts=2 sw=2 sts=2
-autocmd FileType make   setlocal ts=8 sw=8 sts=0 noexpandtab
-autocmd FileType go     setlocal ts=8 sw=8 sts=0 noexpandtab
+autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
+autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
 
 " General
 set autoread  " reread changed files automatically
@@ -165,12 +142,12 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " Colors
 set t_Co=256
 set bg=dark
-colo simplicity-blue
+colo simplicity
 
 " Gui settings
 if (has("gui_running"))
     set linespace=0
-    set guifont=Hack_Nerd_Font_Mono:h12
+    set guifont=Space_Code_Pro:h13
     set guioptions-=mTrL  " remove all GUI widgets
     set macligatures      " if font supports ligatures
     " set transparency=5

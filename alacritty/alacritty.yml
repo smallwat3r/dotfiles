@@ -28,16 +28,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Hack Nerd Font Mono
+    family: Space Code Pro
     style: Regular
   bold:
-    family: Hack Nerd Font Mono
+    family: Space Code Pro
     style: Bold
   italic:
-    family: Hack Nerd Font Mono
+    family: Space Code Pro
     style: Italic
 
-  size: 12.0
+  size: 13.0
 
   offset:
     x: 0
@@ -59,8 +59,8 @@ visual_bell:
 colors:
 
   primary:
-    background: '0x00005f'
-    # background: '0x262626'
+    # background: '0x00005f'
+    background: '0x262626'
     foreground: '0xeeeeee'
 
   cursor:
@@ -87,7 +87,7 @@ colors:
     cyan:    '0xff00a7'
     white:   '0xffffff'
 
-background_opacity: 0.95
+background_opacity: 1
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
