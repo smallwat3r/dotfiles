@@ -106,6 +106,9 @@ comment=no
 #
 [BASIC]
 
+# Function arguments
+ignored-argument-names=arg|args|kwargs
+
 # Required attributes for module, separated by a comma
 required-attributes=
 
