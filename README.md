@@ -33,5 +33,6 @@ wget -N https://raw.githubusercontent.com/smallwat3r/dotfiles/master/vim/vimrc_s
      -O ~/.vimrc
 ```
 
-## Screen (16.01.20)
-![config](https://i.imgur.com/PPT0BII.png)  
+## Screen (26.01.20)
+![config](https://i.imgur.com/FL2bx5s.png)  
+
