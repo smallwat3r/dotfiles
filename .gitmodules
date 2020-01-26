@@ -31,3 +31,6 @@
 [submodule "bin/externals/synonym"]
 	path = bin/externals/synonym
 	url = https://github.com/smallwat3r/synonym
+[submodule "fonts/externals/dejavu-sans-mono-sw"]
+	path = fonts/externals/dejavu-sans-mono-sw
+	url = https://github.com/smallwat3r/dejavu-sans-mono-sw
