@@ -28,16 +28,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Space Code Pro
+    family: Menlo
     style: Regular
   bold:
-    family: Space Code Pro
+    family: Menlo
     style: Bold
   italic:
-    family: Space Code Pro
+    family: Menlo
     style: Italic
 
-  size: 13.0
+  size: 12.0
 
   offset:
     x: 0

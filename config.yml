@@ -18,7 +18,7 @@ links:
     __root__.vim/autoload/plug.vim:            vim/autoload/plug.vim
     __root__.antigen/antigen.zsh:              zsh/antigen.zsh
     __root__.zshrc:                            zsh/zshrc
-    __root__.config/flake8:                    python/flake8
+    __root__.pylintrc:                         python/pylintrc
     __root__.tmux.conf:                        tmux/tmux.conf
     __root__.gitconfig:                        git/gitconfig
     __root__.gitignore_global:                 git/gitignore_global

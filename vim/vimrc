@@ -147,9 +147,9 @@ colo simplicity
 " Gui settings
 if (has("gui_running"))
     set linespace=0
-    set guifont=Space_Code_Pro:h13
+    set guifont=Menlo:h13
     set guioptions-=mTrL  " remove all GUI widgets
-    set macligatures      " if font supports ligatures
+    " set macligatures      " if font supports ligatures
     " set transparency=5
     set gcr=a:blinkon0    " no blinking cursor
 endif
