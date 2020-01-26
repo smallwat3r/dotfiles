@@ -91,7 +91,7 @@ set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
 
 " Special chars
-set showbreak=\>/  " wrap lines symbol
+set showbreak=⤿     " wrap lines symbol
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 
 " Folding
@@ -147,7 +147,7 @@ colo simplicity
 " Gui settings
 if (has("gui_running"))
     set linespace=0
-    set guifont=Menlo:h13
+    set guifont=Space_Code_Pro:h13
     set guioptions-=mTrL  " remove all GUI widgets
     " set macligatures      " if font supports ligatures
     " set transparency=5
