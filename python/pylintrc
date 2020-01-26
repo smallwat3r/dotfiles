@@ -33,7 +33,7 @@ cache-size=500
 load-plugins=
 
 # Disable
-disable=wrong-import-position
+disable=wrong-import-position,import-error,missing-module-docstring,missing-class-docstring,missing-function-docstring
 
 
 [MESSAGES CONTROL]
