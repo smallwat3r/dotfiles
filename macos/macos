@@ -1,4 +1,4 @@
-# MacOS config file and preferences.
+#MacOS config file and preferences.
 
 # No font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 1

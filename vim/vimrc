@@ -142,12 +142,12 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " Colors
 set t_Co=256
 set bg=dark
-colo simplicity
+colo simplicity-darker
 
 " Gui settings
 if (has("gui_running"))
     set linespace=0
-    set guifont=Space_Code_Pro:h13
+    set guifont=DejaVu_Sans_Mono_SW:h13
     set guioptions-=mTrL  " remove all GUI widgets
     " set macligatures      " if font supports ligatures
     " set transparency=5
@@ -167,6 +167,11 @@ set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ |
 " Italics
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
+
+" Cursor modemode
+let &t_SI.="\e[6 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 "
 " KEYBINDINGS

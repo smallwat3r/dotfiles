@@ -22,30 +22,23 @@ scrolling:
   history: 10000
   multiplier: 3
   scrolling_multiplier: 3
-  auto_scroll: true
 
 tabspaces: 4
 
 font:
   normal:
-    family: Space Code Pro
+    family: DejaVu Sans Mono SW
     style: Regular
-  bold:
-    family: Space Code Pro
-    style: Bold
-  italic:
-    family: Space Code Pro
-    style: Italic
 
-  size: 13.0
+  size: 14.0
 
   offset:
     x: 0
-    y: 0
+    y: 1
 
   glyph_offset:
     x: 0
-    y: 0
+    y: 1
 
   use_thin_strokes: true
 
@@ -60,7 +53,8 @@ colors:
 
   primary:
     # background: '0x00005f'
-    background: '0x262626'
+    # background: '0x262626'
+    background: '0x080808'
     foreground: '0xeeeeee'
 
   cursor:
@@ -87,7 +81,7 @@ colors:
     cyan:    '0xff00a7'
     white:   '0xffffff'
 
-background_opacity: 1
+background_opacity: 0.95
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
