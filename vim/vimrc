@@ -27,6 +27,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-buftabline'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'machakann/vim-sandwich'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -50,7 +52,7 @@ let g:buftabline_separators=1
 "
 " GENERAL BEHAVIOUR
 " --------------------------------------------------------------------
-syntax on
+syntax off
 filetype plugin indent on
 
 " Remap leader
@@ -65,9 +67,12 @@ set tabstop=4
 autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
 autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
 
-" General
-set autoread  " reread changed files automatically
+setglobal termencoding=utf-8 fileencodings=
+scriptencoding utf-8
 set encoding=utf8
+
+set nomodeline
+set autoread  " reread changed files automatically
 set ffs=unix
 set ttyfast
 set laststatus=2  " always show statusline
@@ -89,6 +94,9 @@ set fillchars=vert:┃
 set nocompatible
 set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
+
+" diff splits
+set diffopt+=vertical
 
 " Special chars
 set showbreak=⤿     " wrap lines symbol
@@ -139,20 +147,15 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 "
 " THEME
 " --------------------------------------------------------------------
-" Colors
-set t_Co=256
-set bg=dark
-colo simplicity-darker
+set background=dark
 
 " Gui settings
-if (has("gui_running"))
-    set linespace=0
-    set guifont=DejaVu_Sans_Mono_SW:h13
-    set guioptions-=mTrL  " remove all GUI widgets
-    " set macligatures      " if font supports ligatures
-    " set transparency=5
-    set gcr=a:blinkon0    " no blinking cursor
-endif
+" if (has("gui_running"))
+"     set linespace=0
+"     set guifont=Monaco:h13
+"     set guioptions-=mTrL  " remove all GUI widgets
+"     set gcr=a:blinkon0    " no blinking cursor
+" endif
 
 " The below config for statusline must be set after colorscheme
 " Statusline
@@ -172,6 +175,25 @@ let &t_ZR="\e[23m"
 let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
+
+" Turn coloring for important stuff
+hi NonText      ctermfg=241  guifg=#626262
+
+hi DiffAdd      ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
+hi DiffChange   ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
+hi DiffText     ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
+hi DiffDelete   ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
+
+hi SpellBad     ctermfg=9   ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
+hi SpellCap     ctermfg=50  ctermbg=NONE cterm=underline  guifg=#00ffd7 guibg=NONE gui=underline
+hi SpellRare    ctermfg=128 ctermbg=NONE cterm=underline  guifg=#af00d7 guibg=NONE gui=underline
+hi SpellLocal   ctermfg=123 ctermbg=NONE cterm=underline  guifg=#87ffff guibg=NONE gui=underline
+
+hi Cursor       ctermfg=234  ctermbg=51  guifg=#262626  guibg=#00ffff
+hi MatchParen   ctermfg=237  ctermbg=200 guifg=#3a3a3a  guibg=#ff00d7
+
+hi Error        ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
+hi ErrorMsg     ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
 
 "
 " KEYBINDINGS
@@ -233,21 +255,20 @@ function! s:bufSwitch(count)
     endif
     return 'e'
 endfunction
+
 nmap <expr> e <SID>bufSwitch(v:count)
 
 " Remove trailing whitespaces (run on savenes)
-fun! StripTrailingWhitespaces()
+function! TrimTrailingWS ()
     if exists('b:noStripWhitespace')
         return
     endif
-    let _s=@/
-    let l=line(".")
-    let c=col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-endfun
-autocmd BufWritePre * :call StripTrailingWhitespaces()
+    if search('\s\+$', 'cnw')
+        :%s/\s\+$//g
+    endif
+endfunction
+
+autocmd BufWritePre * :call TrimTrailingWS()
 autocmd FileType markdown let b:noStripWhitespace=1
 
 " Count errors in status bar.
@@ -272,4 +293,5 @@ fun! CustomFoldText()
     let foldtextlength=strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
     return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfun
+
 set foldtext=CustomFoldText()
