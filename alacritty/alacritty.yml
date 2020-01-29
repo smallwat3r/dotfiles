@@ -11,7 +11,7 @@ window:
     lines: 50
 
   padding:
-    x: 5
+    x: 0
     y: 0
 
   dynamic_padding: true
@@ -28,20 +28,27 @@ tabspaces: 4
 font:
   normal:
     # family: DejaVu Sans Mono SW
-    family: Monaco
+    # family: Monaco
+    family: Fira Code
+    style: Light
+  italic:
+    family: Fira Code
+    style: Italic
+  bold:
+    family: Fira Code
     style: Regular
 
-  size: 12.5
+  size: 13.5
 
   offset:
     x: 0
-    y: 1
+    y: 0
 
   glyph_offset:
     x: 0
-    y: 1
+    y: 0
 
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 draw_bold_text_with_bright_colors: true
 
@@ -131,7 +138,8 @@ key_bindings:
   - { key: Q,      mods: Command,         action: Quit             }
   - { key: W,      mods: Command,         action: Quit             }
   - { key: F,      mods: Command|Control, action: ToggleFullscreen }
-    # Fix weird hash key bug not working on MacOS
+    # ---- Custom stuff ----
+    # Fix `#` symbol not working on macOS, or at least with specific Alacritty version
   - { key: Key3,   mods: Alt,     chars: "\x23"                    }
-    # Open new window easily
+    # Open new window easily with <cmd><n>
   - { key: N,      mods: Command, command: { program: "open", args: ["-n", "/Applications/Alacritty.app"] } }
