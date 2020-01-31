@@ -149,23 +149,13 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " --------------------------------------------------------------------
 set background=dark
 
-" Gui settings
+" Not using GUI anymore
 " if (has("gui_running"))
 "     set linespace=0
 "     set guifont=Monaco:h13
 "     set guioptions-=mTrL  " remove all GUI widgets
 "     set gcr=a:blinkon0    " no blinking cursor
 " endif
-
-" The below config for statusline must be set after colorscheme
-" Statusline
-set statusline=%{fugitive#statusline()}
-set statusline+=\ %f
-set statusline+=\ %{strlen(&ft)?&ft:'none'}
-set statusline+=\ %{LinterStatus()}
-set statusline+=\ %=
-set statusline+=\ %l/%L\ c%c
-set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ |
 
 " Italics
 let &t_ZH="\e[3m"
@@ -201,11 +191,21 @@ hi MatchParen   ctermfg=237  ctermbg=200 guifg=#3a3a3a  guibg=#ff00d7
 hi Error        ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
 hi ErrorMsg     ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
 
-hi StatuslineNC ctermfg=233 ctermbg=240 guifg=#121212  guibg=#585858
-hi VertSplit    ctermbg=NONE guibg=NONE
+hi Statusline   ctermfg=190 ctermbg=NONE cterm=underline guifg=#d7ff00 guibg=NONE gui=underline
+hi StatuslineNC ctermfg=186 ctermbg=NONE cterm=underline guifg=#d7d787 guibg=NONE gui=underline
+hi VertSplit    ctermfg=190 ctermbg=NONE cterm=NONE      guifg=#d7ff00 guibg=NONE gui=NONE
 
 hi Search       ctermfg=165 ctermbg=NONE cterm=NONE      guifg=#d700ff guibg=NONE gui=underline
 hi IncSearch    ctermfg=165 ctermbg=NONE cterm=underline guifg=#d700ff guibg=NONE gui=underline
+
+" Statusline
+set statusline=%{FugitiveStatusline()}
+set statusline+=\ %f
+set statusline+=\ %{strlen(&ft)?&ft:'none'}
+set statusline+=\ %=
+set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
+set statusline+=\ %{LinterStatus()}
+set statusline+=\ %l,%c\ %L\ |
 
 "
 " KEYBINDINGS
