@@ -209,5 +209,5 @@ extract() {
 # EOF scripts
 # --------------------------------------------------------------------------------------
 source $ZSH/oh-my-zsh.sh
-[ -f "`which tmux`" ] && [ -z $TMUX ] && tmux  # load tmux on start
+if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi  # exec tmux on start
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

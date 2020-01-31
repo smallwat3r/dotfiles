@@ -148,6 +148,7 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " THEME
 " --------------------------------------------------------------------
 set background=dark
+set t_Co=256
 
 " Not using GUI anymore
 " if (has("gui_running"))
@@ -170,8 +171,9 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 autocmd InsertEnter * hi Normal ctermfg=231 guifg=#ffffff
 autocmd InsertLeave * hi Normal ctermfg=229 guifg=#ffffaf
 
-" Turn coloring for important stuff
+" Turn coloring only for important stuff
 hi Normal       ctermfg=229  guifg=#ffffaf
+
 hi NonText      ctermfg=241  guifg=#626262
 hi Folded       ctermfg=231  ctermbg=239 guifg=#ffffff guibg=#4e4e4e
 

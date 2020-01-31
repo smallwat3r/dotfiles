@@ -29,16 +29,19 @@ font:
   normal:
     # family: DejaVu Sans Mono SW
     # family: Monaco
-    family: Fira Code
-    style: Light
-  italic:
-    family: Fira Code
-    style: Italic
-  bold:
-    family: Fira Code
+    # family: Fira Code
+    # style: Light
+    family: Andale Mono SwFix
     style: Regular
 
-  size: 13
+  # italic:
+  #   family: Fira Code
+  #   style: Italic
+  # bold:
+  #   family: Fira Code
+  #   style: Regular
+
+  size: 13.5
 
   offset:
     x: 0
@@ -89,7 +92,7 @@ colors:
     cyan:    '0xff00a7'
     white:   '0xffffff'
 
-background_opacity: 0.95
+background_opacity: 0.92
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }

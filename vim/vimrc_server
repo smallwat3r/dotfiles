@@ -51,6 +51,7 @@ set fillchars=vert:┃
 set nocompatible
 set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
+set matchpairs+=<:>
 
 " diff splits
 set diffopt+=vertical
@@ -123,8 +124,14 @@ let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
-" Turn coloring for important stuff
+autocmd InsertEnter * hi Normal ctermfg=231 guifg=#ffffff
+autocmd InsertLeave * hi Normal ctermfg=229 guifg=#ffffaf
+
+" Turn coloring only for important stuff
+hi Normal       ctermfg=229  guifg=#ffffaf
+
 hi NonText      ctermfg=241  guifg=#626262
+hi Folded       ctermfg=231  ctermbg=239 guifg=#ffffff guibg=#4e4e4e
 
 hi DiffAdd      ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
 hi DiffChange   ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
