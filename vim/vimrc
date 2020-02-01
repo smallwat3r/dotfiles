@@ -51,7 +51,7 @@ let g:buftabline_separators=1
 "
 " GENERAL BEHAVIOUR
 " --------------------------------------------------------------------
-syntax off
+syntax off  " no colors = no distractions :)
 filetype plugin indent on
 
 " Remap leader
@@ -66,6 +66,7 @@ set tabstop=4
 autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
 autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
 
+" Encodings
 setglobal termencoding=utf-8 fileencodings=
 scriptencoding utf-8
 set encoding=utf8
@@ -84,16 +85,18 @@ set hlsearch  " search highlighting
 set clipboard=unnamed
 set wrap  " wrap lines
 set lazyredraw  " no redraw
-set ignorecase
+set ignorecase  " search ignore case
 set scrolljump=8  " minimal nb of lines to scroll when cursor gets off the screen
 set autochdir  " auto change working directory
-set list  " show additional characters eol
-set nonu  " deactivate row numbers
+set nonu  " hide row numbers
 set fillchars=vert:┃
-set nocompatible
+set nocompatible " modern vim
 set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
 set matchpairs+=<:>
+
+set nolist  " hide special characters
+au BufNewFile,BufFilePre,BufRead *.md set list  " but activate on md files
 
 " diff splits
 set diffopt+=vertical
@@ -171,7 +174,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 autocmd InsertEnter * hi Normal ctermfg=231 guifg=#ffffff
 autocmd InsertLeave * hi Normal ctermfg=229 guifg=#ffffaf
 
-" Turn coloring only for important stuff
+" Turn highlighting only for important stuff
 hi Normal       ctermfg=229  guifg=#ffffaf
 
 hi NonText      ctermfg=241  guifg=#626262
@@ -201,13 +204,9 @@ hi Search       ctermfg=165 ctermbg=NONE cterm=NONE      guifg=#d700ff guibg=NON
 hi IncSearch    ctermfg=165 ctermbg=NONE cterm=underline guifg=#d700ff guibg=NONE gui=underline
 
 " Statusline
-set statusline=%{FugitiveStatusline()}
-set statusline+=\ %f
-set statusline+=\ %{strlen(&ft)?&ft:'none'}
-set statusline+=\ %=
-set statusline+=\ %{strlen(&fenc)?&fenc:&enc}
-set statusline+=\ %{LinterStatus()}
-set statusline+=\ %l,%c\ %L\ |
+set statusline=[%n]\ %<%.99f\ %y%h%w%m%r\%{FugitiveStatusline()}\ %{LinterStatus()}
+set statusline+=\ %=%-14.(%l,%c%V%)
+set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L
 
 "
 " KEYBINDINGS
