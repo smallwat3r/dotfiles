@@ -34,3 +34,6 @@
 [submodule "fonts/externals/dejavu-sans-mono-sw"]
 	path = fonts/externals/dejavu-sans-mono-sw
 	url = https://github.com/smallwat3r/dejavu-sans-mono-sw
+[submodule "tmux/plugins/tmux-current-pane-hostname"]
+	path = tmux/plugins/tmux-current-pane-hostname
+	url = https://github.com/soyuka/tmux-current-pane-hostname
