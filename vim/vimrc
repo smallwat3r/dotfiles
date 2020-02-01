@@ -147,19 +147,22 @@ set fo=cjql
 autocmd FileType *         setl fo-=o fo-=r
 autocmd FileType gitcommit setl fo=cjql com+=n:>
 
+" access pydocs
+nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
+
 "
 " THEME
 " --------------------------------------------------------------------
 set background=dark
 set t_Co=256
 
-" Not using GUI anymore
-" if (has("gui_running"))
-"     set linespace=0
-"     set guifont=Monaco:h13
-"     set guioptions-=mTrL  " remove all GUI widgets
-"     set gcr=a:blinkon0    " no blinking cursor
-" endif
+if (has("gui_running"))
+    let macvim_skip_colorscheme=1  " avoid macvim to load it's default colorscheme
+    set linespace=0
+    set guifont=Monaco:h13
+    set guioptions-=mTrL  " remove all GUI widgets
+    set gcr=a:blinkon0    " no blinking cursor
+endif
 
 " Italics
 let &t_ZH="\e[3m"
@@ -175,7 +178,7 @@ autocmd InsertEnter * hi Normal ctermfg=231 guifg=#ffffff
 autocmd InsertLeave * hi Normal ctermfg=229 guifg=#ffffaf
 
 " Turn highlighting only for important stuff
-hi Normal       ctermfg=229  guifg=#ffffaf
+hi Normal       ctermfg=229 ctermbg=NONE guifg=#ffffaf guibg=#080808
 
 hi NonText      ctermfg=241  guifg=#626262
 hi Folded       ctermfg=231  ctermbg=239 guifg=#ffffff guibg=#4e4e4e
@@ -200,8 +203,8 @@ hi Statusline   ctermfg=190 ctermbg=NONE cterm=underline guifg=#d7ff00 guibg=NON
 hi StatuslineNC ctermfg=186 ctermbg=NONE cterm=underline guifg=#d7d787 guibg=NONE gui=underline
 hi VertSplit    ctermfg=190 ctermbg=NONE cterm=NONE      guifg=#d7ff00 guibg=NONE gui=NONE
 
-hi Search       ctermfg=165 ctermbg=NONE cterm=NONE      guifg=#d700ff guibg=NONE gui=underline
-hi IncSearch    ctermfg=165 ctermbg=NONE cterm=underline guifg=#d700ff guibg=NONE gui=underline
+hi Search       ctermfg=165 ctermbg=NONE cterm=bold           guifg=#d700ff guibg=NONE gui=bold
+hi IncSearch    ctermfg=165 ctermbg=NONE cterm=bold,underline guifg=#d700ff guibg=NONE gui=bold,underline
 
 " Statusline
 set statusline=[%n]\ %<%.99f\ %y%h%w%m%r\%{FugitiveStatusline()}\ %{LinterStatus()}
@@ -257,7 +260,6 @@ nmap ;; :w<CR>
 " delete current buffer, keep window layout
 nmap <leader>d :bp\|bd #<CR>
 
-"
 " FUNCTIONS
 " --------------------------------------------------------------------
 

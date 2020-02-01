@@ -27,13 +27,8 @@ tabspaces: 4
 
 font:
   normal:
-    # family: DejaVu Sans Mono SW
-    # family: Monaco
-    # family: Fira Code
-    # style: Light
     family: Andale Mono SwFix
     style: Regular
-
   # italic:
   #   family: Fira Code
   #   style: Italic
