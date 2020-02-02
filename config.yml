@@ -28,7 +28,6 @@ links:
     __root__.tmux/plugins/tmux-battery:                 tmux/plugins/tmux-battery
     __root__.tmux/plugins/tmux-cpu:                     tmux/plugins/tmux-cpu
     __root__.tmux/plugins/tmux-sensible:                tmux/plugins/tmux-sensible
-    __root__.tmux/plugins/tmux-current-pane-hostname:   tmux/plugins/tmux-current-pane-hostname
     /usr/local/bin/sketch:                              bin/sketch
     /usr/local/bin/pyzip:                               bin/pyzip
     /usr/local/bin/tubestatus:                          bin/tubestatus

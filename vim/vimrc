@@ -28,12 +28,23 @@ Plug 'ap/vim-buftabline'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
 Plug 'easymotion/vim-easymotion'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()
 
 "
 " PLUGINS CONFIG
 " --------------------------------------------------------------------
+
+" use deoplete
+let g:deoplete#enable_at_startup=1
+
 " vim git-gutter
 let g:gitgutter_sign_added='+'
 let g:gitgutter_sign_modified='~'
@@ -42,6 +53,9 @@ let g:gitgutter_sign_removed='-'
 " Ale
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
+let g:ale_set_highlights=0
+let g:ale_sign_error='>'
+let g:ale_sign_warning='-'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 " buftabline

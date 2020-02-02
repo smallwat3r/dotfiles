@@ -7,12 +7,6 @@
 [submodule "tmux/plugins/tmux-battery"]
 	path = tmux/plugins/tmux-battery
 	url = https://github.com/tmux-plugins/tmux-battery
-[submodule "tmux/plugins/tmux-cpu"]
-	path = tmux/plugins/tmux-cpu
-	url = https://github.com/tmux-plugins/tmux-cpu
-[submodule "tmux/plugins/tmux-sensible"]
-	path = tmux/plugins/tmux-sensible
-	url = https://github.com/tmux-plugins/tmux-sensible
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
@@ -34,6 +28,3 @@
 [submodule "fonts/externals/dejavu-sans-mono-sw"]
 	path = fonts/externals/dejavu-sans-mono-sw
 	url = https://github.com/smallwat3r/dejavu-sans-mono-sw
-[submodule "tmux/plugins/tmux-current-pane-hostname"]
-	path = tmux/plugins/tmux-current-pane-hostname
-	url = https://github.com/soyuka/tmux-current-pane-hostname
