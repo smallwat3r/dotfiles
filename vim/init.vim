@@ -31,6 +31,7 @@ Plug 'itchyny/vim-highlighturl'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'pacha/vem-tabline'
+Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
