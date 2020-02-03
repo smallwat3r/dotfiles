@@ -13,10 +13,13 @@ directories:
     - __root__.config/alacritty
     - __root__.config/nvim
     - __root__.config/nvim/colors
+    - __root__.vim/colors
+
 
 # List of all symlinks.
 links:
     __root__.vimrc:                                     vim/vimrc
+    __root__.vim/colors/smallwat3r.vim:                 vim/colors/smallwat3r.vim
     __root__.vim/autoload/plug.vim:                     vim/autoload/plug.vim
     __root__.local/share/nvim/site/autoload:            vim/autoload/plug.vim
     __root__.antigen/antigen.zsh:                       zsh/antigen.zsh
@@ -26,7 +29,7 @@ links:
     __root__.gitconfig:                                 git/gitconfig
     __root__.gitignore_global:                          git/gitignore_global
     __root__.config/alacritty/alacritty.yml:            alacritty/alacritty.yml
-    __root__.config/nvim/init.vim:                      vim/vimrc
+    __root__.config/nvim/init.vim:                      vim/init.vim
     __root__.config/nvim/colors/smallwat3r.vim:         vim/colors/smallwat3r.vim
     __root__.pip/pip.conf:                              pip/pip.conf
     __root__.tmux/plugins/tpm:                          tmux/plugins/tpm

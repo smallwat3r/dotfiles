@@ -27,16 +27,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Hack Nerd Font Mono
+    family: DejaVu Sans Mono SW
     style: Regular
-  italic:
-    family: Hack Nerd Font Mono
-    style: Italic
-  bold:
-    family: Hack Nerd Font Mono
-    style: Bold
+  # italic:
+  #   family: Hack Nerd Font Mono
+  #   style: Italic
+  # bold:
+  #   family: Hack Nerd Font Mono
+  #   style: Bold
 
-  size: 13.5
+  size: 12.5
 
   offset:
     x: 0

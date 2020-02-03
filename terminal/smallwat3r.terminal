@@ -98,13 +98,15 @@
 	MgA3AEkATABRAFMAWgBgAGsAeAB+AIsAoACnANMA+wD9AP8BAQEIAQ0BEwEVARcBGQ1l
 	DWoNdQ1+DYsNjg2bDaQNqQ2xAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAADbQ=
 	</data>
+	<key>CursorType</key>
+	<integer>0</integer>
 	<key>DisableANSIColor</key>
 	<false/>
 	<key>Font</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
 	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERIT
-	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNAKgAAAAAAABAQgAKAA18QHUhh
+	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNAKAAAAAAAABAQgAKAA18QHUhh
 	Y2tOZXJkRm9udENvbXBsZXRlTS1SZWd1bGFy0hcYGRpaJGNsYXNzbmFtZVgkY2xhc3Nl
 	c1ZOU0ZvbnSiGRtYTlNPYmplY3QIERokKTI3SUxRU1heZ253foWOkJKUtLnEzdTXAAAA
 	AAAAAQEAAAAAAAAAHAAAAAAAAAAAAAAAAAAAAOA=
@@ -175,8 +177,12 @@
 	<true/>
 	<key>VisualBell</key>
 	<false/>
+	<key>columnCount</key>
+	<integer>120</integer>
 	<key>name</key>
 	<string>smallwat3r</string>
+	<key>rowCount</key>
+	<integer>30</integer>
 	<key>shellExitAction</key>
 	<integer>1</integer>
 	<key>type</key>

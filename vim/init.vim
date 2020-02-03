@@ -1,8 +1,8 @@
-" File  : vimrc
+"File  : init.vim
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 " Date  : 09.01.2020
 "
-" vim config file
+" neovim config file
 "
 
 "
@@ -13,7 +13,7 @@ call plug#begin()
 
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -28,17 +28,21 @@ Plug 'ap/vim-buftabline'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
 Plug 'easymotion/vim-easymotion'
-
-" Deoplete for vim8
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'itchyny/vim-highlighturl'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
 
 call plug#end()
 
 "
 " PLUGINS CONFIG
 " --------------------------------------------------------------------
+
+" use deoplete
+let g:deoplete#enable_at_startup=1
+call deoplete#custom#source('_', 'max_menu_width', 80)
+call deoplete#custom#source('_', 'min_pattern_length', 1)
+
 " vim git-gutter
 let g:gitgutter_sign_added='+'
 let g:gitgutter_sign_modified='~'
@@ -56,13 +60,16 @@ let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 let g:buftabline_numbers=1
 let g:buftabline_separators=1
 
-" Deoplete
-let g:deoplete#enable_at_startup=1
+" neoformat
+let g:neoformat_basic_format_align=1
+let g:neoformat_basic_format_retab=1
+let g:neoformat_basic_format_trim=1
 
 "
 " GENERAL BEHAVIOUR
 " --------------------------------------------------------------------
 syntax on
+
 filetype plugin indent on
 
 " Remap leader
@@ -77,6 +84,7 @@ set tabstop=4
 autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
 autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
 
+" Encodings
 setglobal termencoding=utf-8 fileencodings=
 scriptencoding utf-8
 set encoding=utf8
@@ -86,6 +94,8 @@ set autoread  " reread changed files automatically
 set ffs=unix
 set ttyfast
 set laststatus=2  " always show statusline
+set noshowcmd
+set noruler
 set modifiable
 set showmatch  " matching brackets
 set mouse=a  " mouse support
@@ -95,16 +105,19 @@ set hlsearch  " search highlighting
 set clipboard=unnamed
 set wrap  " wrap lines
 set lazyredraw  " no redraw
-set ignorecase
+set ignorecase  " search ignore case
 set scrolljump=8  " minimal nb of lines to scroll when cursor gets off the screen
 set autochdir  " auto change working directory
-set list  " show additional characters eol
-set nonu  " deactivate row numbers
+set nonu  " hide row numbers
 set fillchars=vert:┃
-set nocompatible
+set nocompatible " modern vim
 set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
 set matchpairs+=<:>
+set splitbelow  " for ex preview windows will appear at the bottom
+
+set nolist  " hide special characters
+au BufNewFile,BufFilePre,BufRead *.md set list  " but activate on md files
 
 " diff splits
 set diffopt+=vertical
@@ -171,7 +184,8 @@ colo smallwat3r
 
 if (has("gui_running"))
     set linespace=0
-    set guifont=Hack_Nerd_Font_Mono:h13
+    set fontligatures
+    set guifont=DejaVu_Sans_Mono_SW:h13
     set guioptions-=mTrL  " remove all GUI widgets
     set gcr=a:blinkon0    " no blinking cursor
 endif
@@ -189,6 +203,10 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 set statusline=(%n)\ %f\ %{FugitiveStatusline()}\ %{LinterStatus()}
 set statusline+=\ %=%-14.(%l,%c%V%)
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L
+
+" Change statusline color on mode
+" autocmd InsertEnter * hi Statusline ctermfg=16 ctermbg=157 guifg=#000000 guibg=#afffaf
+" autocmd InsertLeave * hi Statusline ctermfg=16 ctermbg=255 guifg=#000000 guibg=#eeeeee
 
 "
 " KEYBINDINGS
@@ -243,21 +261,10 @@ nmap <leader>d :bp\|bd #<CR>
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-"
 " FUNCTIONS
 " --------------------------------------------------------------------
 
-" Allow switching to buffer #<n> by typing <n>e (buftabline)
-function! s:bufSwitch(count)
-    if count >=# 1
-        return ":\<C-U>" . count . "b\<CR>"
-    endif
-    return 'e'
-endfunction
-
-nmap <expr> e <SID>bufSwitch(v:count)
-
-" Remove trailing whitespaces (run on savenes)
+" Remove trailing whitespaces
 function! TrimTrailingWS ()
     if exists('b:noStripWhitespace')
         return

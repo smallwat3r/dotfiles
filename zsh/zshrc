@@ -27,7 +27,7 @@ antigen apply
 # GENERAL
 # --------------------------------------------------------------------------------------
 export CLICOLOR=1
-export EDITOR=/usr/local/bin/vim
+export EDITOR=/usr/local/bin/nvim
 
 export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.7/bin:/usr/local/bin/nvim
 export GOPATH=$(go env GOPATH)
@@ -100,10 +100,12 @@ RPS1='${return_code}'
 # ALIASES
 # --------------------------------------------------------------------------------------
 alias vi="nvim"
-alias svi="sudo nvi"
+alias vim="nvim"
+alias svi="sudo nvim"
 alias edit="nvim"
 alias e="nvim"
-alias vim="nvim"
+
+alias gvi="gnvim"
 
 alias mvi="mvim"
 
@@ -156,6 +158,11 @@ alias .....="cd ../../../.."
 #
 # FUNCTIONS
 # --------------------------------------------------------------------------------------
+
+# open vimr in current dir on file
+vir() {
+    if [ $# -eq 0 ]; then open -a vimR .; else open -a vimR "$@"; fi
+}
 
 # open current dir or the one in args
 o() {

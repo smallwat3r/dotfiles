@@ -15,7 +15,7 @@ set background=dark
 "
 hi Normal              ctermfg=231  ctermbg=NONE cterm=NONE       guifg=#ffffff  guibg=#000000  gui=NONE
 
-hi Comment             ctermfg=70   ctermbg=NONE cterm=NONE       guifg=#5faf00  guibg=NONE     gui=NONE
+hi Comment             ctermfg=158   ctermbg=NONE cterm=NONE       guifg=#afff87  guibg=NONE     gui=NONE
 hi LineNr              ctermfg=239  ctermbg=NONE cterm=NONE       guifg=#4e4e4e  guibg=NONE     gui=NONE
 
 hi NonText             ctermfg=241  ctermbg=NONE cterm=NONE       guifg=#626262  guibg=NONE     gui=NONE
