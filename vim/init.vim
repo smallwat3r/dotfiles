@@ -1,4 +1,4 @@
-"File  : init.vim
+" File  : init.vim
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 " Date  : 09.01.2020
 "
@@ -24,13 +24,13 @@ Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'ap/vim-buftabline'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
 Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/vim-highlighturl'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'pacha/vem-tabline'
 
 call plug#end()
 
@@ -56,14 +56,22 @@ let g:ale_sign_error='>'
 let g:ale_sign_warning='-'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
-" buftabline
-let g:buftabline_numbers=1
-let g:buftabline_separators=1
-
 " neoformat
 let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
+
+" fzf
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+" Vem tabline
+let g:vem_tabline_show_number='buffnr'
 
 "
 " GENERAL BEHAVIOUR
@@ -115,6 +123,7 @@ set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
 set matchpairs+=<:>
 set splitbelow  " for ex preview windows will appear at the bottom
+set noshowmode " don't show mode (aleady in statusline)
 
 set nolist  " hide special characters
 au BufNewFile,BufFilePre,BufRead *.md set list  " but activate on md files
@@ -200,13 +209,37 @@ let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 " Statusline
-set statusline=(%n)\ %f\ %{FugitiveStatusline()}\ %{LinterStatus()}
+let g:currentmode={
+    \ 'n'      : 'NORMAL ',
+    \ 'no'     : 'N·Operator Pending ',
+    \ 'v'      : 'VISUAL ',
+    \ 'V'      : 'V·Line ',
+    \ '\<C-V>' : 'V·Block ',
+    \ 's'      : 'Select ',
+    \ 'S'      : 'S·Line ',
+    \ '\<C-S>' : 'S·Block ',
+    \ 'i'      : 'INSERT',
+    \ 'R'      : 'REPLACE ',
+    \ 'Rv'     : 'V·Replace ',
+    \ 'c'      : 'Command ',
+    \ 'cv'     : 'Vim Ex ',
+    \ 'ce'     : 'Ex ',
+    \ 'r'      : 'Prompt ',
+    \ 'rm'     : 'More ',
+    \ 'r?'     : 'Confirm ',
+    \ '!'      : 'Shell ',
+    \ 't'      : 'Terminal '
+    \}
+function! GitInfo()
+  let git = fugitive#head()
+  if git != ''
+    return ' '.fugitive#head()
+  else
+    return ''
+endfunction
+set statusline=(%n)\ %{toupper(g:currentmode[mode()])}\ %f\ %{GitInfo()}\ %{LinterStatus()}
 set statusline+=\ %=%-14.(%l,%c%V%)
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L
-
-" Change statusline color on mode
-" autocmd InsertEnter * hi Statusline ctermfg=16 ctermbg=157 guifg=#000000 guibg=#afffaf
-" autocmd InsertLeave * hi Statusline ctermfg=16 ctermbg=255 guifg=#000000 guibg=#eeeeee
 
 "
 " KEYBINDINGS
@@ -235,8 +268,8 @@ map <F6> :Vex<cr>
 nmap <leader><space> :nohlsearch<cr>
 
 " Editing and reloading of config
-map <leader>e :e! ~/dotfiles/vim/vimrc<cr>
-autocmd! bufwritepost ~/dotfiles/vim/vimrc source ~/dotfiles/vim/vimrc
+map <leader>e :e! ~/dotfiles/vim/init.vim<cr>
+autocmd! bufwritepost ~/dotfiles/vim/init.vim source ~/dotfiles/vim/init.vim
 
 " Navigate files, buffers etc. (fzf)
 nmap <leader>b :Buffers<CR>

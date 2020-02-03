@@ -27,7 +27,8 @@ tabspaces: 4
 
 font:
   normal:
-    family: DejaVu Sans Mono SW
+    # family: DejaVu Sans Mono SW
+    family: Andale Mono SwFix
     style: Regular
   # italic:
   #   family: Hack Nerd Font Mono
@@ -36,7 +37,7 @@ font:
   #   family: Hack Nerd Font Mono
   #   style: Bold
 
-  size: 12.5
+  size: 13.5
 
   offset:
     x: 0

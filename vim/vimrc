@@ -102,9 +102,9 @@ set list  " show additional characters eol
 set nonu  " deactivate row numbers
 set fillchars=vert:┃
 set nocompatible
-set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
 set matchpairs+=<:>
+set noshowmode " don't show mode (aleady in statusline)
 
 " diff splits
 set diffopt+=vertical
@@ -185,10 +185,6 @@ let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
-" Statusline
-set statusline=(%n)\ %f\ %{FugitiveStatusline()}\ %{LinterStatus()}
-set statusline+=\ %=%-14.(%l,%c%V%)
-set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L
 
 "
 " KEYBINDINGS
