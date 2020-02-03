@@ -4,6 +4,7 @@
 "
 " vim config file
 "
+" note: this config is symlinked for neovim
 
 "
 " PLUGIN MANAGER
@@ -13,7 +14,7 @@ call plug#begin()
 
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -28,6 +29,7 @@ Plug 'ap/vim-buftabline'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
 Plug 'easymotion/vim-easymotion'
+Plug 'itchyny/vim-highlighturl'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -45,6 +47,8 @@ call plug#end()
 
 " use deoplete
 let g:deoplete#enable_at_startup=1
+call deoplete#custom#source('_', 'max_menu_width', 80)
+call deoplete#custom#source('_', 'min_pattern_length', 1)
 
 " vim git-gutter
 let g:gitgutter_sign_added='+'
@@ -62,6 +66,11 @@ let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 " buftabline
 let g:buftabline_numbers=1
 let g:buftabline_separators=1
+
+" neoformat
+let g:neoformat_basic_format_align=1
+let g:neoformat_basic_format_retab=1
+let g:neoformat_basic_format_trim=1
 
 "
 " GENERAL BEHAVIOUR
@@ -110,6 +119,7 @@ set nocompatible " modern vim
 set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
 set matchpairs+=<:>
+set splitbelow  " for ex preview windows will appear at the bottom
 
 set nolist  " hide special characters
 au BufNewFile,BufFilePre,BufRead *.md set list  " but activate on md files
@@ -128,7 +138,7 @@ set foldlevel=99
 " Ignore files and folders
 set wildignore=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb
-set wildignore+=*/__pycache__/,*/venv/*
+set wildignore+=*/__pycache__/*,*/venv/*
 
 " Deactivate bells and alerts
 set tm=500
@@ -166,22 +176,23 @@ autocmd FileType gitcommit setl fo=cjql com+=n:>
 " access pydocs
 nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 
+" close method preview window after completion is complete
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 "
 " THEME
 " --------------------------------------------------------------------
 set background=dark
 set t_Co=256
-set termguicolors
 
 colo smallwat3r
 
-" if (has("gui_running"))
-"     let macvim_skip_colorscheme=1  " avoid macvim to load it's default colorscheme
-"     set linespace=0
-"     set guifont=Monaco:h13
-"     set guioptions-=mTrL  " remove all GUI widgets
-"     set gcr=a:blinkon0    " no blinking cursor
-" endif
+if (has("gui_running"))
+    set linespace=0
+    set guifont=Hack_Nerd_Font_Mono:h13
+    set guioptions-=mTrL  " remove all GUI widgets
+    set gcr=a:blinkon0    " no blinking cursor
+endif
 
 " Italics
 let &t_ZH="\e[3m"

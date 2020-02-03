@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+
 # File  : brew.pl
 # Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 # Date  : 27.12.2019
@@ -17,12 +17,7 @@ my $data = LoadFile("${current_dir}/config.yml");
 my $brew;
 my @brews=@{$data->{brew}};
 foreach $brew (@brews) {
-    if ($brew eq "macvim") {
-        # macvim hack (vim needs to be unlink in order to install properly, it will be relinked after install).
-        system("sh", "${current_dir}/bin/macvim-hack.sh");
-    } else {
-        system("sh", "${current_dir}/bin/install-brew.sh", $brew);
-    }
+    system("sh", "${current_dir}/bin/install-brew.sh", $brew);
 }
 
 my $cask;

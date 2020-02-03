@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# process gnvim flags
+# hat tip to http://stackoverflow.com/a/14203146/17597
+
+OPTIND=1         # Reset in case getopts has been used previously in the shell.
+
+# default values
+options=''
+mode='old'
+
+for opt in "$@"
+do
+    if [[ $opt = -* ]]; then
+        mode='new'
+    fi
+
+    if [[ $opt = \+* ]]; then
+        mode='new'
+    fi
+done
+
+while getopts "f" opt; do
+    case "$opt" in
+    f)  options='-W -n'
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+if [ "$mode" == "old" ]; then
+    open -a Neovim $options "$@" --args --cwd "$PWD"
+else
+    [ "$1" = "--" ] && shift
+    open -n -a Neovim $options --args --cwd "$PWD" "$@"
+fi

@@ -37,6 +37,7 @@ links:
     /usr/local/bin/pyzip:                               bin/pyzip
     /usr/local/bin/tubestatus:                          bin/tubestatus
     /usr/local/bin/256colors:                           bin/256colors
+    /usr/local/bin/gnvim:                               bin/gnvim
 
 # Brew packages.
 brew:
@@ -68,8 +69,7 @@ brew:
     - translate-shell
     - the_silver_searcher  # ag
     - ripgrep
-    - vim     # vim needs to be before macvim
-    - macvim  # macvim needs to be after vim
+    - vim
     - neovim
 
 # Brew cask installs.

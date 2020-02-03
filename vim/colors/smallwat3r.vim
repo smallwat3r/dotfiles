@@ -13,7 +13,7 @@ set background=dark
 "
 " Colors
 "
-hi Normal              ctermfg=231  ctermbg=0    cterm=NONE       guifg=#ffffff  guibg=#000000  gui=NONE
+hi Normal              ctermfg=231  ctermbg=NONE cterm=NONE       guifg=#ffffff  guibg=#000000  gui=NONE
 
 hi Comment             ctermfg=70   ctermbg=NONE cterm=NONE       guifg=#5faf00  guibg=NONE     gui=NONE
 hi LineNr              ctermfg=239  ctermbg=NONE cterm=NONE       guifg=#4e4e4e  guibg=NONE     gui=NONE
@@ -36,6 +36,10 @@ hi DiffChange   ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
 hi DiffText     ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
 hi DiffDelete   ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
 
+hi GitGutterAdd        ctermfg=154  ctermbg=NONE cterm=NONE       guifg=#afff00  guibg=NONE     gui=NONE
+hi GitGutterChange     ctermfg=229  ctermbg=NONE cterm=NONE       guifg=#ffffaf  guibg=NONE     gui=NONE
+hi GitGutterDelete     ctermfg=197  ctermbg=NONE cterm=NONE       guifg=#ff005f  guibg=NONE     gui=NONE
+
 hi SpellBad     ctermfg=9   ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
 hi SpellCap     ctermfg=50  ctermbg=NONE cterm=underline  guifg=#00ffd7 guibg=NONE gui=underline
 hi SpellRare    ctermfg=128 ctermbg=NONE cterm=underline  guifg=#af00d7 guibg=NONE gui=underline
@@ -53,8 +57,8 @@ hi TODO                ctermfg=190  ctermbg=NONE cterm=NONE       guifg=#d7ff00 
 hi Error               ctermfg=9    ctermbg=NONE cterm=underline  guifg=#ff0000  guibg=NONE     gui=underline
 hi ErrorMsg            ctermfg=9    ctermbg=NONE cterm=underline  guifg=#ff0000  guibg=NONE     gui=underline
 
-hi Directory           ctermfg=210  ctermbg=NONE cterm=NONE       guifg=#ff8787  guibg=NONE     gui=NONE
-hi netrwDir            ctermfg=210  ctermbg=NONE cterm=NONE       guifg=#ff8787  guibg=NONE     gui=NONE
+hi Directory           ctermfg=192  ctermbg=NONE cterm=NONE       guifg=#d7ff87  guibg=NONE     gui=NONE
+hi netrwDir            ctermfg=192  ctermbg=NONE cterm=NONE       guifg=#d7ff87  guibg=NONE     gui=NONE
 
 " hi Pmenu               ctermfg=241  ctermbg=237  cterm=NONE       guifg=#626262  guibg=#3a3a3a  gui=NONE
 " hi PmenuSbar           ctermfg=241  ctermbg=237  cterm=NONE       guifg=#626262  guibg=#3a3a3a  gui=NONE

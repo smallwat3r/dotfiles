@@ -27,16 +27,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Hack Regular Font Mono
+    family: Hack Nerd Font Mono
     style: Regular
-  # italic:
-  #   family: Menlo
-  #   style: Italic
-  # bold:
-  #   family: Menlo
-  #   style: Regular
+  italic:
+    family: Hack Nerd Font Mono
+    style: Italic
+  bold:
+    family: Hack Nerd Font Mono
+    style: Bold
 
-  size: 12
+  size: 13.5
 
   offset:
     x: 0
