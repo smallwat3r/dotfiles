@@ -27,16 +27,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Andale Mono SwFix
+    family: Hack Regular Font Mono
     style: Regular
   # italic:
-  #   family: Fira Code
+  #   family: Menlo
   #   style: Italic
   # bold:
-  #   family: Fira Code
+  #   family: Menlo
   #   style: Regular
 
-  size: 13.5
+  size: 12
 
   offset:
     x: 0

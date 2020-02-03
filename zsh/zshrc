@@ -99,10 +99,12 @@ RPS1='${return_code}'
 #
 # ALIASES
 # --------------------------------------------------------------------------------------
-alias vi="vim"
-alias svi="sudo vi"
-alias edit="vim"
-alias e="vim"
+alias vi="nvim"
+alias svi="sudo nvi"
+alias edit="nvim"
+alias e="nvim"
+alias vim="nvim"
+
 alias mvi="mvim"
 
 alias dots="cd $HOME/dotfiles"

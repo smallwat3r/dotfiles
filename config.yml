@@ -11,11 +11,14 @@ directories:
     - __root__.vim/autoload
     - __root__.antigen
     - __root__.config/alacritty
+    - __root__.config/nvim
+    - __root__.config/nvim/colors
 
 # List of all symlinks.
 links:
     __root__.vimrc:                                     vim/vimrc
     __root__.vim/autoload/plug.vim:                     vim/autoload/plug.vim
+    __root__.local/share/nvim/site/autoload:            vim/autoload/plug.vim
     __root__.antigen/antigen.zsh:                       zsh/antigen.zsh
     __root__.zshrc:                                     zsh/zshrc
     __root__.pylintrc:                                  python/pylintrc
@@ -23,6 +26,8 @@ links:
     __root__.gitconfig:                                 git/gitconfig
     __root__.gitignore_global:                          git/gitignore_global
     __root__.config/alacritty/alacritty.yml:            alacritty/alacritty.yml
+    __root__.config/nvim/init.vim:                      vim/vimrc
+    __root__.config/nvim/colors/smallwat3r.vim:         vim/colors/smallwat3r.vim
     __root__.pip/pip.conf:                              pip/pip.conf
     __root__.tmux/plugins/tpm:                          tmux/plugins/tpm
     __root__.tmux/plugins/tmux-battery:                 tmux/plugins/tmux-battery
@@ -65,6 +70,7 @@ brew:
     - ripgrep
     - vim     # vim needs to be before macvim
     - macvim  # macvim needs to be after vim
+    - neovim
 
 # Brew cask installs.
 cask:

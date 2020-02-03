@@ -1,4 +1,4 @@
-" File  : vimrc
+"File  : vimrc
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 " Date  : 09.01.2020
 "
@@ -35,6 +35,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'deoplete-plugins/deoplete-jedi'
 
 call plug#end()
 
@@ -65,7 +66,8 @@ let g:buftabline_separators=1
 "
 " GENERAL BEHAVIOUR
 " --------------------------------------------------------------------
-syntax off  " no colors = no distractions :)
+syntax on
+
 filetype plugin indent on
 
 " Remap leader
@@ -169,14 +171,17 @@ nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 " --------------------------------------------------------------------
 set background=dark
 set t_Co=256
+set termguicolors
 
-if (has("gui_running"))
-    let macvim_skip_colorscheme=1  " avoid macvim to load it's default colorscheme
-    set linespace=0
-    set guifont=Monaco:h13
-    set guioptions-=mTrL  " remove all GUI widgets
-    set gcr=a:blinkon0    " no blinking cursor
-endif
+colo smallwat3r
+
+" if (has("gui_running"))
+"     let macvim_skip_colorscheme=1  " avoid macvim to load it's default colorscheme
+"     set linespace=0
+"     set guifont=Monaco:h13
+"     set guioptions-=mTrL  " remove all GUI widgets
+"     set gcr=a:blinkon0    " no blinking cursor
+" endif
 
 " Italics
 let &t_ZH="\e[3m"
@@ -187,43 +192,43 @@ let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
-" Color on insert mode to white
-autocmd InsertEnter * hi Normal ctermfg=231 guifg=#ffffff
-autocmd InsertLeave * hi Normal ctermfg=229 guifg=#ffffaf
+" Turn highlighting only for important stuff (when syntax off)
+" hi Normal       ctermfg=231 ctermbg=NONE guifg=#ffffff guibg=#080808
 
-" Turn highlighting only for important stuff
-hi Normal       ctermfg=229 ctermbg=NONE guifg=#ffffaf guibg=#080808
+" hi NonText      ctermfg=241  guifg=#626262
+" hi Folded       ctermfg=231  ctermbg=239 guifg=#ffffff guibg=#4e4e4e
 
-hi NonText      ctermfg=241  guifg=#626262
-hi Folded       ctermfg=231  ctermbg=239 guifg=#ffffff guibg=#4e4e4e
+" hi DiffAdd      ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
+" hi DiffChange   ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
+" hi DiffText     ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
+" hi DiffDelete   ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
 
-hi DiffAdd      ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
-hi DiffChange   ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
-hi DiffText     ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
-hi DiffDelete   ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
+" hi SpellBad     ctermfg=9   ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
+" hi SpellCap     ctermfg=50  ctermbg=NONE cterm=underline  guifg=#00ffd7 guibg=NONE gui=underline
+" hi SpellRare    ctermfg=128 ctermbg=NONE cterm=underline  guifg=#af00d7 guibg=NONE gui=underline
+" hi SpellLocal   ctermfg=123 ctermbg=NONE cterm=underline  guifg=#87ffff guibg=NONE gui=underline
 
-hi SpellBad     ctermfg=9   ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
-hi SpellCap     ctermfg=50  ctermbg=NONE cterm=underline  guifg=#00ffd7 guibg=NONE gui=underline
-hi SpellRare    ctermfg=128 ctermbg=NONE cterm=underline  guifg=#af00d7 guibg=NONE gui=underline
-hi SpellLocal   ctermfg=123 ctermbg=NONE cterm=underline  guifg=#87ffff guibg=NONE gui=underline
+" hi Cursor       ctermfg=234  ctermbg=51  guifg=#262626  guibg=#00ffff
+" hi MatchParen   ctermfg=237  ctermbg=200 guifg=#3a3a3a  guibg=#ff00d7
 
-hi Cursor       ctermfg=234  ctermbg=51  guifg=#262626  guibg=#00ffff
-hi MatchParen   ctermfg=237  ctermbg=200 guifg=#3a3a3a  guibg=#ff00d7
+" hi Error        ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
+" hi ErrorMsg     ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
 
-hi Error        ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
-hi ErrorMsg     ctermfg=9 ctermbg=NONE cterm=underline  guifg=#ff0000 guibg=NONE gui=underline
+" hi Statusline   ctermfg=16  ctermbg=255   cterm=NONE  guifg=#eeeeee guibg=#00ffd7 gui=NONE
+" hi StatuslineNC ctermfg=16  ctermbg=239   cterm=NONE  guifg=#4e4e4e guibg=#00afaf gui=NONE
+" hi VertSplit    ctermfg=50  ctermbg=NONE cterm=NONE  guifg=#d7ff00 guibg=NONE gui=NONE
 
-hi Statusline   ctermfg=190 ctermbg=NONE cterm=underline guifg=#d7ff00 guibg=NONE gui=underline
-hi StatuslineNC ctermfg=186 ctermbg=NONE cterm=underline guifg=#d7d787 guibg=NONE gui=underline
-hi VertSplit    ctermfg=190 ctermbg=NONE cterm=NONE      guifg=#d7ff00 guibg=NONE gui=NONE
-
-hi Search       ctermfg=165 ctermbg=NONE cterm=bold           guifg=#d700ff guibg=NONE gui=bold
-hi IncSearch    ctermfg=165 ctermbg=NONE cterm=bold,underline guifg=#d700ff guibg=NONE gui=bold,underline
+" hi Search       ctermfg=165 ctermbg=NONE cterm=bold           guifg=#d700ff guibg=NONE gui=bold
+" hi IncSearch    ctermfg=165 ctermbg=NONE cterm=bold,underline guifg=#d700ff guibg=NONE gui=bold,underline
 
 " Statusline
-set statusline=[%n]\ %<%.99f\ %y%h%w%m%r\%{FugitiveStatusline()}\ %{LinterStatus()}
+set statusline=(%n)\ %f\ %{FugitiveStatusline()}\ %{LinterStatus()}
 set statusline+=\ %=%-14.(%l,%c%V%)
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L
+
+" Change statusline color on mode
+" autocmd InsertEnter * hi Statusline ctermfg=16 ctermbg=157 guifg=#000000 guibg=#afffaf
+" autocmd InsertLeave * hi Statusline ctermfg=16 ctermbg=255 guifg=#000000 guibg=#eeeeee
 
 "
 " KEYBINDINGS
@@ -274,20 +279,14 @@ nmap ;; :w<CR>
 " delete current buffer, keep window layout
 nmap <leader>d :bp\|bd #<CR>
 
+" improve pop up completion menu
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
 " FUNCTIONS
 " --------------------------------------------------------------------
 
-" Allow switching to buffer #<n> by typing <n>e (buftabline)
-function! s:bufSwitch(count)
-    if count >=# 1
-        return ":\<C-U>" . count . "b\<CR>"
-    endif
-    return 'e'
-endfunction
-
-nmap <expr> e <SID>bufSwitch(v:count)
-
-" Remove trailing whitespaces (run on savenes)
+" Remove trailing whitespaces
 function! TrimTrailingWS ()
     if exists('b:noStripWhitespace')
         return
