@@ -87,7 +87,7 @@ parse_git_branch() {
 }
 # Check if root of git repo
 git_root_path() {
-    local G_ROOT=$(git rev-parse --show-toplevel)
+    local G_ROOT=$(git rev-parse --show-toplevel 2> /dev/null)
     if [[ $G_ROOT == $PWD ]]; then echo "(root)"; fi
 }
 # Trunk the dirname by keeping only `/` and first letter
