@@ -86,7 +86,7 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 # Trunk the dirname by keeping only `/` and first letter
-# `/Users/Smallwater/Desktop` will become `/U/s`
+# `/Users/smallwater/Desktop` will become `/U/s`
 trunk_path() {
     echo `dirname $PWD` | sed -E 's|/(.)[^/]*|/\1|g'
 }
