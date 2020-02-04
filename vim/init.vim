@@ -234,11 +234,11 @@ let g:currentmode={
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
-    return ' '.fugitive#head()
+    return '⎧'.fugitive#head().'⎫'
   else
     return ''
 endfunction
-set statusline=(%n)\ %{toupper(g:currentmode[mode()])}\ %f\ %{GitInfo()}\ %{LinterStatus()}
+set statusline=⎧%n⎫\ %{toupper(g:currentmode[mode()])}\ %f\ %{GitInfo()}\ %{LinterStatus()}
 set statusline+=\ %=%-14.(%l,%c%V%)
 set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L
 
