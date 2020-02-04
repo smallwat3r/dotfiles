@@ -7,7 +7,6 @@
 # All non-standard directories, to create if doesn't exist.
 directories:
     - __root__.pip
-    - __root__.tmux/plugins
     - __root__.vim/autoload
     - __root__.antigen
     - __root__.config/alacritty
@@ -32,15 +31,13 @@ links:
     __root__.config/nvim/init.vim:                      vim/init.vim
     __root__.config/nvim/colors/smallwat3r.vim:         vim/colors/smallwat3r.vim
     __root__.pip/pip.conf:                              pip/pip.conf
-    __root__.tmux/plugins/tpm:                          tmux/plugins/tpm
-    __root__.tmux/plugins/tmux-battery:                 tmux/plugins/tmux-battery
-    __root__.tmux/plugins/tmux-cpu:                     tmux/plugins/tmux-cpu
-    __root__.tmux/plugins/tmux-sensible:                tmux/plugins/tmux-sensible
     /usr/local/bin/sketch:                              bin/sketch
     /usr/local/bin/pyzip:                               bin/pyzip
     /usr/local/bin/tubestatus:                          bin/tubestatus
     /usr/local/bin/256colors:                           bin/256colors
     /usr/local/bin/gnvim:                               bin/gnvim
+    /usr/local/bin/localip:                             bin/localip
+    /usr/local/bin/battery:                             bin/battery
 
 # Brew packages.
 brew:

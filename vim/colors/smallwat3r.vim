@@ -49,6 +49,7 @@ hi VertSplit    ctermfg=240  ctermbg=NONE cterm=NONE       guifg=#585858  guibg=
 hi SignColumn   ctermfg=235  ctermbg=NONE cterm=NONE       guifg=#262626  guibg=NONE     gui=NONE
 
 hi MatchParen   ctermfg=237  ctermbg=200 guifg=#3a3a3a  guibg=#ff00d7
+hi MatchWord    ctermfg=200 guifg=#ff00d7 cterm=italic gui=italic
 
 hi Search       ctermfg=163 ctermbg=NONE cterm=bold           guifg=#d700af guibg=NONE gui=bold
 hi IncSearch    ctermfg=163 ctermbg=NONE cterm=bold,underline guifg=#d700af guibg=NONE gui=bold,underline
