@@ -28,7 +28,7 @@ tabspaces: 4
 font:
   normal:
     # family: Hack Nerd Font Mono
-    family: Andale Mono SwFix
+    family: Monaco
     style: Regular
   # italic:
   #   family: Hack Nerd Font Mono

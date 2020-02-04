@@ -14,27 +14,27 @@ set background=dark
 " Colors
 "
 hi Normal              ctermfg=231  ctermbg=NONE cterm=NONE       guifg=#ffffff  guibg=#000000  gui=NONE
+hi Visual              ctermfg=233  ctermbg=229  cterm=NONE       guifg=#121212  guibg=#ffffaf  gui=NONE
 
-hi Comment             ctermfg=158   ctermbg=NONE cterm=NONE       guifg=#afff87  guibg=NONE     gui=NONE
+hi Comment             ctermfg=158  ctermbg=NONE cterm=NONE       guifg=#afff87  guibg=NONE     gui=NONE
 hi LineNr              ctermfg=239  ctermbg=NONE cterm=NONE       guifg=#4e4e4e  guibg=NONE     gui=NONE
 
 hi NonText             ctermfg=241  ctermbg=NONE cterm=NONE       guifg=#626262  guibg=NONE     gui=NONE
 
 hi Statusline          ctermfg=235  ctermbg=231  cterm=NONE       guifg=#262626  guibg=#ffffff  gui=NONE
 hi StatuslineNC        ctermfg=233  ctermbg=240  cterm=NONE       guifg=#121212  guibg=#585858  gui=NONE
-hi Visual              ctermfg=233  ctermbg=240  cterm=NONE       guifg=#121212  guibg=#585858  gui=NONE
 
 hi ColorColumn         ctermfg=NONE ctermbg=NONE cterm=NONE       guifg=NONE     guibg=NONE     gui=NONE
 
-hi Cursor              ctermfg=234  ctermbg=51  guifg=#262626  guibg=#00ffff
+hi Cursor              ctermfg=234  ctermbg=51                    guifg=#262626  guibg=#00ffff
 hi CursorColumn        ctermfg=250  ctermbg=NONE cterm=NONE       guifg=#b9b9b9  guibg=NONE     gui=NONE
 hi CursorLine          ctermfg=250  ctermbg=NONE cterm=NONE       guifg=#b9b9b9  guibg=NONE     gui=NONE
 hi CursorLineNR        ctermfg=250  ctermbg=NONE cterm=NONE       guifg=#b9b9b9  guibg=NONE     gui=NONE
 
-hi DiffAdd      ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
-hi DiffChange   ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
-hi DiffText     ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
-hi DiffDelete   ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
+hi DiffAdd             ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
+hi DiffChange          ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
+hi DiffText            ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
+hi DiffDelete          ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
 
 hi GitGutterAdd        ctermfg=154  ctermbg=NONE cterm=NONE       guifg=#afff00  guibg=NONE     gui=NONE
 hi GitGutterChange     ctermfg=229  ctermbg=NONE cterm=NONE       guifg=#ffffaf  guibg=NONE     gui=NONE
@@ -58,8 +58,8 @@ hi TODO                ctermfg=190  ctermbg=NONE cterm=NONE       guifg=#d7ff00 
 hi Error               ctermfg=9    ctermbg=NONE cterm=underline  guifg=#ff0000  guibg=NONE     gui=underline
 hi ErrorMsg            ctermfg=9    ctermbg=NONE cterm=underline  guifg=#ff0000  guibg=NONE     gui=underline
 
-hi Directory           ctermfg=192  ctermbg=NONE cterm=NONE       guifg=#d7ff87  guibg=NONE     gui=NONE
-hi netrwDir            ctermfg=192  ctermbg=NONE cterm=NONE       guifg=#d7ff87  guibg=NONE     gui=NONE
+hi Directory           ctermfg=200 ctermbg=NONE cterm=NONE       guifg=#ff00d7  guibg=NONE     gui=NONE
+hi netrwDir            ctermfg=200 ctermbg=NONE cterm=NONE       guifg=#ff00d7  guibg=NONE     gui=NONE
 
 " hi Pmenu               ctermfg=241  ctermbg=237  cterm=NONE       guifg=#626262  guibg=#3a3a3a  gui=NONE
 " hi PmenuSbar           ctermfg=241  ctermbg=237  cterm=NONE       guifg=#626262  guibg=#3a3a3a  gui=NONE
