@@ -26,13 +26,6 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
 ./brew      # run brew & casks only
 ```
   
-```sh
-# installs vim/vimrc_server: this is the vim config I use on remote server (no plugins)
-
-wget -N https://raw.githubusercontent.com/smallwat3r/dotfiles/master/vim/vimrc_server \
-     -O ~/.vimrc
-```
-
 ## Screen (26.01.20)
 ![config](https://i.imgur.com/FL2bx5s.png)  
 
