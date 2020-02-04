@@ -234,6 +234,8 @@ function! ActiveStatusLine()
     let statusline.="%#VisualColor#%{(mode()=='v')?'\ VISUAL\ ':''}"
     let statusline.="%#CommandColor#%{(mode()=='c')?'\ COMMAND\ ':''}"
     let statusline.="\%*\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="%{&modified?'\  ⎧+⎫':''}"
+    let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
     let statusline.="\ %=%-14.(%l,%c%V%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L"
     return statusline
@@ -243,6 +245,8 @@ endfunction
 function! InactiveStatusLine()
     let statusline="⎧%n⎫"
     let statusline.="\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="%{&modified?'\  ⎧+⎫':''}"
+    let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
     let statusline.="\ %=%-14.(%l,%c%V%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L"
     return statusline
