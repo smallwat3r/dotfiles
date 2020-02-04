@@ -85,6 +85,11 @@ ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=161"  # errors
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
+# Check if root of git repo
+git_root_path() {
+    local G_ROOT=$(git rev-parse --show-toplevel)
+    if [[ $G_ROOT == $PWD ]]; then echo "(root)"; fi
+}
 # Trunk the dirname by keeping only `/` and first letter
 # `/Users/smallwater/Desktop` will become `/U/s`
 trunk_path() {
@@ -106,7 +111,7 @@ c_path() {
 }
 precmd() {
     # local preprompt_left='%n %30<...<%~%<<%F$fg_bold[yellow]$(parse_git_branch)'
-    local preprompt_left='%n $(trunk_path)$(c_path) $fg_bold[yellow]$(parse_git_branch)'
+    local preprompt_left='%n $(trunk_path)$(c_path) $fg_bold[yellow]$(parse_git_branch)$(git_root_path)'
     print -Pr $'\n'"$preprompt_left"
 }
 setopt PROMPT_SUBST
