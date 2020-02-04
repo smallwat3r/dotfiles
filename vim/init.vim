@@ -210,27 +210,6 @@ let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 " Statusline
-let g:currentmode={
-    \ 'n'      : 'NORMAL ',
-    \ 'no'     : 'N·Operator Pending ',
-    \ 'v'      : 'VISUAL ',
-    \ 'V'      : 'V·Line ',
-    \ '\<C-V>' : 'V·Block ',
-    \ 's'      : 'Select ',
-    \ 'S'      : 'S·Line ',
-    \ '\<C-S>' : 'S·Block ',
-    \ 'i'      : 'INSERT',
-    \ 'R'      : 'REPLACE ',
-    \ 'Rv'     : 'V·Replace ',
-    \ 'c'      : 'Command ',
-    \ 'cv'     : 'Vim Ex ',
-    \ 'ce'     : 'Ex ',
-    \ 'r'      : 'Prompt ',
-    \ 'rm'     : 'More ',
-    \ 'r?'     : 'Confirm ',
-    \ '!'      : 'Shell ',
-    \ 't'      : 'Terminal '
-    \}
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
@@ -238,9 +217,45 @@ function! GitInfo()
   else
     return ''
 endfunction
-set statusline=⎧%n⎫\ %{toupper(g:currentmode[mode()])}\ %f\ %{GitInfo()}\ %{LinterStatus()}
-set statusline+=\ %=%-14.(%l,%c%V%)
-set statusline+=\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L
+
+" Statusline vim mode colors
+hi NormalColor guifg=Black guibg=Green ctermbg=46 ctermfg=0
+hi InsertColor guifg=Black guibg=Cyan ctermbg=51 ctermfg=0
+hi ReplaceColor guifg=Black guibg=maroon1 ctermbg=165 ctermfg=0
+hi VisualColor guifg=Black guibg=Orange ctermbg=202 ctermfg=0
+hi CommandColor guifg=Black guibg=Pink ctermbg=13 ctermfg=0
+
+" Statusline active
+function! ActiveStatusLine()
+    let statusline="⎧%n⎫"
+    let statusline.="%#NormalColor#%{(mode()=='n')?'\ NORMAL\ ':''}"
+    let statusline.="%#InsertColor#%{(mode()=='i')?'\ INSERT\ ':''}"
+    let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ REPLACE\ ':''}"
+    let statusline.="%#VisualColor#%{(mode()=='v')?'\ VISUAL\ ':''}"
+    let statusline.="%#CommandColor#%{(mode()=='c')?'\ COMMAND\ ':''}"
+    let statusline.="\%*\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="\ %=%-14.(%l,%c%V%)"
+    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L"
+    return statusline
+endfunction
+
+" Statusline inactive
+function! InactiveStatusLine()
+    let statusline="⎧%n⎫"
+    let statusline.="\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="\ %=%-14.(%l,%c%V%)"
+    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L"
+    return statusline
+endfunction
+
+set statusline=%!ActiveStatusLine()
+
+" Switch windows statusline
+augroup status
+    autocmd!
+    autocmd WinEnter * setlocal statusline=%!ActiveStatusLine()
+    autocmd WinLeave * setlocal statusline=%!InactiveStatusLine()
+augroup END
 
 "
 " KEYBINDINGS
