@@ -11,7 +11,7 @@ window:
     lines: 50
 
   padding:
-    x: 0
+    x: 5
     y: 0
 
   dynamic_padding: true
@@ -27,7 +27,7 @@ tabspaces: 4
 
 font:
   normal:
-    # family: DejaVu Sans Mono SW
+    # family: Hack Nerd Font Mono
     family: Andale Mono SwFix
     style: Regular
   # italic:
@@ -49,8 +49,6 @@ font:
 
   use_thin_strokes: false
 
-draw_bold_text_with_bright_colors: true
-
 visual_bell:
   animation: EaseOutExpo
   duration: 0
@@ -59,33 +57,31 @@ visual_bell:
 colors:
 
   primary:
-    # background: '0x00005f'
-    # background: '0x262626'
-    background: '0x080808'
-    foreground: '0xeeeeee'
+    background: '0x000000'
+    foreground: '0xffffff'
 
   cursor:
-    text:   '0x121212'
+    text:   '0x000000'
     cursor: '0x00ffff'
 
   normal:
-    black:   '0x262626'
-    red:     '0xff0410'
-    green:   '0x66ff99'
-    yellow:  '0xFFC620'
-    blue:    '0x1BA6FA'
-    magenta: '0xff00ce'
-    cyan:    '0xff00a7'
+    black:   '0x000000'
+    red:     '0xd7005f'
+    green:   '0xafff5f'
+    yellow:  '0xffff5f'
+    blue:    '0x5fd7d7'
+    magenta: '0xff00d7'
+    cyan:    '0x00ffff'
     white:   '0xffffff'
 
   bright:
-    black:   '0x262626'
-    red:     '0xff0410'
-    green:   '0x66ff99'
-    yellow:  '0xFFC620'
-    blue:    '0x1BA6FA'
-    magenta: '0xff00ce'
-    cyan:    '0xff00a7'
+    black:   '0x000000'
+    red:     '0xd7005f'
+    green:   '0xafff5f'
+    yellow:  '0xffff5f'
+    blue:    '0x5fd7d7'
+    magenta: '0xff00d7'
+    cyan:    '0x00ffff'
     white:   '0xffffff'
 
 background_opacity: 0.92

@@ -25,7 +25,3 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
 ./symlink   # run symlinks only
 ./brew      # run brew & casks only
 ```
-  
-## Screen (26.01.20)
-![config](https://i.imgur.com/FL2bx5s.png)  
-
