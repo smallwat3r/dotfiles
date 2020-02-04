@@ -81,11 +81,32 @@ ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=161"  # errors
 #
 # PROMPT
 # --------------------------------------------------------------------------------------
+# Parse current git branch if exists
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
+# Trunk the dirname by keeping only `/` and first letter
+# `/Users/Smallwater/Desktop` will become `/U/s`
+trunk_path() {
+    echo `dirname $PWD` | sed -E 's|/(.)[^/]*|/\1|g'
+}
+# Append current dir to trunk_path()
+c_path() {
+    local PA=$(basename $PWD)
+    # NSL is the number of `/` in the path (if in root for ex.)
+    # so we know if we need to append a `/` or not.
+    local NSL=$(echo $PWD | tr -cd '/' | wc -c)
+    if [ $PA != "/" ]; then
+        if [ $NSL -lt 2 ]; then
+            echo "$PA";
+        else
+            echo "/$PA";
+        fi
+    fi
+}
 precmd() {
-    local preprompt_left='%n %30<...<%~%<<%F$fg_bold[yellow]$(parse_git_branch)'
+    # local preprompt_left='%n %30<...<%~%<<%F$fg_bold[yellow]$(parse_git_branch)'
+    local preprompt_left='%n $(trunk_path)$(c_path) $fg_bold[yellow]$(parse_git_branch)'
     print -Pr $'\n'"$preprompt_left"
 }
 setopt PROMPT_SUBST
