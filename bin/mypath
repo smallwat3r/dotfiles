@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Trunk my current path
+#
+
+# Append current dir to trunk_path()
+PA=$(basename $PWD)
+# NSL is the number of `/` in the path (if in root for ex.)
+# so we know if we need to append a `/` or not.
+NSL=$(echo $PWD | tr -cd '/' | wc -c)
+if [ $PA != "/" ]; then
+    if [ $NSL -lt 2 ]; then
+        C="$PA"
+    else
+        C="/$PA"
+    fi
+fi
+# Trunk the dirname by keeping only `/` and first letter
+# `/Users/smallwater/Desktop` will become `/U/s`
+T=$(echo `dirname $PWD` | sed -E 's|/(.)[^/]*|/\1|g')
+echo "$T$C"

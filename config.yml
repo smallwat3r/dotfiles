@@ -38,6 +38,7 @@ links:
     /usr/local/bin/gnvim:                               bin/gnvim
     /usr/local/bin/localip:                             bin/localip
     /usr/local/bin/battery:                             bin/battery
+    /usr/local/bin/mypath:                              bin/mypath
 
 # Brew packages.
 brew:

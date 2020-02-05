@@ -103,21 +103,24 @@ c_path() {
     local NSL=$(echo $PWD | tr -cd '/' | wc -c)
     if [ $PA != "/" ]; then
         if [ $NSL -lt 2 ]; then
-            echo "$PA";
+            echo "$PA"
         else
-            echo "/$PA";
+            echo "/$PA"
         fi
     fi
 }
-precmd() {
-    # local preprompt_left='%n %30<...<%~%<<%F$fg_bold[yellow]$(parse_git_branch)'
-    local preprompt_left='%n $(trunk_path)$(c_path) $fg_bold[yellow]$(parse_git_branch)$(git_root_path)'
-    print -Pr $'\n'"$preprompt_left"
-}
-setopt PROMPT_SUBST
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='$ '
 RPS1='${return_code}'
+# -- PROMPT TWO LINER --
+# precmd() {
+#     # local preprompt_left='%n %30<...<%~%<<%F$fg_bold[yellow]$(parse_git_branch)'
+#     local preprompt_left='%n $(trunk_path)$(c_path)$fg_bold[yellow]$(parse_git_branch)$(git_root_path)'
+#     print -Pr $'\n'"$preprompt_left"
+# }
+# setopt PROMPT_SUBST
+# PROMPT='$ '
+# -- PROMPT ONE LINER --
+PROMPT='$(trunk_path)$(c_path)$fg_bold[yellow]$(parse_git_branch)$(git_root_path)%{$reset_color%} $ '
 
 #
 # ALIASES
