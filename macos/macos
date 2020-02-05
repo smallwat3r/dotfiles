@@ -24,9 +24,16 @@ defaults write com.apple.Terminal AppleShowScrollBars -string "Automatic"
 # Don't show recent
 defaults write com.apple.dock show-recents -bool false
 
-# Keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+#disable special characters when holding keys
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# normal minimum is 15 (225 ms)
+defaults write -g InitialKeyRepeat -float 10.0
+defaults write NSGlobalDomain InitialKeyRepeat -float 10.0
+
+# normal minimum is 2 (30 ms)
+defaults write -g KeyRepeat -float 1.0
+defaults write NSGlobalDomain KeyRepeat -float 1.0
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
