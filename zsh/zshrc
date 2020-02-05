@@ -52,8 +52,8 @@ parse_git_branch() {
 RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
 PROMPT='${PWD##*/} %% '
 
-COMPLETION_WAITimajesING_DOTS="true"
-DISABLE_UNTRACKimajesED_FILES_DIRTY="true"
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # zsh suggestioimajesns colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
