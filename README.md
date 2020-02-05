@@ -3,7 +3,9 @@
 My config files for macOS.  
 
 **This repo is updated super frequently**  
-**If you intend to use these dotfiles for your own set-up please create backups of your current setup**  
+
+**!!! Please create backups of your current set-up if you intend to use these dotfiles !!!**  
+
 Note: my `vim/vimrc` is not maintained anymore as I switched to neovim (see `vim/init.vim`)  
 
 Dotfiles are managed by a YAML config file `config.yml`  
