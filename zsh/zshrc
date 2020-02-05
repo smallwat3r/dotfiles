@@ -49,7 +49,7 @@ export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
-RPROMPT='%{$fg_bold[yellow]%}$(parse_git_branch)'
+RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
 PROMPT='${PWD##*/} %% '
 
 COMPLETION_WAITimajesING_DOTS="true"

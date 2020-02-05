@@ -192,6 +192,10 @@ set t_Co=256
 
 colo smallwat3r
 
+" Other colortheme for Markdown
+autocmd! BufEnter,BufNewFile *.md colo elflord
+autocmd! BufLeave *.md colo smallwat3r
+
 if (has("gui_running"))
     set linespace=0
     set fontligatures
