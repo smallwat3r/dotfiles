@@ -1,6 +1,6 @@
 " File  : init.vim
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
-" Date  : 09.01.2020
+" Date  : 05.02.2020
 "
 " neovim config file
 "
@@ -237,7 +237,7 @@ function! ActiveStatusLine()
     let statusline.="%{&modified?'\  ⎧+⎫':''}"
     let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
     let statusline.="\ %=%-14.(%l,%c%V%)"
-    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L"
+    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
 endfunction
 
@@ -248,7 +248,7 @@ function! InactiveStatusLine()
     let statusline.="%{&modified?'\  ⎧+⎫':''}"
     let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
     let statusline.="\ %=%-14.(%l,%c%V%)"
-    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L"
+    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
 endfunction
 
