@@ -8,6 +8,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=xterm-256color
+export LC_ALL="en_US.UTF-8"
 
 #
 # BUNDLE MANAGER
@@ -44,11 +45,16 @@ export FZF_DEFAULT_OPTS="
 "
 export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
 
-DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Prompt (using default, but adding current git branch)
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+}
+RPROMPT='%{$fg_bold[yellow]%}$(parse_git_branch)'
 
-# zsh suggestions colors
+COMPLETION_WAITimajesING_DOTS="true"
+DISABLE_UNTRACKimajesED_FILES_DIRTY="true"
+
+# zsh suggestioimajesns colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 
 # Overwrite zsh-syntax-highlighting default defaults
@@ -77,50 +83,6 @@ for e (globbing rc-quote path path_separator history-expansion command-substitut
 # other
 ZSH_HIGHLIGHT_STYLES[comment]="fg=146"
 ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=161"  # errors
-
-#
-# PROMPT
-# --------------------------------------------------------------------------------------
-# Parse current git branch if exists
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
-}
-# Check if root of git repo
-git_root_path() {
-    local G_ROOT=$(git rev-parse --show-toplevel 2> /dev/null)
-    if [[ $G_ROOT == $PWD ]]; then echo "(root)"; fi
-}
-# Trunk the dirname by keeping only `/` and first letter
-# `/Users/smallwater/Desktop` will become `/U/s`
-trunk_path() {
-    echo `dirname $PWD` | sed -E 's|/(.)[^/]*|/\1|g'
-}
-# Append current dir to trunk_path()
-c_path() {
-    local PA=$(basename $PWD)
-    # NSL is the number of `/` in the path (if in root for ex.)
-    # so we know if we need to append a `/` or not.
-    local NSL=$(echo $PWD | tr -cd '/' | wc -c)
-    if [ $PA != "/" ]; then
-        if [ $NSL -lt 2 ]; then
-            echo "$PA"
-        else
-            echo "/$PA"
-        fi
-    fi
-}
-local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-RPS1='${return_code}'
-# -- PROMPT TWO LINER --
-# precmd() {
-#     # local preprompt_left='%n %30<...<%~%<<%F$fg_bold[yellow]$(parse_git_branch)'
-#     local preprompt_left='%n $(trunk_path)$(c_path)$fg_bold[yellow]$(parse_git_branch)$(git_root_path)'
-#     print -Pr $'\n'"$preprompt_left"
-# }
-# setopt PROMPT_SUBST
-# PROMPT='$ '
-# -- PROMPT ONE LINER --
-PROMPT='$(trunk_path)$(c_path)$fg_bold[yellow]$(parse_git_branch)$(git_root_path)%{$reset_color%} $ '
 
 #
 # ALIASES
@@ -246,3 +208,4 @@ extract() {
 source $ZSH/oh-my-zsh.sh
 if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi  # exec tmux on start
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
