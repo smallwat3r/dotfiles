@@ -5,7 +5,6 @@
 #
 # Symlink from config.yml
 #
-
 use strict;
 use warnings;
 

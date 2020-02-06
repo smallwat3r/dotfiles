@@ -5,32 +5,50 @@
 #
 # Install all
 #
-install_homebrew () { ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
-install_oh_my_zsh () { sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; }
-install_brew_packages () { perl $PWD/brew; }
-install_python_packages () { pip3 install -r pip/requirements.txt; }
-set_macos () { source $PWD/macos/macos; }
-upd_submodules () { git submodule init && git submodule update; }
-set_symlinks () { perl $PWD/symlink; }
+set -e
+
+install_homebrew() { ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
+install_oh_my_zsh() { sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; }
+install_brew_packages() { perl $PWD/brew; }
+install_python_packages() { pip3 install -r pip/requirements.txt; }
+set_macos() { source $PWD/macos/macos; }
+upd_submodules() { git submodule init && git submodule update; }
+set_symlinks() { perl $PWD/symlink; }
 
 setup() {
+    # Installs homebrew or update
     which -s brew
     if [[ $? != 0 ]]; then
-        printf "[+] Installing Homebrew\n"; install_homebrew;
+        printf "[+] Installing Homebrew\n"
+        install_homebrew
     else
-        printf "[+] Updating Homebrew\n"; brew update;
+        printf "[+] Updating Homebrew\n"
+        brew update
     fi
 
-    printf "[+] Installing oh-my-zsh\n"; install_oh_my_zsh;
-    printf "[+] Installing brew packages\n"; install_brew_packages;
-    printf "[+] Installing python packages\n"; install_python_packages;
-    printf "[+] Setting up macOS configs\n"; set_macos;
-    printf "[+] Initiating and updating submodules\n"; upd_submodules;
-    printf "[+] Setting up symlinks\n"; set_symlinks;
+    # Installs all
+    printf "[+] Installing oh-my-zsh\n"
+    install_oh_my_zsh
+    printf "[+] Installing brew packages\n"
+    install_brew_packages
+    printf "[+] Installing python packages\n"
+    install_python_packages
+    printf "[+] Setting up macOS configs\n"
+    set_macos
+    printf "[+] Initiating and updating submodules\n"
+    upd_submodules
+    printf "[+] Setting up symlinks\n"
+    set_symlinks
     printf "\n***** ALL DONE *****\n"
 }
 
 case "$OSTYPE" in
-    darwin* ) setup; exit 0;;
-    *       ) printf "This script needs to run on macOS\n"; exit 1;;
+darwin*)
+    setup
+    exit 0
+    ;;
+*)
+    printf "This script needs to run on macOS\n"
+    exit 1
+    ;;
 esac
