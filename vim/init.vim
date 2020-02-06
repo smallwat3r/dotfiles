@@ -30,6 +30,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/vim-highlighturl'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 Plug 'pacha/vem-tabline'
 Plug 'tpope/vim-unimpaired'
 
@@ -43,6 +44,7 @@ call plug#end()
 let g:deoplete#enable_at_startup=1
 call deoplete#custom#source('_', 'max_menu_width', 80)
 call deoplete#custom#source('_', 'min_pattern_length', 1)
+let g:deoplete#sources#jedi#show_docstring=1
 
 " vim git-gutter
 let g:gitgutter_sign_added='+'
@@ -199,7 +201,7 @@ autocmd! BufLeave *.md colo smallwat3r
 if (has("gui_running"))
     set linespace=0
     set fontligatures
-    set guifont=DejaVu_Sans_Mono_SW:h13
+    set guifont=Monaco:h13
     set guioptions-=mTrL  " remove all GUI widgets
     set gcr=a:blinkon0    " no blinking cursor
 endif
@@ -285,9 +287,6 @@ vmap L g_
 " Copy paragraph
 nmap cp yap<S-}>p
 
-" Open netrw
-map <F6> :Vex<cr>
-
 " Remove search highlight
 nmap <leader><space> :nohlsearch<cr>
 
@@ -306,13 +305,13 @@ nmap <Leader>x /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nmap <Leader>X ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 
 " cd vim into current buffer directory
-nmap <leader>cd :cd %:p:h<CR>
+nmap <silent><leader>cd :cd %:p:h<CR>
 
 " save current file
-nmap ;; :w<CR>
+nmap <silent>;; :w<CR>
 
 " delete current buffer, keep window layout
-nmap <leader>d :bp\|bd #<CR>
+nmap <silent><leader>d :bp\|bd #<CR>
 
 " improve pop up completion menu
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -345,6 +344,7 @@ fun! LinterStatus() abort
                 \   all_errors )
 endfun
 
+" Custom fold lines format
 function! CustomFoldText()
     let line = getline(v:foldstart)
     let folded_line_num = v:foldend - v:foldstart
