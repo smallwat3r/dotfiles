@@ -36,6 +36,11 @@ Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
+Install brew packages, tools, and casks
+```sh
+perl brew
+```
+
 Antigen (zsh) 
 ```sh
 curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
@@ -45,9 +50,11 @@ neovim vim-plug
 ```sh
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Then run :PlugInstall in neovim
 ```
 
-python pip requirements
+python requirements
 ```sh
 pip3 install -r pip/requirements.txt
 ```
@@ -55,11 +62,6 @@ pip3 install -r pip/requirements.txt
 macOS settings
 ```sh
 sh macos/macos
-```
-
-Install brew tools
-```sh
-perl brew
 ```
 
 Symlink dotfiles
