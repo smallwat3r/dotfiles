@@ -10,6 +10,7 @@ use warnings;
 
 use Cwd qw(cwd);
 use YAML::XS qw(LoadFile);
+use File::Path qw(make_path);
 
 my $current_dir = cwd;
 my $user = getpwuid($<);
@@ -18,14 +19,22 @@ my $root = "/Users/${user}";
 my $data = LoadFile("config.yml");
 
 # Make sure all non-standard directories exists.
+print "\n\n==== Directories ====\n\n";
 my $dir;
 my @directories = @{$data->{directories}};
 foreach $dir (@directories) {
     $dir =~ s/__root__/${root}\//ig;
-    mkdir -p $dir unless -d $dir;
+    print "$dir\n";
+    if ( -d "$dir") {
+        print "[.] $dir already exists.\n";
+    } else {
+        make_path("$dir");
+        print "[+] $dir created.\n";
+    }
 }
 
 # Symlinks.
+print "\n\n==== Symlinks ====\n\n";
 my $key;
 my $value;
 my %links = %{$data->{links}};
