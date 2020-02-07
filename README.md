@@ -5,12 +5,6 @@ My config files for macOS.
 **This repo is primarly created for personnal use, and is updated frequently**  
 **!!! Please create backups of your current set-up if you intend to use these dotfiles !!!**  
 
-Dotfiles are managed by a YAML config file `config.yml`  
-It requires Perl `YAML::XS` 
-```sh
-perl -MCPAN -e 'install YAML::XS'
-```
-
 Clone repo
 ```sh
 git clone https://github.com/smallwat3r/dotfiles.git
@@ -26,6 +20,13 @@ sudo chown -R $(whoami) /usr/local/share/man/man3
 Install Homebrew
 ```sh
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Dotfiles are managed by a YAML config file `config.yml`  
+It requires Perl `YAML::XS` (scripts `brew` and `symlink`)  
+Step to do after installing Homebrew  
+```sh
+perl -MCPAN -e 'install YAML::XS'
 ```
 
 Install oh-my-zsh
