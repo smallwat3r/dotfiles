@@ -17,6 +17,7 @@ antigen bundle pip
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-vi-more/evil-registers
 
 antigen apply
 
@@ -106,13 +107,10 @@ alias fonts="open $HOME/Library/Fonts"
 alias venv="virtualenv -p python3 venv --no-site-package"
 
 alias c="clear"
+alias qq="exit"
 
-alias :sp="tmux splitw -v"
-alias :vs="tmux splitw -h"
-alias :q="exit"
-alias :Q="exit"
-alias :x="exit"
-
+alias sp="tmux splitw -v"
+alias vs="tmux splitw -h"
 alias tks="tmux kill-session -t"
 alias tksa="tmux kill-session -a"
 alias tls="tmux list-sessions"
@@ -207,14 +205,17 @@ if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi  # exec tmux
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
+
 RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
 VIMODE="%{$fg[green]%}I%{$reset_color%}"
 PROMPT='$VIMODE ${PWD##*/} %% '
-# change cursor shape on vim-mode and show a I or N symbol in color
+
+# change cursor shape on vim-mode and show I for INSERT and C for
+# visual and normal mode.
 zle-keymap-select () {
     if [ $KEYMAP = vicmd ]; then
         printf "\033[2 q"
-        VIMODE="%{$fg[magenta]%}N%{$reset_color%}"
+        VIMODE="%{$fg[magenta]%}C%{$reset_color%}"
     else
         printf "\033[6 q"
         VIMODE="%{$fg[green]%}I%{$reset_color%}"
@@ -222,10 +223,21 @@ zle-keymap-select () {
     zle reset-prompt
 }
 zle -N zle-keymap-select
+
 zle-line-init () {
     zle -K viins
     printf "\033[6 q"
 }
 zle -N zle-line-init
-# activate vim-mode
+
+# zsh-vim yank copy to clipboard.
+function vi-yank-xclip {
+    zle vi-yank
+    echo "$CUTBUFFER" | pbcopy
+}
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
+# activate zsh-vim.
 bindkey -v
+

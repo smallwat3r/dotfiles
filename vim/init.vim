@@ -113,7 +113,7 @@ set mouse=a  " mouse support
 set nostartofline
 set incsearch  " search pattern
 set hlsearch  " search highlighting
-set clipboard=unnamed
+set clipboard=unnamedplus
 set wrap  " wrap lines
 set lazyredraw  " no redraw
 set ignorecase  " search ignore case
