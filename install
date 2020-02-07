@@ -12,7 +12,6 @@ install_oh_my_zsh() { sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh
 install_brew_packages() { perl $PWD/brew; }
 install_python_packages() { pip3 install -r pip/requirements.txt; }
 set_macos() { source $PWD/macos/macos; }
-upd_submodules() { git submodule init && git submodule update; }
 set_symlinks() { perl $PWD/symlink; }
 
 setup() {
@@ -35,8 +34,6 @@ setup() {
     install_python_packages
     printf "[+] Setting up macOS configs\n"
     set_macos
-    printf "[+] Initiating and updating submodules\n"
-    upd_submodules
     printf "[+] Setting up symlinks\n"
     set_symlinks
     printf "\n***** ALL DONE *****\n"
