@@ -17,15 +17,29 @@ perl -MCPAN -e 'install YAML::XS'
 
 Clone repo with submodules and make files executable  
 ```sh
-git clone --recursive https://github.com/smallwat3r/dotfiles.git && \
-    cd dotfiles && \
-    chmod +x install symlink brew
+git clone https://github.com/smallwat3r/dotfiles.git
+```
+
+Access man pages  
+```sh
+sudo chown -R $(whoami) /usr/local/share/man/man3
+```
+
+zsh antigen  
+```sh
+curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
+```
+
+neovim vim-plug  
+```sh
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 ## Commands
 ```sh
-./install   # installs everything
+sh install   # installs everything
 
-./symlink   # run symlinks only
-./brew      # run brew & casks only
+perl symlink   # run symlinks only
+perl brew      # run brew & casks only
 ```

@@ -17,11 +17,6 @@ directories:
 
 # List of all symlinks.
 links:
-    __root__.vimrc:                                     vim/vimrc
-    __root__.vim/colors/smallwat3r.vim:                 vim/colors/smallwat3r.vim
-    __root__.vim/autoload/plug.vim:                     vim/autoload/plug.vim
-    __root__.local/share/nvim/site/autoload:            vim/autoload/plug.vim
-    __root__.antigen/antigen.zsh:                       zsh/antigen.zsh
     __root__.zshrc:                                     zsh/zshrc
     __root__.pylintrc:                                  python/pylintrc
     __root__.tmux.conf:                                 tmux/tmux.conf
@@ -44,46 +39,44 @@ links:
 brew:
     - tmux
     - redis
-    - nnn
-    - lazygit
-    - lazydocker
+    # - nnn
+    # - lazygit
+    # - lazydocker
     - git
     - python3
-    - ddgr
+    # - ddgr
     - wget
     - zsh
-    - mysql
-    - sqlite
+    # - mysql
+    # - sqlite
     - fzf
     - htop
-    - exa
+    # - exa
     - curl
     - bash
     - gnu-sed
-    - tree
-    - jsonnet
-    - xclip
+    # - tree
+    # - jsonnet
+    # - xclip
     - jq
     - make
-    - fd
-    - gawk
-    - translate-shell
-    - the_silver_searcher  # ag
+    # - fd
+    # - gawk
+    # - translate-shell
+    # - the_silver_searcher  # ag
     - ripgrep
-    - vim
+    # - vim
     - neovim
 
 # Brew cask installs.
 cask:
     - sequel-pro
-    - docker
+    # - docker
     - alacritty
-    - rectangle
-    - nordvpn
+    # - rectangle
+    # - nordvpn
     - slack
     - alfred
     - ngrok
     - thunderbird
-    - firefox
     - google-chrome
-    - fontforge

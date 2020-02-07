@@ -30,8 +30,7 @@ export LC_ALL="en_US.UTF-8"
 export CLICOLOR=1
 export EDITOR=/usr/local/bin/nvim
 
-export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.7/bin:/usr/local/bin/nvim
-export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$HOME/.cargo/bin:$HOME/Library/Python/3.7/bin:/usr/local/bin/nvim
 
 # grep colors
 export GREP_OPTIONS='--color=auto'
