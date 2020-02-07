@@ -128,8 +128,11 @@ set matchpairs+=<:>
 set splitbelow  " for ex preview windows will appear at the bottom
 set noshowmode " don't show mode (aleady in statusline)
 
+" md filetype
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
 set nolist  " hide special characters
-au BufNewFile,BufFilePre,BufRead *.md set list  " but activate on md files
+au BufNewFile,BufFilePre,BufRead *.md setlocal list  " but activate on md files
 
 " diff splits
 set diffopt+=vertical
@@ -239,10 +242,10 @@ function! ActiveStatusLine()
     let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ REPLACE\ ':''}"
     let statusline.="%#VisualColor#%{(mode()=='v')?'\ VISUAL\ ':''}"
     let statusline.="%#CommandColor#%{(mode()=='c')?'\ COMMAND\ ':''}"
-    let statusline.="\%*\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
     let statusline.="%{&modified?'\  ⎧+⎫':''}"
     let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
-    let statusline.="\ %=%-14.(%l,%c%V%)"
+    let statusline.="\ %=%-14.(%l,%c%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
 endfunction
@@ -250,10 +253,10 @@ endfunction
 " Statusline inactive
 function! InactiveStatusLine()
     let statusline="⎧%n⎫"
-    let statusline.="\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
     let statusline.="%{&modified?'\  ⎧+⎫':''}"
     let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
-    let statusline.="\ %=%-14.(%l,%c%V%)"
+    let statusline.="\ %=%-14.(%l,%c%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
 endfunction

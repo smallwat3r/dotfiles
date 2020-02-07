@@ -14,7 +14,7 @@ window:
     x: 5
     y: 0
 
-  dynamic_padding: true
+  dynamic_padding: false
   decorations: buttonless
   startup_mode: Windowed
 
@@ -96,7 +96,10 @@ mouse:
   hide_when_typing: true
 
   url:
-    modifiers: None
+    launcher:
+      program: open
+      args: []
+    # modifiers: None
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
