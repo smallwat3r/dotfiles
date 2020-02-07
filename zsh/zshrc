@@ -206,18 +206,18 @@ parse_git_branch() {
 }
 
 RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
-VIMODE="%{$fg[green]%}I%{$reset_color%}"
+VIMODE=""
 PROMPT='$VIMODE ${PWD##*/} %% '
 
-# change cursor shape on vim-mode and show I for INSERT and C for
-# visual and normal mode.
+# change cursor shape on vim-mode and show CMD when in visual
+# or normal mode.
 zle-keymap-select () {
     if [ $KEYMAP = vicmd ]; then
         printf "\033[2 q"
-        VIMODE="%{$fg[magenta]%}C%{$reset_color%}"
+        VIMODE="%{$fg[magenta]%}CMD%{$reset_color%}"
     else
         printf "\033[6 q"
-        VIMODE="%{$fg[green]%}I%{$reset_color%}"
+        VIMODE=""
     fi
     zle reset-prompt
 }
@@ -239,4 +239,3 @@ bindkey -M vicmd 'y' vi-yank-xclip
 
 # activate zsh-vim.
 bindkey -v
-
