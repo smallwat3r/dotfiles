@@ -26,14 +26,8 @@ links:
     __root__.config/nvim/init.vim:                      vim/init.vim
     __root__.config/nvim/colors/smallwat3r.vim:         vim/colors/smallwat3r.vim
     __root__.pip/pip.conf:                              pip/pip.conf
-    /usr/local/bin/sketch:                              bin/sketch
-    /usr/local/bin/pyzip:                               bin/pyzip
-    /usr/local/bin/tubestatus:                          bin/tubestatus
-    /usr/local/bin/256colors:                           bin/256colors
-    /usr/local/bin/gnvim:                               bin/gnvim
     /usr/local/bin/localip:                             bin/localip
     /usr/local/bin/battery:                             bin/battery
-    /usr/local/bin/mypath:                              bin/mypath
 
 # Brew packages.
 brew:
@@ -77,6 +71,6 @@ cask:
     # - nordvpn
     - slack
     - alfred
-    - ngrok
-    - thunderbird
+    # - ngrok
+    # - thunderbird
     - google-chrome

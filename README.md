@@ -9,23 +9,34 @@ My config files for macOS.
 Note: my `vim/vimrc` is not maintained anymore as I switched to neovim (see `vim/init.vim`)  
 
 Dotfiles are managed by a YAML config file `config.yml`  
-
 Hence it requires Perl `YAML::XS` 
 ```sh
 perl -MCPAN -e 'install YAML::XS'
 ```
 
-Clone repo with submodules and make files executable  
+Clone repo
 ```sh
 git clone https://github.com/smallwat3r/dotfiles.git
 ```
+
+## Commands
 
 Access man pages  
 ```sh
 sudo chown -R $(whoami) /usr/local/share/man/man3
 ```
 
-zsh antigen  
+Homebrew
+```sh
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Oh My Zsh
+```sh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+Antigen (zsh) 
 ```sh
 curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
 ```
@@ -36,10 +47,22 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-## Commands
+python pip requirements
 ```sh
-sh install   # installs everything
+pip3 install -r pip/requirements.txt
+```
 
-perl symlink   # run symlinks only
-perl brew      # run brew & casks only
+macOS settings
+```sh
+sh macos/macos
+```
+
+Install brew tools
+```sh
+perl brew
+```
+
+Symlink dotfiles
+```sh
+perl symlink
 ```
