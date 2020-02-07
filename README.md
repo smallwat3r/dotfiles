@@ -2,14 +2,11 @@
 
 My config files for macOS.  
 
-**This repo is updated super frequently**  
-
+**This repo is primarly created for personnal use, and is updated frequently**  
 **!!! Please create backups of your current set-up if you intend to use these dotfiles !!!**  
 
-Note: my `vim/vimrc` is not maintained anymore as I switched to neovim (see `vim/init.vim`)  
-
 Dotfiles are managed by a YAML config file `config.yml`  
-Hence it requires Perl `YAML::XS` 
+It requires Perl `YAML::XS` 
 ```sh
 perl -MCPAN -e 'install YAML::XS'
 ```
@@ -21,17 +18,17 @@ git clone https://github.com/smallwat3r/dotfiles.git
 
 ## Commands
 
-Access man pages  
+Allow user to access man pages (needed to install packages via brew)
 ```sh
 sudo chown -R $(whoami) /usr/local/share/man/man3
 ```
 
-Homebrew
+Install Homebrew
 ```sh
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-Oh My Zsh
+Install oh-my-zsh
 ```sh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
@@ -41,12 +38,12 @@ Install brew packages, tools, and casks
 perl brew
 ```
 
-Antigen (zsh) 
+Install antigen (zsh) (will be symlinked to `~/.antigen/antigen.zsh`)
 ```sh
 curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
 ```
 
-neovim vim-plug  
+neovim vim-plug plugin manager
 ```sh
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -54,7 +51,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 # Then run :PlugInstall in neovim
 ```
 
-python requirements
+python requirements (mainly for formatting)
 ```sh
 pip3 install -r pip/requirements.txt
 ```
@@ -64,7 +61,7 @@ macOS settings
 sh macos/macos
 ```
 
-Symlink dotfiles
+Symlink all dotfiles to system
 ```sh
 perl symlink
 ```
