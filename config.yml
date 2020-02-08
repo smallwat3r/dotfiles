@@ -56,7 +56,7 @@ brew:
     # - fd
     # - gawk
     # - translate-shell
-    # - the_silver_searcher  # ag
+    - the_silver_searcher  # ag
     - ripgrep
     # - vim
     - neovim
