@@ -224,7 +224,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
-    return fugitive#head()."\uE725"
+    return "  \uE725 ".fugitive#head()
   else
     return ''
 endfunction
