@@ -150,7 +150,7 @@ set foldlevel=99
 
 " Ignore files and folders
 set wildignore=*.swp,*.bak
-set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb
+set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
 set wildignore+=*/__pycache__/*,*/venv/*
 
 " Deactivate bells and alerts
@@ -245,8 +245,8 @@ function! ActiveStatusLine()
     let statusline.="%#VisualColor#%{(mode()=='v')?'\ VISUAL\ ':''}"
     let statusline.="%#CommandColor#%{(mode()=='c')?'\ COMMAND\ ':''}"
     let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  ⎧+⎫':''}"
-    let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
+    let statusline.="%{&modified?'\  \uf457':''}"
+    let statusline.="%{&readonly?'\  \uf023':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
@@ -256,8 +256,8 @@ endfunction
 function! InactiveStatusLine()
     let statusline=" \uF114 %n "
     let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  ⎧+⎫':''}"
-    let statusline.="%{&readonly?'\  ⎧RO⎫':''}"
+    let statusline.="%{&modified?'\  \uf457':''}"
+    let statusline.="%{&readonly?'\  \uf023':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
