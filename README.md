@@ -57,9 +57,10 @@ python requirements (mainly for formatting)
 pip3 install -r pip/requirements.txt
 ```
 
-macOS settings (log user out and back in for all changes to apply)
+macOS settings
 ```sh
 sh macos/macos
+# Then log user out and back in for all changes to apply
 ```
 
 Symlink all dotfiles to system
