@@ -15,8 +15,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
+
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
+
 Plug 'tpope/vim-vinegar'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'alvan/vim-closetag'
