@@ -91,7 +91,7 @@ alias gvi="gnvim"
 alias mvi="mvim"
 
 alias dots="cd $HOME/dotfiles"
-alias vie="$EDITOR $HOME/dotfiles/vim/vimrc"
+alias vie="$EDITOR $HOME/dotfiles/vim/init.vim"
 alias zshe="$EDITOR $HOME/dotfiles/zsh/zshrc"
 
 alias python="python3"
