@@ -6,9 +6,8 @@
 "
 
 "
-" PLUGIN MANAGER
+" PLUGIN MANAGER (vim-plug)
 " --------------------------------------------------------------------
-" Using vim-plug
 call plug#begin()
 
 Plug 'dense-analysis/ale'
@@ -82,7 +81,6 @@ let g:vem_tabline_show_number='buffnr'
 " GENERAL BEHAVIOUR
 " --------------------------------------------------------------------
 syntax on
-
 filetype plugin indent on
 
 " Remap leader
@@ -109,6 +107,7 @@ set ttyfast
 set laststatus=2  " always show statusline
 set noshowcmd
 set noruler
+set nonu  " hide row numbers
 set modifiable
 set showmatch  " matching brackets
 set mouse=a  " mouse support
@@ -121,7 +120,6 @@ set lazyredraw  " no redraw
 set ignorecase  " search ignore case
 set scrolljump=8  " minimal nb of lines to scroll when cursor gets off the screen
 set autochdir  " auto change working directory
-set nonu  " hide row numbers
 set fillchars=vert:┃
 set nocompatible " modern vim
 set showmode  " show vim mode (insert, visual, replace)
@@ -129,6 +127,9 @@ set wildignorecase
 set matchpairs+=<:>
 set splitbelow  " for ex preview windows will appear at the bottom
 set noshowmode " don't show mode (aleady in statusline)
+
+" Silence msg completion menu
+set shortmess+=c
 
 " md filetype
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
@@ -196,13 +197,13 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " --------------------------------------------------------------------
 set background=dark
 set t_Co=256
-
 colo smallwat3r
 
 " Other colortheme for Markdown
 autocmd! BufEnter,BufNewFile *.md colo elflord
 autocmd! BufLeave *.md colo smallwat3r
 
+" GUI mode
 if (has("gui_running"))
     set linespace=0
     set fontligatures
@@ -220,7 +221,7 @@ let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
-" Statusline
+" Show git info in statusline
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
@@ -263,6 +264,7 @@ function! InactiveStatusLine()
     return statusline
 endfunction
 
+" Set statusline
 set statusline=%!ActiveStatusLine()
 
 " Switch windows statusline
@@ -285,9 +287,8 @@ nmap <C-l> <C-w>l
 map <tab> %
 
 " Go start or end of line
-nmap H ^
-nmap L $
-vmap L g_
+nmap B ^
+nmap E $
 
 " Copy paragraph
 nmap cp yap<S-}>p
@@ -338,8 +339,8 @@ endfunction
 autocmd BufWritePre * :call TrimTrailingWS()
 autocmd FileType markdown let b:noStripWhitespace=1
 
-" Count errors in status bar.
-fun! LinterStatus() abort
+" Count errors in status bar
+function! LinterStatus() abort
     let l:counts=ale#statusline#Count(bufnr(''))
     let l:all_errors=l:counts.error + l:counts.style_error
     let l:all_non_errors=l:counts.total - l:all_errors
@@ -347,7 +348,7 @@ fun! LinterStatus() abort
                 \   '%dW %dE',
                 \   all_non_errors,
                 \   all_errors )
-endfun
+endfunction
 
 " Custom fold lines format
 function! CustomFoldText()
