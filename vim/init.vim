@@ -26,13 +26,17 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
-Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/vim-highlighturl'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
 Plug 'pacha/vem-tabline'
 Plug 'tpope/vim-unimpaired'
+
+" Completion
+Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/neopairs.vim'
+Plug 'Shougo/neoinclude.vim'
 
 call plug#end()
 
@@ -42,8 +46,6 @@ call plug#end()
 
 " use deoplete
 let g:deoplete#enable_at_startup=1
-call deoplete#custom#source('_', 'max_menu_width', 80)
-call deoplete#custom#source('_', 'min_pattern_length', 1)
 let g:deoplete#sources#jedi#show_docstring=1
 
 " vim git-gutter
@@ -55,8 +57,8 @@ let g:gitgutter_sign_removed='-'
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_set_highlights=0
-let g:ale_sign_error='>'
-let g:ale_sign_warning='-'
+let g:ale_sign_error='>>'
+let g:ale_sign_warning='--'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 " neoformat
@@ -314,7 +316,7 @@ nmap <silent><leader>cd :cd %:p:h<CR>
 nmap <silent>;; :w<CR>
 
 " delete current buffer, keep window layout
-nmap <silent><leader>d :bp\|bd #<CR>
+nmap <silent>;d :bp\|bd #<CR>
 
 " improve pop up completion menu
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
