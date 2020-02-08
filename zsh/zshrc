@@ -206,7 +206,7 @@ parse_git_branch() {
 
 RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}"
 VIMODE=""
-PROMPT="$VIMODE${PWD##*/} %% "
+PROMPT='$VIMODE${PWD##*/} %% '
 
 # change cursor shape on vim-mode and show CMD when in visual
 # or normal mode.
