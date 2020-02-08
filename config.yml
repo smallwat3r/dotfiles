@@ -7,12 +7,10 @@
 # All non-standard directories, to create if doesn't exist.
 directories:
     - __root__.pip
-    - __root__.vim/autoload
     - __root__.antigen
     - __root__.config/alacritty
     - __root__.config/nvim
     - __root__.config/nvim/colors
-    - __root__.vim/colors
 
 # List of all symlinks.
 links:
