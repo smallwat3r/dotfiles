@@ -62,6 +62,11 @@ macOS settings
 sh macos/macos
 ```
 
+Hack font
+```sh
+wget -O hack-font.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+```
+
 Symlink all dotfiles to system
 ```sh
 perl symlink
