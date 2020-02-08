@@ -62,12 +62,19 @@ macOS settings
 sh macos/macos
 ```
 
-Hack font
-```sh
-wget -O hack-font.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
-```
-
 Symlink all dotfiles to system
 ```sh
 perl symlink
+```
+
+Hack fonts
+```sh
+# Original
+wget -O hack-font-family.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+
+# Nerd fonts
+wget -O hack-regular-nerd.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+wget -O hack-italic-nerd.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Italic/complete/Hack%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
+wget -O hack-italic-bold-nerd.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/BoldItalic/complete/Hack%20Bold%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
+wget -O hack-bold-nerd.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
 ```

@@ -56,8 +56,8 @@ let g:gitgutter_sign_removed='-'
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_set_highlights=0
-let g:ale_sign_error='>>'
-let g:ale_sign_warning='--'
+let g:ale_sign_error='!'
+let g:ale_sign_warning='?'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 " neoformat
@@ -224,7 +224,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
-    return '⎧'.fugitive#head().'⎫'
+    return fugitive#head()."\uE725"
   else
     return ''
 endfunction
@@ -238,7 +238,7 @@ hi CommandColor guifg=Black guibg=Pink ctermbg=13 ctermfg=0
 
 " Statusline active
 function! ActiveStatusLine()
-    let statusline="⎧%n⎫"
+    let statusline=" \uF114 %n "
     let statusline.="%#NormalColor#%{(mode()=='n')?'\ NORMAL\ ':''}"
     let statusline.="%#InsertColor#%{(mode()=='i')?'\ INSERT\ ':''}"
     let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ REPLACE\ ':''}"
@@ -254,7 +254,7 @@ endfunction
 
 " Statusline inactive
 function! InactiveStatusLine()
-    let statusline="⎧%n⎫"
+    let statusline=" \uF114 %n "
     let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
     let statusline.="%{&modified?'\  ⎧+⎫':''}"
     let statusline.="%{&readonly?'\  ⎧RO⎫':''}"

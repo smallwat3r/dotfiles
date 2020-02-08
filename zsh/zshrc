@@ -204,9 +204,9 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 
-RPROMPT='%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}'
+RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}"
 VIMODE=""
-PROMPT='$VIMODE${PWD##*/} %% '
+PROMPT="$VIMODE${PWD##*/} %% "
 
 # change cursor shape on vim-mode and show CMD when in visual
 # or normal mode.
