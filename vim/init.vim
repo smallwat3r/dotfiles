@@ -184,7 +184,6 @@ command! WW :w !sudo tee % >/dev/null
 " Disable automatic insertion of comment markers
 set fo=cjql
 autocmd FileType *         setl fo-=o fo-=r
-autocmd FileType gitcommit setl fo=cjql com+=n:>
 
 " access pydocs
 nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
