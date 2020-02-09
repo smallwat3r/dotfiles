@@ -27,16 +27,17 @@ tabspaces: 4
 
 font:
   normal:
-    family: Hack Nerd Font Mono
+    # family: Hack Nerd Font Mono
+    family: mononoki Nerd Font Mono
     style: Regular
   italic:
-    family: Hack Nerd Font Mono
+    family: mononoki Nerd Font Mono
     style: Italic
   bold:
-    family: Hack Nerd Font Mono
+    family: mononoki Nerd Font Mono
     style: Bold
 
-  size: 12
+  size: 14
 
   offset:
     x: 0
