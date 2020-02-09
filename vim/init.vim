@@ -81,7 +81,7 @@ command! -bang -nargs=* Rg
 let g:vem_tabline_show_number='buffnr'
 
 "
-" GENERAL BEHAVIOUR
+" GENERAL CONFIG
 " --------------------------------------------------------------------
 syntax on
 filetype plugin indent on
@@ -94,9 +94,13 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 
-" Indentation other filetypes
-autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
-autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
+" Special Filetypes
+autocmd FileType make   setlocal ts=8 sw=8 noexpandtab  " Makefile
+autocmd FileType go     setlocal ts=8 sw=8 noexpandtab  " Golang
+
+" Yaml
+autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Encodings
 setglobal termencoding=utf-8 fileencodings=
