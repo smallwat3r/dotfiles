@@ -200,17 +200,18 @@ if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi  # exec tmux
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # prompt (with zsh vim-mode)
+VIMODE=""
+PROMPT='$VIMODE${PWD##*/} %% '
+
+# get current git branch name
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 
-RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}"
-VIMODE=""
-PROMPT='$VIMODE${PWD##*/} %% '
-
-# change cursor shape on vim-mode and show CMD when in visual
-# or normal mode.
+# change cursor shape on insert mode and show CMD when in visual
+# or normal mode. Also display git branch on right side of prompt.
 zle-keymap-select () {
+    RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}"
     if [ $KEYMAP = vicmd ]; then
         printf "\033[2 q"
         VIMODE="%{$fg[magenta]%}CMD%{$reset_color%} "
@@ -222,7 +223,9 @@ zle-keymap-select () {
 }
 zle -N zle-keymap-select
 
+# init (vim insert mode as default)
 zle-line-init () {
+    RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$reset_color%}"
     zle -K viins
     printf "\033[6 q"
 }
