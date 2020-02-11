@@ -28,14 +28,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
-Plug 'itchyny/vim-highlighturl'
 Plug 'pacha/vem-tabline'
 Plug 'tpope/vim-unimpaired'
 
 " Completion
-Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neopairs.vim'
 Plug 'Shougo/neoinclude.vim'
@@ -48,7 +45,6 @@ call plug#end()
 
 " use deoplete
 let g:deoplete#enable_at_startup=1
-let g:deoplete#sources#jedi#show_docstring=1
 
 " vim git-gutter
 let g:gitgutter_sign_added='+'
