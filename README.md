@@ -68,14 +68,8 @@ Symlink all dotfiles to system
 perl symlink
 ```
 
-Mononoki Nerd fonts
+Metrickal font
 ```sh
-wget -O mononoki-regular-nerd.ttf \
-    https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Mononoki/Regular/complete/mononoki-Regular%20Nerd%20Font%20Complete%20Mono.ttf
-wget -O mononoki-italic-nerd.ttf \
-    https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Mononoki/Italic/complete/mononoki%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
-wget -O mononoki-italic-bold-nerd.ttf \
-    https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Mononoki/Bold-Italic/complete/mononoki%20Bold%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
-wget -O mononoki-bold-nerd.ttf \
-    https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Mononoki/Bold/complete/mononoki%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+wget -O metrickal-regular.otf \
+    https://github.com/chrissimpkins/codeface/raw/master/fonts/metrickal/Metrickal-Regular.otf
 ```

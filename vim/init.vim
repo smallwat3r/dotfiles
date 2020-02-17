@@ -227,7 +227,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
-    return "  \uE725 ".fugitive#head()
+    return " < ".fugitive#head()." >"
   else
     return ''
 endfunction
@@ -248,8 +248,8 @@ function! ActiveStatusLine()
     let statusline.="%#VisualColor#%{(mode()=='v')?'\ VISUAL\ ':''}"
     let statusline.="%#CommandColor#%{(mode()=='c')?'\ COMMAND\ ':''}"
     let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  \uf457':''}"
-    let statusline.="%{&readonly?'\  \uf023':''}"
+    let statusline.="%{&modified?'\  [+]':''}"
+    let statusline.="%{&readonly?'\  [ro]':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
@@ -259,8 +259,8 @@ endfunction
 function! InactiveStatusLine()
     let statusline=" \uF114 %n "
     let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  \uf457':''}"
-    let statusline.="%{&readonly?'\  \uf023':''}"
+    let statusline.="%{&modified?'\  [+]':''}"
+    let statusline.="%{&readonly?'\  [ro]':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
     let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
     return statusline
