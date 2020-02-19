@@ -27,16 +27,16 @@ tabspaces: 4
 
 font:
   normal:
-    family: Metrickal
+    family: Code New Roman
     style: Regular
-  # italic:
-  #   family:
-  #   style: Italic
-  # bold:
-  #   family:
-  #   style: Bold
+  italic:
+    family: Code New Roman
+    style: Italic
+  bold:
+    family: Code New Roman
+    style: Bold
 
-  size: 13.5
+  size: 15
 
   offset:
     x: 0

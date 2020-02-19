@@ -68,8 +68,7 @@ Symlink all dotfiles to system
 perl symlink
 ```
 
-Metrickal font
+Code New Roman font
 ```sh
-wget -O metrickal-regular.otf \
-    https://github.com/chrissimpkins/codeface/raw/master/fonts/metrickal/Metrickal-Regular.otf
+wget https://dl.dafont.com/dl/?f=code_new_roman
 ```
