@@ -50,33 +50,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # zsh suggestioimajesns colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 
-# Overwrite zsh-syntax-highlighting default defaults
-typeset -A ZSH_HIGHLIGHT_STYLES
-
-# underline
-for e (command precommand function builtin alias reserved-word); do
-    ZSH_HIGHLIGHT_STYLES[$e]="underline"; done
-
-# flash green
-for e (redirection commandseparator); do ZSH_HIGHLIGHT_STYLES[$e]="fg=118"; done
-
-# none style
-for e (globbing rc-quote path path_separator history-expansion command-substitution
-    command-substitution-unquoted command-substitution-quoted command-substitution-delimiter
-    command-substitution-delimiter-unquoted command-substitution-delimiter-quoted
-    process-substitution process-substitution-delimiter single-hyphen-option
-    double-hyphen-option back-quoted-argument back-quoted-argument-unclosed
-    back-quoted-argument-unclosed single-quoted-argument single-quoted-argument-unclosed
-    double-quoted-argument double-quoted-argument-unclosed dollar-quoted-argument
-    dollar-quoted-argument dollar-double-quoted-argument back-double-quoted-argument
-    back-dollar-quoted-argument assign named-fd arg0 path_prefix path_prefix_separator
-    default hashed-command
-    ); do ZSH_HIGHLIGHT_STYLES[$e]="none"; done
-
-# other
-ZSH_HIGHLIGHT_STYLES[comment]="fg=146"
-ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=161"  # errors
-
 #
 # ALIASES
 # --------------------------------------------------------------------------------------
