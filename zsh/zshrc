@@ -181,11 +181,13 @@ PROMPT='$VIMODE${PWD##*/} %% '
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
+# check if branch is dirty
+dirty_branch() { git diff --quiet || echo '*' }
 
 # change cursor shape on insert mode and show CMD when in visual
 # or normal mode. Also display git branch on right side of prompt.
 zle-keymap-select () {
-    RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}%(?.. [%?])%{$reset_color%}"
+    RPROMPT="%{$fg[yellow]%}$(parse_git_branch)$(dirty_branch)%{$fg[red]%}%(?.. [%?])%{$reset_color%}"
     if [ $KEYMAP = vicmd ]; then
         printf "\033[2 q"
         VIMODE="%{$fg[magenta]%}CMD%{$reset_color%} "
