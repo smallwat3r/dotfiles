@@ -27,14 +27,14 @@ tabspaces: 4
 
 font:
   normal:
-    family: Metrickal
+    family: SF Mono
+    style: Light
+  italic:
+    family: SF Mono
+    style: LightItalic
+  bold:
+    family: SF Mono
     style: Regular
-  # italic:
-  #   family: Code New Roman
-  #   style: Italic
-  # bold:
-  #   family: Code New Roman
-  #   style: Bold
 
   size: 13
 
