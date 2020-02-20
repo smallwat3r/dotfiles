@@ -50,6 +50,8 @@ let g:signify_sign_delete_first_line='‾'
 let g:signify_sign_change='~'
 
 " use deoplete
+
+let g:python3_host_prog='/usr/local/bin/python3'
 let g:deoplete#enable_at_startup=1
 
 " Ale
