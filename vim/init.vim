@@ -18,7 +18,7 @@ Plug 'tpope/vim-eunuch'
 
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 
 Plug 'tpope/vim-vinegar'
 Plug 'dhruvasagar/vim-table-mode'
@@ -43,13 +43,14 @@ call plug#end()
 " PLUGINS CONFIG
 " --------------------------------------------------------------------
 
+" signify
+let g:signify_sign_add='+'
+let g:signify_sign_delete='_'
+let g:signify_sign_delete_first_line='‾'
+let g:signify_sign_change='~'
+
 " use deoplete
 let g:deoplete#enable_at_startup=1
-
-" vim git-gutter
-let g:gitgutter_sign_added='+'
-let g:gitgutter_sign_modified='~'
-let g:gitgutter_sign_removed='-'
 
 " Ale
 let g:ale_echo_msg_error_str='E'
@@ -103,6 +104,9 @@ setglobal termencoding=utf-8 fileencodings=
 scriptencoding utf-8
 set encoding=utf8
 
+" Async updatetime
+set updatetime=100
+
 set nomodeline
 set autoread  " reread changed files automatically
 set ffs=unix
@@ -110,7 +114,7 @@ set ttyfast
 set laststatus=2  " always show statusline
 set noshowcmd
 set noruler
-set nonu  " hide row numbers
+set rnu  " relative line numbers
 set modifiable
 set showmatch  " matching brackets
 set mouse=a  " mouse support
@@ -213,6 +217,9 @@ hi Visual              ctermfg=233 ctermbg=229  cterm=NONE guifg=#121212 guibg=#
 
 hi ALEErrorSign        ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
 hi ALEWarningSign      ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
+
+hi SignColumn          ctermbg=NONE cterm=NONE   guibg=NONE gui=NONE
+hi LineNr              ctermfg=239  ctermbg=NONE guifg=#4e4e4e guibg=NONE
 
 " GUI mode
 if (has("gui_running"))
