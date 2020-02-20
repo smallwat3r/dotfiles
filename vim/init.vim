@@ -79,7 +79,7 @@ let g:vem_tabline_show_number='buffnr'
 "
 " GENERAL CONFIG
 " --------------------------------------------------------------------
-syntax on
+syntax off
 filetype plugin indent on
 
 " Remap leader
@@ -197,13 +197,22 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 "
 " THEME
 " --------------------------------------------------------------------
-set background=dark
-set t_Co=256
-colo smallwat3r
 
-" Other colortheme for Markdown
-autocmd! BufEnter,BufNewFile *.md colo elflord
-autocmd! BufLeave *.md colo smallwat3r
+" Colorize some stuff (syntax off)
+hi DiffAdd             ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
+hi DiffChange          ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
+hi DiffText            ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
+hi DiffDelete          ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
+
+hi Folded              ctermfg=231 ctermbg=239  guifg=#ffffff guibg=#4e4e4e
+hi MatchParen          ctermfg=237 ctermbg=200  guifg=#3a3a3a guibg=#ff00d7
+
+hi VertSplit           ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE    gui=NONE
+hi StatuslineNC        ctermfg=233 ctermbg=240  cterm=NONE guifg=#121212 guibg=#585858 gui=NONE
+hi Visual              ctermfg=233 ctermbg=229  cterm=NONE guifg=#121212 guibg=#ffffaf gui=NONE
+
+hi ALEErrorSign        ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
+hi ALEWarningSign      ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
 
 " GUI mode
 if (has("gui_running"))
@@ -227,7 +236,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 function! GitInfo()
   let git = fugitive#head()
   if git != ''
-    return " < ".fugitive#head()." >"
+    return "@(".fugitive#head().")"
   else
     return ''
 endfunction
@@ -241,28 +250,28 @@ hi CommandColor guifg=Black guibg=Pink ctermbg=13 ctermfg=0
 
 " Statusline active
 function! ActiveStatusLine()
-    let statusline=" \uF114 %n "
-    let statusline.="%#NormalColor#%{(mode()=='n')?'\ NORMAL\ ':''}"
-    let statusline.="%#InsertColor#%{(mode()=='i')?'\ INSERT\ ':''}"
-    let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ REPLACE\ ':''}"
-    let statusline.="%#VisualColor#%{(mode()=='v')?'\ VISUAL\ ':''}"
-    let statusline.="%#CommandColor#%{(mode()=='c')?'\ COMMAND\ ':''}"
-    let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  [+]':''}"
-    let statusline.="%{&readonly?'\  [ro]':''}"
+    let statusline=" %n "
+    let statusline.="%#NormalColor#%{(mode()=='n')?'\ N\ ':''}"
+    let statusline.="%#InsertColor#%{(mode()=='i')?'\ I\ ':''}"
+    let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ R\ ':''}"
+    let statusline.="%#VisualColor#%{(mode()=='v')?'\ V\ ':''}"
+    let statusline.="%#CommandColor#%{(mode()=='c')?'\ C\ ':''}"
+    let statusline.="\%*\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="%{&modified?'\  (+)':''}"
+    let statusline.="%{&readonly?'\  (ro)':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
-    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
+    let statusline.="\ %{strlen(&fenc)?&fenc:&enc} "
     return statusline
 endfunction
 
 " Statusline inactive
 function! InactiveStatusLine()
-    let statusline=" \uF114 %n "
-    let statusline.="\%*\ %<%F\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  [+]':''}"
-    let statusline.="%{&readonly?'\  [ro]':''}"
+    let statusline=" %n "
+    let statusline.="\%*\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="%{&modified?'\  (+)':''}"
+    let statusline.="%{&readonly?'\  (ro)':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
-    let statusline.="\ %{strlen(&fenc)?&fenc:&enc}\ %P\ %L "
+    let statusline.="\ %{strlen(&fenc)?&fenc:&enc} "
     return statusline
 endfunction
 
