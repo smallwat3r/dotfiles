@@ -67,8 +67,3 @@ Symlink all dotfiles to system
 ```sh
 perl symlink
 ```
-
-Code New Roman font
-```sh
-wget https://dl.dafont.com/dl/?f=code_new_roman
-```
