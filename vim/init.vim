@@ -114,7 +114,7 @@ set ttyfast
 set laststatus=2  " always show statusline
 set noshowcmd
 set noruler
-set rnu  " relative line numbers
+set nu rnu  " relative line numbers and current line number
 set modifiable
 set showmatch  " matching brackets
 set mouse=a  " mouse support
@@ -190,7 +190,7 @@ command! WW :w !sudo tee % >/dev/null
 
 " Disable automatic insertion of comment markers
 set fo=cjql
-autocmd FileType *         setl fo-=o fo-=r
+autocmd FileType * setl fo-=o fo-=r
 
 " access pydocs
 nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
