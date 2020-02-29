@@ -30,7 +30,7 @@ export LC_ALL="en_US.UTF-8"
 export CLICOLOR=1
 export EDITOR=/usr/local/bin/nvim
 
-export PATH=$PATH:$HOME/.cargo/bin:$HOME/Library/Python/3.7/bin:/usr/local/bin/nvim
+export PATH=$PATH:$HOME/.cargo/bin:/usr/local/bin/nvim:/usr/local/opt/python@3.8/bin
 
 # grep colors
 export GREP_OPTIONS='--color=auto'
@@ -67,8 +67,8 @@ alias dots="cd $HOME/dotfiles"
 alias vie="$EDITOR $HOME/dotfiles/vim/init.vim"
 alias zshe="$EDITOR $HOME/dotfiles/zsh/zshrc"
 
-alias python="python3"
-alias pip="pip3"
+alias python="python3.8"
+alias pip="pip3.8"
 
 alias lg="lazygit"
 alias ddg="ddgr"
