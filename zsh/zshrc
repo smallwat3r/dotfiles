@@ -75,7 +75,7 @@ alias ddg="ddgr"
 
 alias fonts="open $HOME/Library/Fonts"
 
-alias venv="virtualenv -p python3 venv --no-site-package"
+alias venv="python -m venv venv"
 
 alias c="clear"
 alias qq="exit"
