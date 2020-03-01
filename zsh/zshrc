@@ -169,13 +169,15 @@ extract() {
 }
 
 #
-# EOF scripts
+# LOAD
 # --------------------------------------------------------------------------------------
 source $ZSH/oh-my-zsh.sh
 if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi  # exec tmux on start
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# prompt (with zsh vim-mode)
+#
+# PROMPT (with vim-like mode)
+# --------------------------------------------------------------------------------------
 VIMODE=""
 PROMPT='$VIMODE${PWD##*/} %% '
 
@@ -186,7 +188,7 @@ parse_git_branch() {
 
 # change cursor shape on insert mode and show CMD when in visual
 # or normal mode. Also display git branch on right side of prompt.
-zle-keymap-select () {
+zle-keymap-select() {
     RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}%(?.. %?)%{$reset_color%}"
     if [ $KEYMAP = vicmd ]; then
         printf "\033[2 q"
@@ -200,7 +202,7 @@ zle-keymap-select () {
 zle -N zle-keymap-select
 
 # init (vim insert mode as default)
-zle-line-init () {
+zle-line-init() {
     RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}%(?.. %?)%{$reset_color%}"
     zle -K viins
     printf "\033[6 q"
@@ -208,7 +210,7 @@ zle-line-init () {
 zle -N zle-line-init
 
 # zsh-vim yank copy to clipboard.
-function vi-yank-xclip {
+vi-yank-xclip() {
     zle vi-yank
     echo "$CUTBUFFER" | pbcopy
 }
