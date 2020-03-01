@@ -32,6 +32,8 @@ export EDITOR=/usr/local/bin/nvim
 
 export PATH=$PATH:$HOME/.cargo/bin:/usr/local/bin/nvim:/usr/local/opt/python@3.8/bin
 
+export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
+
 # grep colors
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
@@ -47,7 +49,7 @@ export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# zsh suggestioimajesns colors
+# zsh auto-suggestions colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 
 #

@@ -19,6 +19,7 @@ for ($red = 0; $red < 6; $red++) {
     }
 }
 
+
 # colors 232-255 are a grayscale ramp, intentionally leaving out
 # black and white
 for ($gray = 0; $gray < 24; $gray++) {

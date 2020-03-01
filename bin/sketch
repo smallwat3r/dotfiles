@@ -1,0 +1,136 @@
+#!/bin/bash
+# File  : sketch
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 01.01.2020
+#         __       __      __
+#    ___ / /_____ / /_____/ /
+#   (_-</  '_/ -_) __/ __/ _ \
+#  /___/_/\_\\__/\__/\__/_//_/
+#
+#  v2.1
+
+init() {
+    # Load config file from the possible locations.
+    conf_dir=(.sketchconfig ../.sketchconfig $XDG_CONFIG_HOME/.sketchconfig
+        $HOME/.config/.sketchconfig $HOME/.sketchconfig)
+    for d in "${conf_dir[@]}"; do
+        if [ -f $d ]; then
+            . $d
+            break
+        fi
+    done
+
+    # Pick prefered editor (vim=default).
+    editor=$editor
+    if [[ -z $editor ]]; then
+        editor=vim
+    fi
+
+    # Pick archives dir.
+    sketch_dir=$sketch_dir
+    if [[ -z $sketch_dir ]]; then
+        if [[ -d $XDG_DATA_HOME ]]; then
+            sketch_dir=$XDG_DATA_HOME/sketch_dir
+        else
+            sketch_dir=$HOME/.local/share/sketch_dir
+        fi
+    fi
+
+    # Create archives dir if not exist.
+    if [ ! -d $sketch_dir ]; then
+        mkdir $sketch_dir
+    fi
+}
+
+help() {
+    printf "
+            __       __      __
+       ___ / /_____ / /_____/ /
+      (_-</  '_/ -_) __/ __/ _ \'
+     /___/_/\_\\__/\__/\__/_//_/
+
+     Sketch is a small productivity tool to rapidly generate
+     and access draft files from the terminal.
+     Created by Matthieu Petiteau <mpetiteau.pro@gmail.com>
+
+     A nice thing is to alias in your .bashrc sketch to
+     access it more easily. Personaly I'm using 'alias s=sketch'
+
+     version 2.1
+
+
+     sketch            automatically open a new draft file from the
+                       sketch directory.
+
+     sketch -r<number> open archived saved file. Example:
+                       sketch -r1 will reopen the last sketch file saved
+                       sketch -r2 will reopen the previous one
+                       etc...
+
+     Other Arguments
+     ------------------------------------------------------------
+
+     -h, --help        show this help message and exit.
+     -pu, --purge      purge all the files archived in set-up temp dir.
+     -v, --version     sketch version.
+    \n"
+}
+
+new() {
+    file=$(($(ls $sketch_dir | wc -l))).sketch
+    $editor $sketch_dir/$file
+}
+
+reopen() {
+    av=$(ls $sketch_dir | wc -l)
+    if [ $av -gt $1 ] || [ $av -eq $1 ]; then
+        file=$(($(ls $sketch_dir | wc -l) - $1)).sketch
+        $editor $sketch_dir/$file
+    else
+        printf "No sketch file found, try to look at a lower level.\n"
+    fi
+}
+
+purge() {
+    if [ -n "$(ls -A $sketch_dir 2>/dev/null)" ]; then
+        rm $sketch_dir/*
+        printf "Sketch files have been purged.\n"
+    else
+        printf "No files to purge.\n"
+    fi
+}
+
+version() {
+    printf "sketch v2.1\n"
+}
+
+error() {
+    printf "Command does not exists.\n"
+}
+
+init
+param=$1
+
+if [[ -z $param ]]; then
+    new
+    exit 0
+fi
+
+case $param in
+"-h" | "--help")
+    help
+    ;;
+$(awk '/^-r[0-9]+$/' <<<${param}))
+    reopen "${param:2}"
+    ;;
+"-pu" | "--purge")
+    purge
+    ;;
+"-v" | "--version")
+    version
+    ;;
+*)
+    error
+    ;;
+esac
+exit 0
