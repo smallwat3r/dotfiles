@@ -5,9 +5,9 @@ My config files for macOS.
 **This repo is primarly created for personnal use, and is updated frequently**  
 **!!! Please create backups of your current set-up if you intend to use these dotfiles !!!**  
 
-Clone repo
+Clone repo (with submodules)
 ```sh
-git clone https://github.com/smallwat3r/dotfiles.git
+git clone --recursive https://github.com/smallwat3r/dotfiles.git
 ```
 
 ## Commands
