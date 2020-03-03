@@ -171,43 +171,37 @@ extract() {
 #
 # LOAD
 # --------------------------------------------------------------------------------------
-source $ZSH/oh-my-zsh.sh
 if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi  # exec tmux on start
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #
 # PROMPT (with vim-like mode)
 # --------------------------------------------------------------------------------------
-VIMODE=""
-PROMPT='$VIMODE${PWD##*/} %% '
 
 # get current git branch name
 parse_git_branch() {
     git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 
-# change cursor shape on insert mode and show CMD when in visual
-# or normal mode. Also display git branch on right side of prompt.
-zle-keymap-select() {
-    RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}%(?.. %?)%{$reset_color%}"
-    if [ $KEYMAP = vicmd ]; then
-        printf "\033[2 q"
-        VIMODE="%{$fg[magenta]%}CMD%{$reset_color%} "
-    else
-        printf "\033[6 q"
-        VIMODE=""
-    fi
-    zle reset-prompt
-}
-zle -N zle-keymap-select
+setopt NO_prompt_subst
 
-# init (vim insert mode as default)
-zle-line-init() {
-    RPROMPT="%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}%(?.. %?)%{$reset_color%}"
-    zle -K viins
-    printf "\033[6 q"
-}
-zle -N zle-line-init
+# source plugin
+source ~/.config/zsh/zsh-vim-mode.zsh
+
+# vim-mode indicator
+MODE_INDICATOR_VICMD='%F{5}N %f'
+MODE_INDICATOR_REPLACE='%F{1}R %f'
+MODE_INDICATOR_SEARCH='%F{2}S %f'
+MODE_INDICATOR_VISUAL='%F{4}V %f'
+MODE_INDICATOR_VLINE='%F{4}V %f'
+
+# vim-mode cursors
+MODE_CURSOR_VICMD="#7dff2b block"
+MODE_CURSOR_VIINS="#20d08a bar"
+MODE_CURSOR_SEARCH="#ff00ff steady underline"
+
+RPS1="%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}%(?.. %?)%{$reset_color%}"
+PS1="${MODE_INDICATOR_PROMPT}%1d %% "
 
 # zsh-vim yank copy to clipboard.
 vi-yank-xclip() {
@@ -216,6 +210,3 @@ vi-yank-xclip() {
 }
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
-
-# activate zsh-vim.
-bindkey -v

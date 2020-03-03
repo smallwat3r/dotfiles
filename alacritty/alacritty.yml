@@ -27,14 +27,14 @@ tabspaces: 4
 
 font:
   normal:
-    family: SF Mono
-    style: Light
-  italic:
-    family: SF Mono
-    style: LightItalic
-  bold:
-    family: SF Mono
+    family: Andale Mono Imp
     style: Regular
+  # italic:
+  #   family: SF Mono
+  #   style: LightItalic
+  # bold:
+  #   family: SF Mono
+  #   style: Regular
 
   size: 13
 

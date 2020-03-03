@@ -10,11 +10,13 @@ directories:
     - __root__.antigen
     - __root__.config/alacritty
     - __root__.config/nvim
+    - __root__.config/zsh
     - __root__.config/nvim/colors
 
 # List of all symlinks.
 links:
     __root__.zshrc:                                     zsh/zshrc
+    __root__.config/zsh/zsh-vim-mode.zsh:               zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh
     __root__.pylintrc:                                  python/pylintrc
     __root__.tmux.conf:                                 tmux/tmux.conf
     __root__.gitconfig:                                 git/gitconfig
