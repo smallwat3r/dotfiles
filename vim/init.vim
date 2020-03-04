@@ -36,24 +36,12 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neopairs.vim'
 Plug 'Shougo/neoinclude.vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
 
 call plug#end()
 
 "
 " PLUGINS CONFIG
 " --------------------------------------------------------------------
-
-" Neosnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-if has('conceal')
-    set conceallevel=2 concealcursor=niv
-endif
 
 " signify
 let g:signify_sign_add='+'
@@ -62,8 +50,6 @@ let g:signify_sign_delete_first_line='‾'
 let g:signify_sign_change='~'
 
 " use deoplete
-
-let g:python3_host_prog='/usr/local/bin/python3'
 let g:deoplete#enable_at_startup=1
 
 " Ale
@@ -140,7 +126,6 @@ set wrap  " wrap lines
 set lazyredraw  " no redraw
 set ignorecase  " search ignore case
 set scrolljump=8  " minimal nb of lines to scroll when cursor gets off the screen
-set autochdir  " auto change working directory
 set fillchars=vert:┃
 set nocompatible " modern vim
 set showmode  " show vim mode (insert, visual, replace)
@@ -227,7 +212,6 @@ hi MatchParen          ctermfg=237 ctermbg=200  guifg=#3a3a3a guibg=#ff00d7
 
 hi VertSplit           ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE    gui=NONE
 hi StatuslineNC        ctermfg=233 ctermbg=240  cterm=NONE guifg=#121212 guibg=#585858 gui=NONE
-hi Visual              ctermfg=233 ctermbg=229  cterm=NONE guifg=#121212 guibg=#ffffaf gui=NONE
 
 hi ALEErrorSign        ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
 hi ALEWarningSign      ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
