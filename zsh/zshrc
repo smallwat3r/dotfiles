@@ -104,6 +104,7 @@ alias gs="git status "
 alias gc="git commit -m "
 alias gp="git push "
 
+alias cdr='cd $(git rev-parse --show-cdup)'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
