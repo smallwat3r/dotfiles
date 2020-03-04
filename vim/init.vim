@@ -352,7 +352,7 @@ nmap E $
 nmap cp yap<S-}>p
 
 " Remove search highlight
-nmap <leader><space> :nohlsearch<cr>
+nmap <silent><leader><space> :nohlsearch<cr>
 
 " Editing and reloading of config
 map <leader>e :e! ~/dotfiles/vim/init.vim<cr>
