@@ -4,3 +4,4 @@ sqlparse
 jsbeautifier
 pynvim
 jedi
+isort

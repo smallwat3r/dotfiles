@@ -32,10 +32,8 @@ Plug 'pacha/vem-tabline'
 Plug 'tpope/vim-unimpaired'
 
 " Completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/neopairs.vim'
-Plug 'Shougo/neoinclude.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -48,9 +46,6 @@ let g:signify_sign_add='+'
 let g:signify_sign_delete='_'
 let g:signify_sign_delete_first_line='‾'
 let g:signify_sign_change='~'
-
-" use deoplete
-let g:deoplete#enable_at_startup=1
 
 " Ale
 let g:ale_echo_msg_error_str='E'
@@ -76,6 +71,51 @@ command! -bang -nargs=* Rg
 
 " Vem tabline
 let g:vem_tabline_show_number='buffnr'
+
+" COC completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 "
 " GENERAL CONFIG
@@ -107,6 +147,8 @@ set encoding=utf8
 " Async updatetime
 set updatetime=100
 
+set signcolumn=yes
+set hidden
 set nomodeline
 set autoread  " reread changed files automatically
 set ffs=unix
@@ -335,9 +377,6 @@ nmap <silent>;; :w<CR>
 " delete current buffer, keep window layout
 nmap <silent>;d :bp\|bd #<CR>
 
-" improve pop up completion menu
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " FUNCTIONS
 " --------------------------------------------------------------------
