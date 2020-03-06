@@ -41,7 +41,7 @@ export GREP_COLOR='0;30;42'
 # fzf colors
 export FZF_DEFAULT_OPTS="
     --height 40% --layout=reverse --border
-    --color fg:231,bg:232,hl:199,fg+:231,bg+:238,hl+:201
+    --color fg:231,bg:0,hl:199,fg+:231,bg+:233,hl+:201
     --color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
 export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"

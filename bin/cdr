@@ -1,0 +1,3 @@
+#!/bin/sh
+# cd at root of git repo
+cd $(git rev-parse --show-cdup)
