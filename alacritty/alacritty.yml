@@ -53,37 +53,8 @@ visual_bell:
   duration: 0
   color: '0xffffff'
 
-# colors:
-
-#   primary:
-#     background: '0x000000'
-#     foreground: '0xffffff'
-
-#   cursor:
-#     text:   '0x000000'
-#     cursor: '0x00ffff'
-
-#   normal:
-#     black:   '0x000000'
-#     red:     '0xd7005f'
-#     green:   '0xafff5f'
-#     yellow:  '0xffff5f'
-#     blue:    '0x5fd7d7'
-#     magenta: '0xff00d7'
-#     cyan:    '0x00ffff'
-#     white:   '0xffffff'
-
-#   bright:
-#     black:   '0x000000'
-#     red:     '0xd7005f'
-#     green:   '0xafff5f'
-#     yellow:  '0xffff5f'
-#     blue:    '0x5fd7d7'
-#     magenta: '0xff00d7'
-#     cyan:    '0x00ffff'
-#     white:   '0xffffff'
-
 background_opacity: 0.92
+
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }

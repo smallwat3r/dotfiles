@@ -67,7 +67,9 @@ let g:neoformat_basic_format_trim=1
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+    \ call fzf#vim#files(
+    \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
+    \ '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -76,7 +78,6 @@ command! -bang -nargs=* Rg
 
 " Vem tabline
 let g:vem_tabline_show_number='buffnr'
-
 
 "
 " GENERAL CONFIG
