@@ -339,9 +339,9 @@ nmap <silent>;; :w<CR>
 " delete current buffer, keep window layout
 nmap <silent>;d :bp\|bd #<CR>
 
-" menu completion
-imap <expr> <TAB> ((pumvisible())?("\<C-n>"):("j"))
-imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" tab menu completion
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " FUNCTIONS
 " --------------------------------------------------------------------

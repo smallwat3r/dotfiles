@@ -172,7 +172,9 @@ extract() {
 #
 # LOAD
 # --------------------------------------------------------------------------------------
-if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then exec tmux; fi  # exec tmux on start
+case $- in *i*)
+    if [ -z "$TMUX" ]; then exec tmux; fi;;
+esac
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #
