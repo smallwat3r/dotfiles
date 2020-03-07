@@ -181,12 +181,7 @@ esac
 # PROMPT (with vim-like mode)
 # --------------------------------------------------------------------------------------
 
-# get current git branch name
-# parse_git_branch() {
-#     git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
-# }
-
-# source plugin
+# source vim-mode plugin
 source ~/.config/zsh/zsh-vim-mode.zsh
 
 # vim-mode indicator
@@ -201,11 +196,13 @@ MODE_CURSOR_VICMD="#7dff2b block"
 MODE_CURSOR_VIINS="#20d08a bar"
 MODE_CURSOR_SEARCH="#ff00ff steady underline"
 
+# git info
 autoload -Uz vcs_info
 zstyle ':vcs_info:git:*' formats '(%b) '
 precmd() { vcs_info }
 setopt prompt_subst
 
+# prompt
 PS1='${MODE_INDICATOR_PROMPT}%! %1d ${vcs_info_msg_0_}%# '
 RPS1="%{$fg[red]%}%(?.. %?)%{$reset_color%}"
 
