@@ -90,8 +90,8 @@ alias p="pwd"
 alias ls="ls -p"
 alias ls.="ls -d .*"
 
-# Run ripgrep on history
 alias hs="history | rg"
+alias hsu="history | cut -c 8- | sort -u | rg"
 
 alias pubip="curl http://ipecho.net/plain; echo"
 alias myip="curl http://ipecho.net/plain; echo"
