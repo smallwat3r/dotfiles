@@ -203,7 +203,7 @@ precmd() { vcs_info }
 setopt prompt_subst
 
 # prompt
-PS1='${MODE_INDICATOR_PROMPT}%! %1d ${vcs_info_msg_0_}%# '
+PS1='${MODE_INDICATOR_PROMPT}%1d ${vcs_info_msg_0_}%# '
 RPS1="%{$fg[red]%}%(?.. %?)%{$reset_color%}"
 
 # zsh-vim yank copy to clipboard.
