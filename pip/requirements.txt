@@ -5,3 +5,4 @@ jsbeautifier
 pynvim
 jedi
 isort
+bandit
