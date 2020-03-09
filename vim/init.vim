@@ -169,6 +169,7 @@ set tm=500
 " No swp files / backups etc
 set noswapfile
 set nobackup
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Backspace as it should work
 set backspace=indent,eol,start
