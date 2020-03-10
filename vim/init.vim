@@ -67,14 +67,14 @@ let g:neoformat_basic_format_trim=1
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(
-    \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
-    \ '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+            \ call fzf#vim#files(
+            \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
+            \ '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   fzf#vim#with_preview(), <bang>0)
 
 " Vem tabline
 let g:vem_tabline_show_number='buffnr'
@@ -244,11 +244,11 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 " Show git info in statusline
 function! GitInfo()
-  let git = fugitive#head()
-  if git != ''
-    return "@(".fugitive#head().")"
-  else
-    return ''
+    let git = fugitive#head()
+    if git != ''
+        return "@(".fugitive#head().")"
+    else
+        return ''
 endfunction
 
 " Statusline vim mode colors
@@ -341,8 +341,9 @@ nmap <silent>;; :w<CR>
 nmap <silent>;d :bp\|bd #<CR>
 
 " tab menu completion
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 " FUNCTIONS
 " --------------------------------------------------------------------
