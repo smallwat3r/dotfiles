@@ -5,6 +5,14 @@
 " neovim config file
 "
 
+" Auto load for first time use - Install Vim Plug Manager
+" --------------------------------------------------------------------
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 "
 " PLUGIN MANAGER (vim-plug)
 " --------------------------------------------------------------------
@@ -344,6 +352,19 @@ nmap <silent>;d :bp\|bd #<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+
+" make Y to copy till the end of the line
+nmap Y y$
+
+" Indentation
+nmap < <<
+nmap > >>
+
+" Resize splits with arrow keys
+nmap <silent><up> :res +5<CR>
+nmap <silent><down> :res -5<CR>
+nmap <silent><left> :vertical resize-5<CR>
+nmap <silent><right> :vertical resize+5<CR>
 
 " FUNCTIONS
 " --------------------------------------------------------------------

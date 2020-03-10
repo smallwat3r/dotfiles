@@ -44,14 +44,6 @@ Install antigen (zsh) (will be symlinked to `~/.antigen/antigen.zsh`)
 curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
 ```
 
-neovim vim-plug plugin manager
-```sh
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# Then run :PlugInstall
-```
-
 python requirements (mainly for formatting)
 ```sh
 pip3 install -r pip/requirements.txt
