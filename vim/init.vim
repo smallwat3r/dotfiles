@@ -169,7 +169,7 @@ set foldlevel=99
 " Ignore files and folders
 set wildignore=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
-set wildignore+=*/__pycache__/*,*/venv/*
+set wildignore+=*/__pycache__/*,*/venv/*,*/env/*
 
 " Deactivate bells and alerts
 set tm=500
