@@ -248,7 +248,8 @@ hi Folded              ctermfg=231 ctermbg=239  guifg=#ffffff guibg=#4e4e4e
 hi MatchParen          ctermfg=237 ctermbg=200  guifg=#3a3a3a guibg=#ff00d7
 
 hi VertSplit           ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE    gui=NONE
-hi StatuslineNC        ctermfg=233 ctermbg=240  cterm=NONE guifg=#121212 guibg=#585858 gui=NONE
+hi StatuslineNC        ctermfg=253 ctermbg=235  cterm=NONE guifg=#dadada guibg=#262626 gui=NONE
+hi Statusline          ctermfg=253 ctermbg=239  cterm=NONE guifg=#dadada guibg=#4e4e4e gui=NONE
 
 hi ALEErrorSign        ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
 hi ALEWarningSign      ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
