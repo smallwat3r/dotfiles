@@ -186,6 +186,12 @@ set noswapfile
 set nobackup
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" Undo
+set undolevels=4000
+set undoreload=100000
+set undodir=~/.config/nvim/undodir
+set undofile
+
 " Backspace as it should work
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
