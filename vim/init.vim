@@ -351,7 +351,6 @@ nmap <silent>;d :bp\|bd #<CR>
 " tab menu completion
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 " make Y to copy till the end of the line
 nmap Y y$
