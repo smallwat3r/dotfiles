@@ -209,6 +209,9 @@ autocmd FileType * setl fo-=o fo-=r
 " close method preview window after completion is complete
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" load custom dict files
+au FileType * execute 'setlocal dict+=~/.config/nvim/dict/'.&filetype.'.txt'
+
 " #####################################################
 " DESIGN / COLORS AND STUFF                           #
 " #####################################################

@@ -10,23 +10,30 @@ directories:
     - __root__.antigen
     - __root__.config/alacritty
     - __root__.config/nvim
-    - __root__.config/zsh
+    - __root__.config/nvim/dict
     - __root__.config/nvim/colors
+    - __root__.config/zsh
 
 # List of all symlinks.
 links:
-    __root__.zshrc:                                     zsh/zshrc
-    __root__.config/zsh/zsh-vim-mode.zsh:               zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh
-    __root__.pylintrc:                                  python/pylintrc
-    __root__.tmux.conf:                                 tmux/tmux.conf
-    __root__.gitconfig:                                 git/gitconfig
-    __root__.gitignore_global:                          git/gitignore_global
-    __root__.config/alacritty/alacritty.yml:            alacritty/alacritty.yml
-    __root__.config/nvim/init.vim:                      vim/init.vim
-    __root__.config/nvim/colors/smallwat3r.vim:         vim/colors/smallwat3r.vim
-    __root__.pip/pip.conf:                              pip/pip.conf
-    /usr/local/bin/localip:                             bin/localip
-    /usr/local/bin/battery:                             bin/battery
+    __root__.zshrc:                               zsh/zshrc
+    __root__.config/zsh/zsh-vim-mode.zsh:         zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh
+    __root__.pylintrc:                            python/pylintrc
+    __root__.tmux.conf:                           tmux/tmux.conf
+    __root__.gitconfig:                           git/gitconfig
+    __root__.gitignore_global:                    git/gitignore_global
+    __root__.config/alacritty/alacritty.yml:      alacritty/alacritty.yml
+    __root__.config/nvim/init.vim:                vim/init.vim
+    __root__.config/nvim/colors/smallwat3r.vim:   vim/colors/smallwat3r.vim
+    __root__.config/nvim/dict/dockerfile.txt:     vim/dict/dockerfile.txt
+    __root__.config/nvim/dict/go.txt:             vim/dict/go.txt
+    __root__.config/nvim/dict/html.txt:           vim/dict/html.txt
+    __root__.config/nvim/dict/javascript.txt:     vim/dict/javascript.txt
+    __root__.config/nvim/dict/python.txt:         vim/dict/python.txt
+    __root__.config/nvim/dict/sql.txt:            vim/dict/sql.txt
+    __root__.pip/pip.conf:                        pip/pip.conf
+    /usr/local/bin/localip:                       bin/localip
+    /usr/local/bin/battery:                       bin/battery
 
 # Brew packages.
 brew:
