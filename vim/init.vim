@@ -5,6 +5,10 @@
 " neovim config file
 "
 
+" #####################################################
+" PLUGINS MANAGER (vim-plug)                          #
+" #####################################################
+
 " Auto load for first time use - Install Vim Plug Manager
 " --------------------------------------------------------------------
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -13,9 +17,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-"
-" PLUGIN MANAGER (vim-plug)
-" --------------------------------------------------------------------
 call plug#begin()
 
 Plug 'dense-analysis/ale'
@@ -47,9 +48,9 @@ Plug 'Shougo/neoinclude.vim'
 
 call plug#end()
 
-"
-" PLUGINS CONFIG
-" --------------------------------------------------------------------
+" #####################################################
+" PLUGINS CONFIG                                      #
+" #####################################################
 
 " signify
 let g:signify_sign_add='+'
@@ -87,9 +88,10 @@ command! -bang -nargs=* Rg
 " Vem tabline
 let g:vem_tabline_show_number='buffnr'
 
-"
-" GENERAL CONFIG
-" --------------------------------------------------------------------
+" #####################################################
+" GENERAL CONFIG                                      #
+" #####################################################
+
 syntax off
 filetype plugin indent on
 
@@ -207,9 +209,9 @@ autocmd FileType * setl fo-=o fo-=r
 " close method preview window after completion is complete
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-"
-" THEME
-" --------------------------------------------------------------------
+" #####################################################
+" DESIGN / COLORS AND STUFF                           #
+" #####################################################
 
 " Colorize some stuff (syntax off)
 hi DiffAdd             ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
@@ -300,9 +302,10 @@ augroup status
     autocmd WinLeave * setlocal statusline=%!InactiveStatusLine()
 augroup END
 
-"
-" KEYBINDINGS
-" --------------------------------------------------------------------
+" #####################################################
+" KEYBINDING                                          #
+" #####################################################
+
 " Navigate window panels
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -369,8 +372,9 @@ nmap <silent><down> :res -5<CR>
 nmap <silent><left> :vertical resize-5<CR>
 nmap <silent><right> :vertical resize+5<CR>
 
-" FUNCTIONS
-" --------------------------------------------------------------------
+" #####################################################
+" FUNCTIONS                                           #
+" #####################################################
 
 " Remove trailing whitespaces
 function! TrimTrailingWS ()
