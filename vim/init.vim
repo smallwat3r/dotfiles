@@ -104,9 +104,11 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 
-" Special Filetypes
-autocmd FileType make   setlocal ts=8 sw=8 noexpandtab  " Makefile
-autocmd FileType go     setlocal ts=8 sw=8 noexpandtab  " Golang
+autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
+autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
+autocmd FileType html   setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType css    setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType xml    setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " Nginx
 au BufRead,BufNewFile */nginx/*.conf        set ft=nginx
