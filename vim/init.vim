@@ -91,7 +91,7 @@ command! -bang -nargs=* Rg
 let g:vem_tabline_show_number='buffnr'
 
 " Startify
-let g:startify_files_number=15
+let g:startify_files_number=5
 let g:startify_custom_header = [
             \ '                              w           ',
             \ '     8d8b. .d88b .d8b. Yb  dP w 8d8b.d8b. ',
