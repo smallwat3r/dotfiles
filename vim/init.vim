@@ -221,7 +221,7 @@ call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
 " #####################################################
 
 " Colorize some stuff (syntax off)
-hi DiffAdd             ctermfg=46  ctermbg=NONE guibg=NONE guifg=#00ff00
+hi DiffAdd             ctermfg=83  ctermbg=NONE guibg=NONE guifg=#5fff5f
 hi DiffChange          ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
 hi DiffText            ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
 hi DiffDelete          ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
@@ -266,11 +266,11 @@ function! GitInfo()
 endfunction
 
 " Statusline vim mode colors
-hi NormalColor guifg=Black guibg=Green ctermbg=46 ctermfg=0
-hi InsertColor guifg=Black guibg=Cyan ctermbg=51 ctermfg=0
-hi ReplaceColor guifg=Black guibg=maroon1 ctermbg=165 ctermfg=0
-hi VisualColor guifg=Black guibg=Orange ctermbg=202 ctermfg=0
-hi CommandColor guifg=Black guibg=Pink ctermbg=13 ctermfg=0
+hi NormalColor   guifg=Black guibg=#5fff5f ctermbg=83  ctermfg=0
+hi InsertColor   guifg=Black guibg=#5fd7ff ctermbg=81  ctermfg=0
+hi ReplaceColor  guifg=Black guibg=#d7af5f ctermbg=180 ctermfg=0
+hi VisualColor   guifg=Black guibg=#ff8700 ctermbg=208 ctermfg=0
+hi CommandColor  guifg=Black guibg=#ff5f87 ctermbg=204 ctermfg=0
 
 " Statusline active
 function! ActiveStatusLine()
