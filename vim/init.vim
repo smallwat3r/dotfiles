@@ -176,7 +176,7 @@ set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
 set wildignore+=*/__pycache__/*,*/venv/*,*/env/*
 
 " Deactivate bells and alerts
-set tm=500
+set visualbell t_vb=
 
 " No swp files / backups etc
 set noswapfile
@@ -197,19 +197,12 @@ autocmd FileType netrw setl bufhidden=delete  " delete netrw buffer
 let g:loaded_sql_completion=0
 let g:omni_sql_no_default_maps=1
 
-" Keep visual selection when reindenting
-xnoremap > >gv
-xnoremap < <gv
-
 " Save as root
 command! WW :w !sudo tee % >/dev/null
 
 " Disable automatic insertion of comment markers
 set fo=cjql
 autocmd FileType * setl fo-=o fo-=r
-
-" access pydocs
-nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 
 " close method preview window after completion is complete
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -356,8 +349,15 @@ nmap <silent>;d :bp\|bd #<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" access pydocs
+nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
+
 " make Y to copy till the end of the line
 nmap Y y$
+
+" Keep visual selection when reindenting
+xnoremap > >gv
+xnoremap < <gv
 
 " Indentation
 nmap < <<
