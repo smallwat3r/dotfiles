@@ -105,6 +105,10 @@ set tabstop=4
 autocmd FileType make   setlocal ts=8 sw=8 noexpandtab  " Makefile
 autocmd FileType go     setlocal ts=8 sw=8 noexpandtab  " Golang
 
+" Nginx
+au BufRead,BufNewFile */nginx/*.conf        set ft=nginx
+au BufRead,BufNewFile */nginx/**/*.conf     set ft=nginx
+
 " Yaml
 autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
