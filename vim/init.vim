@@ -333,8 +333,8 @@ nmap cp yap<S-}>p
 nmap <silent><leader><space> :nohlsearch<cr>
 
 " Editing and reloading of config
-map <leader>e :e! ~/dotfiles/vim/init.vim<cr>
-autocmd! bufwritepost ~/dotfiles/vim/init.vim source ~/dotfiles/vim/init.vim
+map <leader>e :e! ~/.config/nvim/init.vim<cr>
+autocmd! bufwritepost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
 
 " Navigate files, buffers etc. (fzf)
 nmap <leader>b :Buffers<CR>
