@@ -45,6 +45,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neopairs.vim'
 Plug 'Shougo/neoinclude.vim'
+Plug 'deoplete-plugins/deoplete-dictionary'
 
 call plug#end()
 
@@ -211,6 +212,9 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " load custom dict files
 au FileType * execute 'setlocal dict+=~/.config/nvim/dict/'.&filetype.'.txt'
+call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
+call deoplete#custom#source('dictionary', 'sorters', [])
+call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
 
 " #####################################################
 " DESIGN / COLORS AND STUFF                           #
