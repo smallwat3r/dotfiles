@@ -27,15 +27,14 @@ tabspaces: 4
 
 font:
   normal:
-    # family: Andale Mono Imp
-    family: Hack
+    family: Monaco
     style: Regular
-  italic:
-    family: Hack
-    style: Italic
-  bold:
-    family: Hack
-    style: Bold
+  # italic:
+  #   family: Hack
+  #   style: Italic
+  # bold:
+  #   family: Hack
+  #   style: Bold
 
   size: 12
 

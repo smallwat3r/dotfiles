@@ -283,7 +283,7 @@ logging-format-style=fstr
 
 # Maximum number of characters on a single line.
 # Black python style limit to 89 chars
-max-line-length=89
+max-line-length=99
 
 # Maximum number of lines in a module
 max-module-lines=1000
