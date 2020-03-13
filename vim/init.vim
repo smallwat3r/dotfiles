@@ -76,6 +76,13 @@ let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
 
+let g:neoformat_python_black = {
+    \ 'exe': 'black',
+    \ 'stdin': 1,
+    \ 'args': ['-q', '-', '-l 80'],
+    \ }
+let g:neoformat_enabled_python = ['black']
+
 " fzf
 command! -bang -nargs=? -complete=dir Files
             \ call fzf#vim#files(
