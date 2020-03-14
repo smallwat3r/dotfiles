@@ -39,44 +39,29 @@ links:
 brew:
     - tmux
     - redis
-    # - nnn
-    # - lazygit
-    # - lazydocker
     - git
     - python@3.8
-    # - ddgr
     - wget
     - zsh
-    # - mysql
-    # - sqlite
     - fzf
     - htop
-    # - exa
     - curl
     - bash
     - gnu-sed
-    # - tree
-    # - jsonnet
-    # - xclip
+    - nmap
     - jq
     - make
-    # - fd
-    # - gawk
-    # - translate-shell
-    - the_silver_searcher  # ag
+    - fd
+    - the_silver_searcher
     - ripgrep
-    # - vim
     - neovim
 
 # Brew cask installs.
 cask:
     - sequel-pro
-    # - docker
+    - docker
     - alacritty
-    # - rectangle
-    # - nordvpn
     - slack
     - alfred
-    # - ngrok
-    # - thunderbird
+    - thunderbird
     - google-chrome
