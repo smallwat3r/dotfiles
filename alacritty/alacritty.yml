@@ -27,13 +27,13 @@ tabspaces: 4
 
 font:
   normal:
-    family: BitstreamVeraSansMono Nerd Font Mono
+    family: Bitstream Vera Sans Mono
     style: Roman
   italic:
-    family: BitstreamVeraSansMono Nerd Font Mono
+    family: Bitstream Vera Sans Mono
     style: Oblique
   bold:
-    family: BitstreamVeraSansMono Nerd Font Mono
+    family: Bitstream Vera Sans Mono
     style: Bold
 
   size: 12
