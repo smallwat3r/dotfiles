@@ -388,9 +388,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " access pydocs
 nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 
-" Indentation
-nmap < <<
-nmap > >>
+" Keep visual selection when reindenting
+xnoremap > >gv
+xnoremap < <gv
 
 " Resize splits with arrow keys
 nmap <silent><up> :res +5<CR>

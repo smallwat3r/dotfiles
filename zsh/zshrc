@@ -25,16 +25,29 @@ antigen apply
 # --------------------------------------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=xterm-256color
+
+export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+
 export CLICOLOR=1
 export EDITOR=/usr/local/bin/nvim
 export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
 
-export PATH=$PATH:$HOME/.cargo/bin:/usr/local/bin/nvim:/usr/local/opt/python@3.8/bin
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 # grep colors
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
+
+# Shorter timeout ESC
+export KEYTIMEOUT=1
+
+# Homebrew
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # fzf colors
 export FZF_DEFAULT_OPTS="
@@ -43,6 +56,10 @@ export FZF_DEFAULT_OPTS="
     --color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
 export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
+
+# History
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
 
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -125,10 +142,14 @@ o() {
 }
 
 # search (grep) from current dir or specified
-search() { grep -rnIi "$1" . --color }
+search() {
+    grep -rnIi "$1" . --color
+}
 
 # create and enter directory
-mkd() { mkdir -p "$@" && cd "$@" }
+mkd() {
+    mkdir -p "$@" && cd "$@"
+}
 
 # preview csv files.
 # source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
@@ -166,6 +187,25 @@ extract() {
         esac
     else
         echo "'$1' is not a valid file"
+    fi
+}
+
+# FZF select and open file
+fe() (
+    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+)
+
+# fuzzy grep open via ag with line number
+fg() {
+    local file
+    local line
+
+    read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+
+    if [[ -n $file ]]
+    then
+        nvim $file +$line
     fi
 }
 
