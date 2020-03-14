@@ -41,6 +41,7 @@ brew:
     - redis
     - git
     - python@3.8
+    - go
     - wget
     - zsh
     - fzf
