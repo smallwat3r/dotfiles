@@ -11,7 +11,7 @@ window:
     lines: 30
 
   padding:
-    x: 5
+    x: 0
     y: 0
 
   dynamic_padding: false
@@ -27,14 +27,13 @@ tabspaces: 4
 
 font:
   normal:
-    # family: Andale Mono Imp
-    family: Hack
-    style: Regular
+    family: BitstreamVeraSansMono Nerd Font Mono
+    style: Roman
   italic:
-    family: Hack
-    style: Italic
+    family: BitstreamVeraSansMono Nerd Font Mono
+    style: Oblique
   bold:
-    family: Hack
+    family: BitstreamVeraSansMono Nerd Font Mono
     style: Bold
 
   size: 12

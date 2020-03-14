@@ -79,7 +79,7 @@ let g:neoformat_basic_format_trim=1
 let g:neoformat_python_black = {
     \ 'exe': 'black',
     \ 'stdin': 1,
-    \ 'args': ['-q', '-', '-l 80'],
+    \ 'args': ['-q', '-', '-l 89'],
     \ }
 let g:neoformat_enabled_python = ['black']
 
@@ -255,8 +255,8 @@ hi Folded              ctermfg=231 ctermbg=239  guifg=#ffffff guibg=#4e4e4e
 hi MatchParen          ctermfg=237 ctermbg=200  guifg=#3a3a3a guibg=#ff00d7
 
 hi VertSplit           ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE    gui=NONE
-hi StatuslineNC        ctermfg=253 ctermbg=235  cterm=NONE guifg=#dadada guibg=#262626 gui=NONE
-hi Statusline          ctermfg=253 ctermbg=239  cterm=NONE guifg=#dadada guibg=#4e4e4e gui=NONE
+hi StatuslineNC        ctermfg=250 ctermbg=238  cterm=NONE guifg=#bcbcbc guibg=#444444 gui=NONE
+hi Statusline          ctermfg=234 ctermbg=252  cterm=NONE guifg=#1c1c1c guibg=#d0d0d0 gui=NONE
 
 hi ALEErrorSign        ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
 hi ALEWarningSign      ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
@@ -286,7 +286,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 function! GitInfo()
     let git = fugitive#head()
     if git != ''
-        return "@(".fugitive#head().")"
+        return "(on ".fugitive#head().")  "
     else
         return ''
 endfunction
@@ -306,7 +306,7 @@ function! ActiveStatusLine()
     let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ R\ ':''}"
     let statusline.="%#VisualColor#%{(mode()=='v')?'\ V\ ':''}"
     let statusline.="%#CommandColor#%{(mode()=='c')?'\ C\ ':''}"
-    let statusline.="\%*\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
     let statusline.="%{&modified?'\  (+)':''}"
     let statusline.="%{&readonly?'\  (ro)':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
@@ -317,7 +317,7 @@ endfunction
 " Statusline inactive
 function! InactiveStatusLine()
     let statusline=" %n "
-    let statusline.="\%*\ %f\ %{GitInfo()}\ %{LinterStatus()}"
+    let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
     let statusline.="%{&modified?'\  (+)':''}"
     let statusline.="%{&readonly?'\  (ro)':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
@@ -387,13 +387,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " access pydocs
 nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
-
-" make Y to copy till the end of the line
-nmap Y y$
-
-" Keep visual selection when reindenting
-xnoremap > >gv
-xnoremap < <gv
 
 " Indentation
 nmap < <<
