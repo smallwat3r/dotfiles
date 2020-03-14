@@ -246,23 +246,23 @@ call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
 " #####################################################
 
 " Colorize some stuff (syntax off)
-hi DiffAdd             ctermfg=83  ctermbg=NONE guibg=NONE guifg=#5fff5f
-hi DiffChange          ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
-hi DiffText            ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
-hi DiffDelete          ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
+hi DiffAdd        ctermfg=83  ctermbg=NONE guibg=NONE guifg=#5fff5f
+hi DiffChange     ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
+hi DiffText       ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
+hi DiffDelete     ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
 
-hi Folded              ctermfg=231 ctermbg=239  guifg=#ffffff guibg=#4e4e4e
-hi MatchParen          ctermfg=237 ctermbg=200  guifg=#3a3a3a guibg=#ff00d7
+hi Folded         ctermfg=231 ctermbg=239  guifg=#ffffff guibg=#4e4e4e
+hi MatchParen     ctermfg=237 ctermbg=200  guifg=#3a3a3a guibg=#ff00d7
 
-hi VertSplit           ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE    gui=NONE
-hi StatuslineNC        ctermfg=250 ctermbg=238  cterm=NONE guifg=#bcbcbc guibg=#444444 gui=NONE
-hi Statusline          ctermfg=234 ctermbg=252  cterm=NONE guifg=#1c1c1c guibg=#d0d0d0 gui=NONE
+hi VertSplit      ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE    gui=NONE
+hi StatuslineNC   ctermfg=250 ctermbg=238  cterm=NONE guifg=#bcbcbc guibg=#444444 gui=NONE
+hi Statusline     ctermfg=234 ctermbg=252  cterm=NONE guifg=#1c1c1c guibg=#d0d0d0 gui=NONE
 
-hi ALEErrorSign        ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
-hi ALEWarningSign      ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
+hi ALEErrorSign   ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
+hi ALEWarningSign ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
 
-hi SignColumn          ctermbg=NONE cterm=NONE   guibg=NONE gui=NONE
-hi LineNr              ctermfg=239  ctermbg=NONE guifg=#4e4e4e guibg=NONE
+hi SignColumn     ctermbg=NONE cterm=NONE   guibg=NONE gui=NONE
+hi LineNr         ctermfg=239  ctermbg=NONE guifg=#4e4e4e guibg=NONE
 
 " GUI mode
 if (has("gui_running"))
