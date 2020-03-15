@@ -49,11 +49,6 @@ Install antigen (zsh) (will be symlinked to `~/.antigen/antigen.zsh`)
 curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
 ```
 
-python requirements (mainly for formatting)
-```sh
-pip3 install -r pip/requirements.txt
-```
-
 macOS settings
 ```sh
 sh macos/macos
