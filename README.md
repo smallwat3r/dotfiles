@@ -40,7 +40,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 ```
 
 Force Zsh
-```
+```sh
 echo 'export SHELL=$(which zsh)' >> ~/.bash_profile && echo 'exec $(which zsh) -l' >> ~/.bash_profile
 ```
 
