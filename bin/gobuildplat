@@ -1,0 +1,36 @@
+#!/bin/sh
+# Build binary from Go for a few platforms / architectures and zip them.
+
+set -e
+
+options=":r:"
+while getopts "$options" option; do
+    case "${option}" in
+        r  ) echo "yes"; RENAME_PACKAGE=${OPTARG};;
+        \? ) printf "Error: invalid option: -${OPTARG}\n" >&2; exit 1;;
+    esac
+done
+
+shift $((OPTIND - 1))
+PACKAGE=$1
+if [[ -z $PACKAGE ]]; then
+    printf "Error: please provide the source code path.\n"; exit 1;
+fi
+
+platforms=(darwin/amd64 darwin/386 freebsd/amd64 freebsd/386
+    linux/amd64 linux/386 windows/amd64 windows/386)
+
+for p in "${platforms[@]}"; do
+    os="$(echo $p | cut -d '/' -f1)"
+    arch="$(echo $p | cut -d '/' -f2)"
+
+    if [[ -z $RENAME_PACKAGE ]]; then
+        RENAME_PACKAGE="${PACKAGE%.*}"
+    fi
+
+    case $os in
+        "windows" ) RENAME_PACKAGE="${RENAME_PACKAGE}.exe";;
+    esac
+
+    env GOOS=$os GOARCH=$arch go build -o $RENAME_PACKAGE $PACKAGE
+done

@@ -46,7 +46,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 visual_bell:
   animation: EaseOutExpo
@@ -57,30 +57,30 @@ background_opacity: 1
 
 colors:
   primary:
-    background: '#121212'
-    foreground: '#d6d6d6'
+    background: '#000000'
+    foreground: '#e4e4e4'
 
   # Normal colors
   normal:
-    black:   '#181818'
-    red:     '#ab4642'
-    green:   '#a1b56c'
-    yellow:  '#f7ca88'
-    blue:    '#7cafc2'
-    magenta: '#ba8baf'
-    cyan:    '#86c1b9'
-    white:   '#d8d8d8'
+    black:   '#0d0d0d'
+    red:     '#FF301B'
+    green:   '#A0E521'
+    yellow:  '#FFC620'
+    blue:    '#1BA6FA'
+    magenta: '#8763B8'
+    cyan:    '#21DEEF'
+    white:   '#EBEBEB'
 
   # Bright colors
   bright:
-    black:   '#585858'
-    red:     '#ab4642'
-    green:   '#a1b56c'
-    yellow:  '#f7ca88'
-    blue:    '#7cafc2'
-    magenta: '#ba8baf'
-    cyan:    '#86c1b9'
-    white:   '#f8f8f8'
+    black:   '#6D7070'
+    red:     '#FF4352'
+    green:   '#B8E466'
+    yellow:  '#FFD750'
+    blue:    '#1BA6FA'
+    magenta: '#A578EA'
+    cyan:    '#73FBF1'
+    white:   '#FEFEF8'
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
