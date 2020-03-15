@@ -60,6 +60,7 @@ brew:
     - asciinema
     - imagemagick
     - gifsicle
+    - ddgr
 
 # Brew cask installs.
 cask:

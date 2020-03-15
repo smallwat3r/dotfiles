@@ -1,19 +1,15 @@
-#MacOS config file and preferences.
+# MacOS config file and preferences.
 
-# No font smoothing
+# Font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 1
 # defaults write com.apple.Terminal AppleFontSmoothing -int 1
 # defaults write org.vim.MacVim AppleFontSmoothing -int 1
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+
 # Dark UI
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
-
-# MacVim padding
-defaults write org.vim.MacVim MMTextInsetTop '5'
-defaults write org.vim.MacVim MMTextInsetLeft '5'
-defaults write org.vim.MacVim MMTextInsetBottom '5'
-defaults write org.vim.MacVim MMTextInsetRight '5'
 
 # Disable [ ] in mac terminal
 defaults write com.apple.Terminal AutoMarkPromptLines -bool false
