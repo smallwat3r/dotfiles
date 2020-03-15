@@ -64,3 +64,8 @@ Symlink all dotfiles to system
 ```sh
 perl symlink
 ```
+
+Install personnal scripts
+```sh
+./bin/install-smallwat3r-scripts
+```

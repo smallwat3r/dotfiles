@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Sketch
+sudo wget https://raw.githubusercontent.com/smallwat3r/sketch/master/sketch \
+    -P /usr/local/bin && sudo chmod 755 /usr/local/bin/sketch
+
+# Tubestatus
+sudo wget https://raw.githubusercontent.com/smallwat3r/tubestatus/master/tubestatus \
+    -P /usr/local/bin && sudo chmod 755 /usr/local/bin/tubestatus
+
+# Synonym
+sudo wget https://raw.githubusercontent.com/smallwat3r/synonym/master/synonym \
+    -P /usr/local/bin && sudo chmod 755 /usr/local/bin/synonym
+
+# shhh-cli
+go get -u github.com/smallwat3r/shhh-cli && \
+    mv $GOPATH/bin/shhh-cli $GOPATH/bin/shhh
