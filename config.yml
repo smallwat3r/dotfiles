@@ -31,7 +31,7 @@ links:
     __root__.config/nvim/dict/javascript.txt:     vim/dict/javascript.txt
     __root__.config/nvim/dict/python.txt:         vim/dict/python.txt
     __root__.config/nvim/dict/sql.txt:            vim/dict/sql.txt
-    __root__.pip/pip.conf:                        pip/pip.conf
+    __root__.pip/pip.conf:                        python/pip.conf
     /usr/local/bin/localip:                       bin/localip
     /usr/local/bin/battery:                       bin/battery
 
