@@ -37,7 +37,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
-Plug 'pacha/vem-tabline'
 Plug 'tpope/vim-unimpaired'
 Plug 'mhinz/vim-startify'
 
@@ -93,9 +92,6 @@ command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
             \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
             \   fzf#vim#with_preview(), <bang>0)
-
-" Vem tabline
-let g:vem_tabline_show_number='buffnr'
 
 " Startify
 let g:startify_files_number=5
@@ -166,8 +162,8 @@ set ignorecase  " search ignore case
 set scrolljump=8  " minimal nb of lines to scroll when cursor gets off the screen
 set fillchars=vert:┃
 set nocompatible " modern vim
-set showmode  " show vim mode (insert, visual, replace)
 set wildignorecase
+set noshowmode  " do not show vim mode (already in statusline)
 set matchpairs+=<:>
 set splitbelow  " for ex preview windows will appear at the bottom
 set noshowmode " don't show mode (aleady in statusline)
