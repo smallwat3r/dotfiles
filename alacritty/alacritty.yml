@@ -23,8 +23,6 @@ scrolling:
   multiplier: 3
   scrolling_multiplier: 3
 
-tabspaces: 4
-
 font:
   normal:
     family: Bitstream Vera Sans Mono
