@@ -109,6 +109,9 @@ alias p="pwd"
 alias ls="ls -p"
 alias ls.="ls -d .*"
 
+alias trecord="asciinema rec"
+alias record2gif="asciicast2gif -t monokai"
+
 alias hs="history | rg"
 alias hsu="history | cut -c 8- | sort -u | rg"
 
