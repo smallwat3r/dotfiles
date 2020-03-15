@@ -25,14 +25,14 @@ scrolling:
 
 font:
   normal:
-    family: Bitstream Vera Sans Mono
-    style: Roman
+    family: Hack
+    style: Regular
   italic:
-    family: Bitstream Vera Sans Mono
-    style: Oblique
+    family: Hack
+    style: Italic
   bold:
-    family: Bitstream Vera Sans Mono
-    style: Roman  # don't show bold fonts
+    family: Hack
+    style: Regular  # don't show bold fonts
 
   size: 12
 
