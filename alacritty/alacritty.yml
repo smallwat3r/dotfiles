@@ -34,7 +34,7 @@ font:
     style: Oblique
   bold:
     family: Bitstream Vera Sans Mono
-    style: Bold
+    style: Roman  # don't show bold fonts
 
   size: 12
 
