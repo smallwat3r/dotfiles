@@ -167,6 +167,7 @@ set noshowmode  " do not show vim mode (already in statusline)
 set matchpairs+=<:>
 set splitbelow  " for ex preview windows will appear at the bottom
 set noshowmode " don't show mode (aleady in statusline)
+set inccommand=nosplit  " show replacements using search / replace
 
 " Silence msg completion menu
 set shortmess+=c
