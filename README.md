@@ -39,6 +39,11 @@ Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
+Force Zsh
+```sh
+echo 'export SHELL=$(which zsh)' >> ~/.bash_profile && echo 'exec $(which zsh) -l' >> ~/.bash_profile
+```
+
 Install antigen (zsh) (will be symlinked to `~/.antigen/antigen.zsh`)
 ```sh
 curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
