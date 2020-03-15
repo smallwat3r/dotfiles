@@ -25,13 +25,13 @@ scrolling:
 
 font:
   normal:
-    family: Hack
-    style: Regular
+    family: Deja Vu Sans Mono
+    style: Book
   italic:
-    family: Hack
-    style: Italic
+    family: Deja Vu Sans Mono
+    style: Oblique
   bold:
-    family: Hack
+    family: Deja Vu Sans Mono
     style: Regular  # don't show bold fonts
 
   size: 12
