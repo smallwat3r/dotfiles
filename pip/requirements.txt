@@ -1,8 +1,0 @@
-black
-pylint
-sqlparse
-jsbeautifier
-pynvim
-jedi
-isort
-bandit
