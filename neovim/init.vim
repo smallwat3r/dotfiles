@@ -158,6 +158,8 @@ set matchpairs+=<:>
 set splitbelow  " for ex preview windows will appear at the bottom
 set noshowmode " don't show mode (aleady in statusline)
 set inccommand=nosplit  " show replacements using search / replace
+set nocursorcolumn
+set nocursorline
 
 " Silence msg completion menu
 set shortmess+=c
