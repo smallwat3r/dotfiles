@@ -38,9 +38,9 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # fzf colors
 export FZF_DEFAULT_OPTS="
-    --height 40% --layout=reverse --border
-    --color fg:231,bg:0,hl:199,fg+:231,bg+:0,hl+:190
-    --color info:189,prompt:161,spinner:201,pointer:201,marker:118
+--height 40% --layout=reverse --border
+--color fg:231,bg:0,hl:199,fg+:231,bg+:0,hl+:190
+--color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
 export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
 
@@ -150,21 +150,21 @@ wifipass() {
 extract() {
     if [ -f $1 ]; then
         case $1 in
-        *.tar.bz2) tar -jxvf $1 ;;
-        *.tar.gz) tar -zxvf $1 ;;
-        *.bz2) bunzip2 $1 ;;
-        *.dmg) hdiutil mount $1 ;;
-        *.gz) gunzip $1 ;;
-        *.tar) tar -xvf $1 ;;
-        *.tbz2) tar -jxvf $1 ;;
-        *.tgz) tar -zxvf $1 ;;
-        *.zip) unzip $1 ;;
-        *.ZIP) unzip $1 ;;
-        *.pax) cat $1 | pax -r ;;
-        *.pax.Z) uncompress $1 --stdout | pax -r ;;
-        *.rar) unrar x $1 ;;
-        *.Z) uncompress $1 ;;
-        *) echo "'$1' cannot be extracted/mounted via extract()" ;;
+            *.tar.bz2) tar -jxvf $1 ;;
+            *.tar.gz) tar -zxvf $1 ;;
+            *.bz2) bunzip2 $1 ;;
+            *.dmg) hdiutil mount $1 ;;
+            *.gz) gunzip $1 ;;
+            *.tar) tar -xvf $1 ;;
+            *.tbz2) tar -jxvf $1 ;;
+            *.tgz) tar -zxvf $1 ;;
+            *.zip) unzip $1 ;;
+            *.ZIP) unzip $1 ;;
+            *.pax) cat $1 | pax -r ;;
+            *.pax.Z) uncompress $1 --stdout | pax -r ;;
+            *.rar) unrar x $1 ;;
+            *.Z) uncompress $1 ;;
+            *) echo "'$1' cannot be extracted/mounted via extract()" ;;
         esac
     else
         echo "'$1' is not a valid file"
@@ -172,10 +172,10 @@ extract() {
 }
 
 # FZF select and open file
-fe() (
+fe() {
     IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
     [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
-)
+}
 
 # fuzzy grep open via ag with line number
 fg() {
@@ -251,9 +251,9 @@ PS1='${MODE_INDICATOR_PROMPT}› %1d $(git_super_status)'
 RPS1="%{$fg[red]%}%(?.. %?)%{$reset_color%}"
 
 # zsh vim yank copy to clipboard.
-vi-yank-xclip() {
+vi_yank_xclip() {
     zle vi-yank
     echo "$CUTBUFFER" | pbcopy
 }
-zle -N vi-yank-xclip
-bindkey -M vicmd 'y' vi-yank-xclip
+zle -N vi_yank_xclip
+bindkey -M vicmd 'y' vi_yank_xclip
