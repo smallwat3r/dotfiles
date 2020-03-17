@@ -93,6 +93,8 @@ alias record2gif="asciicast2gif -t monokai"
 alias hs="history | rg"
 alias hsu="history | cut -c 8- | sort -u | rg"
 
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
 alias pubip="curl http://ipecho.net/plain; echo"
 alias myip="curl http://ipecho.net/plain; echo"
 alias locip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' \
