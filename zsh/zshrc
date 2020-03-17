@@ -6,21 +6,6 @@
 # ZSH config.
 #
 
-#
-# BUNDLE MANAGER
-# --------------------------------------------------------------------------------------
-source ~/.antigen/antigen.zsh
-antigen use oh-my-zsh
-
-antigen bundle git
-antigen bundle pip
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions
-
-antigen apply
-
-#
 # GENERAL
 # --------------------------------------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
@@ -69,7 +54,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # zsh auto-suggestions colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 
-#
 # ALIASES
 # --------------------------------------------------------------------------------------
 alias vi="nvim"
@@ -132,7 +116,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-#
 # FUNCTIONS
 # --------------------------------------------------------------------------------------
 
@@ -214,7 +197,6 @@ fg() {
     fi
 }
 
-#
 # LOAD
 # --------------------------------------------------------------------------------------
 case $- in *i*)
@@ -222,12 +204,23 @@ case $- in *i*)
 esac
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#
+# ANTIGEN
+# --------------------------------------------------------------------------------------
+source /usr/local/share/antigen/antigen.zsh
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle pip
+antigen bundle git-prompt
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+antigen bundle softmoth/zsh-vim-mode
+
+antigen apply
+
 # PROMPT (with vim-like mode)
 # --------------------------------------------------------------------------------------
-
-# source vim-mode plugin
-source ~/.config/zsh/zsh-vim-mode.zsh
 
 # vim-mode indicator
 MODE_INDICATOR_VICMD='%F{5}N %f'
@@ -241,14 +234,20 @@ MODE_CURSOR_VICMD="#7dff2b block"
 MODE_CURSOR_VIINS="#20d08a bar"
 MODE_CURSOR_SEARCH="#ff00ff steady underline"
 
-# git info
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' formats '(%b) '
-precmd() { vcs_info }
-setopt prompt_subst
+ZSH_THEME_GIT_PROMPT_PREFIX="("
+ZSH_THEME_GIT_PROMPT_SUFFIX=") "
+ZSH_THEME_GIT_PROMPT_SEPARATOR=" "
+ZSH_THEME_GIT_PROMPT_BRANCH=""
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{.%G%}"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{x%G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{+%G%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
 
 # prompt
-PS1='${MODE_INDICATOR_PROMPT}› %1d ${vcs_info_msg_0_}'
+PS1='${MODE_INDICATOR_PROMPT}› %1d $(git_super_status)'
 RPS1="%{$fg[red]%}%(?.. %?)%{$reset_color%}"
 
 # zsh-vim yank copy to clipboard.

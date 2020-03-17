@@ -44,17 +44,6 @@ Force Zsh
 echo 'export SHELL=$(which zsh)' >> ~/.bash_profile && echo 'exec $(which zsh) -l' >> ~/.bash_profile
 ```
 
-Install antigen (zsh) (will be symlinked to `~/.antigen/antigen.zsh`)
-```sh
-curl -L git.io/antigen > ~/dotfiles/zsh/antigen.zsh
-```
-
-macOS settings
-```sh
-sh macos/macos
-# Then log user out and back in for all changes to apply
-```
-
 Symlink all dotfiles to system
 ```sh
 perl symlink

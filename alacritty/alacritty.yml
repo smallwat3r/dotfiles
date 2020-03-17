@@ -27,6 +27,8 @@ font:
   normal:
     family: Deja Vu Sans Mono
     style: Regular
+    # family: Menlo
+    # style: Regular
   italic:
     family: Deja Vu Sans Mono
     style: Oblique

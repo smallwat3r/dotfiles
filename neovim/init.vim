@@ -1,13 +1,3 @@
-" File  : init.vim
-" Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
-" Date  : 05.02.2020
-"
-" neovim config file
-"
-
-" #####################################################
-" PLUGINS MANAGER (vim-plug)                          #
-" #####################################################
 
 " Auto load for first time use - Install Vim Plug Manager
 " --------------------------------------------------------------------
@@ -171,12 +161,7 @@ set inccommand=nosplit  " show replacements using search / replace
 
 " Silence msg completion menu
 set shortmess+=c
-
-" md filetype
-autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-
 set nolist  " hide special characters
-au BufNewFile,BufFilePre,BufRead *.md setlocal list  " but activate on md files
 
 " diff splits
 set diffopt+=vertical
@@ -237,6 +222,10 @@ au FileType * execute 'setlocal dict+=~/.config/nvim/dict/'.&filetype.'.txt'
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
 call deoplete#custom#source('dictionary', 'sorters', [])
 call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
+
+" markdown
+au BufRead,BufNewFile *.md set ft=markdown
+au BufRead,BufNewFile *.md setlocal list
 
 " #####################################################
 " DESIGN / COLORS AND STUFF                           #
