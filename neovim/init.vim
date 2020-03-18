@@ -77,7 +77,7 @@ let g:neoformat_basic_format_trim=1
 let g:neoformat_python_black = {
     \ 'exe': 'black',
     \ 'stdin': 1,
-    \ 'args': ['-q', '-', '-l 89'],
+    \ 'args': ['-q', '-', '-l 79'],
     \ }
 let g:neoformat_enabled_python = ['black']
 
