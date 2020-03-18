@@ -1,3 +1,12 @@
+" File  : init.vim
+" Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+" Date  : 05.02.2020
+"
+" neovim config file
+
+" #####################################################
+" PLUGINS MANAGER (vim-plug)                          #
+" #####################################################
 
 " Auto load for first time use - Install Vim Plug Manager
 " --------------------------------------------------------------------
