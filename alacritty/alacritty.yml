@@ -7,8 +7,8 @@ env:
 
 window:
   dimensions:
-    columns: 120
-    lines: 30
+    columns: 140
+    lines: 40
 
   padding:
     x: 0
@@ -34,7 +34,7 @@ font:
     family: Hack
     style: Regular  # don't show bold fonts
 
-  size: 12
+  size: 11.5
 
   offset:
     x: 1

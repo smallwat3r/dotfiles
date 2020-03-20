@@ -55,57 +55,37 @@ alias vim="nvim"
 alias svi="sudo nvim"
 alias edit="nvim"
 alias e="nvim"
-
-alias gvi="gnvim"
-
-alias mvi="mvim"
-
 alias dots="cd $HOME/dotfiles"
 alias vie="$EDITOR $HOME/dotfiles/vim/init.vim"
 alias zshe="$EDITOR $HOME/dotfiles/zsh/zshrc"
-
 alias python="python3.8"
 alias pip="pip3.8"
-
 alias lg="lazygit"
-alias ddg="ddgr"
-
 alias fonts="open $HOME/Library/Fonts"
-
 alias venv="python -m venv venv"
-
 alias c="clear"
 alias qq="exit"
-
 alias sp="tmux splitw -v"
 alias vs="tmux splitw -h"
 alias tks="tmux kill-session -t"
 alias tksa="tmux kill-session -a"
 alias tls="tmux list-sessions"
-
 alias p="pwd"
 alias ls="ls -p"
 alias ls.="ls -d .*"
-
 alias trecord="asciinema rec"
 alias record2gif="asciicast2gif -t monokai"
-
 alias hs="history | rg"
 alias hsu="history | cut -c 8- | sort -u | rg"
-
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
-
 alias pubip="curl http://ipecho.net/plain; echo"
 alias myip="curl http://ipecho.net/plain; echo"
-alias locip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' \
-    | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-
+alias locip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]* | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias g="git"
 alias ga="git add "
 alias gs="git status "
 alias gc="git commit -m "
 alias gp="git push "
-
 alias cdr='cd $(git rev-parse --show-cdup)'
 alias ..="cd .."
 alias ...="cd ../.."
@@ -221,6 +201,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # zsh auto-suggestions colors
+ZSH_AUTOSUGGEST_USE_ASYNC="true"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 
 # vim-mode indicator
