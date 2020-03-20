@@ -61,6 +61,7 @@ brew:
     - imagemagick
     - gifsicle
     - ddgr
+    - tidy-html5
 
 # Brew cask installs.
 cask:

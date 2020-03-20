@@ -3,3 +3,4 @@
 
 npm install --global asciicast2gif
 npm install http-server --global
+npm -g install js-beautify
