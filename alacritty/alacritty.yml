@@ -25,26 +25,26 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
+    family: Menlo
     style: Regular
   italic:
-    family: Monaco
+    family: Menlo
     style: Italic
   bold:
-    family: Monaco
+    family: Menlo
     style: Regular  # don't show bold fonts
 
-  size: 11.5
+  size: 11
 
   offset:
-    x: 1
+    x: 0
     y: 0
 
   glyph_offset:
     x: 0
     y: 0
 
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 visual_bell:
   animation: EaseOutExpo
