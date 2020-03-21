@@ -37,7 +37,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
-Plug 'mhinz/vim-startify'
 
 " Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -92,14 +91,6 @@ command! -bang -nargs=* Rg
             \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
             \   fzf#vim#with_preview(), <bang>0)
 
-" Startify
-let g:startify_files_number=5
-let g:startify_custom_header = [
-            \ '                              w           ',
-            \ '     8d8b. .d88b .d8b. Yb  dP w 8d8b.d8b. ',
-            \ '     8P Y8 8.dP  8  .8  YbdP  8 8P Y8P Y8 ',
-            \ '     8   8  Y88P  Y8P    YP   8 8   8   8 ',
-            \ ]
 
 " #####################################################
 " GENERAL CONFIG                                      #

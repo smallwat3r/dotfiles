@@ -22,14 +22,14 @@ links:
     __root__.gitconfig:                           git/gitconfig
     __root__.gitignore_global:                    git/gitignore_global
     __root__.config/alacritty/alacritty.yml:      alacritty/alacritty.yml
-    __root__.config/nvim/init.vim:                neovim/init.vim
-    __root__.config/nvim/colors/smallwat3r.vim:   neovim/colors/smallwat3r.vim
-    __root__.config/nvim/dict/dockerfile.txt:     neovim/dict/dockerfile.txt
-    __root__.config/nvim/dict/go.txt:             neovim/dict/go.txt
-    __root__.config/nvim/dict/html.txt:           neovim/dict/html.txt
-    __root__.config/nvim/dict/javascript.txt:     neovim/dict/javascript.txt
-    __root__.config/nvim/dict/python.txt:         neovim/dict/python.txt
-    __root__.config/nvim/dict/sql.txt:            neovim/dict/sql.txt
+    __root__.config/nvim/init.vim:                nvim/init.vim
+    __root__.config/nvim/colors/smallwat3r.vim:   nvim/colors/smallwat3r.vim
+    __root__.config/nvim/dict/dockerfile.txt:     nvim/dict/dockerfile.txt
+    __root__.config/nvim/dict/go.txt:             nvim/dict/go.txt
+    __root__.config/nvim/dict/html.txt:           nvim/dict/html.txt
+    __root__.config/nvim/dict/javascript.txt:     nvim/dict/javascript.txt
+    __root__.config/nvim/dict/python.txt:         nvim/dict/python.txt
+    __root__.config/nvim/dict/sql.txt:            nvim/dict/sql.txt
     __root__.pip/pip.conf:                        python/pip.conf
     /usr/local/bin/localip:                       bin/localip
     /usr/local/bin/battery:                       bin/battery
