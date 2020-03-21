@@ -25,13 +25,13 @@ scrolling:
 
 font:
   normal:
-    family: Menlo
+    family: Hack
     style: Regular
   italic:
-    family: Menlo
+    family: Hack
     style: Italic
   bold:
-    family: Menlo
+    family: Hack
     style: Regular  # don't show bold fonts
 
   size: 11
@@ -44,7 +44,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 visual_bell:
   animation: EaseOutExpo
