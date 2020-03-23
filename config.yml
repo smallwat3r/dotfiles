@@ -6,69 +6,69 @@
 
 # All non-standard directories, to create if doesn't exist.
 directories:
-    - __root__.pip
-    - __root__.antigen
-    - __root__.config/alacritty
-    - __root__.config/nvim
-    - __root__.config/nvim/dict
-    - __root__.config/nvim/colors
-    - __root__.config/zsh
+  - __root__.pip
+  - __root__.antigen
+  - __root__.config/alacritty
+  - __root__.config/nvim
+  - __root__.config/nvim/dict
+  - __root__.config/nvim/colors
+  - __root__.config/zsh
 
 # List of all symlinks.
 links:
-    __root__.zshrc:                               zsh/zshrc
-    __root__.pylintrc:                            python/pylintrc
-    __root__.tmux.conf:                           tmux/tmux.conf
-    __root__.gitconfig:                           git/gitconfig
-    __root__.gitignore_global:                    git/gitignore_global
-    __root__.config/alacritty/alacritty.yml:      alacritty/alacritty.yml
-    __root__.config/nvim/init.vim:                nvim/init.vim
-    __root__.config/nvim/colors/smallwat3r.vim:   nvim/colors/smallwat3r.vim
-    __root__.config/nvim/dict/dockerfile.txt:     nvim/dict/dockerfile.txt
-    __root__.config/nvim/dict/go.txt:             nvim/dict/go.txt
-    __root__.config/nvim/dict/html.txt:           nvim/dict/html.txt
-    __root__.config/nvim/dict/javascript.txt:     nvim/dict/javascript.txt
-    __root__.config/nvim/dict/python.txt:         nvim/dict/python.txt
-    __root__.config/nvim/dict/sql.txt:            nvim/dict/sql.txt
-    __root__.pip/pip.conf:                        python/pip.conf
-    /usr/local/bin/localip:                       bin/localip
-    /usr/local/bin/battery:                       bin/battery
+  __root__.zshrc: zsh/zshrc
+  __root__.pylintrc: python/pylintrc
+  __root__.tmux.conf: tmux/tmux.conf
+  __root__.gitconfig: git/gitconfig
+  __root__.gitignore_global: git/gitignore_global
+  __root__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+  __root__.config/nvim/init.vim: nvim/init.vim
+  __root__.config/nvim/colors/smallwat3r.vim: nvim/colors/smallwat3r.vim
+  __root__.config/nvim/dict/dockerfile.txt: nvim/dict/dockerfile.txt
+  __root__.config/nvim/dict/go.txt: nvim/dict/go.txt
+  __root__.config/nvim/dict/html.txt: nvim/dict/html.txt
+  __root__.config/nvim/dict/javascript.txt: nvim/dict/javascript.txt
+  __root__.config/nvim/dict/python.txt: nvim/dict/python.txt
+  __root__.config/nvim/dict/sql.txt: nvim/dict/sql.txt
+  __root__.pip/pip.conf: python/pip.conf
+  /usr/local/bin/localip: bin/localip
+  /usr/local/bin/battery: bin/battery
 
 # Brew packages.
 brew:
-    - tmux
-    - redis
-    - git
-    - python@3.8
-    - go
-    - wget
-    - zsh
-    - antigen
-    - fzf
-    - htop
-    - curl
-    - bash
-    - gnu-sed
-    - nmap
-    - jq
-    - make
-    - fd
-    - the_silver_searcher
-    - ripgrep
-    - neovim
-    - node
-    - asciinema
-    - imagemagick
-    - gifsicle
-    - ddgr
-    - tidy-html5
+  - tmux
+  - redis
+  - git
+  - python@3.8
+  - go
+  - wget
+  - zsh
+  - antigen
+  - fzf
+  - htop
+  - curl
+  - bash
+  - gnu-sed
+  - nmap
+  - jq
+  - make
+  - fd
+  - the_silver_searcher
+  - ripgrep
+  - neovim
+  - node
+  - asciinema
+  - imagemagick
+  - gifsicle
+  - ddgr
+  - tidy-html5
 
 # Brew cask installs.
 cask:
-    - sequel-pro
-    - docker
-    - alacritty
-    - slack
-    - alfred
-    - thunderbird
-    - google-chrome
+  - sequel-pro
+  - docker
+  - alacritty
+  - slack
+  - alfred
+  - thunderbird
+  - google-chrome
