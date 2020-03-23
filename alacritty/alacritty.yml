@@ -25,16 +25,16 @@ scrolling:
 
 font:
   normal:
-    family: Menlo
+    family: Consolas
     style: Regular
   italic:
-    family: Menlo
+    family: Consolas
     style: Italic
   bold:
-    family: Menlo
+    family: Consolas
     style: Regular  # don't show bold fonts
 
-  size: 11
+  size: 12
 
   offset:
     x: 1
