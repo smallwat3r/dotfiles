@@ -25,13 +25,13 @@ scrolling:
 
 font:
   normal:
-    family: Hack
+    family: Menlo
     style: Regular
   italic:
-    family: Hack
+    family: Menlo
     style: Italic
   bold:
-    family: Hack
+    family: Menlo
     style: Regular  # don't show bold fonts
 
   size: 11

@@ -1,6 +1,7 @@
 #!/bin/sh
 # Install npm packages
 
-npm install --global asciicast2gif
-npm install http-server --global
-npm -g install js-beautify
+npm install asciicast2gif -g
+npm install http-server -g
+npm install prettier -g
+npm install prettydiff -g

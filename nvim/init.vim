@@ -52,10 +52,9 @@ call plug#end()
 " #####################################################
 
 " signify
-let g:signify_sign_add='+'
-let g:signify_sign_delete='_'
-let g:signify_sign_delete_first_line='‾'
-let g:signify_sign_change='~'
+let g:signify_sign_add='›'
+let g:signify_sign_delete='›'
+let g:signify_sign_change='›'
 
 " use deoplete
 let g:deoplete#enable_at_startup=1
@@ -72,13 +71,14 @@ let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
-
 let g:neoformat_python_black = {
     \ 'exe': 'black',
     \ 'stdin': 1,
     \ 'args': ['-q', '-', '-l 79'],
     \ }
 let g:neoformat_enabled_python = ['black']
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_htmldjango = ['prettier']
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
@@ -90,7 +90,6 @@ command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
             \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
             \   fzf#vim#with_preview(), <bang>0)
-
 
 " #####################################################
 " GENERAL CONFIG                                      #
@@ -107,11 +106,13 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 
-autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
-autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
-autocmd FileType html   setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType css    setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType xml    setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType make       setlocal ts=8 sw=8 noexpandtab
+autocmd FileType go         setlocal ts=8 sw=8 noexpandtab
+autocmd FileType html       setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType js         setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType css        setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType xml        setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " Nginx
 au BufRead,BufNewFile */nginx/*.conf        set ft=nginx
