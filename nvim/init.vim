@@ -334,24 +334,22 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" Navigate brackets
-map <tab> %
+map <tab> %  " Navigate brackets
 
-" Go start or end of line
-nmap B ^
-nmap E $
+nmap B ^  " Start of line
+nmap E $  " End of line
 
-" Copy paragraph
-nmap cp yap<S-}>p
+nmap <leader>a =ip  " align paragraph
+nmap cp yap<S-}>p  " copy paragraph
 
 " Remove search highlight
 nmap <silent><leader><space> :nohlsearch<cr>
 
-" Editing and reloading of config
+" Edit config file
 map <leader>e :e! ~/.config/nvim/init.vim<cr>
 autocmd! bufwritepost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
 
-" Navigate files, buffers etc. (fzf)
+" Fzf mappings
 nmap <leader>b :Buffers<CR>
 nmap <leader>f :Files<CR>
 nmap <leader>l :BLines<CR>
@@ -361,21 +359,15 @@ nmap <leader>; :Rg<CR>
 nmap <Leader>x /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nmap <Leader>X ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 
-" cd vim into current buffer directory
-nmap <silent><leader>cd :cd %:p:h<CR>
+nmap <silent><leader>cd :cd %:p:h<CR>  " cd vim into current buffer directory
+nmap <silent>;d :bp\|bd #<CR>  " delete current buffer
 
-" save current file
-nmap <silent>;; :w<CR>
-
-" delete current buffer, keep window layout
-nmap <silent>;d :bp\|bd #<CR>
+nmap <silent>;w :w<CR>  " write
+nmap ;q :q<CR>          " quit
 
 " tab menu completion
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" access pydocs
-nmap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 
 " Keep visual selection when reindenting
 xnoremap > >gv
