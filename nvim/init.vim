@@ -299,7 +299,7 @@ function! ActiveStatusLine()
     let statusline.="%{&modified?'\  (+)':''}"
     let statusline.="%{&readonly?'\  (ro)':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
-    let statusline.="\ %{strlen(&fenc)?&fenc:&enc} "
+    let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
     return statusline
 endfunction
 
@@ -310,7 +310,7 @@ function! InactiveStatusLine()
     let statusline.="%{&modified?'\  (+)':''}"
     let statusline.="%{&readonly?'\  (ro)':''}"
     let statusline.="\ %=%-14.(%l,%c%)"
-    let statusline.="\ %{strlen(&fenc)?&fenc:&enc} "
+    let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
     return statusline
 endfunction
 

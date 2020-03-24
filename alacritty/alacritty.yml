@@ -25,16 +25,16 @@ scrolling:
 
 font:
   normal:
-    family: Consolas
+    family: Monaco
     style: Regular
   italic:
-    family: Consolas
+    family: Monaco
     style: Italic
   bold:
-    family: Consolas
+    family: Monaco
     style: Regular  # don't show bold fonts
 
-  size: 13
+  size: 12
 
   offset:
     x: 1
@@ -44,7 +44,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 visual_bell:
   animation: EaseOutExpo
