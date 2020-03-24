@@ -19,7 +19,6 @@ endif
 call plug#begin()
 
 Plug 'dense-analysis/ale'
-Plug 'jiangmiao/auto-pairs'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -378,6 +377,20 @@ nmap <silent><up> :res +5<CR>
 nmap <silent><down> :res -5<CR>
 nmap <silent><left> :vertical resize-5<CR>
 nmap <silent><right> :vertical resize+5<CR>
+
+" Auto close matching pairs
+inoremap ( ()<C-G>U<Left>
+inoremap [ []<C-G>U<Left>
+inoremap { {}<C-G>U<Left>
+inoremap < <><C-G>U<Left>
+inoremap ' ''<C-G>U<Left>
+inoremap " ""<C-G>U<Left>
+inoremap ` ``<C-G>U<Left>
+
+" Auto close matching pairs multi line
+inoremap {<CR> {<CR>}<Esc>ko<tab>
+inoremap [<CR> [<CR>]<Esc>ko<tab>
+inoremap (<CR> (<CR>)<Esc>ko<tab>
 
 " #####################################################
 " FUNCTIONS                                           #
