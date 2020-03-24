@@ -212,6 +212,9 @@ let g:omni_sql_no_default_maps=1
 " Save as root
 command! WW :w !sudo tee % >/dev/null
 
+" Source on save config
+autocmd! BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+
 " Disable automatic insertion of comment markers
 set fo=cjql
 autocmd FileType * setl fo-=o fo-=r
@@ -333,7 +336,7 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-map <tab> %  " Navigate brackets
+nmap <tab> %  " Navigate brackets
 
 nmap B ^  " Start of line
 nmap E $  " End of line
@@ -345,8 +348,7 @@ nmap cp yap<S-}>p  " copy paragraph
 nmap <silent><leader><space> :nohlsearch<cr>
 
 " Edit config file
-map <leader>e :e! ~/.config/nvim/init.vim<cr>
-autocmd! bufwritepost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+nmap <leader>e :e! ~/.config/nvim/init.vim<cr>
 
 " Fzf mappings
 nmap <leader>b :Buffers<CR>
@@ -364,33 +366,33 @@ nmap <silent>;d :bp\|bd #<CR>  " delete current buffer
 nmap <silent>;w :w<CR>  " write
 nmap ;q :q<CR>          " quit
 
-" tab menu completion
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Keep visual selection when reindenting
-xnoremap > >gv
-xnoremap < <gv
-
 " Resize splits with arrow keys
 nmap <silent><up> :res +5<CR>
 nmap <silent><down> :res -5<CR>
 nmap <silent><left> :vertical resize-5<CR>
 nmap <silent><right> :vertical resize+5<CR>
 
+" Keep visual selection when reindenting
+xmap > >gv
+xmap < <gv
+
+" tab menu completion
+imap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " Auto close matching pairs
-inoremap ( ()<C-G>U<Left>
-inoremap [ []<C-G>U<Left>
-inoremap { {}<C-G>U<Left>
-inoremap < <><C-G>U<Left>
-inoremap ' ''<C-G>U<Left>
-inoremap " ""<C-G>U<Left>
-inoremap ` ``<C-G>U<Left>
+imap ( ()<C-G>U<Left>
+imap [ []<C-G>U<Left>
+imap { {}<C-G>U<Left>
+imap < <><C-G>U<Left>
+imap ' ''<C-G>U<Left>
+imap " ""<C-G>U<Left>
+imap ` ``<C-G>U<Left>
 
 " Auto close matching pairs multi line
-inoremap {<CR> {<CR>}<Esc>ko<tab>
-inoremap [<CR> [<CR>]<Esc>ko<tab>
-inoremap (<CR> (<CR>)<Esc>ko<tab>
+imap {<CR> {<CR>}<Esc>ko<tab>
+imap [<CR> [<CR>]<Esc>ko<tab>
+imap (<CR> (<CR>)<Esc>ko<tab>
 
 " #####################################################
 " FUNCTIONS                                           #
