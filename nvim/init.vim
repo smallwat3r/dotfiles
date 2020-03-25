@@ -105,6 +105,7 @@ set softtabstop=2
 autocmd FileType make       setlocal ts=8 sw=8 noexpandtab
 autocmd FileType go         setlocal ts=8 sw=8 noexpandtab
 autocmd FileType python     setlocal ts=4 sw=4 sts=4
+autocmd FileType perl       setlocal ts=4 sw=4 sts=4
 
 " Nginx
 au BufRead,BufNewFile */nginx/*.conf        set ft=nginx
