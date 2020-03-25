@@ -11,9 +11,9 @@
 " Auto load for first time use - Install Vim Plug Manager
 " --------------------------------------------------------------------
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin()
@@ -22,11 +22,9 @@ Plug 'dense-analysis/ale'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
-
 Plug 'tpope/vim-vinegar'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'alvan/vim-closetag'
@@ -36,8 +34,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
-
-" Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neopairs.vim'
@@ -71,24 +67,25 @@ let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
 let g:neoformat_python_black = {
-    \ 'exe': 'black',
-    \ 'stdin': 1,
-    \ 'args': ['-q', '-', '-l 79'],
-    \ }
+      \ 'exe': 'black',
+      \ 'stdin': 1,
+      \ 'args': ['-q', '-', '-l 79'],
+      \ }
 let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
+let g:neoformat_enabled_html = ['prettier']
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
-            \ call fzf#vim#files(
-            \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
-            \ '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+      \ call fzf#vim#files(
+      \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
+      \ '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 
 command! -bang -nargs=* Rg
-            \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-            \   fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
 
 " #####################################################
 " GENERAL CONFIG                                      #
@@ -100,18 +97,14 @@ filetype plugin indent on
 " Remap leader
 let mapleader=','
 
-" Default indentation
+" Indentation
 set expandtab
-set shiftwidth=4
-set tabstop=4
-
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 autocmd FileType make       setlocal ts=8 sw=8 noexpandtab
 autocmd FileType go         setlocal ts=8 sw=8 noexpandtab
-autocmd FileType html       setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType js         setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType css        setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType xml        setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType python     setlocal ts=4 sw=4 sts=4
 
 " Nginx
 au BufRead,BufNewFile */nginx/*.conf        set ft=nginx
@@ -257,11 +250,11 @@ hi LineNr         ctermfg=239  ctermbg=NONE guifg=#4e4e4e guibg=NONE
 
 " GUI mode
 if (has("gui_running"))
-    set linespace=0
-    set fontligatures
-    set guifont=Monaco:h13
-    set guioptions-=mTrL  " remove all GUI widgets
-    set gcr=a:blinkon0    " no blinking cursor
+  set linespace=0
+  set fontligatures
+  set guifont=Monaco:h13
+  set guioptions-=mTrL  " remove all GUI widgets
+  set gcr=a:blinkon0    " no blinking cursor
 endif
 
 " Italics
@@ -275,12 +268,14 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 " Show git info in statusline
 function! GitInfo()
-    let git = fugitive#head()
-    if git != ''
-        return "(on ".fugitive#head().")  "
-    else
-        return ''
+  let git = fugitive#head()
+  if git != ""
+    return "(on ".fugitive#head().")  "
+  else
+    return ""
+  endif
 endfunction
+
 
 " Statusline vim mode colors
 hi NormalColor   guifg=Black guibg=#5fff5f ctermbg=83  ctermfg=0
@@ -291,29 +286,29 @@ hi CommandColor  guifg=Black guibg=#ff5f87 ctermbg=204 ctermfg=0
 
 " Statusline active
 function! ActiveStatusLine()
-    let statusline=" %n "
-    let statusline.="%#NormalColor#%{(mode()=='n')?'\ N\ ':''}"
-    let statusline.="%#InsertColor#%{(mode()=='i')?'\ I\ ':''}"
-    let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ R\ ':''}"
-    let statusline.="%#VisualColor#%{(mode()=='v')?'\ V\ ':''}"
-    let statusline.="%#CommandColor#%{(mode()=='c')?'\ C\ ':''}"
-    let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  (+)':''}"
-    let statusline.="%{&readonly?'\  (ro)':''}"
-    let statusline.="\ %=%-14.(%l,%c%)"
-    let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
-    return statusline
+  let statusline=" %n "
+  let statusline.="%#NormalColor#%{(mode()=='n')?'\ N\ ':''}"
+  let statusline.="%#InsertColor#%{(mode()=='i')?'\ I\ ':''}"
+  let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ R\ ':''}"
+  let statusline.="%#VisualColor#%{(mode()=='v')?'\ V\ ':''}"
+  let statusline.="%#CommandColor#%{(mode()=='c')?'\ C\ ':''}"
+  let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
+  let statusline.="%{&modified?'\  (+)':''}"
+  let statusline.="%{&readonly?'\  (ro)':''}"
+  let statusline.="\ %=%-14.(%l,%c%)"
+  let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
+  return statusline
 endfunction
 
 " Statusline inactive
 function! InactiveStatusLine()
-    let statusline=" %n "
-    let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
-    let statusline.="%{&modified?'\  (+)':''}"
-    let statusline.="%{&readonly?'\  (ro)':''}"
-    let statusline.="\ %=%-14.(%l,%c%)"
-    let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
-    return statusline
+  let statusline=" %n "
+  let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
+  let statusline.="%{&modified?'\  (+)':''}"
+  let statusline.="%{&readonly?'\  (ro)':''}"
+  let statusline.="\ %=%-14.(%l,%c%)"
+  let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
+  return statusline
 endfunction
 
 " Set statusline
@@ -321,9 +316,9 @@ set statusline=%!ActiveStatusLine()
 
 " Switch windows statusline
 augroup status
-    autocmd!
-    autocmd WinEnter * setlocal statusline=%!ActiveStatusLine()
-    autocmd WinLeave * setlocal statusline=%!InactiveStatusLine()
+  autocmd!
+  autocmd WinEnter * setlocal statusline=%!ActiveStatusLine()
+  autocmd WinLeave * setlocal statusline=%!InactiveStatusLine()
 augroup END
 
 " #####################################################
@@ -385,9 +380,6 @@ imap ( ()<C-G>U<Left>
 imap [ []<C-G>U<Left>
 imap { {}<C-G>U<Left>
 imap < <><C-G>U<Left>
-imap ' ''<C-G>U<Left>
-imap " ""<C-G>U<Left>
-imap ` ``<C-G>U<Left>
 
 " Auto close matching pairs multi line
 imap {<CR> {<CR>}<Esc>ko<tab>
@@ -399,13 +391,13 @@ imap (<CR> (<CR>)<Esc>ko<tab>
 " #####################################################
 
 " Remove trailing whitespaces
-function! TrimTrailingWS ()
-    if exists('b:noStripWhitespace')
-        return
-    endif
-    if search('\s\+$', 'cnw')
-        :%s/\s\+$//g
-    endif
+function! TrimTrailingWS()
+  if exists('b:noStripWhitespace')
+    return
+  endif
+  if search('\s\+$', 'cnw')
+    :%s/\s\+$//g
+  endif
 endfunction
 
 autocmd BufWritePre * :call TrimTrailingWS()
@@ -413,21 +405,21 @@ autocmd FileType markdown let b:noStripWhitespace=1
 
 " Count errors in status bar
 function! LinterStatus() abort
-    let l:counts=ale#statusline#Count(bufnr(''))
-    let l:all_errors=l:counts.error + l:counts.style_error
-    let l:all_non_errors=l:counts.total - l:all_errors
-    return l:counts.total == 0 ? 'OK' : printf(
-                \   '%dW %dE',
-                \   all_non_errors,
-                \   all_errors )
+  let l:counts=ale#statusline#Count(bufnr(''))
+  let l:all_errors=l:counts.error + l:counts.style_error
+  let l:all_non_errors=l:counts.total - l:all_errors
+  return l:counts.total == 0 ? 'OK' : printf(
+        \   '%dW %dE',
+        \   all_non_errors,
+        \   all_errors )
 endfunction
 
 " Custom fold lines format
 function! CustomFoldText()
-    let line = getline(v:foldstart)
-    let folded_line_num = v:foldend - v:foldstart
-    let line_text = substitute(line, '^"{\+', '', 'g')
-    return '    ⤿ +  (' . folded_line_num . ' lines) ' . line_text
+  let line = getline(v:foldstart)
+  let folded_line_num = v:foldend - v:foldstart
+  let line_text = substitute(line, '^"{\+', '', 'g')
+  return '    ⤿ +  (' . folded_line_num . ' lines) ' . line_text
 endfunction
 
 set foldtext=CustomFoldText()
