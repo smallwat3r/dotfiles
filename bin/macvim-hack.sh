@@ -5,10 +5,10 @@
 
 # Macvim hack
 if ! brew ls --versions "macvim" >/dev/null; then
-    echo "[+] installing macvim"
-    brew unlink vim
-    brew install macvim
-    brew link vim
+  echo "[+] installing macvim"
+  brew unlink vim
+  brew install macvim
+  brew link vim
 else
-    echo "[.] macvim already installed"
+  echo "[.] macvim already installed"
 fi

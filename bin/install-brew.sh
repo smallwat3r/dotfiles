@@ -4,8 +4,8 @@
 # Date  : 27.12.2019
 
 if ! brew ls --versions $1 >/dev/null; then
-    echo "[+] installing $1"
-    brew install $1
+  echo "[+] installing $1"
+  brew install $1
 else
-    echo "[.] $1 already installed"
+  echo "[.] $1 already installed"
 fi

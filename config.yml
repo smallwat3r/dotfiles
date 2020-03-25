@@ -62,6 +62,7 @@ brew:
   - gifsicle
   - ddgr
   - tidy-html5
+  - shfmt
 
 # Brew cask installs.
 cask:
