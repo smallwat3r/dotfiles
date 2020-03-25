@@ -363,6 +363,8 @@ nmap <silent>;d :bp\|bd #<CR>  " delete current buffer
 nmap <silent>;w :w<CR>  " write
 nmap ;q :q<CR>          " quit
 
+nmap ;f :Neoformat<CR>  " Format file
+
 " Resize splits with arrow keys
 nmap <silent><up> :res +5<CR>
 nmap <silent><down> :res -5<CR>
