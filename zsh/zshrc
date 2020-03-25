@@ -96,86 +96,84 @@ alias .....="cd ../../../.."
 # --------------------------------------------------------------------------------------
 # open vimr in current dir on file
 vir() {
-    if [ $# -eq 0 ]; then open -a vimR .; else open -a vimR "$@"; fi
+  if [ $# -eq 0 ]; then open -a vimR .; else open -a vimR "$@"; fi
 }
 
 # open current dir or the one in args
 o() {
-    if [ $# -eq 0 ]; then open .; else open "$@"; fi
+  if [ $# -eq 0 ]; then open .; else open "$@"; fi
 }
 
 # search (grep) from current dir or specified
 search() {
-    grep -rnIi "$1" . --color
+  grep -rnIi "$1" . --color
 }
 
 # create and enter directory
 mkd() {
-    mkdir -p "$@" && cd "$@"
+  mkdir -p "$@" && cd "$@"
 }
 
 # preview csv files.
 # source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
 csvpreview() {
-    sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S
+  sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S
 }
 
 # Show Wi-Fi Network Passwords
 # Exchange SSID with the SSID of the access point you wish to query the password from.
 # https://github.com/ahmadawais/dotFiles/blob/7e5b5b632a61837917a5f6194b1929283a43ec91/.zshrc#L2621
 wifipass() {
-    security find-generic-password -D "AirPort network password" -a "$@" -gw
+  security find-generic-password -D "AirPort network password" -a "$@" -gw
 }
 
 # extract file.
 # source: http://nparikh.org/notes/zshrc.txt
 extract() {
-    if [ -f $1 ]; then
-        case $1 in
-            *.tar.bz2) tar -jxvf $1 ;;
-            *.tar.gz) tar -zxvf $1 ;;
-            *.bz2) bunzip2 $1 ;;
-            *.dmg) hdiutil mount $1 ;;
-            *.gz) gunzip $1 ;;
-            *.tar) tar -xvf $1 ;;
-            *.tbz2) tar -jxvf $1 ;;
-            *.tgz) tar -zxvf $1 ;;
-            *.zip) unzip $1 ;;
-            *.ZIP) unzip $1 ;;
-            *.pax) cat $1 | pax -r ;;
-            *.pax.Z) uncompress $1 --stdout | pax -r ;;
-            *.rar) unrar x $1 ;;
-            *.Z) uncompress $1 ;;
-            *) echo "'$1' cannot be extracted/mounted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
+  if [ -f $1 ]; then
+    case $1 in
+      *.tar.bz2) tar -jxvf $1 ;;
+      *.tar.gz) tar -zxvf $1 ;;
+      *.bz2) bunzip2 $1 ;;
+      *.dmg) hdiutil mount $1 ;;
+      *.gz) gunzip $1 ;;
+      *.tar) tar -xvf $1 ;;
+      *.tbz2) tar -jxvf $1 ;;
+      *.tgz) tar -zxvf $1 ;;
+      *.zip) unzip $1 ;;
+      *.ZIP) unzip $1 ;;
+      *.pax) cat $1 | pax -r ;;
+      *.pax.Z) uncompress $1 --stdout | pax -r ;;
+      *.rar) unrar x $1 ;;
+      *.Z) uncompress $1 ;;
+      *) echo "'$1' cannot be extracted/mounted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 # FZF select and open file
 fe() {
-    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-    [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
 
 # fuzzy grep open via ag with line number
 fg() {
-    local file
-    local line
-
-    read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
-
-    if [[ -n $file ]]
-    then
-        nvim $file +$line
-    fi
+  local file
+  local line
+  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+  if [[ -n $file ]]
+  then
+    nvim $file +$line
+  fi
 }
 
 # Load fzf and tmux
 # --------------------------------------------------------------------------------------
 case $- in *i*)
-    if [ -z "$TMUX" ]; then exec tmux; fi;;
+  if [ -z "$TMUX" ]; then exec tmux; fi;;
 esac
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -235,8 +233,8 @@ RPS1="%{$fg[red]%}%(?.. %?)%{$reset_color%}"
 
 # zsh vim yank copy to clipboard.
 vi_yank_xclip() {
-    zle vi-yank
-    echo "$CUTBUFFER" | pbcopy
+  zle vi-yank
+  echo "$CUTBUFFER" | pbcopy
 }
 zle -N vi_yank_xclip
 bindkey -M vicmd 'y' vi_yank_xclip
