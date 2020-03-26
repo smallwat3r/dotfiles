@@ -25,13 +25,13 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
+    family: Menlo
     style: Regular
   italic:
-    family: Monaco
+    family: Menlo
     style: Italic
   bold:
-    family: Monaco
+    family: Menlo
     style: Regular  # don't show bold fonts
 
   size: 12
@@ -44,7 +44,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 visual_bell:
   animation: EaseOutExpo
@@ -55,7 +55,7 @@ background_opacity: 1
 
 colors:
   primary:
-    background: '#000000'
+    background: '#14191e'
     foreground: '#e4e4e4'
 
   # Normal colors

@@ -1,6 +1,5 @@
 " File  : init.vim
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
-" Date  : 05.02.2020
 "
 " neovim config file
 
@@ -128,31 +127,25 @@ au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 set encoding=utf-8
 set fileencoding=utf-8
 set updatetime=100      " async updatetime
-set signcolumn=auto
-set hidden
-set nomodeline
+set hidden              " hide buffer instead of closing them
+set cmdheight=1         " height of cmd line
+set nomodeline          " ignore vim modelines
 set autoread            " reread changed files automatically
-set ttyfast
 set laststatus=2        " always show statusline
 set noshowcmd           " don't show cmd in last line of screen
 set noruler             " don't show cursor position
 set nu rnu              " relative line numbers and current line number
-set modifiable
 set showmatch           " matching brackets
 set mouse=a             " mouse support
-set nostartofline
 set incsearch           " search pattern
 set hlsearch            " search highlighting
-set clipboard=unnamedplus
 set wrap                " wrap lines
 set lazyredraw          " no redraw
 set ignorecase          " search ignore case
 set scrolljump=8        " minimal nb of lines to scroll when cursor gets off the screen
-set fillchars=vert:┃
 set nocompatible        " modern vim
-set wildignorecasem     " ignore case whem completing filenames and directories
+set wildignorecase      " ignore case whem completing filenames and directories
 set noshowmode          " do not show vim mode (already in statusline)
-set matchpairs+=<:>
 set splitbelow          " for ex preview windows will appear at the bottom
 set noshowmode          " don't show mode (aleady in statusline)
 set inccommand=nosplit  " show replacements using search / replace
@@ -161,9 +154,12 @@ set nocursorline        " don't highlight line
 set shortmess+=c        " silence msg completion menu
 set nolist              " hide special characters
 set diffopt+=vertical   " diff splits
-set showbreak=⤿\
+set visualbell t_vb=    " deactivate bells and alerts
+set showbreak=⤿\        " line break symbol
+set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
-set visualbell t_vb=    " Deactivate bells and alerts
+set matchpairs+=<:>
+set clipboard+=unnamedplus
 
 " Ignore files and folders
 set wildignore=*.swp,*.bak
@@ -246,43 +242,50 @@ autocmd FileType markdown let b:noStripWhitespace=1
 " KEYBINDING                                          #
 " #####################################################
 
+" Start of line
+nmap B ^
+" End of line
+nmap E $
+" Navigate brackets
+nmap <tab> %
+" align paragraph
+nmap <leader>a =ip
+" copy paragraph
+nmap cp yap<S-}>p
+" Remove search highlight
+nmap <silent><leader><space> :nohlsearch<cr>
+" Edit config file
+nmap <leader>e :e! ~/.config/nvim/init.vim<cr>
+
+" FZF show buffer list
+nmap <leader>b :Buffers<CR>
+" FZF search files
+nmap <leader>f :Files<CR>
+" FZF search lines in buffer
+nmap <leader>l :BLines<CR>
+" FZF ripgrep
+nmap <leader>; :Rg<CR>
+
+" cd vim into current buffer directory
+nmap <silent><leader>cd :cd %:p:h<CR>
+" delete current buffer
+nmap <silent>;d :bp\|bd #<CR>
+" write
+nmap ;w :w<CR>
+" quit
+nmap ;q :q<CR>
+" format file
+nmap ;f :Neoformat<CR>
+
 " Navigate window panels
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-nmap <tab> %  " Navigate brackets
-
-nmap B ^  " Start of line
-nmap E $  " End of line
-
-nmap <leader>a =ip  " align paragraph
-nmap cp yap<S-}>p  " copy paragraph
-
-" Remove search highlight
-nmap <silent><leader><space> :nohlsearch<cr>
-
-" Edit config file
-nmap <leader>e :e! ~/.config/nvim/init.vim<cr>
-
-" Fzf mappings
-nmap <leader>b :Buffers<CR>
-nmap <leader>f :Files<CR>
-nmap <leader>l :BLines<CR>
-nmap <leader>; :Rg<CR>
-
 " Case insensitive replace word (aka multiple cursors)
 nmap <Leader>x /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nmap <Leader>X ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
-
-nmap <silent><leader>cd :cd %:p:h<CR>  " cd vim into current buffer directory
-nmap <silent>;d :bp\|bd #<CR>  " delete current buffer
-
-nmap <silent>;w :w<CR>  " write
-nmap ;q :q<CR>          " quit
-
-nmap ;f :Neoformat<CR>  " Format file
 
 " Resize splits with arrow keys
 nmap <silent><up> :res +5<CR>
@@ -294,15 +297,15 @@ nmap <silent><right> :vertical resize+5<CR>
 xmap > >gv
 xmap < <gv
 
-" tab menu completion
+" tab completion
 imap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Auto close matching pairs
-imap ( ()<C-G>U<Left>
-imap [ []<C-G>U<Left>
-imap { {}<C-G>U<Left>
-imap < <><C-G>U<Left>
+imap { {}<ESC>i
+imap ( ()<ESC>i
+imap [ []<ESC>i
+imap < <><ESC>i
 
 " Auto close matching pairs multi line
 imap {<CR> {<CR>}<Esc>ko<tab>
@@ -314,23 +317,19 @@ imap (<CR> (<CR>)<Esc>ko<tab>
 " #####################################################
 
 " Colorize some stuff (using syntax off)
-hi DiffAdd        ctermfg=83  ctermbg=NONE guibg=NONE guifg=#5fff5f
+hi DiffAdd        ctermfg=83 ctermbg=NONE guibg=NONE guifg=#5fff5f
 hi DiffChange     ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
 hi DiffText       ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
 hi DiffDelete     ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
-
-hi Folded         ctermfg=231 ctermbg=239  guifg=#ffffff guibg=#4e4e4e
-hi MatchParen     ctermfg=237 ctermbg=200  guifg=#3a3a3a guibg=#ff00d7
-
-hi VertSplit      ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE    gui=NONE
-hi StatuslineNC   ctermfg=250 ctermbg=238  cterm=NONE guifg=#bcbcbc guibg=#444444 gui=NONE
-hi Statusline     ctermfg=234 ctermbg=252  cterm=NONE guifg=#1c1c1c guibg=#d0d0d0 gui=NONE
-
+hi Folded         ctermfg=231 ctermbg=239 guifg=#ffffff guibg=#4e4e4e
+hi MatchParen     ctermfg=237 ctermbg=200 guifg=#3a3a3a guibg=#ff00d7
+hi SignColumn     ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
+hi LineNr         ctermfg=239 ctermbg=NONE guifg=#4e4e4e guibg=NONE
+hi VertSplit      ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE gui=NONE
+hi StatuslineNC   ctermfg=250 ctermbg=238 cterm=NONE guifg=#bcbcbc guibg=#444444 gui=NONE
+hi Statusline     ctermfg=234 ctermbg=252 cterm=NONE guifg=#1c1c1c guibg=#d0d0d0 gui=NONE
 hi ALEErrorSign   ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
 hi ALEWarningSign ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
-
-hi SignColumn     ctermbg=NONE cterm=NONE   guibg=NONE gui=NONE
-hi LineNr         ctermfg=239  ctermbg=NONE guifg=#4e4e4e guibg=NONE
 
 " GUI mode
 if (has("gui_running"))
