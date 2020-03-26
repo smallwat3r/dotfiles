@@ -353,7 +353,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 function! GitInfo()
   let git = fugitive#head()
   if git != ""
-    return " \ue0a0".fugitive#head()." "
+    return " (on ".fugitive#head().") "
   else
     return ""
   endif
