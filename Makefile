@@ -17,7 +17,7 @@ install-oh-my-zsh:
 install-perl:
 	perl -MCPAN -e 'install YAML::XS'
 
-brew:
+brew: install-perl
 	chmod +x ./bin/brew
 	./bin/brew
 
@@ -41,6 +41,6 @@ install-smallwat3r-bin:
 	chmod +x ./bin/install-smallwat3r-scripts
 	./bin/install-smallwat3r-scripts
 
-symlink:
+symlink: install-perl
 	chmod +x ./bin/symlink
 	./bin/symlink
