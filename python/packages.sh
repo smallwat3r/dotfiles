@@ -1,5 +1,5 @@
 #!/bin/sh
 # Install python packages
 
-pip install black pylint sqlparse jsbeautifier \
+pip3 install black pylint sqlparse jsbeautifier \
     pynvim bandit

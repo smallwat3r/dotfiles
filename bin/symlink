@@ -1,0 +1,51 @@
+#!/usr/bin/env perl
+# File  : do-symlink.pl
+# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Date  : 23.12.2019
+#
+# Symlink from config.yml
+#
+use strict;
+use warnings;
+
+use Cwd qw(cwd);
+use YAML::XS qw(LoadFile);
+use File::Path qw(make_path);
+
+my $user = getpwuid($<);
+my $root = "/Users/${user}";
+
+my $current_dir = cwd;
+my $data = LoadFile("${current_dir}/config.yml");
+
+# Make sure all non-standard directories exists.
+print "\n\n==== Directories ====\n\n";
+my $dir;
+my @directories = @{$data->{directories}};
+foreach $dir (@directories) {
+    $dir =~ s/__root__/${root}\//ig;
+    print "$dir\n";
+    if ( -d "$dir") {
+        print "[.] $dir already exists.\n";
+    } else {
+        make_path("$dir");
+        print "[+] $dir created.\n";
+    }
+}
+
+# Symlinks.
+print "\n\n==== Symlinks ====\n\n";
+my $key;
+my $value;
+my %links = %{$data->{links}};
+while (($key, $value) = each (%links)) {
+    $value = $links{$key};
+    $key =~ s/__root__/${root}\//ig;
+    unlink($key);
+    symlink("${current_dir}/${value}", $key);
+    if ($key =~ m(^bin\/)) {
+        # Make exe if bin script.
+        chmod 0755, $value;
+    }
+    print "[+] ${value} linked to ${key}\n";
+}
