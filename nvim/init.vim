@@ -335,6 +335,7 @@ imap (<CR> (<CR>)<Esc>ko<tab>
 " DESIGN / COLORS AND STUFF                           #
 " #####################################################
 
+" Colorscheme
 colo ron
 
 " Colorize some stuff
