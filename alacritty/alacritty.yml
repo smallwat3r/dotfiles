@@ -11,8 +11,8 @@ window:
     lines: 40
 
   padding:
-    x: 0
-    y: 0
+    x: 10
+    y: 10
 
   dynamic_padding: false
   decorations: buttonless
@@ -25,26 +25,26 @@ scrolling:
 
 font:
   normal:
-    family: Andale Mono Imp
+    family: Hack
     style: Regular
   italic:
-    family: Andale Mono Imp
+    family: Hack
     style: Italic
   bold:
-    family: Andale Mono Imp
+    family: Hack
     style: Regular # don't show bold fonts
 
   size: 12
 
   offset:
-    x: 0
+    x: 1
     y: 0
 
   glyph_offset:
     x: 0
     y: 0
 
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 visual_bell:
   animation: EaseOutExpo
@@ -56,8 +56,8 @@ background_opacity: 1
 colors:
   # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xffffff'
+    background: '0x080808'
+    foreground: '0xf2f2f2'
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }

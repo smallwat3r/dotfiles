@@ -80,10 +80,25 @@ let g:neoformat_python_black = {
       \ 'stdin': 1,
       \ 'args': ['-q', '-', '-l 79'],
       \ }
+let g:neoformat_javascript_prettier = {
+      \ 'exe': 'prettier',
+      \ 'stdin': 1,
+      \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
+      \ }
+let g:neoformat_html_prettier = {
+      \ 'exe': 'prettier',
+      \ 'stdin': 1,
+      \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
+      \ }
+let g:neoformat_htmldjango_prettier = {
+      \ 'exe': 'prettier',
+      \ 'stdin': 1,
+      \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
+      \ }
 let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_htmldjango = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
+let g:neoformat_enabled_htmldjango = ['prettier']
 let g:shfmt_opt="-ci"
 
 " fzf
