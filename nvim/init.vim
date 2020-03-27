@@ -316,6 +316,9 @@ xmap < <gv
 imap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" jj works as ESC
+imap jj <ESC>
+
 " Auto close matching pairs
 imap { {}<ESC>i
 imap ( ()<ESC>i
