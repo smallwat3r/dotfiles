@@ -1,10 +1,8 @@
 # MacOS config file and preferences.
 
 # Font smoothing
-defaults -currentHost write -g AppleFontSmoothing -int 1
-# defaults write com.apple.Terminal AppleFontSmoothing -int 1
-# defaults write org.vim.MacVim AppleFontSmoothing -int 1
-defaults write NSGlobalDomain AppleFontSmoothing -int 1
+defaults -currentHost write -g AppleFontSmoothing -int 2
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
