@@ -338,7 +338,7 @@ imap (<CR> (<CR>)<Esc>ko<tab>
 " Colorscheme
 colo ron
 
-" Colorize some stuff
+" Overwrite color on some stuff
 hi DiffAdd        ctermfg=83   ctermbg=NONE
 hi DiffChange     ctermfg=222  ctermbg=NONE
 hi DiffText       ctermfg=165  ctermbg=NONE
@@ -347,9 +347,8 @@ hi Folded         ctermfg=231  ctermbg=239
 hi MatchParen     ctermfg=237  ctermbg=200
 hi SignColumn     ctermfg=NONE ctermbg=NONE cterm=NONE
 hi LineNr         ctermfg=239  ctermbg=NONE
-hi VertSplit      ctermfg=240  ctermbg=NONE
+hi VertSplit      ctermfg=240  ctermbg=NONE cterm=NONE
 hi StatuslineNC   ctermfg=250  ctermbg=238  cterm=NONE
-hi Statusline     ctermfg=234  ctermbg=252  cterm=NONE
 hi ALEErrorSign   ctermfg=161  ctermbg=NONE
 hi ALEWarningSign ctermfg=221  ctermbg=NONE
 
