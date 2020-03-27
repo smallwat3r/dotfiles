@@ -46,9 +46,9 @@ call plug#end()
 " #####################################################
 
 " signify
-let g:signify_sign_add='›'
-let g:signify_sign_delete='›'
-let g:signify_sign_change='›'
+let g:signify_sign_add='+'
+let g:signify_sign_delete='-'
+let g:signify_sign_change='∙'
 
 " use deoplete
 let g:deoplete#enable_at_startup=1
@@ -336,9 +336,10 @@ imap (<CR> (<CR>)<Esc>ko<tab>
 " #####################################################
 
 " Colorscheme
-colo ron
+colo desert
 
 " Overwrite color on some stuff
+hi Normal                      ctermbg=NONE
 hi DiffAdd        ctermfg=83   ctermbg=NONE
 hi DiffChange     ctermfg=222  ctermbg=NONE
 hi DiffText       ctermfg=165  ctermbg=NONE
@@ -351,7 +352,6 @@ hi VertSplit      ctermfg=240  ctermbg=NONE cterm=NONE
 hi StatuslineNC   ctermfg=250  ctermbg=238  cterm=NONE
 hi ALEErrorSign   ctermfg=161  ctermbg=NONE
 hi ALEWarningSign ctermfg=221  ctermbg=NONE
-
 " Italics
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
