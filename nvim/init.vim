@@ -116,7 +116,7 @@ command! -bang -nargs=* Rg
 " GENERAL CONFIG                                      #
 " #####################################################
 
-syntax off  " No colors
+syntax on
 filetype plugin indent on
 
 let mapleader=','  " Leader key
@@ -323,6 +323,7 @@ imap jj <ESC>
 imap { {}<ESC>i
 imap ( ()<ESC>i
 imap [ []<ESC>i
+
 imap < <><ESC>i
 
 " Auto close matching pairs multi line
@@ -334,29 +335,22 @@ imap (<CR> (<CR>)<Esc>ko<tab>
 " DESIGN / COLORS AND STUFF                           #
 " #####################################################
 
-" Colorize some stuff (using syntax off)
-hi DiffAdd        ctermfg=83 ctermbg=NONE guibg=NONE guifg=#5fff5f
-hi DiffChange     ctermfg=222 ctermbg=NONE guibg=NONE guifg=#ffd787
-hi DiffText       ctermfg=165 ctermbg=NONE guibg=NONE guifg=#d700ff
-hi DiffDelete     ctermfg=197 ctermbg=NONE guibg=NONE guifg=#ff005f
-hi Folded         ctermfg=231 ctermbg=239 guifg=#ffffff guibg=#4e4e4e
-hi MatchParen     ctermfg=237 ctermbg=200 guifg=#3a3a3a guibg=#ff00d7
-hi SignColumn     ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
-hi LineNr         ctermfg=239 ctermbg=NONE guifg=#4e4e4e guibg=NONE
-hi VertSplit      ctermfg=240 ctermbg=NONE cterm=NONE guifg=#585858 guibg=NONE gui=NONE
-hi StatuslineNC   ctermfg=250 ctermbg=238 cterm=NONE guifg=#bcbcbc guibg=#444444 gui=NONE
-hi Statusline     ctermfg=234 ctermbg=252 cterm=NONE guifg=#1c1c1c guibg=#d0d0d0 gui=NONE
-hi ALEErrorSign   ctermfg=161 ctermbg=NONE guibg=NONE guifg=#d7005f
-hi ALEWarningSign ctermfg=221 ctermbg=NONE guibg=NONE guifg=#ffd75f
+colo ron
 
-" GUI mode
-if (has("gui_running"))
-  set linespace=0
-  set fontligatures
-  set guifont=Monaco:h13
-  set guioptions-=mTrL  " remove all GUI widgets
-  set gcr=a:blinkon0    " no blinking cursor
-endif
+" Colorize some stuff
+hi DiffAdd        ctermfg=83   ctermbg=NONE
+hi DiffChange     ctermfg=222  ctermbg=NONE
+hi DiffText       ctermfg=165  ctermbg=NONE
+hi DiffDelete     ctermfg=197  ctermbg=NONE
+hi Folded         ctermfg=231  ctermbg=239
+hi MatchParen     ctermfg=237  ctermbg=200
+hi SignColumn     ctermfg=NONE ctermbg=NONE cterm=NONE
+hi LineNr         ctermfg=239  ctermbg=NONE
+hi VertSplit      ctermfg=240  ctermbg=NONE
+hi StatuslineNC   ctermfg=250  ctermbg=238  cterm=NONE
+hi Statusline     ctermfg=234  ctermbg=252  cterm=NONE
+hi ALEErrorSign   ctermfg=161  ctermbg=NONE
+hi ALEWarningSign ctermfg=221  ctermbg=NONE
 
 " Italics
 let &t_ZH="\e[3m"
@@ -378,11 +372,11 @@ function! GitInfo()
 endfunction
 
 " Statusline vim mode colors
-hi NormalColor   guifg=Black guibg=#5fff5f ctermbg=83  ctermfg=0
-hi InsertColor   guifg=Black guibg=#5fd7ff ctermbg=81  ctermfg=0
-hi ReplaceColor  guifg=Black guibg=#d7af5f ctermbg=180 ctermfg=0
-hi VisualColor   guifg=Black guibg=#ff8700 ctermbg=208 ctermfg=0
-hi CommandColor  guifg=Black guibg=#ff5f87 ctermbg=204 ctermfg=0
+hi NormalColor  ctermbg=35  ctermfg=0
+hi InsertColor  ctermbg=81  ctermfg=0
+hi ReplaceColor ctermbg=180 ctermfg=0
+hi VisualColor  ctermbg=208 ctermfg=0
+hi CommandColor ctermbg=204 ctermfg=0
 
 " Statusline active
 function! ActiveStatusLine()
