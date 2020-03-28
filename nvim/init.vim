@@ -271,6 +271,20 @@ nmap cp yap<S-}>p
 nmap <silent><leader><space> :nohlsearch<cr>
 " Edit config file
 nmap <leader>e :e! ~/.config/nvim/init.vim<cr>
+" cd vim into current buffer directory
+nmap <silent><leader>cd :cd %:p:h<CR>:pwd<CR>
+" cd into previous directory
+nmap <silent><leader>cdp :cd ..<CR>:pwd<CR>
+" delete current buffer
+nmap <silent>;d :bp\|bd #<CR>:echo "Buffer deleted"<CR>
+" write
+nmap ;w :w<CR>
+" quit
+nmap ;q :q<CR>
+" format file
+nmap ;f :Neoformat<CR>
+" source current file
+nmap <silent><leader>so :so %<CR>:echo "File sourced"<CR>
 
 " FZF show buffer list
 nmap <leader>b :Buffers<CR>
@@ -280,17 +294,6 @@ nmap <leader>f :Files<CR>
 nmap <leader>l :BLines<CR>
 " FZF ripgrep
 nmap <leader>; :Rg<CR>
-
-" cd vim into current buffer directory
-nmap <silent><leader>cd :cd %:p:h<CR>
-" delete current buffer
-nmap <silent>;d :bp\|bd #<CR>
-" write
-nmap ;w :w<CR>
-" quit
-nmap ;q :q<CR>
-" format file
-nmap ;f :Neoformat<CR>
 
 " Navigate window panels
 nmap <C-h> <C-w>h
