@@ -385,52 +385,59 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
 " Show git info in statusline
 function! GitInfo()
-  let git = fugitive#head()
-  if git != ""
+  if fugitive#head() != ""
     return " (on ".fugitive#head().") "
-  else
-    return ""
   endif
+  return ""
 endfunction
 
 " Statusline vim mode colors
-hi NormalColor  ctermbg=35  ctermfg=0
-hi InsertColor  ctermbg=81  ctermfg=0
+hi NormalColor  ctermbg=15  ctermfg=0
+hi InsertColor  ctermbg=85  ctermfg=0
 hi ReplaceColor ctermbg=180 ctermfg=0
 hi VisualColor  ctermbg=208 ctermfg=0
 hi CommandColor ctermbg=204 ctermfg=0
 
+function! ColorMode()
+  if mode() == 'n'
+    return '%#NormalColor# NOR '
+  elseif mode() == 'i'
+    return '%#InsertColor# INS '
+  elseif mode() == 'R'
+    return '%#ReplaceColor# REP '
+  elseif mode() == 'v'
+    return '%#VisualColor# VIS '
+  elseif mode() == 'c'
+    return '%#CommandColor# CMD '
+  endif
+  return ''
+endfunction
+
 " Statusline active
 function! ActiveStatusLine()
-  let statusline=" %n "
-  let statusline.="%#NormalColor#%{(mode()=='n')?'\ N\ ':''}"
-  let statusline.="%#InsertColor#%{(mode()=='i')?'\ I\ ':''}"
-  let statusline.="%#ReplaceColor#%{(mode()=='R')?'\ R\ ':''}"
-  let statusline.="%#VisualColor#%{(mode()=='v')?'\ V\ ':''}"
-  let statusline.="%#CommandColor#%{(mode()=='c')?'\ C\ ':''}"
-  let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
-  let statusline.="%{&modified?'\  (+)':''}"
-  let statusline.="%{&readonly?'\  (ro)':''}"
-  let statusline.="\ %=%-14.(%l,%c%)"
-  let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
-  return statusline
+  let sl=ColorMode()
+  let sl.=' %n '
+  let sl.=' %t %{GitInfo()} %{LinterStatus()}'
+  let sl.='%{&modified?"\  (+)":""}'
+  let sl.='%{&readonly?"\  (ro)":""}'
+  let sl.=' %=%-14.(%l,%c%)'
+  let sl.=' %y %{strlen(&fenc)?&fenc:&enc} '
+  return sl
 endfunction
 
 " Statusline inactive
 function! InactiveStatusLine()
-  let statusline=" %n "
-  let statusline.="\%*\ %t\ %{GitInfo()}\ %{LinterStatus()}"
-  let statusline.="%{&modified?'\  (+)':''}"
-  let statusline.="%{&readonly?'\  (ro)':''}"
-  let statusline.="\ %=%-14.(%l,%c%)"
-  let statusline.="\ %y %{strlen(&fenc)?&fenc:&enc} "
-  return statusline
+  let sl=' %n '
+  let sl.=' %t %{GitInfo()} %{LinterStatus()}'
+  let sl.='%{&modified?"\  (+)":""}'
+  let sl.='%{&readonly?"\  (ro)":""}'
+  let sl.=' %=%-14.(%l,%c%)'
+  let sl.=' %y %{strlen(&fenc)?&fenc:&enc} '
+  return sl
 endfunction
 
-" Set statusline
+" Statusline switching windows
 set statusline=%!ActiveStatusLine()
-
-" Switch windows statusline
 augroup status
   autocmd!
   autocmd WinEnter * setlocal statusline=%!ActiveStatusLine()
