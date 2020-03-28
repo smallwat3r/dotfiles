@@ -3,12 +3,10 @@
 "
 " neovim config file
 
-" #####################################################
-" PLUGINS MANAGER (vim-plug)                          #
-" #####################################################
+" PLUGINS MANAGER (vim-plug)
+" ######################################################################################
 
 " Auto load for first time use - Install Vim Plug Manager
-" --------------------------------------------------------------------
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -45,9 +43,8 @@ Plug 'deoplete-plugins/deoplete-dictionary'
 
 call plug#end()
 
-" #####################################################
-" PLUGINS CONFIG                                      #
-" #####################################################
+" PLUGINS CONFIG
+" ######################################################################################
 
 " signify
 let g:signify_sign_add='+'
@@ -117,9 +114,8 @@ command! -bang -nargs=* Rg
       \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
       \   fzf#vim#with_preview(), <bang>0)
 
-" #####################################################
-" GENERAL CONFIG                                      #
-" #####################################################
+" GENERAL CONFIG
+" ######################################################################################
 
 syntax on
 filetype plugin indent on
@@ -258,9 +254,8 @@ endfunction
 autocmd BufWritePre * :call TrimTrailingWS()
 autocmd FileType markdown let b:noStripWhitespace=1
 
-" #####################################################
-" KEYBINDING                                          #
-" #####################################################
+" MAPPINGS / KEYBINDING
+" ######################################################################################
 
 " Navigate to end and start of line
 nmap B ^
@@ -345,9 +340,8 @@ imap {<CR> {<CR>}<Esc>ko<tab>
 imap [<CR> [<CR>]<Esc>ko<tab>
 imap (<CR> (<CR>)<Esc>ko<tab>
 
-" #####################################################
-" DESIGN / COLORS AND STUFF                           #
-" #####################################################
+" COLORS AND STUFF
+" ######################################################################################
 
 " Colorscheme
 colo desert
