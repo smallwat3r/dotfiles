@@ -398,14 +398,15 @@ hi ReplaceColor ctermbg=180 ctermfg=0
 hi VisualColor  ctermbg=208 ctermfg=0
 hi CommandColor ctermbg=204 ctermfg=0
 
+" Manage statusline colors from vim mode
 function! ColorMode()
-  if mode() == 'n'
+  if (mode() =~# '\v(n|no)')
     return '%#NormalColor# NOR '
   elseif mode() == 'i'
     return '%#InsertColor# INS '
   elseif mode() == 'R'
     return '%#ReplaceColor# REP '
-  elseif mode() == 'v'
+  elseif (mode() =~# '\v(v|V)')
     return '%#VisualColor# VIS '
   elseif mode() == 'c'
     return '%#CommandColor# CMD '
@@ -413,9 +414,12 @@ function! ColorMode()
   return ''
 endfunction
 
-" Statusline active
-function! ActiveStatusLine()
-  let sl=ColorMode()
+" Statusline format
+function! StatusLine(color)
+  let sl = ''
+  if a:color
+    let sl.=ColorMode()
+  endif
   let sl.=' %n '
   let sl.=' %t %{GitInfo()} %{LinterStatus()}'
   let sl.='%{&modified?"\  (+)":""}'
@@ -425,21 +429,10 @@ function! ActiveStatusLine()
   return sl
 endfunction
 
-" Statusline inactive
-function! InactiveStatusLine()
-  let sl=' %n '
-  let sl.=' %t %{GitInfo()} %{LinterStatus()}'
-  let sl.='%{&modified?"\  (+)":""}'
-  let sl.='%{&readonly?"\  (ro)":""}'
-  let sl.=' %=%-14.(%l,%c%)'
-  let sl.=' %y %{strlen(&fenc)?&fenc:&enc} '
-  return sl
-endfunction
-
-" Statusline switching windows
-set statusline=%!ActiveStatusLine()
+" Set up statusline from active and non-active window
+set statusline=%!StatusLine(1)
 augroup status
   autocmd!
-  autocmd WinEnter * setlocal statusline=%!ActiveStatusLine()
-  autocmd WinLeave * setlocal statusline=%!InactiveStatusLine()
+  autocmd WinEnter * setlocal statusline=%!StatusLine(1)
+  autocmd WinLeave * setlocal statusline=%!StatusLine(0)
 augroup END
