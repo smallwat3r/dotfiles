@@ -17,22 +17,26 @@ endif
 
 call plug#begin()
 
-Plug 'dense-analysis/ale'
-Plug 'sbdchd/neoformat'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-vinegar'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'alvan/vim-closetag'
-Plug 'gregsexton/MatchTag'
+Plug 'dense-analysis/ale'             " Ale code linter
+Plug 'chr4/nginx.vim'                 " Nginx / Jinja syntax
+Plug 'sbdchd/neoformat'               " Auto code formatting
+Plug 'tpope/vim-commentary'           " Comments mappings
+Plug 'tpope/vim-eunuch'               " Shell commands from vim
+Plug 'tpope/vim-fugitive'             " Git wrapper
+Plug 'junegunn/gv.vim'                " Commits browser
+Plug 'mhinz/vim-signify'              " Git signs
+Plug 'tpope/vim-vinegar'              " File browser
+Plug 'alvan/vim-closetag'             " Auto-close html tags
+Plug 'gregsexton/MatchTag'            " Hightlight matching html tag
+Plug 'Vimjas/vim-python-pep8-indent'  " Python indentation
+Plug 'machakann/vim-sandwich'         " Surroundings mapping
+Plug 'tpope/vim-unimpaired'           " Complementary mappings
+
+" Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'machakann/vim-sandwich'
-Plug 'tpope/vim-unimpaired'
+
+" Text completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neopairs.vim'
@@ -60,8 +64,9 @@ let g:ale_set_highlights=0
 let g:ale_sign_error='!'
 let g:ale_sign_warning='?'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
+
 function! LinterStatus() abort
-  " Show linter erros in statusline
+  " Show Ale linter erros in statusline
   let l:counts=ale#statusline#Count(bufnr(''))
   let l:all_errors=l:counts.error + l:counts.style_error
   let l:all_non_errors=l:counts.total - l:all_errors
@@ -99,7 +104,7 @@ let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
-let g:shfmt_opt="-ci"
+let g:shfmt_opt="-ci"  " shell
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
