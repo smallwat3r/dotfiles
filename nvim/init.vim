@@ -323,7 +323,6 @@ imap jj <ESC>
 imap { {}<ESC>i
 imap ( ()<ESC>i
 imap [ []<ESC>i
-
 imap < <><ESC>i
 
 " Auto close matching pairs multi line
@@ -339,6 +338,9 @@ imap (<CR> (<CR>)<Esc>ko<tab>
 colo desert
 
 " Overwrite colors on general stuff
+hi Normal         ctermfg=15
+hi Number         ctermfg=15
+hi String         ctermfg=194
 hi Folded         ctermfg=231  ctermbg=239
 hi MatchParen     ctermfg=237  ctermbg=200
 hi SignColumn     ctermfg=NONE ctermbg=NONE cterm=NONE
