@@ -383,6 +383,22 @@ let &t_SI.="\e[6 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 
+"Custom statusline
+set statusline=%!StatusLineFmt(1)
+
+augroup status
+  " Set up statusline from active and non-active window
+  autocmd!
+  autocmd WinEnter * setlocal statusline=%!StatusLineFmt(1)
+  autocmd WinLeave * setlocal statusline=%!StatusLineFmt(0)
+augroup END
+
+hi NormalColor  ctermbg=15  ctermfg=0
+hi InsertColor  ctermbg=85  ctermfg=0
+hi ReplaceColor ctermbg=180 ctermfg=0
+hi VisualColor  ctermbg=208 ctermfg=0
+hi CommandColor ctermbg=204 ctermfg=0
+
 " Show git info in statusline
 function! GitInfo()
   if fugitive#head() != ""
@@ -390,13 +406,6 @@ function! GitInfo()
   endif
   return ""
 endfunction
-
-" Statusline vim mode colors
-hi NormalColor  ctermbg=15  ctermfg=0
-hi InsertColor  ctermbg=85  ctermfg=0
-hi ReplaceColor ctermbg=180 ctermfg=0
-hi VisualColor  ctermbg=208 ctermfg=0
-hi CommandColor ctermbg=204 ctermfg=0
 
 " Manage statusline colors from vim mode
 function! ColorMode()
@@ -415,7 +424,7 @@ function! ColorMode()
 endfunction
 
 " Statusline format
-function! StatusLine(color)
+function! StatusLineFmt(color)
   let sl = ''
   if a:color
     let sl.=ColorMode()
@@ -428,11 +437,3 @@ function! StatusLine(color)
   let sl.=' %y %{strlen(&fenc)?&fenc:&enc} '
   return sl
 endfunction
-
-" Set up statusline from active and non-active window
-set statusline=%!StatusLine(1)
-augroup status
-  autocmd!
-  autocmd WinEnter * setlocal statusline=%!StatusLine(1)
-  autocmd WinLeave * setlocal statusline=%!StatusLine(0)
-augroup END
