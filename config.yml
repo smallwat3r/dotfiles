@@ -11,7 +11,6 @@ directories:
   - __root__.config/alacritty
   - __root__.config/nvim
   - __root__.config/nvim/dict
-  - __root__.config/nvim/colors
   - __root__.config/zsh
 
 # List of all symlinks.

@@ -3,6 +3,16 @@
 #
 # ZSH config.
 
+# Tmux on start
+case $- in *i*)
+  if [ -z "$TMUX" ]; then
+    exec tmux
+  fi;
+esac
+
+# Load fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Exports
 # --------------------------------------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
@@ -156,15 +166,6 @@ fg() {
     nvim $file +$line
   fi
 }
-
-# Load fzf and tmux
-# --------------------------------------------------------------------------------------
-case $- in *i*)
-  if [ -z "$TMUX" ]; then
-    exec tmux
-  fi;
-esac
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Antigen
 # --------------------------------------------------------------------------------------
