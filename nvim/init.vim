@@ -101,7 +101,7 @@ let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
-let g:shfmt_opt="-ci"  " shell
+let g:shfmt_opt='-ci'  " shell
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
@@ -212,7 +212,7 @@ set foldtext=CustomFoldText()
 " Netrw settings
 let g:netrw_banner=0
 let g:netrw_sort_sequence='[\/]$,*'
-let g:netrw_localrmdir="rm -r"
+let g:netrw_localrmdir='rm -r'
 autocmd FileType netrw setl bufhidden=delete  " delete netrw buffer
 
 " Deactivate dbtext plugin error msg on sql completion
@@ -276,7 +276,7 @@ nmap <silent><leader><space> :nohlsearch<cr>
 nmap <leader>e :e! ~/.config/nvim/init.vim<cr>
 
 " source current file
-nmap <silent><leader>so :so %<CR>:echo "File sourced"<CR>
+nmap <silent><leader>so :so %<CR>:echo 'File sourced'<CR>
 
 " cd vim into current buffer directory
 nmap <silent><leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -284,7 +284,7 @@ nmap <silent><leader>cd :cd %:p:h<CR>:pwd<CR>
 nmap <silent><leader>cdp :cd ..<CR>:pwd<CR>
 
 " delete current buffer
-nmap <silent>;d :bp\|bd #<CR>:echo "Buffer deleted"<CR>
+nmap <silent>;d :bp\|bd #<CR>:echo 'Buffer deleted'<CR>
 
 " quick write & quit
 nmap ;w :w<CR>
@@ -323,8 +323,8 @@ xmap > >gv
 xmap < <gv
 
 " tab completion
-imap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <expr> <Tab>   pumvisible() ? '\<C-n>' : '\<Tab>'
+imap <expr> <S-Tab> pumvisible() ? '\<C-p>' : '\<S-Tab>'
 
 " jj works as ESC
 imap jj <ESC>
@@ -375,13 +375,13 @@ hi ALEErrorSign   ctermfg=red    ctermbg=NONE
 hi ALEWarningSign ctermfg=yellow ctermbg=NONE
 
 " Italics
-let &t_ZH="\e[3m"
-let &t_ZR="\e[23m"
+let &t_ZH='\e[3m'
+let &t_ZR='\e[23m'
 
 " Cursor mode
-let &t_SI.="\e[6 q" "SI = INSERT mode
-let &t_SR.="\e[4 q" "SR = REPLACE mode
-let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
+let &t_SI.='\e[6 q' "SI = INSERT mode
+let &t_SR.='\e[4 q' "SR = REPLACE mode
+let &t_EI.='\e[2 q' "EI = NORMAL mode (ELSE)
 
 "Custom statusline
 set statusline=%!StatusLineFmt(1)
@@ -401,10 +401,10 @@ hi CommandColor ctermbg=204 ctermfg=0
 
 " Show git info in statusline
 function! GitInfo()
-  if fugitive#head() != ""
-    return " (on ".fugitive#head().") "
+  if fugitive#head() != ''
+    return ' (on '.fugitive#head().') '
   endif
-  return ""
+  return ''
 endfunction
 
 " Manage statusline colors from vim mode
