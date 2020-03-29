@@ -222,7 +222,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
 
 # set up PS1 and RPS1
-PS1='${MODE_INDICATOR_PROMPT}› %1d $(git_super_status)'
+PS1='${MODE_INDICATOR_PROMPT}› %1~ $(git_super_status)'
 RPS1="%{$fg[red]%}%(?.. %?)%{$reset_color%}"
 
 # zsh vim yank copy to clipboard.
