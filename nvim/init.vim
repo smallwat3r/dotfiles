@@ -276,31 +276,31 @@ nmap <silent><leader><space> :nohlsearch<cr>
 nmap <leader>e :e! ~/.config/nvim/init.vim<cr>
 
 " source current file
-nmap <silent><leader>so :so %<CR>:echo 'File sourced'<CR>
+nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
 
 " cd vim into current buffer directory
-nmap <silent><leader>cd :cd %:p:h<CR>:pwd<CR>
+nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
 " cd into previous directory
-nmap <silent><leader>cdp :cd ..<CR>:pwd<CR>
+nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
 
 " delete current buffer
-nmap <silent>;d :bp\|bd #<CR>:echo 'Buffer deleted'<CR>
+nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
 
 " quick write & quit
-nmap ;w :w<CR>
-nmap ;q :q<CR>
+nmap ;w :w<cr>
+nmap ;q :q<cr>
 
 " format file
-nmap ;f :Neoformat<CR>
+nmap ;f :Neoformat<cr>
 
 " FZF show buffer list
-nmap <leader>b :Buffers<CR>
+nmap <leader>b :Buffers<cr>
 " FZF search files
-nmap <leader>f :Files<CR>
+nmap <leader>f :Files<cr>
 " FZF search lines in buffer
-nmap <leader>l :BLines<CR>
+nmap <leader>l :BLines<cr>
 " FZF ripgrep
-nmap <leader>; :Rg<CR>
+nmap <leader>; :Rg<cr>
 
 " Navigate window panels
 nmap <C-h> <C-w>h
@@ -309,36 +309,36 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 " Case insensitive replace word (aka multiple cursors)
-nmap <Leader>x /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
-nmap <Leader>X ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
+nmap <Leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
+nmap <Leader>X ?\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgN
 
 " Resize splits with arrow keys
-nmap <silent><up> :res +5<CR>
-nmap <silent><down> :res -5<CR>
-nmap <silent><left> :vertical resize-5<CR>
-nmap <silent><right> :vertical resize+5<CR>
+nmap <silent><up> :res +5<cr>
+nmap <silent><down> :res -5<cr>
+nmap <silent><left> :vertical resize-5<cr>
+nmap <silent><right> :vertical resize+5<cr>
 
 " Keep visual selection when reindenting
 xmap > >gv
 xmap < <gv
 
 " tab completion
-imap <expr> <Tab>   pumvisible() ? '\<C-n>' : '\<Tab>'
-imap <expr> <S-Tab> pumvisible() ? '\<C-p>' : '\<S-Tab>'
+imap <expr> <tab>   pumvisible() ? '<c-n>' : '<tab>'
+imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 
 " jj works as ESC
-imap jj <ESC>
+imap jj <esc>
 
 " Auto close matching pairs
-imap { {}<ESC>i
-imap ( ()<ESC>i
-imap [ []<ESC>i
-imap < <><ESC>i
+imap { {}<esc>i
+imap ( ()<esc>i
+imap [ []<esc>i
+imap < <><esc>i
 
 " Auto close matching pairs multi line
-imap {<CR> {<CR>}<Esc>ko<tab>
-imap [<CR> [<CR>]<Esc>ko<tab>
-imap (<CR> (<CR>)<Esc>ko<tab>
+imap {<cr> {<cr>}<esc>ko<tab>
+imap [<cr> [<cr>]<esc>ko<tab>
+imap (<cr> (<cr>)<esc>ko<tab>
 
 " COLORS AND STUFF
 " ######################################################################################
