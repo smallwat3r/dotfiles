@@ -37,10 +37,6 @@ install-go:
 	chmod +x ./go/packages.sh
 	./go/packages.sh
 
-install-smallwat3r-bin:
-	chmod +x ./bin/install-smallwat3r-scripts
-	./bin/install-smallwat3r-scripts
-
 symlink: install-perl
 	chmod +x ./bin/symlink
 	./bin/symlink

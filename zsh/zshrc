@@ -7,7 +7,7 @@
 case $- in *i*)
   if [ -z "$TMUX" ]; then
     exec tmux
-  fi;
+  fi
 esac
 
 # Load fzf
@@ -80,6 +80,7 @@ alias ls="ls -p"
 alias ls.="ls -d .*"
 alias trecord="asciinema rec"
 alias record2gif="asciicast2gif -t monokai"
+alias sk="sketch"
 alias hs="history | rg"
 alias hsu="history | cut -c 8- | sort -u | rg"
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
