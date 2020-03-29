@@ -89,19 +89,19 @@ alias .....="cd ../../../.."
 
 # Functions
 # --------------------------------------------------------------------------------------
-# open vimr in current dir on file
-vir() {
-  if [ $# -eq 0 ]; then open -a vimR .; else open -a vimR "$@"; fi
-}
 
 # open current dir or the one in args
 o() {
-  if [ $# -eq 0 ]; then open .; else open "$@"; fi
+  if [ $# -eq 0 ]; then
+    open .
+  else
+    open "$@"
+  fi
 }
 
-# search (grep) from current dir or specified
-search() {
-  grep -rnIi "$1" . --color
+# ripgrep - get urls
+urls() {
+  rg '[a-zA-Z]+://[-a-zA-Z0-9._+]+[-a-zA-Z0-9._+#=?&:;%/!~()]+'
 }
 
 # create and enter directory
@@ -115,15 +115,7 @@ csvpreview() {
   sed 's/,,/, ,/g;s/,,/, ,/g' "$@" | column -s, -t | less -#2 -N -S
 }
 
-# Show Wi-Fi Network Passwords
-# Exchange SSID with the SSID of the access point you wish to query the password from.
-# https://github.com/ahmadawais/dotFiles/blob/7e5b5b632a61837917a5f6194b1929283a43ec91/.zshrc#L2621
-wifipass() {
-  security find-generic-password -D "AirPort network password" -a "$@" -gw
-}
-
-# extract file.
-# source: http://nparikh.org/notes/zshrc.txt
+# extract file. source: http://nparikh.org/notes/zshrc.txt
 extract() {
   if [ -f $1 ]; then
     case $1 in
@@ -168,7 +160,9 @@ fg() {
 # Load fzf and tmux
 # --------------------------------------------------------------------------------------
 case $- in *i*)
-  if [ -z "$TMUX" ]; then exec tmux; fi;;
+  if [ -z "$TMUX" ]; then
+    exec tmux
+  fi;
 esac
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
