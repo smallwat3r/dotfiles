@@ -43,7 +43,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # fzf colors
 export FZF_DEFAULT_OPTS="
---height 40% --layout=reverse --border
+--height 100% --layout=reverse --border
 --color fg:231,bg:0,hl:199,fg+:231,bg+:0,hl+:190
 --color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
@@ -165,6 +165,47 @@ fgr() {
   then
     vim $file +$line
   fi
+}
+
+# FZF checkout git branch (including remote branches)
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+    branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# FZF git commit browser
+fco() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+# FZF Select a docker container to start and attach to
+da() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+
+# FZF Select a running docker container to stop
+ds() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+  [ -n "$cid" ] && docker stop "$cid"
+}
+
+# FZF Select a docker container to remove
+drm() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
+  [ -n "$cid" ] && docker rm "$cid"
 }
 
 # Antigen
