@@ -265,14 +265,6 @@ let &t_SI.='\e[6 q' " INSERT mode
 let &t_SR.='\e[4 q' " REPLACE mode
 let &t_EI.='\e[2 q' " NORMAL mode or others
 
-" Horizontal line separator
-function! LineSeparator(ncol, sep)
-  let line = ''
-  for i in range(1,a:ncol) | let line.=a:sep | endfor
-  put = line
-endfunction
-command! -nargs=1 LSep call LineSeparator(79, <q-args>)
-
 " MAPPINGS / KEYBINDING
 " --------------------------------------------------------------------------------------
 
@@ -387,6 +379,10 @@ imap <silent>\dt <C-R>=strftime("%FT%T%z")<cr>
 imap <silent>\aa <C-R>="Matthieu Petiteau <mpetiteau.pro@gmail.com>"<cr>
 imap <silent>\em <C-R>="mpetiteau.pro@gmail.com"<cr>
 
+" Line separators
+imap <silent>\s- <C-o>:norm! 79i-<cr><esc>bi<space><esc>A<cr>
+imap <silent>\s* <C-o>:norm! 79i*<cr><esc>bi<space><esc>A<cr>
+
 " Auto close matching pairs multi line
 imap {<cr> {<cr>}<esc>ko<tab>
 imap [<cr> [<cr>]<esc>ko<tab>
@@ -397,10 +393,6 @@ imap <C-h> <left>
 imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
-
-" Line separators
-imap <silent>\sp- <esc>:LSep -<cr>
-imap <silent>\sp* <esc>:LSep *<cr>
 
 " Command mode mappings
 " **********************
