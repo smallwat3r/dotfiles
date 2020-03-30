@@ -265,6 +265,14 @@ let &t_SI.='\e[6 q' " INSERT mode
 let &t_SR.='\e[4 q' " REPLACE mode
 let &t_EI.='\e[2 q' " NORMAL mode or others
 
+" Horizontal line separator
+function! LineSeparator(ncol, sep)
+  let line = ''
+  for i in range(1,a:ncol) | let line.=a:sep | endfor
+  put = line
+endfunction
+command! -nargs=1 LSep call LineSeparator(79, <q-args>)
+
 " MAPPINGS / KEYBINDING
 " --------------------------------------------------------------------------------------
 
@@ -390,13 +398,9 @@ imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
 
-" Horizontal line separator
-function! LineSeparator(ncol, sep)
-  let line = ''
-  for i in range(1,a:ncol) | let line.=a:sep | endfor
-  return line
-endfunction
-imap <silent>\sp <C-R>=LineSeparator(79, "-")<cr>
+" Line separators
+imap <silent>\sp- <esc>:LSep -<cr>
+imap <silent>\sp* <esc>:LSep *<cr>
 
 " Command mode mappings
 " **********************
