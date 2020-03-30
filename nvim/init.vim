@@ -332,7 +332,7 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" window scroll
+" Window scroll
 nmap <A-j> <C-e>
 nmap <A-k> <C-y>
 
