@@ -332,6 +332,10 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+" window scroll
+nmap <C-j> <C-e>
+nmap <C-k> <C-y>
+
 " Case insensitive replace word (aka multiple cursors)
 nmap <leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
 nmap <leader>X ?\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgN
