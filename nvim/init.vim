@@ -268,6 +268,9 @@ let &t_EI.='\e[2 q' " NORMAL mode or others
 " MAPPINGS / KEYBINDING
 " --------------------------------------------------------------------------------------
 
+" Normal mode mappings
+" **********************
+
 " Navigate to end and start of line
 nmap B ^
 nmap E $
@@ -302,6 +305,7 @@ nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
 " quick write & quit
 nmap ;w :w<cr>
 nmap ;q :q<cr>
+nmap ;x :x<cr>
 
 " splits
 nmap ;sp :sp<cr>
@@ -340,11 +344,19 @@ nmap <silent><right> :vertical resize+5<cr>
 
 " Play macros
 nmap Q @q
+
+" Visual mode mappings
+" **********************
+
+" Play macros with visual mode
 vmap Q :norm @q<cr>
 
 " Keep visual selection when reindenting
 xmap > >gv
 xmap < <gv
+
+" Insert mode mappings
+" **********************
 
 " tab completion
 imap <expr> <tab>   pumvisible() ? '<c-n>' : '<tab>'
@@ -374,6 +386,9 @@ imap <C-h> <left>
 imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
+
+" Command mode mappings
+" **********************
 
 " Crtl + hjkl cursor mvt on command mode
 cmap <C-h> <left>
