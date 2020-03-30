@@ -272,11 +272,11 @@ let &t_EI.='\e[2 q' " NORMAL mode or others
 " Normal mode mappings
 " **********************
 
-" Navigate to end and start of line
+" navigate to end and start of line
 nmap B ^
 nmap E $
 
-" Navigate between brackets
+" navigate between brackets
 nmap <tab> %
 
 " align paragraph
@@ -284,10 +284,14 @@ nmap <leader>a =ip
 " copy paragraph
 nmap cp yap<S-}>p
 
-" Remove search highlight
+" delete to blackhole register (don't lose prev yank)
+nmap s "_d
+nmap ss "_dd
+
+" remove search highlight
 nmap <silent><leader><space> :nohlsearch<cr>
 
-" Edit config file
+" edit config file
 nmap <leader>e :e! $MYVIMRC<cr>
 
 " source current file
@@ -327,36 +331,36 @@ nmap <leader>l :BLines<cr>
 " FZF ripgrep
 nmap <leader>; :Rg<cr>
 
-" Navigate window panels
+" navigate window panels
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" Window scroll
+" window scroll
 nmap <A-j> <C-e>
 nmap <A-k> <C-y>
 
-" Case insensitive replace word (aka multiple cursors)
+" case insensitive replace word (aka multiple cursors)
 nmap <leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
 nmap <leader>X ?\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgN
 
-" Resize splits with arrow keys
+" resize splits with arrow keys
 nmap <silent><up> :res +5<cr>
 nmap <silent><down> :res -5<cr>
 nmap <silent><left> :vertical resize-5<cr>
 nmap <silent><right> :vertical resize+5<cr>
 
-" Play macros
+" play macros
 nmap Q @q
 
 " Visual mode mappings
 " **********************
 
-" Play macros with visual mode
+" play macros with visual mode
 vmap Q :norm @q<cr>
 
-" Keep visual selection when reindenting
+" keep visual selection when reindenting
 xmap > >gv
 xmap < <gv
 
@@ -370,30 +374,30 @@ imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 " jj works as ESC
 imap jj <esc>
 
-" Auto close matching pairs
+" auto close matching pairs
 imap { {}<esc>i
 imap ( ()<esc>i
 imap [ []<esc>i
 imap < <><esc>i
 
-" Current date / timestamp ISO8601/W3C
+" current date / timestamp ISO8601/W3C
 imap <silent>\dd <C-R>=strftime("%a, %d %b %Y")<cr>
 imap <silent>\dt <C-R>=strftime("%FT%T%z")<cr>
 
-" Personal info
+" personal info
 imap <silent>\aa <C-R>="Matthieu Petiteau <mpetiteau.pro@gmail.com>"<cr>
 imap <silent>\em <C-R>="mpetiteau.pro@gmail.com"<cr>
 
-" Line separators
+" line separators
 imap <silent>\s- <C-o>:norm! 79i-<cr><esc>bi<space><esc>A<cr>
 imap <silent>\s* <C-o>:norm! 79i*<cr><esc>bi<space><esc>A<cr>
 
-" Auto close matching pairs multi line
+" auto close matching pairs multi line
 imap {<cr> {<cr>}<esc>ko<tab>
 imap [<cr> [<cr>]<esc>ko<tab>
 imap (<cr> (<cr>)<esc>ko<tab>
 
-" Crtl + hjkl cursor mvt on insert mode
+" crtl + hjkl cursor mvt on insert mode
 imap <C-h> <left>
 imap <C-j> <down>
 imap <C-k> <up>
@@ -402,7 +406,7 @@ imap <C-l> <right>
 " Command mode mappings
 " **********************
 
-" Crtl + hjkl cursor mvt on command mode
+" crtl + hjkl cursor mvt on command mode
 cmap <C-h> <left>
 cmap <C-j> <down>
 cmap <C-k> <up>
