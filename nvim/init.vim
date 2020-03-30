@@ -412,30 +412,30 @@ endfunction
 " Manage statusline colors from vim mode
 function! ColorMode()
   if (mode() =~# '\v(n|no)')
-    return '%#NormalColor# NOR '
+    return '%#NormalColor# NOR'
   elseif mode() == 'i'
-    return '%#InsertColor# INS '
+    return '%#InsertColor# INS'
   elseif mode() == 'R'
-    return '%#ReplaceColor# REP '
+    return '%#ReplaceColor# REP'
   elseif (mode() =~# '\v(v|V)')
-    return '%#VisualColor# VIS '
+    return '%#VisualColor# VIS'
   elseif mode() == 'c'
-    return '%#CommandColor# CMD '
+    return '%#CommandColor# CMD'
   endif
   return ''
 endfunction
 
 " Statusline format
-function! StatusLineFmt(color)
+function! StatusLineFmt(active)
   let sl = ''
-  if a:color
+  if a:active
     let sl.=ColorMode()
+    let sl.='%{GitInfo()}%{LinterStatus()}'
   endif
-  let sl.=' %n '
-  let sl.=' %t %{GitInfo()} %{LinterStatus()}'
-  let sl.='%{&modified?"\  (+)":""}'
-  let sl.='%{&readonly?"\  (ro)":""}'
+  let sl.=' %n %t'
+  let sl.='%{&modified?"\ (+)":""}'
+  let sl.='%{&readonly?"\ (ro)":""}'
   let sl.=' %=%-14.(%l,%c%)'
-  let sl.=' %y %{strlen(&fenc)?&fenc:&enc} '
+  let sl.=' %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
   return sl
 endfunction
