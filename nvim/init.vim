@@ -174,7 +174,7 @@ set nolist              " hide special characters
 set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
-set scrolloff=999       " always center working line
+set scrolloff=8         " 8 lines margin on scroll
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 set matchpairs+=<:>
@@ -336,9 +336,6 @@ nmap <C-l> <C-w>l
 " Window scroll
 nmap <A-j> <C-e>
 nmap <A-k> <C-y>
-
-" Toggle off / on always centered working line (on by default)
-nmap <leader>zz :let &scrolloff=&scrolloff==3?999:3<cr>
 
 " Case insensitive replace word (aka multiple cursors)
 nmap <leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
