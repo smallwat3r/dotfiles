@@ -391,9 +391,9 @@ imap <C-k> <up>
 imap <C-l> <right>
 
 " Horizontal line separator
-function! LineSeparator(col, sep)
+function! LineSeparator(ncol, sep)
   let line = ''
-  for i in range(1,a:col) | let line.=a:sep | endfor
+  for i in range(1,a:ncol) | let line.=a:sep | endfor
   return line
 endfunction
 imap <silent>\sp <C-R>=LineSeparator(79, "-")<cr>
