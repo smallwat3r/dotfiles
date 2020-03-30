@@ -372,12 +372,12 @@ imap [ []<esc>i
 imap < <><esc>i
 
 " Current date / timestamp ISO8601/W3C
-imap \dd <C-R>=strftime("%a, %d %b %Y")<CR>
-imap \dt <C-R>=strftime("%FT%T%z")<CR>
+imap <silent>\dd <C-R>=strftime("%a, %d %b %Y")<cr>
+imap <silent>\dt <C-R>=strftime("%FT%T%z")<cr>
 
 " Personal info
-imap \aa <C-R>="Matthieu Petiteau <mpetiteau.pro@gmail.com>"<CR>
-imap \em <C-R>="mpetiteau.pro@gmail.com"<CR>
+imap <silent>\aa <C-R>="Matthieu Petiteau <mpetiteau.pro@gmail.com>"<cr>
+imap <silent>\em <C-R>="mpetiteau.pro@gmail.com"<cr>
 
 " Auto close matching pairs multi line
 imap {<cr> {<cr>}<esc>ko<tab>
@@ -389,6 +389,14 @@ imap <C-h> <left>
 imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
+
+" Horizontal line separator
+function! LineSeparator(col, sep)
+  let line = ''
+  for i in range(1,a:col) | let line.=a:sep | endfor
+  return line
+endfunction
+imap <silent>\sp <C-R>=LineSeparator(79, "-")<cr>
 
 " Command mode mappings
 " **********************
