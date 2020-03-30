@@ -43,11 +43,11 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # fzf colors
 export FZF_DEFAULT_OPTS="
---height 100% --layout=reverse --border
+--height 96% --reverse --border
 --color fg:231,bg:0,hl:199,fg+:231,bg+:0,hl+:190
 --color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
-export FZF_DEFAULT_COMMAND="fd -t f -H -L -E .git -E __pycache__"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 
 # History
 export HISTSIZE=32768
@@ -153,18 +153,17 @@ extract() {
 
 # FZF select and open file
 fe() {
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+  IFS=$'\n' files=($(fzf --query="$1" --preview "cat {}" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && $EDITOR "${files[@]}"
 }
 
-# fuzzy grep open via ag with line number
+# FZF fuzzy grep open via ripgrep
 fgr() {
   local file
   local line
-  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
-  if [[ -n $file ]]
-  then
-    vim $file +$line
+  read -r file line <<<"$(rg --column --line-number --no-heading --smart-case $@ | fzf --query=$@ | awk -F: '{print $1, $2}')"
+  if [[ -n $file ]]; then
+    $EDITOR $file +$line
   fi
 }
 
@@ -172,7 +171,7 @@ fgr() {
 fbr() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
-    branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+    branch=$(echo "$branches" | fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
     git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
