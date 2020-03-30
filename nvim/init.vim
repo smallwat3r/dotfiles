@@ -283,6 +283,8 @@ nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
 nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
 " cd into previous directory
 nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
+" pwd
+nmap ,d :pwd<cr>
 
 " delete current buffer
 nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
