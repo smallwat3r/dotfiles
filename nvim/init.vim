@@ -3,7 +3,7 @@
 " neovim config file
 
 " PLUGINS MANAGER (vim-plug)
-" ######################################################################################
+" --------------------------------------------------------------------------------------
 
 " Auto load for first time use - Install Vim Plug Manager
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -43,14 +43,14 @@ Plug 'deoplete-plugins/deoplete-dictionary'
 call plug#end()
 
 " PLUGINS CONFIG
-" ######################################################################################
+" --------------------------------------------------------------------------------------
 
-" signify
+" Signify
 let g:signify_sign_add='+'
 let g:signify_sign_delete='-'
 let g:signify_sign_change='∙'
 
-" use deoplete
+" Deoplete
 let g:deoplete#enable_at_startup=1
 
 " Ale
@@ -72,10 +72,11 @@ function! LinterStatus() abort
         \   all_errors )
 endfunction
 
-" neoformat
+" Neoformat
 let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
+
 let g:neoformat_python_black = {
       \ 'exe': 'black',
       \ 'stdin': 1,
@@ -96,6 +97,7 @@ let g:neoformat_htmldjango_prettier = {
       \ 'stdin': 1,
       \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
       \ }
+
 let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
@@ -103,7 +105,7 @@ let g:neoformat_enabled_htmldjango = ['prettier']
 let g:neoformat_enabled_zsh = ['shfmt']
 let g:shfmt_opt='-ci'  " shell
 
-" fzf
+" FZF
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(
       \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
@@ -115,7 +117,7 @@ command! -bang -nargs=* Rg
       \   fzf#vim#with_preview(), <bang>0)
 
 " GENERAL CONFIG
-" ######################################################################################
+" --------------------------------------------------------------------------------------
 
 syntax on
 filetype plugin indent on
@@ -232,8 +234,8 @@ autocmd FileType * setl fo-=o fo-=r
 " close method preview window after completion is complete
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" load custom dict files
-au FileType * execute 'setlocal dict+=~/.config/nvim/dict/'.&filetype.'.txt'
+" load custom dict files (with deoplete-dictionary)
+au FileType * execute 'setlocal dict+=~/.config/nvim/dict/' . &filetype . '.txt'
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
 call deoplete#custom#source('dictionary', 'sorters', [])
 call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
@@ -254,8 +256,17 @@ endfunction
 autocmd BufWritePre * :call TrimTrailingWS()
 autocmd FileType markdown let b:noStripWhitespace=1
 
+" Italics
+let &t_ZH='\e[3m'
+let &t_ZR='\e[23m'
+
+" Change cursor based on modes
+let &t_SI.='\e[6 q' " INSERT mode
+let &t_SR.='\e[4 q' " REPLACE mode
+let &t_EI.='\e[2 q' " NORMAL mode or others
+
 " MAPPINGS / KEYBINDING
-" ######################################################################################
+" --------------------------------------------------------------------------------------
 
 " Navigate to end and start of line
 nmap B ^
@@ -344,6 +355,11 @@ imap ( ()<esc>i
 imap [ []<esc>i
 imap < <><esc>i
 
+" Current date
+imap <leader>dd <C-R>=strftime("%a, %d %b %Y")<CR>
+" Current timestamp (ISO8601/W3C)
+imap <leader>dt <C-R>=strftime("%FT%T%z")<CR>
+
 " Auto close matching pairs multi line
 imap {<cr> {<cr>}<esc>ko<tab>
 imap [<cr> [<cr>]<esc>ko<tab>
@@ -361,8 +377,8 @@ cmap <C-j> <down>
 cmap <C-k> <up>
 cmap <C-l> <right>
 
-" COLORS AND STUFF
-" ######################################################################################
+" COLORS
+" --------------------------------------------------------------------------------------
 
 " Colorscheme
 colo desert
@@ -395,38 +411,23 @@ hi SignifySignChange ctermfg=yellow cterm=NONE
 hi ALEErrorSign   ctermfg=red    ctermbg=NONE
 hi ALEWarningSign ctermfg=yellow ctermbg=NONE
 
-" Italics
-let &t_ZH='\e[3m'
-let &t_ZR='\e[23m'
+" STATUSLINE
+" --------------------------------------------------------------------------------------
 
-" Cursor mode
-let &t_SI.='\e[6 q' "SI = INSERT mode
-let &t_SR.='\e[4 q' "SR = REPLACE mode
-let &t_EI.='\e[2 q' "EI = NORMAL mode (ELSE)
-
-"Custom statusline
-set statusline=%!StatusLineFmt(1)
-
-augroup status
-  " Set up statusline from active and non-active window
-  autocmd!
-  autocmd WinEnter * setlocal statusline=%!StatusLineFmt(1)
-  autocmd WinLeave * setlocal statusline=%!StatusLineFmt(0)
-augroup END
-
-hi NormalColor  ctermbg=15  ctermfg=0
-hi InsertColor  ctermbg=85  ctermfg=0
-hi ReplaceColor ctermbg=180 ctermfg=0
-hi VisualColor  ctermbg=208 ctermfg=0
-hi CommandColor ctermbg=204 ctermfg=0
-
-" Show git info in statusline
+" Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
     return ' (on '.fugitive#head().') '
   endif
   return ''
 endfunction
+
+" Statusline colors depending on mode
+hi NormalColor  ctermbg=15  ctermfg=0
+hi InsertColor  ctermbg=85  ctermfg=0
+hi ReplaceColor ctermbg=180 ctermfg=0
+hi VisualColor  ctermbg=208 ctermfg=0
+hi CommandColor ctermbg=204 ctermfg=0
 
 " Manage statusline colors from vim mode
 function! ColorMode()
@@ -455,3 +456,13 @@ function! StatusLineFmt(active)
   let sl.=' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
   return sl
 endfunction
+
+" Active and non-active on window change event
+augroup status
+  autocmd!
+  autocmd WinEnter * setlocal statusline=%!StatusLineFmt(1)
+  autocmd WinLeave * setlocal statusline=%!StatusLineFmt(0)
+augroup END
+
+" Set statusline (1 = active by default)
+set statusline=%!StatusLineFmt(1)
