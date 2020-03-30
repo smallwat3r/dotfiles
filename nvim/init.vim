@@ -432,10 +432,7 @@ function! StatusLineFmt(active)
     let sl.=ColorMode()
     let sl.='%{GitInfo()}%{LinterStatus()}'
   endif
-  let sl.=' %n %t'
-  let sl.='%{&modified?"\ (+)":""}'
-  let sl.='%{&readonly?"\ (ro)":""}'
-  let sl.=' %=%-14.(%l,%c%)'
-  let sl.=' %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
+  let sl.=' %n %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
+  let sl.=' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
   return sl
 endfunction
