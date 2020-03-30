@@ -273,7 +273,7 @@ nmap cp yap<S-}>p
 nmap <silent><leader><space> :nohlsearch<cr>
 
 " Edit config file
-nmap <leader>e :e! ~/.config/nvim/init.vim<cr>
+nmap <leader>e :e! $MYVIMRC<cr>
 
 " source current file
 nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
@@ -291,6 +291,13 @@ nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
 " quick write & quit
 nmap ;w :w<cr>
 nmap ;q :q<cr>
+
+" splits
+nmap ;sp :sp<cr>
+nmap ;vs :vs<cr>
+
+" quick substitutes (whole file)
+nmap ;s/ :%s/
 
 " format file
 nmap ;f :Neoformat<cr>
@@ -430,7 +437,7 @@ function! StatusLineFmt(active)
   let sl = ''
   if a:active
     let sl.=ColorMode()
-    let sl.='%{GitInfo()}%{LinterStatus()}'
+    let sl.='%{GitInfo()} %{LinterStatus()}'
   endif
   let sl.=' %n %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
   let sl.=' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
