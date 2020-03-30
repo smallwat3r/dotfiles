@@ -371,10 +371,13 @@ imap ( ()<esc>i
 imap [ []<esc>i
 imap < <><esc>i
 
-" Current date
-imap <leader>dd <C-R>=strftime("%a, %d %b %Y")<CR>
-" Current timestamp (ISO8601/W3C)
-imap <leader>dt <C-R>=strftime("%FT%T%z")<CR>
+" Current date / timestamp ISO8601/W3C
+imap \dd <C-R>=strftime("%a, %d %b %Y")<CR>
+imap \dt <C-R>=strftime("%FT%T%z")<CR>
+
+" Personal info
+imap \aa <C-R>="Matthieu Petiteau <mpetiteau.pro@gmail.com>"<CR>
+imap \em <C-R>="mpetiteau.pro@gmail.com"<CR>
 
 " Auto close matching pairs multi line
 imap {<cr> {<cr>}<esc>ko<tab>
