@@ -174,7 +174,7 @@ set nolist              " hide special characters
 set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
-set scrolloff=8         " 8 lines margin on scroll
+set scrolloff=5         " nb lines margin on scroll
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 set matchpairs+=<:>
