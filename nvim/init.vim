@@ -338,6 +338,10 @@ nmap <silent><down> :res -5<cr>
 nmap <silent><left> :vertical resize-5<cr>
 nmap <silent><right> :vertical resize+5<cr>
 
+" Play macros
+nmap Q @q
+vmap Q :norm @q<cr>
+
 " Keep visual selection when reindenting
 xmap > >gv
 xmap < <gv
