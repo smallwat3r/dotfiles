@@ -318,8 +318,8 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 " Case insensitive replace word (aka multiple cursors)
-nmap <Leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
-nmap <Leader>X ?\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgN
+nmap <leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
+nmap <leader>X ?\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgN
 
 " Resize splits with arrow keys
 nmap <silent><up> :res +5<cr>
@@ -348,6 +348,18 @@ imap < <><esc>i
 imap {<cr> {<cr>}<esc>ko<tab>
 imap [<cr> [<cr>]<esc>ko<tab>
 imap (<cr> (<cr>)<esc>ko<tab>
+
+" Crtl + hjkl cursor mvt on insert mode
+imap <C-h> <left>
+imap <C-j> <down>
+imap <C-k> <up>
+imap <C-l> <right>
+
+" Crtl + hjkl cursor mvt on command mode
+cmap <C-h> <left>
+cmap <C-j> <down>
+cmap <C-k> <up>
+cmap <C-l> <right>
 
 " COLORS AND STUFF
 " ######################################################################################
