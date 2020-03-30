@@ -1,4 +1,3 @@
-" File  : init.vim
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 "
 " neovim config file
@@ -284,7 +283,7 @@ nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
 " cd into previous directory
 nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
 " pwd
-nmap ,d :pwd<cr>
+nmap <leader>d :pwd<cr>
 
 " delete current buffer
 nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
