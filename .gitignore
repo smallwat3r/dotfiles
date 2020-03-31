@@ -1,3 +1,1 @@
-*.DS_Store
-bashrc
-zsh/antigen.zsh
+.DS_Store
