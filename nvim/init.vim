@@ -2,7 +2,7 @@
 "
 " neovim config file
 
-" PLUGINS MANAGER (vim-plug)
+" PLUGINS MANAGER (vim-plug){{{
 " --------------------------------------------------------------------------------------
 
 " Auto load for first time use - Install Vim Plug Manager
@@ -41,8 +41,8 @@ Plug 'Shougo/neoinclude.vim'
 Plug 'deoplete-plugins/deoplete-dictionary'
 
 call plug#end()
-
-" PLUGINS CONFIG
+"}}}
+" PLUGINS CONFIG{{{
 " --------------------------------------------------------------------------------------
 
 " Signify
@@ -115,8 +115,8 @@ command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
       \   fzf#vim#with_preview(), <bang>0)
-
-" GENERAL CONFIG
+"}}}
+" GENERAL CONFIG{{{
 " --------------------------------------------------------------------------------------
 
 syntax on
@@ -175,6 +175,7 @@ set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set scrolloff=5         " nb lines margin on scroll
+set foldmethod=marker   " use marker to fold lines
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 set matchpairs+=<:>
@@ -199,18 +200,6 @@ set undofile
 " Backspace as it should work
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
-
-" Folds
-function! CustomFoldText()
-  " Custom fold lines format
-  let line = getline(v:foldstart)
-  let folded_line_num = v:foldend - v:foldstart
-  let line_text = substitute(line, '^"{\+', '', 'g')
-  return '    ⤿ +  (' . folded_line_num . ' lines) ' . line_text
-endfunction
-set foldmethod=indent
-set foldlevel=99
-set foldtext=CustomFoldText()
 
 " Netrw settings
 let g:netrw_banner=0
@@ -265,8 +254,8 @@ let &t_ZR='\e[23m'
 let &t_SI.='\e[6 q' " INSERT mode
 let &t_SR.='\e[4 q' " REPLACE mode
 let &t_EI.='\e[2 q' " NORMAL mode or others
-
-" MAPPINGS / KEYBINDING
+"}}}
+" MAPPINGS / KEYBINDING{{{
 " --------------------------------------------------------------------------------------
 
 " Normal mode mappings
@@ -411,8 +400,8 @@ cmap <C-h> <left>
 cmap <C-j> <down>
 cmap <C-k> <up>
 cmap <C-l> <right>
-
-" COLORS
+"}}}
+" COLORS{{{
 " --------------------------------------------------------------------------------------
 
 " Colorscheme
@@ -445,8 +434,8 @@ hi SignifySignChange ctermfg=yellow cterm=NONE
 " Ale colors
 hi ALEErrorSign   ctermfg=red    ctermbg=NONE
 hi ALEWarningSign ctermfg=yellow ctermbg=NONE
-
-" STATUSLINE
+"}}}
+" STATUSLINE{{{
 " --------------------------------------------------------------------------------------
 
 " Show git info in statusline (with fugitive)
@@ -501,3 +490,4 @@ augroup END
 
 " Set statusline (1 = active by default)
 set statusline=%!StatusLineFmt(1)
+"}}}

@@ -3,7 +3,7 @@
 #
 # ZSH config.
 
-# Env
+# Env{{{
 # --------------------------------------------------------------------------------------
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -54,8 +54,8 @@ case $- in *i*)
     exec tmux
   fi
 esac
-
-# Aliases
+# }}}
+# Aliases{{{
 # --------------------------------------------------------------------------------------
 
 alias vi="nvim"
@@ -100,8 +100,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-
-# Functions
+# }}}
+# Functions{{{
 # --------------------------------------------------------------------------------------
 
 # open current dir or the one in args
@@ -205,8 +205,8 @@ drm() {
   cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
   [ -n "$cid" ] && docker rm "$cid"
 }
-
-# Antigen
+# }}}
+# Antigen{{{
 # --------------------------------------------------------------------------------------
 
 source /usr/local/share/antigen/antigen.zsh
@@ -220,8 +220,8 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle softmoth/zsh-vim-mode
 
 antigen apply
-
-# Prompt (with vim-like mode)
+# }}}
+# Prompt (with vim-like mode){{{
 # --------------------------------------------------------------------------------------
 
 # zsh completions
@@ -268,3 +268,4 @@ vi_yank_pbcopy() {
 }
 zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
+# }}}
