@@ -62,6 +62,7 @@ brew:
   - ddgr
   - tidy-html5
   - shfmt
+  - coreutils
 
 # Brew cask installs.
 cask:
