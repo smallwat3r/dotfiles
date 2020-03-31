@@ -334,11 +334,11 @@ nmap <A-k> <C-y>
 nmap <leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
 nmap <leader>X ?\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgN
 
-" resize splits with arrow keys
-nmap <silent><up> :res +5<cr>
-nmap <silent><down> :res -5<cr>
-nmap <silent><left> :vertical resize-5<cr>
-nmap <silent><right> :vertical resize+5<cr>
+" resize splits
+nmap <silent><S-k> :res +5<cr>
+nmap <silent><S-j> :res -5<cr>
+nmap <silent><S-h> :vertical resize-5<cr>
+nmap <silent><S-l> :vertical resize+5<cr>
 
 " play macros
 nmap Q @q
