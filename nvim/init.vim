@@ -255,7 +255,7 @@ let &t_SI.='\e[6 q' " INSERT mode
 let &t_SR.='\e[4 q' " REPLACE mode
 let &t_EI.='\e[2 q' " NORMAL mode or others
 "}}}
-" MAPPINGS / KEYBINDING{{{
+" MAPPINGS / KEYBINDINGS{{{
 " --------------------------------------------------------------------------------------
 
 " Normal mode mappings
@@ -371,19 +371,6 @@ imap jj <esc>
 imap { {}<esc>i
 imap ( ()<esc>i
 imap [ []<esc>i
-imap < <><esc>i
-
-" current date / timestamp ISO8601/W3C
-imap <silent>\dd <C-R>=strftime("%a, %d %b %Y")<cr>
-imap <silent>\dt <C-R>=strftime("%FT%T%z")<cr>
-
-" personal info
-imap <silent>\aa <C-R>="Matthieu Petiteau <mpetiteau.pro@gmail.com>"<cr>
-imap <silent>\em <C-R>="mpetiteau.pro@gmail.com"<cr>
-
-" line separators
-imap <silent>\s- <C-o>:norm! 79i-<cr><esc>bi<space><esc>A<cr>
-imap <silent>\s* <C-o>:norm! 79i*<cr><esc>bi<space><esc>A<cr>
 
 " auto close matching pairs multi line
 imap {<cr> {<cr>}<esc>ko<tab>
@@ -404,6 +391,31 @@ cmap <C-h> <left>
 cmap <C-j> <down>
 cmap <C-k> <up>
 cmap <C-l> <right>
+
+" Useful insert mode mapping completion
+" **********************
+
+" Personal stuff
+iabbrev em,, mpetiteau.pro@gmail.com
+iabbrev ma,, Matthieu Petiteau
+iabbrev au,, Matthieu Petiteau <mpetiteau.pro@gmail.com>
+iabbrev cc,, Copyright (c) 2020 Matthieu Petiteau, all rights reserved.
+
+" Shebang
+iabbrev ssh,, #!/bin/sh
+iabbrev spy,, #!/usr/bin/env python
+
+" Current date / timestamp ISO8601/W3C
+iabbrev dd,, <C-R>=strftime("%a, %d %b %Y")<cr>
+iabbrev dt,, <C-R>=strftime("%FT%T%z")<cr>
+
+" Line separators
+iabbrev --,, -----------------------------------------------------------------------------
+iabbrev ##,, #############################################################################
+iabbrev //,, /////////////////////////////////////////////////////////////////////////////
+iabbrev **,, *****************************************************************************
+iabbrev @@,, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+iabbrev ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "}}}
 " COLORS{{{
 " --------------------------------------------------------------------------------------
