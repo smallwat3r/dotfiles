@@ -430,23 +430,23 @@ iab ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 colo desert
 
 " Overwrite colors on general stuff
-hi Normal         ctermfg=15
-hi Number         ctermfg=15
-hi String         ctermfg=194
-hi Folded         ctermfg=231  ctermbg=239
-hi MatchParen     ctermfg=237  ctermbg=200
-hi SignColumn     ctermfg=NONE ctermbg=NONE cterm=NONE
-hi LineNr         ctermfg=239  ctermbg=NONE
-hi VertSplit      ctermfg=240  ctermbg=NONE cterm=NONE
-hi StatuslineNC   ctermfg=250  ctermbg=238  cterm=NONE
-hi Search         ctermfg=232  ctermbg=226
-hi IncSearch      ctermfg=232  ctermbg=231
+hi Normal            ctermfg=15
+hi Number            ctermfg=15
+hi String            ctermfg=194
+hi Folded            ctermfg=231    ctermbg=239
+hi MatchParen        ctermfg=237    ctermbg=200
+hi SignColumn        ctermfg=NONE   ctermbg=NONE cterm=NONE
+hi LineNr            ctermfg=239    ctermbg=NONE
+hi VertSplit         ctermfg=240    ctermbg=NONE cterm=NONE
+hi StatuslineNC      ctermfg=250    ctermbg=238  cterm=NONE
+hi Search            ctermfg=232    ctermbg=226
+hi IncSearch         ctermfg=232    ctermbg=231
 
 " Diff colors
-hi DiffAdd        ctermfg=255  ctermbg=64
-hi DiffChange     ctermfg=NONE ctermbg=NONE cterm=NONE
-hi DiffDelete     ctermfg=167  ctermbg=NONE cterm=NONE
-hi DiffText       ctermfg=255  ctermbg=24
+hi DiffAdd           ctermfg=255    ctermbg=64
+hi DiffChange        ctermfg=NONE   ctermbg=NONE cterm=NONE
+hi DiffDelete        ctermfg=167    ctermbg=NONE cterm=NONE
+hi DiffText          ctermfg=255    ctermbg=24
 
 " Signify colors
 hi SignifySignAdd    ctermfg=green  cterm=NONE
@@ -454,8 +454,8 @@ hi SignifySignDelete ctermfg=red    cterm=NONE
 hi SignifySignChange ctermfg=yellow cterm=NONE
 
 " Ale colors
-hi ALEErrorSign   ctermfg=red    ctermbg=NONE
-hi ALEWarningSign ctermfg=yellow ctermbg=NONE
+hi ALEErrorSign      ctermfg=red    ctermbg=NONE
+hi ALEWarningSign    ctermfg=yellow ctermbg=NONE
 "}}}
 " STATUSLINE{{{
 " --------------------------------------------------------------------------------------
