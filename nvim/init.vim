@@ -27,6 +27,7 @@ Plug 'alvan/vim-closetag'      " Auto-close html tags
 Plug 'gregsexton/MatchTag'     " Hightlight matching html tag
 Plug 'machakann/vim-sandwich'  " Surroundings mapping
 Plug 'tpope/vim-unimpaired'    " Complementary mappings
+Plug 'chrisbra/csv.vim'        " CSV files
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
