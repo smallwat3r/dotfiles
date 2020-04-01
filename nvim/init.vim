@@ -25,7 +25,6 @@ Plug 'mhinz/vim-signify'              " Git signs
 Plug 'tpope/vim-vinegar'              " File browser
 Plug 'alvan/vim-closetag'             " Auto-close html tags
 Plug 'gregsexton/MatchTag'            " Hightlight matching html tag
-Plug 'Vimjas/vim-python-pep8-indent'  " Python indentation
 Plug 'machakann/vim-sandwich'         " Surroundings mapping
 Plug 'tpope/vim-unimpaired'           " Complementary mappings
 
@@ -129,18 +128,23 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-autocmd FileType make   setlocal ts=8 sw=8 noexpandtab
-autocmd FileType go     setlocal ts=8 sw=8 noexpandtab
-autocmd FileType python setlocal ts=4 sw=4 sts=4
-autocmd FileType perl   setlocal ts=4 sw=4 sts=4
+autocmd FileType make   setlocal ts=8 sw=8 noet
+autocmd FileType go     setlocal ts=8 sw=8 noet
+autocmd FileType python setlocal ts=4 sw=4 sts=4 et
+autocmd FileType perl   setlocal ts=4 sw=4 sts=4 et
+
+" Fix weird Python indent behaviour
+let g:pyindent_open_paren = '0'
+let g:pyindent_nested_paren = '&sw'
+let g:pyindent_continue = '&sw'
 
 " Nginx
 au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
 au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
 
 " Yaml
-au BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+au BufNewFile,BufReadPost *.{yaml,yml} set ft=yaml
+au FileType yaml setlocal ts=2 sts=2 sw=2 et
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -368,9 +372,9 @@ imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 imap jj <esc>
 
 " auto close matching pairs
-imap { {}<esc>i
-imap ( ()<esc>i
-imap [ []<esc>i
+imap { {<esc>i<right>}<esc>i
+imap ( (<esc>i<right>)<esc>i
+imap [ [<esc>i<right>]<esc>i
 
 " auto close matching pairs multi line
 imap {<cr> {<cr>}<esc>ko<tab>
