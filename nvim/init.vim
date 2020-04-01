@@ -399,15 +399,17 @@ cmap <C-l> <right>
 iabbrev em,, mpetiteau.pro@gmail.com
 iabbrev ma,, Matthieu Petiteau
 iabbrev au,, Matthieu Petiteau <mpetiteau.pro@gmail.com>
-iabbrev cc,, Copyright (c) 2020 Matthieu Petiteau, all rights reserved.
+iabbrev sign,, --<cr>Matthieu Petiteau<cr>mpetiteau.pro@gmail.com
+iabbrev cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
 iabbrev ssh,, #!/bin/sh
 iabbrev spy,, #!/usr/bin/env python
 
-" Current date / timestamp ISO8601/W3C
+" Current date / datetime / timestamp ISO8601/W3C
 iabbrev dd,, <C-R>=strftime("%a, %d %b %Y")<cr>
-iabbrev dt,, <C-R>=strftime("%FT%T%z")<cr>
+iabbrev dt,, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
+iabbrev ts,, <C-R>=strftime("%FT%T%z")<cr>
 
 " Line separators
 iabbrev --,, -----------------------------------------------------------------------------
