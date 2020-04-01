@@ -14,19 +14,19 @@ endif
 
 call plug#begin()
 
-Plug 'dense-analysis/ale'             " Ale code linter
-Plug 'chr4/nginx.vim'                 " Nginx / Jinja syntax
-Plug 'sbdchd/neoformat'               " Auto code formatting
-Plug 'tpope/vim-commentary'           " Comments mappings
-Plug 'tpope/vim-eunuch'               " Shell commands from vim
-Plug 'tpope/vim-fugitive'             " Git wrapper
-Plug 'junegunn/gv.vim'                " Commits browser
-Plug 'mhinz/vim-signify'              " Git signs
-Plug 'tpope/vim-vinegar'              " File browser
-Plug 'alvan/vim-closetag'             " Auto-close html tags
-Plug 'gregsexton/MatchTag'            " Hightlight matching html tag
-Plug 'machakann/vim-sandwich'         " Surroundings mapping
-Plug 'tpope/vim-unimpaired'           " Complementary mappings
+Plug 'dense-analysis/ale'      " Ale code linter
+Plug 'chr4/nginx.vim'          " Nginx / Jinja syntax
+Plug 'sbdchd/neoformat'        " Auto code formatting
+Plug 'tpope/vim-commentary'    " Comments mappings
+Plug 'tpope/vim-eunuch'        " Shell commands from vim
+Plug 'tpope/vim-fugitive'      " Git wrapper
+Plug 'junegunn/gv.vim'         " Commits browser
+Plug 'mhinz/vim-signify'       " Git signs
+Plug 'tpope/vim-vinegar'       " File browser
+Plug 'alvan/vim-closetag'      " Auto-close html tags
+Plug 'gregsexton/MatchTag'     " Hightlight matching html tag
+Plug 'machakann/vim-sandwich'  " Surroundings mapping
+Plug 'tpope/vim-unimpaired'    " Complementary mappings
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
