@@ -392,32 +392,32 @@ cmap <C-j> <down>
 cmap <C-k> <up>
 cmap <C-l> <right>
 
-" Useful insert mode mapping completion
+" Useful insert mode abbr completion
 " **********************
 
 " Personal stuff
-iabbrev em,, mpetiteau.pro@gmail.com
-iabbrev ma,, Matthieu Petiteau
-iabbrev au,, Matthieu Petiteau <mpetiteau.pro@gmail.com>
-iabbrev sign,, --<cr>Matthieu Petiteau<cr>mpetiteau.pro@gmail.com
-iabbrev cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
+iab em,, mpetiteau.pro@gmail.com
+iab ma,, Matthieu Petiteau
+iab au,, Matthieu Petiteau <mpetiteau.pro@gmail.com>
+iab sign,, --<cr>Matthieu Petiteau<cr>mpetiteau.pro@gmail.com
+iab cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
-iabbrev ssh,, #!/bin/sh
-iabbrev spy,, #!/usr/bin/env python
+iab ssh,, #!/bin/sh
+iab spy,, #!/usr/bin/env python
 
 " Current date / datetime / timestamp ISO8601/W3C
-iabbrev dd,, <C-R>=strftime("%a, %d %b %Y")<cr>
-iabbrev dt,, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
-iabbrev ts,, <C-R>=strftime("%FT%T%z")<cr>
+iab dd,, <C-R>=strftime("%a, %d %b %Y")<cr>
+iab dt,, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
+iab ts,, <C-R>=strftime("%FT%T%z")<cr>
 
 " Line separators
-iabbrev --,, -----------------------------------------------------------------------------
-iabbrev ##,, #############################################################################
-iabbrev //,, /////////////////////////////////////////////////////////////////////////////
-iabbrev **,, *****************************************************************************
-iabbrev @@,, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-iabbrev ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+iab --,, -----------------------------------------------------------------------------
+iab ##,, #############################################################################
+iab //,, /////////////////////////////////////////////////////////////////////////////
+iab **,, *****************************************************************************
+iab @@,, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+iab ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "}}}
 " COLORS{{{
 " --------------------------------------------------------------------------------------
