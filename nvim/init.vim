@@ -134,9 +134,9 @@ autocmd FileType python setlocal ts=4 sw=4 sts=4 et
 autocmd FileType perl   setlocal ts=4 sw=4 sts=4 et
 
 " Fix weird Python indent behaviour
-let g:pyindent_open_paren = '0'
-let g:pyindent_nested_paren = '&sw'
-let g:pyindent_continue = '&sw'
+let g:pyindent_open_paren='0'
+let g:pyindent_nested_paren='&sw'
+let g:pyindent_continue='&sw'
 
 " Nginx
 au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
