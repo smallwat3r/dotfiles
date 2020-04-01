@@ -277,8 +277,12 @@ nmap cp yap<S-}>p
 nmap s "_d
 nmap ss "_dd
 
+" swap with next or previous character
+nmap ]c xph
+nmap [c hxp
+
 " remove search highlight
-nmap <silent><leader><space> :nohlsearch<cr>
+map <silent><leader><space> :nohlsearch<cr>
 
 " edit config file
 nmap <leader>e :e! $MYVIMRC<cr>
