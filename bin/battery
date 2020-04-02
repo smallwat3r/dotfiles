@@ -1,5 +1,4 @@
-#!/bin/sh
-#
+#!/bin/bash
 # Show mac battery percentage
 
 pmset -g ps | sed -n 's/.*[[:blank:]]+*\(.*%\).*/\1/p'

@@ -1,7 +1,5 @@
 #!/bin/bash
-# File  : install-brew.sh
-# Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
-# Date  : 27.12.2019
+# dotfiles setup script - install brew packages
 
 if ! brew ls --versions $1 >/dev/null; then
   echo "[+] installing $1"

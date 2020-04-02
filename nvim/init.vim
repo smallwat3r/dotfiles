@@ -1,5 +1,4 @@
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
-"
 " neovim config file
 
 " PLUGINS MANAGER (vim-plug){{{
@@ -409,7 +408,7 @@ iab cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
 iab ssh,, #!/bin/sh
-iab sba,, #!/usr/local/bin/bash
+iab sba,, #!/bin/bash
 iab spy,, #!/usr/bin/env python3
 
 " Current date / datetime / timestamp ISO8601/W3C

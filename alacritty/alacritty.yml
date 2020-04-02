@@ -1,10 +1,10 @@
-#
 # Alacritty config
-#
 
+# Env{{{
 env:
-  TERM: xterm-256color
-
+  TERM: screen-256color
+# }}}
+# Window{{{
 window:
   dimensions:
     columns: 140
@@ -22,7 +22,8 @@ scrolling:
   history: 10000
   multiplier: 3
   scrolling_multiplier: 3
-
+# }}}
+# Font{{{
 font:
   normal:
     family: Monaco
@@ -45,20 +46,44 @@ font:
     y: 0
 
   use_thin_strokes: false
-
-visual_bell:
-  animation: EaseOutExpo
-  duration: 0
-  color: "0xffffff"
-
+# }}}
+# Colors{{{
 background_opacity: 1
 
 colors:
-  # Default colors
   primary:
-    background: "0x080808"
-    foreground: "0xf2f2f2"
+    background: "#080808"
+    foreground: "#f2f2f2"
+  normal:
+    black:   "#000000"
+    red:     "#d54e53"
+    green:   "#b9ca4a"
+    yellow:  "#e6c547"
+    blue:    "#7aa6da"
+    magenta: "#c397d8"
+    cyan:    "#70c0ba"
+    white:   "#eaeaea"
+  bright:
+    black:   "#666666"
+    red:     "#ff3334"
+    green:   "#9ec400"
+    yellow:  "#e7c547"
+    blue:    "#7aa6da"
+    magenta: "#b77ee0"
+    cyan:    "#54ced6"
+    white:   "#ffffff"
+  dim:
+    black:   "#000000"
+    red:     "#8c3336"
+    green:   "#7a8530"
+    yellow:  "#97822e"
+    blue:    "#506d8f"
+    magenta: "#80638e"
+    cyan:    "#497e7a"
+    white:   "#9a9a9a"
 
+# }}}
+# Mouse and Cursor{{{
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
@@ -82,11 +107,17 @@ dynamic_title: true
 cursor:
   style: Block
   unfocused_hollow: true
-
+# }}}
+# Other{{{
 live_config_reload: true
 enable_experimental_conpty_backend: false
 
 alt_send_esc: true
+
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+  color: '#ffffff'
 
 debug:
   render_timer: false
@@ -94,7 +125,8 @@ debug:
   log_level: Warn
   print_events: false
   ref_test: false
-
+# }}}
+# Keybindings{{{
 key_bindings:
   - { key: Key0, mods: Command, action: ResetFontSize }
   - { key: Equals, mods: Command, action: IncreaseFontSize }
@@ -118,3 +150,4 @@ key_bindings:
   - { key: K, mods: Alt, chars: "\x1bk" }
   - { key: H, mods: Alt, chars: "\x1bh" }
   - { key: L, mods: Alt, chars: "\x1bl" }
+# }}}

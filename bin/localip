@@ -1,6 +1,5 @@
 #!/bin/bash
-#
 # Show local IP (except 127.0.0.1)
 # If multilple (ie. connected to VPN) it's appended
-#
+
 ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | tr '\r\n' ' ' | xargs
