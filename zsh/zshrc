@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------------------
 
 export ZSH="$HOME/.oh-my-zsh"
-export TERM="xterm-256color"
+export TERM="screen-256color"
 export CLICOLOR=1
 export EDITOR="/usr/local/bin/nvim"
 export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
@@ -161,8 +161,8 @@ fe() {
   [[ -n "$files" ]] && $EDITOR "${files[@]}"
 }
 
-# FZF fuzzy grep open via ripgrep
-fgr() {
+# FZF fuzzy ripgrep
+frg() {
   local file line
   read -r file line <<<"$(rg --column --line-number --no-heading --smart-case $@ | fzf --query=$@ | awk -F: '{print $1, $2}')"
   if [[ -n $file ]]; then

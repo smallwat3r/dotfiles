@@ -129,10 +129,10 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-autocmd FileType make   setlocal ts=8 sw=8 noet
-autocmd FileType go     setlocal ts=8 sw=8 noet
-autocmd FileType python setlocal ts=4 sw=4 sts=4 et
-autocmd FileType perl   setlocal ts=4 sw=4 sts=4 et
+au FileType make   setlocal ts=8 sw=8 noet
+au FileType go     setlocal ts=8 sw=8 noet
+au FileType python setlocal ts=4 sw=4 sts=4 et
+au FileType perl   setlocal ts=4 sw=4 sts=4 et
 
 " Fix weird Python indent behaviour
 let g:pyindent_open_paren='0'
@@ -144,7 +144,7 @@ au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
 au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
 
 " Yaml
-au BufNewFile,BufReadPost *.{yaml,yml} set ft=yaml
+au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
 au FileType yaml setlocal ts=2 sts=2 sw=2 et
 
 set encoding=utf-8
@@ -210,7 +210,7 @@ set whichwrap+=<,>,h,l
 let g:netrw_banner=0
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir='rm -r'
-autocmd FileType netrw setl bufhidden=delete  " delete netrw buffer
+au FileType netrw setl bufhidden=delete  " delete netrw buffer
 
 " Deactivate dbtext plugin error msg on sql completion
 let g:loaded_sql_completion=0
@@ -220,14 +220,14 @@ let g:omni_sql_no_default_maps=1
 command! WW :w !sudo tee % >/dev/null
 
 " Source on save config
-autocmd! BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+au BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
 
 " Disable automatic insertion of comment markers
 set fo=cjql
-autocmd FileType * setl fo-=o fo-=r
+au FileType * setl fo-=o fo-=r
 
 " close method preview window after completion is complete
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+au InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " load custom dict files (with deoplete-dictionary)
 au FileType * execute 'setlocal dict+=~/.config/nvim/dict/' . &filetype . '.txt'
@@ -248,8 +248,8 @@ function! TrimTrailingWS()
     :%s/\s\+$//g
   endif
 endfunction
-autocmd BufWritePre * :call TrimTrailingWS()
-autocmd FileType markdown let b:noStripWhitespace=1
+au BufWritePre * :call TrimTrailingWS()
+au FileType markdown let b:noStripWhitespace=1
 
 " Italics
 let &t_ZH='\e[3m'
@@ -506,9 +506,8 @@ endfunction
 
 " Active and non-active on window change event
 augroup status
-  autocmd!
-  autocmd WinEnter * setlocal statusline=%!StatusLineFmt(1)
-  autocmd WinLeave * setlocal statusline=%!StatusLineFmt(0)
+  au WinEnter * setlocal statusline=%!StatusLineFmt(1)
+  au WinLeave * setlocal statusline=%!StatusLineFmt(0)
 augroup END
 
 " Set statusline (1 = active by default)
