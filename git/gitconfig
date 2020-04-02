@@ -5,13 +5,13 @@
 [core]
   autocrlf = input
   editor = nvim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [merge]
-	tool = vimdiff
+  tool = vimdiff
 
 [mergetool "vimdiff"]
-	path = nvim
+  path = nvim
 
 [push]
   default = simple
@@ -34,21 +34,21 @@
   interactive = auto
   pager = true
   status = auto
-	ui = true
+  ui = true
 
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 
 [color "diff"]
-	meta = 11
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = 11
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 
 [color "branch"]
   current = yellow reverse
