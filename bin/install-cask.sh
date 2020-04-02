@@ -1,5 +1,5 @@
 #!/bin/bash
-# dotfiles setup script = install casks
+# dotfiles setup script - install casks
 
 if ! brew cask list | grep -ri $1 >/dev/null; then
   name=$(echo $1 | sed -E 's/[-_]+/ /g')
