@@ -81,7 +81,6 @@ colors:
     magenta: "#80638e"
     cyan:    "#497e7a"
     white:   "#9a9a9a"
-
 # }}}
 # Mouse and Cursor{{{
 mouse_bindings:
