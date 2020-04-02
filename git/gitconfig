@@ -1,51 +1,61 @@
 [user]
-    name = Matthieu Petiteau
-    email = mpetiteau.pro@gmail.com
+  name = Matthieu Petiteau
+  email = mpetiteau.pro@gmail.com
 
 [core]
-    autocrlf = input
-    editor = vim
-
-[diff]
-    tool = vimdiff
-    noprefix = true
-    algorithm = patience
-    renames = copies
+  autocrlf = input
+  editor = nvim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [merge]
-    tool = vimdiff
+	tool = vimdiff
+
+[mergetool "vimdiff"]
+	path = nvim
 
 [push]
-    default = simple
-
-[color]
-    ui = true
-
-[color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
-
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-
-[color "status"]
-    added = green
-    changed = yellow
-    untracked = magenta
+  default = simple
 
 [url "https://github.com/"]
-    insteadOf = gh:
+  insteadOf = gh:
 
 [url "https://gist.github.com/"]
-    insteadOf = gist:
+  insteadOf = gist:
 
 [alias]
-    plog = log --pretty=custom
+  plog = log --pretty=custom
 
-# https://github.com/alrra/dotfiles/blob/master/src/git/gitconfig
 [pretty]
-    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+  custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  pager = true
+  status = auto
+	ui = true
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "status"]
+  added = yellow reverse
+  changed = green
+  untracked = cyan

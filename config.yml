@@ -63,6 +63,7 @@ brew:
   - tidy-html5
   - shfmt
   - coreutils
+  - diff-so-fancy
 
 # Brew cask installs.
 cask:

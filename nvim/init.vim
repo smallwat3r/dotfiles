@@ -409,7 +409,8 @@ iab cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
 iab ssh,, #!/bin/sh
-iab spy,, #!/usr/bin/env python
+iab sba,, #!/usr/local/bin/bash
+iab spy,, #!/usr/bin/env python3
 
 " Current date / datetime / timestamp ISO8601/W3C
 iab dd,, <C-R>=strftime("%a, %d %b %Y")<cr>
