@@ -32,6 +32,9 @@ links:
   __root__.pip/pip.conf: python/pip.conf
   /usr/local/bin/localip: bin/localip
   /usr/local/bin/battery: bin/battery
+  /usr/local/bin/tubestatus: bin/tubestatus/tubestatus
+  /usr/local/bin/synonym: bin/synonym/synonym
+  /usr/local/bin/sketch: bin/sketch/sketch
 
 # Brew packages.
 brew:
