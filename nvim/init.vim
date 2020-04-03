@@ -178,7 +178,6 @@ set nolist              " hide special characters
 set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
-set scrolloff=5         " nb lines margin on scroll
 set foldmethod=marker   " use marker to fold lines
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
