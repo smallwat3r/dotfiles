@@ -1,9 +1,9 @@
 [submodule "bin/synonym"]
 	path = bin/synonym
 	url = https://github.com/smallwat3r/synonym.git
-[submodule "bin/sketch"]
-	path = bin/sketch
-	url = https://github.com/smallwat3r/sketch.git
 [submodule "bin/tubestatus"]
 	path = bin/tubestatus
 	url = https://github.com/smallwat3r/tubestatus.git
+[submodule "sketch"]
+	path = sketch
+	url = https://github.com/smallwat3r/sketch.git
