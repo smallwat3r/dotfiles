@@ -208,6 +208,7 @@ set whichwrap+=<,>,h,l
 let g:netrw_banner=0
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir='rm -r'
+let g:netrw_list_hide= '__pycache__,.*\.pyc$,.*\.swp,\.git,\.ropeproject,\.cache,build/,\.egg-info,dist,\.DS_Store'
 au FileType netrw setl bufhidden=delete  " delete netrw buffer
 
 " Deactivate dbtext plugin error msg on sql completion
@@ -228,6 +229,8 @@ au FileType * setl fo-=o fo-=r
 au InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " load custom dict files (with deoplete-dictionary)
+
+au FileType * execute 'setlocal dict='.expand($HOME.'/.config/nvim/dict/'.&filetype.'.txt')
 au FileType * execute 'setlocal dict+=~/.config/nvim/dict/' . &filetype . '.txt'
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
 call deoplete#custom#source('dictionary', 'sorters', [])
@@ -297,8 +300,6 @@ nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
 nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
 " cd into previous directory
 nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
-" cd into current file directory
-nmap <silent><leader>cdf :cd %:h<cr>:pwd<cr>
 " pwd
 nmap <leader>d :pwd<cr>
 
@@ -408,8 +409,7 @@ iab sign,, --<cr>Matthieu Petiteau<cr>mpetiteau.pro@gmail.com
 iab cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
-iab ssh,, #!/bin/sh
-iab sba,, #!/bin/bash
+iab sba,, #!/usr/bin/env bash
 iab spy,, #!/usr/bin/env python3
 
 " Current date / datetime / timestamp ISO8601/W3C
