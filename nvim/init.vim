@@ -133,19 +133,6 @@ au FileType go     setlocal ts=8 sw=8 noet
 au FileType python setlocal ts=4 sw=4 sts=4 et
 au FileType perl   setlocal ts=4 sw=4 sts=4 et
 
-" Fix weird Python indent behaviour
-let g:pyindent_open_paren='0'
-let g:pyindent_nested_paren='&sw'
-let g:pyindent_continue='&sw'
-
-" Nginx
-au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
-au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
-
-" Yaml
-au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
-au FileType yaml setlocal ts=2 sts=2 sw=2 et
-
 set encoding=utf-8
 set fileencoding=utf-8
 set updatetime=100      " async updatetime
@@ -260,6 +247,22 @@ let &t_ZR='\e[23m'
 let &t_SI.='\e[6 q' " INSERT mode
 let &t_SR.='\e[4 q' " REPLACE mode
 let &t_EI.='\e[2 q' " NORMAL mode or others
+
+" Fix weird Python indent behaviour
+let g:pyindent_open_paren='0'
+let g:pyindent_nested_paren='&sw'
+let g:pyindent_continue='&sw'
+
+" Nginx
+au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
+au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
+
+" Yaml
+au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
+au FileType yaml setlocal ts=2 sts=2 sw=2 et
+
+" Gitconfig
+au BufRead,BufNewFile gitconfig set ft=gitconfig
 "}}}
 " MAPPINGS / KEYBINDINGS{{{
 " --------------------------------------------------------------------------------------
