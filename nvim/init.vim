@@ -216,8 +216,6 @@ au FileType * setl fo-=o fo-=r
 au InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " load custom dict files (with deoplete-dictionary)
-
-au FileType * execute 'setlocal dict='.expand($HOME.'/.config/nvim/dict/'.&filetype.'.txt')
 au FileType * execute 'setlocal dict+=~/.config/nvim/dict/' . &filetype . '.txt'
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
 call deoplete#custom#source('dictionary', 'sorters', [])
