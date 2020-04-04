@@ -297,6 +297,8 @@ nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
 nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
 " cd into previous directory
 nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
+" cd into current file directory
+nmap <silent><leader>cdf :cd %:h<cr>:pwd<cr>
 " pwd
 nmap <leader>d :pwd<cr>
 
