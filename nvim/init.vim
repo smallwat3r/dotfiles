@@ -253,15 +253,10 @@ let g:pyindent_open_paren='0'
 let g:pyindent_nested_paren='&sw'
 let g:pyindent_continue='&sw'
 
-" Nginx
+" Special filetypes
 au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
 au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
-
-" Yaml
 au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
-au FileType yaml setlocal ts=2 sts=2 sw=2 et
-
-" Gitconfig
 au BufRead,BufNewFile gitconfig set ft=gitconfig
 "}}}
 " MAPPINGS / KEYBINDINGS{{{
