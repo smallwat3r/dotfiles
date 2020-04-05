@@ -33,7 +33,7 @@ font:
     style: Italic
   bold:
     family: Monaco
-    style: Regular # on't show bold fonts
+    style: Regular # no bold fonts
 
   size: 12
 
