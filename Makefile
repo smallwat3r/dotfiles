@@ -1,5 +1,5 @@
 all:  install-homebrew allow-manpage-access install-oh-my-zsh install-perl brew \
-	macos-settings install-python install-npm install-go install-smallwat3r-bin symlink
+	macos-settings install-python install-npm install-go symlink
 
 .PHONY: all
 
