@@ -406,6 +406,7 @@ iab cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
 iab sba,, #!/usr/bin/env bash
+iab spe,, #!/usr/bin/env perl
 iab spy,, #!/usr/bin/env python3
 
 " Current date / datetime / timestamp ISO8601/W3C
