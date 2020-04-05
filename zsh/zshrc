@@ -52,7 +52,6 @@ esac
 # }}}
 # Aliases{{{
 # --------------------------------------------------------------------------------------
-
 alias vi="nvim"
 alias vim="nvim"
 alias svi="sudo nvim"
@@ -96,7 +95,6 @@ alias .....="cd ../../../.."
 # }}}
 # Functions{{{
 # --------------------------------------------------------------------------------------
-
 # copy public key to clipboard
 pubkey() {
   more $HOME/.ssh/id_rsa.pub |
@@ -243,7 +241,6 @@ drm() {
 # }}}
 # Antigen{{{
 # --------------------------------------------------------------------------------------
-
 source /usr/local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 
@@ -258,7 +255,6 @@ antigen apply
 # }}}
 # Prompt (with vim-like mode){{{
 # --------------------------------------------------------------------------------------
-
 # zsh completions
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
