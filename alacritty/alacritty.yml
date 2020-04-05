@@ -11,8 +11,8 @@ window:
     lines: 40
 
   padding:
-    x: 4
-    y: 0
+    x: 5
+    y: 5
 
   dynamic_padding: false
   decorations: buttonless
