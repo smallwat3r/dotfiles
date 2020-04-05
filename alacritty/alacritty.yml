@@ -26,16 +26,16 @@ scrolling:
 # Font{{{
 font:
   normal:
-    family: Hack
+    family: Monaco
     style: Regular
   italic:
-    family: Hack
+    family: Monaco
     style: Italic
   bold:
-    family: Hack
+    family: Monaco
     style: Regular # on't show bold fonts
 
-  size: 13
+  size: 12
 
   offset:
     x: 1
@@ -45,7 +45,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: true
+  use_thin_strokes: false
 # }}}
 # Colors{{{
 background_opacity: 1
@@ -54,25 +54,6 @@ colors:
   primary:
     background: "#080808"
     foreground: "#f2f2f2"
-  normal:
-    black: "#000000"
-    red: "#ff8272"
-    green: "#b4fa72"
-    yellow: "#fefdc2"
-    blue: "#a5d5fe"
-    magenta: "#ffcdfe"
-    cyan: "#96f2ec"
-    white: "#f1f1f1"
-
-  bright:
-    black: "#000000"
-    red: "#ffc4bd"
-    green: "#d6fcb9"
-    yellow: "#fefdd5"
-    blue: "#c1e3fe"
-    magenta: "#ffcdfe"
-    cyan: "#a9eeea"
-    white: "#feffff"
 # }}}
 # Mouse and Cursor{{{
 mouse_bindings:
