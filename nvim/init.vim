@@ -292,7 +292,7 @@ nmap <leader>e :e! $MYVIMRC<cr>
 " source current file
 nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
 
-" cd vim into current buffer directory
+" cd into current buffer directory
 nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
 " cd into previous directory
 nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
@@ -317,13 +317,10 @@ nmap ;s/ :%s/
 " format file
 nmap ;f :Neoformat<cr>
 
-" FZF show buffer list
+" FZF
 nmap <leader>b :Buffers<cr>
-" FZF search files
 nmap <leader>f :Files<cr>
-" FZF search lines in buffer
 nmap <leader>l :BLines<cr>
-" FZF ripgrep
 nmap <leader>; :Rg<cr>
 
 " navigate window panels
