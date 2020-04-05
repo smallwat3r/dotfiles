@@ -1,14 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # dotfiles setup script - install casks
 
-if ! brew cask list | grep -ri $1 >/dev/null; then
-  name=$(echo $1 | sed -E 's/[-_]+/ /g')
-  if ! ls /Applications | grep -ri "$name" >/dev/null; then
-    echo "[+] installing $1"
+brew ls --versions $1 >/dev/null && {
+  printf "[.] cask $1 already installed via Homebrew\n"
+} || {
+  _name=$(
+    echo $1 |
+      sed -E 's/[-_]+/ /g'
+  )
+  ls /Applications | grep -ri "$_name" >/dev/null && {
+    printf "[.] $1 seems already installed in /Applications\n"
+  } || {
+    printf "[+] installing $1\n"
     brew cask install $1
-  else
-    echo "[.] $1 seems already installed in /Applications"
-  fi
-else
-  echo "[.] $1 already installed via Homebrew"
-fi
+  }
+}

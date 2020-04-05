@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # dotfiles setup script - install brew packages
 
-if ! brew ls --versions $1 >/dev/null; then
-  echo "[+] installing $1"
+brew ls --versions $1 >/dev/null && {
+  printf "[.] $1 already installed.\n"
+} || {
+  printf "[+] installing $1\n"
   brew install $1
-else
-  echo "[.] $1 already installed"
-fi
+}
