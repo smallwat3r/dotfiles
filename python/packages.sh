@@ -1,4 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Install python packages
 
-pip3 install black pylint sqlparse jsbeautifier pynvim bandit
+PYTHON_PACKAGES=(
+  black
+  pylint
+  sqlparse
+  jsbeautifier
+  pynvim
+  bandit
+)
+pip3 install ${PYTHON_PACKAGES[@]}

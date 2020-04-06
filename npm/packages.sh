@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Install npm packages
 
-npm install asciicast2gif -g
-npm install http-server -g
-npm install prettier -g
-npm install prettydiff -g
+NPM_PACKAGES=(
+  asciicast2gif
+  http-server
+  prettier
+  prettydiff
+)
+npm install -g ${NPM_PACKAGES[@]}
