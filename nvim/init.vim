@@ -29,7 +29,7 @@ Plug 'tpope/vim-unimpaired'    " Complementary mappings
 Plug 'chrisbra/csv.vim'        " CSV files
 
 " Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Text completion
@@ -190,6 +190,7 @@ set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 set matchpairs+=<:>
 set clipboard+=unnamedplus
 
+
 " Ignore files and folders
 set wildignore=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
@@ -275,6 +276,12 @@ au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
 au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
 au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
 au BufRead,BufNewFile gitconfig set ft=gitconfig
+
+" Remember last location
+au BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal g'\"" |
+      \ endif
 "}}}
 " MAPPINGS / KEYBINDINGS{{{
 " --------------------------------------------------------------------------------------
@@ -341,6 +348,7 @@ nmap <leader>b :Buffers<cr>
 nmap <leader>f :Files<cr>
 nmap <leader>l :BLines<cr>
 nmap <leader>; :Rg<cr>
+nmap <leader>co :Commits<cr>
 
 " navigate window panels
 nmap <C-h> <C-w>h
