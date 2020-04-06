@@ -115,7 +115,7 @@ command! -bang -nargs=* Rg
       \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
       \   fzf#vim#with_preview(), <bang>0)
 
-" vim sandiwch
+" vim sandwich
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
       \   {
