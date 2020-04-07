@@ -376,7 +376,7 @@ nmap <silent><S-l> :vertical resize+5<cr>
 nmap Q @q
 
 " toggle undo tree
-nmap ,u :MundoToggle<CR>
+nmap <leader>u :MundoToggle<CR>
 
 " Visual mode mappings
 " **********************
