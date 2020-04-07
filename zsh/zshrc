@@ -1,8 +1,8 @@
 # Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 # ZSH config.
 
-# Env{{{
-# --------------------------------------------------------------------------------------
+# {{{ env
+
 export ZSH="$HOME/.oh-my-zsh"
 export TERM="xterm-256color"
 export CLICOLOR=1
@@ -48,9 +48,10 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "
 case $- in *i*)
   [[ -z $TMUX ]] && exec tmux
 esac
-# }}}
-# Aliases{{{
-# --------------------------------------------------------------------------------------
+
+# }}} env
+# {{{ aliases
+
 alias vi="nvim"
 alias vim="nvim"
 alias svi="sudo nvim"
@@ -91,9 +92,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-# }}}
-# Functions{{{
-# --------------------------------------------------------------------------------------
+
+# }}} aliases
+# {{{ functions
+
 # copy public key to clipboard
 pubkey() {
   more $HOME/.ssh/id_rsa.pub |
@@ -255,9 +257,10 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle softmoth/zsh-vim-mode
 
 antigen apply
-# }}}
-# Prompt (with vim-like mode){{{
-# --------------------------------------------------------------------------------------
+
+# }}} functions
+# {{{ prompt
+
 # zsh completions
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -303,4 +306,4 @@ vi_yank_pbcopy() {
 }
 zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
-# }}}
+# }}} prompt

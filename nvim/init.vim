@@ -1,8 +1,7 @@
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 " neovim config file
 
-" PLUGINS MANAGER (vim-plug){{{
-" --------------------------------------------------------------------------------------
+"{{{ plugin manager (vim-plug)
 
 " Auto load for first time use - Install Vim Plug Manager
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -40,9 +39,9 @@ Plug 'Shougo/neoinclude.vim'
 Plug 'deoplete-plugins/deoplete-dictionary'
 
 call plug#end()
-"}}}
-" PLUGINS CONFIG{{{
-" --------------------------------------------------------------------------------------
+
+"}}} plugin manager (vim-plug)
+"{{{ plugins configuration
 
 " Signify
 let g:signify_sign_add='+'
@@ -133,9 +132,9 @@ let g:sandwich#recipes += [
       \     'command'     : ["'[,']normal! <<"],
       \   }
       \ ]
-"}}}
-" GENERAL CONFIG{{{
-" --------------------------------------------------------------------------------------
+
+"}}} plugins configuration
+"{{{ general configuration
 
 syntax on
 filetype plugin indent on
@@ -282,9 +281,9 @@ au BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g'\"" |
       \ endif
-"}}}
-" MAPPINGS / KEYBINDINGS{{{
-" --------------------------------------------------------------------------------------
+
+"}}} general configuration
+"{{{ mappings / keybindings
 
 " Normal mode mappings
 " **********************
@@ -445,9 +444,9 @@ iab //,, ///////////////////////////////////////////////////////////////////////
 iab **,, *****************************************************************************
 iab @@,, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 iab ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-"}}}
-" COLORS{{{
-" --------------------------------------------------------------------------------------
+
+"}}} mappings / keybindings
+"{{{ colors
 
 " Colorscheme
 colo desert
@@ -479,9 +478,9 @@ hi SignifySignChange ctermfg=yellow cterm=NONE
 " Ale colors
 hi ALEErrorSign      ctermfg=red    ctermbg=NONE
 hi ALEWarningSign    ctermfg=yellow ctermbg=NONE
-"}}}
-" STATUSLINE{{{
-" --------------------------------------------------------------------------------------
+
+"}}} colors
+"{{{ statusline
 
 " Show git info in statusline (with fugitive)
 function! GitInfo()
@@ -534,4 +533,4 @@ augroup END
 
 " Set statusline (1 = active by default)
 set statusline=%!StatusLineFmt(1)
-"}}}
+"}}} statusline

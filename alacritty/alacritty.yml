@@ -1,10 +1,13 @@
 # Alacritty config
 
-# Env{{{
+# {{{ env
+
 env:
   TERM: screen-256color
-# }}}
-# Window{{{
+
+# }}} env
+# {{{ window
+
 window:
   dimensions:
     columns: 140
@@ -22,8 +25,10 @@ scrolling:
   history: 10000
   multiplier: 3
   scrolling_multiplier: 3
-# }}}
-# Font{{{
+
+# }}} window
+# {{{ font
+
 font:
   normal:
     family: Monaco
@@ -46,16 +51,20 @@ font:
     y: 0
 
   use_thin_strokes: false
-# }}}
-# Colors{{{
+
+# }}} font
+# {{{ colors
+
 background_opacity: 1
 
 colors:
   primary:
     background: "#080808"
     foreground: "#f2f2f2"
-# }}}
-# Mouse and Cursor{{{
+
+# }}} colors
+# {{{ mouse / cursor
+
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
@@ -79,8 +88,10 @@ dynamic_title: true
 cursor:
   style: Block
   unfocused_hollow: true
-# }}}
-# Other{{{
+
+# }}} mouse / cursor
+# {{{ other
+
 live_config_reload: true
 enable_experimental_conpty_backend: false
 
@@ -97,8 +108,10 @@ debug:
   log_level: Warn
   print_events: false
   ref_test: false
-# }}}
-# Keybindings{{{
+
+# }}} other
+# {{{ keybindings
+
 key_bindings:
   - { key: Key0, mods: Command, action: ResetFontSize }
   - { key: Equals, mods: Command, action: IncreaseFontSize }
@@ -122,4 +135,5 @@ key_bindings:
   - { key: K, mods: Alt, chars: "\x1bk" }
   - { key: H, mods: Alt, chars: "\x1bh" }
   - { key: L, mods: Alt, chars: "\x1bl" }
-# }}}
+
+# }}} keybindings
