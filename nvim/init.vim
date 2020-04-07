@@ -22,7 +22,7 @@ Plug 'junegunn/gv.vim'         " Commits browser
 Plug 'mhinz/vim-signify'       " Git signs
 Plug 'tpope/vim-vinegar'       " File browser
 Plug 'alvan/vim-closetag'      " Auto-close html tags
-Plug 'gregsexton/MatchTag'     " Hightlight matching html tag
+Plug 'gregsexton/MatchTag'     " Highlight matching html tag
 Plug 'machakann/vim-sandwich'  " Surroundings mapping
 Plug 'tpope/vim-unimpaired'    " Complementary mappings
 Plug 'chrisbra/csv.vim'        " CSV files
@@ -141,25 +141,15 @@ filetype plugin indent on
 
 let mapleader=','  " Leader key
 
-" Indentation
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-au FileType make   setlocal ts=8 sw=8 noet
-au FileType go     setlocal ts=8 sw=8 noet
-au FileType python setlocal ts=4 sw=4 sts=4 et
-au FileType perl   setlocal ts=4 sw=4 sts=4 et
-
 set encoding=utf-8
 set fileencoding=utf-8
-set updatetime=100      " async updatetime
+set updatetime=100      " async update time
 set hidden              " hide buffer instead of closing them
 set cmdheight=1         " height of cmd line
 set nomodeline          " ignore vim modelines
 set autoread            " reread changed files automatically
 set laststatus=2        " always show statusline
-set noshowcmd           " don't show cmd in last line of screen
+set noshowcmd           " don't show command in last line of screen
 set noruler             " don't show cursor position
 set nu rnu              " relative line numbers and current line number
 set showmatch           " matching brackets
@@ -171,31 +161,33 @@ set lazyredraw          " no redraw
 set ignorecase          " search ignore case
 set scrolljump=8        " minimal nb of lines to scroll when cursor gets off the screen
 set nocompatible        " modern vim
-set wildignorecase      " ignore case whem completing filenames and directories
+set wildignorecase      " ignore case when completing filenames and directories
 set noshowmode          " do not show vim mode (already in statusline)
 set splitbelow          " for ex preview windows will appear at the bottom
-set noshowmode          " don't show mode (aleady in statusline)
+set noshowmode          " don't show mode (already in statusline)
 set inccommand=nosplit  " show replacements using search / replace
 set nocursorcolumn      " don't highlight column
 set nocursorline        " don't highlight line
-set shortmess+=c        " silence msg completion menu
+set shortmess+=c        " silence message completion menu
 set nolist              " hide special characters
 set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
 set modeline            " use modelines
+set spell
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 set matchpairs+=<:>
 set clipboard+=unnamedplus
+set spellfile=~/.config/nvim/spell/en.utf-8.add
 
 " Ignore files and folders
 set wildignore=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
 set wildignore+=*/__pycache__/*,*/venv/*,*/env/*
 
-" No swp files / backups etc
+" No swap files / backups etc
 set noswapfile
 set nobackup
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -214,10 +206,9 @@ set whichwrap+=<,>,h,l
 let g:netrw_banner=0
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir='rm -r'
-let g:netrw_list_hide='__pycache__,.*\.pyc$,.*\.swp,\.git,\.ropeproject,\.cache,build/,\.egg-info,dist,\.DS_Store'
-au FileType netrw setl bufhidden=delete  " delete netrw buffer
+let g:netrw_list_hide='__pycache__/,.*\.pyc$,.*\.swp,\.git,\.cache,build/,\.egg-info,dist/,\.DS_Store'
 
-" Deactivate dbtext plugin error msg on sql completion
+" Deactivate db text plugin error msg on sql completion
 let g:loaded_sql_completion=0
 let g:omni_sql_no_default_maps=1
 
@@ -235,10 +226,6 @@ au FileType * execute 'setlocal dict+=~/.config/nvim/dict/' . &filetype . '.txt'
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
 call deoplete#custom#source('dictionary', 'sorters', [])
 call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
-
-" markdown
-au BufRead,BufNewFile *.md set ft=markdown
-au BufRead,BufNewFile *.md setlocal list
 
 " Remove trailing whitespaces
 function! TrimTrailingWS()
@@ -267,10 +254,27 @@ let g:pyindent_nested_paren='&sw'
 let g:pyindent_continue='&sw'
 
 " Special filetypes
+au BufRead,BufNewFile *.md set ft=markdown
 au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
 au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
 au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
 au BufRead,BufNewFile gitconfig set ft=gitconfig
+
+" Special options by filetypes
+au FileType gitcommit setlocal spell
+au FileType markdown setlocal spell list
+au FileType text setlocal spell
+au FileType netrw setlocal bufhidden=delete
+
+" Indentation
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+au FileType make setlocal ts=8 sw=8 noet
+au FileType go setlocal ts=8 sw=8 noet
+au FileType python setlocal ts=4 sw=4 sts=4 et
+au FileType perl setlocal ts=4 sw=4 sts=4 et
 
 " Remember last location
 au BufReadPost *
@@ -296,7 +300,7 @@ nmap <leader>a =ip
 " copy paragraph
 nmap cp yap<S-}>p
 
-" delete to blackhole register (don't lose prev yank)
+" delete to blackhole register (don't lose previous yank)
 nmap s "_d
 nmap ss "_dd
 
@@ -322,6 +326,9 @@ nmap <leader>d :pwd<cr>
 
 " delete current buffer
 nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
+
+" toggle spell
+nmap <leader>sp :setlocal spell!<cr>
 
 " quick write & quit
 nmap ;w :w<cr>
@@ -374,7 +381,7 @@ nmap Q @q
 " play macros with visual mode
 vmap Q :norm @q<cr>
 
-" keep visual selection when reindenting
+" keep visual selection when re-indenting
 xmap > >gv
 xmap < <gv
 
@@ -398,7 +405,7 @@ imap {<cr> {<cr>}<esc>ko<tab>
 imap [<cr> [<cr>]<esc>ko<tab>
 imap (<cr> (<cr>)<esc>ko<tab>
 
-" crtl + hjkl cursor mvt on insert mode
+" crtl + hjkl cursor movement on insert mode
 imap <C-h> <left>
 imap <C-j> <down>
 imap <C-k> <up>
@@ -407,7 +414,7 @@ imap <C-l> <right>
 " Command mode mappings
 " **********************
 
-" crtl + hjkl cursor mvt on command mode
+" crtl + hjkl cursor movement on command mode
 cmap <C-h> <left>
 cmap <C-j> <down>
 cmap <C-k> <up>
