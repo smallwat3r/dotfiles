@@ -243,9 +243,10 @@ drm() {
   )
   [ -n "$cid" ] && docker rm "$cid"
 }
-# }}}
-# Antigen{{{
-# --------------------------------------------------------------------------------------
+
+# }}} functions
+# {{{ antigen
+
 source /usr/local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 
@@ -258,7 +259,7 @@ antigen bundle softmoth/zsh-vim-mode
 
 antigen apply
 
-# }}} functions
+# }}} antigen
 # {{{ prompt
 
 # zsh completions
@@ -306,4 +307,5 @@ vi_yank_pbcopy() {
 }
 zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
+
 # }}} prompt
