@@ -26,6 +26,7 @@ Plug 'gregsexton/MatchTag'     " Highlight matching html tag
 Plug 'machakann/vim-sandwich'  " Surroundings mapping
 Plug 'tpope/vim-unimpaired'    " Complementary mappings
 Plug 'chrisbra/csv.vim'        " CSV files
+Plug 'simnalamburt/vim-mundo'  " Undo tree
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -373,6 +374,9 @@ nmap <silent><S-l> :vertical resize+5<cr>
 
 " play macros
 nmap Q @q
+
+" toggle undo tree
+nmap ,u :MundoToggle<CR>
 
 " Visual mode mappings
 " **********************
