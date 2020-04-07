@@ -147,7 +147,7 @@ set fileencoding=utf-8
 set updatetime=100      " async update time
 set hidden              " hide buffer instead of closing them
 set cmdheight=1         " height of cmd line
-set nomodeline          " ignore vim modelines
+set nomodeline          " ignore modelines for security reasons
 set autoread            " reread changed files automatically
 set laststatus=2        " always show statusline
 set noshowcmd           " don't show command in last line of screen
@@ -175,7 +175,6 @@ set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
-set modeline            " use modelines
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 set matchpairs+=<:>
