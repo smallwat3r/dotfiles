@@ -184,11 +184,11 @@ set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
+set modeline            " use modelines
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
 set matchpairs+=<:>
 set clipboard+=unnamedplus
-
 
 " Ignore files and folders
 set wildignore=*.swp,*.bak
@@ -214,7 +214,7 @@ set whichwrap+=<,>,h,l
 let g:netrw_banner=0
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir='rm -r'
-let g:netrw_list_hide= '__pycache__,.*\.pyc$,.*\.swp,\.git,\.ropeproject,\.cache,build/,\.egg-info,dist,\.DS_Store'
+let g:netrw_list_hide='__pycache__,.*\.pyc$,.*\.swp,\.git,\.ropeproject,\.cache,build/,\.egg-info,dist,\.DS_Store'
 au FileType netrw setl bufhidden=delete  " delete netrw buffer
 
 " Deactivate dbtext plugin error msg on sql completion
@@ -226,10 +226,6 @@ command! WW :w !sudo tee % >/dev/null
 
 " Source on save config
 au BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
-
-" Disable automatic insertion of comment markers
-set fo=cjql
-au FileType * setl fo-=o fo-=r
 
 " close method preview window after completion is complete
 au InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -329,7 +325,7 @@ nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
 
 " quick write & quit
 nmap ;w :w<cr>
-nmap ;q :q<cr>
+nmap ;q :q!<cr>
 nmap ;x :x<cr>
 
 " splits
@@ -533,4 +529,5 @@ augroup END
 
 " Set statusline (1 = active by default)
 set statusline=%!StatusLineFmt(1)
+
 "}}} statusline
