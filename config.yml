@@ -11,6 +11,7 @@ directories:
   - __root__.config/alacritty
   - __root__.config/nvim
   - __root__.config/nvim/dict
+  - __root__.config/nvim/spell
   - __root__.config/zsh
 
 # List of all symlinks.
@@ -22,7 +23,8 @@ links:
   __root__.gitignore_global: git/gitignore_global
   __root__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
   __root__.config/nvim/init.vim: nvim/init.vim
-  __root__.config/nvim/colors/smallwat3r.vim: nvim/colors/smallwat3r.vim
+  __root__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
+  __root__.config/nvim/spell/en.utf-8.add.spl: nvim/spell/en.utf-8.add.spl
   __root__.config/nvim/dict/dockerfile.txt: nvim/dict/dockerfile.txt
   __root__.config/nvim/dict/go.txt: nvim/dict/go.txt
   __root__.config/nvim/dict/html.txt: nvim/dict/html.txt
