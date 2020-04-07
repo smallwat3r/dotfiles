@@ -27,6 +27,7 @@ Plug 'machakann/vim-sandwich'  " Surroundings mapping
 Plug 'tpope/vim-unimpaired'    " Complementary mappings
 Plug 'chrisbra/csv.vim'        " CSV files
 Plug 'simnalamburt/vim-mundo'  " Undo tree
+Plug 'zirrostig/vim-schlepp'   " Move visual blocks
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -45,9 +46,9 @@ call plug#end()
 "{{{ plugins configuration
 
 " Signify
-let g:signify_sign_add='+'
-let g:signify_sign_delete='-'
-let g:signify_sign_change='∙'
+let g:signify_sign_add='ᵃ'
+let g:signify_sign_delete='ᵈ'
+let g:signify_sign_change='ᵐ'
 
 " Deoplete
 let g:deoplete#enable_at_startup=1
@@ -56,8 +57,8 @@ let g:deoplete#enable_at_startup=1
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_set_highlights=0
-let g:ale_sign_error='!'
-let g:ale_sign_warning='?'
+let g:ale_sign_error='ᵉ'
+let g:ale_sign_warning='ʷ'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 function! LinterStatus() abort
@@ -175,9 +176,10 @@ set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
+set synmaxcol=200       " keep longlines from slowing vim
 set fillchars=vert:┃
-set listchars=tab:→\ ,eol:¬,extends:>,precedes:<
-set matchpairs+=<:>
+set listchars=tab:→\ ,eol:¬,extends:>,precedes:<,nbsp:˷,trail:␣
+set matchpairs+=<:>,«:»,｢:｣
 set clipboard+=unnamedplus
 set spellfile=~/.config/nvim/spell/en.utf-8.add
 
@@ -339,7 +341,7 @@ nmap ;sp :sp<cr>
 nmap ;vs :vs<cr>
 
 " quick substitutes (whole file)
-nmap ;s/ :%s/
+nmap ;s/ :%s///g<left><left><left>
 
 " format file
 nmap ;f :Neoformat<cr>
@@ -356,6 +358,9 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+
+" extend previous search
+nmap // /<C-R>/
 
 " window scroll
 nmap <A-j> <C-e>
@@ -383,9 +388,18 @@ nmap <leader>u :MundoToggle<CR>
 " play macros with visual mode
 vmap Q :norm @q<cr>
 
+" move visual blocks with arrow keys
+vmap <up>    <Plug>SchleppUp
+vmap <down>  <Plug>SchleppDown
+vmap <left>  <Plug>SchleppLeft
+vmap <right> <Plug>SchleppRight
+
 " keep visual selection when re-indenting
 xmap > >gv
 xmap < <gv
+
+" select the entire file
+xmap aa VGo1G
 
 " Insert mode mappings
 " **********************
