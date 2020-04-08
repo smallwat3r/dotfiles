@@ -181,6 +181,7 @@ set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
 set synmaxcol=200       " keep longlines from slowing vim
+set formatoptions-=cro  " do not auto insert comment on new line
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<,nbsp:˷,trail:␣
 set matchpairs+=<:>,«:»,｢:｣

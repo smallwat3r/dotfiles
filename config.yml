@@ -4,7 +4,8 @@
 #     __root__ will be replaced by user root directory.
 #
 
-# All non-standard directories, to create if doesn't exist.
+# {{{ non-standard directories to create
+
 directories:
   - __root__.pip
   - __root__.antigen
@@ -14,7 +15,9 @@ directories:
   - __root__.config/nvim/spell
   - __root__.config/zsh
 
-# List of all symlinks.
+# }}} non-standard directories to create
+# {{{ symlinks
+
 links:
   __root__.zshrc: zsh/zshrc
   __root__.pylintrc: python/pylintrc
@@ -38,7 +41,9 @@ links:
   /usr/local/bin/synonym: bin/synonym/synonym
   /usr/local/bin/sketch: bin/sketch/sketch
 
-# Brew packages.
+# }}} symlinks
+# {{{ brew packages
+
 brew:
   - tmux
   - redis
@@ -70,7 +75,9 @@ brew:
   - coreutils
   - diff-so-fancy
 
-# Brew cask installs.
+# }}} brew packages
+# {{{ brew casks
+
 cask:
   - sequel-pro
   - docker
@@ -79,3 +86,5 @@ cask:
   - alfred
   - thunderbird
   - google-chrome
+
+# }}} brew casks
