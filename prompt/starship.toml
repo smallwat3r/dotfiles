@@ -7,12 +7,11 @@ error_symbol = "✗"
 use_symbol_for_status = true
 
 [directory]
-truncation_length = 7
-style = "white"
+truncation_length = 2
+style = "yellow"
 
 [git_branch]
 symbol = "🌱 "
-truncation_symbol = ""
 style = "white"
 
 [git_commit]

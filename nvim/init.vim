@@ -28,6 +28,7 @@ Plug 'gregsexton/MatchTag'     " Highlight matching html tag
 Plug 'machakann/vim-sandwich'  " Surroundings mapping
 Plug 'tpope/vim-unimpaired'    " Complementary mappings
 Plug 'chrisbra/csv.vim'        " CSV files
+Plug 'cespare/vim-toml'        " Toml file support
 Plug 'simnalamburt/vim-mundo'  " Undo tree
 Plug 'zirrostig/vim-schlepp'   " Move visual blocks
 
