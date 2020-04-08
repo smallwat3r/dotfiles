@@ -1,7 +1,7 @@
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 " neovim config file
 
-"{{{ plugin manager (vim-plug)
+"{{{1 plugin manager (vim-plug)
 
 " Auto load for first time use - Install Vim Plug Manager
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -42,8 +42,8 @@ Plug 'deoplete-plugins/deoplete-dictionary'
 
 call plug#end()
 
-"}}} plugin manager (vim-plug)
-"{{{ plugins configuration
+"}}}1 plugin manager (vim-plug)
+"{{{1 plugins configuration
 
 " Signify
 let g:signify_sign_add='ᵃ'
@@ -135,8 +135,8 @@ let g:sandwich#recipes += [
       \   }
       \ ]
 
-"}}} plugins configuration
-"{{{ general configuration
+"}}}1 plugins configuration
+"{{{1 general configuration
 
 syntax on
 filetype plugin indent on
@@ -284,11 +284,10 @@ au BufReadPost *
       \   exe "normal g'\"" |
       \ endif
 
-"}}} general configuration
-"{{{ mappings / keybindings
+"}}}1 general configuration
+"{{{1 mappings / keybindings
 
-" Normal mode mappings
-" **********************
+"{{{2 normal mode mappings
 
 " navigate to end and start of line
 nmap B ^
@@ -383,8 +382,8 @@ nmap Q @q
 " toggle undo tree
 nmap <leader>u :MundoToggle<CR>
 
-" Visual mode mappings
-" **********************
+"}}}2 normal mode mappings
+"{{{2 visual mode mappings
 
 " play macros with visual mode
 vmap Q :norm @q<cr>
@@ -402,8 +401,8 @@ xmap < <gv
 " vaa select the entire file
 xmap aa VGo1G
 
-" Insert mode mappings
-" **********************
+"}}}2 visual mode mappings
+"{{{2 insert mode mappings
 
 " tab completion
 imap <expr> <tab>   pumvisible() ? '<c-n>' : '<tab>'
@@ -428,8 +427,8 @@ imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
 
-" Command mode mappings
-" **********************
+"}}}2 insert mode mappings
+"{{{2 command mode mappings
 
 " crtl + hjkl cursor movement on command mode
 cmap <C-h> <left>
@@ -437,8 +436,8 @@ cmap <C-j> <down>
 cmap <C-k> <up>
 cmap <C-l> <right>
 
-" Useful insert mode abbr completion
-" **********************
+"}}}2 command mode mappings
+"{{{2 useful insert mode abbreviations
 
 " Personal stuff
 iab em,, mpetiteau.pro@gmail.com
@@ -465,14 +464,16 @@ iab **,, ***********************************************************************
 iab @@,, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 iab ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-"}}} mappings / keybindings
-"{{{ colors
+"}}}2 useful insert mode abbreviations
+
+"}}}1 mappings / keybindings
+"{{{1 colors
 
 " Colorscheme
 colo desert
 
 if &diff
-    syntax off
+  syntax off
 endif
 
 " Overwrite colors on general stuff
@@ -503,8 +504,8 @@ hi SignifySignChange ctermfg=yellow cterm=NONE
 hi ALEErrorSign      ctermfg=red    ctermbg=NONE
 hi ALEWarningSign    ctermfg=yellow ctermbg=NONE
 
-"}}} colors
-"{{{ statusline
+"}}}1 colors
+"{{{1 statusline
 
 " Show git info in statusline (with fugitive)
 function! GitInfo()
@@ -559,4 +560,4 @@ augroup end
 " Set statusline (1 = active by default)
 set statusline=%!StatusLineFmt(1)
 
-"}}} statusline
+"}}}1 statusline
