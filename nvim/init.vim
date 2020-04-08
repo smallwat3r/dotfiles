@@ -471,6 +471,10 @@ iab ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " Colorscheme
 colo desert
 
+if &diff
+    syntax off
+endif
+
 " Overwrite colors on general stuff
 hi Normal            ctermfg=15
 hi Number            ctermfg=15
@@ -486,9 +490,9 @@ hi IncSearch         ctermfg=232    ctermbg=231
 
 " Diff colors
 hi DiffAdd           ctermfg=255    ctermbg=64
-hi DiffChange        ctermfg=NONE   ctermbg=NONE cterm=NONE
-hi DiffDelete        ctermfg=167    ctermbg=NONE cterm=NONE
-hi DiffText          ctermfg=255    ctermbg=24
+hi DiffChange        ctermfg=204    ctermbg=NONE cterm=NONE
+hi DiffDelete        ctermfg=red    ctermbg=NONE cterm=NONE
+hi DiffText          ctermfg=255    ctermbg=31
 
 " Signify colors
 hi SignifySignAdd    ctermfg=green  cterm=NONE
