@@ -254,7 +254,6 @@ let g:pyindent_continue='&sw'
 
 " Special filetypes
 augroup filetypedetect
-  au!
   au BufRead,BufNewFile *.md set ft=markdown
   au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
   au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
