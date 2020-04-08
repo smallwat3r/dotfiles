@@ -1,7 +1,9 @@
 " Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 " neovim config file
 
-"{{{1 plugin manager (vim-plug)
+"{{{1 plugins
+
+"{{{2 vim-plug
 
 " Auto load for first time use - Install Vim Plug Manager
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -42,8 +44,8 @@ Plug 'deoplete-plugins/deoplete-dictionary'
 
 call plug#end()
 
-"}}}1 plugin manager (vim-plug)
-"{{{1 plugins configuration
+"}}}2 vim-plug
+"{{{2 plugins configuration
 
 " Signify
 let g:signify_sign_add='ᵃ'
@@ -135,7 +137,9 @@ let g:sandwich#recipes += [
       \   }
       \ ]
 
-"}}}1 plugins configuration
+"}}}2 plugins configuration
+
+"}}}1 plugins
 "{{{1 general configuration
 
 syntax on
