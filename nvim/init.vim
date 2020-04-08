@@ -57,8 +57,8 @@ let g:deoplete#enable_at_startup=1
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_set_highlights=0
-let g:ale_sign_error='ᵉ'
-let g:ale_sign_warning='ʷ'
+let g:ale_sign_error='ˣˣ'
+let g:ale_sign_warning='ʷʷ'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 function! LinterStatus() abort
@@ -184,9 +184,8 @@ set clipboard+=unnamedplus
 set spellfile=~/.config/nvim/spell/en.utf-8.add
 
 " Ignore files and folders
-set wildignore=*.swp,*.bak
-set wildignore+=*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
-set wildignore+=*/__pycache__/*,*/venv/*,*/env/*
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
+set wildignore+=__pycache__/*,venv/*,env/*,.git/*,build/*,node_modules/*,dist/*
 
 " No swap files / backups etc
 set noswapfile
@@ -207,7 +206,6 @@ set whichwrap+=<,>,h,l
 let g:netrw_banner=0
 let g:netrw_sort_sequence='[\/]$,*'
 let g:netrw_localrmdir='rm -r'
-let g:netrw_list_hide='__pycache__/,.*\.pyc$,.*\.swp,\.git,\.cache,build/,\.egg-info,dist/,\.DS_Store'
 
 " Deactivate db text plugin error msg on sql completion
 let g:loaded_sql_completion=0
@@ -388,17 +386,17 @@ nmap <leader>u :MundoToggle<CR>
 " play macros with visual mode
 vmap Q :norm @q<cr>
 
-" move visual blocks with arrow keys
-vmap <up>    <Plug>SchleppUp
-vmap <down>  <Plug>SchleppDown
-vmap <left>  <Plug>SchleppLeft
-vmap <right> <Plug>SchleppRight
+" crtl + hjkl move visual blocks
+vmap <C-h> <Plug>SchleppLeft
+vmap <C-j> <Plug>SchleppDown
+vmap <C-k> <Plug>SchleppUp
+vmap <C-l> <Plug>SchleppRight
 
 " keep visual selection when re-indenting
 xmap > >gv
 xmap < <gv
 
-" select the entire file
+" vaa select the entire file
 xmap aa VGo1G
 
 " Insert mode mappings
