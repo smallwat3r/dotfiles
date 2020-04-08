@@ -7,7 +7,7 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  au VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin()
@@ -253,17 +253,15 @@ let g:pyindent_nested_paren='&sw'
 let g:pyindent_continue='&sw'
 
 " Special filetypes
-au BufRead,BufNewFile *.md set ft=markdown
-au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
-au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
-au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
-au BufRead,BufNewFile gitconfig set ft=gitconfig
-
-" Special options by filetypes
-au FileType gitcommit setlocal spell
-au FileType markdown setlocal spell list
-au FileType text setlocal spell
-au FileType netrw setlocal bufhidden=delete
+augroup filetypedetect
+  au!
+  au BufRead,BufNewFile *.md set ft=markdown
+  au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
+  au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
+  au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
+  au BufRead,BufNewFile gitconfig set ft=gitconfig
+  au BufRead,BufNewFile *.sketch set ft=sketch
+augroup end
 
 " Indentation
 set expandtab
@@ -274,6 +272,12 @@ au FileType make setlocal ts=8 sw=8 noet
 au FileType go setlocal ts=8 sw=8 noet
 au FileType python setlocal ts=4 sw=4 sts=4 et
 au FileType perl setlocal ts=4 sw=4 sts=4 et
+
+" Special options by filetypes
+au FileType gitcommit setlocal spell
+au FileType markdown setlocal spell list
+au FileType sketch setlocal spell
+au FileType netrw setlocal bufhidden=delete
 
 " Remember last location
 au BufReadPost *
@@ -544,9 +548,10 @@ endfunction
 
 " Active and non-active on window change event
 augroup status
+  au!
   au WinEnter * setlocal statusline=%!StatusLineFmt(1)
   au WinLeave * setlocal statusline=%!StatusLineFmt(0)
-augroup END
+augroup end
 
 " Set statusline (1 = active by default)
 set statusline=%!StatusLineFmt(1)
