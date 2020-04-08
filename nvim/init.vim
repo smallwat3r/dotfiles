@@ -350,12 +350,20 @@ nmap ;s/ :%s///g<left><left><left>
 " format file
 nmap ;f :Neoformat<cr>
 
-" FZF
+" fzf buffers
 nmap <leader>b :Buffers<cr>
+" fzf files
 nmap <leader>f :Files<cr>
-nmap <leader>l :BLines<cr>
+" fzf ripgrep
 nmap <leader>; :Rg<cr>
+" fzf rigprep current word
+nmap <leader>w; :exe ":Rg " . expand('<cword>')<cr>
+" fzf git commits
 nmap <leader>co :Commits<cr>
+" fzf current buffer lines
+nmap <leader>l :BLines<cr>
+" fzf current buffer lines current word
+nmap <leader>wl :exe ":BLines " . expand('<cword>')<cr>
 
 " navigate window panels
 nmap <C-h> <C-w>h
