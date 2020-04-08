@@ -105,8 +105,8 @@ pubkey() {
 
 # Ripgrep history
 hs() {
-    history |
-      rg "$@"
+  history |
+    rg "$@"
 }
 
 # Ripgrep history (unique matches)
