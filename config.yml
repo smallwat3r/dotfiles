@@ -24,6 +24,7 @@ links:
   __root__.tmux.conf: tmux/tmux.conf
   __root__.gitconfig: git/gitconfig
   __root__.gitignore_global: git/gitignore_global
+  __root__.config/starship.toml: prompt/starship.toml
   __root__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
   __root__.config/nvim/init.vim: nvim/init.vim
   __root__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
@@ -74,6 +75,7 @@ brew:
   - shfmt
   - coreutils
   - diff-so-fancy
+  - starship
 
 # }}} brew packages
 # {{{ brew casks
