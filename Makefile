@@ -26,8 +26,9 @@ macos-settings:
 	./macos/macos
 
 install-python:
-	chmod +x ./python/packages.sh
+	chmod +x ./python/packages.sh ./python/py3-8.sh
 	./python/packages.sh
+	./python/py3-8.sh
 
 install-npm:
 	chmod +x ./npm/packages.sh
