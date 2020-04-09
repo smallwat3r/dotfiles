@@ -1,29 +1,32 @@
 add_newline = false
+prompt_order=["directory","git_commit","git_branch","git_status","character"]
 
 [character]
 symbol = "%%"
+style_success = "white"
+style_failure = "red"
 vicmd_symbol = ";;"
-error_symbol = "✗"
+error_symbol = "%%"
 use_symbol_for_status = true
 
 [directory]
 truncation_length = 2
-style = "yellow"
+style = "white"
 
 [git_branch]
-symbol = "🌱 "
+symbol = ""
 style = "white"
 
 [git_commit]
 commit_hash_length = 7
-only_detached = false
-style = "white"
-
-[git_state]
-progress_divider = " of "
+only_detached = true
 style = "white"
 
 [git_status]
-prefix = ""
-suffix = ""
-style = "red"
+prefix = "["
+suffix = "] "
+style = "white"
+
+[cmd_duration]
+min_time = 500
+style = "white"
