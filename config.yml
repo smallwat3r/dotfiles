@@ -10,6 +10,7 @@ directories:
   - __root__.pip
   - __root__.antigen
   - __root__.config/alacritty
+  - __root__.config/kitty
   - __root__.config/nvim
   - __root__.config/nvim/dict
   - __root__.config/nvim/spell
@@ -25,7 +26,8 @@ links:
   __root__.gitconfig: git/gitconfig
   __root__.gitignore_global: git/gitignore_global
   __root__.config/starship.toml: prompt/starship.toml
-  __root__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+  __root__.config/kitty/kitty.conf: terminal/kitty/kitty.conf
+  __root__.config/alacritty/alacritty.yml: terminal/alacritty/alacritty.yml
   __root__.config/nvim/init.vim: nvim/init.vim
   __root__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
   __root__.config/nvim/spell/en.utf-8.add.spl: nvim/spell/en.utf-8.add.spl
@@ -83,6 +85,7 @@ brew:
 cask:
   - sequel-pro
   - docker
+  - kitty
   - alacritty
   - slack
   - alfred

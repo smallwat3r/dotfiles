@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Install go packages
 
 go get -u github.com/mitchellh/gox
