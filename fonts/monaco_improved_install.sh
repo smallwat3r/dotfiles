@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Get better monaco font
+# Get correct monaco font
 
-wget https://github.com/probil/Monaco-IDE-font/raw/master/dist/Monaco.ttf
+wget https://github.com/todylu/monaco.ttf/raw/master/monaco.ttf
