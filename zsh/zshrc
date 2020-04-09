@@ -84,7 +84,7 @@ alias qq="exit"
 alias p="pwd"
 alias ls="ls -p"
 alias ls.="ls -d .*"
-alias cdr='cd $(git rev-parse --show-cdup)'
+alias cdr="cd $(git rev-parse --show-cdup)"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -95,11 +95,11 @@ alias g="git"
 alias ga="git add"
 alias gs="git status"
 alias gc="git commit -v"
-alias gc!='git commit -v --amend'
-alias gcb='git checkout -b'
-alias gb='git branch'
-alias gp="git push "
-alias gd='git diff'
+alias gc!="git commit -v --amend"
+alias gcb="git checkout -b"
+alias gb="git branch"
+alias gp="git push"
+alias gd="git diff"
 
 # scripts
 alias lg="lazygit"
