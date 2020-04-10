@@ -151,7 +151,6 @@ let g:sandwich#recipes += [
 "{{{3 vaffle
 
 " mappings for vaffle to work as netrw / vinegar
-
 function! s:customize_vaffle_mappings() abort
   nmap <buffer>- <Plug>(vaffle-open-parent)
   nmap <buffer>% <Plug>(vaffle-new-file)
