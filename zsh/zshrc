@@ -1,7 +1,9 @@
 # Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 # ZSH config.
 
-# {{{ env
+# {{{1 env
+
+# {{{2 miscellaneous
 
 export ZSH="$HOME/.oh-my-zsh"
 export TERM="xterm-256color"
@@ -10,8 +12,11 @@ export EDITOR="/usr/local/bin/nvim"
 export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+export KEYTIMEOUT=1
 
-# paths
+# }}}2
+# {{{2 paths
+
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -19,22 +24,27 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$HOME/go/bin:$PATH"
 
-# grep colors
+# }}}2
+# {{{2 grep
+
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
 
-# Shorter timeout ESC
-export KEYTIMEOUT=1
+# }}}2
+# {{{2 homebrew
 
-# Homebrew
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-# History
+# }}}2
+# {{{2 history
+
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 
-# fzf (installed from nvim)
+# }}}2
+# {{{2 fzf
+
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_OPTS="
@@ -44,15 +54,21 @@ export FZF_DEFAULT_OPTS="
 "
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
 
-# Tmux on start
+# }}}2
+# {{{2 tmux
+
+# Launch on start
 case $- in *i*)
   [[ -z $TMUX ]] && exec tmux
 esac
 
-# }}} env
-# {{{ aliases
+# }}}2
 
-# editing
+# }}}1 env
+# {{{1 aliases
+
+# {{{2 editing
+
 alias vi="nvim"
 alias vim="nvim"
 alias svi="sudo nvim"
@@ -63,21 +79,27 @@ alias vidiff="nvim -d"
 alias vie="$EDITOR $HOME/dotfiles/vim/init.vim"
 alias zshe="$EDITOR $HOME/dotfiles/zsh/zshrc"
 
-# python
+# }}}2
+# {{{2 python
+
 alias python2="python2.7"
 alias python="python3.8"
 alias py="python3.8"
 alias pip="pip3.8"
 alias venv="python -m venv venv"
 
-# tmux
+# }}}2
+# {{{2 tmux
+
 alias sp="tmux splitw -v"
 alias vs="tmux splitw -h"
 alias tks="tmux kill-session -t"
 alias tksa="tmux kill-session -a"
 alias tls="tmux list-sessions"
 
-# move around
+# }}}2
+# {{{2 move around
+
 alias dots="cd $HOME/dotfiles"
 alias c="clear"
 alias qq="exit"
@@ -89,7 +111,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-# git
+# }}}2
+# {{{2 git
+
 alias g="git"
 alias ga="git add"
 alias gs="git status"
@@ -100,33 +124,44 @@ alias gb="git branch"
 alias gp="git push"
 alias gd="git diff"
 
-# scripts
+# }}}2
+# {{{2 scripts
+
 alias trecord="asciinema rec"
 alias trecordgif="asciicast2gif"
 alias sk="sketch"
 
-# miscellaneous
+# }}}2
+# {{{2 miscellaneous
+
 alias fonts="open $HOME/Library/Fonts"
 alias pubip="curl http://ipecho.net/plain; echo"
 alias myip="curl http://ipecho.net/plain; echo"
 
-# }}} aliases
-# {{{ functions
+# }}}2
 
-# copy public key to clipboard
+# }}}1 aliases
+# {{{1 functions
+
+# {{{2 pubkey copy public key to clipboard
+
 pubkey() {
   more $HOME/.ssh/id_rsa.pub |
     pbcopy |
     printf 'Public key copied to clipboard.\n'
 }
 
-# Ripgrep history
+# }}}2
+# {{{2 hs Ripgrep history
+
 hs() {
   history |
     rg "$@"
 }
 
-# Ripgrep history (unique matches)
+# }}}2
+# {{{2 hsu Ripgrep history (unique matches)
+
 hsu() {
   history |
     cut -c 8- |
@@ -134,29 +169,41 @@ hsu() {
     rg "$@"
 }
 
-# open current dir or the one in args
+# }}}2
+# {{{2 o open current dir or the one in args
+
 o() {
   [[ $# -eq 0 ]] && open . || open "$@"
 }
 
-# ripgrep - get urls
+# }}}2
+# {{{2 urls ripgrep - get urls
+
 urls() {
   rg '[a-zA-Z]+://[-a-zA-Z0-9._+]+[-a-zA-Z0-9._+#=?&:;%/!~()]+'
 }
 
-# create and enter directory
+# }}}2
+# {{{2 mkd create and enter directory
+
 mkd() {
   mkdir -p "$@" && cd "$@"
 }
 
-# preview csv files. source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
+# }}}2
+# {{{2 csvpreview preview csv files.
+
+# source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
 csvpreview() {
   sed 's/,,/, ,/g;s/,,/, ,/g' "$@" |
     column -s, -t |
     less -#2 -N -S
 }
 
-# extract file. source: http://nparikh.org/notes/zshrc.txt
+# }}}2
+# {{{2 extract extract file.
+
+# source: http://nparikh.org/notes/zshrc.txt
 extract() {
   if [ -f $1 ]; then
     case $1 in
@@ -181,13 +228,17 @@ extract() {
   fi
 }
 
-# FZF select and open file
+# }}}2
+# {{{2 fe FZF select and open file
+
 fe() {
   IFS=$'\n' files=($(fzf --query="$1" --preview "cat {}" --multi --select-1 --exit-0))
   [[ -n $files ]] && $EDITOR "${files[@]}"
 }
 
-# FZF fuzzy ripgrep
+# }}}2
+# {{{2 frg FZF fuzzy ripgrep
+
 frg() {
   local file line
   read -r file line <<<"$(
@@ -198,7 +249,9 @@ frg() {
   [[ -n $file ]] && $EDITOR $file +$line
 }
 
-# FZF checkout git branch (including remote branches)
+# }}}2
+# {{{2 fbr FZF checkout git branch (including remote branches)
+
 fbr() {
   local branches=$(
     git branch --all |
@@ -215,7 +268,9 @@ fbr() {
   )
 }
 
-# FZF git commit browser
+# }}}2
+# {{{2 fco FZF git commit browser
+
 fco() {
   git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
     fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort --bind \
@@ -228,7 +283,9 @@ fco() {
       FZF-EOF"
 }
 
-# FZF Select a docker container to start and attach to
+# }}}2
+# {{{2 da FZF Select a docker container to start and attach to
+
 da() {
   local cid=$(
     docker ps -a |
@@ -239,7 +296,9 @@ da() {
   [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
 }
 
-# FZF Select a running docker container to stop
+# }}}2
+# {{{2 ds FZF Select a running docker container to stop
+
 ds() {
   local cid=$(
     docker ps |
@@ -250,7 +309,9 @@ ds() {
   [ -n "$cid" ] && docker stop "$cid"
 }
 
-# FZF Select a docker container to remove
+# }}}2
+# {{{2 drm FZF Select a docker container to remove
+
 drm() {
   local cid=$(
     docker ps -a |
@@ -261,8 +322,10 @@ drm() {
   [ -n "$cid" ] && docker rm "$cid"
 }
 
-# }}} functions
-# {{{ antigen
+# }}}2
+
+# }}}1 functions
+# {{{1 antigen
 
 source /usr/local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
@@ -274,8 +337,8 @@ antigen bundle softmoth/zsh-vim-mode
 
 antigen apply
 
-# }}} antigen
-# {{{ prompt
+# }}}1 antigen
+# {{{1 prompt
 
 # zsh completions
 COMPLETION_WAITING_DOTS="true"
@@ -297,4 +360,4 @@ vi_yank_pbcopy() {
 zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
 
-# }}} prompt
+# }}}1 prompt
