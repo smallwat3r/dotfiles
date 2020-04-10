@@ -400,7 +400,7 @@ nmap ;vs :vs<cr>
 nmap ;s/ :%s///g<left><left><left>
 
 " file browsing
-nmap - :Vaffle<cr>
+nmap <silent>- :Vaffle<cr>
 
 " format file
 nmap ;f :Neoformat<cr>
