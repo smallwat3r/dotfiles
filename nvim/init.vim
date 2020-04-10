@@ -562,7 +562,7 @@ hi Normal            ctermfg=15
 hi Number            ctermfg=15
 hi String            ctermfg=194
 hi Folded            ctermfg=231    ctermbg=239
-hi MatchParen        ctermfg=237    ctermbg=200
+hi MatchParen        ctermfg=231    ctermbg=199
 hi SignColumn        ctermfg=NONE   ctermbg=NONE cterm=NONE
 hi LineNr            ctermfg=239    ctermbg=NONE
 hi VertSplit         ctermfg=240    ctermbg=NONE cterm=NONE
