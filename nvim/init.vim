@@ -170,11 +170,16 @@ augroup END
 
 syntax on
 filetype plugin indent on
-
 let mapleader=','  " Leader key
+
+"{{{2 encoding
 
 set encoding=utf-8
 set fileencoding=utf-8
+
+"}}}2 encoding
+"{{{2 miscellaneous
+
 set updatetime=100      " async update time
 set hidden              " hide buffer instead of closing them
 set cmdheight=1         " height of cmd line
@@ -206,55 +211,46 @@ set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
-set synmaxcol=200       " keep longlines from slowing vim
+set synmaxcol=200       " keep long lines from slowing vim
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<,nbsp:˷,trail:␣
 set matchpairs+=<:>,«:»,｢:｣
 set clipboard+=unnamedplus
 set spellfile=~/.config/nvim/spell/en.utf-8.add
+set backspace=indent,eol,start
+set whichwrap+=<,>,h,l
 
-" Ignore files and folders
+"}}}2 miscellaneous
+"{{{2 ignore files
+
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
 set wildignore+=__pycache__/*,venv/*,env/*,.git/*,build/*,node_modules/*,dist/*
 
-" No swap files / backups etc
+"}}}2 ignore files
+"{{{2 swapfiles
+
 set noswapfile
 set nobackup
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-" Undo
+"}}}2 swapfiles
+"{{{2 undo
+
 set undolevels=4000
 set undoreload=100000
 set undodir=~/.config/nvim/undodir
 set undofile
 
-" Backspace as it should work
-set backspace=indent,eol,start
-set whichwrap+=<,>,h,l
+"}}}2 undo
+"{{{2 dicts
 
-" Netrw settings
-let g:netrw_banner=0
-let g:netrw_sort_sequence='[\/]$,*'
-let g:netrw_localrmdir='rm -r'
-
-" Deactivate db text plugin error msg on sql completion
-let g:loaded_sql_completion=0
-let g:omni_sql_no_default_maps=1
-
-" Save as root
-command! WW :w !sudo tee % >/dev/null
-
-" Source on save config
-au BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
-
-" close method preview window after completion is complete
-au InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" load custom dict files (with deoplete-dictionary)
 au FileType * execute 'setlocal dict+=~/.config/nvim/dict/' . &filetype . '.txt'
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
 call deoplete#custom#source('dictionary', 'sorters', [])
 call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
+
+"}}}2 dicts
+"{{{2 trim whitespaces
 
 " Remove trailing whitespaces
 function! TrimTrailingWS()
@@ -268,21 +264,22 @@ endfunction
 au BufWritePre * :call TrimTrailingWS()
 au FileType markdown let b:noStripWhitespace=1
 
-" Italics
-let &t_ZH='\e[3m'
-let &t_ZR='\e[23m'
+"}}}2 trim whitespaces
+"{{{2 indentation
 
-" Change cursor based on modes
-let &t_SI.='\e[6 q' " INSERT mode
-let &t_SR.='\e[4 q' " REPLACE mode
-let &t_EI.='\e[2 q' " NORMAL mode or others
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
-" Fix weird Python indent behaviour
-let g:pyindent_open_paren='0'
-let g:pyindent_nested_paren='&sw'
-let g:pyindent_continue='&sw'
+au FileType make setlocal ts=8 sw=8 noet
+au FileType go setlocal ts=8 sw=8 noet
+au FileType python setlocal ts=4 sw=4 sts=4 et
+au FileType perl setlocal ts=4 sw=4 sts=4 et
 
-" Special filetypes
+"}}}2 indentation
+"{{{2 filetype options
+
 augroup filetypedetect
   au BufRead,BufNewFile *.md set ft=markdown
   au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
@@ -292,21 +289,41 @@ augroup filetypedetect
   au BufRead,BufNewFile *.sketch set ft=sketch
 augroup end
 
-" Indentation
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-au FileType make setlocal ts=8 sw=8 noet
-au FileType go setlocal ts=8 sw=8 noet
-au FileType python setlocal ts=4 sw=4 sts=4 et
-au FileType perl setlocal ts=4 sw=4 sts=4 et
-
-" Special options by filetypes
 au FileType gitcommit setlocal spell
 au FileType markdown setlocal spell list
 au FileType sketch setlocal spell
 au FileType netrw setlocal bufhidden=delete
+
+"}}}2 filetype options
+"{{{2 netrw
+
+let g:netrw_banner=0
+let g:netrw_sort_sequence='[\/]$,*'
+let g:netrw_localrmdir='rm -r'
+
+"}}}2 netrw
+"{{{2 fixes
+
+" Deactivate db text plugin error msg on sql completion
+let g:loaded_sql_completion=0
+let g:omni_sql_no_default_maps=1
+
+" Fix weird Python indent behaviour
+let g:pyindent_open_paren='0'
+let g:pyindent_nested_paren='&sw'
+let g:pyindent_continue='&sw'
+
+"}}}2 fixes
+"{{{2 other
+
+" Save as root
+command! WW :w !sudo tee % >/dev/null
+
+" Source on save config
+au BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+
+" close method preview window after completion is complete
+au InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Remember last location
 au BufReadPost *
@@ -317,10 +334,12 @@ au BufReadPost *
 " Do not auto insert comment on new line
 au FileType * set fo-=c fo-=r fo-=o
 
+"}}}2 other
+
 "}}}1 general configuration
 "{{{1 mappings / keybindings
 
-"{{{2 normal mode mappings
+"{{{2 normal mode
 
 " navigate to end and start of line
 nmap B ^
@@ -426,8 +445,8 @@ nmap Q @q
 " toggle undo tree
 nmap <leader>u :MundoToggle<CR>
 
-"}}}2 normal mode mappings
-"{{{2 visual mode mappings
+"}}}2 normal mode
+"{{{2 visual mode
 
 " play macros with visual mode
 vmap Q :norm @q<cr>
@@ -445,8 +464,8 @@ xmap < <gv
 " vaa select the entire file
 xmap aa VGo1G
 
-"}}}2 visual mode mappings
-"{{{2 insert mode mappings
+"}}}2 visual mode
+"{{{2 insert mode
 
 " tab completion
 imap <expr> <tab>   pumvisible() ? '<c-n>' : '<tab>'
@@ -471,8 +490,8 @@ imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
 
-"}}}2 insert mode mappings
-"{{{2 command mode mappings
+"}}}2 insert mode
+"{{{2 command mode
 
 " crtl + hjkl cursor movement on command mode
 cmap <C-h> <left>
@@ -480,8 +499,8 @@ cmap <C-j> <down>
 cmap <C-k> <up>
 cmap <C-l> <right>
 
-"}}}2 command mode mappings
-"{{{2 useful insert mode abbreviations
+"}}}2 command mode
+"{{{2 insert mode abbreviations
 
 " Personal stuff
 iab em,, mpetiteau.pro@gmail.com
@@ -508,10 +527,24 @@ iab **,, ***********************************************************************
 iab @@,, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 iab ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-"}}}2 useful insert mode abbreviations
+"}}}2 insert mode abbreviations
 
 "}}}1 mappings / keybindings
-"{{{1 colors
+"{{{1 theme
+
+"{{{2 terminal
+
+" Italics
+let &t_ZH='\e[3m'
+let &t_ZR='\e[23m'
+
+" Change cursor based on modes
+let &t_SI.='\e[6 q' " INSERT mode
+let &t_SR.='\e[4 q' " REPLACE mode
+let &t_EI.='\e[2 q' " NORMAL mode or others
+
+"}}}2 terminal
+"{{{2 colors
 
 " Colorscheme
 colo desert
@@ -548,7 +581,9 @@ hi SignifySignChange ctermfg=yellow cterm=NONE
 hi ALEErrorSign      ctermfg=red    ctermbg=NONE
 hi ALEWarningSign    ctermfg=yellow ctermbg=NONE
 
-"}}}1 colors
+"}}}2 colors
+
+"}}}1 theme
 "{{{1 statusline
 
 " Show git info in statusline (with fugitive)
