@@ -86,6 +86,7 @@ endfunction
 let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
+
 let g:neoformat_python_black = {
       \ 'exe': 'black',
       \ 'stdin': 1,
@@ -106,11 +107,13 @@ let g:neoformat_htmldjango_prettier = {
       \ 'stdin': 1,
       \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
       \ }
+
 let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
 let g:neoformat_enabled_zsh = ['shfmt']
+
 let g:shfmt_opt='-ci'  " shell
 
 "}}}3 neoformat
@@ -261,6 +264,7 @@ function! TrimTrailingWS()
     :%s/\s\+$//g
   endif
 endfunction
+
 au BufWritePre * :call TrimTrailingWS()
 au FileType markdown let b:noStripWhitespace=1
 
