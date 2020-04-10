@@ -22,7 +22,6 @@ Plug 'tpope/vim-eunuch'        " Shell commands from vim
 Plug 'tpope/vim-fugitive'      " Git wrapper
 Plug 'junegunn/gv.vim'         " Commits browser
 Plug 'mhinz/vim-signify'       " Git signs
-Plug 'tpope/vim-vinegar'       " File browser
 Plug 'alvan/vim-closetag'      " Auto-close html tags
 Plug 'gregsexton/MatchTag'     " Highlight matching html tag
 Plug 'machakann/vim-sandwich'  " Surroundings mapping
@@ -31,6 +30,7 @@ Plug 'chrisbra/csv.vim'        " CSV files
 Plug 'cespare/vim-toml'        " Toml file support
 Plug 'simnalamburt/vim-mundo'  " Undo tree
 Plug 'zirrostig/vim-schlepp'   " Move visual blocks
+Plug 'cocopon/vaffle.vim'      " File browsing
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -48,15 +48,20 @@ call plug#end()
 "}}}2 vim-plug
 "{{{2 plugins configuration
 
-" Signify
+"{{{3 signify
+
 let g:signify_sign_add='ᵃ'
 let g:signify_sign_delete='ᵈ'
 let g:signify_sign_change='ᵐ'
 
-" Deoplete
+"}}}3 signify
+"{{{3 deoplete
+
 let g:deoplete#enable_at_startup=1
 
-" Ale
+"}}}3 deoplete
+"{{{3 ale
+
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_set_highlights=0
@@ -75,11 +80,12 @@ function! LinterStatus() abort
         \   all_errors )
 endfunction
 
-" Neoformat
+"}}}3 ale
+"{{{3 neoformat
+
 let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
-
 let g:neoformat_python_black = {
       \ 'exe': 'black',
       \ 'stdin': 1,
@@ -100,7 +106,6 @@ let g:neoformat_htmldjango_prettier = {
       \ 'stdin': 1,
       \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
       \ }
-
 let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
@@ -108,7 +113,9 @@ let g:neoformat_enabled_htmldjango = ['prettier']
 let g:neoformat_enabled_zsh = ['shfmt']
 let g:shfmt_opt='-ci'  " shell
 
-" FZF
+"}}}3 neoformat
+"{{{3 fzf
+
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(
       \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
@@ -119,7 +126,9 @@ command! -bang -nargs=* Rg
       \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
       \   fzf#vim#with_preview(), <bang>0)
 
-" vim sandwich
+"}}}3 fzf
+"{{{3 vim sandwich
+
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
       \   {
@@ -137,6 +146,23 @@ let g:sandwich#recipes += [
       \     'command'     : ["'[,']normal! <<"],
       \   }
       \ ]
+
+"}}}3 vim sandwich
+"{{{3 vaffle
+
+" mappings for vaffle to work as netrw / vinegar
+
+function! s:customize_vaffle_mappings() abort
+  nmap <buffer>- <Plug>(vaffle-open-parent)
+  nmap <buffer>% <Plug>(vaffle-new-file)
+endfunction
+
+augroup vaffle_mappings
+  au!
+  au FileType vaffle call s:customize_vaffle_mappings()
+augroup END
+
+"}}}3 vaffle
 
 "}}}2 plugins configuration
 
@@ -350,6 +376,9 @@ nmap ;vs :vs<cr>
 
 " quick substitutes (whole file)
 nmap ;s/ :%s///g<left><left><left>
+
+" file browsing
+nmap - :Vaffle<cr>
 
 " format file
 nmap ;f :Neoformat<cr>
