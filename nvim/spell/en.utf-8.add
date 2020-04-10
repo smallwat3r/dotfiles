@@ -85,3 +85,4 @@ MySQL
 CSS
 Gunicorn
 Redis
+os
