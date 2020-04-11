@@ -103,6 +103,7 @@ alias tls="tmux list-sessions"
 alias dots="cd $HOME/dotfiles"
 alias c="clear"
 alias qq="exit"
+alias mkdir="mkdir -pv"
 alias p="pwd"
 alias ls="ls -p"
 alias ls.="ls -d .*"
@@ -149,6 +150,15 @@ pubkey() {
   more $HOME/.ssh/id_rsa.pub |
     pbcopy |
     printf 'Public key copied to clipboard.\n'
+}
+
+# }}}2
+# {{{2 psg Ripgrep process
+
+psg() {
+  ps aux |
+    rg -v rg |
+    rg -i -e VSZ -e "$@"
 }
 
 # }}}2

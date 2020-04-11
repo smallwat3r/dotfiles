@@ -72,12 +72,12 @@ brew:
   - asciinema
   - imagemagick
   - gifsicle
-  - ddgr
   - tidy-html5
   - shfmt
   - coreutils
   - diff-so-fancy
   - starship
+  - s-search
 
 # }}} brew packages
 # {{{ brew casks
