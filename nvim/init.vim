@@ -286,7 +286,7 @@ au FileType perl setlocal ts=4 sw=4 sts=4 et
 
 augroup filetypedetect
   au BufRead,BufNewFile *.md set ft=markdown
-  au BufRead,BufNewFile */nginx/*.conf    set ft=nginx
+  au BufRead,BufNewFile */nginx/*.conf set ft=nginx
   au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
   au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
   au BufRead,BufNewFile gitconfig set ft=gitconfig
