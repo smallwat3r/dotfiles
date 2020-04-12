@@ -31,6 +31,7 @@ Plug 'cespare/vim-toml'        " Toml file support
 Plug 'simnalamburt/vim-mundo'  " Undo tree
 Plug 'zirrostig/vim-schlepp'   " Move visual blocks
 Plug 'cocopon/vaffle.vim'      " File browsing
+Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
