@@ -14,24 +14,25 @@ endif
 
 call plug#begin()
 
-Plug 'dense-analysis/ale'      " Ale code linter
-Plug 'chr4/nginx.vim'          " Nginx / Jinja syntax
-Plug 'sbdchd/neoformat'        " Auto code formatting
-Plug 'tpope/vim-commentary'    " Comments mappings
-Plug 'tpope/vim-eunuch'        " Shell commands from vim
-Plug 'tpope/vim-fugitive'      " Git wrapper
-Plug 'junegunn/gv.vim'         " Commits browser
-Plug 'mhinz/vim-signify'       " Git signs
-Plug 'alvan/vim-closetag'      " Auto-close html tags
-Plug 'gregsexton/MatchTag'     " Highlight matching html tag
-Plug 'machakann/vim-sandwich'  " Surroundings mapping
-Plug 'tpope/vim-unimpaired'    " Complementary mappings
-Plug 'chrisbra/csv.vim'        " CSV files
-Plug 'cespare/vim-toml'        " Toml file support
-Plug 'simnalamburt/vim-mundo'  " Undo tree
-Plug 'zirrostig/vim-schlepp'   " Move visual blocks
-Plug 'cocopon/vaffle.vim'      " File browsing
+Plug 'dense-analysis/ale'              " Ale code linter
+Plug 'sbdchd/neoformat'                " Auto code formatting
+Plug 'tpope/vim-commentary'            " Comments mappings
+Plug 'tpope/vim-eunuch'                " Shell commands from vim
+Plug 'tpope/vim-fugitive'              " Git wrapper
+Plug 'junegunn/gv.vim'                 " Commits browser
+Plug 'alvan/vim-closetag'              " Auto-close html tags
+Plug 'gregsexton/MatchTag'             " Highlight matching html tag
+Plug 'machakann/vim-sandwich'          " Surroundings mapping
+Plug 'tpope/vim-unimpaired'            " Complementary mappings
+Plug 'simnalamburt/vim-mundo'          " Undo tree
+Plug 'zirrostig/vim-schlepp'           " Move visual blocks
+Plug 'cocopon/vaffle.vim'              " File browsing
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
+
+" Syntax support
+Plug 'chrisbra/csv.vim'
+Plug 'cespare/vim-toml'
+Plug 'chr4/nginx.vim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -49,13 +50,6 @@ call plug#end()
 "}}}2 vim-plug
 "{{{2 plugins configuration
 
-"{{{3 signify
-
-let g:signify_sign_add='ᵃ'
-let g:signify_sign_delete='ᵈ'
-let g:signify_sign_change='ᵐ'
-
-"}}}3 signify
 "{{{3 deoplete
 
 let g:deoplete#enable_at_startup=1
@@ -66,8 +60,9 @@ let g:deoplete#enable_at_startup=1
 let g:ale_echo_msg_error_str='E'
 let g:ale_echo_msg_warning_str='W'
 let g:ale_set_highlights=0
-let g:ale_sign_error='ˣˣ'
-let g:ale_sign_warning='ʷʷ'
+let g:ale_sign_column_always=1
+let g:ale_sign_error='ˣ'
+let g:ale_sign_warning='ʷ'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 function! LinterStatus() abort
