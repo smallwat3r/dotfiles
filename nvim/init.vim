@@ -14,7 +14,6 @@ endif
 
 call plug#begin()
 
-Plug 'dense-analysis/ale'              " Ale code linter
 Plug 'sbdchd/neoformat'                " Auto code formatting
 Plug 'tpope/vim-commentary'            " Comments mappings
 Plug 'tpope/vim-eunuch'                " Shell commands from vim
@@ -55,28 +54,6 @@ call plug#end()
 let g:deoplete#enable_at_startup=1
 
 "}}}3 deoplete
-"{{{3 ale
-
-let g:ale_echo_msg_error_str='E'
-let g:ale_echo_msg_warning_str='W'
-let g:ale_set_highlights=0
-let g:ale_sign_column_always=1
-let g:ale_sign_error='ˣ'
-let g:ale_sign_warning='ʷ'
-let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
-
-function! LinterStatus() abort
-  " Show Ale linter erros in statusline
-  let l:counts=ale#statusline#Count(bufnr(''))
-  let l:all_errors=l:counts.error + l:counts.style_error
-  let l:all_non_errors=l:counts.total - l:all_errors
-  return l:counts.total == 0 ? 'OK' : printf(
-        \   '%dW %dE',
-        \   all_non_errors,
-        \   all_errors )
-endfunction
-
-"}}}3 ale
 "{{{3 neoformat
 
 let g:neoformat_basic_format_align=1
@@ -633,7 +610,8 @@ function! StatusLineFmt(active)
   let sl = ''
   if a:active
     let sl.=ColorMode()
-    let sl.='%{GitInfo()} %{LinterStatus()}'
+    " let sl.='%{GitInfo()} %{LinterStatus()}'
+    let sl.='%{GitInfo()}'
   endif
   let sl.=' %n %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
   let sl.=' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
