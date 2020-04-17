@@ -344,7 +344,7 @@ dps() {
 # {{{2 dprune docker prune
 
 dprune() {
-	printf 'y' |
+  printf 'y' |
     docker system prune
 }
 
