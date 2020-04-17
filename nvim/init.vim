@@ -296,7 +296,7 @@ augroup filetypedetect
   au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
   au BufRead,BufNewFile gitconfig set ft=gitconfig
   au BufRead,BufNewFile *.sketch set ft=sketch
-augroup end
+augroup END
 
 au FileType gitcommit setlocal spell
 au FileType markdown setlocal spell list
@@ -650,7 +650,7 @@ augroup status
   au!
   au WinEnter * setlocal statusline=%!StatusLineFmt(1)
   au WinLeave * setlocal statusline=%!StatusLineFmt(0)
-augroup end
+augroup END
 
 " Set statusline (1 = active by default)
 set statusline=%!StatusLineFmt(1)
