@@ -459,8 +459,16 @@ xmap aa VGo1G
 imap <expr> <tab>   pumvisible() ? '<c-n>' : '<tab>'
 imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 
-" jj works as ESC
+" jj works as esc
 imap jj <esc>
+" end of line in insert mode
+imap 1l <esc>A
+" start of line in insert mode
+imap 1h <esc>I
+" insert above in insert mode
+imap 1j <esc>o
+" insert below in insert mode
+imap 1k <esc>O
 
 " auto close matching pairs
 imap '<tab> ''<left>
@@ -469,6 +477,8 @@ imap "<tab> ""<left>
 imap (<tab> ()<left>
 imap [<tab> []<left>
 imap {<tab> {}<left>
+
+" auto close matching pairs on multi lines
 imap {<cr> {<cr>}<esc>ko<tab>
 imap [<cr> [<cr>]<esc>ko<tab>
 imap (<cr> (<cr>)<esc>ko<tab>
