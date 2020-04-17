@@ -333,6 +333,22 @@ drm() {
 }
 
 # }}}2
+# {{{2 dps shorten docker ps
+
+dps() {
+  docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
+    column -t -s '¬¬¬' -c $(tput cols)
+}
+
+# }}}2
+# {{{2 dprune docker prune
+
+dprune() {
+	printf 'y' |
+    docker system prune
+}
+
+# }}}2
 
 # }}}1 functions
 # {{{1 antigen
