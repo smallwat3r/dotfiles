@@ -461,14 +461,12 @@ imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 
 " jj works as esc
 imap jj <esc>
-" end of line in insert mode
-imap 1l <esc>A
-" start of line in insert mode
+
+" hjkl insert go-to (new line or end/start of line)
 imap 1h <esc>I
-" insert above in insert mode
 imap 1j <esc>o
-" insert below in insert mode
 imap 1k <esc>O
+imap 1l <esc>A
 
 " auto close matching pairs
 imap '<tab> ''<left>
