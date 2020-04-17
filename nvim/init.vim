@@ -429,6 +429,10 @@ nmap <leader>u :MundoToggle<CR>
 "}}}2 normal mode
 "{{{2 visual mode
 
+" remap visual modes
+nnoremap <C-v> v
+nnoremap v <C-v>
+
 " play macros with visual mode
 vmap Q :norm @q<cr>
 
@@ -467,6 +471,13 @@ imap 1h <esc>I
 imap 1j <esc>o
 imap 1k <esc>O
 imap 1l <esc>A
+
+" move back or forward a word
+imap <C-q> <esc>gebi
+imap <C-w> <esc>wi
+
+" Delete a word
+imap <C-d> <ESC>dawi
 
 " auto close matching pairs
 imap '<tab> ''<left>
