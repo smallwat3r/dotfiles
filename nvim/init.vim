@@ -472,13 +472,6 @@ imap 1j <esc>o
 imap 1k <esc>O
 imap 1l <esc>A
 
-" move back or forward a word
-imap <C-q> <esc>gebi
-imap <C-w> <esc>wi
-
-" Delete a word
-imap <C-d> <ESC>dawi
-
 " auto close matching pairs
 imap '<tab> ''<left>
 imap `<tab> ``<left>
@@ -497,6 +490,9 @@ imap <C-h> <left>
 imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
+
+" Delete a word
+imap <C-d> <ESC>dawi
 
 "}}}2 insert mode
 "{{{2 command mode
