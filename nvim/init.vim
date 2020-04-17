@@ -158,12 +158,16 @@ let g:sandwich#recipes += [
 function! s:customize_vaffle_mappings() abort
   nmap <buffer>- <Plug>(vaffle-open-parent)
   nmap <buffer>% <Plug>(vaffle-new-file)
+  nmap <buffer>d <Plug>(vaffle-mkdir)
+  nmap <buffer>D <Plug>(vaffle-delete-selected)
 endfunction
 
 augroup vaffle_mappings
   au!
   au FileType vaffle call s:customize_vaffle_mappings()
 augroup END
+
+let g:vaffle_force_delete=1
 
 "}}}3 vaffle
 
