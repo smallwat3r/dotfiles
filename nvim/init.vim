@@ -463,11 +463,12 @@ imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 imap jj <esc>
 
 " auto close matching pairs
-imap { {<esc>i<right>}<esc>i
-imap ( (<esc>i<right>)<esc>i
-imap [ [<esc>i<right>]<esc>i
-
-" auto close matching pairs multi line
+imap '<tab> ''<left>
+imap `<tab> ``<left>
+imap "<tab> ""<left>
+imap (<tab> ()<left>
+imap [<tab> []<left>
+imap {<tab> {}<left>
 imap {<cr> {<cr>}<esc>ko<tab>
 imap [<cr> [<cr>]<esc>ko<tab>
 imap (<cr> (<cr>)<esc>ko<tab>
