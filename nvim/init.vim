@@ -611,7 +611,6 @@ function! StatusLineFmt(active)
   let sl = ''
   if a:active
     let sl.=ColorMode()
-    " let sl.='%{GitInfo()} %{LinterStatus()}'
     let sl.='%{GitInfo()}'
   endif
   let sl.=' %n %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
