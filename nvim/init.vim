@@ -346,6 +346,7 @@ nmap <tab> %
 
 " align paragraph
 nmap <leader>a =ip
+
 " copy paragraph
 nmap cp yap<S-}>p
 
@@ -368,8 +369,10 @@ nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
 
 " cd into current buffer directory
 nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
+
 " cd into previous directory
 nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
+
 " pwd
 nmap <leader>d :pwd<cr>
 
@@ -397,19 +400,13 @@ nmap <silent>- :Vaffle<cr>
 " format file
 nmap ;f :Neoformat<cr>
 
-" fzf buffers
+" fzf
 nmap <leader>b :Buffers<cr>
-" fzf files
 nmap <leader>f :Files<cr>
-" fzf ripgrep
 nmap <leader>; :Rg<cr>
-" fzf rigprep current word
 nmap <leader>w; :exe ":Rg " . expand('<cword>')<cr>
-" fzf git commits
 nmap <leader>co :Commits<cr>
-" fzf current buffer lines
 nmap <leader>l :BLines<cr>
-" fzf current buffer lines current word
 nmap <leader>wl :exe ":BLines " . expand('<cword>')<cr>
 
 " navigate window panels
@@ -539,12 +536,9 @@ iab dt,, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
 iab ts,, <C-R>=strftime("%FT%T%z")<cr>
 
 " Line separators
-iab --,, -----------------------------------------------------------------------------
-iab ##,, #############################################################################
-iab //,, /////////////////////////////////////////////////////////////////////////////
-iab **,, *****************************************************************************
-iab @@,, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-iab ++,, +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+iab --,, -----------------------------------------------------------------
+iab ##,, #################################################################
+iab **,, *****************************************************************
 
 "}}}2 insert mode abbreviations
 
