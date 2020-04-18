@@ -49,6 +49,13 @@ call plug#end()
 "}}}2 vim-plug
 "{{{2 plugins configuration
 
+"{{{3 deoplete dictionary
+
+call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
+call deoplete#custom#source('dictionary', 'sorters', [])
+call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
+
+"}}}3
 "{{{3 deoplete
 
 let g:deoplete#enable_at_startup=1
@@ -92,12 +99,12 @@ let g:shfmt_opt='-ci'  " shell
 "}}}3 neoformat
 "{{{3 fzf
 
-command! -bang -nargs=? -complete=dir Files
+com! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(
       \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
       \ '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 
-command! -bang -nargs=* Rg
+com! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
       \   fzf#vim#with_preview(), <bang>0)
@@ -224,10 +231,6 @@ set undofile
 "}}}2 undo
 "{{{2 dicts
 
-au FileType * execute 'setlocal dict+=~/.config/nvim/dict/' . &filetype . '.txt'
-call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
-call deoplete#custom#source('dictionary', 'sorters', [])
-call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
 
 "}}}2 dicts
 "{{{2 trim whitespaces
@@ -242,8 +245,10 @@ function! TrimTrailingWS()
   endif
 endfunction
 
-au BufWritePre * :call TrimTrailingWS()
-au FileType markdown let b:noStripWhitespace=1
+augroup trim_whitespaces
+  au!
+  au BufWritePre * :call TrimTrailingWS()
+augroup END
 
 "}}}2 trim whitespaces
 "{{{2 indentation
@@ -253,29 +258,42 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
-au FileType make setlocal ts=8 sw=8 noet
-au FileType go setlocal ts=8 sw=8 noet
-au FileType python setlocal ts=4 sw=4 sts=4 et
-au FileType perl setlocal ts=4 sw=4 sts=4 et
-
 "}}}2 indentation
-"{{{2 filetype options
+"{{{2 filetypes specifics
 
-augroup filetypedetect
-  au BufRead,BufNewFile *.md set ft=markdown
-  au BufRead,BufNewFile */nginx/*.conf set ft=nginx
-  au BufRead,BufNewFile */nginx/**/*.conf set ft=nginx
-  au BufRead,BufNewFile *.{yaml,yml} set ft=yaml
-  au BufRead,BufNewFile gitconfig set ft=gitconfig
-  au BufRead,BufNewFile *.sketch set ft=sketch
+augroup filetype_detect
+  au!
+  au BufRead,BufNewFile *.md setf markdown
+  au BufRead,BufNewFile */nginx/*.conf setf nginx
+  au BufRead,BufNewFile */nginx/**/*.conf setf nginx
+  au BufRead,BufNewFile *.{yaml,yml} setf yaml
+  au BufRead,BufNewFile gitconfig setf gitconfig
+  au BufRead,BufNewFile *.sketch setf sketch
 augroup END
 
-au FileType gitcommit setlocal spell
-au FileType markdown setlocal spell list
-au FileType sketch setlocal spell
-au FileType netrw setlocal bufhidden=delete
+augroup filetype_indentation
+  au!
+  au FileType make setl ts=8 sw=8 noet
+  au FileType go setl ts=8 sw=8 noet
+  au FileType python setl ts=4 sw=4 sts=4 et
+  au FileType perl setl ts=4 sw=4 sts=4 et
+augroup END
 
-"}}}2 filetype options
+augroup filetype_specifics
+  au!
+  au FileType gitcommit setl spell
+  au FileType markdown setl spell list | let b:noStripWhitespace=1
+  au FileType sketch setl spell
+  au FileType netrw setl bufhidden=delete
+augroup END
+
+augroup filetype_dictionaries
+  au!
+  au Filetype python,sql,javascript,html,go,dockerfile,css
+        \ execute 'setl dict+=~/.config/nvim/dict/' . &filetype . '.txt'
+augroup END
+
+"}}}2 filetypes specifics
 "{{{2 netrw
 
 let g:netrw_banner=0
@@ -297,23 +315,20 @@ let g:pyindent_continue='&sw'
 "}}}2 fixes
 "{{{2 other
 
-" Save as root
-command! WW :w !sudo tee % >/dev/null
+" Remember last position of the cursor when editing a file
+augroup remember_last_cursor_position
+  au!
+  au BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
+augroup END
 
-" Source on save config
-au BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
-
-" close method preview window after completion is complete
-au InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Remember last location
-au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal g'\"" |
-      \ endif
-
-" Do not auto insert comment on new line
-au FileType * set fo-=c fo-=r fo-=o
+" Disable auto insertion of comment symbol on new line
+augroup disable_comment_auto_insert
+  au!
+  au BufNewFile,BufRead * setlocal formatoptions-=cro
+augroup END
 
 "}}}2 other
 
@@ -362,7 +377,7 @@ nmap <leader>d :pwd<cr>
 nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
 
 " toggle spell
-nmap <leader>sp :setlocal spell!<cr>
+nmap <leader>sp :setl spell!<cr>
 
 " quick write & quit
 nmap ;w :w<cr>
@@ -550,40 +565,42 @@ let &t_EI.='\e[2 q' " NORMAL mode or others
 "}}}2 terminal
 "{{{2 colors
 
-" Colorscheme
+function! CustomColors() abort
+  if &diff
+    syntax off
+  endif
+
+  hi Normal        ctermfg=15
+  hi Number        ctermfg=15
+  hi String        ctermfg=194
+  hi Folded        ctermfg=231  ctermbg=239
+  hi MatchParen    ctermfg=231  ctermbg=199
+  hi SignColumn    ctermfg=NONE ctermbg=NONE cterm=NONE
+  hi LineNr        ctermfg=239  ctermbg=NONE
+  hi VertSplit     ctermfg=240  ctermbg=NONE cterm=NONE
+  hi StatuslineNC  ctermfg=250  ctermbg=238  cterm=NONE
+  hi Search        ctermfg=232  ctermbg=226
+  hi IncSearch     ctermfg=232  ctermbg=231
+
+  hi DiffAdd       ctermfg=255  ctermbg=64
+  hi DiffChange    ctermfg=204  ctermbg=NONE cterm=NONE
+  hi DiffDelete    ctermfg=red  ctermbg=NONE cterm=NONE
+  hi DiffText      ctermfg=255  ctermbg=31
+
+  " Custom statusline colors
+  hi SLNormalColor  ctermbg=15  ctermfg=0
+  hi SLInsertColor  ctermbg=85  ctermfg=0
+  hi SLReplaceColor ctermbg=180 ctermfg=0
+  hi SLVisualColor  ctermbg=208 ctermfg=0
+  hi SLCommandColor ctermbg=204 ctermfg=0
+endfunction
+
+augroup custom_colors
+  au!
+  au ColorScheme * call CustomColors()
+augroup END
+
 colo desert
-
-if &diff
-  syntax off
-endif
-
-" Overwrite colors on general stuff
-hi Normal            ctermfg=15
-hi Number            ctermfg=15
-hi String            ctermfg=194
-hi Folded            ctermfg=231    ctermbg=239
-hi MatchParen        ctermfg=231    ctermbg=199
-hi SignColumn        ctermfg=NONE   ctermbg=NONE cterm=NONE
-hi LineNr            ctermfg=239    ctermbg=NONE
-hi VertSplit         ctermfg=240    ctermbg=NONE cterm=NONE
-hi StatuslineNC      ctermfg=250    ctermbg=238  cterm=NONE
-hi Search            ctermfg=232    ctermbg=226
-hi IncSearch         ctermfg=232    ctermbg=231
-
-" Diff colors
-hi DiffAdd           ctermfg=255    ctermbg=64
-hi DiffChange        ctermfg=204    ctermbg=NONE cterm=NONE
-hi DiffDelete        ctermfg=red    ctermbg=NONE cterm=NONE
-hi DiffText          ctermfg=255    ctermbg=31
-
-" Signify colors
-hi SignifySignAdd    ctermfg=green  cterm=NONE
-hi SignifySignDelete ctermfg=red    cterm=NONE
-hi SignifySignChange ctermfg=yellow cterm=NONE
-
-" Ale colors
-hi ALEErrorSign      ctermfg=red    ctermbg=NONE
-hi ALEWarningSign    ctermfg=yellow ctermbg=NONE
 
 "}}}2 colors
 
@@ -598,25 +615,18 @@ function! GitInfo()
   return ''
 endfunction
 
-" Statusline colors depending on mode
-hi NormalColor  ctermbg=15  ctermfg=0
-hi InsertColor  ctermbg=85  ctermfg=0
-hi ReplaceColor ctermbg=180 ctermfg=0
-hi VisualColor  ctermbg=208 ctermfg=0
-hi CommandColor ctermbg=204 ctermfg=0
-
 " Manage statusline colors from vim mode
 function! ColorMode()
   if (mode() =~# '\v(n|no)')
-    return '%#NormalColor# NOR'
+    return '%#SLNormalColor# NOR'
   elseif mode() == 'i'
-    return '%#InsertColor# INS'
+    return '%#SLInsertColor# INS'
   elseif mode() == 'R'
-    return '%#ReplaceColor# REP'
+    return '%#SLReplaceColor# REP'
   elseif (mode() =~# '\v(v|V)')
-    return '%#VisualColor# VIS'
+    return '%#SLVisualColor# VIS'
   elseif mode() == 'c'
-    return '%#CommandColor# CMD'
+    return '%#SlCommandColor# CMD'
   endif
   return ''
 endfunction
@@ -636,8 +646,8 @@ endfunction
 " Active and non-active on window change event
 augroup status
   au!
-  au WinEnter * setlocal statusline=%!StatusLineFmt(1)
-  au WinLeave * setlocal statusline=%!StatusLineFmt(0)
+  au WinEnter * setl statusline=%!StatusLineFmt(1)
+  au WinLeave * setl statusline=%!StatusLineFmt(0)
 augroup END
 
 " Set statusline (1 = active by default)

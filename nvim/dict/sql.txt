@@ -93,6 +93,7 @@ floor
 force
 format
 found_rows
+from
 from_days
 from_unixtime
 get_lock
@@ -255,4 +256,5 @@ variance
 version
 week
 weekday
+where
 year
