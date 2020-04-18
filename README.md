@@ -8,6 +8,6 @@ Use at your own risks and please create back-ups of your current set-up if you i
 # Useful commands.
 
 make           # install everything
-make symlinks  # symlink
+make symlinks  # symlink files
 make brew      # install brew and casks
 ```
