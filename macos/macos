@@ -1,8 +1,6 @@
 # MacOS config file and preferences.
 
 # Font smoothing
-defaults -currentHost write -g AppleFontSmoothing -int 1
-defaults write NSGlobalDomain AppleFontSmoothing -int 1
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
 # Dark UI

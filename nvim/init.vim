@@ -194,7 +194,7 @@ set foldmethod=marker   " use marker to fold lines
 set synmaxcol=200       " keep long lines from slowing vim
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<,nbsp:˷,trail:␣
-set matchpairs+=<:>,«:»,｢:｣
+set matchpairs+=<:>
 set clipboard+=unnamedplus
 set spellfile=~/.config/nvim/spell/en.utf-8.add
 set backspace=indent,eol,start
@@ -492,7 +492,7 @@ imap <C-k> <up>
 imap <C-l> <right>
 
 " Delete a word
-imap <C-d> <ESC>dawi
+imap <C-d> <ESC>ciw
 
 "}}}2 insert mode
 "{{{2 command mode
