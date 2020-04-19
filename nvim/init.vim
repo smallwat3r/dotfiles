@@ -1,5 +1,5 @@
-" Author: Matthieu Petiteau <mpetiteau.pro@gmail.com>
 " neovim config file
+" Matthieu Petiteau <mpetiteau.pro@gmail.com>
 
 "{{{1 plugins
 
@@ -519,26 +519,25 @@ cmap <C-l> <right>
 "{{{2 insert mode abbreviations
 
 " Personal stuff
-iab em,, mpetiteau.pro@gmail.com
-iab ma,, Matthieu Petiteau
-iab au,, Matthieu Petiteau <mpetiteau.pro@gmail.com>
-iab sign,, --<cr>Matthieu Petiteau<cr>mpetiteau.pro@gmail.com
-iab cc,, Copyright 2020 Matthieu Petiteau, all rights reserved.
+iab @e, mpetiteau.pro@gmail.com
+iab @a, Matthieu Petiteau <mpetiteau.pro@gmail.com>
+iab @c, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
-iab sba,, #!/usr/bin/env bash
-iab spe,, #!/usr/bin/env perl
-iab spy,, #!/usr/bin/env python3
+iab @s, #!/usr/bin/env
+iab @sh, #!/usr/bin/env bash
+iab @pe, #!/usr/bin/env perl
+iab @py, #!/usr/bin/env python3
 
 " Current date / datetime / timestamp ISO8601/W3C
-iab dd,, <C-R>=strftime("%a, %d %b %Y")<cr>
-iab dt,, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
-iab ts,, <C-R>=strftime("%FT%T%z")<cr>
+iab @d, <C-R>=strftime("%a, %d %b %Y")<cr>
+iab @dt, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
+iab @ts, <C-R>=strftime("%FT%T%z")<cr>
 
 " Line separators
-iab --,, -----------------------------------------------------------------
-iab ##,, #################################################################
-iab **,, *****************************************************************
+iab @-, -----------------------------------------------------------------
+iab @#, #################################################################
+iab @*, *****************************************************************
 
 "}}}2 insert mode abbreviations
 

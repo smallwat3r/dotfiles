@@ -1,4 +1,4 @@
-# Mapping of symlinks.
+# Dotfile management file
 #
 # Notes:
 #     __root__ will be replaced by user root directory.
