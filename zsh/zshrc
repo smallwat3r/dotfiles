@@ -44,26 +44,6 @@ export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
 
 # }}}2
-# {{{2 fzf
-
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-
-export FZF_DEFAULT_OPTS="
---height 96% --reverse --border
---color fg:231,bg:0,hl:199,fg+:231,bg+:0,hl+:190
---color info:189,prompt:161,spinner:201,pointer:201,marker:118
-"
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
-
-# }}}2
-# {{{2 tmux
-
-# Launch on start
-case $- in *i*)
-  [[ -z $TMUX ]] && exec tmux
-esac
-
-# }}}2
 
 # }}}1 env
 # {{{1 aliases
@@ -387,6 +367,23 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # starship prompt
 eval "$(starship init zsh)"
 
+# }}}1 prompt
+# {{{1 misc
+
+# fzf
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="
+--height 96% --reverse --border
+--color fg:231,bg:0,hl:199,fg+:231,bg+:0,hl+:190
+--color info:189,prompt:161,spinner:201,pointer:201,marker:118
+"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
+
+# launch tmux on start
+case $- in *i*)
+  [[ -z $TMUX ]] && exec tmux
+esac
+
 # zsh vim yank to clipboard (using pbcopy)
 vi_yank_pbcopy() {
   zle vi-yank
@@ -396,4 +393,5 @@ vi_yank_pbcopy() {
 zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
 
-# }}}1 prompt
+# }}}1 misc
+
