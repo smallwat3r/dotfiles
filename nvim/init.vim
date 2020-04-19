@@ -604,7 +604,7 @@ colo desert
 " Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
-    return ' (on '.fugitive#head().') '
+    return ' (on '.fugitive#head().')'
   endif
   return ''
 endfunction
