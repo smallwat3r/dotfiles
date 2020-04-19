@@ -39,8 +39,9 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # }}}2
 # {{{2 history
 
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
+export HISTFILE=~/.zsh_history
+export HISTSIZE=999999999
+export SAVEHIST=$HISTSIZE
 
 # }}}2
 # {{{2 fzf
@@ -368,12 +369,13 @@ antigen apply
 # {{{1 prompt
 
 # zsh completions
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+COMPLETION_WAITING_DOTS=true
+DISABLE_UNTRACKED_FILES_DIRTY=true
 
 # zsh auto-suggestions colors
-ZSH_AUTOSUGGEST_USE_ASYNC="true"
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # starship prompt
 eval "$(starship init zsh)"
