@@ -21,12 +21,11 @@ directories:
 
 links:
   __root__.zshrc: zsh/zshrc
-  __root__.pylintrc: python/pylintrc
   __root__.tmux.conf: tmux/tmux.conf
   __root__.gitconfig: git/gitconfig
   __root__.gitignore_global: git/gitignore_global
   __root__.config/starship.toml: prompt/starship.toml
-  __root__.config/alacritty/alacritty.yml: terminal/alacritty/alacritty.yml
+  __root__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
   __root__.config/nvim/init.vim: nvim/init.vim
   __root__.config/nvim/syntax/dockerfile.vim: nvim/syntax/dockerfile.vim
   __root__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
@@ -37,7 +36,8 @@ links:
   __root__.config/nvim/dict/javascript.txt: nvim/dict/javascript.txt
   __root__.config/nvim/dict/python.txt: nvim/dict/python.txt
   __root__.config/nvim/dict/sql.txt: nvim/dict/sql.txt
-  __root__.pip/pip.conf: python/pip.conf
+  __root__.pylintrc: coding/python/pylintrc
+  __root__.pip/pip.conf: coding/python/pip.conf
   /usr/local/bin/localip: bin/localip
   /usr/local/bin/battery: bin/battery
   /usr/local/bin/tubestatus: bin/tubestatus/tubestatus
@@ -85,7 +85,6 @@ brew:
 cask:
   - sequel-pro
   - docker
-  # - kitty
   - alacritty
   - slack
   - alfred

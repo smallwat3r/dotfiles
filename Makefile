@@ -26,17 +26,17 @@ macos-settings:
 	./bin/macos
 
 install-python:
-	chmod +x ./python/packages.sh ./python/py3-8.sh
-	./python/packages.sh
-	./python/py3-8.sh
+	chmod +x ./coding/python/packages.sh ./python/py3-8.sh
+	./coding/python/packages.sh
+	./coding/python/py3-8.sh
 
 install-npm:
-	chmod +x ./npm/packages.sh
-	./npm/packages.sh
+	chmod +x ./coding/npm/packages.sh
+	./coding/npm/packages.sh
 
 install-go:
-	chmod +x ./go/packages.sh
-	./go/packages.sh
+	chmod +x ./coding/go/packages.sh
+	./coding/go/packages.sh
 
 symlink: install-perl
 	chmod +x ./bin/symlink
