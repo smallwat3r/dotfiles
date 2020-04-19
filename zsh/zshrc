@@ -394,4 +394,3 @@ zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
 
 # }}}1 misc
-
