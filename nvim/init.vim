@@ -582,11 +582,12 @@ function! CustomColors() abort
   hi DiffText      ctermfg=255  ctermbg=31
 
   " Custom statusline colors
-  hi SLNormalColor  ctermbg=15  ctermfg=0
-  hi SLInsertColor  ctermbg=85  ctermfg=0
-  hi SLReplaceColor ctermbg=180 ctermfg=0
-  hi SLVisualColor  ctermbg=208 ctermfg=0
-  hi SLCommandColor ctermbg=204 ctermfg=0
+  hi SLNormalColor   ctermbg=15  ctermfg=0
+  hi SLInsertColor   ctermbg=85  ctermfg=0
+  hi SLReplaceColor  ctermbg=180 ctermfg=0
+  hi SLVisualColor   ctermbg=208 ctermfg=0
+  hi SLCommandColor  ctermbg=204 ctermfg=0
+  hi SLTerminalColor ctermbg=228 ctermfg=0
 endfunction
 
 augroup custom_colors
@@ -604,7 +605,7 @@ colo desert
 " Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
-    return ' (on '.fugitive#head().')'
+    return ' (on ' . fugitive#head() . ')'
   endif
   return ''
 endfunction
@@ -612,15 +613,17 @@ endfunction
 " Manage statusline colors from vim mode
 function! ColorMode()
   if (mode() =~# '\v(n|no)')
-    return '%#SLNormalColor# NOR'
-  elseif mode() == 'i'
-    return '%#SLInsertColor# INS'
-  elseif mode() == 'R'
-    return '%#SLReplaceColor# REP'
-  elseif (mode() =~# '\v(v|V)')
-    return '%#SLVisualColor# VIS'
-  elseif mode() == 'c'
-    return '%#SlCommandColor# CMD'
+    return '%#SLNormalColor# %n NOR'
+  elseif (mode() ==# 'i')
+    return '%#SLInsertColor# %n INS'
+  elseif (mode() ==# 'R')
+    return '%#SLReplaceColor# %n REP'
+  elseif (mode() =~# '\v(v|V)') || (mode() == "\<C-v>")
+    return '%#SLVisualColor# %n VIS'
+  elseif (mode() ==# 'c')
+    return '%#SlCommandColor# %n CMD'
+  elseif (mode() ==# 't')
+    return '%#SlTerminalColor# %n TER'
   endif
   return ''
 endfunction
@@ -632,7 +635,7 @@ function! StatusLineFmt(active)
     let sl.=ColorMode()
     let sl.='%{GitInfo()}'
   endif
-  let sl.=' %n %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
+  let sl.=' %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
   let sl.=' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
   return sl
 endfunction
