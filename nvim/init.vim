@@ -441,7 +441,7 @@ nmap <leader>u :MundoToggle<CR>
 "}}}2 normal mode
 "{{{2 visual mode
 
-" remap visual modes
+" remap easier access to visual blocks
 nnoremap <C-v> v
 nnoremap v <C-v>
 
