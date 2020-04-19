@@ -351,6 +351,13 @@ dprune() {
 }
 
 # }}}2
+# {{{2 dsh docker exec
+
+dsh() {
+  docker exec -it $1 /bin/sh
+}
+
+# }}}2
 
 # }}}1 functions
 # {{{1 antigen
