@@ -22,8 +22,8 @@ brew: install-perl
 	./bin/brew
 
 macos-settings:
-	chmod +x ./macos/macos
-	./macos/macos
+	chmod +x ./bin/macos
+	./bin/macos
 
 install-python:
 	chmod +x ./python/packages.sh ./python/py3-8.sh

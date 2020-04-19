@@ -9,6 +9,7 @@ defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 # Disable [ ] in mac terminal
 defaults write com.apple.Terminal AutoMarkPromptLines -bool false
 defaults write com.apple.Terminal ShowLineMarks -bool false
+
 # Terminal scrollbars
 defaults write com.apple.Terminal AppleShowScrollBars -string "Automatic"
 
@@ -28,8 +29,10 @@ defaults write NSGlobalDomain KeyRepeat -float 1.0
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
 # Disable auto capitalize
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
 # Disable iuto period insert
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
@@ -42,6 +45,3 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Mission Control' n
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Application windows' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move left a space' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move right a space' nil
-
-# Set default wallpaper to Stone.
-osascript -e "tell application \"System Events\" to set picture of every desktop to \"/Library/Desktop Pictures/Solid Colors/Stone.png\""
