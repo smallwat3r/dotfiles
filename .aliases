@@ -49,7 +49,8 @@ alias \
   qq="exit" \
   mkdir="mkdir -pv" \
   p="pwd" \
-  ls="ls -pf" \
+  l="ls -pf" \
+  ls="ls -p" \
   ls.="ls -d .*" \
   ..="cd .." \
   ...="cd ../.." \
@@ -72,17 +73,12 @@ alias \
   gd="git diff"
 
 # }}}1
-# {{{1 scripts
+# {{{1 misc
 
 alias \
   trecord="asciinema rec" \
   trecordgif="asciicast2gif" \
-  sk="sketch"
-
-# }}}1
-# {{{1 miscellaneous
-
-alias \
+  sk="sketch" \
   fonts="open $HOME/Library/Fonts" \
   pubip="curl http://ipecho.net/plain; echo" \
   myip="curl http://ipecho.net/plain; echo"
