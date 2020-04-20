@@ -1,0 +1,80 @@
+# Dotfile management file
+#
+# Notes:
+#     __home__ will be replaced by user home directory.
+
+# {{{ symlinks
+
+links:
+  __home__.zshrc: .zshrc
+  __home__.tmux.conf: .tmux.conf
+  __home__.gitconfig: .gitconfig
+  __home__.config/starship.toml: starship.toml
+  __home__.config/alacritty/alacritty.yml: alacritty.yml
+  __home__/.pylintrc: .pylintrc
+  __home__.pip/pip.conf: pip.conf
+  __home__.config/nvim/init.vim: nvim/init.vim
+  __home__.config/nvim/syntax/dockerfile.vim: nvim/syntax/dockerfile.vim
+  __home__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
+  __home__.config/nvim/spell/en.utf-8.add.spl: nvim/spell/en.utf-8.add.spl
+  __home__.config/nvim/dict/dockerfile.txt: nvim/dict/dockerfile.txt
+  __home__.config/nvim/dict/go.txt: nvim/dict/go.txt
+  __home__.config/nvim/dict/html.txt: nvim/dict/html.txt
+  __home__.config/nvim/dict/javascript.txt: nvim/dict/javascript.txt
+  __home__.config/nvim/dict/python.txt: nvim/dict/python.txt
+  __home__.config/nvim/dict/sql.txt: nvim/dict/sql.txt
+  /usr/local/bin/localip: bin/localip
+  /usr/local/bin/battery: bin/battery
+  /usr/local/bin/tubestatus: bin/tubestatus/tubestatus
+  /usr/local/bin/synonym: bin/synonym/synonym
+  /usr/local/bin/sketch: bin/sketch/sketch
+  /usr/local/bin/extract: bin/extract
+
+# }}} symlinks
+# {{{ brew packages
+
+brew:
+  - tmux
+  - redis
+  - git
+  - python@3.8
+  - go
+  - wget
+  - zsh
+  - antigen
+  - fzf
+  - htop
+  - curl
+  - bash
+  - gnu-sed
+  - nmap
+  - jq
+  - make
+  - fd
+  - the_silver_searcher
+  - ripgrep
+  - neovim
+  - node
+  - asciinema
+  - imagemagick
+  - gifsicle
+  - tidy-html5
+  - shfmt
+  - coreutils
+  - diff-so-fancy
+  - starship
+  - s-search
+
+# }}} brew packages
+# {{{ brew casks
+
+cask:
+  - sequel-pro
+  - docker
+  - alacritty
+  - slack
+  - alfred
+  - thunderbird
+  - google-chrome
+
+# }}} brew casks
