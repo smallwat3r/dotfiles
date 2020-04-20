@@ -42,6 +42,7 @@ links:
   /usr/local/bin/tubestatus: bin/tubestatus/tubestatus
   /usr/local/bin/synonym: bin/synonym/synonym
   /usr/local/bin/sketch: bin/sketch/sketch
+  /usr/local/bin/extract: bin/extract
 
 # }}} symlinks
 # {{{ brew packages
