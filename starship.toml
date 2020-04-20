@@ -1,0 +1,51 @@
+add_newline = false
+prompt_order=["directory","git_commit","git_branch","git_status","python","cmd_duration","character"]
+
+[character]
+  symbol = "%%"
+  style_success = "white"
+  style_failure = "fg:9"
+  vicmd_symbol = ";;"
+  error_symbol = "%%"
+  use_symbol_for_status = true
+
+[directory]
+  truncation_length = 1
+  style = "white"
+
+[git_branch]
+  symbol = ""
+  style = "white"
+
+[git_commit]
+  commit_hash_length = 7
+  only_detached = true
+  style = "white"
+
+[git_status]
+  prefix = "("
+  suffix = ") "
+  style = "white"
+  show_sync_count = true
+  staged = "s"
+  modified = "m"
+  untracked = "u"
+  deleted = "d"
+  conflicted = "c"
+  stashed = "s"
+  renamed = "r"
+  staged_count.enabled = true
+  modified_count.enabled = true
+  untracked_count.enabled = true
+  deleted_count.enabled = true
+  conflicted_count.enabled = true
+  stashed_count.enabled = true
+  renamed_count.enabled = true
+
+[cmd_duration]
+  min_time = 500
+  style = "white"
+
+[python]
+  symbol = "py "
+  style = "white"

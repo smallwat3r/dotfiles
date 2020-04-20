@@ -9,20 +9,20 @@ links:
   __home__.zshrc: .zshrc
   __home__.tmux.conf: .tmux.conf
   __home__.gitconfig: .gitconfig
-  __home__.config/starship.toml: .config/starship.toml
-  __home__.config/alacritty/alacritty.yml: .config/alacritty/alacritty.yml
-  __home__.config/nvim/init.vim: .config/nvim/init.vim
-  __home__.config/nvim/syntax/dockerfile.vim: ./config/nvim/syntax/dockerfile.vim
-  __home__.config/nvim/spell/en.utf-8.add: ./config/nvim/spell/en.utf-8.add
-  __home__.config/nvim/spell/en.utf-8.add.spl: ./config/nvim/spell/en.utf-8.add.spl
-  __home__.config/nvim/dict/dockerfile.txt: ./config/nvim/dict/dockerfile.txt
-  __home__.config/nvim/dict/go.txt: .config/nvim/dict/go.txt
-  __home__.config/nvim/dict/html.txt: .config/nvim/dict/html.txt
-  __home__.config/nvim/dict/javascript.txt: .config/nvim/dict/javascript.txt
-  __home__.config/nvim/dict/python.txt: .config/nvim/dict/python.txt
-  __home__.config/nvim/dict/sql.txt: .config/nvim/dict/sql.txt
+  __home__.config/starship.toml: starship.toml
+  __home__.config/alacritty/alacritty.yml: alacritty.yml
   __home__/.pylintrc: .pylintrc
-  __home__.pip/pip.conf: .pip/pip.conf
+  __home__.pip/pip.conf: pip.conf
+  __home__.config/nvim/init.vim: nvim/init.vim
+  __home__.config/nvim/syntax/dockerfile.vim: nvim/syntax/dockerfile.vim
+  __home__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
+  __home__.config/nvim/spell/en.utf-8.add.spl: nvim/spell/en.utf-8.add.spl
+  __home__.config/nvim/dict/dockerfile.txt: nvim/dict/dockerfile.txt
+  __home__.config/nvim/dict/go.txt: nvim/dict/go.txt
+  __home__.config/nvim/dict/html.txt: nvim/dict/html.txt
+  __home__.config/nvim/dict/javascript.txt: nvim/dict/javascript.txt
+  __home__.config/nvim/dict/python.txt: nvim/dict/python.txt
+  __home__.config/nvim/dict/sql.txt: nvim/dict/sql.txt
   /usr/local/bin/localip: bin/localip
   /usr/local/bin/battery: bin/battery
   /usr/local/bin/tubestatus: bin/tubestatus/tubestatus

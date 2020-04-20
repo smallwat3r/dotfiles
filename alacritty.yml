@@ -1,0 +1,148 @@
+# Alacritty config
+
+# {{{ env
+
+env:
+  TERM: screen-256color
+
+# }}} env
+# {{{ window
+
+window:
+  dimensions:
+    columns: 140
+    lines: 40
+
+  padding:
+    x: 0
+    y: 0
+
+  dynamic_padding: true
+  decorations: buttonless
+  startup_mode: Windowed
+
+scrolling:
+  history: 10000
+  multiplier: 3
+  scrolling_multiplier: 3
+
+# }}} window
+# {{{ font
+
+font:
+  normal:
+    family: Monaco
+    style: Regular
+  italic:
+    family: Monaco
+    style: Italic
+  bold:
+    family: Monaco
+    style: Regular # no bold fonts
+
+  size: 13
+
+  offset:
+    x: 1
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  use_thin_strokes: true
+
+# }}} font
+# {{{ colors
+
+background_opacity: 1
+
+colors:
+
+  primary:
+    background: '0x000000'
+    foreground: '0xf4f4f4'
+
+  normal:
+    black:   '0x000000'
+    red:     '0xff8080'
+    green:   '0x95ffa4'
+    yellow:  '0xffe9aa'
+    blue:    '0x91ddff'
+    magenta: '0xc991e1'
+    cyan:    '0xaaffe4'
+    white:   '0xf4f4f4'
+
+  bright:
+    black:   '0x000000'
+    red:     '0xff8080'
+    green:   '0x95ffa4'
+    yellow:  '0xffe9aa'
+    blue:    '0x91ddff'
+    magenta: '0xc991e1'
+    cyan:    '0xaaffe4'
+    white:   '0xf4f4f4'
+
+# }}} colors
+# {{{ mouse / cursor
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+
+  hide_when_typing: true
+
+  url:
+    launcher:
+      program: open
+      args: []
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: true
+
+dynamic_title: true
+
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+# }}} mouse / cursor
+# {{{ other
+
+live_config_reload: true
+enable_experimental_conpty_backend: false
+
+alt_send_esc: true
+
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+  color: "#ffffff"
+
+debug:
+  render_timer: false
+  persistent_logging: false
+  log_level: Warn
+  print_events: false
+  ref_test: false
+
+# }}} other
+# {{{ keybindings
+
+key_bindings:
+  - { key: H, mods: Command, action: None }
+  - { key: Key3, mods: Alt, chars: "\x23" }
+  - {
+      key: N,
+      mods: Command,
+      command: { program: "open", args: ["-n", "/Applications/Alacritty.app"] },
+    }
+  - { key: J, mods: Alt, chars: "\x1bj" }
+  - { key: K, mods: Alt, chars: "\x1bk" }
+  - { key: H, mods: Alt, chars: "\x1bh" }
+
+# }}} keybindings
