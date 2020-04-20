@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# Aliases.
+# Matthieu Petiteau <mpetiteau.pro@gmail.com>
+
+# {{{1 editing
+
+alias \
+  vi="nvim" \
+  vim="nvim" \
+  svi="sudo nvim" \
+  edit="$EDITOR" \
+  e="$EDITOR" \
+  vimdiff="nvim -d" \
+  vidiff="nvim -d" \
+  vie="$EDITOR $HOME/.config/nvim/init.vim" \
+  zshe="$EDITOR $HOME/.zshrc"
+
+# }}}1
+# {{{1 python
+
+alias \
+  python2="python2.7" \
+  python="python3.8" \
+  py="python3.8" \
+  pip="pip3.8" \
+  venv="python -m venv venv"
+
+# }}}1
+# {{{1 tmux
+
+alias  \
+  sp="tmux splitw -v"  \
+  vs="tmux splitw -h" \
+  tks="tmux kill-session -t" \
+  tksa="tmux kill-session -a" \
+  tls="tmux list-sessions"
+
+# }}}1
+# {{{1 move around
+
+alias \
+  dots="cd $HOME/dotfiles" \
+  c="clear" \
+  qq="exit" \
+  mkdir="mkdir -pv" \
+  p="pwd" \
+  ls="ls -pf" \
+  ls.="ls -d .*" \
+  ..="cd .." \
+  ...="cd ../.." \
+  ....="cd ../../.." \
+  .....="cd ../../../.."
+
+# }}}1
+# {{{1 git
+
+alias \
+  g="git" \
+  ga="git add" \
+  gs="git status" \
+  gc="git commit -v" \
+  gc!="git commit -v --amend" \
+  gcq="git commit -m 'Quick commit'" \
+  gcb="git checkout -b" \
+  gb="git branch" \
+  gp="git push" \
+  gd="git diff"
+
+# }}}1
+# {{{1 scripts
+
+alias \
+  trecord="asciinema rec" \
+  trecordgif="asciicast2gif" \
+  sk="sketch"
+
+# }}}1
+# {{{1 miscellaneous
+
+alias \
+  fonts="open $HOME/Library/Fonts" \
+  pubip="curl http://ipecho.net/plain; echo" \
+  myip="curl http://ipecho.net/plain; echo"
+
+# }}}1
