@@ -350,10 +350,6 @@ zstyle ':completion:*:rm:*' ignore-line-yes
 # }}}1 completion
 # {{{1 prompt
 
-# zsh completions
-COMPLETION_WAITING_DOTS=true
-DISABLE_UNTRACKED_FILES_DIRTY=true
-
 # zsh auto-suggestions colors
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
