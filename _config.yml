@@ -7,6 +7,8 @@
 
 links:
   __home__.zshrc: .zshrc
+  __home__.functions: .functions
+  __home__.aliases: .aliases
   __home__.tmux.conf: .tmux.conf
   __home__.gitconfig: .gitconfig
   __home__.config/starship.toml: starship.toml
