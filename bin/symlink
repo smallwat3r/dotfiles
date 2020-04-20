@@ -10,7 +10,7 @@ use YAML::XS qw(LoadFile);
 use File::Path qw(make_path);
 
 my $user = getpwuid($<);
-my $root = "/Users/${user}";
+my $home_dir = "/Users/${user}";
 
 my $current_dir = cwd;
 my $data = LoadFile("${current_dir}/config.yml");
@@ -20,8 +20,7 @@ print "\n\n==== Directories ====\n\n";
 my $dir;
 my @directories = @{$data->{directories}};
 foreach $dir (@directories) {
-    $dir =~ s/__root__/${root}\//ig;
-    print "$dir\n";
+    $dir =~ s/__home__/${home_dir}\//ig;
     if ( -d "$dir") {
         print "[.] $dir already exists.\n";
     } else {
@@ -37,7 +36,7 @@ my $value;
 my %links = %{$data->{links}};
 while (($key, $value) = each (%links)) {
     $value = $links{$key};
-    $key =~ s/__root__/${root}\//ig;
+    $key =~ s/__home__/${home_dir}\//ig;
     unlink($key);
     symlink("${current_dir}/${value}", $key);
     if ($key =~ m(^bin\/)) {

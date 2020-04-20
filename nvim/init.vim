@@ -49,16 +49,14 @@ call plug#end()
 "}}}2 vim-plug
 "{{{2 plugins configuration
 
-"{{{3 deoplete dictionary
-
-call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
-call deoplete#custom#source('dictionary', 'sorters', [])
-call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
-
-"}}}3
 "{{{3 deoplete
 
 let g:deoplete#enable_at_startup=1
+
+" Dictionaries
+call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
+call deoplete#custom#source('dictionary', 'sorters', [])
+call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
 
 "}}}3 deoplete
 "{{{3 neoformat

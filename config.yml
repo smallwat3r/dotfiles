@@ -1,42 +1,42 @@
 # Dotfile management file
 #
 # Notes:
-#     __root__ will be replaced by user root directory.
+#     __home__ will be replaced by user home directory.
 
 # {{{ non-standard directories to create
 
 directories:
-  - __root__.pip
-  - __root__.antigen
-  - __root__.config/alacritty
-  - __root__.config/nvim
-  - __root__.config/nvim/dict
-  - __root__.config/nvim/spell
-  - __root__.config/nvim/syntax
-  - __root__.config/zsh
+  - __home__.pip
+  - __home__.antigen
+  - __home__.config/alacritty
+  - __home__.config/nvim
+  - __home__.config/nvim/dict
+  - __home__.config/nvim/spell
+  - __home__.config/nvim/syntax
+  - __home__.config/zsh
 
 # }}} non-standard directories to create
 # {{{ symlinks
 
 links:
-  __root__.zshrc: zsh/zshrc
-  __root__.tmux.conf: tmux/tmux.conf
-  __root__.gitconfig: git/gitconfig
-  __root__.gitignore_global: git/gitignore_global
-  __root__.config/starship.toml: misc/prompt/starship.toml
-  __root__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
-  __root__.config/nvim/init.vim: nvim/init.vim
-  __root__.config/nvim/syntax/dockerfile.vim: nvim/syntax/dockerfile.vim
-  __root__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
-  __root__.config/nvim/spell/en.utf-8.add.spl: nvim/spell/en.utf-8.add.spl
-  __root__.config/nvim/dict/dockerfile.txt: nvim/dict/dockerfile.txt
-  __root__.config/nvim/dict/go.txt: nvim/dict/go.txt
-  __root__.config/nvim/dict/html.txt: nvim/dict/html.txt
-  __root__.config/nvim/dict/javascript.txt: nvim/dict/javascript.txt
-  __root__.config/nvim/dict/python.txt: nvim/dict/python.txt
-  __root__.config/nvim/dict/sql.txt: nvim/dict/sql.txt
-  __root__.pylintrc: misc/python/pylintrc
-  __root__.pip/pip.conf: misc/python/pip.conf
+  __home__.zshrc: zsh/zshrc
+  __home__.tmux.conf: tmux/tmux.conf
+  __home__.gitconfig: git/gitconfig
+  __home__.gitignore_global: git/gitignore_global
+  __home__.config/starship.toml: misc/prompt/starship.toml
+  __home__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+  __home__.config/nvim/init.vim: nvim/init.vim
+  __home__.config/nvim/syntax/dockerfile.vim: nvim/syntax/dockerfile.vim
+  __home__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
+  __home__.config/nvim/spell/en.utf-8.add.spl: nvim/spell/en.utf-8.add.spl
+  __home__.config/nvim/dict/dockerfile.txt: nvim/dict/dockerfile.txt
+  __home__.config/nvim/dict/go.txt: nvim/dict/go.txt
+  __home__.config/nvim/dict/html.txt: nvim/dict/html.txt
+  __home__.config/nvim/dict/javascript.txt: nvim/dict/javascript.txt
+  __home__.config/nvim/dict/python.txt: nvim/dict/python.txt
+  __home__.config/nvim/dict/sql.txt: nvim/dict/sql.txt
+  __home__.pylintrc: misc/python/pylintrc
+  __home__.pip/pip.conf: misc/python/pip.conf
   /usr/local/bin/localip: bin/localip
   /usr/local/bin/battery: bin/battery
   /usr/local/bin/tubestatus: bin/tubestatus/tubestatus
