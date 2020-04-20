@@ -12,8 +12,13 @@ alias \
   e="$EDITOR" \
   vimdiff="nvim -d" \
   vidiff="nvim -d" \
-  vie="$EDITOR $HOME/.config/nvim/init.vim" \
-  zshe="$EDITOR $HOME/.zshrc"
+  evim="$EDITOR $HOME/.config/nvim/init.vim" \
+  ezsh="$EDITOR $HOME/.zshrc" \
+  eali="$EDITOR $HOME/.aliases" \
+  efun="$EDITOR $HOME/.functions" \
+  etmu="$EDITOR $HOME/.tmux.conf" \
+  egit="$EDITOR $HOME/.gitconfig" \
+  eala="$EDITOR $HOME/.config/alacritty/alacritty.yml"
 
 # }}}1
 # {{{1 python
