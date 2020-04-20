@@ -5,7 +5,6 @@
 
 # {{{2 miscellaneous
 
-export ZSH="$HOME/.oh-my-zsh"
 export TERM="xterm-256color"
 export CLICOLOR=1
 export EDITOR="/usr/local/bin/nvim"
