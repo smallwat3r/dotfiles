@@ -268,6 +268,8 @@ augroup filetype_detect
   au BufRead,BufNewFile *.{yaml,yml} setf yaml
   au BufRead,BufNewFile gitconfig setf gitconfig
   au BufRead,BufNewFile *.sketch setf sketch
+  au BufRead,BufNewFile Dockerfile.* setf dockerfile
+  au BufRead,BufNewFile *.{dockerfile,Dockerfile} setf dockerfile
 augroup END
 
 augroup filetype_indentation
