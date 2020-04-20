@@ -398,6 +398,9 @@ nmap <silent>- :Vaffle<cr>
 " format file
 nmap ;f :Neoformat<cr>
 
+" git logs current file
+nmap <leader>gl :GV!<cr>
+
 " fzf
 nmap <leader>b :Buffers<cr>
 nmap <leader>f :Files<cr>

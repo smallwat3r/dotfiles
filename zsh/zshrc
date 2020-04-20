@@ -243,7 +243,7 @@ fbr() {
 # {{{2 fco FZF git commit browser
 
 fco() {
-  git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  git log --graph --color=always --format="%C(auto)%h%d %s / %C(white)%cr by %an" "$@" |
     fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort --bind \
       "ctrl-m:execute: (
         grep -o '[a-f0-9]\{7\}' |
@@ -329,7 +329,6 @@ dlog() {
 # {{{1 antigen
 
 source /usr/local/share/antigen/antigen.zsh
-antigen use oh-my-zsh
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -342,6 +341,9 @@ antigen apply
 # {{{1 prompt
 
 # zsh completions
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
 COMPLETION_WAITING_DOTS=true
 DISABLE_UNTRACKED_FILES_DIRTY=true
 
