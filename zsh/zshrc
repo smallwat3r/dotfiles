@@ -317,6 +317,13 @@ dsh() {
 }
 
 # }}}2
+# {{{2 dlog docker show logs
+
+dlog() {
+  docker logs $1 --follow
+}
+
+# }}}2
 
 # }}}1 functions
 # {{{1 antigen
