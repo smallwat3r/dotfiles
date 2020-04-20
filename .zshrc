@@ -90,7 +90,7 @@ alias \
   qq="exit" \
   mkdir="mkdir -pv" \
   p="pwd" \
-  ls="ls -p" \
+  ls="ls -pf" \
   ls.="ls -d .*" \
   ..="cd .." \
   ...="cd ../.." \
