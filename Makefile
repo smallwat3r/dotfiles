@@ -18,8 +18,8 @@ install-perl:
 	perl -MCPAN -e 'install YAML::XS'
 
 brew: install-perl
-	chmod +x ./bin/brew
-	./bin/brew
+	chmod +x ./bin/dots_setup/brew
+	./bin/dots_setup/brew
 
 macos-settings:
 	chmod +x ./bin/macos
@@ -39,5 +39,5 @@ install-go:
 	./misc/go/packages.sh
 
 symlink: install-perl
-	chmod +x ./bin/symlink
-	./bin/symlink
+	chmod +x ./bin/dots_setup/symlink
+	./bin/dots_setup/symlink
