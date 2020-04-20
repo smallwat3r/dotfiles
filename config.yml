@@ -21,8 +21,8 @@ links:
   __home__.config/nvim/dict/javascript.txt: .config/nvim/dict/javascript.txt
   __home__.config/nvim/dict/python.txt: .config/nvim/dict/python.txt
   __home__.config/nvim/dict/sql.txt: .config/nvim/dict/sql.txt
-  __home__/.pylintrc: misc/python/pylintrc
-  __home__.pip/pip.conf: misc/python/pip.conf
+  __home__/.pylintrc: .pylintrc
+  __home__.pip/pip.conf: .pip/pip.conf
   /usr/local/bin/localip: bin/localip
   /usr/local/bin/battery: bin/battery
   /usr/local/bin/tubestatus: bin/tubestatus/tubestatus
