@@ -144,6 +144,7 @@ augroup vaffle_mappings
   au FileType vaffle call s:customize_vaffle_mappings()
 augroup END
 
+let g:vaffle_show_hidden_files=1
 let g:vaffle_force_delete=1
 
 "}}}3 vaffle
