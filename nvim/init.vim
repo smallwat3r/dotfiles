@@ -566,7 +566,7 @@ function! CustomColors() abort
 
   hi Normal        ctermfg=15
   hi Number        ctermfg=15
-  hi String        ctermfg=194
+  hi String        ctermfg=180
   hi Folded        ctermfg=231  ctermbg=239
   hi MatchParen    ctermfg=231  ctermbg=199
   hi SignColumn    ctermfg=NONE ctermbg=NONE cterm=NONE
