@@ -14,11 +14,11 @@ my $data = LoadFile("${current_dir}/_config.yml");
 my $brew;
 my @brews=@{$data->{brew}};
 foreach $brew (@brews) {
-    system("sh", "${current_dir}/bin/dots_setup/install-brew.sh", $brew);
+    system("sh", "${current_dir}/bin/dots_setup/do-brew.sh", $brew);
 }
 
 my $cask;
 my @casks=@{$data->{cask}};
 foreach $cask (@casks) {
-    system("sh", "${current_dir}/bin/dots_setup/install-cask.sh", $cask);
+    system("sh", "${current_dir}/bin/dots_setup/do-cask.sh", $cask);
 }
