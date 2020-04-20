@@ -1,0 +1,4 @@
+# .sketchrc
+
+SKETCH_EDITOR=nvim
+SKETCH_ARCHIVES=$HOME/.local/share/sketch_archives

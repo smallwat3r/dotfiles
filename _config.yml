@@ -11,10 +11,11 @@ links:
   __home__.aliases: .aliases
   __home__.tmux.conf: .tmux.conf
   __home__.gitconfig: .gitconfig
-  __home__.config/starship.toml: starship/starship.toml
-  __home__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
-  __home__/.pylintrc: .pylintrc
+  __home__.pylintrc: .pylintrc
   __home__.pip/pip.conf: pip/pip.conf
+  __home__.config/starship.toml: starship/starship.toml
+  __home__.config/.sketchrc: .sketchrc
+  __home__.config/alacritty/alacritty.yml: alacritty/alacritty.yml
   __home__.config/nvim/init.vim: nvim/init.vim
   __home__.config/nvim/syntax/dockerfile.vim: nvim/syntax/dockerfile.vim
   __home__.config/nvim/spell/en.utf-8.add: nvim/spell/en.utf-8.add
