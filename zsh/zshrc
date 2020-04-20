@@ -50,76 +50,83 @@ export SAVEHIST=$HISTSIZE
 
 # {{{2 editing
 
-alias vi="nvim"
-alias vim="nvim"
-alias svi="sudo nvim"
-alias edit="$EDITOR"
-alias e="$EDITOR"
-alias vimdiff="nvim -d"
-alias vidiff="nvim -d"
-alias vie="$EDITOR $HOME/dotfiles/vim/init.vim"
-alias zshe="$EDITOR $HOME/dotfiles/zsh/zshrc"
+alias \
+  vi="nvim" \
+  vim="nvim" \
+  svi="sudo nvim" \
+  edit="$EDITOR" \
+  e="$EDITOR" \
+  vimdiff="nvim -d" \
+  vidiff="nvim -d" \
+  vie="$EDITOR $HOME/.config/nvim/init.vim" \
+  zshe="$EDITOR $HOME/.zshrc"
 
 # }}}2
 # {{{2 python
 
-alias python2="python2.7"
-alias python="python3.8"
-alias py="python3.8"
-alias pip="pip3.8"
-alias venv="python -m venv venv"
+alias \
+  python2="python2.7" \
+  python="python3.8" \
+  py="python3.8" \
+  pip="pip3.8" \
+  venv="python -m venv venv"
 
 # }}}2
 # {{{2 tmux
 
-alias sp="tmux splitw -v"
-alias vs="tmux splitw -h"
-alias tks="tmux kill-session -t"
-alias tksa="tmux kill-session -a"
-alias tls="tmux list-sessions"
+alias  \
+  sp="tmux splitw -v"  \
+  vs="tmux splitw -h" \
+  tks="tmux kill-session -t" \
+  tksa="tmux kill-session -a" \
+  tls="tmux list-sessions"
 
 # }}}2
 # {{{2 move around
 
-alias dots="cd $HOME/dotfiles"
-alias c="clear"
-alias qq="exit"
-alias mkdir="mkdir -pv"
-alias p="pwd"
-alias ls="ls -p"
-alias ls.="ls -d .*"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias \
+  dots="cd $HOME/dotfiles" \
+  c="clear" \
+  qq="exit" \
+  mkdir="mkdir -pv" \
+  p="pwd" \
+  ls="ls -p" \
+  ls.="ls -d .*" \
+  ..="cd .." \
+  ...="cd ../.." \
+  ....="cd ../../.." \
+  .....="cd ../../../.."
 
 # }}}2
 # {{{2 git
 
-alias g="git"
-alias ga="git add"
-alias gs="git status"
-alias gc="git commit -v"
-alias gc!="git commit -v --amend"
-alias gcq="git commit -m 'Quick commit'"
-alias gcb="git checkout -b"
-alias gb="git branch"
-alias gp="git push"
-alias gd="git diff"
+alias \
+  g="git" \
+  ga="git add" \
+  gs="git status" \
+  gc="git commit -v" \
+  gc!="git commit -v --amend" \
+  gcq="git commit -m 'Quick commit'" \
+  gcb="git checkout -b" \
+  gb="git branch" \
+  gp="git push" \
+  gd="git diff"
 
 # }}}2
 # {{{2 scripts
 
-alias trecord="asciinema rec"
-alias trecordgif="asciicast2gif"
-alias sk="sketch"
+alias \
+  trecord="asciinema rec" \
+  trecordgif="asciicast2gif" \
+  sk="sketch"
 
 # }}}2
 # {{{2 miscellaneous
 
-alias fonts="open $HOME/Library/Fonts"
-alias pubip="curl http://ipecho.net/plain; echo"
-alias myip="curl http://ipecho.net/plain; echo"
+alias \
+  fonts="open $HOME/Library/Fonts" \
+  pubip="curl http://ipecho.net/plain; echo" \
+  myip="curl http://ipecho.net/plain; echo"
 
 # }}}2
 
