@@ -1,8 +1,14 @@
 My config files for macOS.  
 
-This repo was created for my personal use and is updated very frequently, but feel free to pick whatever you want.  
+Dotfiles are managed from `_config.yml`
 
-Use at your own risks and please create back-ups of your current set-up if you intend to use the Makefile.  
+This repo was created for my personal use and is 
+updated very frequently, but feel free to pick 
+whatever you want.  
+
+Use at your own risks and please create back-ups 
+of your current set-up if you intend to use the 
+Makefile.  
 
 ```sh
 # Useful commands.
