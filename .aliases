@@ -49,9 +49,9 @@ alias \
   qq="exit" \
   mkdir="mkdir -pv" \
   p="pwd" \
-  l="ls -pf" \
-  ls="ls -p" \
-  ls.="ls -d .*" \
+  l="ls -pFf" \
+  ls="ls -pF" \
+  ls.="ls -pF -d .*" \
   ..="cd .." \
   ...="cd ../.." \
   ....="cd ../../.." \
