@@ -50,7 +50,7 @@ export SAVEHIST=$HISTSIZE
 source $HOME/.aliases
 source $HOME/.functions
 source /usr/local/share/antigen/antigen.zsh
-[[ -f ~/.fzf.zsh ]] && source $HOME/.fzf.zsh
+[[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 
 # }}}1 source
 # {{{1 antigen
@@ -62,28 +62,48 @@ antigen bundle softmoth/zsh-vim-mode
 antigen apply
 
 # }}}1 antigen
-# {{{1 completion
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion:*:rm:*' ignore-line-yes
-
-# }}}1 completion
-# {{{1 prompt
+# {{{1 general
 
 # zsh auto-suggestions colors
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+# set options
+setopt print_exit_value
+setopt correct
+setopt chase_links
+setopt auto_remove_slash
+setopt glob_dots
+
+# history options
+setopt append_history
+setopt share_history
+setopt inc_append_history
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt hist_ignore_all_dups
+
+# unset options
+unsetopt beep
+unsetopt list_beep
+unsetopt ignore_eof
+
 # starship prompt
 eval "$(starship init zsh)"
 
-# }}}1 prompt
+# }}}1 general
+# {{{1 completion
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache
+zstyle ':completion:*:rm:*' ignore-line-yes
+
+# }}}1 completion
 # {{{1 misc
 
 # fzf

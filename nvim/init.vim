@@ -228,10 +228,6 @@ set undodir=~/.config/nvim/undodir
 set undofile
 
 "}}}2 undo
-"{{{2 dicts
-
-
-"}}}2 dicts
 "{{{2 trim whitespaces
 
 " Remove trailing whitespaces

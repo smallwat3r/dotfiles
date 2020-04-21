@@ -1,3 +1,8 @@
+__defineGetter__
+__defineSetter__
+__lookupGetter__
+__lookupSetter__
+_content
 abs
 acceptCharset
 acos
@@ -784,8 +789,8 @@ matchesProperty
 matchesStrictComparable
 Math
 max
-maxBy
 MAX_VALUE
+maxBy
 mean
 meanBy
 memoize
@@ -798,8 +803,8 @@ metaKey
 method
 mimeTypes
 min
-minBy
 MIN_VALUE
+minBy
 mixin
 mousedown
 mouseenter
@@ -1424,8 +1429,3 @@ write
 writeln
 zipObject
 zipObjectDeep
-_content
-__defineGetter__
-__defineSetter__
-__lookupGetter__
-__lookupSetter__
