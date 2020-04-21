@@ -1,27 +1,20 @@
 [user]
   name = Matthieu Petiteau
   email = mpetiteau.pro@gmail.com
-
 [core]
   autocrlf = input
   editor = nvim
   pager = diff-so-fancy | less --tabs=4 -RFX
-
 [merge]
   tool = vimdiff
-
 [mergetool "vimdiff"]
   path = nvim
-
 [push]
   default = simple
-
 [url "https://github.com/"]
   insteadOf = gh:
-
 [url "https://gist.github.com/"]
   insteadOf = gist:
-
 [color]
   branch = auto
   diff = auto
@@ -29,13 +22,11 @@
   pager = true
   status = auto
   ui = true
-
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
   newNormal = green bold
   newHighlight = green bold 22
-
 [color "diff"]
   meta = 11
   frag = magenta bold
@@ -43,12 +34,10 @@
   old = red bold
   new = green bold
   whitespace = red reverse
-
 [color "branch"]
   current = yellow reverse
   local = yellow
   remote = green
-
 [color "status"]
   added = yellow reverse
   changed = green
