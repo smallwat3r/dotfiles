@@ -13,8 +13,8 @@ install-perl:
 	perl -MCPAN -e 'install YAML::XS'
 
 brew: install-perl
-	chmod +x ./_setup/brew
-	./_setup/brew
+	chmod +x ./_install/brew
+	./_install/brew
 
 zsh:
 	sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
@@ -39,5 +39,5 @@ install-go:
 	./misc/go/packages.sh
 
 symlink: install-perl
-	chmod +x ./_setup/symlink
-	./_setup/symlink
+	chmod +x ./_install/symlink
+	./_install/symlink
