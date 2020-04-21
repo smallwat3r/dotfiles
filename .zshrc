@@ -28,6 +28,7 @@ export PATH="$HOME/go/bin:$PATH"
 
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # }}}2
 # {{{2 homebrew

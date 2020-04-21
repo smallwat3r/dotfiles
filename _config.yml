@@ -12,6 +12,7 @@ links:
   __home__.tmux.conf: .tmux.conf
   __home__.gitconfig: .gitconfig
   __home__.pylintrc: .pylintrc
+  __home__.ripgreprc: .ripgreprc
   __home__.pip/pip.conf: pip/pip.conf
   __home__.config/starship.toml: starship/starship.toml
   __home__.config/.sketchrc: .sketchrc

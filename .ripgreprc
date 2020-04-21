@@ -1,0 +1,14 @@
+--max-columns=120
+--max-columns-preview
+
+--glob=!git/*
+--glob=!__pycache__/*
+
+--colors=line:fg:green
+--colors=path:fg:green
+--colors=match:bg:green
+--colors=match:fg:black
+--colors=match:style:nobold
+
+--smart-case
+--line-number
