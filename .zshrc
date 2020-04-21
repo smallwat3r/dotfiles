@@ -11,7 +11,6 @@ export EDITOR="/usr/local/bin/nvim"
 export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-export KEYTIMEOUT=1
 
 # }}}2
 # {{{2 paths
@@ -48,10 +47,10 @@ export SAVEHIST=$HISTSIZE
 # }}}1 env
 # {{{1 source
 
-source $HOME/.aliases
-source $HOME/.functions
-source /usr/local/share/antigen/antigen.zsh
-[[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -f "$HOME/.functions" ]] && source "$HOME/.functions"
+[[ -f "/usr/local/share/antigen/antigen.zsh" ]] && source "/usr/local/share/antigen/antigen.zsh"
+[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
 
 # }}}1 source
 # {{{1 antigen
@@ -69,7 +68,11 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+# colors
+autoload -U colors && colors
+
 # set options
+setopt AUTOCD
 setopt PRINT_EXIT_VALUE
 setopt CORRECT
 setopt CHASE_LINKS
@@ -109,10 +112,27 @@ case $- in *i*)
 esac
 
 # }}}1 general
+# {{{1 completion
+
+autoload -U compinit
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache
+zstyle ':completion:*:rm:*' ignore-line-yes
+
+zmodload zsh/complist
+compinit
+
+# }}}1 completion
 # {{{1 vim mode
 
 # activate vim-mode
 bindkey -v
+export KEYTIMEOUT=1
 
 # yank to clipboard
 vi_yank_pbcopy() {
@@ -128,20 +148,15 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
 # edit command in vim
 autoload edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd ';' edit-command-line
+bindkey '^e' edit-command-line
 
 # }}}1 vim mode
-# {{{1 completion
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache
-zstyle ':completion:*:rm:*' ignore-line-yes
-
-# }}}1 completion
