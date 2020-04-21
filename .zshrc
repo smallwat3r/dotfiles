@@ -119,9 +119,15 @@ vi_yank_pbcopy() {
 zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
 
+# mappings
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
+
+# edit command in vim
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd ';' edit-command-line
 
 # }}}1 vim mode
 # {{{1 completion
