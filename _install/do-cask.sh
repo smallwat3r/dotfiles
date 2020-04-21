@@ -12,6 +12,6 @@ brew ls --versions $1 >/dev/null &&
       printf "[.] $1 seems already installed in /Applications\n" ||
       {
         printf "[+] installing $1\n"
-        brew cask install $1
+        brew cask install $1 >/dev/null 2>&1
       }
   }

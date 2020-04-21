@@ -4,13 +4,14 @@ all:  install-homebrew allow-manpage-access install-perl brew \
 .PHONY: all
 
 install-homebrew:
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	ruby -e "$(curl -fsSL https;//raw.githubusercontent.com/Homebrew/install/master/install)" >/dev/null
 
 allow-manpage-access:
-	sudo chown -R "$(whoami)" /usr/local/share/man/man3
+	sudo chown -R "$(whoami)" /usr/local/share/man/man3 >/dev/null
 
 install-perl:
-	perl -MCPAN -e 'install YAML::XS'
+	perldoc -l YAML::XS >/dev/null || \
+		perl -MCPAN -e 'install YAML::XS' >/dev/null;
 
 brew: install-perl
 	chmod +x ./_install/brew

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Install python packages
 
+printf 'Installing python packages...\n'
+
 PYTHON_PACKAGES=(
   black
   pylint
@@ -9,4 +11,4 @@ PYTHON_PACKAGES=(
   pynvim
   bandit
 )
-pip3 install ${PYTHON_PACKAGES[@]}
+pip3 install ${PYTHON_PACKAGES[@]} >/dev/null 2>&1
