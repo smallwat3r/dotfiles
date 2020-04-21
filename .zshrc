@@ -38,7 +38,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # }}}2
 # {{{2 history
 
-export HISTFILE=~/.zsh_history
+export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
 
@@ -69,24 +69,27 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # set options
-setopt print_exit_value
-setopt correct
-setopt chase_links
-setopt auto_remove_slash
-setopt glob_dots
+setopt PRINT_EXIT_VALUE
+setopt CORRECT
+setopt CHASE_LINKS
+setopt AUTO_REMOVE_SLASH
+setopt GLOB_DOTS
 
 # history options
-setopt append_history
-setopt share_history
-setopt inc_append_history
-setopt hist_reduce_blanks
-setopt hist_verify
-setopt hist_ignore_all_dups
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt HIST_IGNORE_ALL_DUPS
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=999999999
+export SAVEHIST=$HISTSIZE
 
 # unset options
-unsetopt beep
-unsetopt list_beep
-unsetopt ignore_eof
+unsetopt BEEP
+unsetopt LIST_BEEP
+unsetopt IGNORE_EOF
 
 # starship prompt
 eval "$(starship init zsh)"

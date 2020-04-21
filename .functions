@@ -23,7 +23,7 @@ psg() {
 # {{{1 hs Ripgrep history
 
 hs() {
-  history |
+  history 1 |
     rg "$@"
 }
 
@@ -31,7 +31,7 @@ hs() {
 # {{{1 hsu Ripgrep history (unique matches)
 
 hsu() {
-  history |
+  history 1 |
     cut -c 8- |
     sort -u |
     rg "$@"
