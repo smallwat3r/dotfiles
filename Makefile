@@ -17,7 +17,6 @@ brew: install-perl
 	./_install/brew
 
 zsh:
-	sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 	echo 'export SHELL=$(which zsh)' >>~/.bash_profile
 	echo 'exec $(which zsh) -l' >>~/.bash_profile
 
