@@ -57,7 +57,6 @@ source /usr/local/share/antigen/antigen.zsh
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle softmoth/zsh-vim-mode
 
 antigen apply
 
@@ -92,20 +91,6 @@ unsetopt ignore_eof
 # starship prompt
 eval "$(starship init zsh)"
 
-# }}}1 general
-# {{{1 completion
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache
-zstyle ':completion:*:rm:*' ignore-line-yes
-
-# }}}1 completion
-# {{{1 misc
-
 # fzf
 export FZF_DEFAULT_OPTS="
 --height 96% --reverse --border
@@ -119,7 +104,13 @@ case $- in *i*)
   [[ -z $TMUX ]] && exec tmux
 esac
 
-# zsh vim yank to clipboard (using pbcopy)
+# }}}1 general
+# {{{1 vim mode
+
+# activate vim-mode
+bindkey -v
+
+# yank to clipboard
 vi_yank_pbcopy() {
   zle vi-yank
   echo "$CUTBUFFER" |
@@ -128,4 +119,19 @@ vi_yank_pbcopy() {
 zle -N vi_yank_pbcopy
 bindkey -M vicmd 'y' vi_yank_pbcopy
 
-# }}}1 misc
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+
+# }}}1 vim mode
+# {{{1 completion
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache
+zstyle ':completion:*:rm:*' ignore-line-yes
+
+# }}}1 completion
