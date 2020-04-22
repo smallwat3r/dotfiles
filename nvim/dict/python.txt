@@ -85,8 +85,8 @@ __subclasshook__
 __truediv__
 __version__
 __xor__
-abc
 ABC
+abc
 abort
 abs
 absolute_import
@@ -117,7 +117,7 @@ assertIn
 AssertionError
 assertIs
 assertIsInstance
-assertIsNot
+assertIsNone
 assertIsNotNone
 assertListEqual
 assertLogs
@@ -133,7 +133,6 @@ assertTrue
 assertTupleEqual
 assertWarns
 assertWarnsRegex
-async
 async
 atof
 atoi
@@ -780,8 +779,8 @@ SystemExit
 T_FMT
 T_FMT_AMPM
 TabError
-task
 Task
+task
 tasks
 tcgetpgrp
 tcsetpgrp

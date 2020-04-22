@@ -28,7 +28,9 @@ alias \
   python="python3.8" \
   py="python3.8" \
   pip="pip3.8" \
-  venv="python -m venv venv"
+  venv="python -m venv env" \
+  pif="pip3.8 freeze" \
+  pii="pip3.8 install"
 
 # }}}1
 # {{{1 tmux

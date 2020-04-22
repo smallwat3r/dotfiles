@@ -193,3 +193,10 @@ dlog() {
 }
 
 # }}}1
+# {{{1 drm docker delete image
+
+drm() {
+  docker rmi $1 -f
+}
+
+# }}}1
