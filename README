@@ -8,11 +8,14 @@ whatever you want.
 
 Use at your own risks and please create back-ups 
 of your current set-up if you intend to use the 
-Makefile.  
+Makefile.
 
-```sh
-# Main commands from Makefile:
+Main commands:
 
-make            # install everything
-make dotfiles   # do all symlinks + cask/brew installs
-```
+  make            # install everything
+  make dotfiles   # do all symlinks + cask/brew installs
+
+Note: on first time use, if on macos you might not 
+have make installed, run:  
+
+  ./bin/homebrew-install && brew install make
