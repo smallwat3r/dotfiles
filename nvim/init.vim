@@ -284,9 +284,10 @@ augroup END
 augroup filetype_specifics
   au!
   au FileType gitcommit setl spell
-  au FileType markdown setl spell list | let b:noStripWhitespace=1
+  au FileType markdown setl spell list cc=70 | let b:noStripWhitespace=1
   au FileType sketch setl spell
-  au FileType netrw setl bufhidden=delete
+  au FileType netrw setl bh=delete
+  au FileType text setl cc=70
 augroup END
 
 augroup filetype_dictionaries
@@ -345,6 +346,9 @@ nmap E $
 
 " navigate between brackets
 nmap <tab> %
+
+" go to last change
+nmap <leader><leader> `.
 
 " align paragraph
 nmap <leader>a =ip
