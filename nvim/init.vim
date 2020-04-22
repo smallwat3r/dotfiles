@@ -275,19 +275,19 @@ augroup END
 
 augroup filetype_indentation
   au!
-  au FileType make setl ts=8 sw=8 noet
-  au FileType go setl ts=8 sw=8 noet
-  au FileType python setl ts=4 sw=4 sts=4 et
-  au FileType perl setl ts=4 sw=4 sts=4 et
+  au FileType make      setl ts=8 sw=8 noet
+  au FileType go        setl ts=8 sw=8 noet
+  au FileType python    setl ts=4 sw=4 sts=4 et
+  au FileType perl      setl ts=4 sw=4 sts=4 et
 augroup END
 
 augroup filetype_specifics
   au!
   au FileType gitcommit setl spell
-  au FileType markdown setl spell list cc=70 | let b:noStripWhitespace=1
-  au FileType sketch setl spell
-  au FileType netrw setl bh=delete
-  au FileType text setl cc=70
+  au FileType markdown  setl spell list cc=70 | let b:noStripWhitespace=1
+  au FileType sketch    setl spell
+  au FileType netrw     setl bh=delete
+  au FileType text      setl cc=70
 augroup END
 
 augroup filetype_dictionaries
