@@ -11,7 +11,7 @@ of your current set-up if you intend to use the
 Makefile.  
 
 ```sh
-# Main commands:
+# Main commands from Makefile:
 
 make            # install everything
 make dotfiles   # do all symlinks + cask/brew installs
