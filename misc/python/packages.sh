@@ -4,6 +4,7 @@
 printf 'Installing python packages...\n'
 
 PYTHON_PACKAGES=(
+  yapf
   black
   pylint
   sqlparse

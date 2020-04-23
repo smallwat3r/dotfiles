@@ -65,16 +65,6 @@ let g:neoformat_basic_format_align=1
 let g:neoformat_basic_format_retab=1
 let g:neoformat_basic_format_trim=1
 
-let g:neoformat_python_black = {
-      \ 'exe': 'black',
-      \ 'stdin': 1,
-      \ 'args': ['-q', '-', '-l 80'],
-      \ }
-let g:neoformat_python_yapf = {
-      \ 'exe': 'yapf',
-      \ 'stdin': 1,
-      \ 'args': ['--style', 'pep8'],
-      \ }
 let g:neoformat_javascript_prettier = {
       \ 'exe': 'prettier',
       \ 'stdin': 1,
@@ -91,7 +81,7 @@ let g:neoformat_htmldjango_prettier = {
       \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
       \ }
 
-let g:neoformat_enabled_python = ['black', 'yapf']
+let g:neoformat_enabled_python = ['yapf']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
