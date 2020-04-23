@@ -1,12 +1,8 @@
-all: setup-homebrew dotfiles zsh-default python-pack npm-pack go-pack macos
+all: setup-homebrew dotfiles python-pack npm-pack go-pack macos
 .PHONY: all
 
 setup-homebrew:
 	./bin/homebrew-install
-
-zsh-default:
-	echo 'export SHELL=$(which zsh)' >>~/.bash_profile
-	echo 'exec $(which zsh) -l' >>~/.bash_profile
 
 macos:
 	./bin/macos

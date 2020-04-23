@@ -10,14 +10,21 @@ set-up if you intend to use the Makefile.
 
 Download:
 
-  git clone --recursive https://github.com/smallwat3r/dotfiles.git
+    git clone --recursive https://github.com/smallwat3r/dotfiles.git
 
 Main commands (from repo):
 
-  make            # install everything
-  make dotfiles   # do all symlinks + cask/brew installs
+    make            # install everything
+    make dotfiles   # do all symlinks + cask/brew installs
 
-Note: on first time use, if on macos you might not have `make`
-installed, run (from repo):
+Notes:
 
-  ./bin/homebrew-install && brew install make
+  Before first time use, if on macos you might not have `make`
+  installed, run (from repo):
+
+    ./bin/homebrew-install && brew install make
+
+  On first time use, after install, run the below command to make
+  ZSH the default shell (might ask password for user):
+
+     chsh -s $(which zsh)
