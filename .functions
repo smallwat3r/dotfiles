@@ -99,7 +99,7 @@ fbr() {
   )
   local branch=$(
     echo "$branches" |
-      fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m
+      fzf -d $((2 + $(wc -l <<<"$branches"))) +m
   )
   git checkout $(
     echo "$branch" |
@@ -187,17 +187,29 @@ dprune() {
 }
 
 # }}}1
-# {{{1 dsh docker exec
+# {{{1 dsh docker enter in shell by name
 
 dsh() {
-  docker exec -it $1 /bin/sh
+  local _name=$(
+    docker ps |
+      grep $1 |
+      sed 's/\|/ /' |
+      awk '{print $1}'
+  )
+  docker exec -it $_name /bin/sh
 }
 
 # }}}1
-# {{{1 dlog docker show logs
+# {{{1 dlog docker show logs by name
 
 dlog() {
-  docker logs $1 --follow
+  docker logs --follow \
+    $(
+      docker ps |
+        grep $1 |
+        sed 's/\|/ /' |
+        awk '{print $1}'
+    )
 }
 
 # }}}1
@@ -205,6 +217,19 @@ dlog() {
 
 drm() {
   docker rmi $1 -f
+}
+
+# }}}1
+# {{{1 dip docker ip by name
+
+dip() {
+  docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
+    $(
+      docker ps |
+        grep $1 |
+        sed 's/\|/ /' |
+        awk '{print $1}'
+    )
 }
 
 # }}}1
