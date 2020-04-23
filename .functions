@@ -2,7 +2,7 @@
 # Functions.
 # Matthieu Petiteau <mpetiteau.pro@gmail.com>
 
-# {{{1 pubkey copy public key to clipboard
+# {{{1 (pubkey) copy public key to clipboard
 
 pubkey() {
   more $HOME/.ssh/id_rsa.pub |
@@ -11,7 +11,7 @@ pubkey() {
 }
 
 # }}}1
-# {{{1 psg Ripgrep process
+# {{{1 (psg) Ripgrep process
 
 psg() {
   ps aux |
@@ -20,7 +20,7 @@ psg() {
 }
 
 # }}}1
-# {{{1 hs Ripgrep history
+# {{{1 (hs) Ripgrep history
 
 hs() {
   history 1 |
@@ -28,7 +28,7 @@ hs() {
 }
 
 # }}}1
-# {{{1 hsu Ripgrep history (unique matches)
+# {{{1 (hsu) Ripgrep history (unique matches)
 
 hsu() {
   history 1 |
@@ -38,28 +38,28 @@ hsu() {
 }
 
 # }}}1
-# {{{1 o open current dir or the one in args
+# {{{1 (o) open current dir or the one in args
 
 o() {
   [[ $# -eq 0 ]] && open . || open "$@"
 }
 
 # }}}1
-# {{{1 urls ripgrep - get urls
+# {{{1 (urls) ripgrep - get urls
 
 urls() {
   rg '[a-zA-Z]+://[-a-zA-Z0-9._+]+[-a-zA-Z0-9._+#=?&:;%/!~()]+'
 }
 
 # }}}1
-# {{{1 mkd create and enter directory
+# {{{1 (mkd) create and enter directory
 
 mkd() {
   mkdir -p "$@" && cd "$@"
 }
 
 # }}}1
-# {{{1 csvpreview preview csv files.
+# {{{1 (csvpreview) preview csv files.
 
 # source: http://stackoverflow.com/questions/1875305/command-line-csv-viewer
 csvpreview() {
@@ -69,7 +69,7 @@ csvpreview() {
 }
 
 # }}}1
-# {{{1 fe FZF select and open file
+# {{{1 (fe) FZF select and open file
 
 fe() {
   IFS=$'\n' files=($(fzf --query="$1" --preview "cat {}" --multi --select-1 --exit-0))
@@ -77,7 +77,7 @@ fe() {
 }
 
 # }}}1
-# {{{1 frg FZF fuzzy ripgrep
+# {{{1 (frg) FZF fuzzy ripgrep
 
 frg() {
   local file line
@@ -90,7 +90,7 @@ frg() {
 }
 
 # }}}1
-# {{{1 fbr FZF checkout git branch (including remote branches)
+# {{{1 (fbr) FZF checkout git branch (including remote branches)
 
 fbr() {
   local branches=$(
@@ -109,7 +109,7 @@ fbr() {
 }
 
 # }}}1
-# {{{1 fco FZF git commit browser
+# {{{1 (fco) FZF git commit browser
 
 fco() {
   git log --graph --color=always --format="%C(auto)%h%d %s / %C(white)%cr by %an" "$@" |
@@ -124,7 +124,7 @@ fco() {
 }
 
 # }}}1
-# {{{1 fda FZF Select a docker container to start and attach to
+# {{{1 (fda) FZF Select a docker container to start and attach to
 
 fda() {
   local cid=$(
@@ -137,7 +137,7 @@ fda() {
 }
 
 # }}}1
-# {{{1 fds FZF Select a running docker container to stop
+# {{{1 (fds) FZF Select a running docker container to stop
 
 fds() {
   local cid=$(
@@ -150,7 +150,7 @@ fds() {
 }
 
 # }}}1
-# {{{1 fdrm FZF Select a docker container to remove
+# {{{1 (fdrm) FZF Select a docker container to remove
 
 fdrm() {
   local cid=$(
@@ -163,7 +163,7 @@ fdrm() {
 }
 
 # }}}1
-# {{{1 dps shorten docker ps
+# {{{1 (dps) shorten docker ps
 
 dps() {
   docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
@@ -171,7 +171,7 @@ dps() {
 }
 
 # }}}1
-# {{{1 dpsa shorten docker ps -a
+# {{{1 (dpsa) shorten docker ps -a
 
 dpsa() {
   docker ps -a --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
@@ -179,7 +179,7 @@ dpsa() {
 }
 
 # }}}1
-# {{{1 dprune docker prune
+# {{{1 (dprune) docker prune
 
 dprune() {
   printf 'y' |
@@ -187,7 +187,7 @@ dprune() {
 }
 
 # }}}1
-# {{{1 dsh docker enter in shell by name
+# {{{1 (dsh) docker enter in shell by name
 
 dsh() {
   local _name=$(
@@ -200,7 +200,7 @@ dsh() {
 }
 
 # }}}1
-# {{{1 dlog docker show logs by name
+# {{{1 (dlog) docker show logs by name
 
 dlog() {
   docker logs --follow \
@@ -213,14 +213,14 @@ dlog() {
 }
 
 # }}}1
-# {{{1 drm docker delete image
+# {{{1 (drm) docker delete image
 
 drm() {
   docker rmi $1 -f
 }
 
 # }}}1
-# {{{1 dip docker ip by name
+# {{{1 (dip) docker ip by name
 
 dip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
