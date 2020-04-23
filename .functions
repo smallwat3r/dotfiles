@@ -192,11 +192,12 @@ dprune() {
 dsh() {
   local _name=$(
     docker ps |
-      grep $1 |
+      grep $1 2>/dev/null |
       sed 's/\|/ /' |
       awk '{print $1}'
   )
-  docker exec -it $_name /bin/sh
+  docker exec -it $_name /bin/sh 2>/dev/null ||
+    printf "Error using '$1'\n" >&2
 }
 
 # }}}1
@@ -206,10 +207,10 @@ dlog() {
   docker logs --follow \
     $(
       docker ps |
-        grep $1 |
+        grep $1 2>/dev/null |
         sed 's/\|/ /' |
         awk '{print $1}'
-    )
+    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
 }
 
 # }}}1
@@ -226,10 +227,10 @@ dip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
     $(
       docker ps |
-        grep $1 |
+        grep $1 2>/dev/null |
         sed 's/\|/ /' |
         awk '{print $1}'
-    )
+    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
 }
 
 # }}}1
