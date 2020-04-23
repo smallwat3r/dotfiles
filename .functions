@@ -124,9 +124,9 @@ fco() {
 }
 
 # }}}1
-# {{{1 dfa FZF Select a docker container to start and attach to
+# {{{1 fda FZF Select a docker container to start and attach to
 
-dfa() {
+fda() {
   local cid=$(
     docker ps -a |
       sed 1d |
@@ -137,9 +137,9 @@ dfa() {
 }
 
 # }}}1
-# {{{1 dfs FZF Select a running docker container to stop
+# {{{1 fds FZF Select a running docker container to stop
 
-dfs() {
+fds() {
   local cid=$(
     docker ps |
       sed 1d |
@@ -150,9 +150,9 @@ dfs() {
 }
 
 # }}}1
-# {{{1 dfrm FZF Select a docker container to remove
+# {{{1 fdrm FZF Select a docker container to remove
 
-dfrm() {
+fdrm() {
   local cid=$(
     docker ps -a |
       sed 1d |
@@ -167,6 +167,14 @@ dfrm() {
 
 dps() {
   docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
+    column -t -s '¬¬¬' -c $(tput cols)
+}
+
+# }}}1
+# {{{1 dpsa shorten docker ps -a
+
+dpsa() {
+  docker ps -a --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
     column -t -s '¬¬¬' -c $(tput cols)
 }
 
