@@ -193,8 +193,7 @@ dsh() {
   local _name=$(
     docker ps |
       grep $1 2>/dev/null |
-      sed 's/\|/ /' |
-      awk '{print $1}'
+      cut -d ' ' -f1
   )
   docker exec -it $_name /bin/sh 2>/dev/null ||
     printf "Error finding '$1'\n" >&2
@@ -208,8 +207,7 @@ dlog() {
     $(
       docker ps |
         grep $1 2>/dev/null |
-        sed 's/\|/ /' |
-        awk '{print $1}'
+        cut -d ' ' -f1
     ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
 }
 
@@ -228,8 +226,7 @@ dip() {
     $(
       docker ps |
         grep $1 2>/dev/null |
-        sed 's/\|/ /' |
-        awk '{print $1}'
+        cut -d ' ' -f1
     ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
 }
 

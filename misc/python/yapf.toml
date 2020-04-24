@@ -8,7 +8,6 @@
   column_limit = 80
   disable_ending_comma_heuristic = true
   each_dict_entry_on_separate_line = true
-  force_multiline_dict = false
   indent_dictionary_value = true
   indent_closing_brackets = false
   join_multiple_lines = false
