@@ -119,9 +119,9 @@ _install_cask() {
 }
 
 _symlink() {
+  printf "› Symlink $_source to $_destination ...\n"
   local _source=$1
   local _destination=${2/\~\//$HOME\/}
-  printf "› Symlink $_source to $_destination ...\n"
   mkdir -p $(dirname "$_destination")
   ln -sf "$(pwd)/$_source" $_destination
   if [[ $_source =~ ^bin.* ]]; then

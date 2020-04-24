@@ -5,25 +5,25 @@
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
 # Dark UI
-defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
 
-# Disable [ ] in mac terminal
+# Mac termimal
+# Disable [ ]
 defaults write com.apple.Terminal AutoMarkPromptLines -bool false
 defaults write com.apple.Terminal ShowLineMarks -bool false
-
-# Terminal scrollbars
-defaults write com.apple.Terminal AppleShowScrollBars -string "Automatic"
+# Scrollbars
+defaults write com.apple.Terminal AppleShowScrollBars -string 'Automatic'
 
 # Don't show recent
 defaults write com.apple.dock show-recents -bool false
 
-#disable special characters when holding keys
+# Disable special characters when holding keys
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
+# KeyRepeat
 # normal minimum is 15 (225 ms)
 defaults write -g InitialKeyRepeat -float 10.0
 defaults write NSGlobalDomain InitialKeyRepeat -float 10.0
-
 # normal minimum is 2 (30 ms)
 defaults write -g KeyRepeat -float 1.0
 defaults write NSGlobalDomain KeyRepeat -float 1.0
@@ -34,10 +34,10 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Disable auto capitalize
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 
-# Disable iuto period insert
+# Disable auto period insert
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
-# Disable ihe system alert sound
+# Disable the system alert sound
 defaults write NSGlobalDomain com.apple.sound.beep.volume -int 0
 defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
 
