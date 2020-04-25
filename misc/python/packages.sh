@@ -8,6 +8,7 @@ PYTHON_PACKAGES=(
   black
   pylint
   sqlparse
+  isort
   jsbeautifier
   pynvim
   bandit
