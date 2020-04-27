@@ -31,19 +31,19 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
+    family: Hack
     style: Regular
   italic:
-    family: Monaco
+    family: Hack
     style: Italic
   bold:
-    family: Monaco
+    family: Hack
     style: Regular # no bold fonts
 
   size: 12
 
   offset:
-    x: 1
+    x: 0
     y: 0
 
   glyph_offset:
@@ -51,6 +51,7 @@ font:
     y: 0
 
   use_thin_strokes: true
+  use_anti_alias: true
 
 # }}} font
 # {{{ colors
@@ -109,6 +110,7 @@ dynamic_title: true
 
 cursor:
   style: Block
+  vi_mode_style: Beam
   unfocused_hollow: true
 
 # }}} mouse / cursor
