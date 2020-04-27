@@ -66,7 +66,7 @@ antigen apply
 
 # zsh auto-suggestions colors
 ZSH_AUTOSUGGEST_USE_ASYNC=true
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=214"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # colors
@@ -102,7 +102,7 @@ eval "$(starship init zsh)"
 # fzf
 export FZF_DEFAULT_OPTS="
 --height 96% --reverse --border
---color fg:231,bg:0,hl:199,fg+:231,bg+:0,hl+:190
+--color fg:223,bg:234,hl:199,fg+:231,bg+:234,hl+:190
 --color info:189,prompt:161,spinner:201,pointer:201,marker:118
 "
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'

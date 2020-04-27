@@ -27,6 +27,7 @@ Plug 'simnalamburt/vim-mundo'          " Undo tree
 Plug 'zirrostig/vim-schlepp'           " Move visual blocks
 Plug 'cocopon/vaffle.vim'              " File browsing
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
+Plug 'morhetz/gruvbox'                 " Colorscheme
 
 " Syntax support
 Plug 'chrisbra/csv.vim'
@@ -562,30 +563,20 @@ function! CustomColors() abort
     syntax off
   endif
 
-  hi Normal        ctermfg=15
-  hi Number        ctermfg=15
-  hi String        ctermfg=180
-  hi Folded        ctermfg=231  ctermbg=239
+  hi Normal                     ctermbg=NONE
+  hi Folded                     ctermbg=NONE
   hi MatchParen    ctermfg=231  ctermbg=199
   hi SignColumn    ctermfg=NONE ctermbg=NONE cterm=NONE
   hi LineNr        ctermfg=239  ctermbg=NONE
-  hi VertSplit     ctermfg=240  ctermbg=NONE cterm=NONE
-  hi StatuslineNC  ctermfg=250  ctermbg=238  cterm=NONE
-  hi Search        ctermfg=232  ctermbg=226
-  hi IncSearch     ctermfg=232  ctermbg=231
-
-  hi DiffAdd       ctermfg=255  ctermbg=64
-  hi DiffChange    ctermfg=204  ctermbg=NONE cterm=NONE
-  hi DiffDelete    ctermfg=red  ctermbg=NONE cterm=NONE
-  hi DiffText      ctermfg=255  ctermbg=31
+  hi CursorLineNR               ctermbg=NONE
 
   " Custom statusline colors
   hi SLNormalColor   ctermbg=15  ctermfg=0
-  hi SLInsertColor   ctermbg=85  ctermfg=0
-  hi SLReplaceColor  ctermbg=180 ctermfg=0
+  hi SLInsertColor   ctermbg=142 ctermfg=0
+  hi SLReplaceColor  ctermbg=12  ctermfg=0
   hi SLVisualColor   ctermbg=208 ctermfg=0
-  hi SLCommandColor  ctermbg=204 ctermfg=0
-  hi SLTerminalColor ctermbg=228 ctermfg=0
+  hi SLCommandColor  ctermbg=175 ctermfg=0
+  hi SLTerminalColor ctermbg=214 ctermfg=0
 endfunction
 
 augroup custom_colors
@@ -593,7 +584,7 @@ augroup custom_colors
   au ColorScheme * call CustomColors()
 augroup END
 
-colo desert
+colo gruvbox
 
 "}}}2 colors
 
