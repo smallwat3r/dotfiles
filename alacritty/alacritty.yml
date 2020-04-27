@@ -31,16 +31,16 @@ scrolling:
 
 font:
   normal:
-    family: Hack
+    family: Monaco
     style: Regular
   italic:
-    family: Hack
+    family: Monaco
     style: Italic
   bold:
-    family: Hack
+    family: Monaco
     style: Regular # no bold fonts
 
-  size: 12
+  size: 13.5
 
   offset:
     x: 0
