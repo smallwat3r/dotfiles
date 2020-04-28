@@ -27,7 +27,7 @@ Plug 'simnalamburt/vim-mundo'          " Undo tree
 Plug 'zirrostig/vim-schlepp'           " Move visual blocks
 Plug 'cocopon/vaffle.vim'              " File browsing
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
-Plug 'icymind/NeoSolarized'
+Plug 'icymind/NeoSolarized'            " Colorscheme
 
 " Syntax support
 Plug 'chrisbra/csv.vim'
