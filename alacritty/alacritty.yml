@@ -31,13 +31,13 @@ scrolling:
 
 font:
   normal:
-    family: Menlo
+    family: Meslo LG S DZ
     style: Regular
   italic:
-    family: Menlo
+    family: Meslo LG S DZ
     style: Italic
   bold:
-    family: Menlo
+    family: Meslo LG S DZ
     style: Regular # no bold fonts
 
   size: 13.5
