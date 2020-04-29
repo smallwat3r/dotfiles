@@ -32,6 +32,7 @@ Plug 'icymind/NeoSolarized'            " Colorscheme
 " Syntax support
 Plug 'chrisbra/csv.vim'
 Plug 'cespare/vim-toml'
+Plug 'vim-scripts/applescript.vim'
 Plug 'chr4/nginx.vim'
 
 " Fuzzy finder
@@ -262,6 +263,7 @@ augroup filetype_detect
   au BufRead,BufNewFile *.sketch setf sketch
   au BufRead,BufNewFile Dockerfile.* setf dockerfile
   au BufRead,BufNewFile *.{dockerfile,Dockerfile} setf dockerfile
+  au BufRead,BufNewFile *.applescript setf applescript
 augroup END
 
 augroup filetype_indentation
@@ -582,7 +584,6 @@ augroup custom_colors
   au!
   au ColorScheme * call CustomColors()
 augroup END
-
 colo NeoSolarized
 
 "}}}2 colors
