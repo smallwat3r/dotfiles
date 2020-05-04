@@ -11,7 +11,7 @@
   indent_dictionary_value = true
   indent_closing_brackets = false
   join_multiple_lines = false
-  spaces_before_comment=15, 20
+  spaces_before_comment = 2
   split_all_comma_separated_values = false
   split_all_top_level_comma_separated_values = true
   split_before_dict_set_generator = true

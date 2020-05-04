@@ -541,6 +541,11 @@ iab @-, -----------------------------------------------------------------
 iab @#, #################################################################
 iab @*, *****************************************************************
 
+" Annoying words
+iab widht width
+iab lenght length
+iab strenght strength
+
 "}}}2 insert mode abbreviations
 
 "}}}1 mappings / keybindings
