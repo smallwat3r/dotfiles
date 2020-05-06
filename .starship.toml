@@ -1,7 +1,5 @@
 add_newline = false
 prompt_order=["directory","git_commit","git_branch","git_status","cmd_duration","character"]
-[package]
-  disabled = true
 [character]
   symbol = "%%"
   style_success = "white"
