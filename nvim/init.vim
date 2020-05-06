@@ -70,12 +70,12 @@ let g:neoformat_basic_format_trim=1
 let g:neoformat_javascript_prettier = {
       \ 'exe': 'prettier',
       \ 'stdin': 1,
-      \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
+      \ 'args': ['--stdin', '--print-width 80', '--arrow-parens avoid', '--stdin-filepath', '"%:p"'],
       \ }
 let g:neoformat_html_prettier = {
       \ 'exe': 'prettier',
       \ 'stdin': 1,
-      \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
+      \ 'args': ['--stdin', '--print-width 80', '--stdin-filepath', '"%:p"'],
       \ }
 let g:neoformat_htmldjango_prettier = {
       \ 'exe': 'prettier',

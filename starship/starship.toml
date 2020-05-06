@@ -8,7 +8,7 @@ prompt_order=["directory","git_commit","git_branch","git_status","python","cmd_d
   error_symbol = "%%"
   use_symbol_for_status = true
 [directory]
-  truncation_length = 1
+  truncation_length = 2
   style = "white"
 [git_branch]
   symbol = ""

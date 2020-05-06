@@ -38,7 +38,7 @@ font:
     style: Italic
   bold:
     family: Meslo LG S DZ
-    style: Regular # no bold fonts
+    style: Bold
 
   size: 13.5
 
