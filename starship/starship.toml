@@ -1,5 +1,7 @@
 add_newline = false
-prompt_order=["directory","git_commit","git_branch","git_status","python","cmd_duration","character"]
+prompt_order=["directory","git_commit","git_branch","git_status","cmd_duration","character"]
+[package]
+  disabled = true
 [character]
   symbol = "%%"
   style_success = "white"
@@ -38,7 +40,4 @@ prompt_order=["directory","git_commit","git_branch","git_status","python","cmd_d
   renamed_count.enabled = true
 [cmd_duration]
   min_time = 500
-  style = "white"
-[python]
-  symbol = "py "
   style = "white"

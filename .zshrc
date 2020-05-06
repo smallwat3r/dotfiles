@@ -100,6 +100,14 @@ unsetopt IGNORE_EOF
 # starship prompt
 eval "$(starship init zsh)"
 
+# virtual env indicator (overwrite)
+VIRTUAL_ENV_DISABLE_PROMPT=false
+_is_venv() {
+  [[ $VIRTUAL_ENV ]] && echo "(${VIRTUAL_ENV##*/})"
+}
+setopt PROMPT_SUBST
+RPS1='$(_is_venv)'
+
 # fzf
 export FZF_DEFAULT_OPTS='
   --height 96% --reverse --border
