@@ -98,6 +98,7 @@ unsetopt LIST_BEEP
 unsetopt IGNORE_EOF
 
 # starship prompt
+export STARSHIP_CONFIG=~/.config/.starship.toml
 eval "$(starship init zsh)"
 
 # virtual env indicator (overwrite)

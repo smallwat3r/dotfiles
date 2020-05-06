@@ -26,7 +26,7 @@ _SYMLINK=(
   'misc/python/yapf.toml        : ~/.config/yapf/style'
   '.ripgreprc                   : ~/.ripgreprc'
   'pip/pip.conf                 : ~/.pip/pip.conf'
-  'starship/starship.toml       : ~/.config/starship.toml'
+  '.starship.toml               : ~/.config/.starship.toml'
   '.sketchrc                    : ~/.config/.sketchrc'
   'alacritty/alacritty.yml      : ~/.config/alacritty/alacritty.yml'
   'nvim/init.vim                : ~/.config/nvim/init.vim'
