@@ -11,18 +11,18 @@ frequently, but feel free to pick whatever you want.
 Use at your own risks and please create back-ups of your current
 set-up if you intend to use the Makefile.  
 
-Download:  
+**Download**  
 ```sh
 git clone --recursive https://github.com/smallwat3r/dotfiles.git
 ```
 
-Main commands (from repo):  
+**Main commands (from Makefile)**
 ```sh
 make            # install everything
 make dotfiles   # do all symlinks + cask/brew installs
 ```
 
-Notes:  
+**Notes**
 
 Before first time use, if on macos you might not have `make`
 installed, run (from repo):  
