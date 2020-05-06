@@ -45,6 +45,7 @@ _SYMLINK=(
   'bin/synonym/synonym          : /usr/local/bin/synonym'
   'bin/sketch/sketch            : /usr/local/bin/sketch'
   'bin/extract                  : /usr/local/bin/extract'
+  'bin/is_venv                  : /usr/local/bin/is_venv'
 )
 
 _BREW=(
