@@ -3,17 +3,12 @@
 
 # {{{1 env
 
-# {{{2 paths
-
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$HOME/go/bin:$PATH"
-
-# }}}2
-# {{{2 miscellaneous
 
 export TERM="xterm-256color"
 export CLICOLOR=1
@@ -22,28 +17,6 @@ export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export PER5LIB="$HOME/lib/perl5"
-
-# }}}2
-# {{{2 grep
-
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='0;30;42'
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-
-# }}}2
-# {{{2 homebrew
-
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_AUTO_UPDATE=1
-
-# }}}2
-# {{{2 history
-
-export HISTFILE="$HOME/.zsh_history"
-export HISTSIZE=999999999
-export SAVEHIST=$HISTSIZE
-
-# }}}2
 
 # }}}1 env
 # {{{1 source
@@ -66,9 +39,9 @@ antigen apply
 # {{{1 general
 
 # zsh auto-suggestions colors
-ZSH_AUTOSUGGEST_USE_ASYNC=true
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=37"
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=37"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # colors
 autoload -U colors && colors
@@ -88,9 +61,19 @@ setopt INC_APPEND_HISTORY
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt HIST_IGNORE_ALL_DUPS
+
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
+
+# homebrew
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# grep / ripgrep
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='0;30;42'
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # unset options
 unsetopt BEEP
@@ -98,11 +81,11 @@ unsetopt LIST_BEEP
 unsetopt IGNORE_EOF
 
 # starship prompt
-export STARSHIP_CONFIG=~/.config/.starship.toml
+export STARSHIP_CONFIG="$HOME/.config/.starship.toml"
 eval "$(starship init zsh)"
 
 # virtual env indicator (overwrite)
-VIRTUAL_ENV_DISABLE_PROMPT=false
+export VIRTUAL_ENV_DISABLE_PROMPT=false
 _is_venv() {
   [[ $VIRTUAL_ENV ]] && echo "(${VIRTUAL_ENV##*/})"
 }
@@ -146,13 +129,13 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # yank to clipboard
-vi_yank_pbcopy() {
+_vi_yank_pbcopy() {
   zle vi-yank
   echo "$CUTBUFFER" |
     pbcopy
 }
-zle -N vi_yank_pbcopy
-bindkey -M vicmd 'y' vi_yank_pbcopy
+zle -N _vi_yank_pbcopy
+bindkey -M vicmd 'y' _vi_yank_pbcopy
 
 # mappings
 bindkey '^?' backward-delete-char
