@@ -31,16 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: Menlo
-    style: Regular
-  italic:
-    family: Menlo
-    style: Italic
-  bold:
-    family: Menlo
-    style: Bold
+    family: Iosevka SS01 Extended
+    style: Extended
 
-  size: 13.5
+  size: 14
 
   offset:
     x: 0
@@ -51,7 +45,6 @@ font:
     y: 0
 
   use_thin_strokes: true
-  use_anti_alias: true
 
 # }}} font
 # {{{ colors
@@ -61,7 +54,7 @@ background_opacity: 0.87
 colors:
 
   primary:
-    background: '#002b36' # base03
+    background: '#001c24' # base03
     foreground: '#839496' # base0
 
   cursor:

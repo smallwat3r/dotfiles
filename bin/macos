@@ -28,6 +28,9 @@ defaults write NSGlobalDomain InitialKeyRepeat -float 10.0
 defaults write -g KeyRepeat -float 1.0
 defaults write NSGlobalDomain KeyRepeat -float 1.0
 
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
