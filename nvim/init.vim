@@ -572,25 +572,27 @@ function! CustomColors() abort
     syntax off
   endif
 
-  hi Normal                     ctermbg=NONE guibg=NONE
-  hi Folded                     ctermbg=NONE guibg=NONE
-  hi MatchParen    ctermfg=231  ctermbg=166
-  hi LineNr        ctermfg=239  ctermbg=NONE guibg=NONE
-  hi CursorLineNR               ctermbg=NONE guibg=NONE
+  hi Normal                       ctermbg=NONE guibg=NONE
+  hi Comment         cterm=italic
+  hi Folded                       ctermbg=NONE guibg=NONE
+  hi MatchParen      ctermfg=231  ctermbg=166
+  hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
+  hi CursorLineNR                 ctermbg=NONE guibg=NONE
 
   " Custom statusline colors
-  hi SLNormalColor   ctermbg=15  ctermfg=0 guibg=#657b83
-  hi SLInsertColor   ctermbg=64  ctermfg=0 guibg=#5f8700
-  hi SLReplaceColor  ctermbg=33  ctermfg=0 guibg=#268bd2
-  hi SLVisualColor   ctermbg=166 ctermfg=0 guibg=#cb4b16
-  hi SLCommandColor  ctermbg=125 ctermfg=0 guibg=#d33682
-  hi SLTerminalColor ctermbg=136 ctermfg=0 guibg=#b58900
+  hi SLNormalColor   ctermbg=15   ctermfg=0    guibg=#657b83
+  hi SLInsertColor   ctermbg=64   ctermfg=0    guibg=#5f8700
+  hi SLReplaceColor  ctermbg=33   ctermfg=0    guibg=#268bd2
+  hi SLVisualColor   ctermbg=166  ctermfg=0    guibg=#cb4b16
+  hi SLCommandColor  ctermbg=125  ctermfg=0    guibg=#d33682
+  hi SLTerminalColor ctermbg=136  ctermfg=0    guibg=#b58900
 endfunction
 
 augroup custom_colors
   au!
   au ColorScheme * call CustomColors()
 augroup END
+
 colo NeoSolarized
 
 "}}}2 colors
