@@ -34,6 +34,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'cespare/vim-toml'
 Plug 'vim-scripts/applescript.vim'
 Plug 'chr4/nginx.vim'
+Plug 'MTDL9/vim-log-highlighting'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -264,6 +265,7 @@ augroup filetype_detect
   au BufRead,BufNewFile Dockerfile.* setf dockerfile
   au BufRead,BufNewFile *.{dockerfile,Dockerfile} setf dockerfile
   au BufRead,BufNewFile *.applescript setf applescript
+  au BufRead,BufNewFile *.log setf log
 augroup END
 
 augroup filetype_indentation
