@@ -603,7 +603,7 @@ colo NeoSolarized
 " Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
-    return ' (on ' . fugitive#head() . ')'
+    return '(' . fugitive#head() . ')'
   endif
   return ''
 endfunction
@@ -631,7 +631,7 @@ function! StatusLineFmt(active)
   let sl = ''
   if a:active
     let sl.=ColorMode()
-    let sl.='%{GitInfo()}'
+    let sl.=' %{GitInfo()}'
   endif
   let sl.=' %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
   let sl.=' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
