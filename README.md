@@ -3,6 +3,9 @@
 
 ---
 
+Screenshot from 08/05/20
+![dotfiles](https://i.imgur.com/Cw2pObi.png)
+
 Dotfiles are managed from the `install` script.  
 
 This repo was created for my personal use and is updated very
