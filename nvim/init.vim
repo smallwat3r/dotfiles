@@ -27,6 +27,8 @@ Plug 'simnalamburt/vim-mundo'          " Undo tree
 Plug 'zirrostig/vim-schlepp'           " Move visual blocks
 Plug 'cocopon/vaffle.vim'              " File browsing
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
+Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
+Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'icymind/NeoSolarized'            " Colorscheme
 
 " Syntax support
@@ -487,19 +489,6 @@ imap 1h <esc>I
 imap 1j <esc>o
 imap 1k <esc>O
 imap 1l <esc>A
-
-" auto close matching pairs
-imap '<tab> ''<left>
-imap `<tab> ``<left>
-imap "<tab> ""<left>
-imap (<tab> ()<left>
-imap [<tab> []<left>
-imap {<tab> {}<left>
-
-" auto close matching pairs on multi lines
-imap {<cr> {<cr>}<esc>ko<tab>
-imap [<cr> [<cr>]<esc>ko<tab>
-imap (<cr> (<cr>)<esc>ko<tab>
 
 " crtl + hjkl cursor movement on insert mode
 imap <C-h> <left>
