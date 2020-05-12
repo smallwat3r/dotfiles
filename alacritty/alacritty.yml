@@ -31,9 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: Menlo
+    # family: Menlo
+    family: Iosevka SS07 Extended
 
-  size: 13.5
+  size: 14
 
   offset:
     x: 0

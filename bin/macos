@@ -3,6 +3,7 @@
 
 # Font smoothing
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+defaults write -g AppleFontSmoothing -int 0
 
 # Dark UI
 defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
