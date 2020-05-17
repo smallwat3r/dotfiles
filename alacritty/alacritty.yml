@@ -50,37 +50,34 @@ font:
 
 background_opacity: 0.87
 
+# Colors (Wombat)
 colors:
-
+  # Default colors
   primary:
-    background: '#001c24' # base03
-    foreground: '#839496' # base0
-
-  cursor:
-    text:   '#002b36' # base03
-    cursor: '#839496' # base0
+    background: '#1f1f1f'
+    foreground: '#e5e1d8'
 
   # Normal colors
   normal:
-    black:   '#073642' # base02
-    red:     '#dc322f' # red
-    green:   '#859900' # green
-    yellow:  '#b58900' # yellow
-    blue:    '#268bd2' # blue
-    magenta: '#d33682' # magenta
-    cyan:    '#2aa198' # cyan
-    white:   '#839496' # base0
+    black:   '#000000'
+    red:     '#f7786d'
+    green:   '#bde97c'
+    yellow:  '#efdfac'
+    blue:    '#6ebaf8'
+    magenta: '#ef88ff'
+    cyan:    '#90fdf8'
+    white:   '#e5e1d8'
 
   # Bright colors
   bright:
-    black:   '#586e75' # base01
-    red:     '#cb4b16' # orange
-    green:   '#586e75' # base01
-    yellow:  '#657b83' # base00
-    blue:    '#839496' # base0
-    magenta: '#6c71c4' # violet
-    cyan:    '#93a1a1' # base1
-    white:   '#839496' # base0
+    black:   '#b4b4b4'
+    red:     '#f99f92'
+    green:   '#e3f7a1'
+    yellow:  '#f2e9bf'
+    blue:    '#b3d2ff'
+    magenta: '#e5bdff'
+    cyan:    '#c2fefa'
+    white:   '#ffffff'
 
 # }}} colors
 # {{{ mouse / cursor
