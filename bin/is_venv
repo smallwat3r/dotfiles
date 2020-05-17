@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Virtual env indicator
 
 if [[ $VIRTUAL_ENV ]]; then
   echo "(${VIRTUAL_ENV##*/}) "

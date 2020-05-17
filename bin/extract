@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # File extractor.
+
 set -e
 
 if [ -f $1 ]; then
