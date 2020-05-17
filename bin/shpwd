@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-echo `echo ~+ | sed -e "s;\(/.\)[^/]*;\1;g"`/${PWD##*/}
+_shpwd=$(
+  echo ~+ |
+    sed "s;$HOME;~;" |
+    sed 's;\(/.\)[^/]*;\1;g' |
+    sed 's/.$//'
+)${PWD##*/}
+[[ $PWD == $HOME ]] && echo '~' || echo $_shpwd

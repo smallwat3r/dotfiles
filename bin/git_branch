@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+_dirty() {
+  [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] &&
+    echo "*"
+}
+
+git branch --no-color 2>/dev/null |
+  sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(_dirty))/"

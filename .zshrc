@@ -80,17 +80,31 @@ unsetopt BEEP
 unsetopt LIST_BEEP
 unsetopt IGNORE_EOF
 
-# starship prompt
-export STARSHIP_CONFIG="$HOME/.config/.starship.toml"
-eval "$(starship init zsh)"
+# prompt
+setopt PROMPT_SUBST
+PROMPT='%# '
 
 # virtual env indicator (overwrite)
 export VIRTUAL_ENV_DISABLE_PROMPT=false
 _is_venv() {
   [[ $VIRTUAL_ENV ]] && echo "(${VIRTUAL_ENV##*/})"
 }
-setopt PROMPT_SUBST
-RPS1='$(_is_venv)'
+RPROMPT='$(_is_venv)'
+
+# launch tmux on start
+case $- in *i*)
+  [[ -z $TMUX ]] && exec tmux
+esac
+
+precmd() {
+  # Use tmux pane title as prompt.
+  local _cur_pane=$(
+    tmux list-panes |
+      grep "active" |
+      cut -d ':' -f 1
+  )
+  tmux select-pane -t $_cur_pane -T "$(/usr/local/bin/shpwd) $(/usr/local/bin/git_branch)"
+}
 
 # fzf
 export FZF_DEFAULT_OPTS='
@@ -99,11 +113,6 @@ export FZF_DEFAULT_OPTS='
   --color info:136,prompt:37,spinner:136,pointer:230,marker:230
 '
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
-
-# launch tmux on start
-case $- in *i*)
-  [[ -z $TMUX ]] && exec tmux
-esac
 
 # }}}1 general
 # {{{1 completion

@@ -31,10 +31,9 @@ scrolling:
 
 font:
   normal:
-    # family: Menlo
-    family: Iosevka SS07 Extended
+    family: Meslo LG S DZ
 
-  size: 14
+  size: 13.5
 
   offset:
     x: 0
