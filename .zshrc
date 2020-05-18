@@ -32,7 +32,6 @@ export PER5LIB="$HOME/lib/perl5"
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle hlissner/zsh-autopair
-antigen bundle softmoth/zsh-vim-mode
 
 antigen apply
 
