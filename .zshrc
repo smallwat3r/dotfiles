@@ -32,6 +32,7 @@ export PER5LIB="$HOME/lib/perl5"
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle hlissner/zsh-autopair
+antigen bundle softmoth/zsh-vim-mode
 
 antigen apply
 
@@ -80,32 +81,6 @@ unsetopt BEEP
 unsetopt LIST_BEEP
 unsetopt IGNORE_EOF
 
-# prompt
-setopt PROMPT_SUBST
-PROMPT='%# '
-
-# virtual env indicator (overwrite)
-export VIRTUAL_ENV_DISABLE_PROMPT=false
-_is_venv() {
-  [[ $VIRTUAL_ENV ]] && echo "(${VIRTUAL_ENV##*/})"
-}
-RPROMPT='$(_is_venv)'
-
-# launch tmux on start
-case $- in *i*)
-  [[ -z $TMUX ]] && exec tmux
-esac
-
-precmd() {
-  # Use tmux pane title as prompt.
-  local _cur_pane=$(
-    tmux list-panes |
-      grep "active" |
-      cut -d ':' -f 1
-  )
-  tmux select-pane -t $_cur_pane -T "$(/usr/local/bin/shpwd) $(/usr/local/bin/git_branch)"
-}
-
 # fzf
 export FZF_DEFAULT_OPTS='
   --height 96% --reverse --border
@@ -115,6 +90,51 @@ export FZF_DEFAULT_OPTS='
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
 
 # }}}1 general
+# {{{1 prompt
+
+# launch tmux on start
+case $- in *i*)
+  [[ -z $TMUX ]] && exec tmux
+esac
+
+setopt PROMPT_SUBST
+
+# venv
+export VIRTUAL_ENV_DISABLE_PROMPT=false
+_is_venv() {
+  [[ $VIRTUAL_ENV ]] && echo "(${VIRTUAL_ENV##*/}) "
+}
+
+# zsh vim mode
+vim_ins_mode='%#'
+vim_cmd_mode=';;'
+vim_mode=$vim_ins_mode
+
+function zle-keymap-select {
+  vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+
+function zle-line-finish {
+  vim_mode=$vim_ins_mode
+}
+zle -N zle-line-finish
+
+# actual prompt
+PROMPT='$(_is_venv)${vim_mode} '
+
+# Use tmux pane title as prompt.
+precmd() {
+  local _cur_pane=$(
+    tmux list-panes |
+      grep "active" |
+      cut -d ':' -f 1
+  )
+  tmux select-pane -t $_cur_pane -T "$(/usr/local/bin/shpwd) $(/usr/local/bin/git_branch)"
+}
+
+# }}}1 prompt
 # {{{1 completion
 
 autoload -U compinit
