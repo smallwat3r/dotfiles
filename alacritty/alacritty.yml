@@ -32,6 +32,16 @@ scrolling:
 font:
   normal:
     family: Menlo
+    style: Regular
+
+  # italic:
+  #   family: Menlo
+  #   style: Italic
+
+  # no bold fonts
+  bold:
+    family: Menlo
+    style: Regular
 
   size: 13.5
 
@@ -50,11 +60,11 @@ font:
 
 background_opacity: 0.87
 
-# Colors (Wombat)
+# Colors
 colors:
   # Default colors
   primary:
-    background: '#1f1f1f'
+    background: '#101010'
     foreground: '#e5e1d8'
 
   # Normal colors
