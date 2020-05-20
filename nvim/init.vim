@@ -563,6 +563,8 @@ function! CustomColors() abort
     syntax off
   endif
 
+  hi Normal                       ctermbg=NONE
+  hi Comment                      ctermbg=NONE
   hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
   hi MatchParen      ctermfg=231  ctermbg=166
   hi CursorLineNR                 ctermbg=NONE guibg=NONE
