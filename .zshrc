@@ -49,7 +49,6 @@ autoload -U colors && colors
 # set options
 setopt AUTOCD
 setopt PRINT_EXIT_VALUE
-setopt CORRECT
 setopt CHASE_LINKS
 setopt AUTO_REMOVE_SLASH
 setopt GLOB_DOTS
