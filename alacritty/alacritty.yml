@@ -31,7 +31,14 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
+    family: Menlo
+    style: Regular
+  italic:
+    family: Menlo
+    style: Italic
+  bold:
+    family: Menlo
+    style: Regular  # no bold
 
   size: 13.5
 
