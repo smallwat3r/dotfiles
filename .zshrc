@@ -100,7 +100,7 @@ setopt PROMPT_SUBST
 # venv
 export VIRTUAL_ENV_DISABLE_PROMPT=false
 _is_venv() {
-  [[ $VIRTUAL_ENV ]] && echo "(${VIRTUAL_ENV##*/}) "
+  [[ $VIRTUAL_ENV ]] && echo "(.${VIRTUAL_ENV##*/}) "
 }
 
 # zsh vim mode
