@@ -31,20 +31,20 @@ scrolling:
 
 font:
   normal:
-    family: Menlo
+    family: Inconsolata
     style: Regular
   italic:
-    family: Menlo
+    family: Inconsolata
     style: Italic
   bold:
-    family: Menlo
-    style: Regular  # no bold
+    family: Inconsolata
+    style: Bold
 
-  size: 13.5
+  size: 16
 
   offset:
     x: 0
-    y: 0
+    y: -1
 
   glyph_offset:
     x: 0
