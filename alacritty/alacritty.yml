@@ -31,20 +31,14 @@ scrolling:
 
 font:
   normal:
-    family: Inconsolata
+    family: Monaco
     style: Regular
-  italic:
-    family: Inconsolata
-    style: Italic
-  bold:
-    family: Inconsolata
-    style: Bold
 
-  size: 16
+  size: 13.5
 
   offset:
     x: 0
-    y: -1
+    y: 0
 
   glyph_offset:
     x: 0
