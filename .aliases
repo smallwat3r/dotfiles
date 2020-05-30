@@ -53,6 +53,7 @@ alias \
   p="pwd" \
   l="ls -pFf" \
   ls="ls -pF" \
+  sl="ls -pF" \
   ls.="ls -pF -d .*" \
   ..="cd .." \
   ...="cd ../.." \

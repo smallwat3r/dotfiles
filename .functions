@@ -2,60 +2,10 @@
 # Functions.
 # Matthieu Petiteau <mpetiteau.pro@gmail.com>
 
-# {{{1 (pubkey) copy public key to clipboard
+# {{{1 (cdr) cd root of git repo
 
-pubkey() {
-  more $HOME/.ssh/id_rsa.pub |
-    pbcopy |
-    printf 'Public key copied to clipboard.\n'
-}
-
-# }}}1
-# {{{1 (psg) Ripgrep process
-
-psg() {
-  ps aux |
-    rg -v rg |
-    rg -i -e VSZ -e "$@"
-}
-
-# }}}1
-# {{{1 (hs) Ripgrep history
-
-hs() {
-  history 1 |
-    rg "$@"
-}
-
-# }}}1
-# {{{1 (hsu) Ripgrep history (unique matches)
-
-hsu() {
-  history 1 |
-    cut -c 8- |
-    sort -u |
-    rg "$@"
-}
-
-# }}}1
-# {{{1 (o) open current dir or the one in args
-
-o() {
-  [[ $# -eq 0 ]] && open . || open "$@"
-}
-
-# }}}1
-# {{{1 (urls) ripgrep - get urls
-
-urls() {
-  rg '[a-zA-Z]+://[-a-zA-Z0-9._+]+[-a-zA-Z0-9._+#=?&:;%/!~()]+'
-}
-
-# }}}1
-# {{{1 (mkd) create and enter directory
-
-mkd() {
-  mkdir -p "$@" && cd "$@"
+cdr() {
+  cd $(git rev-parse --show-toplevel)
 }
 
 # }}}1
@@ -69,24 +19,71 @@ csvpreview() {
 }
 
 # }}}1
-# {{{1 (fe) FZF select and open file
+# {{{1 (dip) docker ip by name
 
-fe() {
-  IFS=$'\n' files=($(fzf --query="$1" --preview "cat {}" --multi --select-1 --exit-0))
-  [[ -n $files ]] && $EDITOR "${files[@]}"
+dip() {
+  docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
+    $(
+      docker ps |
+        grep $1 2>/dev/null |
+        cut -d ' ' -f1
+    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
 }
 
 # }}}1
-# {{{1 (frg) FZF fuzzy ripgrep
+# {{{1 (dlog) docker show logs by name
 
-frg() {
-  local file line
-  read -r file line <<<"$(
-    rg --column --line-number --no-heading --smart-case $@ |
-      fzf --query=$@ |
-      awk -F: '{print $1, $2}'
-  )"
-  [[ -n $file ]] && $EDITOR $file +$line
+dlog() {
+  docker logs --follow \
+    $(
+      docker ps |
+        grep $1 2>/dev/null |
+        cut -d ' ' -f1
+    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
+}
+
+# }}}1
+# {{{1 (dps) shorten docker ps
+
+dps() {
+  docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
+    column -t -s '¬¬¬' -c $(tput cols)
+}
+
+# }}}1
+# {{{1 (dpsa) shorten docker ps -a
+
+dpsa() {
+  docker ps -a --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
+    column -t -s '¬¬¬' -c $(tput cols)
+}
+
+# }}}1
+# {{{1 (dprune) docker prune
+
+dprune() {
+  printf 'y' |
+    docker system prune
+}
+
+# }}}1
+# {{{1 (drm) docker delete image
+
+drm() {
+  docker rmi $1 -f
+}
+
+# }}}1
+# {{{1 (dsh) docker enter in shell by name
+
+dsh() {
+  local _name=$(
+    docker ps |
+      grep $1 2>/dev/null |
+      cut -d ' ' -f1
+  )
+  docker exec -it $_name /bin/sh 2>/dev/null ||
+    printf "Error finding '$1'\n" >&2
 }
 
 # }}}1
@@ -163,71 +160,81 @@ fdrm() {
 }
 
 # }}}1
-# {{{1 (dps) shorten docker ps
+# {{{1 (fe) FZF select and open file
 
-dps() {
-  docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
-    column -t -s '¬¬¬' -c $(tput cols)
+fe() {
+  IFS=$'\n' files=($(fzf --query="$1" --preview "cat {}" --multi --select-1 --exit-0))
+  [[ -n $files ]] && $EDITOR "${files[@]}"
 }
 
 # }}}1
-# {{{1 (dpsa) shorten docker ps -a
+# {{{1 (frg) FZF fuzzy ripgrep
 
-dpsa() {
-  docker ps -a --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
-    column -t -s '¬¬¬' -c $(tput cols)
+frg() {
+  local file line
+  read -r file line <<<"$(
+    rg --column --line-number --no-heading --smart-case $@ |
+      fzf --query=$@ |
+      awk -F: '{print $1, $2}'
+  )"
+  [[ -n $file ]] && $EDITOR $file +$line
 }
 
 # }}}1
-# {{{1 (dprune) docker prune
+# {{{1 (hs) Ripgrep history
 
-dprune() {
-  printf 'y' |
-    docker system prune
+hs() {
+  history 1 |
+    rg "$@"
 }
 
 # }}}1
-# {{{1 (dsh) docker enter in shell by name
+# {{{1 (hsu) Ripgrep history (unique matches)
 
-dsh() {
-  local _name=$(
-    docker ps |
-      grep $1 2>/dev/null |
-      cut -d ' ' -f1
-  )
-  docker exec -it $_name /bin/sh 2>/dev/null ||
-    printf "Error finding '$1'\n" >&2
+hsu() {
+  history 1 |
+    cut -c 8- |
+    sort -u |
+    rg "$@"
 }
 
 # }}}1
-# {{{1 (dlog) docker show logs by name
+# {{{1 (mkd) create and enter directory
 
-dlog() {
-  docker logs --follow \
-    $(
-      docker ps |
-        grep $1 2>/dev/null |
-        cut -d ' ' -f1
-    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
+mkd() {
+  mkdir -p "$@" && cd "$@"
 }
 
 # }}}1
-# {{{1 (drm) docker delete image
+# {{{1 (o) open current dir or the one in args
 
-drm() {
-  docker rmi $1 -f
+o() {
+  [[ $# -eq 0 ]] && open . || open "$@"
 }
 
 # }}}1
-# {{{1 (dip) docker ip by name
+# {{{1 (pubkey) copy public key to clipboard
 
-dip() {
-  docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
-    $(
-      docker ps |
-        grep $1 2>/dev/null |
-        cut -d ' ' -f1
-    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
+pubkey() {
+  more $HOME/.ssh/id_rsa.pub |
+    pbcopy |
+    printf 'Public key copied to clipboard.\n'
+}
+
+# }}}1
+# {{{1 (psg) Ripgrep process
+
+psg() {
+  ps aux |
+    rg -v rg |
+    rg -i -e VSZ -e "$@"
+}
+
+# }}}1
+# {{{1 (urls) ripgrep - get urls
+
+urls() {
+  rg '[a-zA-Z]+://[-a-zA-Z0-9._+]+[-a-zA-Z0-9._+#=?&:;%/!~()]+'
 }
 
 # }}}1
