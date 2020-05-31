@@ -129,7 +129,13 @@ precmd() {
       grep "active" |
       cut -d ':' -f 1
   )
-  tmux select-pane -t $_cur_pane -T "$(/usr/local/bin/shpwd) $(/usr/local/bin/git_branch)"
+  local _shpwd=$(/usr/local/bin/shpwd)
+  local _git_branch=$(/usr/local/bin/git_branch)
+  local _git_root=$(
+    echo $(/usr/local/bin/git_root) |
+      sed 's/true/>/'
+  )
+  tmux select-pane -t $_cur_pane -T "$_shpwd $_git_root$_git_branch"
 }
 
 # }}}1 prompt

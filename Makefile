@@ -18,4 +18,4 @@ go-pack:
 	@./misc/go/packages.sh
 
 dotfiles: setup-homebrew
-	@./install
+	@./install.sh

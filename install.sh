@@ -47,6 +47,7 @@ _SYMLINK=(
   'bin/is_venv                  : /usr/local/bin/is_venv'
   'bin/shpwd                    : /usr/local/bin/shpwd'
   'bin/git_branch               : /usr/local/bin/git_branch'
+  'bin/git_root                 : /usr/local/bin/git_root'
 )
 
 _BREW=(

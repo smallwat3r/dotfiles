@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Returns true if at root of git repo
+
+if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]; then
+  [[ $(git rev-parse --show-toplevel 2>/dev/null) == $PWD ]] && echo true
+fi
