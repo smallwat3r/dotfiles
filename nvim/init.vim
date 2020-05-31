@@ -564,7 +564,7 @@ function! CustomColors() abort
   endif
 
   hi StatuslineNC                 ctermbg=237
-  hi Normal                       ctermbg=NONE
+  hi Normal          ctermfg=254  ctermbg=NONE
   hi Comment                      ctermbg=NONE cterm=italic
   hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
   hi MatchParen      ctermfg=231  ctermbg=166

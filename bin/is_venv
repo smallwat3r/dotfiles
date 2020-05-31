@@ -2,5 +2,5 @@
 # Virtual env indicator
 
 if [[ $VIRTUAL_ENV ]]; then
-  echo "(${VIRTUAL_ENV##*/}) "
+  echo "(.${VIRTUAL_ENV##*/}) "
 fi

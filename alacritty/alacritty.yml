@@ -31,7 +31,7 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
+    family: Menlo
     style: Regular
 
   size: 13.5

@@ -97,12 +97,6 @@ esac
 
 setopt PROMPT_SUBST
 
-# venv
-export VIRTUAL_ENV_DISABLE_PROMPT=false
-_is_venv() {
-  [[ $VIRTUAL_ENV ]] && echo "(.${VIRTUAL_ENV##*/}) "
-}
-
 # zsh vim mode
 vim_ins_mode='%#'
 vim_cmd_mode=';;'
@@ -120,7 +114,8 @@ function zle-line-finish {
 zle -N zle-line-finish
 
 # actual prompt
-PROMPT='$(_is_venv)${vim_mode} '
+export VIRTUAL_ENV_DISABLE_PROMPT=false
+PROMPT='$(/usr/local/bin/is_venv)${vim_mode} '
 
 # Use tmux pane title as prompt.
 precmd() {
@@ -133,7 +128,7 @@ precmd() {
   local _git_branch=$(/usr/local/bin/git_branch)
   local _git_root=$(
     echo $(/usr/local/bin/git_root) |
-      sed 's/true/>/'
+      sed 's/true/~/'
   )
   tmux select-pane -t $_cur_pane -T "$_shpwd $_git_root$_git_branch"
 }
