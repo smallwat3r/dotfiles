@@ -48,7 +48,6 @@ autoload -U colors && colors
 
 # set options
 setopt AUTOCD
-setopt PRINT_EXIT_VALUE
 setopt CHASE_LINKS
 setopt AUTO_REMOVE_SLASH
 setopt GLOB_DOTS
@@ -115,7 +114,7 @@ zle -N zle-line-finish
 
 # actual prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=false
-PROMPT='$(/usr/local/bin/is_venv)${vim_mode} '
+PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(/usr/local/bin/is_venv)${vim_mode} '
 
 # Use tmux pane title as prompt.
 precmd() {
