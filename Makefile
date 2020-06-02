@@ -8,14 +8,14 @@ macos:
 	@./bin/macos
 
 python-pack:
-	@./misc/python/packages.sh
-	@./misc/python/py3-8.sh
+	@./code/python/packages.sh
+	@./code/python/py3-8.sh
 
 npm-pack:
-	@./misc/npm/packages.sh
+	@./code/npm/packages.sh
 
 go-pack:
-	@./misc/go/packages.sh
+	@./code/go/packages.sh
 
 dotfiles: setup-homebrew
 	@./install.sh
