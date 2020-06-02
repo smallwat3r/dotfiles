@@ -18,9 +18,11 @@ git clone --recursive https://github.com/smallwat3r/dotfiles.git
 
 **Main commands (from Makefile)**
 ```sh
-make            # install everything
+make all        # install everything
 make dotfiles   # do all symlinks + cask/brew installs
 ```
+
+Run `make help` to see all commands available.  
 
 **Notes**
 
