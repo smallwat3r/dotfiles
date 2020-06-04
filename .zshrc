@@ -81,7 +81,7 @@ unsetopt IGNORE_EOF
 # fzf
 export FZF_DEFAULT_OPTS='
   --height 96% --reverse --border
-  --color dark,hl:37,hl+:37,bg+:#002b36,fg+:136
+  --color dark,hl:37,hl+:37,bg+:#101010,fg+:136
   --color info:136,prompt:37,spinner:136,pointer:230,marker:230
 '
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
