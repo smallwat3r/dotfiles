@@ -564,14 +564,17 @@ function! CustomColors() abort
   endif
 
   hi StatuslineNC                 ctermbg=237
-  hi Normal                       ctermbg=NONE
+  hi Normal                       ctermbg=NONE guibg=NONE
   hi Comment                      ctermbg=NONE cterm=italic
   hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
   hi MatchParen      ctermfg=231  ctermbg=166
-  hi NonText                      ctermbg=NONE
   hi CursorLineNR                 ctermbg=NONE guibg=NONE
   hi Search          ctermfg=232  ctermbg=192  cterm=NONE
   hi IncSearch       ctermfg=232  ctermbg=229  cterm=bold
+  hi Directory                    ctermbg=NONE guibg=NONE
+  hi Folded          ctermfg=246  ctermbg=235
+  hi NonText                      ctermbg=NONE guibg=NONE
+  hi EndOfBuffer                  ctermbg=NONE guibg=NONE
 
   " Custom statusline colors
   hi SLNormalColor   ctermbg=15   ctermfg=0    guibg=#657b83
