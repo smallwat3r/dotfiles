@@ -168,6 +168,16 @@ fe() {
 }
 
 # }}}1
+# {{{1 (fls) List all these custom functions
+
+fls() {
+  local _pattern='^# {{{1'
+  cat "$HOME/.functions" |
+    grep $_pattern |
+    sed s/"$_pattern"//
+}
+
+#}}}1
 # {{{1 (frg) FZF fuzzy ripgrep
 
 frg() {
@@ -231,7 +241,7 @@ psg() {
 }
 
 # }}}1
-# {{{1 (urls) ripgrep - get urls
+# {{{1 (urls) rg - get urls
 
 urls() {
   rg '[a-zA-Z]+://[-a-zA-Z0-9._+]+[-a-zA-Z0-9._+#=?&:;%/!~()]+'
@@ -241,7 +251,7 @@ urls() {
 # {{{1 (zipall) zip all individual files in current directory into a zipfile.
 
 zipall() {
-  for file in `echo *(^/)`; do
+  for file in $(echo *(^/)); do
     zip ${file%.*}.zip $file
   done
 }
