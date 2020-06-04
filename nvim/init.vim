@@ -29,7 +29,7 @@ Plug 'cocopon/vaffle.vim'              " File browsing
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
-Plug 'Lokaltog/vim-distinguished'      " ColorScheme
+Plug 'tomasiser/vim-code-dark'         " ColorScheme
 
 " Syntax support
 Plug 'chrisbra/csv.vim'
@@ -564,11 +564,14 @@ function! CustomColors() abort
   endif
 
   hi StatuslineNC                 ctermbg=237
-  hi Normal          ctermfg=254  ctermbg=NONE
+  hi Normal                       ctermbg=NONE
   hi Comment                      ctermbg=NONE cterm=italic
   hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
   hi MatchParen      ctermfg=231  ctermbg=166
+  hi NonText                      ctermbg=NONE
   hi CursorLineNR                 ctermbg=NONE guibg=NONE
+  hi Search          ctermfg=232  ctermbg=192  cterm=NONE
+  hi IncSearch       ctermfg=232  ctermbg=229  cterm=bold
 
   " Custom statusline colors
   hi SLNormalColor   ctermbg=15   ctermfg=0    guibg=#657b83
@@ -584,7 +587,7 @@ augroup custom_colors
   au ColorScheme * call CustomColors()
 augroup END
 
-colo distinguished
+colo codedark
 
 "}}}2 colors
 
