@@ -29,7 +29,7 @@ Run `make help` to see all commands available.
 Before first time use, if on macos you might not have `make`
 installed, run (from repo):  
 ```sh
-./bin/homebrew-install && brew install make
+./files/bin/homebrew-install && brew install make
 ```
 
 On first time use, after install, run the below command to make
