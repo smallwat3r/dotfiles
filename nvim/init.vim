@@ -29,6 +29,7 @@ Plug 'cocopon/vaffle.vim'              " File browsing
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
+Plug 'dhruvasagar/vim-table-mode'      " Build tables
 Plug 'tomasiser/vim-code-dark'         " ColorScheme
 
 " Syntax support

@@ -22,6 +22,7 @@ _SYMLINK=(
   '.tmux.conf                   : ~/.tmux.conf'
   '.gitconfig                   : ~/.gitconfig'
   'code/python/.pylintrc        : ~/.pylintrc'
+  'code/python/.mypy.ini        : ~/.mypy.ini'
   'code/python/.isort.cfg       : ~/.isort.cfg'
   'code/python/yapf.toml        : ~/.config/yapf/style'
   'code/pip/pip.conf            : ~/.pip/pip.conf'
