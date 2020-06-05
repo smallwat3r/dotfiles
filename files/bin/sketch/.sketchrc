@@ -1,0 +1,10 @@
+# .sketchrc example file.
+
+# Your favourite editor to use Sketch (vim, nvim, subl, emacs, nano etc)
+SKETCH_EDITOR=vim
+
+# Archives folder.
+# Default locations:
+#     - $XDG_DATA_HOME/sketch_archives
+#     - $HOME/.local/share/sketch_archives 
+SKETCH_ARCHIVES=$HOME/.sketch_archives 

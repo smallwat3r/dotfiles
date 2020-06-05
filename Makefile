@@ -18,20 +18,20 @@ help:
 all: setup-homebrew dotfiles python-pack npm-pack go-pack macos
 
 setup-homebrew:
-	@./bin/homebrew-install
+	@./files/bin/homebrew-install
 
 macos:
-	@./bin/macos
+	@./files/bin/macos
 
 python-pack:
-	@./code/python/packages.sh
-	@./code/python/py3-8.sh
+	@./files/code/python/packages.sh
+	@./files/code/python/py3-8.sh
 
 npm-pack:
-	@./code/npm/packages.sh
+	@./files/code/npm/packages.sh
 
 go-pack:
-	@./code/go/packages.sh
+	@./files/code/go/packages.sh
 
 dotfiles: setup-homebrew
 	@./install.sh
