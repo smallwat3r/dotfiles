@@ -5,94 +5,14 @@
 #
 # SYMLINKS
 # --------
-# Dotfiles symlinks are stored under _SYMLINK (<source>:<destination>).
-# Add new symlinks using the same method.
+# Dotfiles symlinks are stored under the file ``symlink`` (<source>  :  <destination>)
+# Add new symlinks using the same method
 #
 # CASKS / BREW
 # ------------
-# Casks are stored under _CASK and brew are store under _BREW.
-# Append the lists to add new casks or brew utils.
-
+# Casks are stored under ``./files/cask`` and brew are store under ``./files/brew``
+# Append the lists to add new casks or brew utils
 set -e
-
-_SYMLINK=(
-  'files/alacritty/alacritty.yml     : ~/.config/alacritty/alacritty.yml'
-  'files/aliases                     : ~/.aliases'
-  'files/bin/battery                 : /usr/local/bin/battery'
-  'files/bin/extract                 : /usr/local/bin/extract'
-  'files/bin/git_branch              : /usr/local/bin/git_branch'
-  'files/bin/git_root                : /usr/local/bin/git_root'
-  'files/bin/is_venv                 : /usr/local/bin/is_venv'
-  'files/bin/localip                 : /usr/local/bin/localip'
-  'files/bin/shpwd                   : /usr/local/bin/shpwd'
-  'files/bin/sketch/sketch           : /usr/local/bin/sketch'
-  'files/bin/synonym/synonym         : /usr/local/bin/synonym'
-  'files/bin/tubestatus/tubestatus   : /usr/local/bin/tubestatus'
-  'files/code/pip/pip.conf           : ~/.pip/pip.conf'
-  'files/code/python/isort.cfg       : ~/.isort.cfg'
-  'files/code/python/mypy.ini        : ~/.mypy.ini'
-  'files/code/python/pylintrc        : ~/.pylintrc'
-  'files/code/python/yapf.toml       : ~/.config/yapf/style'
-  'files/functions                   : ~/.functions'
-  'files/gitconfig                   : ~/.gitconfig'
-  'files/nvim/dict/dockerfile.txt    : ~/.config/nvim/dict/dockerfile.txt'
-  'files/nvim/dict/go.txt            : ~/.config/nvim/dict/go.txt'
-  'files/nvim/dict/html.txt          : ~/.config/nvim/dict/html.txt'
-  'files/nvim/dict/javascript.txt    : ~/.config/nvim/dict/javascript.txt'
-  'files/nvim/dict/python.txt        : ~/.config/nvim/dict/python.txt'
-  'files/nvim/dict/sql.txt           : ~/.config/nvim/dict/sql.txt'
-  'files/nvim/init.vim               : ~/.config/nvim/init.vim'
-  'files/nvim/spell/en.utf-8.add     : ~/.config/nvim/spell/en.utf-8.add'
-  'files/nvim/spell/en.utf-8.add.spl : ~/.config/nvim/spell/en.utf-8.add.spl'
-  'files/nvim/syntax/dockerfile.vim  : ~/.config/nvim/syntax/dockerfile.vim'
-  'files/ripgreprc                   : ~/.ripgreprc'
-  'files/sketchrc                    : ~/.config/.sketchrc'
-  'files/tmux.conf                   : ~/.tmux.conf'
-  'files/zshrc                       : ~/.zshrc'
-)
-
-_BREW=(
-  antigen
-  asciinema
-  bash
-  coreutils
-  curl
-  diff-so-fancy
-  fd
-  fzf
-  gifsicle
-  git
-  gnu-sed
-  go
-  htop
-  imagemagick
-  jq
-  make
-  neovim
-  nmap
-  node
-  python@3.8
-  redir
-  ripgrep
-  shfmt
-  the_silver_searcher
-  tidy-html5
-  tmux
-  wget
-  zsh
-)
-
-_CASK=(
-  alacritty
-  alfred
-  amethyst
-  docker
-  google-chrome
-  ngrok
-  sequel-pro
-  slack
-  thunderbird
-)
 
 _install_brew() {
   brew ls --versions $1 >/dev/null &&
@@ -136,14 +56,17 @@ _symlink() {
   fi
 }
 
+readarray -t _BREW < ./files/brew
 for _br in "${_BREW[@]}"; do
   _install_brew $_br
 done
 
+readarray -t _CASK < ./files/cask
 for _ca in "${_CASK[@]}"; do
   _install_cask $_ca
 done
 
+readarray -t _SYMLINK < symlink
 for _sym in "${_SYMLINK[@]}"; do
   _sour=$(echo "${_sym%%:*}" | xargs)
   _dest=$(echo "${_sym##*:}" | xargs)
