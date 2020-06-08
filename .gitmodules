@@ -1,0 +1,9 @@
+[submodule "files/bin/sketch"]
+	path = files/bin/sketch
+	url = https://github.com/smallwat3r/sketch.git
+[submodule "files/bin/synonym"]
+	path = files/bin/synonym
+	url = https://github.com/smallwat3r/synonym.git
+[submodule "files/bin/tubestatus"]
+	path = files/bin/tubestatus
+	url = https://github.com/smallwat3r/tubestatus.git
