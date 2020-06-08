@@ -16,81 +16,82 @@
 set -e
 
 _SYMLINK=(
-  'files/zshrc                       : ~/.zshrc'
-  'files/functions                   : ~/.functions'
-  'files/aliases                     : ~/.aliases'
-  'files/tmux.conf                   : ~/.tmux.conf'
-  'files/gitconfig                   : ~/.gitconfig'
-  'files/code/python/pylintrc        : ~/.pylintrc'
-  'files/code/python/mypy.ini        : ~/.mypy.ini'
-  'files/code/python/isort.cfg       : ~/.isort.cfg'
-  'files/code/python/yapf.toml       : ~/.config/yapf/style'
-  'files/code/pip/pip.conf           : ~/.pip/pip.conf'
-  'files/ripgreprc                   : ~/.ripgreprc'
-  'files/sketchrc                    : ~/.config/.sketchrc'
   'files/alacritty/alacritty.yml     : ~/.config/alacritty/alacritty.yml'
-  'files/nvim/init.vim               : ~/.config/nvim/init.vim'
-  'files/nvim/syntax/dockerfile.vim  : ~/.config/nvim/syntax/dockerfile.vim'
-  'files/nvim/spell/en.utf-8.add     : ~/.config/nvim/spell/en.utf-8.add'
-  'files/nvim/spell/en.utf-8.add.spl : ~/.config/nvim/spell/en.utf-8.add.spl'
+  'files/aliases                     : ~/.aliases'
+  'files/bin/battery                 : /usr/local/bin/battery'
+  'files/bin/extract                 : /usr/local/bin/extract'
+  'files/bin/git_branch              : /usr/local/bin/git_branch'
+  'files/bin/git_root                : /usr/local/bin/git_root'
+  'files/bin/is_venv                 : /usr/local/bin/is_venv'
+  'files/bin/localip                 : /usr/local/bin/localip'
+  'files/bin/shpwd                   : /usr/local/bin/shpwd'
+  'files/bin/sketch/sketch           : /usr/local/bin/sketch'
+  'files/bin/synonym/synonym         : /usr/local/bin/synonym'
+  'files/bin/tubestatus/tubestatus   : /usr/local/bin/tubestatus'
+  'files/code/pip/pip.conf           : ~/.pip/pip.conf'
+  'files/code/python/isort.cfg       : ~/.isort.cfg'
+  'files/code/python/mypy.ini        : ~/.mypy.ini'
+  'files/code/python/pylintrc        : ~/.pylintrc'
+  'files/code/python/yapf.toml       : ~/.config/yapf/style'
+  'files/functions                   : ~/.functions'
+  'files/gitconfig                   : ~/.gitconfig'
   'files/nvim/dict/dockerfile.txt    : ~/.config/nvim/dict/dockerfile.txt'
   'files/nvim/dict/go.txt            : ~/.config/nvim/dict/go.txt'
   'files/nvim/dict/html.txt          : ~/.config/nvim/dict/html.txt'
   'files/nvim/dict/javascript.txt    : ~/.config/nvim/dict/javascript.txt'
   'files/nvim/dict/python.txt        : ~/.config/nvim/dict/python.txt'
   'files/nvim/dict/sql.txt           : ~/.config/nvim/dict/sql.txt'
-  'files/bin/localip                 : /usr/local/bin/localip'
-  'files/bin/battery                 : /usr/local/bin/battery'
-  'files/bin/tubestatus/tubestatus   : /usr/local/bin/tubestatus'
-  'files/bin/synonym/synonym         : /usr/local/bin/synonym'
-  'files/bin/sketch/sketch           : /usr/local/bin/sketch'
-  'files/bin/extract                 : /usr/local/bin/extract'
-  'files/bin/is_venv                 : /usr/local/bin/is_venv'
-  'files/bin/shpwd                   : /usr/local/bin/shpwd'
-  'files/bin/git_branch              : /usr/local/bin/git_branch'
-  'files/bin/git_root                : /usr/local/bin/git_root'
+  'files/nvim/init.vim               : ~/.config/nvim/init.vim'
+  'files/nvim/spell/en.utf-8.add     : ~/.config/nvim/spell/en.utf-8.add'
+  'files/nvim/spell/en.utf-8.add.spl : ~/.config/nvim/spell/en.utf-8.add.spl'
+  'files/nvim/syntax/dockerfile.vim  : ~/.config/nvim/syntax/dockerfile.vim'
+  'files/ripgreprc                   : ~/.ripgreprc'
+  'files/sketchrc                    : ~/.config/.sketchrc'
+  'files/tmux.conf                   : ~/.tmux.conf'
+  'files/zshrc                       : ~/.zshrc'
 )
 
 _BREW=(
-  tmux
-  redir
-  git
-  python@3.8
-  go
-  wget
-  zsh
   antigen
-  fzf
-  htop
-  curl
+  asciinema
   bash
+  coreutils
+  curl
+  diff-so-fancy
+  fd
+  fzf
+  gifsicle
+  git
   gnu-sed
-  nmap
+  go
+  htop
+  imagemagick
   jq
   make
-  fd
-  the_silver_searcher
-  ripgrep
   neovim
+  nmap
   node
-  asciinema
-  imagemagick
-  gifsicle
-  tidy-html5
+  python@3.8
+  redir
+  ripgrep
   shfmt
-  coreutils
-  diff-so-fancy
+  the_silver_searcher
+  tidy-html5
+  tmux
+  wget
+  zsh
 )
 
 _CASK=(
-  sequel-pro
-  docker
   alacritty
-  slack
-  ngrok
   alfred
-  thunderbird
+  amethyst
+  docker
   google-chrome
+  ngrok
+  sequel-pro
+  slack
+  thunderbird
 )
 
 _install_brew() {

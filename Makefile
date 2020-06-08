@@ -1,4 +1,4 @@
-.PHONY: help all setup-homebrew macos python-pack npm-pack go-pack dotfiles
+.PHONY: help all setup-homebrew macos amethyst python-pack npm-pack go-pack dotfiles
 .DEFAULT: help
 
 help:
@@ -7,7 +7,9 @@ help:
 	@echo "make dotfiles"
 	@echo "  Install only tools and symlinks"
 	@echo "make macos"
-	@echo "  Install macos preferences"
+	@echo "  Set macos preferences"
+	@echo "make amethyst"
+	@echo "  Set amethyst preferences"
 	@echo "make python-pack"
 	@echo "  Install python packages and make sure default is 3.8"
 	@echo "make npm-pack"
@@ -15,13 +17,16 @@ help:
 	@echo "make go-pack"
 	@echo "  Install go packages"
 
-all: setup-homebrew dotfiles python-pack npm-pack go-pack macos
+all: setup-homebrew dotfiles python-pack npm-pack go-pack macos amethyst
 
 setup-homebrew:
 	@./files/bin/homebrew-install
 
 macos:
 	@./files/bin/macos
+
+amethyst:
+	@./files/bin/amethyst
 
 python-pack:
 	@./files/code/python/packages.sh

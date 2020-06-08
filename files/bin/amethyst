@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Amethyst config file and preferences
+
+# Floating windows
+defaults write com.amethyst.Amethyst.plist floating '(
+  {
+     id = "com.apple.systempreferences";
+     "window-titles" = ();
+  },
+  {
+     id = "com.tinyspeck.slackmacgap";
+     "window-titles" = ();
+  },
+  {
+     id = "org.mozilla.thunderbird";
+     "window-titles" = ();
+  }
+)'
+defaults write com.amethyst.Amethyst.plist floating-is-blacklist 1
+
+# Follow window when moved to different workspace
+defaults write com.amethyst.Amethyst.plist follow-space-thrown-windows 1
+
+# Configure layouts
+defaults write com.amethyst.Amethyst.plist layouts '(
+	tall, wide, floating, fullscreen
+)'
+
+# Restore layouts when application starts
+defaults write com.amethyst.Amethyst.plist restore-layouts-on-launch 1
+
+# Set window margins
+defaults write com.amethyst.Amethyst.plist window-margins 20
+defaults write com.amethyst.Amethyst.plist window-margin-size 10
+
+# Do not display layout names
+defaults write com.amethyst.Amethyst.plist enables-layout-hud 0
+defaults write com.amethyst.Amethyst.plist enables-layout-hud-on-space-change 0
+
+# Disable automatic update check as it is done by Homebrew
+defaults write com.amethyst.Amethyst.plist SUEnableAutomaticChecks 0
+
+# Delete the plist cache - MUST ALWAYS BE LAST
+defaults read com.amethyst.Amethyst.plist > /dev/null 2>&1
