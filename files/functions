@@ -171,10 +171,10 @@ fe() {
 # {{{1 (fls) List all these custom functions
 
 fls() {
-  local _pattern='^# {{{1'
+  local _pattern='^# {{'
   cat "$HOME/.functions" |
     grep $_pattern |
-    sed s/"$_pattern"//
+    sed s/"$_pattern"{1//
 }
 
 #}}}1

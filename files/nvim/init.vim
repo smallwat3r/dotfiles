@@ -200,6 +200,7 @@ set visualbell t_vb=    " deactivate bells and alerts
 set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
 set synmaxcol=500       " keep long lines from slowing vim
+set scrolloff=999       " center by default
 set fillchars=vert:┃
 set listchars=tab:→\ ,eol:¬,extends:>,precedes:<,nbsp:˷,trail:␣
 set matchpairs+=<:>
@@ -339,6 +340,9 @@ augroup END
 "{{{1 mappings / keybindings
 
 "{{{2 normal mode
+
+" toggle scrolloff center
+nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 " navigate to end and start of line
 nmap B ^
@@ -576,6 +580,11 @@ function! CustomColors() abort
   hi Folded          ctermfg=246  ctermbg=235
   hi NonText                      ctermbg=NONE guibg=NONE
   hi EndOfBuffer                  ctermbg=NONE guibg=NONE
+
+  hi DiffAdd         ctermfg=255  ctermbg=64
+  hi DiffChange      ctermfg=204  ctermbg=NONE cterm=NONE
+  hi DiffDelete      ctermfg=red  ctermbg=NONE cterm=NONE
+  hi DiffText        ctermfg=255  ctermbg=31
 
   " Custom statusline colors
   hi SLNormalColor   ctermbg=15   ctermfg=0    guibg=#657b83
