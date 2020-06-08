@@ -59,7 +59,7 @@ background_opacity: 0.87
 colors:
   # Default colors
   primary:
-    background: '#101010'
+    background: '#000000'
     foreground: '#e5e1d8'
 
   # Normal colors

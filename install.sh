@@ -30,10 +30,7 @@ _install_cask() {
     printf "∙ $1 seems already installed via Homebrew.\n" &&
     return
 
-  local _name=$(
-    echo $1 |
-      sed -E 's/[-_]+/ /g'
-  )
+  local _name=$(echo $1 | sed -E 's/[-_]+/ /g')
   ls /Applications | grep -ri "$_name" >/dev/null &&
     printf "∙ $1 seems already installed in /Applications.\n" &&
     return
@@ -56,17 +53,20 @@ _symlink() {
   fi
 }
 
-readarray -t _BREW < ./files/brew
+# If needed upgrade bash version to be able to use readarray
+command -v readarray >/dev/null 2>&1 || _install_brew bash
+
+readarray -t _BREW <./files/brew
 for _br in "${_BREW[@]}"; do
   _install_brew $_br
 done
 
-readarray -t _CASK < ./files/cask
+readarray -t _CASK <./files/cask
 for _ca in "${_CASK[@]}"; do
   _install_cask $_ca
 done
 
-readarray -t _SYMLINK < symlink
+readarray -t _SYMLINK <symlink
 for _sym in "${_SYMLINK[@]}"; do
   _sour=$(echo "${_sym%%:*}" | xargs)
   _dest=$(echo "${_sym##*:}" | xargs)
