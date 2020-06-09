@@ -30,7 +30,7 @@ Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'dhruvasagar/vim-table-mode'      " Build tables
-Plug 'tomasiser/vim-code-dark'         " ColorScheme
+Plug 'cocopon/iceberg.vim'             " ColorScheme
 
 " Syntax support
 Plug 'chrisbra/csv.vim'
@@ -340,6 +340,9 @@ augroup END
 
 "{{{2 normal mode
 
+" Trigger Vaffle as Vinegar
+nnoremap <silent>- :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+
 " toggle scrolloff center
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
@@ -402,9 +405,6 @@ nmap ;vs :vs<cr>
 
 " quick substitutes (whole file)
 nmap ;s/ :%s///g<left><left><left>
-
-" file browsing
-nmap <silent>- :Vaffle<cr>
 
 " format file
 nmap ;f :Neoformat<cr>
@@ -573,10 +573,10 @@ function! CustomColors() abort
   hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
   hi MatchParen      ctermfg=231  ctermbg=166
   hi CursorLineNR                 ctermbg=NONE guibg=NONE
-  hi Search          ctermfg=232  ctermbg=192  cterm=NONE
-  hi IncSearch       ctermfg=232  ctermbg=229  cterm=bold
+  " hi Search          ctermfg=232  ctermbg=192  cterm=NONE
+  " hi IncSearch       ctermfg=232  ctermbg=229  cterm=bold
   hi Directory                    ctermbg=NONE guibg=NONE
-  hi Folded          ctermfg=246  ctermbg=235
+  hi Folded          ctermfg=243  ctermbg=235
   hi NonText                      ctermbg=NONE guibg=NONE
   hi EndOfBuffer                  ctermbg=NONE guibg=NONE
 
@@ -599,7 +599,7 @@ augroup custom_colors
   au ColorScheme * call CustomColors()
 augroup END
 
-colo codedark
+colo iceberg
 
 "}}}2 colors
 
