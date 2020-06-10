@@ -158,8 +158,7 @@ export KEYTIMEOUT=1
 # yank to clipboard
 _vi_yank_pbcopy() {
   zle vi-yank
-  echo "$CUTBUFFER" |
-    pbcopy
+  echo "$CUTBUFFER" | pbcopy
 }
 zle -N _vi_yank_pbcopy
 bindkey -M vicmd 'y' _vi_yank_pbcopy

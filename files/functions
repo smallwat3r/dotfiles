@@ -23,11 +23,9 @@ csvpreview() {
 
 dip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
-    $(
-      docker ps |
-        grep $1 2>/dev/null |
-        cut -d ' ' -f1
-    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
+    $(docker ps |
+      grep $1 2>/dev/null |
+      cut -d ' ' -f1) 2>/dev/null || printf "Cannot find '$1'\n" >&2
 }
 
 # }}}1
@@ -35,11 +33,9 @@ dip() {
 
 dlog() {
   docker logs --follow \
-    $(
-      docker ps |
-        grep $1 2>/dev/null |
-        cut -d ' ' -f1
-    ) 2>/dev/null || printf "Cannot find '$1'\n" >&2
+    $(docker ps |
+      grep $1 2>/dev/null |
+      cut -d ' ' -f1) 2>/dev/null || printf "Cannot find '$1'\n" >&2
 }
 
 # }}}1
@@ -62,8 +58,7 @@ dpsa() {
 # {{{1 (dprune) docker prune
 
 dprune() {
-  printf 'y' |
-    docker system prune
+  printf 'y' | docker system prune
 }
 
 # }}}1
@@ -90,10 +85,7 @@ dsh() {
 # {{{1 (fbr) FZF checkout git branch (including remote branches)
 
 fbr() {
-  local branches=$(
-    git branch --all |
-      grep -v HEAD
-  )
+  local branches=$(git branch --all | grep -v HEAD)
   local branch=$(
     echo "$branches" |
       fzf -d $((2 + $(wc -l <<<"$branches"))) +m
@@ -194,8 +186,7 @@ frg() {
 # {{{1 (hs) Ripgrep history
 
 hs() {
-  history 1 |
-    rg "$@"
+  history 1 | rg "$@"
 }
 
 # }}}1
@@ -226,9 +217,8 @@ o() {
 # {{{1 (pubkey) copy public key to clipboard
 
 pubkey() {
-  more $HOME/.ssh/id_rsa.pub |
-    pbcopy |
-    printf 'Public key copied to clipboard.\n'
+  more $HOME/.ssh/id_rsa.pub | pbcopy
+  printf 'Public key copied to clipboard.\n'
 }
 
 # }}}1
