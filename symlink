@@ -1,6 +1,7 @@
 files/alacritty/alacritty.yml     : ~/.config/alacritty/alacritty.yml
 files/aliases                     : ~/.aliases
 files/bin/battery                 : /usr/local/bin/battery
+files/bin/bluebatt                : /usr/local/bin/bluebatt
 files/bin/extract                 : /usr/local/bin/extract
 files/bin/git_branch              : /usr/local/bin/git_branch
 files/bin/git_root                : /usr/local/bin/git_root

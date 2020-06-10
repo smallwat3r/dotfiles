@@ -2,8 +2,7 @@
 # Parse git branch
 
 _dirty() {
-  [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] &&
-    echo "*"
+  [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] && echo "*"
 }
 
 git branch --no-color 2>/dev/null |
