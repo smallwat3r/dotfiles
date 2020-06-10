@@ -4,28 +4,26 @@
 _bluebatt() {
   local _devices=$(ioreg -r -k BatteryPercent)
   local _data=$(egrep '("BatteryPercent"|"Product")' <<<$_devices)
-
   local _c=0 # counter
+  local _d   # for loop
+  local _content=""
 
   IFS=$'\n'
-  local _d
   for _d in $_data; do
     local _line=$(
       echo $_d |
         xargs |
         sed 's/^.*= //'
     )
-    if ((_c == 1)); then
-      _content="$_content: $_line%%"
-    else
+    ((_c == 1)) && _content="$_content: $_line%%" || {
       if [[ -z $_content ]]; then
         _content="$_line"
       else
         _content="$_content\n$_line"
       fi
-    fi
-    ((_c = _c + 1))
-    ((_c == 2)) && ((_c = 0))
+    }
+    ((_c++))
+    ((_c == 2)) && _c=0
   done
 
   printf "$_content\n"
