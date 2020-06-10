@@ -6,6 +6,6 @@ _shpwd=$(
     sed "s;$HOME;~;" |
     sed 's;\(/.\)[^/]*;\1;g' |
     sed 's/.$//'
-)${PWD##*/}
+)
 
-[[ $PWD == $HOME ]] && echo '~' || echo $_shpwd
+[[ $PWD == $HOME ]] && echo '~' || echo "$_shpwd${PWD##*/}"

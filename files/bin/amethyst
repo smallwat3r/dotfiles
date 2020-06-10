@@ -23,7 +23,7 @@ defaults write com.amethyst.Amethyst.plist follow-space-thrown-windows 1
 
 # Configure layouts
 defaults write com.amethyst.Amethyst.plist layouts '(
-	tall, wide, floating, fullscreen
+  tall, wide, floating, fullscreen
 )'
 
 # Restore layouts when application starts
@@ -41,4 +41,4 @@ defaults write com.amethyst.Amethyst.plist enables-layout-hud-on-space-change 0
 defaults write com.amethyst.Amethyst.plist SUEnableAutomaticChecks 0
 
 # Delete the plist cache - MUST ALWAYS BE LAST
-defaults read com.amethyst.Amethyst.plist > /dev/null 2>&1
+defaults read com.amethyst.Amethyst.plist >/dev/null 2>&1
