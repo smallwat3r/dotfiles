@@ -14,8 +14,8 @@ window:
     lines: 40
 
   padding:
-    x: 0
-    y: 0
+    x: 10
+    y: 10
 
   dynamic_padding: true
   decorations: buttonless
@@ -31,18 +31,18 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
+    family: SF Mono
     style: Regular
 
   bold:
-    family: Monaco
+    family: SF Mono
     style: Regular  # no bold font
 
   size: 13.5
 
   offset:
     x: 0
-    y: -1
+    y: 0
 
   glyph_offset:
     x: 0

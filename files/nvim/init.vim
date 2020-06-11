@@ -30,7 +30,7 @@ Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'dhruvasagar/vim-table-mode'      " Build tables
-Plug 'cocopon/iceberg.vim'             " ColorScheme
+Plug 'tomasiser/vim-code-dark'         " ColorScheme
 
 " Syntax support
 Plug 'chrisbra/csv.vim'
@@ -176,7 +176,7 @@ set autoread            " reread changed files automatically
 set laststatus=2        " always show statusline
 set noshowcmd           " don't show command in last line of screen
 set noruler             " don't show cursor position
-set nu rnu              " relative line numbers and current line number
+" set nu rnu              " relative line numbers and current line number
 set showmatch           " matching brackets
 set mouse=a             " mouse support
 set incsearch           " search pattern
@@ -571,18 +571,18 @@ function! CustomColors() abort
   hi Normal                       ctermbg=NONE guibg=NONE
   hi Comment                      ctermbg=NONE cterm=italic
   hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
-  hi MatchParen      ctermfg=231  ctermbg=166
+  hi MatchParen      ctermfg=203  ctermbg=190
   hi CursorLineNR                 ctermbg=NONE guibg=NONE
-  " hi Search          ctermfg=232  ctermbg=192  cterm=NONE
-  " hi IncSearch       ctermfg=232  ctermbg=229  cterm=bold
+  hi Search          ctermfg=232  ctermbg=192  cterm=NONE
+  hi IncSearch       ctermfg=232  ctermbg=229  cterm=bold
   hi Directory                    ctermbg=NONE guibg=NONE
-  hi Folded          ctermfg=243  ctermbg=235
+  hi Folded          ctermfg=241  ctermbg=235  cterm=italic,underline
   hi NonText                      ctermbg=NONE guibg=NONE
   hi EndOfBuffer                  ctermbg=NONE guibg=NONE
 
   hi DiffAdd         ctermfg=255  ctermbg=64
   hi DiffChange      ctermfg=204  ctermbg=NONE cterm=NONE
-  hi DiffDelete      ctermfg=red  ctermbg=NONE cterm=NONE
+  hi DiffDelete      ctermfg=9    ctermbg=NONE cterm=NONE
   hi DiffText        ctermfg=255  ctermbg=31
 
   " Custom statusline colors
@@ -599,7 +599,7 @@ augroup custom_colors
   au ColorScheme * call CustomColors()
 augroup END
 
-colo iceberg
+colo codedark
 
 "}}}2 colors
 
