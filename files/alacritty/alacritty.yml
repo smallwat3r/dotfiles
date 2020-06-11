@@ -34,9 +34,13 @@ font:
     family: SF Mono
     style: Regular
 
+  italic:
+    family: SF Mono
+    style: Italic
+
   bold:
     family: SF Mono
-    style: Regular  # no bold font
+    style: Bold
 
   size: 13.5
 
