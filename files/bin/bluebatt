@@ -29,4 +29,6 @@ _bluebatt() {
   printf "$_content\n"
 }
 
-_bluebatt
+[[ -z $1 ]] &&
+  _bluebatt ||
+  _bluebatt | grep --color=never --ignore-case $1
