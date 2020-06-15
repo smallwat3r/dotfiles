@@ -30,7 +30,7 @@ Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'dhruvasagar/vim-table-mode'      " Build tables
-Plug 'tomasiser/vim-code-dark'         " ColorScheme
+Plug 'cocopon/iceberg.vim'             " Colorscheme
 
 " Syntax support
 Plug 'chrisbra/csv.vim'
@@ -176,7 +176,7 @@ set autoread            " reread changed files automatically
 set laststatus=2        " always show statusline
 set noshowcmd           " don't show command in last line of screen
 set noruler             " don't show cursor position
-" set nu rnu              " relative line numbers and current line number
+set nu rnu              " relative line numbers and current line number
 set showmatch           " matching brackets
 set mouse=a             " mouse support
 set incsearch           " search pattern
@@ -599,7 +599,7 @@ augroup custom_colors
   au ColorScheme * call CustomColors()
 augroup END
 
-colo codedark
+colo iceberg
 
 "}}}2 colors
 
