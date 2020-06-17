@@ -589,10 +589,10 @@ function! CustomColors() abort
 
   " Custom statusline colors
   hi SLNormalColor   ctermbg=15   ctermfg=0    guibg=#657b83
-  hi SLInsertColor   ctermbg=64   ctermfg=0    guibg=#5f8700
+  hi SLInsertColor   ctermbg=41   ctermfg=0    guibg=#00d75f
   hi SLReplaceColor  ctermbg=33   ctermfg=0    guibg=#268bd2
-  hi SLVisualColor   ctermbg=166  ctermfg=0    guibg=#cb4b16
-  hi SLCommandColor  ctermbg=125  ctermfg=0    guibg=#d33682
+  hi SLVisualColor   ctermbg=209  ctermfg=0    guibg=#cff875
+  hi SLCommandColor  ctermbg=198  ctermfg=0    guibg=#ff0087
   hi SLTerminalColor ctermbg=136  ctermfg=0    guibg=#b58900
 endfunction
 
