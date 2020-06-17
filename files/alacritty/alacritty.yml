@@ -31,10 +31,16 @@ scrolling:
 
 font:
   normal:
-    family: SF Mono
+    family: Mononoki
     style: Regular
+  italic:
+    family: Mononoki
+    style: Italic
+  bold:
+    family: Mononoki
+    style: Bold
 
-  size: 13.5
+  size: 15
 
   offset:
     x: 0
@@ -44,7 +50,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # }}} font
 # {{{ colors

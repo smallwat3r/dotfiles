@@ -579,6 +579,7 @@ function! CustomColors() abort
   hi Folded          ctermfg=241  ctermbg=235  cterm=italic,underline
   hi NonText                      ctermbg=NONE guibg=NONE
   hi EndOfBuffer                  ctermbg=NONE guibg=NONE
+  hi Visual          cterm=reverse
 
   hi DiffAdd         ctermfg=255  ctermbg=64
   hi DiffChange      ctermfg=204  ctermbg=NONE cterm=NONE
