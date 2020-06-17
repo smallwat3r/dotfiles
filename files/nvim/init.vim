@@ -538,10 +538,11 @@ iab @-, -----------------------------------------------------------------
 iab @#, #################################################################
 iab @*, *****************************************************************
 
-" Annoying words
+" Annoying words I don't know how to write
 iab widht width
 iab lenght length
 iab strenght strength
+iab weigth weight
 
 "}}}2 insert mode abbreviations
 
@@ -567,7 +568,7 @@ function! CustomColors() abort
     syntax off
   endif
 
-  hi StatuslineNC                 ctermbg=237
+  hi StatuslineNC                 ctermbg=245
   hi Normal                       ctermbg=NONE guibg=NONE
   hi Comment                      ctermbg=NONE cterm=italic
   hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE

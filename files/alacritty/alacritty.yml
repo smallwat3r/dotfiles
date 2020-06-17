@@ -31,13 +31,13 @@ scrolling:
 
 font:
   normal:
-    family: Mononoki
+    family: Consolas
     style: Regular
   italic:
-    family: Mononoki
+    family: Consolas
     style: Italic
   bold:
-    family: Mononoki
+    family: Consolas
     style: Bold
 
   size: 15
