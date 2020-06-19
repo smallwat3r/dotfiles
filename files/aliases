@@ -15,6 +15,7 @@ alias \
   evim="$EDITOR $HOME/.config/nvim/init.vim" \
   ezsh="$EDITOR $HOME/.zshrc" \
   svi="sudo nvim" \
+  v="nvim" \
   vi="nvim" \
   vidiff="nvim -d" \
   vim="nvim" \
@@ -35,8 +36,8 @@ alias \
 # }}}1
 # {{{1 tmux
 
-alias  \
-  sp="tmux splitw -v"  \
+alias \
+  sp="tmux splitw -v" \
   tks="tmux kill-session -t" \
   tksa="tmux kill-session -a" \
   tls="tmux list-sessions" \
@@ -50,15 +51,16 @@ alias \
   ....="cd ../../.." \
   ...="cd ../.." \
   ..="cd .." \
+  cd..="cd .." \
   c="clear" \
   dots="cd $HOME/dotfiles" \
   l="ls -pFf" \
   ls.="ls -pF -d .*" \
   ls="ls -pF" \
+  sl="ls -pF" \
   mkdir="mkdir -pv" \
   p="pwd" \
-  qq="exit" \
-  sl="ls -pF"
+  qq="exit"
 
 # }}}1
 # {{{1 git
@@ -76,14 +78,21 @@ alias \
   gs="git status"
 
 # }}}1
-# {{{1 miscellaneous
+# {{{1 utils
 
 alias \
   ctags="/usr/local/bin/ctags" \
+  diskspace="df -P -kHl" \
+  batt="bluebatt" \
+  sk="sketch"
+
+# }}}1
+# {{{1 miscellaneous
+
+alias \
   fonts="open $HOME/Library/Fonts" \
   myip="curl http://ipecho.net/plain; echo" \
   pubip="curl http://ipecho.net/plain; echo" \
-  sk="sketch" \
   trecord="asciinema rec" \
   trecordgif="asciicast2gif"
 
