@@ -349,6 +349,9 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 nmap B ^
 nmap E $
 
+" join to previous line
+nmap <silent>`j :-join<CR>
+
 " navigate between brackets
 nmap <tab> %
 
