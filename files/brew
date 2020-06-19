@@ -2,6 +2,7 @@ antigen
 asciinema
 bash
 coreutils
+ctags
 curl
 diff-so-fancy
 fd

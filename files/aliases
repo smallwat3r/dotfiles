@@ -79,6 +79,7 @@ alias \
 # {{{1 miscellaneous
 
 alias \
+  ctags="/usr/local/bin/ctags" \
   fonts="open $HOME/Library/Fonts" \
   myip="curl http://ipecho.net/plain; echo" \
   pubip="curl http://ipecho.net/plain; echo" \
