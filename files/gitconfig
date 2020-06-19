@@ -42,3 +42,5 @@
   added = yellow reverse
   changed = green
   untracked = cyan
+[alias]
+  find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
