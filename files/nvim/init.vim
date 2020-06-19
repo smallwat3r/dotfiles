@@ -33,7 +33,6 @@ Plug 'dhruvasagar/vim-table-mode'      " Build tables
 Plug 'cocopon/iceberg.vim'             " Colorscheme
 
 " Syntax support
-Plug 'chrisbra/csv.vim'
 Plug 'cespare/vim-toml'
 Plug 'vim-scripts/applescript.vim'
 Plug 'chr4/nginx.vim'
