@@ -345,8 +345,16 @@ augroup END
 
 "{{{2 normal mode
 
-" Trigger Vaffle as Vinegar
+" trigger Vaffle as Vinegar
 nnoremap <silent>- :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+
+" center search results
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 " toggle scrolloff center
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
@@ -384,8 +392,8 @@ map <silent><leader><space> :nohlsearch<cr>
 " edit config file
 nmap <leader>e :e! $MYVIMRC<cr>
 
-" source current file
-nmap <silent><leader>so :so %<cr>:echo 'File sourced'<cr>
+" source init.vim
+nmap <silent><leader>so :source $MYVIMRC<cr>:echo 'config sourced'<cr>
 
 " cd into current buffer directory
 nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
