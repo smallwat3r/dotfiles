@@ -79,7 +79,12 @@ let g:neoformat_javascript_prettier = {
 let g:neoformat_html_prettier = {
       \ 'exe': 'prettier',
       \ 'stdin': 1,
-      \ 'args': ['--stdin', '--print-width 80', '--stdin-filepath', '"%:p"'],
+      \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
+      \ }
+let g:neoformat_jinja_prettier = {
+      \ 'exe': 'prettier',
+      \ 'stdin': 1,
+      \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
       \ }
 let g:neoformat_htmldjango_prettier = {
       \ 'exe': 'prettier',
@@ -90,6 +95,7 @@ let g:neoformat_htmldjango_prettier = {
 let g:neoformat_enabled_python = ['yapf']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
+let g:neoformat_enabled_jinja = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
 let g:neoformat_enabled_zsh = ['shfmt']
 
