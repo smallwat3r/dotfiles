@@ -443,6 +443,11 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+" vim-plug
+nmap <leader>pl :PlugInstall<cr>
+nmap <leader>pc :PlugClean<cr>
+nmap <leader>pu :PlugUpdate<cr>
+
 " extend previous search
 nmap // /<C-R>/
 
