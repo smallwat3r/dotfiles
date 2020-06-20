@@ -29,8 +29,8 @@ amethyst:
 	@./files/bin/amethyst
 
 python-pack:
-	@./files/code/python/packages.sh
-	@./files/code/python/py3-8.sh
+	@pip3 install -r ./files/code/python/packages.txt >/dev/null
+	@./files/code/python/py3-8.sh >/dev/null
 
 npm-pack:
 	@./files/code/npm/packages.sh
