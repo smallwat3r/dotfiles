@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Current time from different cities
+
+echo 'NYC:' $(TZ="America/New_York" date +%H:%M)
+echo 'London' $(TZ="Europe/London" date +%H:%M)
+echo 'Paris' $(TZ="Europe/Paris" date +%H:%M)
+echo 'Tokyo:' $(TZ="Asia/Tokyo" date +%H:%M)

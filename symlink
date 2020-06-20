@@ -11,6 +11,7 @@ files/bin/shpwd                   : /usr/local/bin/shpwd
 files/bin/sketch/sketch           : /usr/local/bin/sketch
 files/bin/synonym/synonym         : /usr/local/bin/synonym
 files/bin/tubestatus/tubestatus   : /usr/local/bin/tubestatus
+files/bin/wtime                   : /usr/local/bin/wtime
 files/code/pip/pip.conf           : ~/.pip/pip.conf
 files/code/python/isort.cfg       : ~/.isort.cfg
 files/code/python/mypy.ini        : ~/.mypy.ini
