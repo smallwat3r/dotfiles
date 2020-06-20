@@ -487,13 +487,6 @@ vmap <C-j> <Plug>SchleppDown
 vmap <C-k> <Plug>SchleppUp
 vmap <C-l> <Plug>SchleppRight
 
-" wrap visually selected
-xmap (( <esc>`>a)<esc>`<i(<esc>
-xmap {{ <esc>`>a}<esc>`<i{<esc>
-xmap "" <esc>`>a"<esc>`<i"<esc>
-xmap '' <esc>`>a'<esc>`<i'<esc>
-xmap `` <esc>`>a`<esc>`<i`<esc>
-
 " keep visual selection when re-indenting
 xmap > >gv
 xmap < <gv
