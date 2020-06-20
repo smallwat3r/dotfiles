@@ -3,7 +3,7 @@
 
 ---
 
-Dotfiles are managed from the `install` script.  
+Dotfiles are managed from `install.sh`.  
 
 This repo was created for my personal use and is updated very
 frequently, but feel free to pick whatever you want.  
