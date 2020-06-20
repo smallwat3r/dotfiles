@@ -61,7 +61,7 @@ background_opacity: 0.9
 
 colors:
   primary:
-    background: "#181818"
+    background: "#000000"
     foreground: "#d8d8d8"
 
   normal:
