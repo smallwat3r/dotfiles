@@ -48,7 +48,7 @@ _symlink() {
   mkdir -p $(dirname "$_destination")
   ln -sf "$(pwd)/$_source" $_destination
 
-  if [[ $_source =~ ^bin.* ]]; then
+  if [[ $_source =~ ^bin.* ]]; then # Make file executable if bin
     chmod 0755 $_destination
   fi
 }
@@ -56,19 +56,24 @@ _symlink() {
 # If needed upgrade bash version to be able to use readarray
 command -v readarray >/dev/null 2>&1 || _install_brew bash
 
+# Install brew
 readarray -t _BREW <./files/brew
 for _br in "${_BREW[@]}"; do
   _install_brew $_br
 done
 
+# Install casks
 readarray -t _CASK <./files/cask
 for _ca in "${_CASK[@]}"; do
   _install_cask $_ca
 done
 
+# Symlink dotfiles
 readarray -t _SYMLINK <symlink
 for _sym in "${_SYMLINK[@]}"; do
-  _sour=$(echo "${_sym%%:*}" | xargs)
-  _dest=$(echo "${_sym##*:}" | xargs)
-  _symlink $_sour $_dest
+  # Parse source and destination from symlink template
+  _source=$(echo "${_sym%%:*}" | xargs)
+  _destination=$(echo "${_sym##*:}" | xargs)
+
+  _symlink $_source $_destination
 done
