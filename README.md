@@ -13,7 +13,13 @@ or `brew install stow`).
 Note: you will need to install **GNU Make** to use the Makefile (`brew
 install make`).  
 
+Clone this repo into your `$HOME` directory.  
+```sh
+git clone https://github.com/smallwat3r/dotfiles.git $HOME
+```
+
 **Commands (from Makefile)**
+
 ```sh
 make all        # run everything (symlink + other)
 make symlink    # run GNU Stow to symlink all the dotfiles
