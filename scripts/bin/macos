@@ -23,7 +23,7 @@ defaults write com.apple.dock show-recents -bool false
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # KeyRepeat
-defaults write -g InitialKeyRepeat -int 5  # normal minimum is 15 (225 ms)
+defaults write -g InitialKeyRepeat -int 8  # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1         # normal minimum is 2 (30 ms)
 
 # Disable auto-correct
