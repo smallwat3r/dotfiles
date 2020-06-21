@@ -1,7 +1,7 @@
+SHELL=/bin/bash
+
 .PHONY: homebrew stow symlink cask brew python pip node npm
 .DEFAULT: symlink
-
-SHELL=/bin/bash
 
 all: symlink npm pip cask brew
 
@@ -20,6 +20,7 @@ ifeq ($(shell command -v stow),)
 endif
 
 symlink: stow
+	@stow stow -vv -t $(HOME)  # must be run first
 	@stow scripts -vv -t /usr/local
 	@stow \
 		alacritty \
