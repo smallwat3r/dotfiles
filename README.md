@@ -5,17 +5,12 @@
 
 This repo was created for my personal use and is updated very
 frequently, but feel free to pick whatever you want.  
-
 Use at your own risks and please create back-ups of your current
 set-up if you intend to use the Makefile.  
 
-Dotfiles are managed by GNU Stow.  
-
-Note: you will need to install GNU make to use the Makefile (`brew
+Dotfiles are managed by **GNU Stow**.  
+Note: you will need to install **GNU Make** to use the Makefile (`brew
 install make`).  
-
-Use at your own risks and please create back-ups of your current
-set-up if you intend to use the Makefile.  
 
 **Commands (from Makefile)**
 ```sh
