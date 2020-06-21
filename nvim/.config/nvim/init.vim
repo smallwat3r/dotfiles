@@ -59,7 +59,7 @@ call plug#end()
 
 "{{{3 deoplete
 
-let g:deoplete#enable_at_startup=1
+let g:deoplete#enable_at_startup = 1
 
 " Dictionaries
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
@@ -69,9 +69,9 @@ call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
 "}}}3 deoplete
 "{{{3 neoformat
 
-let g:neoformat_basic_format_align=1
-let g:neoformat_basic_format_retab=1
-let g:neoformat_basic_format_trim=1
+let g:neoformat_basic_format_align = 1
+let g:neoformat_basic_format_retab = 1
+let g:neoformat_basic_format_trim  = 1
 
 let g:neoformat_javascript_prettier = {
       \ 'exe': 'prettier',
@@ -94,12 +94,12 @@ let g:neoformat_htmldjango_prettier = {
       \ 'args': ['--stdin', '--print-width 110', '--stdin-filepath', '"%:p"'],
       \ }
 
-let g:neoformat_enabled_python = ['yapf']
+let g:neoformat_enabled_python     = ['yapf']
 let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_html = ['prettier']
-let g:neoformat_enabled_jinja = ['prettier']
+let g:neoformat_enabled_html       = ['prettier']
+let g:neoformat_enabled_jinja      = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
-let g:neoformat_enabled_zsh = ['shfmt']
+let g:neoformat_enabled_zsh        = ['shfmt']
 
 let g:shfmt_opt='-ci'  " shell
 
@@ -153,8 +153,8 @@ augroup vaffle_mappings
   au FileType vaffle call s:customize_vaffle_mappings()
 augroup END
 
-let g:vaffle_show_hidden_files=1
-let g:vaffle_force_delete=1
+let g:vaffle_show_hidden_files = 1
+let g:vaffle_force_delete      = 1
 
 "}}}3 vaffle
 "{{{3 easy-align
@@ -174,7 +174,7 @@ nmap ga <Plug>(EasyAlign)
 
 syntax on
 filetype plugin indent on
-let mapleader=','  " Leader key
+let mapleader = ','  " Leader key
 
 "{{{2 encoding
 
@@ -291,10 +291,10 @@ augroup END
 
 augroup filetype_indentation
   au!
-  au FileType make      setl ts=8 sw=8 noet
-  au FileType go        setl ts=8 sw=8 noet
-  au FileType python    setl ts=4 sw=4 sts=4 et
-  au FileType perl      setl ts=4 sw=4 sts=4 et
+  au FileType make   setl ts=8 sw=8 noet
+  au FileType go     setl ts=8 sw=8 noet
+  au FileType python setl ts=4 sw=4 sts=4 et
+  au FileType perl   setl ts=4 sw=4 sts=4 et
 augroup END
 
 augroup filetype_specifics
@@ -315,21 +315,21 @@ augroup END
 "}}}2 filetypes specifics
 "{{{2 netrw
 
-let g:netrw_banner=0
-let g:netrw_sort_sequence='[\/]$,*'
-let g:netrw_localrmdir='rm -r'
+let g:netrw_banner        = 0
+let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_localrmdir    = 'rm -r'
 
 "}}}2 netrw
 "{{{2 fixes
 
 " Deactivate db text plugin error msg on sql completion
-let g:loaded_sql_completion=0
-let g:omni_sql_no_default_maps=1
+let g:loaded_sql_completion    = 0
+let g:omni_sql_no_default_maps = 1
 
 " Fix weird Python indent behaviour
-let g:pyindent_open_paren='0'
-let g:pyindent_nested_paren='&sw'
-let g:pyindent_continue='&sw'
+let g:pyindent_open_paren   = '0'
+let g:pyindent_nested_paren = '&sw'
+let g:pyindent_continue     = '&sw'
 
 "}}}2 fixes
 "{{{2 other
@@ -360,10 +360,10 @@ augroup END
 nnoremap <silent>- :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
 " center search results
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
+nnoremap n  nzz
+nnoremap N  Nzz
+nnoremap *  *zz
+nnoremap #  #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
@@ -390,7 +390,7 @@ nmap <leader>a =ip
 nmap cp yap<S-}>p
 
 " delete to blackhole register (don't lose previous yank)
-nmap s "_d
+nmap s  "_d
 nmap ss "_dd
 
 " swap with next or previous character
@@ -440,12 +440,12 @@ nmap ;f :Neoformat<cr>
 nmap <leader>gl :GV!<cr>
 
 " fzf
-nmap <leader>b :Buffers<cr>
-nmap <leader>f :Files<cr>
-nmap <leader>; :Rg<cr>
-nmap <leader>w; :exe ":Rg " . expand('<cword>')<cr>
+nmap <leader>b  :Buffers<cr>
+nmap <leader>f  :Files<cr>
+nmap <leader>;  :Rg<cr>
+nmap <leader>w; :exe ":Rg     " . expand('<cword>')<cr>
 nmap <leader>co :Commits<cr>
-nmap <leader>l :BLines<cr>
+nmap <leader>l  :BLines<cr>
 nmap <leader>wl :exe ":BLines " . expand('<cword>')<cr>
 
 " navigate window panels
@@ -548,13 +548,13 @@ iab @a, Matthieu Petiteau <mpetiteau.pro@gmail.com>
 iab @c, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
-iab @s, #!/usr/bin/env
+iab @s,  #!/usr/bin/env
 iab @sh, #!/usr/bin/env bash
 iab @pe, #!/usr/bin/env perl
 iab @py, #!/usr/bin/env python3
 
 " Current date / datetime / timestamp ISO8601/W3C
-iab @d, <C-R>=strftime("%a, %d %b %Y")<cr>
+iab @d,  <C-R>=strftime("%a, %d %b %Y")<cr>
 iab @dt, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
 iab @ts, <C-R>=strftime("%FT%T%z")<cr>
 
@@ -564,10 +564,10 @@ iab @#, #################################################################
 iab @*, *****************************************************************
 
 " Annoying words I don't know how to write
-iab widht width
-iab lenght length
+iab widht    width
+iab lenght   length
 iab strenght strength
-iab weigth weight
+iab weigth   weight
 
 "}}}2 insert mode abbreviations
 
@@ -577,13 +577,13 @@ iab weigth weight
 "{{{2 terminal
 
 " Italics
-let &t_ZH='\e[3m'
-let &t_ZR='\e[23m'
+let &t_ZH = '\e[3m'
+let &t_ZR = '\e[23m'
 
 " Change cursor based on modes
-let &t_SI.='\e[6 q' " INSERT mode
-let &t_SR.='\e[4 q' " REPLACE mode
-let &t_EI.='\e[2 q' " NORMAL mode or others
+let &t_SI .= '\e[6 q' " INSERT mode
+let &t_SR .= '\e[4 q' " REPLACE mode
+let &t_EI .= '\e[2 q' " NORMAL mode or others
 
 "}}}2 terminal
 "{{{2 colors
@@ -593,32 +593,32 @@ function! CustomColors() abort
     syntax off
   endif
 
-  hi StatuslineNC                 ctermbg=245
-  hi Normal                       ctermbg=NONE guibg=NONE
-  hi Comment                      ctermbg=NONE cterm=italic
-  hi LineNr          ctermfg=239  ctermbg=NONE guibg=NONE
-  hi MatchParen      ctermfg=203  ctermbg=190
-  hi CursorLineNR                 ctermbg=NONE guibg=NONE
-  hi Search          ctermfg=232  ctermbg=192  cterm=NONE
-  hi IncSearch       ctermfg=232  ctermbg=229  cterm=bold
-  hi Directory                    ctermbg=NONE guibg=NONE
-  hi Folded          ctermfg=241  ctermbg=235  cterm=italic,underline
-  hi NonText                      ctermbg=NONE guibg=NONE
-  hi EndOfBuffer                  ctermbg=NONE guibg=NONE
-  hi Visual          cterm=reverse
+  hi StatuslineNC ctermbg=245
+  hi Normal       ctermbg=NONE guibg=NONE
+  hi Comment      ctermbg=NONE cterm=italic
+  hi LineNr       ctermfg=239  ctermbg=NONE guibg=NONE
+  hi MatchParen   ctermfg=203  ctermbg=190
+  hi CursorLineNR ctermbg=NONE guibg=NONE
+  hi Search       ctermfg=232  ctermbg=192  cterm=NONE
+  hi IncSearch    ctermfg=232  ctermbg=229  cterm=bold
+  hi Directory    ctermbg=NONE guibg=NONE
+  hi Folded       ctermfg=241  ctermbg=235  cterm=italic,underline
+  hi NonText      ctermbg=NONE guibg=NONE
+  hi EndOfBuffer  ctermbg=NONE guibg=NONE
+  hi Visual       cterm=reverse
 
-  hi DiffAdd         ctermfg=255  ctermbg=64
-  hi DiffChange      ctermfg=204  ctermbg=NONE cterm=NONE
-  hi DiffDelete      ctermfg=9    ctermbg=NONE cterm=NONE
-  hi DiffText        ctermfg=255  ctermbg=31
+  hi DiffAdd    ctermfg=255 ctermbg=64
+  hi DiffChange ctermfg=204 ctermbg=NONE cterm=NONE
+  hi DiffDelete ctermfg=9   ctermbg=NONE cterm=NONE
+  hi DiffText   ctermfg=255 ctermbg=31
 
   " Custom statusline colors
-  hi SLNormalColor   ctermbg=15   ctermfg=0    guibg=#657b83
-  hi SLInsertColor   ctermbg=41   ctermfg=0    guibg=#00d75f
-  hi SLReplaceColor  ctermbg=33   ctermfg=0    guibg=#268bd2
-  hi SLVisualColor   ctermbg=209  ctermfg=0    guibg=#cff875
-  hi SLCommandColor  ctermbg=198  ctermfg=0    guibg=#ff0087
-  hi SLTerminalColor ctermbg=136  ctermfg=0    guibg=#b58900
+  hi SLNormalColor   ctermbg=15  ctermfg=0 guibg=#657b83
+  hi SLInsertColor   ctermbg=41  ctermfg=0 guibg=#00d75f
+  hi SLReplaceColor  ctermbg=33  ctermfg=0 guibg=#268bd2
+  hi SLVisualColor   ctermbg=209 ctermfg=0 guibg=#cff875
+  hi SLCommandColor  ctermbg=198 ctermfg=0 guibg=#ff0087
+  hi SLTerminalColor ctermbg=136 ctermfg=0 guibg=#b58900
 endfunction
 
 augroup custom_colors
@@ -661,13 +661,13 @@ endfunction
 
 " Statusline format
 function! StatusLineFmt(active)
-  let sl = ''
+  let sl    = ''
   if a:active
-    let sl.=ColorMode()
-    let sl.=' %{GitInfo()}'
+    let sl .= ColorMode()
+    let sl .= ' %{GitInfo()}'
   endif
-  let sl.=' %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
-  let sl.=' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
+  let sl   .= ' %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
+  let sl   .= ' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
   return sl
 endfunction
 
