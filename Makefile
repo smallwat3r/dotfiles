@@ -24,6 +24,7 @@ setup-homebrew:
 
 macos:
 	@./files/bin/macos
+	@./files/bin/wallpaper.applescript
 
 amethyst:
 	@./files/bin/amethyst
