@@ -101,7 +101,7 @@ let g:neoformat_enabled_jinja      = ['prettier']
 let g:neoformat_enabled_htmldjango = ['prettier']
 let g:neoformat_enabled_zsh        = ['shfmt']
 
-let g:shfmt_opt='-ci'  " shell
+let g:shfmt_opt = '-ci'  " shell
 
 "}}}3 neoformat
 "{{{3 fzf
@@ -122,18 +122,18 @@ com! -bang -nargs=* Rg
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
       \   {
-      \     'buns'        : ['{', '}'],
-      \     'motionwise'  : ['line'],
-      \     'kind'        : ['add'],
-      \     'linewise'    : 1,
-      \     'command'     : ["'[+1,']-1normal! >>"],
+      \     'buns'      : ['{', '}'],
+      \     'motionwise': ['line'],
+      \     'kind'      : ['add'],
+      \     'linewise'  : 1,
+      \     'command'   : ["'[+1,']-1normal! >>"],
       \   },
       \   {
-      \     'buns'        : ['{', '}'],
-      \     'motionwise'  : ['line'],
-      \     'kind'        : ['delete'],
-      \     'linewise'    : 1,
-      \     'command'     : ["'[,']normal! <<"],
+      \     'buns'      : ['{', '}'],
+      \     'motionwise': ['line'],
+      \     'kind'      : ['delete'],
+      \     'linewise'  : 1,
+      \     'command'   : ["'[,']normal! <<"],
       \   }
       \ ]
 
@@ -276,17 +276,17 @@ set softtabstop=2
 
 augroup filetype_detect
   au!
-  au BufRead,BufNewFile *.md setf markdown
-  au BufRead,BufNewFile */nginx/*.conf setf nginx
-  au BufRead,BufNewFile */nginx/**/*.conf setf nginx
-  au BufRead,BufNewFile *.{yaml,yml} setf yaml
-  au BufRead,BufNewFile gitconfig setf gitconfig
-  au BufRead,BufNewFile *.sketch setf sketch
-  au BufRead,BufNewFile Dockerfile.* setf dockerfile
+  au BufRead,BufNewFile *.md                      setf markdown
+  au BufRead,BufNewFile */nginx/*.conf            setf nginx
+  au BufRead,BufNewFile */nginx/**/*.conf         setf nginx
+  au BufRead,BufNewFile *.{yaml,yml}              setf yaml
+  au BufRead,BufNewFile gitconfig                 setf gitconfig
+  au BufRead,BufNewFile *.sketch                  setf sketch
+  au BufRead,BufNewFile Dockerfile.*              setf dockerfile
   au BufRead,BufNewFile *.{dockerfile,Dockerfile} setf dockerfile
-  au BufRead,BufNewFile *.applescript setf applescript
-  au BufRead,BufNewFile *.log setf log
-  au BufRead,BufNewFile *.html setf jinja
+  au BufRead,BufNewFile *.applescript             setf applescript
+  au BufRead,BufNewFile *.log                     setf log
+  au BufRead,BufNewFile *.html                    setf jinja
 augroup END
 
 augroup filetype_indentation
