@@ -17,6 +17,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export PER5LIB="$HOME/lib/perl5"
 
+
 # }}}1 env
 # {{{1 source
 
@@ -70,7 +71,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # grep / ripgrep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
 
 # unset options
 unsetopt BEEP
