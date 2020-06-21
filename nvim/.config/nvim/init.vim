@@ -31,6 +31,7 @@ Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'dhruvasagar/vim-table-mode'      " Build tables
 Plug 'ap/vim-css-color'                " Show colors
+Plug 'junegunn/vim-easy-align'
 Plug 'cocopon/iceberg.vim'             " Colorscheme
 
 " Syntax support
@@ -156,6 +157,15 @@ let g:vaffle_show_hidden_files=1
 let g:vaffle_force_delete=1
 
 "}}}3 vaffle
+"{{{3 easy-align
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"}}}3 easy-align
 
 "}}}2 plugins configuration
 
