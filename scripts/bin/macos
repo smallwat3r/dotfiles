@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
-# MacOS config file and preferences.
+# macOS preferences
 
 # Font smoothing
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults write -g AppleFontSmoothing -int 0
 
-# Dark UI
+# Dark UI by default
 defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
 
+# Always show hidden files
+defaults write com.apple.finder AppleShowAllFiles YES
+
 # Mac termimal
-# Disable [ ]
 defaults write com.apple.Terminal AutoMarkPromptLines -bool false
 defaults write com.apple.Terminal ShowLineMarks -bool false
-# Scrollbars
 defaults write com.apple.Terminal AppleShowScrollBars -string 'Automatic'
 
 # Don't show recent
@@ -22,15 +23,8 @@ defaults write com.apple.dock show-recents -bool false
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # KeyRepeat
-# normal minimum is 15 (225 ms)
-defaults write -g InitialKeyRepeat -float 10.0
-defaults write NSGlobalDomain InitialKeyRepeat -float 10.0
-# normal minimum is 2 (30 ms)
-defaults write -g KeyRepeat -float 1.0
-defaults write NSGlobalDomain KeyRepeat -float 1.0
-
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write -g InitialKeyRepeat -int 5  # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1         # normal minimum is 2 (30 ms)
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false

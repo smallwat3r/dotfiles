@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Amethyst config file and preferences
+# Amethyst preferences
 
 # Floating windows
 defaults write com.amethyst.Amethyst.plist floating '(
