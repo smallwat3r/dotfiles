@@ -1,5 +1,4 @@
 # ZSH config.
-# Matthieu Petiteau <mpetiteau.pro@gmail.com>
 
 # {{{1 env
 

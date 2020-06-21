@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Functions.
-# Matthieu Petiteau <mpetiteau.pro@gmail.com>
 
 # {{{1 (cdr) cd root of git repo
 

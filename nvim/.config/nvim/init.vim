@@ -1,5 +1,4 @@
-" neovim config file
-" Matthieu Petiteau <mpetiteau.pro@gmail.com>
+" Neovim config file
 
 "{{{1 plugins
 

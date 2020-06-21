@@ -1,1 +1,5 @@
-.DS_Store
+*.DS_Store
+
+nvim/.config/nvim/plugged/
+nvim/.config/nvim/autoload/
+nvim/.config/nvim/undodir/

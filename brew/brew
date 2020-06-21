@@ -23,6 +23,7 @@ python@3.8
 redir
 ripgrep
 shfmt
+stow
 the_silver_searcher
 tidy-html5
 tmux

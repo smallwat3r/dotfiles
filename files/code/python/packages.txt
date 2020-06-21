@@ -1,8 +1,0 @@
-  yapf
-  black
-  pylint
-  sqlparse
-  isort
-  jsbeautifier
-  pynvim
-  bandit

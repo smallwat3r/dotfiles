@@ -1,43 +1,91 @@
-.PHONY: help all setup-homebrew macos amethyst python-pack npm-pack go-pack dotfiles
-.DEFAULT: help
+.PHONY: homebrew stow symlink cask brew python pip node npm
+.DEFAULT: symlink
 
-help:
-	@echo "make all"
-	@echo "  Install everything"
-	@echo "make dotfiles"
-	@echo "  Install only tools and symlinks"
-	@echo "make macos"
-	@echo "  Set macos preferences"
-	@echo "make amethyst"
-	@echo "  Set amethyst preferences"
-	@echo "make python-pack"
-	@echo "  Install python packages and make sure default is 3.8"
-	@echo "make npm-pack"
-	@echo "  Install npm packages"
-	@echo "make go-pack"
-	@echo "  Install go packages"
+SHELL=/bin/bash
 
-all: setup-homebrew dotfiles python-pack npm-pack go-pack macos amethyst
+all: symlink npm pip cask brew
 
-setup-homebrew:
-	@./files/bin/homebrew-install
+homebrew:
+ifeq ($(shell command -v brew),)
+	@echo "[dotfiles] Installing Homebrew ..."
+	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
+	@echo "[dotfiles] Homebrew has been installed"
+endif
 
-macos:
-	@./files/bin/macos
-	@./files/bin/wallpaper.applescript
+stow: homebrew
+ifeq ($(shell command -v stow),)
+	@echo "[dotfiles] Installing Stow ..."
+	brew install stow
+	@echo "[dotfiles] Stow has been installed"
+endif
 
-amethyst:
-	@./files/bin/amethyst
+symlink: stow
+	@stow scripts -vv -t /usr/local
+	@stow \
+		alacritty \
+		git \
+		isort \
+		mypy \
+		nvim \
+		pip \
+		pylint \
+		rg \
+		scripts \
+		sketch \
+		tmux \
+		yapf \
+		zsh \
+		-vv -t $(HOME)
+	@echo "[dotfiles] All set-up"
 
-python-pack:
-	@pip3 install -r ./files/code/python/packages.txt >/dev/null
-	@./files/code/python/py3-8.sh >/dev/null
+brew: homebrew
+	@while read -r line; do \
+		echo "[dotfiles] Checking $$line" && \
+		brew ls --versions "$$line" >/dev/null || { \
+			echo "[dotfiles] Installing $$line"; \
+			brew install "$$line"; \
+		}; \
+        done <./brew/brew
 
-npm-pack:
-	@./files/code/npm/packages.sh
+cask: homebrew
+	@while read -r line; do \
+		echo "[dotfiles] Checking $$line" && \
+		brew cask list "$$line" >/dev/null || { \
+			echo "[dotfiles] Installing cask $$line"; \
+			brew cask install "$$line"; \
+		}; \
+        done <./brew/cask
 
-go-pack:
-	@./files/code/go/packages.sh
+node: homebrew
+ifeq ($(shell brew ls --versions node),)
+	@echo "[dotfiles] Installing node ..."
+	brew install node
+	@echo "[dotfiles] Node has been installed"
+endif
 
-dotfiles: setup-homebrew
-	@./install.sh
+npm: node
+	npm install -g \
+		prettier \
+		prettydiff \
+		http-server
+	@echo "[dotfiles] All npm packages installed"
+
+python: homebrew
+ifeq ($(shell brew ls --versions python@3.8),)
+	@echo "[dotfiles] Installing python 3.8 ..."
+	brew install python@3.8
+	ln -s -f $(shell which python3.8) /usr/local/bin/python
+	@echo "[dotfiles] Python 3.8 has been installed"
+endif
+
+pip: python
+	pip3 install \
+		yapf \
+		black \
+		pylint \
+		sqlparse \
+		isort \
+		jsbeautifier \
+		pynvim \
+		bandit
+	@echo "[dotfiles] All pip packages installed"

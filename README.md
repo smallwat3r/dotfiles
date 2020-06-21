@@ -1,9 +1,7 @@
 <h3 align="center">.dotfiles</h3>
-<p align="center">My config files for macOS</p>
+<p align="center">My configs for macOS</p>
 
 ---
-
-Dotfiles are managed from `install.sh`.  
 
 This repo was created for my personal use and is updated very
 frequently, but feel free to pick whatever you want.  
@@ -11,29 +9,22 @@ frequently, but feel free to pick whatever you want.
 Use at your own risks and please create back-ups of your current
 set-up if you intend to use the Makefile.  
 
-**Download**  
+Dotfiles are managed by GNU Stow.  
+
+Note: you will need to install GNU make to use the Makefile (`brew
+install make`).  
+
+Use at your own risks and please create back-ups of your current
+set-up if you intend to use the Makefile.  
+
+**Commands (from Makefile)**
 ```sh
-git clone --recursive https://github.com/smallwat3r/dotfiles.git
-```
+make all        # run everything (symlink + other)
+make symlink    # run GNU Stow to symlink all the dotfiles
 
-**Main commands (from Makefile)**
-```sh
-make all        # install everything
-make dotfiles   # do all symlinks + cask/brew installs
-```
-
-Run `make help` to see all commands available.  
-
-**Notes**
-
-Before first time use, if on macos you might not have `make`
-installed, run (from repo):  
-```sh
-./files/bin/homebrew-install && brew install make
-```
-
-On first time use, after install, run the below command to make
-ZSH the default shell (might ask password for user):  
-```sh
-chsh -s $(which zsh)
+# Other:
+make brew       # install all brew utils
+make cask       # install all brew casks
+make npm        # install global node packages
+make pip        # install global python packages
 ```
