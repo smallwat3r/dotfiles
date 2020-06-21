@@ -445,9 +445,9 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 " vim-plug
-nmap <leader>pl :PlugInstall<cr>
-nmap <leader>pc :PlugClean<cr>
-nmap <leader>pu :PlugUpdate<cr>
+nmap <leader>pl :source $MYVIMRC<cr>:PlugInstall<cr>
+nmap <leader>pc :source $MYVIMRC<cr>:PlugClean<cr>
+nmap <leader>pu :source $MYVIMRC<cr>:PlugUpdate<cr>
 
 " extend previous search
 nmap // /<C-R>/
