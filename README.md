@@ -8,8 +8,7 @@ frequently, but feel free to pick whatever you want.
 Use at your own risks and please create back-ups of your current
 set-up if you intend to use the Makefile.  
 
-Dotfiles are managed by **GNU Stow** (will be automatically installed 
-if needed).  
+Dotfiles are managed by **GNU Stow** (will be automatically installed).  
 Note: you will need to install **GNU Make** to use the Makefile (`brew
 install make`).  
 
