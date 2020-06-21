@@ -17,7 +17,8 @@ Plug 'sbdchd/neoformat'                " Auto code formatting
 Plug 'tpope/vim-commentary'            " Comments mappings
 Plug 'tpope/vim-eunuch'                " Shell commands from vim
 Plug 'tpope/vim-fugitive'              " Git wrapper
-Plug 'junegunn/gv.vim'                 " Commits browser
+Plug 'junegunn/gv.vim'                 " Git commit browser
+Plug 'rhysd/git-messenger.vim'         " Git commit message on lines
 Plug 'alvan/vim-closetag'              " Auto-close html tags
 Plug 'gregsexton/MatchTag'             " Highlight matching html tag
 Plug 'machakann/vim-sandwich'          " Surroundings mapping
