@@ -31,7 +31,7 @@ Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'dhruvasagar/vim-table-mode'      " Build tables
 Plug 'ap/vim-css-color'                " Show colors
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'         " Align pieces of text
 Plug 'cocopon/iceberg.vim'             " Colorscheme
 
 " Syntax support
