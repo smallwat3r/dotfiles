@@ -27,7 +27,7 @@ def cli(directory, port):
     """ Cli interface """
     Handler = partial(http.server.SimpleHTTPRequestHandler, directory=directory)
     with socketserver.TCPServer(("", port), Handler) as httpd:
-        print(f"Serving {directory} at http://{get_ip()}:{port}")
+        print(f"Serving {directory} at http://{get_ip()}:{port}\nType CTRL+C to stop.")
         httpd.serve_forever()
 
 
