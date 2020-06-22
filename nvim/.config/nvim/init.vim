@@ -38,6 +38,7 @@ Plug 'cocopon/iceberg.vim'             " Colorscheme
 Plug 'cespare/vim-toml'
 Plug 'vim-scripts/applescript.vim'
 Plug 'chr4/nginx.vim'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'MTDL9/vim-log-highlighting'
 Plug 'Glench/Vim-Jinja2-Syntax'
 
