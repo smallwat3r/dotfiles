@@ -92,8 +92,6 @@ alias \
 alias \
   fonts="open $HOME/Library/Fonts" \
   myip="curl http://ipecho.net/plain; echo" \
-  pubip="curl http://ipecho.net/plain; echo" \
-  trecord="asciinema rec" \
-  trecordgif="asciicast2gif"
+  pubip="curl http://ipecho.net/plain; echo"
 
 # }}}1
