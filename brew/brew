@@ -5,6 +5,7 @@ coreutils
 ctags
 curl
 diff-so-fancy
+dockutil
 fd
 fzf
 gifsicle
