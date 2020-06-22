@@ -89,7 +89,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "
 # }}}1 general
 # {{{1 prompt
 
-# launch tmux on start
+# launch tmux by default
 case $- in *i*)
   [[ -z $TMUX ]] && exec tmux
 esac
@@ -101,35 +101,29 @@ vim_ins_mode='%#'
 vim_cmd_mode=';;'
 vim_mode=$vim_ins_mode
 
-function zle-keymap-select {
+zle-keymap-select() {
   vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
   zle reset-prompt
 }
 zle -N zle-keymap-select
 
-function zle-line-finish {
+zle-line-finish() {
   vim_mode=$vim_ins_mode
 }
 zle -N zle-line-finish
 
-# actual prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=false
-PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(/usr/local/bin/is_venv)${vim_mode} '
+PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is_venv)${vim_mode} '
 
-# Use tmux pane title as prompt.
+# Use tmux pane title to display the prompt information
 precmd() {
-  local _cur_pane=$(
+  local _current_pane=$(
     tmux list-panes |
       grep "active" |
       cut -d ':' -f 1
   )
-  local _shpwd=$(/usr/local/bin/shpwd)
-  local _git_branch=$(/usr/local/bin/git_branch)
-  local _git_root=$(
-    echo $(/usr/local/bin/git_root) |
-      sed 's/true/~/'
-  )
-  tmux select-pane -t $_cur_pane -T "$_shpwd $_git_root$_git_branch"
+  local _git_root=$(echo $(git_root) | sed 's/true/~/')
+  tmux select-pane -t $_current_pane -T "$(shpwd) $_git_root$(git_branch)"
 }
 
 # }}}1 prompt

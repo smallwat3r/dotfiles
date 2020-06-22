@@ -284,7 +284,7 @@ augroup filetype_detect
   au BufRead,BufNewFile *.sketch                  setf sketch
   au BufRead,BufNewFile Dockerfile.*              setf dockerfile
   au BufRead,BufNewFile *.{dockerfile,Dockerfile} setf dockerfile
-  au BufRead,BufNewFile *.applescript             setf applescript
+  au BufRead,BufNewFile *.{applescript,osascript} setf applescript
   au BufRead,BufNewFile *.log                     setf log
   au BufRead,BufNewFile *.html                    setf jinja
 augroup END
