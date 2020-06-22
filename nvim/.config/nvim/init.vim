@@ -547,7 +547,7 @@ cmap <C-l> <right>
 
 " Personal stuff
 iab @e, mpetiteau.pro@gmail.com
-iab @a, Matthieu Petiteau <mpetiteau.pro@gmail.com>
+iab @me, Matthieu Petiteau <mpetiteau.pro@gmail.com>
 iab @c, Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang

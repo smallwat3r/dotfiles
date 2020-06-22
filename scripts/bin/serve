@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# Matthieu Petiteau <mpetiteau.pro@gmail.com>
+# Serve a local directory using a basic webserver
+
+import argparse
+import http.server
+import socket
+import socketserver
+from functools import partial
+
+
+def get_ip():
+    """ Get server IP """
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # try to find public IP on local network
+        s.connect(("10.255.255.255", 1))
+        ip = s.getsockname()[0]
+    except Exception:
+        ip = "127.0.0.1"  # default to localhost
+    finally:
+        s.close()
+    return ip
+
+
+def cli(directory, port):
+    """ Cli interface """
+    Handler = partial(http.server.SimpleHTTPRequestHandler, directory=directory)
+    with socketserver.TCPServer(("", port), Handler) as httpd:
+        print(f"Serving {directory} at http://{get_ip()}:{port}")
+        httpd.serve_forever()
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Serve a location directory.")
+
+    parser.add_argument("-d", "--directory", type=str,
+                        help="Directory to serve (default: .)", default=".")
+    parser.add_argument("-b", "--bind", type=int,
+                        help="Port number (default: 8000)", default=8000)
+
+    args = parser.parse_args()
+    cli(args.directory, args.bind)
