@@ -106,6 +106,8 @@ let g:shfmt_opt = '-ci'  " shell
 "}}}3 neoformat
 "{{{3 fzf
 
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Todo', 'border': 'sharp' } }
+
 com! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(
       \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
@@ -606,6 +608,7 @@ function! CustomColors() abort
   hi NonText      ctermbg=NONE guibg=NONE
   hi EndOfBuffer  ctermbg=NONE guibg=NONE
   hi Visual       cterm=reverse
+  hi Todo         ctermbg=NONE ctermfg=120
 
   hi DiffAdd    ctermfg=255 ctermbg=64
   hi DiffChange ctermfg=204 ctermbg=NONE cterm=NONE

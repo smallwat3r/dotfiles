@@ -53,9 +53,11 @@ alias \
   c="clear" \
   dots="cd $HOME/dotfiles" \
   l="ls -pFf" \
-  ls.="ls -pF -d .*" \
   ls="ls -pF" \
   sl="ls -pF" \
+  ll="ls -la" \
+  ls.="ls -pF -d .*" \
+  lss="ls -la | grep --color=never '\->'" \
   mkdir="mkdir -pv" \
   p="pwd" \
   qq="exit"
