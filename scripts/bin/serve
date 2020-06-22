@@ -16,7 +16,7 @@ def get_ip():
         # try to find public IP on local network
         s.connect(("10.255.255.255", 1))
         ip = s.getsockname()[0]
-    except Exception:
+    except OSError:
         ip = "127.0.0.1"  # default to localhost
     finally:
         s.close()
