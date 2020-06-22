@@ -1,0 +1,16 @@
+semi: false
+overrides:
+  - files: "*.js"
+    options:
+      bracketSpacing: true
+      printWidth: 80
+      tabWidth: 2
+      singleQuote: false
+      semi: true
+      arrowParens: avoid
+      proseWrap: always
+  - files: "*.html"
+    options:
+      jsxBracketSameLine: true
+      printWidth: 110
+      tabWidth: 2

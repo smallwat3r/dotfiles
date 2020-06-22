@@ -31,6 +31,7 @@ symlink: stow
 		nvim \
 		pip \
 		pylint \
+		prettier \
 		rg \
 		scripts \
 		sketch \
