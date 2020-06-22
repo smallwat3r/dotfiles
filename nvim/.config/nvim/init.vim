@@ -79,7 +79,7 @@ let g:neoformat_javascript_prettier = {
       \ 'stdin': 1,
       \ 'args': [
       \   '--stdin',
-      \   '--config ~/.config/prettier/.prettierrc',
+      \   '--config ~/.config/.prettierrc',
       \   '--stdin-filepath',
       \   '"%:p"'
       \   ],
@@ -89,7 +89,7 @@ let g:neoformat_html_prettier = {
       \ 'stdin': 1,
       \ 'args': [
       \   '--stdin',
-      \   '--config ~/.config/prettier/.prettierrc',
+      \   '--config ~/.config/.prettierrc',
       \   '--stdin-filepath',
       \   '"%:p"'
       \   ],
@@ -99,7 +99,7 @@ let g:neoformat_jinja_prettier = {
       \ 'stdin': 1,
       \ 'args': [
       \   '--stdin',
-      \   '--config ~/.config/prettier/.prettierrc',
+      \   '--config ~/.config/.prettierrc',
       \   '--stdin-filepath',
       \   '"%:p"'
       \   ],
