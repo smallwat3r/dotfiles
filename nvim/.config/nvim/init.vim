@@ -555,9 +555,9 @@ cmap <C-l> <right>
 "{{{2 insert mode abbreviations
 
 " Personal stuff
-iab @e, mpetiteau.pro@gmail.com
+iab @e,  mpetiteau.pro@gmail.com
 iab @me, Matthieu Petiteau <mpetiteau.pro@gmail.com>
-iab @c, Copyright 2020 Matthieu Petiteau, all rights reserved.
+iab @c,  Copyright 2020 Matthieu Petiteau, all rights reserved.
 
 " Shebang
 iab @s,  #!/usr/bin/env
