@@ -1,0 +1,10 @@
+#!/usr/bin/env osascript
+# Disconnect from VPN using Tunnelblick
+# Required parameter: VPN configuration name
+
+on run argv
+  tell application "Tunnelblick"
+    disconnect (item 1 of argv)
+    get state of first configuration where name = (item 1 of argv)
+  end tell
+end run
