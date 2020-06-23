@@ -29,6 +29,7 @@ symlink: stow
 		isort \
 		mypy \
 		nvim \
+		vifm \
 		pip \
 		pylint \
 		prettier \

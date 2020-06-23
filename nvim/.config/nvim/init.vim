@@ -25,7 +25,8 @@ Plug 'machakann/vim-sandwich'          " Surroundings mapping
 Plug 'tpope/vim-unimpaired'            " Complementary mappings
 Plug 'simnalamburt/vim-mundo'          " Undo tree
 Plug 'zirrostig/vim-schlepp'           " Move visual blocks
-Plug 'cocopon/vaffle.vim'              " File browsing
+" Plug 'cocopon/vaffle.vim'              " File browsing
+Plug 'vifm/vifm.vim'                   " File manager
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
@@ -152,21 +153,23 @@ let g:sandwich#recipes += [
 "}}}3 vim sandwich
 "{{{3 vaffle
 
-" mappings for vaffle to work as netrw / vinegar
-function! s:customize_vaffle_mappings() abort
-  nmap <buffer>- <Plug>(vaffle-open-parent)
-  nmap <buffer>% <Plug>(vaffle-new-file)
-  nmap <buffer>d <Plug>(vaffle-mkdir)
-  nmap <buffer>D <Plug>(vaffle-delete-selected)
-endfunction
+" NOTE: Switched to Vifm - but keep config just in case
 
-augroup vaffle_mappings
-  au!
-  au FileType vaffle call s:customize_vaffle_mappings()
-augroup END
+" " mappings for vaffle to work as netrw / vinegar
+" function! s:customize_vaffle_mappings() abort
+"   nmap <buffer>- <Plug>(vaffle-open-parent)
+"   nmap <buffer>% <Plug>(vaffle-new-file)
+"   nmap <buffer>d <Plug>(vaffle-mkdir)
+"   nmap <buffer>D <Plug>(vaffle-delete-selected)
+" endfunction
 
-let g:vaffle_show_hidden_files = 1
-let g:vaffle_force_delete      = 1
+" augroup vaffle_mappings
+"   au!
+"   au FileType vaffle call s:customize_vaffle_mappings()
+" augroup END
+
+" let g:vaffle_show_hidden_files = 1
+" let g:vaffle_force_delete      = 1
 
 "}}}3 vaffle
 "{{{3 easy-align
@@ -368,8 +371,10 @@ augroup END
 
 "{{{2 normal mode
 
-" trigger Vaffle as Vinegar
-nnoremap <silent>- :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+" Trigger Vifm with -
+" nnoremap <silent>- :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+
 
 " center search results
 nnoremap n  nzz
