@@ -1,6 +1,6 @@
 # ZSH config.
 
-# {{{1 env
+# {{{1 general
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/bin:$PATH"
@@ -17,26 +17,9 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export PER5LIB="$HOME/lib/perl5"
 
-
-# }}}1 env
-# {{{1 source
-
+# functions and aliases
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 [[ -f "$HOME/.functions" ]] && source "$HOME/.functions"
-[[ -f "/usr/local/share/antigen/antigen.zsh" ]] && source "/usr/local/share/antigen/antigen.zsh"
-[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
-
-# }}}1 source
-# {{{1 antigen
-
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle hlissner/zsh-autopair
-
-antigen apply
-
-# }}}1 antigen
-# {{{1 general
 
 # zsh auto-suggestions colors
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -46,11 +29,15 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # colors
 autoload -U colors && colors
 
-# set options
+# zsh options
 setopt AUTOCD
 setopt CHASE_LINKS
 setopt AUTO_REMOVE_SLASH
 setopt GLOB_DOTS
+
+unsetopt BEEP
+unsetopt LIST_BEEP
+unsetopt IGNORE_EOF
 
 # history options
 setopt APPEND_HISTORY
@@ -73,12 +60,9 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
 export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
 
-# unset options
-unsetopt BEEP
-unsetopt LIST_BEEP
-unsetopt IGNORE_EOF
-
 # fzf
+[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
+
 export FZF_DEFAULT_OPTS='
   --height 96% --reverse --border
   --color dark,hl:37,hl+:37,bg+:#101010,fg+:136
@@ -87,6 +71,17 @@ export FZF_DEFAULT_OPTS='
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
 
 # }}}1 general
+# {{{1 antigen
+
+[[ -f "/usr/local/share/antigen/antigen.zsh" ]] && source "/usr/local/share/antigen/antigen.zsh"
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle hlissner/zsh-autopair
+
+antigen apply
+
+# }}}1 antigen
 # {{{1 prompt
 
 # launch tmux by default
