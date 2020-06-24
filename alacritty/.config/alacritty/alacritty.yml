@@ -57,11 +57,11 @@ font:
 # }}} font
 # {{{ colors
 
-background_opacity: 0.9
+background_opacity: 1
 
 colors:
   primary:
-    background: "#000000"
+    background: "#1c1c1c"
     foreground: "#d8d8d8"
 
   normal:

@@ -52,7 +52,7 @@ set norunexec
 
 " Selected color scheme
 
-colorscheme Default
+colorscheme iceberg
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -308,6 +308,16 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
     \phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
 " ------------------------------------------------------------------------------
+
+" Navigate panes
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Scroll
+nnoremap <A-j> <C-e>
+nnoremap <A-k> <C-y>
 
 " Go up a dir
 nnoremap - h
