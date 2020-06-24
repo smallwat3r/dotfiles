@@ -631,12 +631,12 @@ function! CustomColors() abort
   hi DiffText   ctermfg=255 ctermbg=31
 
   " Custom statusline colors
-  hi SLNormalColor   ctermbg=15  ctermfg=0 guibg=#657b83
-  hi SLInsertColor   ctermbg=41  ctermfg=0 guibg=#00d75f
-  hi SLReplaceColor  ctermbg=33  ctermfg=0 guibg=#268bd2
-  hi SLVisualColor   ctermbg=209 ctermfg=0 guibg=#cff875
-  hi SLCommandColor  ctermbg=198 ctermfg=0 guibg=#ff0087
-  hi SLTerminalColor ctermbg=136 ctermfg=0 guibg=#b58900
+  hi SLNormalColor   ctermbg=15  ctermfg=0
+  hi SLInsertColor   ctermbg=157 ctermfg=22  cterm=bold
+  hi SLReplaceColor  ctermbg=159 ctermfg=17  cterm=bold
+  hi SLVisualColor   ctermbg=222 ctermfg=166 cterm=bold
+  hi SLCommandColor  ctermbg=210 ctermfg=88  cterm=bold
+  hi SLTerminalColor ctermbg=230 ctermfg=136 cterm=bold
 endfunction
 
 augroup custom_colors
@@ -654,7 +654,7 @@ colo iceberg
 " Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
-    return '(' . fugitive#head() . ')'
+    return '[' . fugitive#head() . ']'
   endif
   return ''
 endfunction
@@ -662,17 +662,17 @@ endfunction
 " Manage statusline colors from vim mode
 function! ColorMode()
   if (mode() =~# '\v(n|no)')
-    return '%#SLNormalColor# %n NOR'
+    return '%#SLNormalColor# %{mode()} '
   elseif (mode() ==# 'i')
-    return '%#SLInsertColor# %n INS'
+    return '%#SLInsertColor# %{mode()} '
   elseif (mode() ==# 'R')
-    return '%#SLReplaceColor# %n REP'
+    return '%#SLReplaceColor# %{mode()} '
   elseif (mode() =~# '\v(v|V)') || (mode() == "\<C-v>")
-    return '%#SLVisualColor# %n VIS'
+    return '%#SLVisualColor# %{mode()} '
   elseif (mode() ==# 'c')
-    return '%#SlCommandColor# %n CMD'
+    return '%#SlCommandColor# %{mode()} '
   elseif (mode() ==# 't')
-    return '%#SlTerminalColor# %n TER'
+    return '%#SlTerminalColor# %{mode()} '
   endif
   return ''
 endfunction
@@ -682,10 +682,13 @@ function! StatusLineFmt(active)
   let sl    = ''
   if a:active
     let sl .= ColorMode()
+  endif
+  let sl   .= ' %t %{&modified?"\ [+]":""}%{&readonly?"\ [ro]":""} %{&filetype}'
+  let sl   .= ' %=%-14.(%l,%c%) %{strlen(&fenc)?&fenc:&enc} '
+  if a:active
     let sl .= ' %{GitInfo()}'
   endif
-  let sl   .= ' %t%{&modified?"\ (+)":""}%{&readonly?"\ (ro)":""}'
-  let sl   .= ' %=%-14.(%l,%c%) %{&filetype} %{strlen(&fenc)?&fenc:&enc} '
+  let sl   .= ' %n '
   return sl
 endfunction
 
