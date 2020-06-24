@@ -1,0 +1,25 @@
+" VIm File Manager colorscheme
+
+highlight clear
+
+highlight Win         ctermfg=255     ctermbg=none    cterm=none
+highlight Directory   ctermfg=109     ctermbg=default cterm=bold
+highlight Link        ctermfg=216     ctermbg=none    cterm=bold
+highlight BrokenLink  ctermfg=red     ctermbg=239     cterm=bold
+highlight Socket      ctermfg=green   ctermbg=default cterm=bold
+highlight Device      ctermfg=red     ctermbg=default cterm=bold
+highlight Fifo        ctermfg=150     ctermbg=default cterm=bold
+highlight Executable  ctermfg=150     ctermbg=default cterm=none
+highlight Selected    ctermfg=17      ctermbg=159     cterm=bold
+highlight CurrLine    cterm=reverse
+highlight TopLine     ctermfg=255     ctermbg=none    cterm=none
+highlight TopLineSel  ctermfg=110     ctermbg=default cterm=bold
+highlight StatusLine  ctermfg=245     ctermbg=235     cterm=none
+highlight WildMenu    ctermfg=255     ctermbg=black   cterm=underline,reverse
+highlight CmdLine     ctermfg=255     ctermbg=none    cterm=none
+highlight ErrorMsg    ctermfg=203     ctermbg=none    cterm=bold
+highlight Border      ctermfg=black   ctermbg=none    cterm=none
+highlight JobLine     ctermfg=black   ctermbg=255     cterm=bold,reverse
+highlight SuggestBox  ctermfg=default ctermbg=default cterm=bold
+highlight CmpMismatch ctermfg=255     ctermbg=red     cterm=bold
+highlight AuxWin      ctermfg=default ctermbg=default cterm=bold,underline,reverse,standout
