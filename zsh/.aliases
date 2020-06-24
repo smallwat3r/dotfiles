@@ -60,7 +60,8 @@ alias \
   lss="ls -la | grep --color=never '\->'" \
   mkdir="mkdir -pv" \
   p="pwd" \
-  qq="exit"
+  qq="exit" \
+  ww="vifm"
 
 # }}}1
 # {{{1 git
