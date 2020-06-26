@@ -612,20 +612,20 @@ function! DefaultColors() abort
   endif
 
   hi Comment      ctermbg=NONE cterm=italic
-  hi CursorLineNR ctermbg=NONE guibg=NONE
+  hi CursorLineNR ctermbg=NONE
   hi DiffAdd      ctermfg=255  ctermbg=64
   hi DiffChange   ctermfg=204  ctermbg=NONE cterm=NONE
   hi DiffDelete   ctermfg=9    ctermbg=NONE cterm=NONE
   hi DiffText     ctermfg=255  ctermbg=31
-  hi Directory    ctermbg=NONE guibg=NONE
-  hi EndOfBuffer  ctermbg=NONE guibg=NONE
+  hi Directory    ctermbg=NONE
+  hi EndOfBuffer  ctermbg=NONE
   hi Folded       ctermfg=241  ctermbg=235  cterm=italic,underline
   hi IncSearch    ctermfg=232  ctermbg=229  cterm=bold
-  hi LineNr       ctermfg=239  ctermbg=NONE guibg=NONE
+  hi LineNr       ctermfg=239  ctermbg=NONE
   hi MatchParen   ctermfg=203  ctermbg=190
-  hi NonText      ctermbg=NONE guibg=NONE
+  hi NonText      ctermbg=NONE
   hi NonText      ctermfg=202
-  hi Normal       ctermbg=NONE guibg=NONE
+  hi Normal       ctermbg=NONE
   hi Search       ctermfg=232  ctermbg=192  cterm=NONE
   hi SpellBad     ctermfg=88   ctermbg=210
   hi SpellCap     ctermbg=159  ctermfg=17
