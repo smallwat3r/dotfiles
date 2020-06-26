@@ -20,8 +20,12 @@ node
 python@3.8
 ripgrep
 shfmt
+shhh
+sketch
 stow
+synonym
 tmux
+tubestatus
 vifm
 wget
 zsh

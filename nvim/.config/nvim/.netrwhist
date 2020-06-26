@@ -1,0 +1,4 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/Users/matthieupetiteau/Github/hb-formulas/homebrew-sketch'
+let g:netrw_dirhist_1='/Users/matthieupetiteau/Github/homebrew/homebrew-sketch/Formula'

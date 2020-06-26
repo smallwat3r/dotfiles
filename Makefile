@@ -1,9 +1,10 @@
 SHELL=/bin/bash
 
-.PHONY: homebrew stow symlink cask brew python pip node npm
+.PHONY: homebrew stow symlink cask brew python pip node npm taps
 .DEFAULT: symlink
 
-all: symlink npm pip cask brew
+all: npm pip cask brew symlink
+	@echo "[dotfiles] -- Everything has been installed --"
 
 homebrew:
 ifeq ($(shell command -v brew),)
@@ -42,7 +43,12 @@ symlink: stow
 		-vv -t $(HOME)
 	@echo "[dotfiles] All set-up"
 
-brew: homebrew
+taps: homebrew
+	@while read -r line; do \
+		brew tap "$$line"; \
+        done <./brew/taps
+
+brew: taps
 	@while read -r line; do \
 		echo "[dotfiles] Checking $$line" && \
 		brew ls --versions "$$line" >/dev/null || { \
@@ -50,15 +56,17 @@ brew: homebrew
 			brew install "$$line"; \
 		}; \
         done <./brew/brew
+	@echo "[dotfiles] All done checking brew"
 
 cask: homebrew
 	@while read -r line; do \
 		echo "[dotfiles] Checking $$line" && \
 		brew cask list "$$line" >/dev/null || { \
 			echo "[dotfiles] Installing cask $$line"; \
-			brew cask install "$$line"; \
+			brew cask install "$$line" | true;\
 		}; \
         done <./brew/cask
+	@echo "[dotfiles] All done checking casks"
 
 node: homebrew
 ifeq ($(shell brew ls --versions node),)
