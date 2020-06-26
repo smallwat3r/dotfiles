@@ -1,5 +1,5 @@
 #!/usr/bin/env osascript
 
 tell application "System Events"
-  set picture of every desktop to "/Library/Desktop Pictures/Solid Colors/Black.png"
+  set picture of every desktop to "/Library/Desktop Pictures/Solid Colors/Teal.png"
 end tell
