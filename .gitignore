@@ -5,3 +5,6 @@ nvim/.config/nvim/autoload/
 nvim/.config/nvim/colors/
 nvim/.config/nvim/plugged/
 nvim/.config/nvim/undodir/
+vifm/.config/vifm/scripts/
+vifm/.config/vifm/vifm-help.txt
+vifm/.config/vifm/vifm-info.json
