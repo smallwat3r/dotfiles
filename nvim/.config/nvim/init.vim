@@ -624,6 +624,9 @@ function! CustomColors() abort
   hi EndOfBuffer  ctermbg=NONE guibg=NONE
   hi Visual       cterm=reverse
   hi Todo         ctermbg=NONE ctermfg=120
+  hi NonText      ctermfg=202
+  hi SpellBad     ctermfg=88   ctermbg=210
+  hi SpellCap     ctermbg=159  ctermfg=17
 
   hi DiffAdd    ctermfg=255 ctermbg=64
   hi DiffChange ctermfg=204 ctermbg=NONE cterm=NONE
