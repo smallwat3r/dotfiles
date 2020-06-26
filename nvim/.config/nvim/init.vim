@@ -605,33 +605,33 @@ let &t_EI .= '\e[2 q' " NORMAL mode or others
 "}}}2 terminal
 "{{{2 colors
 
-function! CustomColors() abort
+" My custom colors (overwritting current colorscheme)
+function! DefaultColors() abort
   if &diff
     syntax off
   endif
 
-  hi StatuslineNC ctermbg=245
-  hi Normal       ctermbg=NONE guibg=NONE
   hi Comment      ctermbg=NONE cterm=italic
+  hi CursorLineNR ctermbg=NONE guibg=NONE
+  hi DiffAdd      ctermfg=255  ctermbg=64
+  hi DiffChange   ctermfg=204  ctermbg=NONE cterm=NONE
+  hi DiffDelete   ctermfg=9    ctermbg=NONE cterm=NONE
+  hi DiffText     ctermfg=255  ctermbg=31
+  hi Directory    ctermbg=NONE guibg=NONE
+  hi EndOfBuffer  ctermbg=NONE guibg=NONE
+  hi Folded       ctermfg=241  ctermbg=235  cterm=italic,underline
+  hi IncSearch    ctermfg=232  ctermbg=229  cterm=bold
   hi LineNr       ctermfg=239  ctermbg=NONE guibg=NONE
   hi MatchParen   ctermfg=203  ctermbg=190
-  hi CursorLineNR ctermbg=NONE guibg=NONE
-  hi Search       ctermfg=232  ctermbg=192  cterm=NONE
-  hi IncSearch    ctermfg=232  ctermbg=229  cterm=bold
-  hi Directory    ctermbg=NONE guibg=NONE
-  hi Folded       ctermfg=241  ctermbg=235  cterm=italic,underline
   hi NonText      ctermbg=NONE guibg=NONE
-  hi EndOfBuffer  ctermbg=NONE guibg=NONE
-  hi Visual       cterm=reverse
-  hi Todo         ctermbg=NONE ctermfg=120
   hi NonText      ctermfg=202
+  hi Normal       ctermbg=NONE guibg=NONE
+  hi Search       ctermfg=232  ctermbg=192  cterm=NONE
   hi SpellBad     ctermfg=88   ctermbg=210
   hi SpellCap     ctermbg=159  ctermfg=17
-
-  hi DiffAdd    ctermfg=255 ctermbg=64
-  hi DiffChange ctermfg=204 ctermbg=NONE cterm=NONE
-  hi DiffDelete ctermfg=9   ctermbg=NONE cterm=NONE
-  hi DiffText   ctermfg=255 ctermbg=31
+  hi StatuslineNC ctermbg=245
+  hi Todo         ctermbg=NONE ctermfg=120
+  hi Visual       cterm=reverse
 
   " Custom statusline colors
   hi SLNormalColor   ctermbg=15  ctermfg=0
@@ -644,7 +644,7 @@ endfunction
 
 augroup custom_colors
   au!
-  au ColorScheme * call CustomColors()
+  au ColorScheme * call DefaultColors()
 augroup END
 
 colo iceberg
