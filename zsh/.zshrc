@@ -113,21 +113,23 @@ zle -N zle-line-finish
 export VIRTUAL_ENV_DISABLE_PROMPT=false
 PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is_venv)${vim_mode} '
 
-_display_git_info(){
+_display_git_info() {
   local _git_root=$(echo $(git_root) | sed 's/true/~/')
   local _git_branch=$(echo $(git_branch))
   [[ ! -z $_git_branch ]] && echo " $_git_branch$_git_root"
 }
 
-_current_pane=$(tmux list-panes | grep "active" | cut -d ':' -f 1)
+_pane_number() {
+  echo $(tmux list-panes | grep "active" | cut -d ':' -f 1)
+}
 
 ssh() {
-  tmux select-pane -t $_current_pane -T "#[fg=red,bold]$@#[fg=default]"
+  tmux select-pane -t $(_pane_number) -T "#[fg=red,bold]$@#[fg=default]"
   /usr/bin/ssh "$@"
 }
 
 precmd() {
-  tmux select-pane -t $_current_pane -T "$(shpwd)$(_display_git_info)"
+  tmux select-pane -t $(_pane_number) -T "$(shpwd)$(_display_git_info)"
 }
 
 # }}}1 prompt
