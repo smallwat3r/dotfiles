@@ -25,19 +25,20 @@ symlink: stow
 	@stow scripts -vv -t /usr/local
 	@stow \
 		alacritty \
-		git \
 		ctags \
+		git \
 		isort \
 		mypy \
 		nvim \
-		vifm \
 		pip \
-		pylint \
 		prettier \
+		pylint \
 		rg \
 		scripts \
 		sketch \
+		ssh \
 		tmux \
+		vifm \
 		yapf \
 		zsh \
 		-vv -t $(HOME)

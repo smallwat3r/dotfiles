@@ -1,11 +1,21 @@
 *.DS_Store
+*.swp
+*.swo
+*.pyc
 
 nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/autoload/
 nvim/.config/nvim/colors/
 nvim/.config/nvim/plugged/
 nvim/.config/nvim/undodir/
+
 vifm/.config/vifm/scripts/
 vifm/.config/vifm/vifm-help.txt
 vifm/.config/vifm/vifm-info.json
 vifm/.config/vifm/vifminfo
+
+*.pem
+*.pub
+ssh/.ssh/id_rsa
+ssh/.ssh/known_hosts
+ssh/.ssh/private
