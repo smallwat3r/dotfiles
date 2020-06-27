@@ -31,15 +31,15 @@ scrolling:
 
 font:
   normal:
-    family: Mononoki Nerd Font Mono
+    family: Hack Nerd Font Mono
     style: Regular
 
   italic:
-    family: Mononoki Nerd Font Mono
+    family: Hack Nerd Font Mono
     style: Italic
 
   bold:
-    family: Mononoki Nerd Font Mono
+    family: Hack Nerd Font Mono
     style: Bold
 
   size: 13.5

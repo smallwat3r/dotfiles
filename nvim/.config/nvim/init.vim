@@ -33,14 +33,12 @@ Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'dhruvasagar/vim-table-mode'      " Build tables
 Plug 'ap/vim-css-color'                " Show colors
 Plug 'junegunn/vim-easy-align'         " Align pieces of text
-Plug 'cocopon/iceberg.vim'             " Colorscheme
+Plug 'tomasiser/vim-code-dark'         " Colorscheme
 
 " Syntax support
-Plug 'cespare/vim-toml'
 Plug 'vim-scripts/applescript.vim'
 Plug 'chr4/nginx.vim'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'MTDL9/vim-log-highlighting'
 Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Fuzzy finder
@@ -646,7 +644,7 @@ augroup custom_colors
   au ColorScheme * call DefaultColors()
 augroup END
 
-colo iceberg
+colo codedark
 
 "}}}2 colors
 
