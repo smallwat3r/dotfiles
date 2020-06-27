@@ -309,7 +309,6 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 
 " ------------------------------------------------------------------------------
 
-
 " Scroll
 nnoremap <A-j> <C-e>
 nnoremap <A-k> <C-y>
