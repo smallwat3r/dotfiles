@@ -31,15 +31,15 @@ scrolling:
 
 font:
   normal:
-    family: Rec Mono Casual
+    family: Mononoki Nerd Font Mono
     style: Regular
 
   italic:
-    family: Rec Mono Casual
+    family: Mononoki Nerd Font Mono
     style: Italic
 
   bold:
-    family: Rec Mono Casual
+    family: Mononoki Nerd Font Mono
     style: Bold
 
   size: 13.5

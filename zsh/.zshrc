@@ -110,15 +110,16 @@ zle -N zle-line-finish
 export VIRTUAL_ENV_DISABLE_PROMPT=false
 PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is_venv)${vim_mode} '
 
+_display_git_info(){
+  local _git_root=$(echo $(git_root) | sed 's/true/~/')
+  local _git_branch=$(echo $(git_branch))
+  [[ ! -z $_git_branch ]] && echo " $_git_branch$_git_root"
+}
+
 # Use tmux pane title to display the prompt information
 precmd() {
-  local _current_pane=$(
-    tmux list-panes |
-      grep "active" |
-      cut -d ':' -f 1
-  )
-  local _git_root=$(echo $(git_root) | sed 's/true/~/')
-  tmux select-pane -t $_current_pane -T "$(shpwd) $_git_root$(git_branch)"
+  local _current_pane=$(tmux list-panes | grep "active" | cut -d ':' -f 1)
+  tmux select-pane -t $_current_pane -T "$(shpwd)$(_display_git_info)"
 }
 
 # }}}1 prompt

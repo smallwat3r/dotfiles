@@ -58,7 +58,7 @@ brew: taps
         done <./brew/brew
 	@echo "[dotfiles] All done checking brew"
 
-cask: homebrew
+cask: taps
 	@while read -r line; do \
 		echo "[dotfiles] Checking $$line" && \
 		brew cask list "$$line" >/dev/null || { \

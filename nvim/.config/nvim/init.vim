@@ -657,7 +657,7 @@ colo iceberg
 " Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
-    return '[' . fugitive#head() . ']'
+    return "\ue0a0" . fugitive#head()
   endif
   return ''
 endfunction
@@ -686,7 +686,7 @@ function! StatusLineFmt(active)
   if a:active
     let sl .= ColorMode()
   endif
-  let sl   .= ' %t %{&modified?"\ [+]":""}%{&readonly?"\ [ro]":""} %{&filetype}'
+  let sl   .= ' %t %{&filetype} %{&modified?"\ [\uf040]":""}%{&readonly?"\ \uf023":""} '
   let sl   .= ' %=%-14.(%l,%c%) %{strlen(&fenc)?&fenc:&enc} '
   if a:active
     let sl .= ' %{GitInfo()}'
