@@ -31,18 +31,18 @@ scrolling:
 
 font:
   normal:
-    family: Hack Nerd Font Mono
+    family: Mononoki Nerd Font Mono
     style: Regular
 
   italic:
-    family: Hack Nerd Font Mono
+    family: Mononoki Nerd Font Mono
     style: Italic
 
   bold:
-    family: Hack Nerd Font Mono
+    family: Mononoki Nerd Font Mono
     style: Bold
 
-  size: 12
+  size: 12.5
 
   offset:
     x: 0
