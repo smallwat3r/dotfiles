@@ -1,5 +1,35 @@
 #!/usr/bin/env bash
 
+# {{{1 general
+
+alias \
+  .....="cd ../../../.." \
+  ....="cd ../../.." \
+  ...="cd ../.." \
+  ..="cd .." \
+  batt="bluebatt" \
+  c="clear" \
+  cd..="cd .." \
+  ctags="/usr/local/bin/ctags" \
+  diskspace="df -P -kHl" \
+  dots="cd $HOME/dotfiles" \
+  fonts="open $HOME/Library/Fonts" \
+  l="ls -pFf" \
+  ll="ls -la" \
+  ls.="ls -pF -d .*" \
+  ls="ls -pF" \
+  lss="ls -la | grep --color=never '\->'" \
+  mkdir="mkdir -pv" \
+  myip="curl http://ipecho.net/plain; echo" \
+  p="pwd" \
+  pihole="ssh pi 'pihole status'" \
+  pubip="curl http://ipecho.net/plain; echo" \
+  qq="exit" \
+  sk="sketch" \
+  sl="ls -pF" \
+  ww="vifm"
+
+# }}}1
 # {{{1 editing
 
 alias \
@@ -42,28 +72,6 @@ alias \
   vs="tmux splitw -h"
 
 # }}}1
-# {{{1 move around
-
-alias \
-  .....="cd ../../../.." \
-  ....="cd ../../.." \
-  ...="cd ../.." \
-  ..="cd .." \
-  cd..="cd .." \
-  c="clear" \
-  dots="cd $HOME/dotfiles" \
-  l="ls -pFf" \
-  ls="ls -pF" \
-  sl="ls -pF" \
-  ll="ls -la" \
-  ls.="ls -pF -d .*" \
-  lss="ls -la | grep --color=never '\->'" \
-  mkdir="mkdir -pv" \
-  p="pwd" \
-  qq="exit" \
-  ww="vifm"
-
-# }}}1
 # {{{1 git
 
 alias \
@@ -77,22 +85,5 @@ alias \
   gd="git diff" \
   gp="git push" \
   gs="git status"
-
-# }}}1
-# {{{1 utils
-
-alias \
-  ctags="/usr/local/bin/ctags" \
-  diskspace="df -P -kHl" \
-  batt="bluebatt" \
-  sk="sketch"
-
-# }}}1
-# {{{1 miscellaneous
-
-alias \
-  fonts="open $HOME/Library/Fonts" \
-  myip="curl http://ipecho.net/plain; echo" \
-  pubip="curl http://ipecho.net/plain; echo"
 
 # }}}1
