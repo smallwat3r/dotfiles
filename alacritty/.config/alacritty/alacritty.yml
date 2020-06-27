@@ -42,7 +42,7 @@ font:
     family: Hack Nerd Font Mono
     style: Bold
 
-  size: 13.5
+  size: 12
 
   offset:
     x: 0
