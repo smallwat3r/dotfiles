@@ -107,6 +107,9 @@ zle-line-finish() {
 }
 zle -N zle-line-finish
 
+# Tmux is turn on by default, so I'm using the individual pane titles
+# to display the majority of the prompt information.
+
 export VIRTUAL_ENV_DISABLE_PROMPT=false
 PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is_venv)${vim_mode} '
 
@@ -116,9 +119,14 @@ _display_git_info(){
   [[ ! -z $_git_branch ]] && echo " $_git_branch$_git_root"
 }
 
-# Use tmux pane title to display the prompt information
+_current_pane=$(tmux list-panes | grep "active" | cut -d ':' -f 1)
+
+ssh() {
+  tmux select-pane -t $_current_pane -T "#[fg=red,bold]$@#[fg=default]"
+  /usr/bin/ssh "$@"
+}
+
 precmd() {
-  local _current_pane=$(tmux list-panes | grep "active" | cut -d ':' -f 1)
   tmux select-pane -t $_current_pane -T "$(shpwd)$(_display_git_info)"
 }
 
