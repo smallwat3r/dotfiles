@@ -375,7 +375,6 @@ augroup END
 " nnoremap <silent>- :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
-
 " center search results
 nnoremap n  nzz
 nnoremap N  Nzz
@@ -605,7 +604,7 @@ let &t_EI .= '\e[2 q' " NORMAL mode or others
 "}}}2 terminal
 "{{{2 colors
 
-" My custom colors (overwritting current colorscheme)
+" My custom colors (overwriting current colorscheme)
 function! DefaultColors() abort
   if &diff
     syntax off

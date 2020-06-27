@@ -115,3 +115,7 @@ admin
 Certbot
 README
 configs
+#olorscheme/!
+colorscheme/!
+plugins/!
+swapfiles/!
