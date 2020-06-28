@@ -1,24 +1,29 @@
 SHELL=/bin/bash
 
-.PHONY: homebrew stow symlink cask brew python pip node npm taps
+.PHONY: homebrew stow symlink cask brew python pip node npm taps xcode-cli
 .DEFAULT: symlink
 
 all: npm pip cask brew symlink
-	@echo "[dotfiles] -- Everything has been installed --"
+	@echo '*** -- Everything has been installed --'
 
 homebrew:
 ifeq ($(shell command -v brew),)
-	@echo "[dotfiles] Installing Homebrew ..."
+	@echo '*** Installing Homebrew ...'
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
-	@echo "[dotfiles] Homebrew has been installed"
+	@echo '*** Homebrew has been installed'
 endif
 
 stow: homebrew
 ifeq ($(shell command -v stow),)
-	@echo "[dotfiles] Installing Stow ..."
+	@echo '*** Installing Stow ...'
 	brew install stow
-	@echo "[dotfiles] Stow has been installed"
+	@echo '*** Stow has been installed'
 endif
+
+xcode-cli:
+	@xcode-select --install >/dev/null 2>&1 && \
+		echo '*** Installing xcode cli tools... Please follow the instructions in the GUI' || \
+		exit 0
 
 symlink: stow
 	@stow stow -vv -t $(HOME)  # must be run first
@@ -43,38 +48,38 @@ symlink: stow
 		yapf \
 		zsh \
 		-vv -t $(HOME)
-	@echo "[dotfiles] All set-up"
+	@echo '*** Symlinks all set-up'
 
 taps: homebrew
 	@while read -r line; do \
 		brew tap "$$line"; \
         done <./brew/taps
 
-brew: taps
+brew: taps xcode-cli
 	@while read -r line; do \
-		echo "[dotfiles] Checking $$line" && \
+		echo "*** Checking $$line" && \
 		brew ls --versions "$$line" >/dev/null || { \
-			echo "[dotfiles] Installing $$line"; \
+			echo "*** Installing $$line"; \
 			brew install "$$line"; \
 		}; \
         done <./brew/brew
-	@echo "[dotfiles] All done checking brew"
+	@echo '*** All done checking brew'
 
 cask: taps
 	@while read -r line; do \
-		echo "[dotfiles] Checking $$line" && \
+		echo "*** Checking $$line" && \
 		brew cask list "$$line" >/dev/null || { \
-			echo "[dotfiles] Installing cask $$line"; \
+			echo "*** Installing cask $$line"; \
 			brew cask install "$$line" | true;\
 		}; \
         done <./brew/cask
-	@echo "[dotfiles] All done checking casks"
+	@echo '*** All done checking casks'
 
 node: homebrew
 ifeq ($(shell brew ls --versions node),)
-	@echo "[dotfiles] Installing node ..."
+	@echo '*** Installing node ...'
 	brew install node
-	@echo "[dotfiles] Node has been installed"
+	@echo '*** Node has been installed'
 endif
 
 npm: node
@@ -82,14 +87,14 @@ npm: node
 		prettier \
 		prettydiff \
 		http-server
-	@echo "[dotfiles] All npm packages installed"
+	@echo '*** All npm packages installed'
 
 python: homebrew
 ifeq ($(shell brew ls --versions python@3.8),)
-	@echo "[dotfiles] Installing python 3.8 ..."
+	@echo '*** Installing python 3.8 ...'
 	brew install python@3.8
 	ln -s -f $(shell which python3.8) /usr/local/bin/python
-	@echo "[dotfiles] Python 3.8 has been installed"
+	@echo '*** Python 3.8 has been installed'
 endif
 
 pip: python
@@ -102,4 +107,4 @@ pip: python
 		jsbeautifier \
 		pynvim \
 		bandit
-	@echo "[dotfiles] All pip packages installed"
+	@echo '*** All pip packages installed'
