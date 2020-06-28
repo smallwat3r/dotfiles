@@ -1,23 +1,6 @@
 #!/usr/bin/env bash
 # Amethyst preferences
 
-# Floating windows
-defaults write com.amethyst.Amethyst.plist floating '(
-  {
-     id = "com.apple.systempreferences";
-     "window-titles" = ();
-  },
-  {
-     id = "com.tinyspeck.slackmacgap";
-     "window-titles" = ();
-  },
-  {
-     id = "org.mozilla.thunderbird";
-     "window-titles" = ();
-  }
-)'
-defaults write com.amethyst.Amethyst.plist floating-is-blacklist 1
-
 # Follow window when moved to different workspace
 defaults write com.amethyst.Amethyst.plist follow-space-thrown-windows 1
 
@@ -50,3 +33,48 @@ defaults write com.amethyst.Amethyst.plist SUEnableAutomaticChecks 0
 
 # Delete the plist cache - MUST ALWAYS BE LAST
 defaults read com.amethyst.Amethyst.plist >/dev/null 2>&1
+
+# Floating windows
+defaults write com.amethyst.Amethyst.plist floating-is-blacklist 1
+defaults write com.amethyst.Amethyst.plist floating '(
+  {
+     id = "com.apple.systempreferences";
+     "window-titles" = ();
+  },
+  {
+     id = "com.apple.finder";
+     "window-titles" = ();
+  },
+  {
+     id = "com.tinyspeck.slackmacgap";
+     "window-titles" = ();
+  },
+  {
+     id = "org.mozilla.thunderbird";
+     "window-titles" = ();
+  },
+  {
+     id = "com.nordvpn.osx";
+     "window-titles" = ();
+  },
+  {
+     id = "net.tunnelblick.tunnelblick";
+     "window-titles" = ();
+  },
+  {
+     id = "WhatsApp";
+     "window-titles" = ();
+  },
+  {
+     id = "com.docker.docker";
+     "window-titles" = ();
+  },
+  {
+     id = "com.apple.calculator";
+     "window-titles" = ();
+  },
+  {
+     id = "com.runningwithcrayons.Alfred";
+     "window-titles" = ();
+  }
+)'
