@@ -27,7 +27,7 @@ alias \
   qq="exit" \
   sk="sketch" \
   sl="ls -pF" \
-  ww="vifm"
+  ww="vifm ."
 
 # }}}1
 # {{{1 editing
