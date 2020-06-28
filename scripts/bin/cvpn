@@ -3,12 +3,17 @@
 # Required parameter: VPN configuration name
 
 on run argv
+  if (count of argv) is 0 then return "Please enter a vpn configuration name."
   tell application "Tunnelblick"
-    connect (item 1 of argv)
-    get state of first configuration where name = (item 1 of argv)
-    repeat until result = "CONNECTED"
-      delay 1
+    try
+      connect (item 1 of argv)
       get state of first configuration where name = (item 1 of argv)
-    end repeat
+      repeat until result = "CONNECTED"
+        delay 1
+        get state of first configuration where name = (item 1 of argv)
+      end repeat
+    on error
+      return "An error occured, are you sure this vpn name exists?"
+    end try
   end tell
 end run
