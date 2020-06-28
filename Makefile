@@ -27,6 +27,7 @@ symlink: stow
 		alacritty \
 		ctags \
 		git \
+		htop \
 		isort \
 		mypy \
 		nvim \
