@@ -31,9 +31,6 @@ defaults write com.amethyst.Amethyst.plist enables-layout-hud-on-space-change 0
 # Disable automatic update check as it is done by Homebrew
 defaults write com.amethyst.Amethyst.plist SUEnableAutomaticChecks 0
 
-# Delete the plist cache - MUST ALWAYS BE LAST
-defaults read com.amethyst.Amethyst.plist >/dev/null 2>&1
-
 # Floating windows
 defaults write com.amethyst.Amethyst.plist floating-is-blacklist 1
 defaults write com.amethyst.Amethyst.plist floating '(
@@ -78,3 +75,6 @@ defaults write com.amethyst.Amethyst.plist floating '(
      "window-titles" = ();
   }
 )'
+
+# Delete the plist cache - MUST ALWAYS BE LAST
+defaults read com.amethyst.Amethyst.plist >/dev/null 2>&1
