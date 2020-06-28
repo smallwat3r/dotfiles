@@ -124,8 +124,8 @@ _pane_number() {
 }
 
 ssh() {
-  tmux select-pane -t $(_pane_number) -T "#[fg=red,bold]$@#[fg=default]"
-  /usr/bin/ssh "$@"
+  tmux select-pane -t $(_pane_number) -T "#[fg=red,bold]$(echo $* | cut -d . -f 1)#[fg=default]"
+  command ssh "$@"
 }
 
 precmd() {
