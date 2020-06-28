@@ -12,31 +12,29 @@ defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
 defaults write com.apple.finder AppleShowAllFiles YES
 
 # Mac termimal
-defaults write com.apple.Terminal AutoMarkPromptLines -bool false
-defaults write com.apple.Terminal ShowLineMarks -bool false
+defaults write com.apple.Terminal AutoMarkPromptLines -bool   false
+defaults write com.apple.Terminal ShowLineMarks       -bool   false
 defaults write com.apple.Terminal AppleShowScrollBars -string 'Automatic'
 
-# Don't show recent
-defaults write com.apple.dock show-recents -bool false
+# Dock
+defaults write com.apple.dock show-recents           -bool  false
+defaults write com.apple.dock autohide-time-modifier -float 0.25
+defaults write com.apple.dock tilesize               -int   25
 
 # Disable special characters when holding keys
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# KeyRepeat
-defaults write -g InitialKeyRepeat -int 8  # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1         # normal minimum is 2 (30 ms)
+# Keyrepeat
+defaults write -g InitialKeyRepeat -int 8
+defaults write -g KeyRepeat        -int 1
 
-# Disable auto-correct
+# Text
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
-# Disable auto capitalize
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-
-# Disable auto period insert
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled     -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 # Disable the system alert sound
-defaults write NSGlobalDomain com.apple.sound.beep.volume -int 0
+defaults write NSGlobalDomain com.apple.sound.beep.volume     -int 0
 defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
 
 # Remove shortcuts that are annoying while using tmux or switching with vim
@@ -44,3 +42,6 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Mission Control' n
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Application windows' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move left a space' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move right a space' nil
+
+# Restart dock
+killall Dock
