@@ -34,6 +34,7 @@ setopt AUTOCD
 setopt CHASE_LINKS
 setopt AUTO_REMOVE_SLASH
 setopt GLOB_DOTS
+setopt INTERACTIVE_COMMENTS
 
 unsetopt BEEP
 unsetopt LIST_BEEP

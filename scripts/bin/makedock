@@ -5,6 +5,5 @@ dockutil --no-restart --add "/Applications/Thunderbird.app"
 dockutil --no-restart --add "/Applications/Alacritty.app"
 dockutil --no-restart --add "/Applications/Google Chrome.app"
 dockutil --no-restart --add "/Applications/Slack.app"
-dockutil --no-restart --add "/Applications/System Preferences.app"
 
 killall Dock
