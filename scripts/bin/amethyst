@@ -22,16 +22,24 @@ defaults write com.amethyst.Amethyst.plist floating-is-blacklist 1
 defaults write com.amethyst.Amethyst.plist follow-space-thrown-windows 1
 
 # Configure layouts
-defaults write com.amethyst.Amethyst.plist layouts '(
-  tall, wide, floating, fullscreen
-)'
+defaults write com.amethyst.Amethyst.plist layouts '(bsp, floating, tall, wide)'
 
 # Restore layouts when application starts
 defaults write com.amethyst.Amethyst.plist restore-layouts-on-launch 1
 
 # Set window margins
-defaults write com.amethyst.Amethyst.plist window-margins 20
+defaults write com.amethyst.Amethyst.plist window-margins     20
 defaults write com.amethyst.Amethyst.plist window-margin-size 10
+
+# Mouse
+defaults write com.amethyst.Amethyst.plist mouse-follow-focus 1
+defaults write com.amethyst.Amethyst.plist mouse-swap-windows 1
+
+# Screen padding
+defaults write com.amethyst.Amethyst.plist screen-padding-left   10
+defaults write com.amethyst.Amethyst.plist screen-padding-right  10
+defaults write com.amethyst.Amethyst.plist screen-padding-top    20
+defaults write com.amethyst.Amethyst.plist screen-padding-bottom 20
 
 # Do not display layout names
 defaults write com.amethyst.Amethyst.plist enables-layout-hud 0
