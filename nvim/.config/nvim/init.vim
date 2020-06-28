@@ -115,17 +115,29 @@ let g:shfmt_opt = '-ci'  " shell
 "}}}3 neoformat
 "{{{3 fzf
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_layout = {
+      \ 'window': {
+      \   'width': 0.9,
+      \   'height': 0.6,
+      \   'highlight': 'Todo',
+      \   'border': 'sharp'
+      \ }}
 
 com! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(
-      \ <q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
-      \ '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+      \ <q-args>, {
+      \   'options': [
+      \     '--layout=reverse',
+      \     '--info=inline',
+      \     '--preview',
+      \     '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'
+      \   ]
+      \ }, <bang>0)
 
 com! -bang -nargs=* Rg
       \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-      \   fzf#vim#with_preview(), <bang>0)
+      \   'rg --column --line-number --no-heading --color=always --smart-case '
+      \   .shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 
 "}}}3 fzf
 "{{{3 vim sandwich
@@ -626,17 +638,18 @@ function! DefaultColors() abort
   hi Search       ctermfg=232  ctermbg=192  cterm=NONE
   hi SpellBad     ctermfg=88   ctermbg=210
   hi SpellCap     ctermbg=159  ctermfg=17
-  hi StatuslineNC ctermbg=245
+  hi StatuslineNC ctermfg=242  ctermbg=NONE cterm=underline,bold
   hi Todo         ctermbg=NONE ctermfg=120
+  hi VertSplit    ctermfg=242  ctermbg=NONE
   hi Visual       cterm=reverse
 
   " Custom statusline colors
-  hi SLNormalColor   ctermbg=15  ctermfg=0
-  hi SLInsertColor   ctermbg=157 ctermfg=22  cterm=bold
-  hi SLReplaceColor  ctermbg=159 ctermfg=17  cterm=bold
-  hi SLVisualColor   ctermbg=222 ctermfg=166 cterm=bold
-  hi SLCommandColor  ctermbg=210 ctermfg=88  cterm=bold
-  hi SLTerminalColor ctermbg=230 ctermfg=136 cterm=bold
+  hi SLNormalColor   ctermbg=15  ctermfg=233
+  hi SLInsertColor   ctermbg=157 ctermfg=22
+  hi SLReplaceColor  ctermbg=159 ctermfg=17
+  hi SLVisualColor   ctermbg=222 ctermfg=166
+  hi SLCommandColor  ctermbg=210 ctermfg=88
+  hi SLTerminalColor ctermbg=230 ctermfg=136
 endfunction
 
 augroup custom_colors
@@ -651,10 +664,18 @@ colo codedark
 "}}}1 theme
 "{{{1 statusline
 
+let symbols = {
+      \ 'bwdseparator': "\ue0bf",
+      \ 'fwdseparator': "\ue0bd",
+      \ 'line': "\ue0a1",
+      \ 'readonly': "\uf023",
+      \ 'branch': "\ue0a0"
+      \ }
+
 " Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
-    return "\ue0a0" . fugitive#head()
+    return g:symbols.branch . fugitive#head() . ' ' . g:symbols.bwdseparator
   endif
   return ''
 endfunction
@@ -681,13 +702,14 @@ endfunction
 function! StatusLineFmt(active)
   let sl    = ''
   if a:active
-    let sl .= ColorMode()
+    let sl .= ColorMode() . GitInfo()
   endif
-  let sl   .= ' %t %{&filetype} %{&modified?"\ [\uf040]":""}%{&readonly?"\ \uf023":""} '
-  let sl   .= ' %=%-14.(%l,%c%) %{strlen(&fenc)?&fenc:&enc} '
-  if a:active
-    let sl .= ' %{GitInfo()}'
-  endif
+  let sl   .= ' %t '
+  let sl   .= ' %{&modified?"\ +":""}'
+  let sl   .= ' %{&readonly? g:symbols.readonly:""}'
+  let sl   .= ' %=%-14.(%{g:symbols.line}%l,%c%)'
+  let sl   .= ' %{g:symbols.fwdseparator} %{strlen(&fenc)?&fenc:&enc}'
+  let sl   .= ' %{g:symbols.fwdseparator} %{&filetype}'
   let sl   .= ' %n '
   return sl
 endfunction
