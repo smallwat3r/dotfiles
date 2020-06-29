@@ -2,19 +2,24 @@
 
 # {{{1 general
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+# launch tmux by default
+if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+  exec tmux
+fi
+
+export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin'
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$HOME/go/bin:$PATH"
 
-export TERM="xterm-256color"
+export TERM='xterm-256color'
 export CLICOLOR=1
-export EDITOR="/usr/local/bin/nvim"
-export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
+export EDITOR='/usr/local/bin/nvim'
+export LDFLAGS='-L/usr/local/opt/python@3.8/lib'
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
 export PER5LIB="$HOME/lib/perl5"
 
 # functions and aliases
@@ -23,7 +28,7 @@ export PER5LIB="$HOME/lib/perl5"
 
 # zsh auto-suggestions colors
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=37"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=37'
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # colors
@@ -74,7 +79,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "
 # }}}1 general
 # {{{1 antigen
 
-[[ -f "/usr/local/share/antigen/antigen.zsh" ]] && source "/usr/local/share/antigen/antigen.zsh"
+[[ -f '/usr/local/share/antigen/antigen.zsh' ]] && source '/usr/local/share/antigen/antigen.zsh'
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -84,11 +89,6 @@ antigen apply
 
 # }}}1 antigen
 # {{{1 prompt
-
-# launch tmux by default
-case $- in *i*)
-  [[ -z $TMUX ]] && exec tmux
-esac
 
 setopt PROMPT_SUBST
 
@@ -125,12 +125,14 @@ _pane_number() {
 }
 
 ssh() {
-  tmux select-pane -t $(_pane_number) -T "#[fg=red,bold]$(echo $* | cut -d . -f 1)#[fg=default]"
+  [[ -z $TMUX ]] ||
+    tmux select-pane -t $(_pane_number) -T "#[fg=red,bold]$(echo $* | cut -d . -f 1)#[fg=default]"
   command ssh "$@"
 }
 
 precmd() {
-  tmux select-pane -t $(_pane_number) -T "$(shpwd)$(_display_git_info)"
+  [[ -z $TMUX ]] ||
+    tmux select-pane -t $(_pane_number) -T "$(shpwd)$(_display_git_info)"
 }
 
 # }}}1 prompt
