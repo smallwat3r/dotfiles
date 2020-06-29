@@ -638,7 +638,7 @@ function! DefaultColors() abort
   hi Search       ctermfg=232  ctermbg=192  cterm=NONE
   hi SpellBad     ctermfg=88   ctermbg=210
   hi SpellCap     ctermbg=159  ctermfg=17
-  hi StatuslineNC ctermfg=242  ctermbg=NONE cterm=underline,bold
+  hi StatuslineNC ctermfg=242  ctermbg=NONE cterm=underline
   hi Todo         ctermbg=NONE ctermfg=120
   hi VertSplit    ctermfg=242  ctermbg=NONE
   hi Visual       cterm=reverse

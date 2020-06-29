@@ -11,6 +11,5 @@ overrides:
       proseWrap: always
   - files: "*.html"
     options:
-      jsxBracketSameLine: true
       printWidth: 110
       tabWidth: 2

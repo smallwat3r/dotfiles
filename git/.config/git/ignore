@@ -1,0 +1,20 @@
+# Global gitignore list
+
+# Files
+*.db
+*.log
+*.pid
+*.rdb
+*.tar
+*.zip
+*~
+.*.sw?
+.DS_Store
+.env
+
+# Folders
+**/.mypy_cache/*
+**/build/*
+**/dist/*
+**/env/*
+**/venv/*
