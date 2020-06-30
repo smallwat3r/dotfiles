@@ -665,8 +665,8 @@ colo codedark
 "{{{1 statusline
 
 let symbols = {
-      \ 'bwdseparator': "\ue0bf",
-      \ 'fwdseparator': "\ue0bd",
+      \ 'bwdseparator': "|",
+      \ 'fwdseparator': "|",
       \ 'line': "\ue0a1",
       \ 'readonly': "\uf023",
       \ 'branch': "\ue0a0"

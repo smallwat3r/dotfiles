@@ -10,8 +10,10 @@ set-up if you intend to use the Makefile.
 
 Dotfiles are managed by **GNU Stow** (will be automatically installed
 or run `brew install stow`).  
-Note: you will need to install **GNU Make** to use the Makefile (`brew
-install make`).  
+Note: you will need to install **GNU Make** to use the Makefile
+(`brew install make`).  
+
+Be aware these dotfiles are primary intended to be used on macOS.  
 
 Clone this repo into your `$HOME` directory.  
 ```sh
@@ -20,13 +22,22 @@ git clone https://github.com/smallwat3r/dotfiles.git $HOME
 
 **Commands (from Makefile)**
 
-```sh
-make all        # run everything (symlink + other)
-make symlink    # run GNU Stow to symlink all the dotfiles
+```console
+% make help
+Usage: make [TARGET ...]
 
-# Other:
-make brew       # install all brew utils
-make cask       # install all brew casks
-make npm        # install global node packages
-make pip        # install global python packages
+help       Show this help menu
+install    Installs everything
+symlink    Symlinks dotfiles using stow
+fonts      Install fonts
+homebrew   Make sure homebrew is installed
+stow       Make sure stow is installed
+xcode-cli  Install xcode command line tools
+taps       Install brew taps
+brew       Install brew packages
+cask       Install brew casks
+node       Install node
+npm        Install npm packages
+python     Install python 3.8
+pip        Install pip packages
 ```
