@@ -120,4 +120,3 @@ pip: python ## Install pip packages
 		jsbeautifier \
 		pynvim \
 		bandit
-
