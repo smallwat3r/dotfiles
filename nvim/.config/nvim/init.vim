@@ -667,7 +667,7 @@ colo codedark
 let symbols = {
       \ 'bwdseparator': "|",
       \ 'fwdseparator': "|",
-      \ 'line': "\ue0a1",
+      \ 'linenumber': "\ue0a1",
       \ 'readonly': "\uf023",
       \ 'branch': "\ue0a0"
       \ }
@@ -707,7 +707,7 @@ function! StatusLineFmt(active)
   let sl   .= ' %t '
   let sl   .= ' %{&modified?"\ +":""}'
   let sl   .= ' %{&readonly? g:symbols.readonly:""}'
-  let sl   .= ' %=%-14.(%{g:symbols.line}%l,%c%)'
+  let sl   .= ' %=%-14.(%{g:symbols.linenumber}%l,%c%)'
   let sl   .= ' %{g:symbols.fwdseparator} %{strlen(&fenc)?&fenc:&enc}'
   let sl   .= ' %{g:symbols.fwdseparator} %{&filetype}'
   let sl   .= ' %n '
