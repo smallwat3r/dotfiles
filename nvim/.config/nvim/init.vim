@@ -708,7 +708,7 @@ function! StatusLineFmt(active)
   let sl   .= ' %{&modified?"\ +":""}'
   let sl   .= ' %{&readonly? g:symbols.readonly:""}'
   let sl   .= ' %=%-14.(%{g:symbols.linenumber}%l,%c%)'
-  let sl   .= ' %{g:symbols.fwdseparator} %{strlen(&fenc)?&fenc:&enc}'
+  let sl   .= ' %{strlen(&fenc)?&fenc:&enc}'
   let sl   .= ' %{g:symbols.fwdseparator} %{&filetype}'
   let sl   .= ' %n '
   return sl
