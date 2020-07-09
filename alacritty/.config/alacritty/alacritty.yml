@@ -31,10 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: Monaco Nerd Font Mono
+    family: ProggyCleanTTSZBP
     style: Regular
 
-  size: 12
+  size: 19
 
   offset:
     x: 0

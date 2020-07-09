@@ -41,11 +41,13 @@ ifeq ($(shell command -v wget),)
 	@echo '*** Installing wget ...'
 	brew install wget
 endif
-	@[ -f "/Library/Fonts/monaco-nerd-font.otf" ] || { \
-		echo '*** Installing monaco nerd font mono ...'; \
-		wget -O /Library/Fonts/monaco-nerd-font.otf \
-			https://github.com/Karmenzind/monaco-nerd-fonts/raw/master/fonts/Monaco%20Nerd%20Font%20Complete%20Mono.otf; \
+	@[ -f "/Library/Fonts/ProggyCleanSZBP.ttf" ] || { \
+		echo '*** Installing Proggy font ...'; \
+		wget -O /Library/Fonts/ProggyCleanSZBP.ttf.zip \
+			https://cdn.proggyfonts.net/wp-content/downloads/ProggyCleanSZBP.ttf.zip; \
+		unzip /Library/Fonts/ProggyCleanSZBP.ttf.zip -d /Library/Fonts; \
 	}
+
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)

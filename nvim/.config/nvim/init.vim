@@ -13,44 +13,40 @@ endif
 
 call plug#begin()
 
+Plug 'alvan/vim-closetag'              " Auto-close html tags
+Plug 'ap/vim-css-color'                " Show colors
+Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
+Plug 'gregsexton/MatchTag'             " Highlight matching html tag
+Plug 'jiangmiao/auto-pairs'            " Auto close pairs
+Plug 'junegunn/gv.vim'                 " Git commit browser
+Plug 'junegunn/vim-easy-align'         " Align pieces of text
+Plug 'machakann/vim-sandwich'          " Surroundings mapping
 Plug 'sbdchd/neoformat'                " Auto code formatting
+Plug 'tomasiser/vim-code-dark'         " Colorscheme
 Plug 'tpope/vim-commentary'            " Comments mappings
 Plug 'tpope/vim-eunuch'                " Shell commands from vim
 Plug 'tpope/vim-fugitive'              " Git wrapper
-Plug 'junegunn/gv.vim'                 " Git commit browser
-Plug 'rhysd/git-messenger.vim'         " Git commit message on lines
-Plug 'alvan/vim-closetag'              " Auto-close html tags
-Plug 'gregsexton/MatchTag'             " Highlight matching html tag
-Plug 'machakann/vim-sandwich'          " Surroundings mapping
 Plug 'tpope/vim-unimpaired'            " Complementary mappings
-Plug 'simnalamburt/vim-mundo'          " Undo tree
-Plug 'zirrostig/vim-schlepp'           " Move visual blocks
-" Plug 'cocopon/vaffle.vim'              " File browsing
 Plug 'vifm/vifm.vim'                   " File manager
-Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
-Plug 'jiangmiao/auto-pairs'            " Auto close pairs
-Plug 'dhruvasagar/vim-table-mode'      " Build tables
-Plug 'ap/vim-css-color'                " Show colors
-Plug 'junegunn/vim-easy-align'         " Align pieces of text
-Plug 'tomasiser/vim-code-dark'         " Colorscheme
+Plug 'zirrostig/vim-schlepp'           " Move visual blocks
 
 " Syntax support
-Plug 'vim-scripts/applescript.vim'
 Plug 'chr4/nginx.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'vim-scripts/applescript.vim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Text completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/neopairs.vim'
-Plug 'Shougo/neoinclude.vim'
 Plug 'deoplete-plugins/deoplete-dictionary'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neopairs.vim'
 
 call plug#end()
 
@@ -161,27 +157,6 @@ let g:sandwich#recipes += [
       \ ]
 
 "}}}3 vim sandwich
-"{{{3 vaffle
-
-" NOTE: Switched to Vifm - but keep config just in case
-
-" " mappings for vaffle to work as netrw / vinegar
-" function! s:customize_vaffle_mappings() abort
-"   nmap <buffer>- <Plug>(vaffle-open-parent)
-"   nmap <buffer>% <Plug>(vaffle-new-file)
-"   nmap <buffer>d <Plug>(vaffle-mkdir)
-"   nmap <buffer>D <Plug>(vaffle-delete-selected)
-" endfunction
-
-" augroup vaffle_mappings
-"   au!
-"   au FileType vaffle call s:customize_vaffle_mappings()
-" augroup END
-
-" let g:vaffle_show_hidden_files = 1
-" let g:vaffle_force_delete      = 1
-
-"}}}3 vaffle
 "{{{3 easy-align
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -382,7 +357,6 @@ augroup END
 "{{{2 normal mode
 
 " Trigger Vifm with -
-" nnoremap <silent>- :execute 'Vaffle ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
 " center search results
@@ -667,15 +641,16 @@ colo codedark
 let symbols = {
       \ 'bwdseparator': "|",
       \ 'fwdseparator': "|",
-      \ 'linenumber': "\ue0a1",
-      \ 'readonly': "\uf023",
-      \ 'branch': "\ue0a0"
+      \ 'linenumber': "¶",
+      \ 'modified': "[+]",
+      \ 'readonly': "[ro]",
+      \ 'branch': "@"
       \ }
 
 " Show git info in statusline (with fugitive)
 function! GitInfo()
   if fugitive#head() != ''
-    return g:symbols.branch . fugitive#head() . ' ' . g:symbols.bwdseparator
+    return g:symbols.branch . fugitive#head()
   endif
   return ''
 endfunction
@@ -705,11 +680,11 @@ function! StatusLineFmt(active)
     let sl .= ColorMode() . GitInfo()
   endif
   let sl   .= ' %t '
-  let sl   .= ' %{&modified?"\ +":""}'
+  let sl   .= ' %{&modified? g:symbols.modified:""}'
   let sl   .= ' %{&readonly? g:symbols.readonly:""}'
   let sl   .= ' %=%-14.(%{g:symbols.linenumber}%l,%c%)'
   let sl   .= ' %{strlen(&fenc)?&fenc:&enc}'
-  let sl   .= ' %{g:symbols.fwdseparator} %{&filetype}'
+  let sl   .= ' %{&filetype}'
   let sl   .= ' %n '
   return sl
 endfunction
