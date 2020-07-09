@@ -41,11 +41,10 @@ ifeq ($(shell command -v wget),)
 	@echo '*** Installing wget ...'
 	brew install wget
 endif
-	@[ -f "/Library/Fonts/ProggyCleanSZBP.ttf" ] || { \
-		echo '*** Installing Proggy font ...'; \
-		wget -O /Library/Fonts/ProggyCleanSZBP.ttf.zip \
-			https://cdn.proggyfonts.net/wp-content/downloads/ProggyCleanSZBP.ttf.zip; \
-		unzip /Library/Fonts/ProggyCleanSZBP.ttf.zip -d /Library/Fonts; \
+	@[ -f "/Library/Fonts/Metrickal-Regular.otf" ] || { \
+		echo '*** Installing Metrickal font ...'; \
+		wget -O /Library/Fonts/Metrickal-Regular.otf \
+			https://github.com/robey/metrickal-typeface/raw/master/downloads/Metrickal-Regular.otf; \
 	}
 
 

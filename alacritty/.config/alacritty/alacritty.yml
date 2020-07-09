@@ -31,10 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: ProggyCleanTTSZBP
+    family: Metrickal
     style: Regular
 
-  size: 19
+  size: 11.5
 
   offset:
     x: 0

@@ -100,7 +100,7 @@ let g:neoformat_jinja_prettier = {
       \   ],
       \ }
 
-let g:neoformat_enabled_python     = ['yapf']
+let g:neoformat_enabled_python     = ['black', 'yapf']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_html       = ['prettier']
 let g:neoformat_enabled_jinja      = ['prettier']
