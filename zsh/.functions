@@ -168,7 +168,7 @@ fe() {
 fls() {
   local _pattern
   _pattern='^# {{'
-  cmd "$HOME/.functions" |
+  <"$HOME/.functions" |
     grep "$_pattern" |
     sed s/"$_pattern"\{1//
 }
