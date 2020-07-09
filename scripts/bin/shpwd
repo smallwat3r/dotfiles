@@ -8,4 +8,8 @@ _shpwd=$(
     sed 's/.$//'
 )
 
-[[ $PWD == $HOME ]] && echo '~' || echo "$_shpwd${PWD##*/}"
+if [[ $PWD == $HOME ]]; then
+  echo '~'
+else
+  echo "$_shpwd${PWD##*/}"
+fi
