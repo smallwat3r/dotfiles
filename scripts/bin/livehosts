@@ -3,6 +3,6 @@
 
 _ip=${1:-192.168.0.1/24}
 
-nmap -sP -PA21,22,25,3389 $_ip |
+nmap -sP -PA21,22,25,3389 "$_ip" |
   grep --color=never report |
   awk '{print $5, $6}'

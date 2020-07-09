@@ -2,7 +2,7 @@
 # Set up system default python version to 3.8
 
 _default_python() {
-  ln -s -f $(which python3.8) /usr/local/bin/python
+  ln -s -f "$(which python3.8)" /usr/local/bin/python
   printf 'python3.8 symlinked to default.\n' && exit 0
 }
 
