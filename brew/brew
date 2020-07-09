@@ -19,6 +19,7 @@ nmap
 node
 python@3.8
 ripgrep
+shellcheck
 shfmt
 shhh
 sketch
