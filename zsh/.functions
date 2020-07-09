@@ -3,7 +3,7 @@
 # {{{1 (cdr) cd root of git repo
 
 cdr() {
-  cd $(git rev-parse --show-toplevel)
+  cd "$(git rev-parse --show-toplevel)" || exit
 }
 
 # }}}1
@@ -21,9 +21,9 @@ csvpreview() {
 
 dip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
-    $(docker ps |
-      grep $1 2>/dev/null |
-      cut -d ' ' -f1) 2>/dev/null || printf "Cannot find '$1'\n" >&2
+    "$(docker ps |
+      grep "$1" 2>/dev/null |
+      cut -d ' ' -f1)" 2>/dev/null || printf 'Cannot find %s\n' "$1" >&2
 }
 
 # }}}1
@@ -31,9 +31,9 @@ dip() {
 
 dlog() {
   docker logs --follow \
-    $(docker ps |
-      grep $1 2>/dev/null |
-      cut -d ' ' -f1) 2>/dev/null || printf "Cannot find '$1'\n" >&2
+    "$(docker ps |
+      grep "$1" 2>/dev/null |
+      cut -d ' ' -f1)" 2>/dev/null || printf 'Cannot find %s\n' "$1" >&2
 }
 
 # }}}1
@@ -41,7 +41,7 @@ dlog() {
 
 dps() {
   docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
-    column -t -s '¬¬¬' -c $(tput cols)
+    column -t -s '¬¬¬' -c "$(tput cols)"
 }
 
 # }}}1
@@ -49,7 +49,7 @@ dps() {
 
 dpsa() {
   docker ps -a --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
-    column -t -s '¬¬¬' -c $(tput cols)
+    column -t -s '¬¬¬' -c "$(tput cols)"
 }
 
 # }}}1
@@ -63,36 +63,38 @@ dprune() {
 # {{{1 (drm) docker delete image
 
 drm() {
-  docker rmi $1 -f
+  docker rmi "$1" -f
 }
 
 # }}}1
 # {{{1 (dsh) docker enter in shell by name
 
 dsh() {
-  local _name=$(
+  local _name
+  _name=$(
     docker ps |
-      grep $1 2>/dev/null |
+      grep "$1" 2>/dev/null |
       cut -d ' ' -f1
   )
-  docker exec -it $_name /bin/sh 2>/dev/null ||
-    printf "Error finding '$1'\n" >&2
+  docker exec -it "$_name" /bin/sh 2>/dev/null ||
+    printf 'Error finding %s\n' "$1" >&2
 }
 
 # }}}1
 # {{{1 (fbr) FZF checkout git branch (including remote branches)
 
 fbr() {
-  local branches=$(git branch --all | grep -v HEAD)
-  local branch=$(
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD)
+  branch=$(
     echo "$branches" |
       fzf -d $((2 + $(wc -l <<<"$branches"))) +m
   )
-  git checkout $(
+  git checkout "$(
     echo "$branch" |
       sed "s/.* //" |
       sed "s#remotes/[^/]*/##"
-  )
+  )"
 }
 
 # }}}1
@@ -114,7 +116,8 @@ fco() {
 # {{{1 (fda) FZF Select a docker container to start and attach to
 
 fda() {
-  local cid=$(
+  local cid
+  cid=$(
     docker ps -a |
       sed 1d |
       fzf -1 -q "$1" |
@@ -127,7 +130,8 @@ fda() {
 # {{{1 (fds) FZF Select a running docker container to stop
 
 fds() {
-  local cid=$(
+  local cid
+  cid=$(
     docker ps |
       sed 1d |
       fzf -q "$1" |
@@ -140,7 +144,8 @@ fds() {
 # {{{1 (fdrm) FZF Select a docker container to remove
 
 fdrm() {
-  local cid=$(
+  local cid
+  cid=$(
     docker ps -a |
       sed 1d |
       fzf -q "$1" |
@@ -161,10 +166,11 @@ fe() {
 # {{{1 (fls) List all these custom functions
 
 fls() {
-  local _pattern='^# {{'
-  cat "$HOME/.functions" |
-    grep $_pattern |
-    sed s/"$_pattern"{1//
+  local _pattern
+  _pattern='^# {{'
+  cmd "$HOME/.functions" |
+    grep "$_pattern" |
+    sed s/"$_pattern"\{1//
 }
 
 #}}}1
@@ -173,11 +179,11 @@ fls() {
 frg() {
   local file line
   read -r file line <<<"$(
-    rg --column --line-number --no-heading --smart-case $@ |
-      fzf --query=$@ |
+    rg --column --line-number --no-heading --smart-case "$@" |
+      fzf --query="$@" |
       awk -F: '{print $1, $2}'
   )"
-  [[ -n $file ]] && $EDITOR $file +$line
+  [[ -n $file ]] && $EDITOR "$file" +"$line"
 }
 
 # }}}1
@@ -201,21 +207,25 @@ hsu() {
 # {{{1 (mkd) create and enter directory
 
 mkd() {
-  mkdir -p "$@" && cd "$@"
+  mkdir -p "$@" && cd "$@" || exit
 }
 
 # }}}1
 # {{{1 (o) open current dir or the one in args
 
 o() {
-  [[ $# -eq 0 ]] && open . || open "$@"
+  if [[ $# -eq 0 ]]; then
+    open .
+  else
+    open "$@"
+  fi
 }
 
 # }}}1
 # {{{1 (pubkey) copy public key to clipboard
 
 pubkey() {
-  more $HOME/.ssh/id_rsa.pub | pbcopy
+  more "$HOME/.ssh/id_rsa.pub" | pbcopy
   printf 'Public key copied to clipboard.\n'
 }
 
@@ -239,8 +249,9 @@ urls() {
 # {{{1 (zipall) zip all individual files in current directory into a zipfile.
 
 zipall() {
+  local file
   for file in $(echo *(^/)); do
-    zip ${file%.*}.zip $file
+    zip "${file%.*}.zip" "$file"
   done
 }
 
