@@ -9,6 +9,8 @@
   tool = vimdiff
 [mergetool "vimdiff"]
   path = nvim
+[pull]
+  rebase = true
 [push]
   default = simple
 [url "https://github.com/"]

@@ -41,12 +41,14 @@ ifeq ($(shell command -v wget),)
 	@echo '*** Installing wget ...'
 	brew install wget
 endif
-	@[ -f "/Library/Fonts/Metrickal-Regular.otf" ] || { \
-		echo '*** Installing Metrickal font ...'; \
-		wget -O /Library/Fonts/Metrickal-Regular.otf \
-			https://github.com/robey/metrickal-typeface/raw/master/downloads/Metrickal-Regular.otf; \
+	@[ -f "/Library/Fonts/TamzenForPowerline7x14r.ttf" ] || { \
+		wget -O /Library/Fonts/TamzenForPowerline7x14r.ttf \
+			https://github.com/sunaku/tamzen-font/raw/master/ttf/TamzenForPowerline7x14r.ttf; \
 	}
-
+	@[ -f "/Library/Fonts/TamzenForPowerline7x14b.ttf" ] || { \
+		wget -O /Library/Fonts/TamzenForPowerline7x14b.ttf \
+			https://github.com/sunaku/tamzen-font/raw/master/ttf/TamzenForPowerline7x14b.ttf; \
+	}
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)

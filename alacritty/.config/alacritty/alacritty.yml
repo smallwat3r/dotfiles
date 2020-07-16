@@ -31,10 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: Metrickal
-    style: Regular
+    family: Tamzen
+    style: Medium
 
-  size: 11.5
+  size: 14
 
   offset:
     x: 0
