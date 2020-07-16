@@ -41,13 +41,13 @@ ifeq ($(shell command -v wget),)
 	@echo '*** Installing wget ...'
 	brew install wget
 endif
-	@[ -f "/Library/Fonts/TamzenForPowerline7x14r.ttf" ] || { \
-		wget -O /Library/Fonts/TamzenForPowerline7x14r.ttf \
-			https://github.com/sunaku/tamzen-font/raw/master/ttf/TamzenForPowerline7x14r.ttf; \
+	@[ -f "/Library/Fonts/Tamzen7x14r.ttf" ] || { \
+		wget -O /Library/Fonts/Tamzen7x14r.ttf \
+			https://github.com/sunaku/tamzen-font/raw/master/ttf/Tamzen7x14r.ttf; \
 	}
-	@[ -f "/Library/Fonts/TamzenForPowerline7x14b.ttf" ] || { \
-		wget -O /Library/Fonts/TamzenForPowerline7x14b.ttf \
-			https://github.com/sunaku/tamzen-font/raw/master/ttf/TamzenForPowerline7x14b.ttf; \
+	@[ -f "/Library/Fonts/Tamzen7x14b.ttf" ] || { \
+		wget -O /Library/Fonts/Tamzen7x14b.ttf \
+			https://github.com/sunaku/tamzen-font/raw/master/ttf/Tamzen7x14b.ttf; \
 	}
 
 homebrew: ## Make sure homebrew is installed
