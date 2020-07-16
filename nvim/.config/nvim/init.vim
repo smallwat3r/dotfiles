@@ -41,12 +41,10 @@ Plug 'vim-scripts/applescript.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Text completion
-Plug 'deoplete-plugins/deoplete-dictionary'
-Plug 'Shougo/context_filetype.vim'
+" Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neoinclude.vim'
-Plug 'Shougo/neopairs.vim'
+Plug 'deoplete-plugins/deoplete-dictionary'
+Plug 'deoplete-plugins/deoplete-jedi'
 
 call plug#end()
 
@@ -56,6 +54,7 @@ call plug#end()
 "{{{3 deoplete
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#enable_typeinfo = 0
 
 " Dictionaries
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])

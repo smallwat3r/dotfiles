@@ -115,11 +115,12 @@ endif
 pip: python ## Install pip packages
 	@echo '*** Installing pip packages ...'
 	pip3 install \
-		yapf \
-		black \
-		pylint \
-		sqlparse \
-		isort \
-		jsbeautifier \
-		pynvim \
 		bandit
+		black \
+		isort \
+		jedi \
+		jsbeautifier \
+		pylint \
+		pynvim \
+		sqlparse \
+		yapf \
