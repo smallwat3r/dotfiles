@@ -31,10 +31,18 @@ scrolling:
 
 font:
   normal:
-    family: Tamzen
+    family: CtrlD
     style: Medium
 
-  size: 14
+  italic:
+    family: CtrlD
+    style: MediumItalic
+
+  bold:
+    family: CtrlD
+    style: Bold
+
+  size: 13.5
 
   offset:
     x: 0

@@ -38,8 +38,8 @@ alias \
   eali="$EDITOR $HOME/.aliases" \
   edit="$EDITOR" \
   efun="$EDITOR $HOME/.functions" \
-  egit="$EDITOR $HOME/.gitconfig" \
-  etmu="$EDITOR $HOME/.tmux.conf" \
+  egit="$EDITOR $HOME/.config/git/config" \
+  etmu="$EDITOR $HOME/.config/tmux/tmux.conf" \
   evim="$EDITOR $HOME/.config/nvim/init.vim" \
   ezsh="$EDITOR $HOME/.zshrc" \
   svi="sudo nvim" \
