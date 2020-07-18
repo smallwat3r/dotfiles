@@ -1,5 +1,13 @@
 #!/usr/bin/env osascript
 
+tell application "Finder"
+  set os_version to version
+end tell
+
 tell application "System Events"
-  set picture of every desktop to "/Library/Desktop Pictures/Solid Colors/Teal.png"
+  if os_version >= 10.15
+    set picture of every desktop to "/System/Library/Desktop Pictures/Solid Colors/Teal.png"
+  else
+    set picture of every desktop to "/Library/Desktop Pictures/Solid Colors/Teal.png"
+  end if
 end tell

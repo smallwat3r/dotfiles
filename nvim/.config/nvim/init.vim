@@ -290,10 +290,10 @@ augroup END
 
 augroup filetype_indentation
   au!
-  au FileType make   setl ts=8 sw=8 noet
-  au FileType go     setl ts=8 sw=8 noet
-  au FileType python setl ts=4 sw=4 sts=4 et
-  au FileType perl   setl ts=4 sw=4 sts=4 et
+  au FileType make        setl ts=8 sw=8 noet
+  au FileType go          setl ts=8 sw=8 noet
+  au FileType python      setl ts=4 sw=4 sts=4 et
+  au FileType perl        setl ts=4 sw=4 sts=4 et
 augroup END
 
 augroup filetype_specifics
