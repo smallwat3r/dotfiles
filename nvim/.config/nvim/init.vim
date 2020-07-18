@@ -478,9 +478,6 @@ nmap <silent><S-l> :vertical resize+5<cr>
 " play macros
 nmap Q @q
 
-" toggle undo tree
-nmap <leader>u :MundoToggle<CR>
-
 "}}}2 normal mode
 "{{{2 visual mode
 
@@ -640,7 +637,7 @@ colo codedark
 let symbols = {
       \ 'bwdseparator': "|",
       \ 'fwdseparator': "|",
-      \ 'linenumber': "¶",
+      \ 'linenumber': "",
       \ 'modified': "[+]",
       \ 'readonly': "[ro]",
       \ 'branch': "@"
