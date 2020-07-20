@@ -22,11 +22,11 @@ Plug 'junegunn/gv.vim'                 " Git commit browser
 Plug 'junegunn/vim-easy-align'         " Align pieces of text
 Plug 'machakann/vim-sandwich'          " Surroundings mapping
 Plug 'sbdchd/neoformat'                " Auto code formatting
-Plug 'tomasiser/vim-code-dark'         " Colorscheme
 Plug 'tpope/vim-commentary'            " Comments mappings
 Plug 'tpope/vim-eunuch'                " Shell commands from vim
 Plug 'tpope/vim-fugitive'              " Git wrapper
 Plug 'tpope/vim-unimpaired'            " Complementary mappings
+Plug 'tpope/vim-vividchalk'            " Colorscheme
 Plug 'vifm/vifm.vim'                   " File manager
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'zirrostig/vim-schlepp'           " Move visual blocks
@@ -601,7 +601,7 @@ function! DefaultColors() abort
   hi DiffChange   ctermfg=204  ctermbg=NONE cterm=NONE
   hi DiffDelete   ctermfg=9    ctermbg=NONE cterm=NONE
   hi DiffText     ctermfg=255  ctermbg=31
-  hi Directory    ctermbg=NONE
+  hi Directory    ctermfg=202  ctermbg=NONE
   hi EndOfBuffer  ctermbg=NONE
   hi Folded       ctermfg=241  ctermbg=235  cterm=italic,underline
   hi IncSearch    ctermfg=232  ctermbg=229  cterm=bold
@@ -632,7 +632,7 @@ augroup custom_colors
   au ColorScheme * call DefaultColors()
 augroup END
 
-colo codedark
+colo vividchalk
 
 "}}}2 colors
 
