@@ -31,14 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: Tamzen
-    style: Medium
+    family: Monaco
+    style: Regular
 
-  bold:
-    family: Tamzen
-    style: Bold
-
-  size: 14
+  size: 12
 
   offset:
     x: 0
@@ -48,7 +44,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # }}} font
 # {{{ colors

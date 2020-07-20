@@ -39,6 +39,7 @@ alias \
   edit="$EDITOR" \
   efun="$EDITOR $HOME/.functions" \
   egit="$EDITOR $HOME/.config/git/config" \
+  ekit="$EDITOR $HOME/.config/kitty/kitty.conf" \
   etmu="$EDITOR $HOME/.config/tmux/tmux.conf" \
   evim="$EDITOR $HOME/.config/nvim/init.vim" \
   ezsh="$EDITOR $HOME/.zshrc" \

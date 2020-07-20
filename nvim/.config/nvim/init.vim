@@ -290,10 +290,10 @@ augroup END
 
 augroup filetype_indentation
   au!
-  au FileType make        setl ts=8 sw=8 noet
-  au FileType go          setl ts=8 sw=8 noet
-  au FileType python      setl ts=4 sw=4 sts=4 et
-  au FileType perl        setl ts=4 sw=4 sts=4 et
+  au FileType make   setl ts=8 sw=8 noet
+  au FileType go     setl ts=8 sw=8 noet
+  au FileType python setl ts=4 sw=4 sts=4 et
+  au FileType perl   setl ts=4 sw=4 sts=4 et
 augroup END
 
 augroup filetype_specifics
@@ -437,6 +437,11 @@ nmap ;f :Neoformat<cr>
 
 " git logs current file
 nmap <leader>gl :GV!<cr>
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<cr>
+nnoremap gdh :diffget //2<cr>
+nnoremap gdl :diffget //3<cr>
 
 " fzf
 nmap <leader>b  :Buffers<cr>

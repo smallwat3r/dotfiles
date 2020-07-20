@@ -20,6 +20,7 @@ symlink: stow ## Symlinks dotfiles using stow
 		git \
 		htop \
 		isort \
+		kitty \
 		mypy \
 		nvim \
 		pip \
