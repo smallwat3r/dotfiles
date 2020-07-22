@@ -1,174 +1,5 @@
 " Neovim config file
 
-"{{{1 plugins
-
-"{{{2 vim-plug
-
-" Auto load for first time use - Install Vim Plug Manager
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  au VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-
-Plug 'alvan/vim-closetag'              " Auto-close html tags
-Plug 'ap/vim-css-color'                " Show colors
-Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
-Plug 'gregsexton/MatchTag'             " Highlight matching html tag
-Plug 'jiangmiao/auto-pairs'            " Auto close pairs
-Plug 'junegunn/gv.vim'                 " Git commit browser
-Plug 'junegunn/vim-easy-align'         " Align pieces of text
-Plug 'machakann/vim-sandwich'          " Surroundings mapping
-Plug 'sbdchd/neoformat'                " Auto code formatting
-Plug 'tpope/vim-commentary'            " Comments mappings
-Plug 'tpope/vim-eunuch'                " Shell commands from vim
-Plug 'tpope/vim-fugitive'              " Git wrapper
-Plug 'tpope/vim-unimpaired'            " Complementary mappings
-Plug 'tpope/vim-vividchalk'            " Colorscheme
-Plug 'vifm/vifm.vim'                   " File manager
-Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
-Plug 'zirrostig/vim-schlepp'           " Move visual blocks
-
-" Syntax support
-Plug 'chr4/nginx.vim'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'vim-scripts/applescript.vim'
-
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-dictionary'
-Plug 'deoplete-plugins/deoplete-jedi'
-
-call plug#end()
-
-"}}}2 vim-plug
-"{{{2 plugins configuration
-
-"{{{3 deoplete
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#enable_typeinfo = 0
-
-" Dictionaries
-call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
-call deoplete#custom#source('dictionary', 'sorters', [])
-call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
-
-"}}}3 deoplete
-"{{{3 neoformat
-
-let g:neoformat_basic_format_align = 1
-let g:neoformat_basic_format_retab = 1
-let g:neoformat_basic_format_trim  = 1
-
-let g:neoformat_javascript_prettier = {
-      \ 'exe': 'prettier',
-      \ 'stdin': 1,
-      \ 'args': [
-      \   '--stdin',
-      \   '--config ~/.config/.prettierrc',
-      \   '--stdin-filepath',
-      \   '"%:p"'
-      \   ],
-      \ }
-let g:neoformat_html_prettier = {
-      \ 'exe': 'prettier',
-      \ 'stdin': 1,
-      \ 'args': [
-      \   '--stdin',
-      \   '--config ~/.config/.prettierrc',
-      \   '--stdin-filepath',
-      \   '"%:p"'
-      \   ],
-      \ }
-let g:neoformat_jinja_prettier = {
-      \ 'exe': 'prettier',
-      \ 'stdin': 1,
-      \ 'args': [
-      \   '--stdin',
-      \   '--config ~/.config/.prettierrc',
-      \   '--stdin-filepath',
-      \   '"%:p"'
-      \   ],
-      \ }
-
-let g:neoformat_enabled_python     = ['black', 'yapf']
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_html       = ['prettier']
-let g:neoformat_enabled_jinja      = ['prettier']
-let g:neoformat_enabled_zsh        = ['shfmt']
-
-let g:shfmt_opt = '-ci'  " shell
-
-"}}}3 neoformat
-"{{{3 fzf
-
-let g:fzf_layout = {
-      \ 'window': {
-      \   'width': 0.9,
-      \   'height': 0.6,
-      \   'highlight': 'Todo',
-      \   'border': 'sharp'
-      \ }}
-
-com! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(
-      \ <q-args>, {
-      \   'options': [
-      \     '--layout=reverse',
-      \     '--info=inline',
-      \     '--preview',
-      \     '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'
-      \   ]
-      \ }, <bang>0)
-
-com! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case '
-      \   .shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
-
-"}}}3 fzf
-"{{{3 vim sandwich
-
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-let g:sandwich#recipes += [
-      \   {
-      \     'buns'      : ['{', '}'],
-      \     'motionwise': ['line'],
-      \     'kind'      : ['add'],
-      \     'linewise'  : 1,
-      \     'command'   : ["'[+1,']-1normal! >>"],
-      \   },
-      \   {
-      \     'buns'      : ['{', '}'],
-      \     'motionwise': ['line'],
-      \     'kind'      : ['delete'],
-      \     'linewise'  : 1,
-      \     'command'   : ["'[,']normal! <<"],
-      \   }
-      \ ]
-
-"}}}3 vim sandwich
-"{{{3 easy-align
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-"}}}3 easy-align
-
-"}}}2 plugins configuration
-
-"}}}1 plugins
 "{{{1 general configuration
 
 syntax on
@@ -181,7 +12,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 "}}}2 encoding
-"{{{2 miscellaneous
+"{{{2 general settings
 
 set updatetime=100      " async update time
 set hidden              " hide buffer instead of closing them
@@ -205,7 +36,6 @@ set wildignorecase      " ignore case when completing filenames and directories
 set noshowmode          " do not show vim mode (already in statusline)
 set splitbelow          " for ex preview windows will appear at the bottom
 set noshowmode          " don't show mode (already in statusline)
-set inccommand=nosplit  " show replacements using search / replace
 set nocursorcolumn      " don't highlight column
 set nocursorline        " don't highlight line
 set shortmess+=c        " silence message completion menu
@@ -223,7 +53,11 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
-"}}}2 miscellaneous
+if has('nvim')
+  set inccommand=nosplit  " show replacements using search / replace
+endif
+
+"}}}2 general settings
 "{{{2 ignore files
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
@@ -305,12 +139,6 @@ augroup filetype_specifics
   au FileType text      setl cc=70
 augroup END
 
-augroup filetype_dictionaries
-  au!
-  au Filetype python,sql,javascript,html,go,dockerfile,css
-        \ execute 'setl dict+=~/.config/nvim/dict/' . &filetype . '.txt'
-augroup END
-
 "}}}2 filetypes specifics
 "{{{2 netrw
 
@@ -331,7 +159,7 @@ let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue     = '&sw'
 
 "}}}2 fixes
-"{{{2 other
+"{{{2 miscellaneous
 
 " Remember last position of the cursor when editing a file
 augroup remember_last_cursor_position
@@ -348,15 +176,234 @@ augroup disable_comment_auto_insert
   au BufNewFile,BufRead * setlocal formatoptions-=cro
 augroup END
 
-"}}}2 other
+"}}}2 miscellaneous
 
 "}}}1 general configuration
-"{{{1 mappings / keybindings
+"{{{1 plugins
 
-"{{{2 normal mode
+"{{{2 vim-plug
+
+" Auto load for first time use - Install Vim Plug Manager
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  au VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+
+Plug 'alvan/vim-closetag'              " Auto-close html tags
+Plug 'ap/vim-css-color'                " Show colors
+Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
+Plug 'gregsexton/MatchTag'             " Highlight matching html tag
+Plug 'jiangmiao/auto-pairs'            " Auto close pairs
+Plug 'junegunn/gv.vim'                 " Git commit browser
+Plug 'junegunn/vim-easy-align'         " Align pieces of text
+Plug 'machakann/vim-sandwich'          " Surroundings mapping
+Plug 'sbdchd/neoformat'                " Auto code formatting
+Plug 'tpope/vim-commentary'            " Comments mappings
+Plug 'tpope/vim-eunuch'                " Shell commands from vim
+Plug 'tpope/vim-fugitive'              " Git wrapper
+Plug 'tpope/vim-unimpaired'            " Complementary mappings
+Plug 'tpope/vim-vividchalk'            " Colorscheme
+Plug 'vifm/vifm.vim'                   " File manager
+Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
+Plug 'zirrostig/vim-schlepp'           " Move visual blocks
+
+" Syntax support
+Plug 'chr4/nginx.vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'vim-scripts/applescript.vim'
+
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-dictionary'
+Plug 'deoplete-plugins/deoplete-jedi'
+
+call plug#end()
+
+"}}}2 vim-plug
+"{{{2 plugins configuration
+
+"{{{3 deoplete
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#enable_typeinfo = 0
+
+" Dictionaries
+call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
+call deoplete#custom#source('dictionary', 'sorters', [])
+call deoplete#custom#source('dictionary', 'min_pattern_length', 2)
+
+augroup filetype_dictionaries
+  au!
+  au Filetype python,sql,javascript,html,go,dockerfile,css
+        \ execute 'setl dict+=~/.config/nvim/dict/' . &filetype . '.txt'
+augroup END
+
+"}}}3 deoplete
+"{{{3 neoformat
+
+let g:neoformat_basic_format_align = 1
+let g:neoformat_basic_format_retab = 1
+let g:neoformat_basic_format_trim  = 1
+
+let g:neoformat_javascript_prettier = {
+      \ 'exe': 'prettier',
+      \ 'stdin': 1,
+      \ 'args': [
+      \   '--stdin',
+      \   '--config ~/.config/.prettierrc',
+      \   '--stdin-filepath',
+      \   '"%:p"'
+      \   ],
+      \ }
+let g:neoformat_html_prettier = {
+      \ 'exe': 'prettier',
+      \ 'stdin': 1,
+      \ 'args': [
+      \   '--stdin',
+      \   '--config ~/.config/.prettierrc',
+      \   '--stdin-filepath',
+      \   '"%:p"'
+      \   ],
+      \ }
+let g:neoformat_jinja_prettier = {
+      \ 'exe': 'prettier',
+      \ 'stdin': 1,
+      \ 'args': [
+      \   '--stdin',
+      \   '--config ~/.config/.prettierrc',
+      \   '--stdin-filepath',
+      \   '"%:p"'
+      \   ],
+      \ }
+
+let g:neoformat_enabled_python     = ['black', 'yapf']
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_html       = ['prettier']
+let g:neoformat_enabled_jinja      = ['prettier']
+let g:neoformat_enabled_zsh        = ['shfmt']
+let g:shfmt_opt = '-ci'
+
+" format file
+nmap ;f :Neoformat<cr>
+
+"}}}3 neoformat
+"{{{3 fzf
+
+let g:fzf_layout = {
+      \ 'window': {
+      \   'width': 0.9,
+      \   'height': 0.6,
+      \   'highlight': 'Todo',
+      \   'border': 'sharp'
+      \ }}
+
+com! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(
+      \ <q-args>, {
+      \   'options': [
+      \     '--layout=reverse',
+      \     '--info=inline',
+      \     '--preview',
+      \     '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'
+      \   ]
+      \ }, <bang>0)
+
+com! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '
+      \   .shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+
+nmap <leader>b  :Buffers<cr>
+nmap <leader>f  :Files<cr>
+nmap <leader>;  :Rg<cr>
+nmap <leader>w; :exe ":Rg     " . expand('<cword>')<cr>
+nmap <leader>co :Commits<cr>
+nmap <leader>l  :BLines<cr>
+nmap <leader>wl :exe ":BLines " . expand('<cword>')<cr>
+
+"}}}3 fzf
+"{{{3 vim sandwich
+
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+      \   {
+      \     'buns'      : ['{', '}'],
+      \     'motionwise': ['line'],
+      \     'kind'      : ['add'],
+      \     'linewise'  : 1,
+      \     'command'   : ["'[+1,']-1normal! >>"],
+      \   },
+      \   {
+      \     'buns'      : ['{', '}'],
+      \     'motionwise': ['line'],
+      \     'kind'      : ['delete'],
+      \     'linewise'  : 1,
+      \     'command'   : ["'[,']normal! <<"],
+      \   }
+      \ ]
+
+"}}}3 vim sandwich
+"{{{3 easy-align
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"}}}3 easy-align
+"{{{3 vifm
 
 " Trigger Vifm with -
 nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+
+"}}}3 vifm
+"{{{3 fugitive
+
+" Fugitive conflict resolution
+nnoremap <leader>gd :Gvdiffsplit!<cr>
+nnoremap gdh :diffget //2<cr>
+nnoremap gdl :diffget //3<cr>
+
+"}}}3 fugitive
+"{{{3 gv
+
+" git logs current file
+nmap <leader>gl :GV!<cr>
+
+"}}}3 Gv
+"{{{3 vim-plug
+
+" vim-plug
+nmap <leader>pl :source $MYVIMRC<cr>:PlugInstall<cr>
+nmap <leader>pc :source $MYVIMRC<cr>:PlugClean<cr>
+nmap <leader>pu :source $MYVIMRC<cr>:PlugUpdate<cr>
+
+"}}}3 vim-plug
+"{{{3 vim-schlepp
+
+" crtl + hjkl move visual blocks
+vmap <C-h> <Plug>SchleppLeft
+vmap <C-j> <Plug>SchleppDown
+vmap <C-k> <Plug>SchleppUp
+vmap <C-l> <Plug>SchleppRight
+
+"}}}3 vim-schlepp
+
+"}}}2 plugins configuration
+
+"}}}1 plugins
+"{{{1 mappings / keybindings (non-plugin)
+
+"{{{2 normal mode
 
 " center search results
 nnoremap n  nzz
@@ -391,10 +438,6 @@ nmap cp yap<S-}>p
 " delete to blackhole register (don't lose previous yank)
 nmap s  "_d
 nmap ss "_dd
-
-" swap with next or previous character
-nmap ]c xph
-nmap [c hxp
 
 " remove search highlight
 map <silent><leader><space> :nohlsearch<cr>
@@ -432,36 +475,11 @@ nmap ;vs :vs<cr>
 " quick substitutes (whole file)
 nmap ;s/ :%s///g<left><left><left>
 
-" format file
-nmap ;f :Neoformat<cr>
-
-" git logs current file
-nmap <leader>gl :GV!<cr>
-
-" Fugitive Conflict Resolution
-nnoremap <leader>gd :Gvdiff<cr>
-nnoremap gdh :diffget //2<cr>
-nnoremap gdl :diffget //3<cr>
-
-" fzf
-nmap <leader>b  :Buffers<cr>
-nmap <leader>f  :Files<cr>
-nmap <leader>;  :Rg<cr>
-nmap <leader>w; :exe ":Rg     " . expand('<cword>')<cr>
-nmap <leader>co :Commits<cr>
-nmap <leader>l  :BLines<cr>
-nmap <leader>wl :exe ":BLines " . expand('<cword>')<cr>
-
 " navigate window panels
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
-
-" vim-plug
-nmap <leader>pl :source $MYVIMRC<cr>:PlugInstall<cr>
-nmap <leader>pc :source $MYVIMRC<cr>:PlugClean<cr>
-nmap <leader>pu :source $MYVIMRC<cr>:PlugUpdate<cr>
 
 " extend previous search
 nmap // /<C-R>/
@@ -492,12 +510,6 @@ nnoremap v <C-v>
 
 " play macros with visual mode
 vmap Q :norm @q<cr>
-
-" crtl + hjkl move visual blocks
-vmap <C-h> <Plug>SchleppLeft
-vmap <C-j> <Plug>SchleppDown
-vmap <C-k> <Plug>SchleppUp
-vmap <C-l> <Plug>SchleppRight
 
 " keep visual selection when re-indenting
 xmap > >gv
@@ -577,10 +589,6 @@ iab weigth   weight
 
 "{{{2 terminal
 
-" Italics
-let &t_ZH = '\e[3m'
-let &t_ZR = '\e[23m'
-
 " Change cursor based on modes
 let &t_SI .= '\e[6 q' " INSERT mode
 let &t_SR .= '\e[4 q' " REPLACE mode
@@ -615,16 +623,16 @@ function! DefaultColors() abort
   hi SpellCap     ctermbg=159  ctermfg=17
   hi StatuslineNC ctermfg=242  ctermbg=NONE cterm=underline
   hi Todo         ctermbg=NONE ctermfg=120
-  hi VertSplit    ctermfg=242  ctermbg=NONE
+  hi VertSplit    ctermfg=242  ctermbg=NONE cterm=NONE
   hi Visual       cterm=reverse
 
   " Custom statusline colors
-  hi SLNormalColor   ctermbg=15  ctermfg=233
-  hi SLInsertColor   ctermbg=157 ctermfg=22
-  hi SLReplaceColor  ctermbg=159 ctermfg=17
-  hi SLVisualColor   ctermbg=222 ctermfg=166
   hi SLCommandColor  ctermbg=210 ctermfg=88
+  hi SLInsertColor   ctermbg=157 ctermfg=22
+  hi SLNormalColor   ctermbg=15  ctermfg=233
+  hi SLReplaceColor  ctermbg=159 ctermfg=17
   hi SLTerminalColor ctermbg=230 ctermfg=136
+  hi SLVisualColor   ctermbg=222 ctermfg=166
 endfunction
 
 augroup custom_colors
@@ -632,7 +640,11 @@ augroup custom_colors
   au ColorScheme * call DefaultColors()
 augroup END
 
-colo vividchalk
+try
+  colo vividchalk
+catch /^Vim\%((\a\+)\)\=:E185/
+  colo desert
+endtry
 
 "}}}2 colors
 
@@ -650,9 +662,13 @@ let symbols = {
 
 " Show git info in statusline (with fugitive)
 function! GitInfo()
-  if fugitive#head() != ''
-    return g:symbols.branch . fugitive#head()
-  endif
+  try
+    if fugitive#head() != ''
+      return g:symbols.branch . fugitive#head()
+    endif
+  catch
+    return ''
+  endtry
   return ''
 endfunction
 
