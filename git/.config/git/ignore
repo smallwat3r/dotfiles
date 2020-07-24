@@ -11,10 +11,13 @@
 .*.sw?
 .DS_Store
 .env
+.venv
 
 # Folders
-**/.mypy_cache/*
+**/.mypy_cache/
+**/__pycache__/
 **/build/*
 **/dist/*
 **/env/*
+**/node_modules/
 **/venv/*
