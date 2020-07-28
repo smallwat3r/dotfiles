@@ -42,7 +42,7 @@ set shortmess+=c        " silence message completion menu
 set nolist              " hide special characters
 set diffopt+=vertical   " diff splits
 set visualbell t_vb=    " deactivate bells and alerts
-set showbreak=↪︎\        " line break symbol
+set showbreak=⤿\        " line break symbol
 set foldmethod=marker   " use marker to fold lines
 set synmaxcol=500       " keep long lines from slowing vim
 set fillchars=vert:┃
@@ -193,7 +193,6 @@ endif
 call plug#begin()
 
 Plug 'alvan/vim-closetag'              " Auto-close html tags
-Plug 'ap/vim-css-color'                " Show colors
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'gregsexton/MatchTag'             " Highlight matching html tag
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
