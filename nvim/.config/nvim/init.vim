@@ -688,17 +688,17 @@ endfunction
 
 " Statusline format
 function! StatusLineFmt(active)
-  let sl    = ''
+  let sl = ''
   if a:active
     let sl .= ColorMode() . GitInfo()
   endif
-  let sl   .= ' %t '
-  let sl   .= ' %{&modified? g:symbols.modified:""}'
-  let sl   .= ' %{&readonly? g:symbols.readonly:""}'
-  let sl   .= ' %=%-14.(%{g:symbols.linenumber}%l,%c%)'
-  let sl   .= ' %{strlen(&fenc)?&fenc:&enc}'
-  let sl   .= ' %{&filetype}'
-  let sl   .= ' %n '
+  let sl .= ' %t '
+  let sl .= ' %{&modified? g:symbols.modified:""}'
+  let sl .= ' %{&readonly? g:symbols.readonly:""}'
+  let sl .= ' %=%-14.(%{g:symbols.linenumber}%l,%c%)'
+  let sl .= ' %{strlen(&fenc)?&fenc:&enc}'
+  let sl .= ' %{&filetype}'
+  let sl .= ' %n '
   return sl
 endfunction
 
