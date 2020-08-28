@@ -1,6 +1,6 @@
-SHELL=/bin/bash
-
 .PHONY: homebrew stow symlink cask brew python pip node npm taps xcode-cli fonts help
+
+SHELL=/bin/bash
 
 help: ## Show this help menu
 	@echo "Usage: make [TARGET ...]"
