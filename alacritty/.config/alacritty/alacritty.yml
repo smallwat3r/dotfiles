@@ -37,7 +37,7 @@ font:
   size: 12
 
   offset:
-    x: 0
+    x: 1
     y: 0
 
   glyph_offset:
@@ -52,29 +52,31 @@ font:
 background_opacity: 1
 
 colors:
+  # Default colors
   primary:
-    background: "#000000"
-    foreground: "#d8d8d8"
-
+    background: '0x000000'
+    foreground: '0xffffff'
+  # Normal colors
   normal:
-    black: "#1e2132"
-    red: "#e27878"
-    green: "#b4be82"
-    yellow: "#e2a478"
-    blue: "#84a0c6"
-    magenta: "#a093c7"
-    cyan: "#89b8c2"
-    white: "#c6c8d1"
+    black:   '0x000000'
+    red:     '0xcd0000'
+    green:   '0x00cd00'
+    yellow:  '0xcdcd00'
+    blue:    '0x0000ee'
+    magenta: '0xcd00cd'
+    cyan:    '0x00cdcd'
+    white:   '0xe5e5e5'
 
+  # Bright colors
   bright:
-    black: "#6b7089"
-    red: "#e98989"
-    green: "#c0ca8e"
-    yellow: "#e9b189"
-    blue: "#91acd1"
-    magenta: "#ada0d3"
-    cyan: "#95c4ce"
-    white: "#d2d4de"
+    black:   '0x7f7f7f'
+    red:     '0xff0000'
+    green:   '0x00ff00'
+    yellow:  '0xffff00'
+    blue:    '0x5c5cff'
+    magenta: '0xff00ff'
+    cyan:    '0x00ffff'
+    white:   '0xffffff'
 
 # }}} colors
 # {{{ mouse / cursor

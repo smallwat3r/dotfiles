@@ -2,7 +2,7 @@
 
 dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/Thunderbird.app"
-dockutil --no-restart --add "/Applications/Kitty.app"
+dockutil --no-restart --add "/Applications/Alacritty.app"
 dockutil --no-restart --add "/Applications/Google Chrome.app"
 dockutil --no-restart --add "/Applications/Slack.app"
 
