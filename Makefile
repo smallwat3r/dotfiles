@@ -27,7 +27,6 @@ symlink: stow ## Symlinks dotfiles using stow
 		prettier \
 		pylint \
 		rg \
-		scripts \
 		sketch \
 		ssh \
 		tmux \
