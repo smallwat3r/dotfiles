@@ -3,11 +3,11 @@ bash
 coreutils
 ctags
 curl
-diff-so-fancy
 dockutil
 fd
 fzf
 git
+git-delta
 gnu-sed
 gnupg
 go

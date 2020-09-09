@@ -1,51 +1,48 @@
 [user]
   name = Matthieu Petiteau
   email = mpetiteau.pro@gmail.com
+
 [core]
   autocrlf = input
   editor = nvim
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
+
+[delta]
+  features = decorations
+  syntax-theme = none
+  minus-style = "#FFFFFF" bold red
+  plus-style = "#0c4000" bold green
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-decoration-style = yellow
+
+[interactive]
+  diffFilter = delta --color-only
+
 [merge]
   tool = vimdiff
+
 [mergetool "vimdiff"]
   path = nvim
+
 [pull]
   rebase = true
+
 [push]
   default = simple
+
 [url "https://github.com/"]
   insteadOf = gh:
+
 [url "https://gist.github.com/"]
   insteadOf = gist:
-[color]
-  branch = auto
-  diff = auto
-  interactive = auto
-  pager = true
-  status = auto
-  ui = true
-[color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
-[color "diff"]
-  meta = 11
-  frag = magenta bold
-  commit = yellow bold
-  old = red bold
-  new = green bold
-  whitespace = red reverse
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-[color "status"]
-  added = yellow reverse
-  changed = green
-  untracked = cyan
+
 [alias]
   find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+
 [filter "lfs"]
   required = true
   clean = git-lfs clean -- %f
