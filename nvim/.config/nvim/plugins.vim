@@ -1,4 +1,5 @@
 " Neovim plugins
+" ~~~~~~~~~~~~~~
 
 " Auto load for first time use - Install Vim Plug Manager
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
