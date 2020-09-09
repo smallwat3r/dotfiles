@@ -1,50 +1,50 @@
 [user]
-  name = Matthieu Petiteau
-  email = mpetiteau.pro@gmail.com
+name = Matthieu Petiteau
+email = mpetiteau.pro@gmail.com
 
 [core]
-  autocrlf = input
-  editor = nvim
-  pager = delta
+autocrlf = input
+editor = nvim
+pager = delta
 
 [delta]
-  features = decorations
-  syntax-theme = none
-  minus-style = "#FFFFFF" bold red
-  plus-style = "#0c4000" bold green
+features = decorations
+syntax-theme = none
+minus-style = "#FFFFFF" bold red
+plus-style = "#0c4000" bold green
 
 [delta "decorations"]
-  commit-decoration-style = bold yellow ul
-  file-style = bold yellow ul
-  file-decoration-style = none
-  hunk-header-decoration-style = yellow
+commit-decoration-style = bold yellow ul
+file-style = bold yellow ul
+file-decoration-style = none
+hunk-header-decoration-style = yellow
 
 [interactive]
-  diffFilter = delta --color-only
+diffFilter = delta --color-only
 
 [merge]
-  tool = vimdiff
+tool = vimdiff
 
 [mergetool "vimdiff"]
-  path = nvim
+path = nvim
 
 [pull]
-  rebase = true
+rebase = true
 
 [push]
-  default = simple
+default = simple
 
 [url "https://github.com/"]
-  insteadOf = gh:
+insteadOf = gh:
 
 [url "https://gist.github.com/"]
-  insteadOf = gist:
+insteadOf = gist:
 
 [alias]
-  find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
 
 [filter "lfs"]
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
+required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
