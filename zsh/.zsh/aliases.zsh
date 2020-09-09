@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+# Zsh aliases
+# ~~~~~~~~~~~
 
-# {{{1 general
-
+# Misc and general
 alias \
   .....="cd ../../../.." \
   ....="cd ../../.." \
@@ -30,9 +30,7 @@ alias \
   sl="ls -pF" \
   ww="vifm ."
 
-# }}}1
-# {{{1 editing
-
+# Editing stuff
 alias \
   e="$EDITOR" \
   eala="$EDITOR $HOME/.config/alacritty/alacritty.yml" \
@@ -51,9 +49,7 @@ alias \
   vim="nvim" \
   vimdiff="nvim -d"
 
-# }}}1
-# {{{1 python
-
+# Python stuff
 alias \
   pif="pip3.8 freeze" \
   pii="pip3.8 install" \
@@ -63,9 +59,7 @@ alias \
   python="python3.8" \
   venv="python -m venv env"
 
-# }}}1
-# {{{1 tmux
-
+# Tmux stuff
 alias \
   sp="tmux splitw -v" \
   tks="tmux kill-session -t" \
@@ -73,9 +67,7 @@ alias \
   tls="tmux list-sessions" \
   vs="tmux splitw -h"
 
-# }}}1
-# {{{1 git
-
+# Git stuff
 alias \
   g="git" \
   ga="git add" \
@@ -87,5 +79,3 @@ alias \
   gd="git diff" \
   gp="git push" \
   gs="git status"
-
-# }}}1

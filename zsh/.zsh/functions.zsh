@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+# Zsh functions
+# ~~~~~~~~~~~~~
 
 # {{{1 (cdr) cd root of git repo
 
