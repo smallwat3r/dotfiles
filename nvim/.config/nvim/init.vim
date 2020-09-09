@@ -6,14 +6,8 @@ syntax on
 filetype plugin indent on
 let mapleader = ','  " Leader key
 
-"{{{2 encoding
-
 set encoding=utf-8
 set fileencoding=utf-8
-
-"}}}2 encoding
-"{{{2 general settings
-
 set updatetime=100      " async update time
 set hidden              " hide buffer instead of closing them
 set cmdheight=1         " height of cmd line
@@ -57,29 +51,23 @@ if has('nvim')
   set inccommand=nosplit  " show replacements using search / replace
 endif
 
-"}}}2 general settings
-"{{{2 ignore files
-
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.cache,*.dll,*.DS_Store,*.rdb,*.db,*.sqlite
 set wildignore+=__pycache__/*,venv/*,env/*,.git/*,build/*,node_modules/*,dist/*
 
-"}}}2 ignore files
-"{{{2 swapfiles
-
+" Undo and backups
 set noswapfile
 set nobackup
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-
-"}}}2 swapfiles
-"{{{2 undo
-
 set undolevels=4000
 set undoreload=100000
 set undodir=~/.config/nvim/undodir
 set undofile
 
-"}}}2 undo
-"{{{2 trim whitespaces
+" Indentation
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 " Remove trailing whitespaces
 function! TrimTrailingWS()
@@ -96,17 +84,7 @@ augroup trim_whitespaces
   au BufWritePre * :call TrimTrailingWS()
 augroup END
 
-"}}}2 trim whitespaces
-"{{{2 indentation
-
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-
-"}}}2 indentation
-"{{{2 filetypes specifics
-
+" Filetypes
 augroup filetype_detect
   au!
   au BufRead,BufNewFile *.md                      setf markdown
@@ -139,15 +117,10 @@ augroup filetype_specifics
   au FileType text      setl cc=70
 augroup END
 
-"}}}2 filetypes specifics
-"{{{2 netrw
-
+" Netrw
 let g:netrw_banner        = 0
 let g:netrw_sort_sequence = '[\/]$,*'
 let g:netrw_localrmdir    = 'rm -r'
-
-"}}}2 netrw
-"{{{2 fixes
 
 " Deactivate db text plugin error msg on sql completion
 let g:loaded_sql_completion    = 0
@@ -157,9 +130,6 @@ let g:omni_sql_no_default_maps = 1
 let g:pyindent_open_paren   = '0'
 let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue     = '&sw'
-
-"}}}2 fixes
-"{{{2 miscellaneous
 
 " Remember last position of the cursor when editing a file
 augroup remember_last_cursor_position
@@ -176,12 +146,8 @@ augroup disable_comment_auto_insert
   au BufNewFile,BufRead * setlocal formatoptions-=cro
 augroup END
 
-"}}}2 miscellaneous
-
 "}}}1 general configuration
 "{{{1 plugins
-
-"{{{2 vim-plug
 
 " Auto load for first time use - Install Vim Plug Manager
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -226,10 +192,7 @@ Plug 'deoplete-plugins/deoplete-jedi'
 
 call plug#end()
 
-"}}}2 vim-plug
-"{{{2 plugins configuration
-
-"{{{3 deoplete
+"{{{2 deoplete
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#enable_typeinfo = 0
@@ -245,8 +208,8 @@ augroup filetype_dictionaries
         \ execute 'setl dict+=~/.config/nvim/dict/' . &filetype . '.txt'
 augroup END
 
-"}}}3 deoplete
-"{{{3 neoformat
+"}}}2 deoplete
+"{{{2 neoformat
 
 let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
@@ -293,8 +256,8 @@ let g:shfmt_opt = '-ci'
 " format file
 nmap ;f :Neoformat<cr>
 
-"}}}3 neoformat
-"{{{3 fzf
+"}}}2 neoformat
+"{{{2 fzf
 
 let g:fzf_layout = {
       \ 'window': {
@@ -328,8 +291,8 @@ nmap <leader>co :Commits<cr>
 nmap <leader>l  :BLines<cr>
 nmap <leader>wl :exe ":BLines " . expand('<cword>')<cr>
 
-"}}}3 fzf
-"{{{3 vim sandwich
+"}}}2 fzf
+"{{{2 vim sandwich
 
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
@@ -349,8 +312,8 @@ let g:sandwich#recipes += [
       \   }
       \ ]
 
-"}}}3 vim sandwich
-"{{{3 easy-align
+"}}}2 vim sandwich
+"{{{2 easy-align
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -358,36 +321,36 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-"}}}3 easy-align
-"{{{3 vifm
+"}}}2 easy-align
+"{{{2 vifm
 
 " Trigger Vifm with -
 nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
-"}}}3 vifm
-"{{{3 fugitive
+"}}}2 vifm
+"{{{2 fugitive
 
 " Fugitive conflict resolution
 nnoremap <leader>gd :Gvdiffsplit!<cr>
 nnoremap gdh :diffget //2<cr>
 nnoremap gdl :diffget //3<cr>
 
-"}}}3 fugitive
-"{{{3 gv
+"}}}2 fugitive
+"{{{2 gv
 
 " git logs current file
 nmap <leader>gl :GV!<cr>
 
-"}}}3 Gv
-"{{{3 vim-plug
+"}}}2 Gv
+"{{{2 vim-plug
 
 " vim-plug
 nmap <leader>pl :source $MYVIMRC<cr>:PlugInstall<cr>
 nmap <leader>pc :source $MYVIMRC<cr>:PlugClean<cr>
 nmap <leader>pu :source $MYVIMRC<cr>:PlugUpdate<cr>
 
-"}}}3 vim-plug
-"{{{3 vim-schlepp
+"}}}2 vim-plug
+"{{{2 vim-schlepp
 
 " crtl + hjkl move visual blocks
 vmap <C-h> <Plug>SchleppLeft
@@ -395,9 +358,7 @@ vmap <C-j> <Plug>SchleppDown
 vmap <C-k> <Plug>SchleppUp
 vmap <C-l> <Plug>SchleppRight
 
-"}}}3 vim-schlepp
-
-"}}}2 plugins configuration
+"}}}2 vim-schlepp
 
 "}}}1 plugins
 "{{{1 mappings / keybindings (non-plugin)
@@ -586,17 +547,12 @@ iab weigth   weight
 "}}}1 mappings / keybindings
 "{{{1 theme
 
-"{{{2 terminal
-
 " Change cursor based on modes
 let &t_SI .= '\e[6 q' " INSERT mode
 let &t_SR .= '\e[4 q' " REPLACE mode
 let &t_EI .= '\e[2 q' " NORMAL mode or others
 
-"}}}2 terminal
-"{{{2 colors
-
-" My custom colors (overwriting current colorscheme)
+" Custom colors (overwriting current colorscheme)
 function! DefaultColors() abort
   if &diff
     syntax off
@@ -641,8 +597,6 @@ try
 catch /^Vim\%((\a\+)\)\=:E185/
   colo desert
 endtry
-
-"}}}2 colors
 
 "}}}1 theme
 "{{{1 statusline
