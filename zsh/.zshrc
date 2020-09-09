@@ -9,6 +9,7 @@ _configs=(
   'prompt.zsh'
   'completion.zsh'
 )
+
 for file in $_configs; do
   [[ -f "$HOME/.zsh/$file" ]] && source "$HOME/.zsh/$file" end
 done

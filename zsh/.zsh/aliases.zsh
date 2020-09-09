@@ -1,6 +1,16 @@
 # Zsh aliases
 # ~~~~~~~~~~~
 
+# Directory shortcuts
+hash -d \
+  d=$HOME/dotfiles \
+  g=$HOME/Github \
+  dw=$HOME/Downloads \
+  de=$HOME/Desktop \
+  ssh=$HOME/.ssh \
+  tmux=$HOME/.config/tmux \
+  nvim=$HOME/.config/nvim
+
 # Misc and general
 alias \
   .....="cd ../../../.." \
