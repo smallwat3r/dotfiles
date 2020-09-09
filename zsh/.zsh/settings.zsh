@@ -48,13 +48,15 @@ export GREP_COLOR='0;30;42'
 
 # Search history
 # --------------
-autoload -U history-search-end
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
+bindkey '^[[A'  up-line-or-beginning-search    # Arrow up
+bindkey '^[OA'  up-line-or-beginning-search
+bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
+bindkey '^[OB'  down-line-or-beginning-search
 
 # Activate vim-mode
 # -----------------

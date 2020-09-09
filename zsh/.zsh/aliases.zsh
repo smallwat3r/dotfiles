@@ -8,6 +8,7 @@ hash -d \
   dw=$HOME/Downloads \
   de=$HOME/Desktop \
   ssh=$HOME/.ssh \
+  zsh=$HOME/.zsh \
   tmux=$HOME/.config/tmux \
   nvim=$HOME/.config/nvim
 
