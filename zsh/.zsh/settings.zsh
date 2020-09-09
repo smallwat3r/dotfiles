@@ -46,6 +46,17 @@ export SAVEHIST=$HISTSIZE
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
 
+# Move up directories
+_rationalise-dot() {
+  if [[ $LBUFFER = *.. ]]; then
+    LBUFFER+=/..
+  else
+    LBUFFER+=.
+  fi
+}
+zle -N _rationalise-dot
+bindkey . _rationalise-dot
+
 # Search history
 # --------------
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search

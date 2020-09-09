@@ -14,13 +14,8 @@ hash -d \
 
 # Misc and general
 alias \
-  .....="cd ../../../.." \
-  ....="cd ../../.." \
-  ...="cd ../.." \
-  ..="cd .." \
   batt="bluebatt" \
   c="clear" \
-  cd..="cd .." \
   ctags="/usr/local/bin/ctags" \
   diskspace="df -P -kHl" \
   dots="cd $HOME/dotfiles" \

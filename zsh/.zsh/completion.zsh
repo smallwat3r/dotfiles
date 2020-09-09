@@ -9,7 +9,9 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache
+zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*:rm:*' ignore-line-yes
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 zmodload zsh/complist
 
