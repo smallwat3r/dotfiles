@@ -45,3 +45,31 @@ export SAVEHIST=$HISTSIZE
 # grep / ripgrep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
+
+# Search history
+# --------------
+autoload -U history-search-end
+
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
+# Activate vim-mode
+# -----------------
+bindkey -v
+export KEYTIMEOUT=1
+
+# yank to clipboard
+_vi_yank_pbcopy() {
+  zle vi-yank
+  echo "$CUTBUFFER" | pbcopy
+}
+zle -N _vi_yank_pbcopy
+bindkey -M vicmd 'y' _vi_yank_pbcopy
+
+# edit command in vim
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line

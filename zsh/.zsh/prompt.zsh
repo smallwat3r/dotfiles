@@ -50,20 +50,3 @@ precmd() {
   [[ -z $TMUX ]] ||
     tmux select-pane -t $(_pane_number) -T "$(shpwd)$(_display_git_info)"
 }
-
-# activate vim-mode
-bindkey -v
-export KEYTIMEOUT=1
-
-# yank to clipboard
-_vi_yank_pbcopy() {
-  zle vi-yank
-  echo "$CUTBUFFER" | pbcopy
-}
-zle -N _vi_yank_pbcopy
-bindkey -M vicmd 'y' _vi_yank_pbcopy
-
-# edit command in vim
-autoload edit-command-line
-zle -N edit-command-line
-bindkey '^e' edit-command-line
