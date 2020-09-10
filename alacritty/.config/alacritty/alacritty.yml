@@ -70,7 +70,7 @@ colors:
     blue: "0x0066ff"
     magenta: "0xcc00ff"
     cyan: "0x00ffff"
-    white: "0xd0d0d0"
+    white: "0x929191"
 
   # Bright colors
   bright:

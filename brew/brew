@@ -6,6 +6,7 @@ curl
 dockutil
 fd
 fzf
+gh
 git
 git-delta
 gnu-sed
