@@ -120,3 +120,15 @@ colorscheme/!
 plugins/!
 swapfiles/!
 templating
+CVSS
+CWE
+Gitleaks
+SAST
+Eg
+Kiuwan
+toml
+UI
+vuln
+dropdown
+metadata
+regex

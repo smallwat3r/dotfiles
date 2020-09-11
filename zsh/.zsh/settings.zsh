@@ -69,6 +69,9 @@ bindkey '^[OA' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search  # Arrow down
 bindkey '^[OB' down-line-or-beginning-search
 
+bindkey -M vicmd 'k' up-line-or-beginning-search
+bindkey -M vicmd 'j' down-line-or-beginning-search
+
 # Activate vim-mode
 # -----------------
 bindkey -v
