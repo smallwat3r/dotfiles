@@ -12,29 +12,17 @@ hash -d \
   tmux=$HOME/.config/tmux \
   nvim=$HOME/.config/nvim
 
-# Misc and general
+# General
 alias \
-  batt="bluebatt" \
   c="clear" \
-  ctags="/usr/local/bin/ctags" \
-  diskspace="df -P -kHl" \
-  dots="cd $HOME/dotfiles" \
-  fonts="open $HOME/Library/Fonts" \
+  p="pwd" \
   l="ls -pFf" \
   ll="ls -la" \
   ls.="ls -pF -d .*" \
   ls="ls -pF" \
-  lss="ls -la | grep --color=never '\->'" \
-  mkdir="mkdir -pv" \
-  myip="curl http://ipecho.net/plain; echo" \
-  p="pwd" \
-  pihole="ssh pi 'pihole status'" \
-  pitemp="ssh pi 'vcgencmd measure_temp'" \
-  pubip="curl http://ipecho.net/plain; echo" \
-  qq="exit" \
-  sk="sketch" \
   sl="ls -pF" \
-  ww="vifm ."
+  lss="ls -la | grep --color=never '\->'" \
+  qq="exit"
 
 # Editing stuff
 alias \
@@ -85,3 +73,19 @@ alias \
   gd="git diff" \
   gp="git push" \
   gs="git status"
+
+# Misc stuff
+alias \
+  batt="bluebatt" \
+  ctags="/usr/local/bin/ctags" \
+  diskspace="df -P -kHl" \
+  dots="cd $HOME/dotfiles" \
+  fonts="open $HOME/Library/Fonts" \
+  mkdir="mkdir -pv" \
+  myip="curl http://ipecho.net/plain; echo" \
+  pihole="ssh pi 'pihole status'" \
+  pitemp="ssh pi 'vcgencmd measure_temp'" \
+  pubip="curl http://ipecho.net/plain; echo" \
+  sk="sketch" \
+  ww="vifm ." \
+  mongo-docker="docker run -d -p 27000:27017 -v $HOME/.dockervolumes/mongo/db:/data/db mongo"
