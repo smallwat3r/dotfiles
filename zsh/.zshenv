@@ -8,6 +8,7 @@ export LDFLAGS='-L/usr/local/opt/python@3.8/lib'
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export PER5LIB="$HOME/lib/perl5"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin'
 export PATH="$HOME/bin:$PATH"
