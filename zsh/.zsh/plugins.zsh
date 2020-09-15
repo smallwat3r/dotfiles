@@ -13,8 +13,8 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
 
 export FZF_DEFAULT_OPTS='
   --height 96% --reverse --border
-  --color dark,hl:37,hl+:37,bg+:#101010,fg+:136
-  --color info:136,prompt:37,spinner:136,pointer:230,marker:230
+  --color dark,hl:202,hl+:202,bg+:#101010,fg+:10
+  --color info:10,prompt:202,spinner:10,pointer:10,marker:10
 '
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
 

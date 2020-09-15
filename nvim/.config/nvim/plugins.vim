@@ -23,7 +23,8 @@ Plug 'tpope/vim-eunuch'                " Shell commands from vim
 Plug 'tpope/vim-fugitive'              " Git wrapper
 Plug 'tpope/vim-unimpaired'            " Complementary mappings
 Plug 'tpope/vim-vividchalk'            " Colorscheme
-Plug 'vifm/vifm.vim'                   " File manager
+Plug 'cocopon/vaffle.vim'              " File explorer
+" Plug 'vifm/vifm.vim'                   " File manager (commented out as using Vaffle as a file explorer)
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
 Plug 'zirrostig/vim-schlepp'           " Move visual blocks
 
@@ -179,8 +180,9 @@ nmap ga <Plug>(EasyAlign)
 "}}}1 easy-align
 "{{{1 vifm
 
+" Commented out as using Vaffle as a file explorer in Vim
 " Trigger Vifm with -
-nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
+" nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
 "}}}1 vifm
 "{{{1 fugitive
@@ -214,3 +216,24 @@ vmap <C-k> <Plug>SchleppUp
 vmap <C-l> <Plug>SchleppRight
 
 "}}}1 vim-schlepp
+"{{{1 vaffle
+
+nmap <silent>- :Vaffle<cr>
+
+" mappings for vaffle to work as netrw / vinegar
+function! s:customize_vaffle_mappings() abort
+  nmap <buffer>- <Plug>(vaffle-open-parent)
+  nmap <buffer>% <Plug>(vaffle-new-file)
+  nmap <buffer>d <Plug>(vaffle-mkdir)
+  nmap <buffer>D <Plug>(vaffle-delete-selected)
+endfunction
+
+augroup vaffle_mappings
+  au!
+  au FileType vaffle call s:customize_vaffle_mappings()
+augroup END
+
+let g:vaffle_show_hidden_files = 1
+let g:vaffle_force_delete = 1
+
+"}}}1 vaffle

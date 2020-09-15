@@ -47,6 +47,12 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
+if exists('+autochdir')
+  set autochdir
+else
+  autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+endif
+
 if has('nvim')
   set inccommand=nosplit  " show replacements using search / replace
 endif
