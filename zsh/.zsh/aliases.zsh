@@ -12,6 +12,11 @@ hash -d \
   tmux=$HOME/.config/tmux \
   nvim=$HOME/.config/nvim
 
+# Global aliases
+alias -g \
+  G="| grep" \
+  L="| less"
+
 # General
 alias \
   c="clear" \
