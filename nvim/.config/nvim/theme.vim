@@ -25,6 +25,7 @@ function! DefaultColors() abort
   hi NonText      ctermfg=202  ctermbg=NONE
   hi Normal       ctermbg=NONE
   hi Search       ctermfg=232  ctermbg=11   cterm=NONE
+  hi SignColumn   ctermbg=NONE
   hi SpellBad     ctermfg=88   ctermbg=210
   hi SpellCap     ctermbg=159  ctermfg=17
   hi StatuslineNC ctermfg=242  ctermbg=NONE cterm=underline

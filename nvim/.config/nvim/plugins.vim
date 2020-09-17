@@ -123,24 +123,8 @@ let g:fzf_layout = {
       \   'border': 'sharp'
       \ }}
 
-com! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(
-      \ <q-args>, {
-      \   'options': [
-      \     '--layout=reverse',
-      \     '--info=inline',
-      \     '--preview',
-      \     '~/.config/nvim/plugged/fzf.vim/bin/preview.sh {}'
-      \   ]
-      \ }, <bang>0)
-
-com! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case '
-      \   .shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
-
 nmap <leader>b  :Buffers<cr>
-nmap <leader>f  :Files<cr>
+nmap <leader>f  :GFiles<cr>
 nmap <leader>;  :Rg<cr>
 nmap <leader>w; :exe ":Rg     " . expand('<cword>')<cr>
 nmap <leader>co :Commits<cr>
