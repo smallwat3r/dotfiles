@@ -1,9 +1,9 @@
 # Zsh functions
 # ~~~~~~~~~~~~~
 
-# {{{1 (cdr) cd root of git repo
+# {{{1 (cr) cd root of git repo
 
-cdr() {
+cr() {
   cd "$(git rev-parse --show-toplevel)" || exit
 }
 
