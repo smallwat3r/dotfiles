@@ -28,11 +28,11 @@ zle-line-finish() {
 zle -N zle-line-finish
 
 export VIRTUAL_ENV_DISABLE_PROMPT=false
-PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is_venv)${vim_mode} '
+PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)${vim_mode} '
 
 _display_git_info() {
-  local _git_root=$(echo $(git_root) | sed 's/true/~/')
-  local _git_branch=$(echo $(git_branch))
+  local _git_root=$(echo $(git-root) | sed 's/true/~/')
+  local _git_branch=$(echo $(git-branch))
   [[ ! -z $_git_branch ]] && echo " $_git_branch$_git_root"
 }
 
