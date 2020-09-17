@@ -54,6 +54,8 @@ bindkey -M vicmd 'j' down-line-or-beginning-search
 bindkey -v
 export KEYTIMEOUT=1
 
+bindkey '^?' backward-delete-char
+
 # yank to clipboard
 _vi_yank_pbcopy() {
   zle vi-yank
