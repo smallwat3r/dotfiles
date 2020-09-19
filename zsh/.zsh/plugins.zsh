@@ -24,6 +24,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle hlissner/zsh-autopair
+antigen bundle skywind3000/z.lua
 
 antigen apply
 
