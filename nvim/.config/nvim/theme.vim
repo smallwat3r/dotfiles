@@ -48,7 +48,7 @@ augroup custom_colors
 augroup END
 
 try
-  colo vividchalk
+  colo seoul256
 catch /^Vim\%((\a\+)\)\=:E185/
   colo desert
 endtry

@@ -15,6 +15,7 @@ Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'gregsexton/MatchTag'             " Highlight matching html tag
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'junegunn/gv.vim'                 " Git commit browser
+Plug 'junegunn/seoul256.vim'           " Colorscheme
 Plug 'junegunn/vim-easy-align'         " Align pieces of text
 Plug 'machakann/vim-sandwich'          " Surroundings mapping
 Plug 'sbdchd/neoformat'                " Auto code formatting
@@ -22,7 +23,6 @@ Plug 'tpope/vim-commentary'            " Comments mappings
 Plug 'tpope/vim-eunuch'                " Shell commands from vim
 Plug 'tpope/vim-fugitive'              " Git wrapper
 Plug 'tpope/vim-unimpaired'            " Complementary mappings
-Plug 'tpope/vim-vividchalk'            " Colorscheme
 Plug 'cocopon/vaffle.vim'              " File explorer
 " Plug 'vifm/vifm.vim'                   " File manager (commented out as using Vaffle as a file explorer)
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
