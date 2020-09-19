@@ -24,6 +24,8 @@ function! DefaultColors() abort
   hi MatchParen   ctermfg=203  ctermbg=190
   hi NonText      ctermfg=202  ctermbg=NONE
   hi Normal       ctermbg=NONE
+  hi Pmenu        ctermfg=242  ctermbg=235
+  hi PmenuSel     ctermfg=254  ctermbg=242
   hi Search       ctermfg=232  ctermbg=11   cterm=NONE
   hi SignColumn   ctermbg=NONE
   hi SpellBad     ctermfg=88   ctermbg=210
