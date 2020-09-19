@@ -17,7 +17,7 @@ function! DefaultColors() abort
   hi DiffChange   ctermfg=204  ctermbg=NONE cterm=NONE
   hi DiffDelete   ctermfg=9    ctermbg=NONE cterm=NONE
   hi DiffText     ctermfg=255  ctermbg=31
-  hi Directory    ctermfg=202  ctermbg=NONE
+  hi Directory    ctermbg=NONE
   hi EndOfBuffer  ctermbg=NONE
   hi IncSearch    ctermfg=232  ctermbg=229  cterm=bold
   hi LineNr       ctermfg=239  ctermbg=NONE
