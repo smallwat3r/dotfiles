@@ -149,5 +149,5 @@ augroup END
 " Disable auto insertion of comment symbol on new line
 augroup disable_comment_auto_insert
   au!
-  au BufNewFile,BufRead * setlocal formatoptions-=cro
+  au FileType * setlocal formatoptions-=cro
 augroup END

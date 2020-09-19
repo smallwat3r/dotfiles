@@ -99,6 +99,13 @@ nmap <silent><S-l> :vertical resize+5<cr>
 " play macros
 nmap Q @q
 
+" run Python linters
+augroup python_linters
+  au!
+  au Filetype python nmap <leader>py :! pylint %<cr>
+  au Filetype python nmap <leader>is :! isort %<cr>
+augroup END
+
 "}}}1 normal mode
 "{{{1 visual mode
 
