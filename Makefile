@@ -41,13 +41,17 @@ ifeq ($(shell command -v wget),)
 	@echo '*** Installing wget ...'
 	brew install wget
 endif
-	@[ -f "/Library/Fonts/Tamzen7x14r.ttf" ] || { \
-		wget -O /Library/Fonts/Tamzen7x14r.ttf \
-			https://github.com/sunaku/tamzen-font/raw/master/ttf/Tamzen7x14r.ttf; \
+	@[ -f "/Library/Fonts/Go-Mono.ttf" ] || { \
+		wget -O /Library/Fonts/Go-Mono.ttf \
+			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono.ttf; \
 	}
-	@[ -f "/Library/Fonts/Tamzen7x14b.ttf" ] || { \
-		wget -O /Library/Fonts/Tamzen7x14b.ttf \
-			https://github.com/sunaku/tamzen-font/raw/master/ttf/Tamzen7x14b.ttf; \
+	@[ -f "/Library/Fonts/Go-Mono-Italic.ttf" ] || { \
+		wget -O /Library/Fonts/Go-Mono-Italic.ttf \
+			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono-Italic.ttf; \
+	}
+	@[ -f "/Library/Fonts/Go-Mono-Bold.ttf" ] || { \
+		wget -O /Library/Fonts/Go-Mono-Bold.ttf \
+			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono-Bold.ttf; \
 	}
 
 homebrew: ## Make sure homebrew is installed
