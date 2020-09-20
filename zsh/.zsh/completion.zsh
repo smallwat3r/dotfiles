@@ -9,7 +9,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache
+zstyle ':completion:*' cache-path "$HOME/.cache"
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:rm:*' ignore-line-yes
