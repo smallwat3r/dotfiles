@@ -52,8 +52,6 @@ bindkey -M vicmd 'j' down-line-or-beginning-search
 # Activate vim-mode
 # -----------------
 bindkey -v
-export KEYTIMEOUT=1
-
 bindkey '^?' backward-delete-char
 
 # yank to clipboard
