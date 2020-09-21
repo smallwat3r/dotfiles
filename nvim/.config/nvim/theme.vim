@@ -13,6 +13,7 @@ function! DefaultColors() abort
   endif
 
   hi CursorLineNR ctermbg=NONE
+  hi Comment      cterm=italic
   hi DiffAdd      ctermfg=255  ctermbg=64
   hi DiffChange   ctermfg=204  ctermbg=NONE cterm=NONE
   hi DiffDelete   ctermfg=9    ctermbg=NONE cterm=NONE

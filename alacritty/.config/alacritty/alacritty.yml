@@ -33,6 +33,12 @@ font:
   normal:
     family: Go Mono
     style: Regular
+  italic:
+    family: Go Mono
+    style: Italic
+  bold:
+    family: Go Mono
+    style: Bold
 
   size: 12
 

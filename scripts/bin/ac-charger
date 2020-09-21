@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Check if an AC adapter is connected
+
+if [[ $(pmset -g ac) != "No adapter attached." ]]; then
+  printf "on\n"
+else
+  printf "off\n"
+fi
