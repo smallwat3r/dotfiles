@@ -14,14 +14,10 @@ nmap <leader>pu :source $MYVIMRC<cr>:PlugUpdate<cr>
 
 call plug#begin()
 
-Plug 'alvan/vim-closetag'              " Auto-close html tags
-Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
-Plug 'gregsexton/MatchTag'             " Highlight matching html tag
-Plug 'jiangmiao/auto-pairs'            " Auto close pairs
-Plug 'junegunn/gv.vim'                 " Git commit browser
-nmap <leader>gl :GV!<cr>
-
 Plug 'junegunn/seoul256.vim'           " Colorscheme
+
+Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
+Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'junegunn/vim-easy-align'         " Align pieces of text
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -73,13 +69,11 @@ let g:shfmt_opt = '-ci'
 nmap ;f :Neoformat<cr>
 
 Plug 'tpope/vim-commentary'            " Comments mappings
-Plug 'tpope/vim-eunuch'                " Shell commands from vim
 Plug 'tpope/vim-fugitive'              " Git wrapper
 nnoremap <leader>gd :Gvdiffsplit!<cr>
 nnoremap gdh :diffget //2<cr>
 nnoremap gdl :diffget //3<cr>
 
-Plug 'tpope/vim-unimpaired'            " Complementary mappings
 Plug 'cocopon/vaffle.vim'              " File explorer
 nmap <silent>- :Vaffle<cr>
 
@@ -102,17 +96,6 @@ let g:vaffle_force_delete = 1
 "   nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
 Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
-Plug 'zirrostig/vim-schlepp'           " Move visual blocks
-vmap <C-h> <Plug>SchleppLeft
-vmap <C-j> <Plug>SchleppDown
-vmap <C-k> <Plug>SchleppUp
-vmap <C-l> <Plug>SchleppRight
-
-" Syntax support
-Plug 'chr4/nginx.vim'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'vim-scripts/applescript.vim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -151,3 +134,6 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#enable_typeinfo = 0
 
 call plug#end()
+
+" Must be after plug#end()
+call deoplete#custom#option('ignore_sources', {'_': [ 'buffer' ]})
