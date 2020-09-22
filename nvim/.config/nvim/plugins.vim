@@ -134,6 +134,3 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#enable_typeinfo = 0
 
 call plug#end()
-
-" Must be after plug#end()
-call deoplete#custom#option('ignore_sources', {'_': [ 'buffer' ]})
