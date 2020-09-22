@@ -1,8 +1,7 @@
 # Zsh completion
 # ~~~~~~~~~~~~~~
 
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select
@@ -14,5 +13,3 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:rm:*' ignore-line-yes
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
-
-zmodload zsh/complist
