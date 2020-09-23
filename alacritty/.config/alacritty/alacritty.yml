@@ -31,20 +31,14 @@ scrolling:
 
 font:
   normal:
-    family: Go Mono
+    family: Monaco
     style: Regular
-  italic:
-    family: Go Mono
-    style: Italic
-  bold:
-    family: Go Mono
-    style: Bold
 
   size: 12
 
   offset:
     x: 1
-    y: 2
+    y: -1
 
   glyph_offset:
     x: 0
