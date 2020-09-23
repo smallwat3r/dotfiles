@@ -78,7 +78,6 @@ Plug 'Vimjas/vim-python-pep8-indent'   " Better python indentation
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
 let g:fzf_colors =
       \ { 'fg':      ['fg', 'Normal'],
