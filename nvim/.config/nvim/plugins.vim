@@ -38,31 +38,9 @@ let g:neoformat_javascript_prettier = {
       \   '"%:p"'
       \   ],
       \ }
-let g:neoformat_html_prettier = {
-      \ 'exe': 'prettier',
-      \ 'stdin': 1,
-      \ 'args': [
-      \   '--stdin',
-      \   '--config ~/.config/.prettierrc',
-      \   '--stdin-filepath',
-      \   '"%:p"'
-      \   ],
-      \ }
-let g:neoformat_jinja_prettier = {
-      \ 'exe': 'prettier',
-      \ 'stdin': 1,
-      \ 'args': [
-      \   '--stdin',
-      \   '--config ~/.config/.prettierrc',
-      \   '--stdin-filepath',
-      \   '"%:p"'
-      \   ],
-      \ }
 
 let g:neoformat_enabled_python     = ['yapf', 'black']
 let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_html       = ['prettier']
-let g:neoformat_enabled_jinja      = ['prettier']
 let g:neoformat_enabled_zsh        = ['shfmt']
 let g:shfmt_opt = '-ci'
 
@@ -95,7 +73,7 @@ let g:vaffle_force_delete = 1
 " Plug 'vifm/vifm.vim'                   " File manager (commented out as using Vaffle as a file explorer)
 "   nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
-Plug 'Vimjas/vim-python-pep8-indent'   " Fix python indentation behaviour
+Plug 'Vimjas/vim-python-pep8-indent'   " Better python indentation
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
