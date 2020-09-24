@@ -26,6 +26,9 @@
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
+(global-visual-line-mode 1)
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
 (setq display-line-numbers-type nil)
 
 (custom-set-faces
@@ -78,9 +81,6 @@
 (global-set-key (kbd "S-C-j") 'shrink-window)
 (global-set-key (kbd "S-C-k") 'enlarge-window)
 
-; neotree
-(map! :leader "o n" #'+neotree/open)
-
 ;; company
 (after! company
   (setq company-idle-delay 0.1
@@ -105,6 +105,10 @@
           (lambda ()
             (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch-serif)
                  (buffer-face-mode t)))
+
+(after! vterm
+  (set-popup-rule! "*doom:vterm-popup:main"
+    :size 0.60 :vslot -4 :select t :quit nil :ttl 0 :side 'bottom))
 
 ;; ivy
 (setq ivy-use-virtual-buffers t
