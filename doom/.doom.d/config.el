@@ -17,15 +17,30 @@
 ;; ui stuff
 (setq doom-font (font-spec :family "Monaco" :size 12 :weight 'Regular)
       doom-theme 'doom-outrun-electric
-      doom-themes-enable-bold nil)
+      doom-themes-enable-bold t
+      doom-themes-enable-italic t)
 
 (setq display-line-numbers-type nil)
 
 (custom-set-faces
-  '(font-lock-comment-face ((t (:inherit 'fixed-pitch-serif))))
+  '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif))))
   '(default ((t (:background "black"))))
   '(mode-line ((t (:inherit 'fixed-pitch-serif ))))
   '(mode-line-inactive ((t (:inherit 'fixed-pitch-serif)))))
+
+(setq undo-limit 80000000
+      evil-want-fine-undo t
+      inhibit-compacting-font-caches t
+      truncate-string-ellipsis "…")
+
+(unless (equal "Battery status not available"
+               (battery))
+  (display-battery-mode 1))
+
+(display-time-mode 1)
+
+;; delete trailing whitespaces on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; scroll
 (global-set-key (kbd "C-j") 'scroll-up-line)
@@ -58,8 +73,10 @@
 (global-set-key (kbd "S-C-k") 'enlarge-window)
 
 ;; company
-(setq company-idle-delay 0.1
-      company-minimum-prefix-length 2)
+(after! company
+  (setq company-idle-delay 0.1
+        company-minimum-prefix-length 2)
+(add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 (eval-after-load 'company
   '(progn
@@ -67,6 +84,9 @@
      (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
      (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
      (define-key company-active-map (kbd "<backtab>") 'company-select-previous)))
+
+(set-company-backend! '(text-mode markdown-mode gfm-mode)
+  '(:seperate company-ispell company-files company-yasnippet))
 
 ;; python
 (setq python-shell-interpreter "/usr/local/opt/python@3.8/bin/python3.8")

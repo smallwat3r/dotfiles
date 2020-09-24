@@ -1,21 +1,21 @@
 <h3 align="center">.dotfiles</h3>
 
-![dots](https://i.imgur.com/O30BvsP.png)  
-Picture from 21-09-20  
+![dots](https://i.imgur.com/O30BvsP.png)
+Picture from 21-09-20
 
 This repo is created for my personal use and is updated very
-frequently, but feel free to pick whatever you want.  
+frequently, but feel free to pick whatever you want.
 Use at your own risks and please create back-ups of your current
-set-up if you intend to use the Makefile.  
+set-up if you intend to use the Makefile.
 
-Be aware these dotfiles are primary intended to be used on macOS.  
+Be aware these dotfiles are primary intended to be used on macOS.
 
 Dotfiles are managed by **GNU Stow** (will be automatically installed
-or run `brew install stow`).  
+or run `brew install stow`).
 Note: you will need to install **GNU Make** to use the Makefile
-(`brew install make`).  
+(`brew install make`).
 
-Clone this repo into your `$HOME` directory.  
+Clone this repo into your `$HOME` directory.
 ```sh
 git clone https://github.com/smallwat3r/dotfiles.git $HOME
 ```
