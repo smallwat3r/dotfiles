@@ -8,6 +8,12 @@
 (setq initial-frame-alist
       '((top . 1) (left . 1) (width . 144) (height . 33)))
 
+;; Projects
+(projectile-add-known-project "~/dotfiles")
+(projectile-add-known-project "~/Projects")
+(projectile-add-known-project "~/Github")
+(projectile-add-known-project "~/Code")
+
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
@@ -71,6 +77,9 @@
 (global-set-key (kbd "S-C-l") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-j") 'shrink-window)
 (global-set-key (kbd "S-C-k") 'enlarge-window)
+
+; neotree
+(map! :leader "o n" #'+neotree/open)
 
 ;; company
 (after! company
