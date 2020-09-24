@@ -1,6 +1,7 @@
 antigen
 bash
 coreutils
+cmake
 ctags
 curl
 dockutil

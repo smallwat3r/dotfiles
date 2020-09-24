@@ -17,6 +17,7 @@ symlink: stow ## Symlinks dotfiles using stow
 	@stow \
 		alacritty \
 		ctags \
+		doom \
 		git \
 		htop \
 		isort \
