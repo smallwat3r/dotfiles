@@ -22,7 +22,7 @@
 (setq org-directory "~/org/")
 
 ;; ui stuff
-(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "Monaco" :size 12 :weight 'Regular)
       doom-theme 'doom-outrun-electric
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
@@ -45,24 +45,56 @@
       inhibit-compacting-font-caches t
       truncate-string-ellipsis "…")
 
-;; display battery in modeline
-(unless (equal "Battery status not available"
-               (battery))
-  (display-battery-mode 1))
+;; mode-line
+(custom-set-faces
+ '(mode-line ((t (:background "black")))))
 
-;; display time in modeline
-(display-time-mode 1)
+(mini-modeline-mode t)
 
-;; telephone-line
-(setq telephone-line-height 15
-      telephone-line-evil-use-short-tag t)
+(setq-default
+ mini-modeline-r-format
+ (list
+  ;; the buffer name; the file name as a tool tip
+  '(:eval (propertize "%b " 'face 'font-lock-keyword-face
+                      'help-echo (buffer-file-name)))
 
-(setq telephone-line-primary-left-separator 'telephone-line-cubed-left
-      telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
-      telephone-line-primary-right-separator 'telephone-line-cubed-right
-      telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+  ;; show current Git branch
+  '(vc-mode vc-mode) " "
 
-(telephone-line-mode 1)
+  ;; line and column
+  ;; '%02' to set to 2 chars at least; prevents flickering
+  (propertize "%02l" 'face 'font-lock-type-face) ","
+  (propertize "%02c" 'face 'font-lock-type-face) " "
+
+  ;; the current major mode for the buffer.
+  '(:eval (propertize "%m"
+                      'face 'font-lock-string-face
+                      'help-echo buffer-file-coding-system)) " "
+
+  ;; insert vs overwrite mode, input-method in a tooltip
+  '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
+                      'face 'font-lock-preprocessor-face
+                      'help-echo (concat "Buffer is in "
+                                         (if overwrite-mode "overwrite" "insert") " mode")))
+  ;; was this buffer modified since the last save?
+  '(:eval (when (buffer-modified-p)
+            (concat ","
+                    (propertize "Mod"
+                                'face 'font-lock-warning-face
+                                'help-echo "Buffer has been modified"))))
+  ;; is this buffer read-only?
+  '(:eval (when buffer-read-only
+            (concat ","
+                    (propertize "RO"
+                                'face 'font-lock-type-face
+                                'help-echo "Buffer is read-only")))) " "
+
+  ;; add the time, with the date and the emacs uptime in the tooltip
+  '(:eval (propertize (format-time-string "%H:%M")
+                      'help-echo
+                      (concat (format-time-string "%c; ")
+                              (emacs-uptime "Uptime:%hh")))) " --"
+  ))
 
 ;; fix issue on macos uk keyboard for # char
 (global-set-key (kbd "M-3") "#")
@@ -135,3 +167,14 @@
 
 ;; auto-format
 (define-key evil-normal-state-map ";f" 'format-all-buffer)
+
+;; flycheck
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
+            (setq flycheck-pylintrc "~/.config/pylintrc")))
+
+;; eshell
+;; remember to run eshell-read-aliases-list from the eshell to reload cache
+;; in case the alias file path has changed
+(setq eshell-aliases-file "~/.doom.d/eshell/aliases")

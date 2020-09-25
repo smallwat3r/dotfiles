@@ -1,0 +1,4 @@
+alias c 'clear'
+alias qq 'exit'
+alias emacs 'find-file $1'
+alias sl 'ls'
