@@ -7,33 +7,31 @@
       user-mail-address "mpetiteau.pro@gmail.com"
 
       doom-font (font-spec :family "Monaco" :size 12 :weight 'Regular)
-      doom-variable-pitch-font (font-spec :family "Arial")
-      doom-serif-font (font-spec :family "Consolas")
-
       doom-theme 'doom-outrun-electric
       doom-themes-enable-bold t
       doom-themes-enable-italic t
 
       default-directory "~/"
       display-line-numbers-type nil
-      visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+      visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
 
-(setq search-highlight t
-      search-whitespace-regexp ".*?"
-      isearch-lax-whitespace t
-      isearch-regexp-lax-whitespace nil
-      isearch-lazy-highlight t
-      isearch-lazy-count t
-      lazy-count-prefix-format " (%s/%s) "
-      lazy-count-suffix-format nil
-      isearch-yank-on-move 'shift
-      isearch-allow-scroll 'unlimited)
+      undo-limit 80000000
+      evil-want-fine-undo t
+      inhibit-compacting-font-caches t
+      truncate-string-ellipsis "…")
 
 (custom-set-faces
- '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif))))
- '(default ((t (:background "black")))))
+ '(default ((t (:background "black"))))
+ '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif)))))
 
-(global-visual-line-mode 1)
+(setq python-shell-interpreter "/usr/local/opt/python@3.8/bin/python3.8")
+
+(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq org-directory "~/org/"
       org-adapt-indentation nil)
@@ -51,51 +49,10 @@
   (projectile-add-known-project "~/Github")
   (projectile-add-known-project "~/Code"))
 
-;; general settings
-(setq-default delete-by-moving-to-trash t
-              tab-width 4
-              uniquify-buffer-name-style 'forward
-              x-stretch-cursor t)
-
-(setq undo-limit 80000000
-      evil-want-fine-undo t
-      inhibit-compacting-font-caches t
-      truncate-string-ellipsis "…")
-
-(setq python-shell-interpreter "/usr/local/opt/python@3.8/bin/python3.8")
-
-(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(map!
- "M-3" "#"  ;; macOS Uk keyboard fix
-
- "M-h" #'windmove-left
- "M-l" #'windmove-right
- "M-k" #'windmove-up
- "M-j" #'windmove-down
-
- "C-j" #'scroll-up-line
- "C-k" #'scroll-down-line)
-
-(use-package! evil
-  :demand t
-  :custom
-  (evil-esc-delay 0.001 "avoid ESC/meta mixups")
-  (evil-shift-width 4)
-  (evil-search-module 'evil-search)
-  :bind ((:map evil-normal-state-map
-          (";w" . 'evil-write)
-          (";q" . 'evil-save-and-close)
-          (";x" . 'evil-save-and-close)
-          (";vs" . 'split-window-horizontally)
-          (";sp" . 'split-window-vertically)))
+(use-package! key-chord
   :config
-  ;; jj to work as esc
   (setq key-chord-two-keys-delay 0.5)
+  ;; Make jj to work as ESC in insert mode
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
   (key-chord-mode 1))
 
@@ -106,12 +63,10 @@
   (exec-path-from-shell-initialize))
 
 (use-package! format-all
-  :after evil
   :bind ((:map evil-normal-state-map
           (";f" . 'format-all-buffer))))
 
 (use-package! company
-  :after evil
   :config
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 2)
@@ -213,3 +168,22 @@
                         (concat (format-time-string "%c; ")
                                 (emacs-uptime "Uptime:%hh")))) " --"
     )))
+
+;; Mappings
+(map!
+ "M-3"   "#"  ;; macOS Uk keyboard fix
+
+ "M-h"   #'windmove-left
+ "M-l"   #'windmove-right
+ "M-k"   #'windmove-up
+ "M-j"   #'windmove-down
+
+ "C-j"   #'scroll-up-line
+ "C-k"   #'scroll-down-line
+
+ (:map evil-normal-state-map
+  ";w"   #'evil-write
+  ";q"   #'evil-save-and-close
+  ";x"   #'evil-save-and-close
+  ";vs"  #'split-window-horizontally
+  ";sp"  #'split-window-vertically))
