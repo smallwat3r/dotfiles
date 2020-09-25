@@ -1,19 +1,20 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Ensure env variables inside Emacs are the same than in shell
+;; ensure env variables inside Emacs are the same than in shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-;; Initial window size when Emacs starts
+;; initial window size when Emacs starts
 (setq initial-frame-alist
       '((top . 1) (left . 1) (width . 144) (height . 33)))
 
-;; Projects
+;; projecticle
 (projectile-add-known-project "~/dotfiles")
 (projectile-add-known-project "~/Projects")
 (projectile-add-known-project "~/Github")
 (projectile-add-known-project "~/Code")
 
+;; personal stuff
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
@@ -21,7 +22,7 @@
 (setq org-directory "~/org/")
 
 ;; ui stuff
-(setq doom-font (font-spec :family "Monaco" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "Hack" :size 12 :weight 'Regular)
       doom-theme 'doom-outrun-electric
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
@@ -33,9 +34,7 @@
 
 (custom-set-faces
   '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif))))
-  '(default ((t (:background "black"))))
-  '(mode-line ((t (:inherit 'fixed-pitch-serif ))))
-  '(mode-line-inactive ((t (:inherit 'fixed-pitch-serif)))))
+  '(default ((t (:background "black")))))
 
 (setq undo-limit 80000000
       evil-want-fine-undo t
@@ -47,6 +46,20 @@
   (display-battery-mode 1))
 
 (display-time-mode 1)
+
+;; telephone-line
+(setq telephone-line-height 15
+      telephone-line-evil-use-short-tag t)
+
+(setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+      telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
+      telephone-line-primary-right-separator 'telephone-line-cubed-right
+      telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+
+(telephone-line-mode 1)
+
+;; fix issue on macos uk keyboard for # char
+(global-set-key (kbd "M-3") "#")
 
 ;; delete trailing whitespaces on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
