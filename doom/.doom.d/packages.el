@@ -15,3 +15,5 @@
 
 (package! emacs-mini-modeline
   :recipe (:host github :repo "kiennq/emacs-mini-modeline"))
+
+(package! dired-narrow)
