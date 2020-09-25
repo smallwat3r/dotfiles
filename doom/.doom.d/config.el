@@ -11,14 +11,14 @@
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
-(map!  "M-h"   #'windmove-left
-       "M-l"   #'windmove-right
-       "M-k"   #'windmove-up
-       "M-j"   #'windmove-down
-       "C-j"   #'scroll-up-line
+(map!  "C-j"   #'scroll-up-line
        "C-k"   #'scroll-down-line
 
        (:map override
+        "M-h"   #'windmove-left
+        "M-l"   #'windmove-right
+        "M-k"   #'windmove-up
+        "M-j"   #'windmove-down
         "M-3"  "#")  ;; macOS Uk keyboard hack
 
        (:map evil-normal-state-map
@@ -49,9 +49,6 @@
 (global-visual-line-mode t)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(setq org-directory "~/org/"
-      org-adapt-indentation nil)
 
 (use-package! projectile
   :config
@@ -98,10 +95,20 @@
 
 (use-package! vterm
   :config
+  (setq vterm-kill-buffer-on-exit t)
+
   (add-hook 'vterm-mode-hook
             (lambda ()
               (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
               (buffer-face-mode t)))
+
+  (defun evil-collection-vterm-escape-stay ()
+    (setq-local evil-move-cursor-back nil))
+
+  (add-hook 'vterm-mode-hook #'evil-collection-vterm-escape-stay)
+
+  (define-key vterm-mode-map (kbd "<C-backspace>")
+    (lambda () (interactive) (vterm-send-key (kbd "C-w"))))
   )
 
 (after! vterm
@@ -183,3 +190,13 @@
                                 (emacs-uptime "Uptime:%hh")))) " --"
     ))
   )
+
+(use-package! org-bullets
+  :init
+  (add-hook 'org-mode-hook 'org-bullets-mode))
+
+(setq org-ellipsis "⤵")
+(setq org-hide-emphasis-markers t)
+
+(setq org-directory "~/org/")
+(setq org-adapt-indentation nil)

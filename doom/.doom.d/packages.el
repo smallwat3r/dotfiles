@@ -18,3 +18,6 @@
 
 (package! py-isort)
 (package! flycheck-mypy)
+
+(package! org-bullet
+  :recipe (:host github :repo "sabof/org-bullets"))

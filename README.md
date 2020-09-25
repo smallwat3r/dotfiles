@@ -1,8 +1,5 @@
 <h3 align="center">.dotfiles</h3>
 
-![dots](https://i.imgur.com/O30BvsP.png)
-Picture from 21-09-20
-
 This repo is created for my personal use and is updated very
 frequently, but feel free to pick whatever you want.
 Use at your own risks and please create back-ups of your current
