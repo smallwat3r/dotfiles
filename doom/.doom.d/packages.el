@@ -1,4 +1,4 @@
-;; -*- no-byte-compile: t; -*-
+; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
 (package! key-chord
@@ -16,4 +16,5 @@
 (package! emacs-mini-modeline
   :recipe (:host github :repo "kiennq/emacs-mini-modeline"))
 
-(package! dired-narrow)
+(package! py-isort)
+(package! flycheck-mypy)

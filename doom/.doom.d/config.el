@@ -4,31 +4,47 @@
       '((top . 1) (left . 1) (width . 144) (height . 33)))
 
 (setq user-full-name "Matthieu Petiteau"
-      user-mail-address "mpetiteau.pro@gmail.com"
+      user-mail-address "mpetiteau.pro@gmail.com")
 
-      doom-font (font-spec :family "Monaco" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'Regular)
       doom-theme 'doom-outrun-electric
       doom-themes-enable-bold t
-      doom-themes-enable-italic t
+      doom-themes-enable-italic t)
 
-      default-directory "~/"
-      display-line-numbers-type nil
-      visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
+(map!  "M-h"   #'windmove-left
+       "M-l"   #'windmove-right
+       "M-k"   #'windmove-up
+       "M-j"   #'windmove-down
+       "C-j"   #'scroll-up-line
+       "C-k"   #'scroll-down-line
 
-      undo-limit 80000000
-      evil-want-fine-undo t
-      inhibit-compacting-font-caches t
-      truncate-string-ellipsis "…")
+       (:map override
+        "M-3"  "#")  ;; macOS Uk keyboard hack
+
+       (:map evil-normal-state-map
+        ";w"   #'evil-write
+        ";q"   #'evil-save-and-close
+        ";x"   #'evil-save-and-close
+        ";vs"  #'split-window-horizontally
+        ";sp"  #'split-window-vertically))
 
 (custom-set-faces
  '(default ((t (:background "black"))))
- '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif)))))
+ '(font-lock-comment-face ((t (:slant italic)))))
 
 (setq python-shell-interpreter "/usr/local/opt/python@3.8/bin/python3.8")
 
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+(setq default-directory "~/"
+      display-line-numbers-type nil
+      visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
+      undo-limit 80000000
+      evil-want-fine-undo t
+      inhibit-compacting-font-caches t
+      truncate-string-ellipsis "…")
 
 (global-visual-line-mode t)
 
@@ -37,18 +53,13 @@
 (setq org-directory "~/org/"
       org-adapt-indentation nil)
 
-(use-package! dired-narrow
-  :commands (dired-narrow-fuzzy)
-  :init
-  (map! :map dired-mode-map
-        :desc "narrow" "/" #'dired-narrow-fuzzy))
-
 (use-package! projectile
   :config
   (projectile-add-known-project "~/dotfiles")
   (projectile-add-known-project "~/Projects")
   (projectile-add-known-project "~/Github")
-  (projectile-add-known-project "~/Code"))
+  (projectile-add-known-project "~/Code")
+  )
 
 (use-package! key-chord
   :config
@@ -64,12 +75,12 @@
   (exec-path-from-shell-initialize))
 
 (use-package! format-all
+  :config
   :bind ((:map evil-normal-state-map
           (";f" . 'format-all-buffer))))
 
-(use-package! company
-  :config
-  (setq company-idle-delay 0.1
+(after! company
+  (setq company-idle-delay 0.5
         company-minimum-prefix-length 2)
 
   (add-hook 'evil-normal-state-entry-hook #'company-abort)
@@ -82,14 +93,16 @@
        (define-key company-active-map (kbd "<backtab>") 'company-select-previous)))
 
   (set-company-backend! '(text-mode markdown-mode gfm-mode)
-    '(:seperate company-ispell company-files company-yasnippet)))
+    '(:seperate company-ispell company-files company-yasnippet))
+  )
 
 (use-package! vterm
   :config
   (add-hook 'vterm-mode-hook
             (lambda ()
-              (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch-serif)
-              (buffer-face-mode t))))
+              (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
+              (buffer-face-mode t)))
+  )
 
 (after! vterm
   (set-popup-rule! "*doom:vterm-popup:main"
@@ -111,13 +124,13 @@
   (add-hook 'python-mode-hook
             (lambda ()
               (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
-              (setq flycheck-pylintrc "~/.config/pylintrc"))))
+              (setq flycheck-pylintrc "~/.config/pylintrc")))
+  )
 
 (use-package! eshell
-  :config
   ;; remember to run eshell-read-aliases-list from the eshell to reload cache
   ;; in case the alias file path has changed
-  (setq eshell-aliases-file "~/.doom.d/eshell/aliases"))
+  :config (setq eshell-aliases-file "~/.doom.d/eshell/aliases"))
 
 (use-package! mini-modeline
   :init
@@ -168,23 +181,5 @@
                         'help-echo
                         (concat (format-time-string "%c; ")
                                 (emacs-uptime "Uptime:%hh")))) " --"
-    )))
-
-;; Mappings
-(map!
- "M-3"   "#"  ;; macOS Uk keyboard fix
-
- "M-h"   #'windmove-left
- "M-l"   #'windmove-right
- "M-k"   #'windmove-up
- "M-j"   #'windmove-down
-
- "C-j"   #'scroll-up-line
- "C-k"   #'scroll-down-line
-
- (:map evil-normal-state-map
-  ";w"   #'evil-write
-  ";q"   #'evil-save-and-close
-  ";x"   #'evil-save-and-close
-  ";vs"  #'split-window-horizontally
-  ";sp"  #'split-window-vertically))
+    ))
+  )
