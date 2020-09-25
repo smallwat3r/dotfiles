@@ -132,3 +132,6 @@
 ;; ivy
 (setq ivy-use-virtual-buffers t
       ivy-count-format "(%d/%d) ")
+
+;; auto-format
+(define-key evil-normal-state-map ";f" 'format-all-buffer)
