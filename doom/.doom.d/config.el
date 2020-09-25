@@ -8,7 +8,7 @@
 (setq initial-frame-alist
       '((top . 1) (left . 1) (width . 144) (height . 33)))
 
-;; projecticle
+;; projectile
 (projectile-add-known-project "~/dotfiles")
 (projectile-add-known-project "~/Projects")
 (projectile-add-known-project "~/Github")
@@ -27,24 +27,30 @@
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
+;; show line wrap indicators
 (global-visual-line-mode 1)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
+;; do not show line numbers
 (setq display-line-numbers-type nil)
 
+;; comments and global bg
 (custom-set-faces
   '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif))))
   '(default ((t (:background "black")))))
 
+;; general settings
 (setq undo-limit 80000000
       evil-want-fine-undo t
       inhibit-compacting-font-caches t
       truncate-string-ellipsis "…")
 
+;; display battery in modeline
 (unless (equal "Battery status not available"
                (battery))
   (display-battery-mode 1))
 
+;; display time in modeline
 (display-time-mode 1)
 
 ;; telephone-line
