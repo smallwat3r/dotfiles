@@ -22,7 +22,7 @@
 (setq org-directory "~/org/")
 
 ;; ui stuff
-(setq doom-font (font-spec :family "Hack" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'Regular)
       doom-theme 'doom-outrun-electric
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
@@ -36,8 +36,8 @@
 
 ;; comments and global bg
 (custom-set-faces
-  '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif))))
-  '(default ((t (:background "black")))))
+ '(font-lock-comment-face ((t (:slant italic :inherit 'fixed-pitch-serif))))
+ '(default ((t (:background "black")))))
 
 ;; general settings
 (setq undo-limit 80000000
@@ -104,7 +104,7 @@
 (after! company
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 2)
-(add-hook 'evil-normal-state-entry-hook #'company-abort))
+  (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
 (eval-after-load 'company
   '(progn
@@ -123,7 +123,7 @@
 (add-hook 'vterm-mode-hook
           (lambda ()
             (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch-serif)
-                 (buffer-face-mode t)))
+            (buffer-face-mode t)))
 
 (after! vterm
   (set-popup-rule! "*doom:vterm-popup:main"
