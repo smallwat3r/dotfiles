@@ -30,7 +30,8 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+(global-visual-line-mode t)
+
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq org-directory "~/org/"
