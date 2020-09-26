@@ -6,7 +6,7 @@
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "Menlo" :size 12 :weight 'Regular)
       doom-theme 'doom-outrun-electric
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
@@ -15,10 +15,10 @@
        "C-k"   #'scroll-down-line
 
        (:map override
-        "M-h"   #'windmove-left
-        "M-l"   #'windmove-right
-        "M-k"   #'windmove-up
-        "M-j"   #'windmove-down
+        "M-h"  #'windmove-left
+        "M-l"  #'windmove-right
+        "M-k"  #'windmove-up
+        "M-j"  #'windmove-down
         "M-3"  "#")  ;; macOS Uk keyboard hack
 
        (:map evil-normal-state-map
@@ -52,11 +52,9 @@
 
 (use-package! projectile
   :config
-  (projectile-add-known-project "~/dotfiles")
-  (projectile-add-known-project "~/Projects")
-  (projectile-add-known-project "~/Github")
-  (projectile-add-known-project "~/Code")
-  )
+  (setq projectile-sort-order 'recentf)
+  (setq projectile-project-search-path
+        '("~/dotfiles/" "~/Projects/" "~/Github" "~/Code")))
 
 (use-package! key-chord
   :config
@@ -106,6 +104,8 @@
     (setq-local evil-move-cursor-back nil))
 
   (add-hook 'vterm-mode-hook #'evil-collection-vterm-escape-stay)
+
+  (evil-define-key 'insert vterm-mode-map (kbd "C-c") #'vterm--self-insert)
 
   (define-key vterm-mode-map (kbd "<C-backspace>")
     (lambda () (interactive) (vterm-send-key (kbd "C-w"))))
@@ -170,12 +170,14 @@
                         'face 'font-lock-preprocessor-face
                         'help-echo (concat "Buffer is in "
                                            (if overwrite-mode "overwrite" "insert") " mode")))
+
     ;; was this buffer modified since the last save?
     '(:eval (when (buffer-modified-p)
               (concat ","
                       (propertize "Mod"
                                   'face 'font-lock-warning-face
                                   'help-echo "Buffer has been modified"))))
+
     ;; is this buffer read-only?
     '(:eval (when buffer-read-only
               (concat ","
