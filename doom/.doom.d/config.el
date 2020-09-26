@@ -32,7 +32,13 @@
  '(default ((t (:background "black"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
-(setq python-shell-interpreter "/usr/local/opt/python@3.8/bin/python3.8")
+(setq python-shell-interpreter
+      "/usr/local/opt/python@3.8/bin/python3.8")
+
+(setq abbrev-file-name
+      "~/.doom.d/abbrev.el")
+(setq save-abbrevs 'silently)
+(setq-default abbrev-mode t)
 
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
@@ -130,14 +136,17 @@
   :config
   (add-hook 'python-mode-hook
             (lambda ()
-              (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
-              (setq flycheck-pylintrc "~/.config/pylintrc")))
+              (setq flycheck-python-pylint-executable
+                    "/usr/local/bin/pylint")
+              (setq flycheck-pylintrc
+                    "~/.config/pylintrc")))
   )
 
 (use-package! eshell
   ;; remember to run eshell-read-aliases-list from the eshell to reload cache
   ;; in case the alias file path has changed
-  :config (setq eshell-aliases-file "~/.doom.d/eshell/aliases"))
+  :config (setq eshell-aliases-file
+                "~/.doom.d/eshell/aliases"))
 
 (use-package! mini-modeline
   :init
