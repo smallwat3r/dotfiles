@@ -32,8 +32,9 @@
  '(default ((t (:background "black"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
-(setq python-shell-interpreter
-      "/usr/local/opt/python@3.8/bin/python3.8")
+(add-hook! python-mode
+  (setq python-shell-interpreter
+        "/usr/local/opt/python@3.8/bin/python3.8"))
 
 (setq abbrev-file-name
       "~/.doom.d/abbrev.el")
@@ -54,10 +55,9 @@
 
 (global-visual-line-mode t)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook! 'before-save-hook 'delete-trailing-whitespace)
 
-(use-package! projectile
-  :config
+(after! projectile
   (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Github" "~/Code")))
@@ -81,10 +81,11 @@
           (";f" . 'format-all-buffer))))
 
 (after! company
-  (setq company-idle-delay 0.5
+  (setq company-idle-delay 0.2
+        company-tooltip-limit 10
         company-minimum-prefix-length 2)
 
-  (add-hook 'evil-normal-state-entry-hook #'company-abort)
+  (add-hook! 'evil-normal-state-entry-hook #'company-abort)
 
   (eval-after-load 'company
     '(progn
@@ -97,27 +98,24 @@
     '(:seperate company-ispell company-files company-yasnippet))
   )
 
-(use-package! vterm
-  :config
+(after! vterm
   (setq vterm-kill-buffer-on-exit t)
 
-  (add-hook 'vterm-mode-hook
-            (lambda ()
-              (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
-              (buffer-face-mode t)))
+  (add-hook! 'vterm-mode-hook
+    (lambda ()
+      (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
+      (buffer-face-mode t)))
 
   (defun evil-collection-vterm-escape-stay ()
     (setq-local evil-move-cursor-back nil))
 
-  (add-hook 'vterm-mode-hook #'evil-collection-vterm-escape-stay)
+  (add-hook! 'vterm-mode-hook #'evil-collection-vterm-escape-stay)
 
   (evil-define-key 'insert vterm-mode-map (kbd "C-c") #'vterm--self-insert)
 
   (define-key vterm-mode-map (kbd "<C-backspace>")
     (lambda () (interactive) (vterm-send-key (kbd "C-w"))))
-  )
 
-(after! vterm
   (set-popup-rule! "*doom:vterm-popup:main"
     :size 0.60
     :vslot -4
@@ -126,27 +124,25 @@
     :ttl 0
     :side 'bottom))
 
-(use-package! ivy
-  :config
+(after! ivy
   (setq ivy-use-virtual-buffers t
-        ivy-count-format "(%d/%d) ")
-  (setq +ivy-buffer-preview t))
+        ivy-count-format "(%d/%d) "
+        +ivy-buffer-preview t))
 
-(use-package! flycheck
-  :config
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (setq flycheck-python-pylint-executable
-                    "/usr/local/bin/pylint")
-              (setq flycheck-pylintrc
-                    "~/.config/pylintrc")))
+(after! flycheck
+  (add-hook! 'python-mode-hook
+    (lambda ()
+      (setq flycheck-python-pylint-executable
+            "/usr/local/bin/pylint")
+      (setq flycheck-pylintrc
+            "~/.config/pylintrc")))
   )
 
-(use-package! eshell
+(after! eshell
   ;; remember to run eshell-read-aliases-list from the eshell to reload cache
   ;; in case the alias file path has changed
-  :config (setq eshell-aliases-file
-                "~/.doom.d/eshell/aliases"))
+  (setq eshell-aliases-file
+        "~/.doom.d/eshell/aliases"))
 
 (use-package! mini-modeline
   :init
@@ -202,12 +198,41 @@
     ))
   )
 
+(use-package! kubernetes
+  :commands (kubernetes-overview))
+
+(use-package! kubernetes-evil
+  :after kubernetes)
+
 (use-package! org-bullets
   :init
-  (add-hook 'org-mode-hook 'org-bullets-mode))
+  (add-hook! 'org-mode-hook 'org-bullets-mode))
 
 (setq org-ellipsis "⤵")
 (setq org-hide-emphasis-markers t)
 
 (setq org-directory "~/org/")
 (setq org-adapt-indentation nil)
+
+;; Current time and date bindings
+(defvar current-date-time-format "%a %b %d %H:%M:%S %Z %Y"
+  "Format of date to insert with `insert-current-date-time' func
+See help of `format-time-string' for possible replacements")
+
+(defvar current-time-format "%H:%M"
+  "Format of date to insert with `insert-current-time' func.
+Note the weekly scope of the command's precision.")
+
+(defun insert-current-date-time ()
+  "insert the current date and time into current buffer.
+Uses `current-date-time-format' for the formatting the date/time."
+  (interactive)
+  (insert (format-time-string current-date-time-format (current-time))))
+
+(defun insert-current-time ()
+  "insert the current time (1-week scope) into the current buffer."
+  (interactive)
+  (insert (format-time-string current-time-format (current-time))))
+
+(global-set-key (kbd "C-c d") 'insert-current-date-time)
+(global-set-key (kbd "C-c t") 'insert-current-time)

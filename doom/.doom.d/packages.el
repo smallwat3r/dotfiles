@@ -21,3 +21,6 @@
 
 (package! org-bullet
   :recipe (:host github :repo "sabof/org-bullets"))
+
+(package! kubernetes-el
+  :recipe (:host github :repo "chrisbarrett/kubernetes-el"))
