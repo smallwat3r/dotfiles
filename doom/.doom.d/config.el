@@ -1,16 +1,20 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;; Emacs frame size at start up
 (setq initial-frame-alist
       '((top . 1) (left . 1) (width . 144) (height . 33)))
 
+;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
+;; Some global settings
 (setq doom-font (font-spec :family "Menlo" :size 12 :weight 'Regular)
       doom-theme 'doom-outrun-electric
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
+;; My custom keybindings, mostly from my vim heritage
 (map!  "C-j"   #'scroll-up-line
        "C-k"   #'scroll-down-line
 
@@ -22,29 +26,29 @@
         "M-3"  "#")  ;; macOS Uk keyboard hack
 
        (:map evil-normal-state-map
+        ";f"   #'format-all-buffer
         ";w"   #'evil-write
         ";q"   #'evil-save-and-close
         ";x"   #'evil-save-and-close
         ";vs"  #'split-window-horizontally
         ";sp"  #'split-window-vertically))
 
+;; Change default UI stuff
 (custom-set-faces
  '(default ((t (:background "black"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
-(add-hook! python-mode
-  (setq python-shell-interpreter
-        "/usr/local/opt/python@3.8/bin/python3.8"))
-
-(setq abbrev-file-name
-      "~/.doom.d/abbrev.el")
+;; My abbreviations
+(setq abbrev-file-name "~/.doom.d/abbrev.el")
 (setq save-abbrevs 'silently)
 (setq-default abbrev-mode t)
 
+;; Custom file
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
 
+;; Some other general settings
 (setq default-directory "~/"
       display-line-numbers-type nil
       visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
@@ -53,35 +57,44 @@
       inhibit-compacting-font-caches t
       truncate-string-ellipsis "…")
 
-(global-visual-line-mode t)
+;; Enable word-wrap (almost) everywhere
+(+global-word-wrap-mode +1)
 
+;; Fix annoying lsp pop up error
+(setq lsp-restart 'ignore)
+
+;; Python stuff
+(add-hook! python-mode
+  (setq python-shell-interpreter
+        "/usr/local/opt/python@3.8/bin/python3.8"))
+
+;; Delete all whitespace on save
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
 
+;; Set up default projects folders
 (after! projectile
   (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Github" "~/Code")))
 
+;; Make jj to trigger ESC in insert mode, with a time delay in case I
+;; do need to type in jj ...
 (use-package! key-chord
   :config
   (setq key-chord-two-keys-delay 0.5)
-  ;; Make jj to work as ESC in insert mode
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
   (key-chord-mode 1))
 
+;; OS executables
 (use-package! exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :config
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
-(use-package! format-all
-  :config
-  :bind ((:map evil-normal-state-map
-          (";f" . 'format-all-buffer))))
-
+;; Completion stuff related
 (after! company
-  (setq company-idle-delay 0.2
+  (setq company-idle-delay 0
         company-tooltip-limit 10
         company-minimum-prefix-length 2)
 
@@ -98,6 +111,12 @@
     '(:seperate company-ispell company-files company-yasnippet))
   )
 
+(after! ivy
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        +ivy-buffer-preview t))
+
+;; My Emacs terminal
 (after! vterm
   (setq vterm-kill-buffer-on-exit t)
 
@@ -124,32 +143,30 @@
     :ttl 0
     :side 'bottom))
 
-(after! ivy
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "(%d/%d) "
-        +ivy-buffer-preview t))
-
+;; Static code analysis
 (after! flycheck
   (add-hook! 'python-mode-hook
     (lambda ()
-      (setq flycheck-python-pylint-executable
-            "/usr/local/bin/pylint")
-      (setq flycheck-pylintrc
-            "~/.config/pylintrc")))
+      (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
+      (setq flycheck-pylintrc "~/.config/pylintrc")
+      ))
   )
 
+;; Elisp shell
+;; Remember to run `eshell-read-aliases-list` from the eshell to
+;; reload the cache in case the alias file-path has changed.
 (after! eshell
-  ;; remember to run eshell-read-aliases-list from the eshell to reload cache
-  ;; in case the alias file path has changed
-  (setq eshell-aliases-file
-        "~/.doom.d/eshell/aliases"))
+  (setq eshell-aliases-file "~/.doom.d/eshell/aliases"))
 
+;; Merge modeline with the mini-buffer
 (use-package! mini-modeline
   :init
+  ;; Initialise modeline default background color
   (custom-set-faces
    '(mode-line ((t (:background "black")))))
   :config
   (mini-modeline-mode t)
+  ;; Modeline formatting
   (setq-default
    mini-modeline-r-format
    (list
@@ -198,6 +215,7 @@
     ))
   )
 
+;; Kubernetes integration
 (use-package! kubernetes
   :commands (kubernetes-overview))
 
@@ -205,16 +223,16 @@
   :after kubernetes)
 
 (use-package! org-bullets
-  :init
-  (add-hook! 'org-mode-hook 'org-bullets-mode))
+  :init (add-hook! 'org-mode-hook 'org-bullets-mode))
 
+;; Org settings
 (setq org-ellipsis "⤵")
 (setq org-hide-emphasis-markers t)
 
 (setq org-directory "~/org/")
 (setq org-adapt-indentation nil)
 
-;; Current time and date bindings
+;; Current time and date bindings and functions
 (defvar current-date-time-format "%a %b %d %H:%M:%S %Z %Y"
   "Format of date to insert with `insert-current-date-time' func
 See help of `format-time-string' for possible replacements")
