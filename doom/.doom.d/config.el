@@ -63,11 +63,6 @@
 ;; Fix annoying lsp pop up error
 (setq lsp-restart 'ignore)
 
-;; Python stuff
-(add-hook! python-mode
-  (setq python-shell-interpreter
-        "/usr/local/opt/python@3.8/bin/python3.8"))
-
 ;; Delete all whitespace on save
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
 
@@ -100,6 +95,7 @@
 
   (add-hook! 'evil-normal-state-entry-hook #'company-abort)
 
+  ;; Use tab to go through the choices
   (eval-after-load 'company
     '(progn
        (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
@@ -120,28 +116,39 @@
 (after! vterm
   (setq vterm-kill-buffer-on-exit t)
 
+  ;; Terminal font
   (add-hook! 'vterm-mode-hook
     (lambda ()
       (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
       (buffer-face-mode t)))
 
+  ;; Behaviour when hitting ESC in evil mode
   (defun evil-collection-vterm-escape-stay ()
     (setq-local evil-move-cursor-back nil))
 
   (add-hook! 'vterm-mode-hook #'evil-collection-vterm-escape-stay)
 
+  ;; Use of C-c is needed in the terminal, so prioritise it
   (evil-define-key 'insert vterm-mode-map (kbd "C-c") #'vterm--self-insert)
 
+  ;; Delete the previous word
   (define-key vterm-mode-map (kbd "<C-backspace>")
     (lambda () (interactive) (vterm-send-key (kbd "C-w"))))
 
+  ;; Terminal pop up settings
   (set-popup-rule! "*doom:vterm-popup:main"
     :size 0.60
     :vslot -4
     :select t
     :quit nil
     :ttl 0
-    :side 'bottom))
+    :side 'bottom)
+  )
+
+;; Python stuff
+(add-hook! python-mode
+  (setq python-shell-interpreter
+        "/usr/local/opt/python@3.8/bin/python3.8"))
 
 ;; Static code analysis
 (after! flycheck
