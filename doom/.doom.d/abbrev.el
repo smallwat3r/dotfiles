@@ -1,9 +1,14 @@
-;; global list of abbreviations
+;; -*- coding: utf-8; lexical-binding: t; -*-
+;; Global list of abbreviations
 (define-abbrev-table 'global-abbrev-table
   '(
     ("btw"  "by the way")
     ("pov"  "point of view")
+    ("atm"  "at the moment" )
     ("plz"  "please")
+    ("ty"   "thank you" )
+    ("ui"   "user interface" )
+    ("db"   "database" )
 
     ("altough"  "although")
     ("widht"    "width")

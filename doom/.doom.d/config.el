@@ -9,21 +9,28 @@
       user-mail-address "mpetiteau.pro@gmail.com")
 
 ;; Some global settings
-(setq doom-font (font-spec :family "Menlo" :size 12 :weight 'Regular)
-      doom-theme 'doom-outrun-electric
+(setq doom-font (font-spec :family "Hack" :size 12 :weight 'Regular)
+      doom-theme 'doom-ephemeral
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
-;; My custom keybindings, mostly from my vim heritage
+;; My custom keybindings, mostly coming from my vim heritage
 (map!  "C-j"   #'scroll-up-line
        "C-k"   #'scroll-down-line
 
        (:map override
+        "S-C-h" #'shrink-window-horizontally
+        "S-C-l" #'enlarge-window-horizontally
+        "S-C-k" #'enlarge-window
+        "S-C-j" #'shrink-window
+
         "M-h"  #'windmove-left
         "M-l"  #'windmove-right
         "M-k"  #'windmove-up
         "M-j"  #'windmove-down
-        "M-3"  "#")  ;; macOS Uk keyboard hack
+
+        "M-3"  "#"
+        )  ;; macOS Uk keyboard hack
 
        (:map evil-normal-state-map
         ";f"   #'format-all-buffer
@@ -31,7 +38,8 @@
         ";q"   #'evil-save-and-close
         ";x"   #'evil-save-and-close
         ";vs"  #'split-window-horizontally
-        ";sp"  #'split-window-vertically))
+        ";sp"  #'split-window-vertically
+        ))
 
 ;; Change default UI stuff
 (custom-set-faces
