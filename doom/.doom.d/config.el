@@ -14,32 +14,31 @@
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
-;; My custom keybindings, mostly coming from my vim heritage
-(map!  "C-j"   #'scroll-up-line
-       "C-k"   #'scroll-down-line
+;; My custom keybindings
+(map!
+ "C-j" #'scroll-up-line
+ "C-k" #'scroll-down-line
 
-       (:map override
-        "S-C-h" #'shrink-window-horizontally
-        "S-C-l" #'enlarge-window-horizontally
-        "S-C-k" #'enlarge-window
-        "S-C-j" #'shrink-window
+ (:map override
+  "S-C-h" #'shrink-window-horizontally
+  "S-C-l" #'enlarge-window-horizontally
+  "S-C-k" #'enlarge-window
+  "S-C-j" #'shrink-window
 
-        "M-h"  #'windmove-left
-        "M-l"  #'windmove-right
-        "M-k"  #'windmove-up
-        "M-j"  #'windmove-down
+  "M-h" #'windmove-left
+  "M-l" #'windmove-right
+  "M-k" #'windmove-up
+  "M-j" #'windmove-down
 
-        "M-3"  "#"
-        )  ;; macOS Uk keyboard hack
+  "M-3" "#")  ;; macOS Uk keyboard hack
 
-       (:map evil-normal-state-map
-        ";f"   #'format-all-buffer
-        ";w"   #'evil-write
-        ";q"   #'evil-save-and-close
-        ";x"   #'evil-save-and-close
-        ";vs"  #'split-window-horizontally
-        ";sp"  #'split-window-vertically
-        ))
+ (:map evil-normal-state-map
+  ";f"  #'format-all-buffer
+  ";w"  #'evil-write
+  ";q"  #'evil-save-and-close
+  ";x"  #'evil-save-and-close
+  ";vs" #'split-window-horizontally
+  ";sp" #'split-window-vertically))
 
 ;; Change default UI stuff
 (custom-set-faces
