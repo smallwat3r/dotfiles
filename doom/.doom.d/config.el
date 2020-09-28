@@ -14,8 +14,7 @@
 ;; Initialise frame size at start-up
 (if (display-graphic-p)
     (setq initial-frame-alist
-          '(
-            (width . 106)
+          '((width . 106)
             (height . 60)
             (left . 50)
             (top . 50))))
