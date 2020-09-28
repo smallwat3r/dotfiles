@@ -6,7 +6,7 @@
 
 ;; Change default UI stuff
 (custom-set-faces
- ;; '(default ((t (:background "#080808"))))
+ '(default ((t (:background "#080808"))))
  '(hl-line ((t (:background nil))))
  '(fringe ((t (:foreground "magenta"))))
  '(font-lock-comment-face ((t (:slant italic)))))
@@ -151,7 +151,7 @@
         ivy-count-format "(%d/%d) "
         +ivy-buffer-preview t))
 
-;; My Emacs terminal
+;; Vterm
 (after! vterm
   (setq vterm-kill-buffer-on-exit t)
 
@@ -198,10 +198,14 @@
       )))
 
 ;; Elisp shell
-;; Remember to run `eshell-read-aliases-list` from the eshell to
-;; reload the cache in case the alias file-path has changed.
 (after! eshell
-  (setq eshell-aliases-file "~/.doom.d/eshell/aliases"))
+  (set-eshell-alias!
+   "d" "dired $1"
+   "c" "clear"
+   "sl" "ls"
+   "emacs" "find-file $1"
+   "qq" "exit"
+   ))
 
 ;; Merge modeline with the mini-buffer
 (use-package! mini-modeline
