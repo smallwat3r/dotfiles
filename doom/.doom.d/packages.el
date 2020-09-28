@@ -7,3 +7,4 @@
 (package! org-bullets)
 (package! kubernetes)
 (package! kubernetes-evil)
+(package! jinja2-mode)

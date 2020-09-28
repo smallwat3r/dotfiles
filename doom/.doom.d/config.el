@@ -1,44 +1,12 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Personnal info
-(setq user-full-name "Matthieu Petiteau"
-      user-mail-address "mpetiteau.pro@gmail.com")
-
-;; Some global settings
-(setq doom-font (font-spec :family "Luculent 12" :size 12 :weight 'Regular)
-      doom-theme 'doom-laserwave
-      doom-themes-enable-bold t
-      doom-themes-enable-italic t)
-
-;; My custom keybindings
-(map!
- "C-j" #'scroll-up-line
- "C-k" #'scroll-down-line
-
- (:map override
-  "S-C-h" #'shrink-window-horizontally
-  "S-C-l" #'enlarge-window-horizontally
-  "S-C-k" #'enlarge-window
-  "S-C-j" #'shrink-window
-
-  "M-h" #'windmove-left
-  "M-l" #'windmove-right
-  "M-k" #'windmove-up
-  "M-j" #'windmove-down
-
-  "M-3" "#")  ;; macOS Uk keyboard hack
-
- (:map evil-normal-state-map
-  ";f"  #'format-all-buffer
-  ";w"  #'evil-write
-  ";q"  #'evil-save-and-close
-  ";x"  #'evil-save-and-close
-  ";vs" #'split-window-horizontally
-  ";sp" #'split-window-vertically))
+;; Frame title
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
 
 ;; Change default UI stuff
 (custom-set-faces
- '(default ((t (:background "#080808"))))
+ ;; '(default ((t (:background "#080808"))))
  '(hl-line ((t (:background nil))))
  '(fringe ((t (:foreground "magenta"))))
  '(font-lock-comment-face ((t (:slant italic)))))
@@ -51,6 +19,59 @@
             (height . 60)
             (left . 50)
             (top . 50))))
+
+;; Personnal info
+(setq user-full-name "Matthieu Petiteau"
+      user-mail-address "mpetiteau.pro@gmail.com")
+
+;; Some global settings
+(setq
+ doom-font (font-spec :family "Luculent 12" :size 12 :weight 'Regular)
+ doom-variable-pitch-font (font-spec :family "Go Mono" :size 12)
+ doom-theme 'doom-laserwave
+ doom-themes-enable-bold t
+ doom-themes-enable-italic t)
+
+;; My custom keybindings
+(map!
+ ;; scrolling
+ "C-j" #'scroll-up-line
+ "C-k" #'scroll-down-line
+
+ (:map override
+  ;; resize split windows
+  "S-C-h" #'shrink-window-horizontally
+  "S-C-l" #'enlarge-window-horizontally
+  "S-C-k" #'enlarge-window
+  "S-C-j" #'shrink-window
+
+  ;; move windows
+  "M-h" #'windmove-left
+  "M-l" #'windmove-right
+  "M-k" #'windmove-up
+  "M-j" #'windmove-down
+
+  ;; macOS UK keyboard hash key hack
+  "M-3" "#")
+
+ ;; vim-like stuff
+ (:map evil-normal-state-map
+  ";f"  #'format-all-buffer
+  ";w"  #'evil-write
+  ";q"  #'evil-save-and-close
+  ";x"  #'evil-save-and-close
+  ";vs" #'split-window-horizontally
+  ";sp" #'split-window-vertically)
+
+ ;; leader bindings
+ (:leader
+  :desc "Next Error"            :n  "]"  #'flycheck-next-error
+  :desc "Previous Error"        :n  "["  #'flycheck-previous-error
+  :desc "Show flycheck errors"  :n  "!"  #'flycheck-list-errors
+
+  (:desc "open" :prefix "o"
+   :desc "Kubernetes"           :n  "K" #'kubernetes-overview))
+ )
 
 ;; Activate blinking cursor
 (blink-cursor-mode 1)
@@ -66,13 +87,14 @@
   (load custom-file))
 
 ;; Some other general settings
-(setq default-directory "~/"
-      display-line-numbers-type nil
-      visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
-      undo-limit 80000000
-      evil-want-fine-undo t
-      inhibit-compacting-font-caches t
-      truncate-string-ellipsis "…")
+(setq
+ default-directory "~/"
+ display-line-numbers-type nil
+ visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
+ undo-limit 80000000
+ evil-want-fine-undo t
+ inhibit-compacting-font-caches t
+ truncate-string-ellipsis "…")
 
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
@@ -173,8 +195,7 @@
     (lambda ()
       (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
       (setq flycheck-pylintrc "~/.config/pylintrc")
-      ))
-  )
+      )))
 
 ;; Elisp shell
 ;; Remember to run `eshell-read-aliases-list` from the eshell to
