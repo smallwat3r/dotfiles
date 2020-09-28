@@ -46,7 +46,7 @@ ifeq ($(shell command -v wget),)
 	brew install wget
 endif
 
-	@echo '*** Install Luculent fonts'
+	@echo '*** Installing Luculent fonts'
 	@[ -f $(FONTS_DIR)/luculentb072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculentb072d12.ttf $(FONTS_DIR)
 	@[ -f $(FONTS_DIR)/luculentbi072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculentbi072d12.ttf $(FONTS_DIR)
 	@[ -f $(FONTS_DIR)/luculenti072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculenti072d12.ttf $(FONTS_DIR)
