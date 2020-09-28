@@ -51,7 +51,7 @@ augroup custom_colors
 augroup END
 
 try
-  colo seoul256
+  colo molokai
 catch /^Vim\%((\a\+)\)\=:E185/
   colo desert
 endtry

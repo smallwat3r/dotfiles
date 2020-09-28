@@ -14,7 +14,7 @@ nmap <leader>pu :source $MYVIMRC<cr>:PlugUpdate<cr>
 
 call plug#begin()
 
-Plug 'junegunn/seoul256.vim'           " Colorscheme
+Plug 'tomasr/molokai'                  " Colorscheme
 
 Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs

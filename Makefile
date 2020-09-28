@@ -2,6 +2,9 @@
 
 SHELL=/bin/bash
 
+CURRENT_DIR=$(shell pwd)
+FONTS_DIR=/Library/Fonts
+
 help: ## Show this help menu
 	@echo "Usage: make [TARGET ...]"
 	@echo ""
@@ -42,16 +45,24 @@ ifeq ($(shell command -v wget),)
 	@echo '*** Installing wget ...'
 	brew install wget
 endif
-	@[ -f "/Library/Fonts/Go-Mono.ttf" ] || { \
-		wget -O /Library/Fonts/Go-Mono.ttf \
+
+	@echo '*** Install Luculent fonts'
+	@[ -f $(FONTS_DIR)/luculentb072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculentb072d12.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/luculentbi072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculentbi072d12.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/luculenti072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculenti072d12.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/luculent072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculent072d12.ttf $(FONTS_DIR)
+
+	@echo '*** Installing Go-Mono fonts'
+	@[ -f $(FONTS_DIR)/Go-Mono.ttf ] || { \
+		wget -O $(FONTS_DIR)/Go-Mono.ttf \
 			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono.ttf; \
 	}
-	@[ -f "/Library/Fonts/Go-Mono-Italic.ttf" ] || { \
-		wget -O /Library/Fonts/Go-Mono-Italic.ttf \
+	@[ -f $(FONTS_DIR)/Go-Mono-Italic.ttf ] || { \
+		wget -O $(FONTS_DIR)/Go-Mono-Italic.ttf \
 			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono-Italic.ttf; \
 	}
-	@[ -f "/Library/Fonts/Go-Mono-Bold.ttf" ] || { \
-		wget -O /Library/Fonts/Go-Mono-Bold.ttf \
+	@[ -f $(FONTS_DIR)/Go-Mono-Bold.ttf ] || { \
+		wget -O $(FONTS_DIR)/Go-Mono-Bold.ttf \
 			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono-Bold.ttf; \
 	}
 

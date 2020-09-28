@@ -6,9 +6,6 @@
     ("pov"  "point of view")
     ("atm"  "at the moment" )
     ("plz"  "please")
-    ("ty"   "thank you" )
-    ("ui"   "user interface" )
-    ("db"   "database" )
 
     ("altough"  "although")
     ("widht"    "width")

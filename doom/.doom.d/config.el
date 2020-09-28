@@ -1,16 +1,12 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Emacs frame size at start up
-(setq initial-frame-alist
-      '((top . 1) (left . 1) (width . 144) (height . 33)))
-
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
 ;; Some global settings
-(setq doom-font (font-spec :family "Hack" :size 12 :weight 'Regular)
-      doom-theme 'doom-ephemeral
+(setq doom-font (font-spec :family "Luculent 12" :size 12 :weight 'Regular)
+      doom-theme 'doom-laserwave
       doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
@@ -42,8 +38,22 @@
 
 ;; Change default UI stuff
 (custom-set-faces
- '(default ((t (:background "black"))))
+ '(default ((t (:background "#080808"))))
+ '(hl-line ((t (:background nil))))
+ '(fringe ((t (:foreground "magenta"))))
  '(font-lock-comment-face ((t (:slant italic)))))
+
+;; Initialise frame size at start-up
+(if (display-graphic-p)
+    (setq initial-frame-alist
+          '(
+            (width . 106)
+            (height . 60)
+            (left . 50)
+            (top . 50))))
+
+;; Activate blinking cursor
+(blink-cursor-mode 1)
 
 ;; My abbreviations
 (setq abbrev-file-name "~/.doom.d/abbrev.el")
@@ -177,7 +187,7 @@
   :init
   ;; Initialise modeline default background color
   (custom-set-faces
-   '(mode-line ((t (:background "black")))))
+   '(mode-line ((t (:background "#080808")))))
   :config
   (mini-modeline-mode t)
   ;; Modeline formatting
@@ -200,12 +210,6 @@
     '(:eval (propertize "%m"
                         'face 'font-lock-string-face
                         'help-echo buffer-file-coding-system)) " "
-
-    ;; insert vs overwrite mode, input-method in a tooltip
-    '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
-                        'face 'font-lock-preprocessor-face
-                        'help-echo (concat "Buffer is in "
-                                           (if overwrite-mode "overwrite" "insert") " mode")))
 
     ;; was this buffer modified since the last save?
     '(:eval (when (buffer-modified-p)

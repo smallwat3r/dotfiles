@@ -31,14 +31,14 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
+    family: Luculent 12
     style: Regular
 
-  size: 12
+  size: 12.5
 
   offset:
-    x: 1
-    y: -1
+    x: 0
+    y: 0
 
   glyph_offset:
     x: 0
