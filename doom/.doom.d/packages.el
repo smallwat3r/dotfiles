@@ -9,3 +9,4 @@
 (package! jinja2-mode)
 (package! org-bullets)
 (package! org-journal)
+(package! dired-narrow)

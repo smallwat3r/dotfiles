@@ -111,6 +111,17 @@
         ivy-count-format "(%d/%d) "
         +ivy-buffer-preview t))
 
+;; Dired file explorer
+(after! dired
+  ;; Sort by date
+  (setq dired-listing-switches "-lat"))
+
+(use-package! dired-narrow
+  :after dired
+  :config
+  (map! :map dired-mode-map
+        :n  "/" 'dired-narrow-fuzzy))
+
 ;; Vterm
 (after! vterm
   ;; Auto-quit when exit
@@ -243,7 +254,7 @@
 
 ;; Org settings
 (setq
- org-ellipsis "⤵"
+ org-ellipsis "↴"
  org-hide-emphasis-markers t
  org-directory "~/org/"
  org-adapt-indentation nil)
