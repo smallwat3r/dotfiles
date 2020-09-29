@@ -12,12 +12,15 @@
  '(font-lock-comment-face ((t (:slant italic)))))
 
 ;; Initialise frame size at start-up
-(if (display-graphic-p)
-    (setq initial-frame-alist
-          '((width . 106)
-            (height . 60)
-            (left . 50)
-            (top . 50))))
+(add-hook 'after-init-hook
+          (lambda ()
+            (when (display-graphic-p)
+              (set-frame-size (selected-frame) 106 100))))
+
+(add-hook 'after-make-frame-functions
+          (lambda ()
+            (when (display-graphic-p)
+              (set-frame-size (selected-frame) 106 100))))
 
 ;; Load bindings
 (load! "+bindings")
