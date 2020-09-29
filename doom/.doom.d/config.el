@@ -36,7 +36,7 @@
 (blink-cursor-mode 1)
 
 ;; My abbreviations
-(setq abbrev-file-name "~/.doom.d/abbrev.el")
+(setq abbrev-file-name (expand-file-name ".abbrevs.el" doom-private-dir))
 (setq save-abbrevs 'silently)
 (setq-default abbrev-mode t)
 
@@ -53,7 +53,8 @@
  undo-limit 80000000
  evil-want-fine-undo t
  inhibit-compacting-font-caches t
- truncate-string-ellipsis "…")
+ truncate-string-ellipsis "…"
+ scroll-margin 7)
 
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
