@@ -1,8 +1,14 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Frame title
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark))
+;; Frame settings
+(when (display-graphic-p)
+  ;; Title
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+
+  ;; Size
+  (add-to-list 'default-frame-alist '(width  . 106))
+  (add-to-list 'default-frame-alist '(height . 64)))
 
 ;; Change default UI stuff
 (custom-set-faces
@@ -10,17 +16,6 @@
  '(hl-line ((t (:background nil))))
  '(fringe ((t (:foreground "magenta"))))
  '(font-lock-comment-face ((t (:slant italic)))))
-
-;; Initialise frame size at start-up
-(add-hook 'after-init-hook
-          (lambda ()
-            (when (display-graphic-p)
-              (set-frame-size (selected-frame) 106 100))))
-
-(add-hook 'after-make-frame-functions
-          (lambda ()
-            (when (display-graphic-p)
-              (set-frame-size (selected-frame) 106 100))))
 
 ;; Load bindings
 (load! "+bindings")
@@ -63,9 +58,6 @@
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
 
-;; Fix annoying lsp pop up error
-(setq lsp-restart 'ignore)
-
 ;; Delete all whitespace on save
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
 
@@ -90,7 +82,7 @@
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
-;; Completion stuff related
+;; Completion stuff
 (after! company
   (setq company-idle-delay 0
         company-tooltip-limit 10
@@ -117,15 +109,16 @@
 
 ;; Vterm
 (after! vterm
+  ;; Auto-quit when exit
   (setq vterm-kill-buffer-on-exit t)
 
-  ;; Terminal font
+  ;; Terminal font settings
   (add-hook! 'vterm-mode-hook
     (lambda ()
       (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
       (buffer-face-mode t)))
 
-  ;; Behaviour when hitting ESC in evil mode
+  ;; Cursor behaviour when hitting ESC in evil mode
   (defun evil-collection-vterm-escape-stay ()
     (setq-local evil-move-cursor-back nil))
 
@@ -155,6 +148,7 @@
 
 ;; Static code analysis
 (after! flycheck
+  ;; Python settings
   (add-hook! 'python-mode-hook
     (lambda ()
       (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
@@ -163,6 +157,7 @@
 
 ;; Elisp shell
 (after! eshell
+  ;; Aliases
   (set-eshell-alias!
    "d" "dired $1"
    "c" "clear"
@@ -171,55 +166,68 @@
    "qq" "exit"
    ))
 
+;; Evil vim modes
+(setq
+ evil-normal-state-tag   (propertize "N/" 'face '((:foreground "DarkGoldenrod2")))
+ evil-emacs-state-tag    (propertize "E/" 'face '((:foreground "SkyBlue2")))
+ evil-insert-state-tag   (propertize "I/" 'face '((:foreground "Chartreuse1")))
+ evil-replace-state-tag  (propertize "R/" 'face '((:foreground "chocolate")))
+ evil-motion-state-tag   (propertize "M/" 'face '((:foreground "plum3")))
+ evil-visual-state-tag   (propertize "V/" 'face '((:foreground "red")))
+ evil-operator-state-tag (propertize "O/" 'face '((:foreground "sandy brown"))))
+
+;; Mini-modeline
 ;; Merge modeline with the mini-buffer
 (use-package! mini-modeline
   :init
-  ;; Initialise modeline default background color
-  (custom-set-faces
-   '(mode-line ((t (:background "#080808")))))
+  ;; Default background color
+  (custom-set-faces '(mode-line ((t (:background "#080808")))))
   :config
+  ;; Activate mini-modeline
   (mini-modeline-mode t)
   ;; Modeline formatting
-  (setq-default
-   mini-modeline-r-format
-   (list
-    ;; the buffer name; the file name as a tool tip
-    '(:eval (propertize "%b " 'face 'font-lock-keyword-face
-                        'help-echo (buffer-file-name)))
+  (setq mini-modeline-r-format
+        (list
+         ;; Show the evil vim mode line
+         '(:eval evil-mode-line-tag) " "
 
-    ;; show current Git branch
-    '(vc-mode vc-mode) " "
+         ;; The buffer name; the file name as a tool tip
+         '(:eval (propertize "%b " 'face 'font-lock-keyword-face
+                             'help-echo (buffer-file-name)))
 
-    ;; line and column
-    ;; '%02' to set to 2 chars at least; prevents flickering
-    (propertize "%02l" 'face 'font-lock-type-face) ","
-    (propertize "%02c" 'face 'font-lock-type-face) " "
+         ;; Show current Git branch
+         '(vc-mode vc-mode) " "
 
-    ;; the current major mode for the buffer.
-    '(:eval (propertize "%m"
-                        'face 'font-lock-string-face
-                        'help-echo buffer-file-coding-system)) " "
+         ;; Line and column
+         ;; '%02' to set to 2 chars at least; prevents flickering
+         (propertize "%02l" 'face 'font-lock-type-face) ","
+         (propertize "%02c" 'face 'font-lock-type-face) " "
 
-    ;; was this buffer modified since the last save?
-    '(:eval (when (buffer-modified-p)
-              (concat ","
-                      (propertize "Mod"
-                                  'face 'font-lock-warning-face
-                                  'help-echo "Buffer has been modified"))))
+         ;; The current major mode for the buffer.
+         '(:eval (propertize "%m"
+                             'face 'font-lock-string-face
+                             'help-echo buffer-file-coding-system)) " "
 
-    ;; is this buffer read-only?
-    '(:eval (when buffer-read-only
-              (concat ","
-                      (propertize "RO"
-                                  'face 'font-lock-type-face
-                                  'help-echo "Buffer is read-only")))) " "
+         ;; Was this buffer modified since the last save?
+         '(:eval (when (buffer-modified-p)
+                   (concat ","
+                           (propertize "Mod"
+                                       'face 'font-lock-warning-face
+                                       'help-echo "Buffer has been modified"))))
 
-    ;; add the time, with the date and the emacs uptime in the tooltip
-    '(:eval (propertize (format-time-string "%H:%M")
-                        'help-echo
-                        (concat (format-time-string "%c; ")
-                                (emacs-uptime "Uptime:%hh")))) " --"
-    ))
+         ;; Is this buffer read-only?
+         '(:eval (when buffer-read-only
+                   (concat ","
+                           (propertize "RO"
+                                       'face 'font-lock-type-face
+                                       'help-echo "Buffer is read-only")))) " "
+
+         ;; Add the current time, show the complete date and emacs uptime in the tooltip
+         '(:eval (propertize (format-time-string "%H:%M")
+                             'help-echo
+                             (concat (format-time-string "%c; ")
+                                     (emacs-uptime "Uptime:%hh"))))
+         ))
   )
 
 ;; Kubernetes integration
@@ -229,35 +237,22 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
-(use-package! org-bullets
-  :init (add-hook! 'org-mode-hook 'org-bullets-mode))
-
 ;; Org settings
-(setq org-ellipsis "⤵")
-(setq org-hide-emphasis-markers t)
+(setq
+ org-ellipsis "⤵"
+ org-hide-emphasis-markers t
+ org-directory "~/org/"
+ org-adapt-indentation nil)
 
-(setq org-directory "~/org/")
-(setq org-adapt-indentation nil)
+;; Use org bullets
+(use-package! org-bullets
+  :init
+  (add-hook! 'org-mode-hook 'org-bullets-mode))
 
-;; Current time and date bindings and functions
-(defvar current-date-time-format "%a %b %d %H:%M:%S %Z %Y"
-  "Format of date to insert with `insert-current-date-time' func
-See help of `format-time-string' for possible replacements")
-
-(defvar current-time-format "%H:%M"
-  "Format of date to insert with `insert-current-time' func.
-Note the weekly scope of the command's precision.")
-
-(defun insert-current-date-time ()
-  "insert the current date and time into current buffer.
-Uses `current-date-time-format' for the formatting the date/time."
-  (interactive)
-  (insert (format-time-string current-date-time-format (current-time))))
-
-(defun insert-current-time ()
-  "insert the current time (1-week scope) into the current buffer."
-  (interactive)
-  (insert (format-time-string current-time-format (current-time))))
-
-(global-set-key (kbd "C-c d") 'insert-current-date-time)
-(global-set-key (kbd "C-c t") 'insert-current-time)
+;; Org-journal
+(use-package! org-journal
+  :init
+  (setq org-journal-prefix-key "C-c j")
+  :config
+  (setq org-journal-dir "~/org/journal/"
+        org-journal-date-format "%A, %d %B %Y"))
