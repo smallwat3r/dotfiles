@@ -67,6 +67,10 @@
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Github" "~/Code")))
 
+;; Writeroom font scaling
+(add-hook! 'writeroom-mode-hook
+  (text-scale-set (if writeroom-mode 1 0)))
+
 ;; Make jj to trigger ESC in insert mode, with a time delay in case I
 ;; do need to type in jj ...
 (use-package! key-chord
