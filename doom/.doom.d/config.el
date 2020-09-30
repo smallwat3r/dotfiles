@@ -92,9 +92,9 @@
 
 ;; Completion stuff
 (after! company
-  (setq company-idle-delay 0
+  (setq company-idle-delay 0.2
         company-tooltip-limit 10
-        company-minimum-prefix-length 1)
+        company-minimum-prefix-length 2)
 
   (add-hook! 'evil-normal-state-entry-hook #'company-abort)
 

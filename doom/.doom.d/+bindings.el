@@ -38,10 +38,7 @@
   (:prefix "o"
    :desc "Reveal in Finder"           "o" #'+macos/reveal-in-finder
    :desc "Reveal project in Finder"   "O" #'+macos/reveal-project-in-finder
-   :desc "Reveal in Terminal"         "t" #'+macos/reveal-in-terminal
-   :desc "Reveal project in Terminal" "T" #'+macos/reveal-project-in-terminal
-   :desc "Kubernetes"                 "K" #'kubernetes-overview
-   :desc "Open link"                  "x" #'link-hint-open-link)
+   :desc "Kubernetes"                 "K" #'kubernetes-overview)
 
   ;; Errors
   (:prefix ("e" . "errors")
