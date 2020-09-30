@@ -45,26 +45,13 @@ ifeq ($(shell command -v wget),)
 	@echo '*** Installing wget ...'
 	brew install wget
 endif
-
-	@echo '*** Installing Luculent fonts'
-	@[ -f $(FONTS_DIR)/luculentb072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculentb072d12.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/luculentbi072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculentbi072d12.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/luculenti072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculenti072d12.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/luculent072d12.ttf ] || cp $(CURRENT_DIR)/fonts/luculent072d12.ttf $(FONTS_DIR)
-
-	@echo '*** Installing Go-Mono fonts'
-	@[ -f $(FONTS_DIR)/Go-Mono.ttf ] || { \
-		wget -O $(FONTS_DIR)/Go-Mono.ttf \
-			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono.ttf; \
-	}
-	@[ -f $(FONTS_DIR)/Go-Mono-Italic.ttf ] || { \
-		wget -O $(FONTS_DIR)/Go-Mono-Italic.ttf \
-			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono-Italic.ttf; \
-	}
-	@[ -f $(FONTS_DIR)/Go-Mono-Bold.ttf ] || { \
-		wget -O $(FONTS_DIR)/Go-Mono-Bold.ttf \
-			https://github.com/golang/image/raw/master/font/gofont/ttfs/Go-Mono-Bold.ttf; \
-	}
+	@echo '*** Installing Courier Prime fonts'
+	@[ -f $(FONTS_DIR)/Courier-Prime.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Courier-Prime-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Italic.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Courier-Prime-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Bold.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Courier-Prime-Bold-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Bold-Italic.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Courier-Prime-Code.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Code.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Courier-Prime-Code-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Code-Italic.ttf $(FONTS_DIR)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
