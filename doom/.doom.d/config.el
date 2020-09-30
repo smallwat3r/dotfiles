@@ -207,47 +207,31 @@
   ;; Modeline formatting
   (setq mini-modeline-r-format
         (list
-         ;; Show the evil vim mode line
-         '(:eval evil-mode-line-tag) " "
-
-         ;; The buffer name; the file name as a tool tip
-         '(:eval (propertize "%b " 'face 'font-lock-keyword-face
-                             'help-echo (buffer-file-name)))
-
-         ;; Show current Git branch
-         '(vc-mode vc-mode) " "
-
-         ;; Line and column
-         ;; '%02' to set to 2 chars at least; prevents flickering
-         (propertize "%02l" 'face 'font-lock-type-face) ","
-         (propertize "%02c" 'face 'font-lock-type-face) " "
-
-         ;; The current major mode for the buffer.
-         '(:eval (propertize "%m"
-                             'face 'font-lock-string-face
-                             'help-echo buffer-file-coding-system)) " "
-
-         ;; Was this buffer modified since the last save?
-         '(:eval (when (buffer-modified-p)
-                   (concat ","
-                           (propertize "Mod"
-                                       'face 'font-lock-warning-face
-                                       'help-echo "Buffer has been modified"))))
-
-         ;; Is this buffer read-only?
-         '(:eval (when buffer-read-only
-                   (concat ","
-                           (propertize "RO"
-                                       'face 'font-lock-type-face
-                                       'help-echo "Buffer is read-only")))) " "
-
-         ;; Add the current time, show the complete date and emacs uptime in the tooltip
-         '(:eval (propertize (format-time-string "%H:%M")
-                             'help-echo
-                             (concat (format-time-string "%c; ")
-                                     (emacs-uptime "Uptime:%hh"))))
-         ))
-  )
+         '(:eval evil-mode-line-tag)        ; Evil mode
+         " "
+         '(:eval (propertize                ; Current filename
+                  "%b " 'help-echo (buffer-file-name)))
+         '(vc-mode vc-mode)                 ; Current git branch
+         " "
+         (propertize "%02l,%02c ")          ; Current line and column
+         '(:eval (propertize                ; Major mode
+                  "%m" 'help-echo "Buffer major mode"))
+         " "
+         '(:eval (when (buffer-modified-p)  ; Modified?
+                   (propertize "[Mod]"
+                               'face 'font-lock-warning-face
+                               'help-echo "Buffer has been modified")))
+         '(:eval (when buffer-read-only     ; Read only?
+                   (propertize "[RO]"
+                               'face 'font-lock-type-face
+                               'help-echo "Buffer is read-only")))
+         " "
+         '(:eval (propertize                ; Time
+                  (format-time-string "%H:%M")
+                  'help-echo
+                  (concat (format-time-string "%c; ")
+                          (emacs-uptime "Uptime:%hh"))))
+         )))
 
 ;; Kubernetes integration
 (use-package! kubernetes
