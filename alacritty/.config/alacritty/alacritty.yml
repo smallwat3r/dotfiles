@@ -31,14 +31,14 @@ scrolling:
 
 font:
   normal:
-    family: Luculent 12
+    family: Courier Prime Code
     style: Regular
 
-  size: 12.5
+  size: 14
 
   offset:
     x: 0
-    y: 0
+    y: 2
 
   glyph_offset:
     x: 0

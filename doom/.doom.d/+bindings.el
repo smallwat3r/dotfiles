@@ -1,27 +1,30 @@
 ;;; $DOOMDIR/+bindings.el -*- lexical-binding: t; -*-
 
 (map!
- ;; scrolling
+ ;; Scrolling
  "C-j" #'scroll-up-line
  "C-k" #'scroll-down-line
 
  (:map override
-  ;; resize split windows
+  ;; Resize split windows
   "S-C-h" #'shrink-window-horizontally
   "S-C-l" #'enlarge-window-horizontally
   "S-C-k" #'enlarge-window
   "S-C-j" #'shrink-window
 
-  ;; move windows
+  ;; Change windows
   "M-h" #'windmove-left
   "M-l" #'windmove-right
   "M-k" #'windmove-up
   "M-j" #'windmove-down
 
-  ;; macOS UK keyboard hash key hack
+  "M-n" #'+default/new-buffer
+  "M-`" #'other-frame
+
+  ;; MacOS UK keyboard hash key hack
   "M-3" "#")
 
- ;; vim-like stuff
+ ;; Vim-like stuff
  (:map evil-normal-state-map
   ";f"  #'format-all-buffer
   ";w"  #'evil-write
@@ -30,12 +33,38 @@
   ";vs" #'split-window-horizontally
   ";sp" #'split-window-vertically)
 
- ;; leader bindings
  (:leader
-  :desc "Next Error"            :n  "]"  #'flycheck-next-error
-  :desc "Previous Error"        :n  "["  #'flycheck-previous-error
-  :desc "Show flycheck errors"  :n  "!"  #'flycheck-list-errors
+  ;; Open
+  (:prefix "o"
+   :desc "Reveal in Finder"           "o" #'+macos/reveal-in-finder
+   :desc "Reveal project in Finder"   "O" #'+macos/reveal-project-in-finder
+   :desc "Reveal in Terminal"         "t" #'+macos/reveal-in-terminal
+   :desc "Reveal project in Terminal" "T" #'+macos/reveal-project-in-terminal
+   :desc "Kubernetes"                 "K" #'kubernetes-overview
+   :desc "Open link"                  "x" #'link-hint-open-link)
 
-  (:desc "open" :prefix "o"
-   :desc "Kubernetes"           :n  "K" #'kubernetes-overview))
+  ;; Errors
+  (:prefix ("e" . "errors")
+   ;; Flycheck
+   :desc "Flycheck list errors"    "l" #'flycheck-list-errors
+   :desc "Flycheck next error"     "n" #'flycheck-next-error
+   :desc "Flycheck previous error" "p" #'flycheck-previous-error
+   :desc "Flycheck explain error"  "e" #'flycheck-explain-error-at-point
+   :desc "Flycheck verify setup"   "v" #'flycheck-verify-setup)
+  )
+
+ ;; Python stuff
+ (:after python
+  :leader
+  :map python-mode-map
+
+  ;; Imports
+  (:prefix ("I" . "imports")
+   :desc "Isort buffer"          "s" #'+python/optimize-imports)
+
+  ;; Venv
+  (:prefix ("v" . "venv")
+   :desc "Workon"                "w" #'pyvenv-workon
+   :desc "Activate pyvenv"       "a" #'pyvenv-activate
+   :desc "Deactivate pyvenv"     "d" #'pyvenv-deactivate))
  )

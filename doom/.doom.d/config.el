@@ -10,33 +10,36 @@
   (add-to-list 'default-frame-alist '(width  . 106))
   (add-to-list 'default-frame-alist '(height . 64)))
 
-;; Change default UI stuff
-(custom-set-faces
- '(default ((t (:background "#080808"))))
- '(hl-line ((t (:background nil))))
- '(fringe ((t (:foreground "magenta"))))
- '(font-lock-comment-face ((t (:slant italic)))))
-
-;; Load bindings
-(load! "+bindings")
-
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
 ;; Some global settings
 (setq
- doom-font (font-spec :family "Luculent 12" :size 12 :weight 'Regular)
- doom-variable-pitch-font (font-spec :family "Go Mono" :size 12)
- doom-theme 'doom-laserwave
+ doom-font (font-spec :family "Courier Prime Code" :size 14)
+ doom-variable-pitch-font (font-spec :family "Courier Prime" :size 14)
+ doom-theme 'doom-dark+
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
+
+;; Line spacing
+(setq-default line-spacing 2)
+
+;; Change default UI stuff
+(custom-set-faces
+ '(hl-line ((t (:background nil))))
+ '(default ((t (:background "#000000"))))
+ '(fringe ((t (:foreground "magenta"))))
+ '(font-lock-comment-face ((t (:slant italic)))))
+
+;; Load bindings
+(load! "+bindings")
 
 ;; Activate blinking cursor
 (blink-cursor-mode 1)
 
 ;; My abbreviations
-(setq abbrev-file-name (expand-file-name ".abbrevs.el" doom-private-dir))
+(setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
 (setq save-abbrevs 'silently)
 (setq-default abbrev-mode t)
 
@@ -197,7 +200,7 @@
 (use-package! mini-modeline
   :init
   ;; Default background color
-  (custom-set-faces '(mode-line ((t (:background "#080808")))))
+  (custom-set-faces '(mode-line ((t (:background "#000000")))))
   :config
   ;; Activate mini-modeline
   (mini-modeline-mode t)
