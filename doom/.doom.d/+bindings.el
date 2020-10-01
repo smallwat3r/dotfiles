@@ -50,6 +50,13 @@
    :desc "Flycheck verify setup"   "v" #'flycheck-verify-setup)
   )
 
+ ;; Org journal
+ (:after org-journal
+  :leader
+  (:prefix ("j" . "journal")
+   :desc "Search journal"     "s" #'org-journal-search
+   :desc "New journal entry"  "n" #'org-journal-new-entry))
+
  ;; Python stuff
  (:after python
   :leader

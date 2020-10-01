@@ -18,7 +18,7 @@
 (setq
  doom-font (font-spec :family "Courier Prime Code" :size 14)
  doom-variable-pitch-font (font-spec :family "Courier Prime" :size 14)
- doom-theme `doom-laserwave
+ doom-theme `modus-vivendi
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
 
