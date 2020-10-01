@@ -10,6 +10,12 @@
   (add-to-list 'default-frame-alist '(width  . 106))
   (add-to-list 'default-frame-alist '(height . 64)))
 
+;; Don't show line numbers by default
+(setq display-line-numbers-type nil)
+
+;; Theme
+(setq doom-theme `modus-vivendi)
+
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
@@ -18,7 +24,7 @@
 (setq
  doom-font (font-spec :family "Courier Prime Code" :size 14)
  doom-variable-pitch-font (font-spec :family "Courier Prime" :size 14)
- doom-theme `modus-vivendi
+ doom-big-font-increment 1
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
 
@@ -29,7 +35,7 @@
 (custom-set-faces
  '(hl-line ((t (:background nil))))
  '(default ((t (:background "#000000"))))
- '(fringe ((t (:foreground "magenta"))))
+ '(fringe ((t (:foreground "yellow"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
 ;; Load bindings
@@ -51,7 +57,6 @@
 ;; Some other general settings
 (setq
  default-directory "~/"
- display-line-numbers-type nil
  visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
  undo-limit 80000000
  evil-want-fine-undo t
@@ -73,6 +78,7 @@
 
 ;; Set up default projects folders
 (after! projectile
+  (setq projectile-ignored-projects '("~/" "/tmp"))
   (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Github" "~/Code")))
@@ -123,6 +129,7 @@
 
 ;; Dired file explorer
 (after! dired
+  (setq delete-by-moving-to-trash t)
   ;; Sort by date
   (setq dired-listing-switches "-lat"))
 
