@@ -18,7 +18,7 @@
 (setq
  doom-font (font-spec :family "Courier Prime Code" :size 14)
  doom-variable-pitch-font (font-spec :family "Courier Prime" :size 14)
- doom-theme 'doom-dark+
+ doom-theme 'modus-vivendi
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
 
@@ -64,6 +64,12 @@
 
 ;; Delete all whitespace on save
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
+
+;; Git gutter fringe
+(after! git-gutter-fringe
+  (set-face-foreground 'git-gutter-fr:modified "blue")
+  (set-face-foreground 'git-gutter-fr:added    "green")
+  (set-face-foreground 'git-gutter-fr:deleted  "red"))
 
 ;; Set up default projects folders
 (after! projectile
