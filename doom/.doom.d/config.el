@@ -18,7 +18,7 @@
 (setq
  doom-font (font-spec :family "Courier Prime Code" :size 14)
  doom-variable-pitch-font (font-spec :family "Courier Prime" :size 14)
- doom-theme 'modus-vivendi
+ doom-theme `doom-laserwave
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
 
@@ -67,9 +67,9 @@
 
 ;; Git gutter fringe
 (after! git-gutter-fringe
-  (set-face-foreground 'git-gutter-fr:modified "blue")
-  (set-face-foreground 'git-gutter-fr:added    "green")
-  (set-face-foreground 'git-gutter-fr:deleted  "red"))
+  (set-face-foreground 'git-gutter-fr:modified "#5f5fff")
+  (set-face-foreground 'git-gutter-fr:added    "#87ff87")
+  (set-face-foreground 'git-gutter-fr:deleted  "#ff005f"))
 
 ;; Set up default projects folders
 (after! projectile
