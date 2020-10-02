@@ -62,7 +62,6 @@
  undo-limit 80000000
  evil-want-fine-undo t
  inhibit-compacting-font-caches t
- truncate-string-ellipsis "…"
  scroll-margin 7)
 
 ;; Show indicator for empty lines
@@ -268,7 +267,8 @@
   :config
   (global-evil-surround-mode 1))
 
-;; Use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
+;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
+;; Thanks @Flo from the doom emacs discord
 (after! evil
   (require 'evil-textobj-anyblock)
   (evil-define-text-object my-evil-textobj-anyblock-inner-quote
