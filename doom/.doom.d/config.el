@@ -35,8 +35,8 @@
 (custom-set-faces
  '(hl-line ((t (:background nil))))
  '(default ((t (:background "#000000"))))
- '(fringe ((t (:foreground "#875fd7"))))
- '(org-ellipsis ((t (:foreground "#875fd7"))))
+ '(fringe ((t (:foreground "#00afaf"))))
+ '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
 ;; Load bindings
@@ -277,3 +277,8 @@
   :config
   (setq org-journal-dir "~/org/journal/"
         org-journal-date-format "%A, %d %B %Y"))
+
+;; Surrounds vim-bindings
+(use-package! evil-surround
+  :config
+  (global-evil-surround-mode 1))
