@@ -36,6 +36,7 @@
  '(hl-line ((t (:background nil))))
  '(default ((t (:background "#000000"))))
  '(fringe ((t (:foreground "yellow"))))
+ '(org-ellipsis ((t (:foreground "yellow"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
 ;; Load bindings
@@ -226,18 +227,19 @@
                   "%b " 'help-echo (buffer-file-name)))
          '(vc-mode vc-mode)                 ; Current git branch
          " "
-         (propertize "%02l,%02c ")          ; Current line and column
-         '(:eval (propertize                ; Major mode
+         (propertize "%02l,%02c "           ; Current line and column
+                     'help-echo "Line and column index")
+         '(:eval (propertize                ; Major Mode
                   "%m" 'help-echo "Buffer major mode"))
          " "
          '(:eval (when (buffer-modified-p)  ; Modified?
-                   (propertize "[Mod]"
-                               'face 'font-lock-warning-face
-                               'help-echo "Buffer has been modified")))
+                   (propertize
+                    "[Mod]" 'face 'font-lock-warning-face
+                    'help-echo "Buffer has been modified")))
          '(:eval (when buffer-read-only     ; Read only?
-                   (propertize "[RO]"
-                               'face 'font-lock-type-face
-                               'help-echo "Buffer is read-only")))
+                   (propertize
+                    "[RO]" 'face 'font-lock-type-face
+                    'help-echo "Buffer is read-only")))
          " "
          '(:eval (propertize                ; Time
                   (format-time-string "%H:%M")
@@ -255,7 +257,7 @@
 
 ;; Org settings
 (setq
- org-ellipsis "↴"
+ org-ellipsis " ↴ "
  org-hide-emphasis-markers t
  org-directory "~/org/"
  org-adapt-indentation nil)
