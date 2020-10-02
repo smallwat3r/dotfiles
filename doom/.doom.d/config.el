@@ -85,7 +85,7 @@
   (setq projectile-ignored-projects '("~/" "/tmp"))
   (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
-        '("~/dotfiles/" "~/Projects/" "~/Code/")))
+        '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
 
 ;; Writeroom font scaling
 (add-hook! 'writeroom-mode-hook
