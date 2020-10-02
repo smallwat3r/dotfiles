@@ -91,18 +91,11 @@
 (add-hook! 'writeroom-mode-hook
   (text-scale-set (if writeroom-mode 1 0)))
 
-;; Make jj to trigger ESC in insert mode, with a time delay in case I
-;; do need to type in jj ...
-(use-package! key-chord
-  :config
-  (setq key-chord-two-keys-delay 0.5)
-  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
-  (key-chord-mode 1))
-
 ;; OS executables
 (use-package! exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :config
+  (setq exec-path-from-shell-arguments '("-l"))  ; disable warning
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
@@ -264,11 +257,6 @@
  org-hide-emphasis-markers t
  org-directory "~/org/"
  org-adapt-indentation nil)
-
-;; Use org bullets
-(use-package! org-bullets
-  :init
-  (add-hook! 'org-mode-hook 'org-bullets-mode))
 
 ;; Org-journal
 (use-package! org-journal
