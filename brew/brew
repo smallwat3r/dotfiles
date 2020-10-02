@@ -5,6 +5,7 @@ cmake
 ctags
 curl
 dockutil
+emacs-plus
 fd
 fzf
 gh

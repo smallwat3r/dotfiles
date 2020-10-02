@@ -84,6 +84,7 @@ brew: taps xcode-cli ## Install brew packages
 			brew install "$$line"; \
 		}; \
         done <./brew/brew
+	@ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications/Emacs.app
 
 cask: taps ## Install brew casks
 	@echo '*** Installing brew casks ...'
