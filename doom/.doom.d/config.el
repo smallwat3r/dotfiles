@@ -218,9 +218,8 @@
   (setq mini-modeline-r-format
         (list
          '(:eval evil-mode-line-tag)        ; Evil mode
-         " "
          '(:eval (propertize                ; Current filename
-                  "%b" 'help-echo (buffer-file-name)))
+                  " %b" 'help-echo (buffer-file-name)))
          '(vc-mode vc-mode)                 ; Current git branch
          " "
          (propertize "%02l,%02c "           ; Current line and column
@@ -268,3 +267,29 @@
 (use-package! evil-surround
   :config
   (global-evil-surround-mode 1))
+
+;; Use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
+(after! evil
+  (require 'evil-textobj-anyblock)
+  (evil-define-text-object my-evil-textobj-anyblock-inner-quote
+    (count &optional beg end type)
+    "Select the closest outer quote."
+    (let ((evil-textobj-anyblock-blocks
+           '(("'" . "'")
+             ("\"" . "\"")
+             ("`" . "`")
+             ("“" . "”"))))
+      (evil-textobj-anyblock--make-textobj beg end type count nil)))
+
+  (evil-define-text-object my-evil-textobj-anyblock-a-quote
+    (count &optional beg end type)
+    "Select the closest outer quote."
+    (let ((evil-textobj-anyblock-blocks
+           '(("'" . "'")
+             ("\"" . "\"")
+             ("`" . "`")
+             ("“" . "”"))))
+      (evil-textobj-anyblock--make-textobj beg end type count t)))
+
+  (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
+  (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
