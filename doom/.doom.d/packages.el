@@ -10,5 +10,4 @@
 (package! org-bullets)
 (package! org-journal)
 (package! dired-narrow)
-(package! modus-vivendi-theme)
 (package! deadgrep)

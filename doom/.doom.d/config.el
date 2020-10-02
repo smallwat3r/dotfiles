@@ -14,7 +14,7 @@
 (setq display-line-numbers-type nil)
 
 ;; Theme
-(setq doom-theme `modus-vivendi)
+(setq doom-theme `doom-laserwave)
 
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
