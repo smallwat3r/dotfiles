@@ -220,25 +220,23 @@
          '(:eval evil-mode-line-tag)        ; Evil mode
          " "
          '(:eval (propertize                ; Current filename
-                  "%b " 'help-echo (buffer-file-name)))
+                  "%b" 'help-echo (buffer-file-name)))
          '(vc-mode vc-mode)                 ; Current git branch
          " "
          (propertize "%02l,%02c "           ; Current line and column
                      'help-echo "Line and column index")
          '(:eval (propertize                ; Major Mode
                   "%m" 'help-echo "Buffer major mode"))
-         " "
          '(:eval (when (buffer-modified-p)  ; Modified?
                    (propertize
-                    "[Mod]" 'face 'font-lock-warning-face
+                    " [Mod]" 'face 'font-lock-warning-face
                     'help-echo "Buffer has been modified")))
          '(:eval (when buffer-read-only     ; Read only?
                    (propertize
-                    "[RO]" 'face 'font-lock-type-face
+                    " [RO]" 'face 'font-lock-type-face
                     'help-echo "Buffer is read-only")))
-         " "
          '(:eval (propertize                ; Time
-                  (format-time-string "%H:%M")
+                  (format-time-string " %H:%M")
                   'help-echo
                   (concat (format-time-string "%c; ")
                           (emacs-uptime "Uptime:%hh"))))
