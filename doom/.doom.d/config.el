@@ -35,8 +35,8 @@
 (custom-set-faces
  '(hl-line ((t (:background nil))))
  '(default ((t (:background "#000000"))))
- '(fringe ((t (:foreground "yellow"))))
- '(org-ellipsis ((t (:foreground "yellow"))))
+ '(fringe ((t (:foreground "#875fd7"))))
+ '(org-ellipsis ((t (:foreground "#875fd7"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
 ;; Load bindings
@@ -65,6 +65,9 @@
  truncate-string-ellipsis "…"
  scroll-margin 7)
 
+;; Show indicator for empty lines
+(setq-default indicate-empty-lines t)
+
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
 
@@ -82,7 +85,7 @@
   (setq projectile-ignored-projects '("~/" "/tmp"))
   (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
-        '("~/dotfiles/" "~/Projects/" "~/Github" "~/Code")))
+        '("~/dotfiles/" "~/Projects/" "~/Code/")))
 
 ;; Writeroom font scaling
 (add-hook! 'writeroom-mode-hook
