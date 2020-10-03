@@ -23,18 +23,19 @@ git clone https://github.com/smallwat3r/dotfiles.git $HOME
 % make help
 Usage: make [TARGET ...]
 
-help       Show this help menu
-install    Installs everything
-symlink    Symlinks dotfiles using stow
-fonts      Install fonts
-homebrew   Make sure homebrew is installed
-stow       Make sure stow is installed
-xcode-cli  Install xcode command line tools
-taps       Install brew taps
-brew       Install brew packages
-cask       Install brew casks
-node       Install node
-npm        Install npm packages
-python     Install python 3.8
-pip        Install pip packages
+help            Show this help menu
+install         Installs everything
+symlink         Symlinks dotfiles using stow
+fonts           Install fonts
+homebrew        Make sure homebrew is installed
+stow            Make sure stow is installed
+install-doom    Install doom emacs
+xcode-cli       Install xcode command line tools
+taps            Install brew taps
+brew            Install brew packages
+cask            Install brew casks
+node            Install node
+npm             Install npm packages
+python          Install python 3.8
+pip             Install pip packages
 ```

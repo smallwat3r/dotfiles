@@ -1,4 +1,4 @@
-.PHONY: homebrew stow symlink cask brew python pip node npm taps xcode-cli fonts help
+.PHONY: homebrew stow symlink cask brew python pip node npm taps xcode-cli fonts help install-doom
 
 SHELL=/bin/bash
 
@@ -9,9 +9,9 @@ help: ## Show this help menu
 	@echo "Usage: make [TARGET ...]"
 	@echo ""
 	@grep --no-filename -E '^[a-zA-Z_%-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
-		awk 'BEGIN {FS = ":.*?## "}; {printf "%-10s %s\n", $$1, $$2}'
+		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
-install: npm pip cask brew fonts symlink ## Installs everything
+install: npm pip cask brew fonts install-doom symlink ## Installs everything
 	@echo '*** -- Everything has been installed --'
 
 symlink: stow ## Symlinks dotfiles using stow
@@ -64,6 +64,10 @@ ifeq ($(shell command -v stow),)
 	@echo '*** Installing Stow ...'
 	brew install stow
 endif
+
+install-doom: ## Install doom emacs
+	git clone --depth 1 'https://github.com/hlissner/doom-emacs' '~/.emacs.d'
+	~/.emacs.d/bin/doom install
 
 xcode-cli: ## Install xcode command line tools
 	@xcode-select --install >/dev/null 2>&1 && \
