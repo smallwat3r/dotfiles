@@ -1,4 +1,5 @@
 ;; -*- coding: utf-8; lexical-binding: t; -*-
+
 ;; Global list of abbreviations
 (define-abbrev-table 'global-abbrev-table
   '(
