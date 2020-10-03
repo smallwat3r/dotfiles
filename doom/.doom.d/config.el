@@ -58,17 +58,19 @@
 ;; Some other general settings
 (setq
  default-directory "~/"
- visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
  undo-limit 80000000
- evil-want-fine-undo t
- inhibit-compacting-font-caches t
- scroll-margin 7)
+ evil-want-fine-undo t             ; fine grained undo history
+ inhibit-compacting-font-caches t  ; improve general perfs
+ scroll-margin 7                   ; top and bottom margins to trigger scroll
+ which-key-idle-delay 0.5)         ; delay to show key bindings menu
 
 ;; Show indicator for empty lines
 (setq-default indicate-empty-lines t)
 
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
+(setq visual-line-fringe-indicators
+      '(left-curly-arrow right-curly-arrow))  ; show wrap indicators
 
 ;; Delete all whitespace on save
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
@@ -94,7 +96,7 @@
 (use-package! exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :config
-  (setq exec-path-from-shell-arguments '("-l"))  ; disable warning
+  (setq exec-path-from-shell-arguments '("-l"))  ; disable annoying warning
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
@@ -126,8 +128,7 @@
 ;; Dired file explorer
 (after! dired
   (setq delete-by-moving-to-trash t)
-  ;; Sort by date
-  (setq dired-listing-switches "-lat"))
+  (setq dired-listing-switches "-lat"))  ; sort by date
 
 (use-package! dired-narrow
   :after dired
@@ -249,10 +250,10 @@
 
 ;; Org settings
 (setq
- org-ellipsis " ↴ "
- org-hide-emphasis-markers t
  org-directory "~/org/"
- org-adapt-indentation nil)
+ org-ellipsis " ↴ "
+ org-hide-emphasis-markers t  ; hide mark up symbols (eg. *bold*)
+ org-adapt-indentation nil)   ; indentation of text below headlines
 
 ;; Org-journal
 (use-package! org-journal
