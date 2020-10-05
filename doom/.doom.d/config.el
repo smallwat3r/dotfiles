@@ -15,6 +15,7 @@
 
 ;; Theme
 (setq doom-theme 'doom-gruvbox)
+(delq! t custom-theme-load-path)  ; do not show the default themes
 
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
@@ -272,6 +273,13 @@
 (use-package! evil-surround
   :config
   (global-evil-surround-mode 1))
+
+;; Extra coloring on manual pages
+(use-package! info-colors
+  :commands (info-colors-fontify-node))
+
+(add-hook 'Info-selection-hook 'info-colors-fontify-node)
+(add-hook 'Info-mode-hook #'mixed-pitch-mode)
 
 ;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
 ;; Thanks @Flo from the doom emacs discord

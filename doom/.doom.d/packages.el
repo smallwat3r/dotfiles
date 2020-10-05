@@ -9,3 +9,4 @@
 (package! dired-narrow)
 (package! deadgrep)
 (package! evil-surround)
+(package! info-colors)
