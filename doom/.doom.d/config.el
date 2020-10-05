@@ -14,7 +14,7 @@
 (setq display-line-numbers-type nil)
 
 ;; Theme
-(setq doom-theme 'doom-laserwave)
+(setq doom-theme 'doom-gruvbox)
 
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
@@ -294,3 +294,21 @@
 
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
+
+;; Insert hex color
+;; https://emacs.stackexchange.com/a/5583
+(defun insert-color-hex (&optional arg)
+  "Select a color and insert its 24-bit hexadecimal RGB format.
+
+With prefix argument \\[universal-argument] insert the 48-bit value."
+  (interactive "*P")
+  (let ((buf (current-buffer)))
+    (list-colors-display
+     nil nil `(lambda (name)
+                (interactive)
+                (quit-window)
+                (with-current-buffer ,buf
+                  (insert (apply #'color-rgb-to-hex
+                                 (nconc (color-name-to-rgb name)
+                                        (unless (consp ',arg)
+                                          (list (or ,arg 2)))))))))))
