@@ -14,7 +14,7 @@
 (setq display-line-numbers-type nil)
 
 ;; Theme
-(setq doom-theme `doom-laserwave)
+(setq doom-theme 'doom-laserwave)
 
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
@@ -29,7 +29,7 @@
  doom-themes-enable-italic t)
 
 ;; Line spacing
-(setq-default line-spacing 2)
+(setq-default line-spacing 1)
 
 ;; Change default UI stuff
 (custom-set-faces
