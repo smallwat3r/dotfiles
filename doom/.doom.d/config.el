@@ -154,7 +154,12 @@
   (add-hook! 'vterm-mode-hook #'evil-collection-vterm-escape-stay)
 
   ;; Use of C-c is needed in the terminal, so prioritise it
-  (evil-define-key 'insert vterm-mode-map (kbd "C-c") #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-c")      #'vterm--self-insert)
+
+  ;; Insert mode
+  (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
 
   ;; Delete the previous word
   (define-key vterm-mode-map (kbd "<C-backspace>")
@@ -197,13 +202,13 @@
 
 ;; Evil vim modes
 (setq
- evil-normal-state-tag   (propertize "N/" 'face '((:foreground "DarkGoldenrod2")))
- evil-emacs-state-tag    (propertize "E/" 'face '((:foreground "SkyBlue2")))
- evil-insert-state-tag   (propertize "I/" 'face '((:foreground "Chartreuse1")))
- evil-replace-state-tag  (propertize "R/" 'face '((:foreground "chocolate")))
- evil-motion-state-tag   (propertize "M/" 'face '((:foreground "plum3")))
- evil-visual-state-tag   (propertize "V/" 'face '((:foreground "red")))
- evil-operator-state-tag (propertize "O/" 'face '((:foreground "sandy brown"))))
+ evil-normal-state-tag   (propertize "N" 'face '((:foreground "DarkGoldenrod2")))
+ evil-emacs-state-tag    (propertize "E" 'face '((:foreground "SkyBlue2")))
+ evil-insert-state-tag   (propertize "I" 'face '((:foreground "Chartreuse1")))
+ evil-replace-state-tag  (propertize "R" 'face '((:foreground "chocolate")))
+ evil-motion-state-tag   (propertize "M" 'face '((:foreground "plum3")))
+ evil-visual-state-tag   (propertize "V" 'face '((:foreground "red")))
+ evil-operator-state-tag (propertize "O" 'face '((:foreground "sandy brown"))))
 
 ;; Mini-modeline
 ;; Merge modeline with the mini-buffer
@@ -217,7 +222,6 @@
   ;; Modeline formatting
   (setq mini-modeline-r-format
         (list
-         '(:eval evil-mode-line-tag)        ; Evil mode
          '(:eval (propertize                ; Current filename
                   " %b" 'help-echo (buffer-file-name)))
          '(vc-mode vc-mode)                 ; Current git branch
@@ -235,10 +239,11 @@
                     " [RO]" 'face 'font-lock-type-face
                     'help-echo "Buffer is read-only")))
          '(:eval (propertize                ; Time
-                  (format-time-string " %H:%M")
+                  (format-time-string " %H:%M ")
                   'help-echo
                   (concat (format-time-string "%c; ")
                           (emacs-uptime "Uptime:%hh"))))
+         '(:eval evil-mode-line-tag)        ; Evil mode
          )))
 
 ;; Kubernetes integration
