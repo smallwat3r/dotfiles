@@ -41,17 +41,11 @@ symlink: stow ## Symlinks dotfiles using stow
 	@echo '*** Symlinks all set-up'
 
 fonts: homebrew ## Install fonts
-ifeq ($(shell command -v wget),)
-	@echo '*** Installing wget ...'
-	brew install wget
-endif
-	@echo '*** Installing Courier Prime fonts'
-	@[ -f $(FONTS_DIR)/Courier-Prime.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Courier-Prime-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Italic.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Courier-Prime-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Bold.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Courier-Prime-Bold-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Bold-Italic.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Courier-Prime-Code.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Code.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Courier-Prime-Code-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Courier-Prime-Code-Italic.ttf $(FONTS_DIR)
+	@echo '*** Installing Fantasque Sans Mono fonts'
+	@[ -f $(FONTS_DIR)/AnonymousPro-Regular.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Regular.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/AnonymousPro-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Bold.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/AnonymousPro-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Italic.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/AnonymousPro-BoldItalic.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-BoldItalic.ttf $(FONTS_DIR)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)

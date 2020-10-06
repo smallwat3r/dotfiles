@@ -42,6 +42,7 @@ alias \
   evim="$EDITOR $HOME/.config/nvim/init.vim" \
   ezsh="$EDITOR $HOME/.zshrc" \
   svi="sudo nvim" \
+  ec="emacsclient" \
   v="nvim" \
   vi="nvim" \
   vidiff="nvim -d" \

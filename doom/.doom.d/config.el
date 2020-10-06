@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Frame settings
+;; Frame settings (GUI)
 (when (display-graphic-p)
   ;; Title
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
@@ -8,14 +8,21 @@
 
   ;; Size
   (add-to-list 'default-frame-alist '(width  . 106))
-  (add-to-list 'default-frame-alist '(height . 64)))
+  (add-to-list 'default-frame-alist '(height . 64))
+
+  ;; Theme
+  (use-package! modus-vivendi-theme
+    :init
+    (delq! t custom-theme-load-path)  ; do not show the default themes
+    :config
+    (setq modus-vivendi-theme-slanted-constructs t
+          modus-vivendi-theme-bold-constructs t
+          modus-vivendi-theme-completions 'opinionated
+          modus-vivendi-theme-faint-syntax t)
+    (load-theme 'modus-vivendi t)))
 
 ;; Don't show line numbers by default
 (setq display-line-numbers-type nil)
-
-;; Theme
-(setq doom-theme 'doom-gruvbox)
-(delq! t custom-theme-load-path)  ; do not show the default themes
 
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
@@ -23,28 +30,25 @@
 
 ;; Some global settings
 (setq
- doom-font (font-spec :family "Courier Prime Code" :size 14)
- doom-variable-pitch-font (font-spec :family "Courier Prime" :size 14)
+ doom-font (font-spec :family "Anonymous Pro" :size 14)
+ doom-big-font (font-spec :family "Anonymous Pro" :size 16)
+ doom-variable-pitch-font (font-spec :family "Geneva" :size 12)
  doom-big-font-increment 1
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
 
 ;; Line spacing
-(setq-default line-spacing 1)
+(setq-default line-spacing 0)
 
 ;; Change default UI stuff
 (custom-set-faces
- '(hl-line ((t (:background nil))))
- '(default ((t (:background "#000000"))))
+ '(mode-line ((t (:background nil))))
  '(fringe ((t (:foreground "#00afaf"))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(font-lock-comment-face ((t (:slant italic)))))
 
 ;; Load bindings
 (load! "+bindings")
-
-;; Activate blinking cursor
-(blink-cursor-mode 1)
 
 ;; My abbreviations
 (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
@@ -70,6 +74,7 @@
 
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
+
 (setq visual-line-fringe-indicators
       '(left-curly-arrow right-curly-arrow))  ; show wrap indicators
 
@@ -118,8 +123,7 @@
        (define-key company-active-map (kbd "<backtab>") 'company-select-previous)))
 
   (set-company-backend! '(text-mode markdown-mode gfm-mode)
-    '(:seperate company-ispell company-files company-yasnippet))
-  )
+    '(:seperate company-ispell company-files company-yasnippet)))
 
 (after! ivy
   (setq ivy-use-virtual-buffers t
@@ -173,8 +177,7 @@
     :select t
     :quit nil
     :ttl 0
-    :side 'bottom)
-  )
+    :side 'bottom))
 
 ;; Python stuff
 (add-hook! python-mode
@@ -214,13 +217,8 @@
 ;; Mini-modeline
 ;; Merge modeline with the mini-buffer
 (use-package! mini-modeline
-  :init
-  ;; Default background color
-  (custom-set-faces '(mode-line ((t (:background "#000000")))))
   :config
-  ;; Activate mini-modeline
-  (mini-modeline-mode t)
-  ;; Modeline formatting
+  (setq mini-modeline-display-gui-line nil)
   (setq mini-modeline-r-format
         (list
          '(:eval (propertize                ; Current filename
@@ -243,9 +241,10 @@
                   (format-time-string " %H:%M ")
                   'help-echo
                   (concat (format-time-string "%c; ")
-                          (emacs-uptime "Uptime:%hh"))))
-         '(:eval evil-mode-line-tag)        ; Evil mode
-         )))
+                          (emacs-uptime "Uptime: %hh"))))
+         '(:eval evil-mode-line-tag)))      ; Evil mode
+
+  (mini-modeline-mode t))
 
 ;; Kubernetes integration
 (use-package! kubernetes
