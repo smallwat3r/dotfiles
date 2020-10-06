@@ -3,6 +3,7 @@
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
 
+
 (doom! :input
 
        :completion
@@ -38,7 +39,7 @@
 
        :editor
        (evil
-        +everywhere); come to the dark side, we have cookies
+        +everywhere)   ; come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        format            ; automated prettiness

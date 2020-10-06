@@ -161,6 +161,12 @@
   ;; Use of C-c is needed in the terminal, so prioritise it
   (evil-define-key 'insert vterm-mode-map (kbd "C-c")      #'vterm--self-insert)
 
+  ;; Scroll
+  (evil-define-key 'insert vterm-mode-map (kbd "C-j")      #'scroll-up-line)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-k")      #'scroll-down-line)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-j")      #'scroll-up-line)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-k")      #'scroll-down-line)
+
   ;; Insert mode
   (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
   (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
