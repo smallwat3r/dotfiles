@@ -30,15 +30,12 @@
 
 ;; Some global settings
 (setq
- doom-font (font-spec :family "Anonymous Pro" :size 14)
- doom-big-font (font-spec :family "Anonymous Pro" :size 16)
+ doom-font (font-spec :family "Sometype Mono" :size 13)
  doom-variable-pitch-font (font-spec :family "Geneva" :size 12)
- doom-big-font-increment 1
- doom-themes-enable-bold t
- doom-themes-enable-italic t)
+ doom-big-font-increment 1)
 
 ;; Line spacing
-(setq-default line-spacing 0)
+(setq-default line-spacing nil)
 
 ;; Change default UI stuff
 (custom-set-faces
@@ -89,7 +86,8 @@
 
 ;; Set up default projects folders
 (after! projectile
-  (setq projectile-ignored-projects '("~/" "/tmp"))
+  (setq projectile-ignored-projects
+        '("~/" "/tmp"))
   (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
@@ -138,8 +136,7 @@
 (use-package! dired-narrow
   :after dired
   :config
-  (map! :map dired-mode-map
-        :n  "/" 'dired-narrow-fuzzy))
+  (map! :map dired-mode-map :n "/" 'dired-narrow-fuzzy))
 
 ;; Vterm
 (after! vterm
@@ -196,8 +193,7 @@
   (add-hook! 'python-mode-hook
     (lambda ()
       (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
-      (setq flycheck-pylintrc "~/.config/pylintrc")
-      )))
+      (setq flycheck-pylintrc "~/.config/pylintrc"))))
 
 ;; Elisp shell
 (after! eshell
@@ -207,8 +203,7 @@
    "c" "clear"
    "sl" "ls"
    "emacs" "find-file $1"
-   "qq" "exit"
-   ))
+   "qq" "exit"))
 
 ;; Evil vim modes
 (setq

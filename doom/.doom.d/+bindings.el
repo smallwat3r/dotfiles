@@ -51,15 +51,14 @@
 
   ;; Search
   (:prefix "s"
-   :desc "Ripgrep"                  "g" #'deadgrep)
-  )
+   :desc "Ripgrep"                  "g" #'deadgrep))
 
  ;; Org journal
  (:after org-journal
   :leader
   (:prefix ("j" . "journal")
-   :desc "Search journal"            "s" #'org-journal-search
-   :desc "New journal entry"         "n" #'org-journal-new-entry))
+   :desc "Search journal"           "s" #'org-journal-search
+   :desc "New journal entry"        "n" #'org-journal-new-entry))
 
  ;; Python stuff
  (:after python
@@ -68,11 +67,11 @@
 
   ;; Imports
   (:prefix ("I" . "imports")
-   :desc "Isort buffer"              "s" #'+python/optimize-imports)
+   :desc "Isort buffer"             "s" #'+python/optimize-imports)
 
   ;; Venv
   (:prefix ("v" . "venv")
-   :desc "Workon"                    "w" #'pyvenv-workon
-   :desc "Activate pyvenv"           "a" #'pyvenv-activate
-   :desc "Deactivate pyvenv"         "d" #'pyvenv-deactivate))
+   :desc "Workon"                   "w" #'pyvenv-workon
+   :desc "Activate pyvenv"          "a" #'pyvenv-activate
+   :desc "Deactivate pyvenv"        "d" #'pyvenv-deactivate))
  )
