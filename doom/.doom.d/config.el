@@ -28,7 +28,7 @@
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
-;; Some global settings
+;; Font settings
 (setq
  doom-font (font-spec :family "Sometype Mono" :size 13)
  doom-variable-pitch-font (font-spec :family "Geneva" :size 12)
@@ -37,7 +37,7 @@
 ;; Line spacing
 (setq-default line-spacing nil)
 
-;; Change default UI stuff
+;; Overwrite theme stuff
 (custom-set-faces
  '(mode-line ((t (:background nil))))
  '(fringe ((t (:foreground "#00afaf"))))
@@ -57,7 +57,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Some other general settings
+;; Some general settings
 (setq
  default-directory "~/"
  undo-limit 80000000
