@@ -34,6 +34,11 @@
   ";sp"      #'split-window-vertically)
 
  (:leader
+
+  ;; Buffers
+  (:prefix "b"
+   :desc "Kill buffer"              "d" #'evil-delete-buffer)
+
   ;; Open
   (:prefix "o"
    :desc "Reveal in Finder"         "o" #'+macos/reveal-in-finder
@@ -42,7 +47,6 @@
 
   ;; Errors
   (:prefix ("e" . "errors")
-   ;; Flycheck
    :desc "Flycheck list errors"     "l" #'flycheck-list-errors
    :desc "Flycheck next error"      "n" #'flycheck-next-error
    :desc "Flycheck previous error"  "p" #'flycheck-previous-error
