@@ -38,7 +38,7 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Hack" :size 13)
+ doom-font (font-spec :family "Sometype Mono" :size 13)
  doom-variable-pitch-font (font-spec :family "Verdana" :size 12)
  doom-big-font-increment 1)
 
