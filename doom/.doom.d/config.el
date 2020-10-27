@@ -20,6 +20,14 @@
           modus-vivendi-theme-completions 'opinionated
           modus-vivendi-theme-faint-syntax t)
     (load-theme 'modus-vivendi t)))
+  ;; (use-package! modus-operandi-theme
+  ;;   :init
+  ;;   (delq! t custom-theme-load-path)  ; do not show the default themes
+  ;;   :config
+  ;;   (setq modus-operandi-theme-slanted-constructs t
+  ;;         modus-operandi-theme-bold-constructs t
+  ;;         modus-operandi-theme-completions 'opinionated)
+  ;;   (load-theme 'modus-operandi t)))
 
 ;; Don't show line numbers by default
 (setq display-line-numbers-type nil)
@@ -30,7 +38,7 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Sometype Mono" :size 13)
+ doom-font (font-spec :family "Hack" :size 13)
  doom-variable-pitch-font (font-spec :family "Verdana" :size 12)
  doom-big-font-increment 1)
 

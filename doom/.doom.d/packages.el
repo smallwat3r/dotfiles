@@ -11,3 +11,4 @@
 (package! evil-surround)
 (package! info-colors)
 (package! modus-vivendi-theme)
+(package! modus-operandi-theme)
