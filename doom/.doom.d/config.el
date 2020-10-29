@@ -321,7 +321,7 @@
 
 ;; Insert hex color
 ;; https://emacs.stackexchange.com/a/5583
-(defun insert-color-hex (&optional arg)
+(defun zz/insert-color-hex (&optional arg)
   "Select a color and insert its 24-bit hexadecimal RGB format.
 
 With prefix argument \\[universal-argument] insert the 48-bit value."
