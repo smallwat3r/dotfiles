@@ -41,7 +41,7 @@ symlink: stow ## Symlinks dotfiles using stow
 	@echo '*** Symlinks all set-up'
 
 fonts: homebrew ## Install fonts
-	@echo '*** Installing Fantasque Sans Mono fonts'
+	@echo '*** Installing Anonymous Pro fonts'
 	@[ -f $(FONTS_DIR)/AnonymousPro-Regular.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Regular.ttf $(FONTS_DIR)
 	@[ -f $(FONTS_DIR)/AnonymousPro-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Bold.ttf $(FONTS_DIR)
 	@[ -f $(FONTS_DIR)/AnonymousPro-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Italic.ttf $(FONTS_DIR)
