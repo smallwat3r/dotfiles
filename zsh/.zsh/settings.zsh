@@ -66,3 +66,7 @@ bindkey -M vicmd 'y' _vi_yank_pbcopy
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# Private kube settings
+# ---------------------
+[[ -f "$HOME/.kubeprivate" ]] && source "$HOME/.kubeprivate"
