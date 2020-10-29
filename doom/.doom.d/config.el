@@ -20,14 +20,14 @@
           modus-vivendi-theme-completions 'opinionated
           modus-vivendi-theme-faint-syntax t)
     (load-theme 'modus-vivendi t)))
-  ;; (use-package! modus-operandi-theme
-  ;;   :init
-  ;;   (delq! t custom-theme-load-path)  ; do not show the default themes
-  ;;   :config
-  ;;   (setq modus-operandi-theme-slanted-constructs t
-  ;;         modus-operandi-theme-bold-constructs t
-  ;;         modus-operandi-theme-completions 'opinionated)
-  ;;   (load-theme 'modus-operandi t)))
+;; (use-package! modus-operandi-theme
+;;   :init
+;;   (delq! t custom-theme-load-path)  ; do not show the default themes
+;;   :config
+;;   (setq modus-operandi-theme-slanted-constructs t
+;;         modus-operandi-theme-bold-constructs t
+;;         modus-operandi-theme-completions 'opinionated)
+;;   (load-theme 'modus-operandi t)))
 
 ;; Don't show line numbers by default
 (setq display-line-numbers-type nil)
@@ -84,7 +84,10 @@
       '(left-curly-arrow right-curly-arrow))  ; show wrap indicators
 
 ;; Delete all whitespace on save
-(add-hook! 'before-save-hook 'delete-trailing-whitespace)
+(add-hook! 'before-save-hook
+  (lambda ()
+    (unless (eq major-mode 'markdown-mode)
+      (delete-trailing-whitespace))))
 
 ;; Git gutter fringe
 (after! git-gutter-fringe
