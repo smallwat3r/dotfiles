@@ -32,15 +32,15 @@ alias \
 # Editing stuff
 alias \
   e="$EDITOR" \
-  eala="$EDITOR $HOME/.config/alacritty/alacritty.yml" \
-  eali="$EDITOR $HOME/.aliases" \
   edit="$EDITOR" \
-  efun="$EDITOR $HOME/.functions" \
+  eala="$EDITOR $HOME/.config/alacritty/alacritty.yml" \
+  eali="$EDITOR $HOME/.zsh/aliases.zsh" \
+  efun="$EDITOR $HOME/.zsh/functions.zsh" \
   egit="$EDITOR $HOME/.config/git/config" \
   ekit="$EDITOR $HOME/.config/kitty/kitty.conf" \
   etmu="$EDITOR $HOME/.config/tmux/tmux.conf" \
   evim="$EDITOR $HOME/.config/nvim/init.vim" \
-  ezsh="$EDITOR $HOME/.zshrc" \
+  ezsh="$EDITOR $HOME/.zsh" \
   svi="sudo nvim" \
   ec="emacsclient" \
   v="nvim" \

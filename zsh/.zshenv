@@ -22,7 +22,8 @@ export GOPATH="$HOME/go"
 
 export CLICOLOR=1
 
-export EDITOR='/usr/local/bin/nvim'
+export EDITOR='emacsclient'
+# export EDITOR='/usr/local/bin/nvim'
 
 export LDFLAGS='-L/usr/local/opt/python@3.8/lib'
 export PER5LIB="$HOME/lib/perl5"
