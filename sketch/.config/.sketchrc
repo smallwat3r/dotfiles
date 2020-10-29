@@ -1,4 +1,4 @@
 # .sketchrc
 
-SKETCH_EDITOR=emacs
+SKETCH_EDITOR=emacsclient
 SKETCH_ARCHIVES=$HOME/.local/share/sketch_archives
