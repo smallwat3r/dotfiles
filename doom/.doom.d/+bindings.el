@@ -42,8 +42,7 @@
   ;; Open
   (:prefix "o"
    :desc "Reveal in Finder"         "o" #'+macos/reveal-in-finder
-   :desc "Reveal project in Finder" "O" #'+macos/reveal-project-in-finder
-   :desc "Kubernetes"               "K" #'kubernetes-overview)
+   :desc "Reveal project in Finder" "O" #'+macos/reveal-project-in-finder)
 
   ;; Errors
   (:prefix ("e" . "errors")
@@ -52,6 +51,13 @@
    :desc "Flycheck previous error"  "p" #'flycheck-previous-error
    :desc "Flycheck explain error"   "e" #'flycheck-explain-error-at-point
    :desc "Flycheck verify setup"    "v" #'flycheck-verify-setup)
+
+  ;; Kubernetes
+  (:prefix ("k" . "kubernetes")
+   :desc "Overview"                 "o" #'kubernetes-overview
+   :desc "Set namespace"            "n" #'kubernetes-set-namespace
+   :desc "Describe"                 "d" #'kubernetes-describe-pod
+   :desc "Exec into"                "e" #'kubernetes-exec-into)
 
   ;; Search
   (:prefix "s"
