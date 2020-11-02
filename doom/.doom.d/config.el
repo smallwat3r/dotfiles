@@ -226,34 +226,37 @@
  evil-visual-state-tag   (propertize "V" 'face '((:foreground "red")))
  evil-operator-state-tag (propertize "O" 'face '((:foreground "sandy brown"))))
 
-;; Mini-modeline
-;; Merge modeline with the mini-buffer
+;; Mini-modeline (merge modeline with the mini-buffer)
 (use-package! mini-modeline
   :config
-  (setq mini-modeline-display-gui-line nil)
+  (setq mini-modeline-display-gui-line nil
+        mini-modeline-enhance-visual nil)
   (setq mini-modeline-r-format
         (list
          '(:eval (propertize                ; Current filename
-                  " %b" 'help-echo (buffer-file-name)))
+                  " %b"
+                  'help-echo (buffer-file-name)))
          '(vc-mode vc-mode)                 ; Current git branch
          " "
          (propertize "%02l,%02c "           ; Current line and column
                      'help-echo "Line and column index")
          '(:eval (propertize                ; Major Mode
-                  "%m" 'help-echo "Buffer major mode"))
+                  "%m"
+                  'help-echo "Buffer major mode"))
          '(:eval (when (buffer-modified-p)  ; Modified?
                    (propertize
-                    " [Mod]" 'face 'font-lock-warning-face
-                    'help-echo "Buffer has been modified")))
+                    " [Mod]"
+                    'help-echo "Buffer has been modified"
+                    'face 'font-lock-warning-face)))
          '(:eval (when buffer-read-only     ; Read only?
                    (propertize
-                    " [RO]" 'face 'font-lock-type-face
-                    'help-echo "Buffer is read-only")))
+                    " [RO]"
+                    'help-echo "Buffer is read-only"
+                    'face 'font-lock-type-face)))
          '(:eval (propertize                ; Time
                   (format-time-string " %H:%M ")
-                  'help-echo
-                  (concat (format-time-string "%c; ")
-                          (emacs-uptime "Uptime: %hh"))))
+                  'help-echo (concat (format-time-string "%c; ")
+                                     (emacs-uptime "Uptime: %hh"))))
          '(:eval evil-mode-line-tag)))      ; Evil mode
 
   (mini-modeline-mode t))
