@@ -39,7 +39,7 @@
 ;; Font settings
 (setq
  doom-font (font-spec :family "Hack" :size 13)
- doom-variable-pitch-font (font-spec :family "Verdana" :size 13)
+ doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
  doom-big-font-increment 1)
 
 ;; Line spacing
@@ -79,6 +79,9 @@
 
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
+
+;; Disable global word-wrap in emacs-lisp-mode
+(add-to-list '+word-wrap-disabled-modes 'vterm-mode)
 
 (setq visual-line-fringe-indicators
       '(left-curly-arrow right-curly-arrow))  ; show wrap indicators
