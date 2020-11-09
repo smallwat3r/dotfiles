@@ -46,6 +46,11 @@ fonts: homebrew ## Install fonts
 	@[ -f $(FONTS_DIR)/AnonymousPro-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Bold.ttf $(FONTS_DIR)
 	@[ -f $(FONTS_DIR)/AnonymousPro-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Italic.ttf $(FONTS_DIR)
 	@[ -f $(FONTS_DIR)/AnonymousPro-BoldItalic.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-BoldItalic.ttf $(FONTS_DIR)
+	@echo '*** Installing Hack (modified) font'
+	@[ -f $(FONTS_DIR)/Hack-Regular.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-Regular.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Hack-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-Bold.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Hack-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-Italic.ttf $(FONTS_DIR)
+	@[ -f $(FONTS_DIR)/Hack-BoldItalic.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-BoldItalic.ttf $(FONTS_DIR)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
