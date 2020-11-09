@@ -80,7 +80,7 @@
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
 
-;; Disable global word-wrap in emacs-lisp-mode
+;; Disable global word-wrap in vterm-mode
 (add-to-list '+word-wrap-disabled-modes 'vterm-mode)
 
 (setq visual-line-fringe-indicators
