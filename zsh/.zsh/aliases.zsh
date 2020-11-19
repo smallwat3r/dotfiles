@@ -80,6 +80,12 @@ alias \
   gp="git push" \
   gs="git status"
 
+# Kube
+alias \
+  k="kubectl" \
+  kt="kubetail" \
+  kns="kubectl get namespaces"
+
 # Misc stuff
 alias \
   batt="bluebatt" \
@@ -94,5 +100,4 @@ alias \
   pubip="curl http://ipecho.net/plain; echo" \
   sk="sketch" \
   ww="vifm ." \
-  mongo-docker="docker run -d -p 27000:27017 -v $HOME/.dockervolumes/mongo/db:/data/db mongo" \
-  kube="kubectl"
+  mongo-docker="docker run -d -p 27000:27017 -v $HOME/.dockervolumes/mongo/db:/data/db mongo"

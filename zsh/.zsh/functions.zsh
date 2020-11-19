@@ -1,6 +1,15 @@
 # Zsh functions
 # ~~~~~~~~~~~~~
 
+# {{{1 (checkdns) check DNS
+
+checkdns() {
+  dig @$(dig @8.8.8.8 $1 ns +short | head -n1) $1 ANY +noall +answer
+  ping -c1 $1
+}
+
+# }}}1
+
 # {{{1 (cr) cd root of git repo
 
 cr() {
