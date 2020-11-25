@@ -76,7 +76,7 @@ install-doom: ## Install doom emacs
 
 xcode-cli: ## Install xcode command line tools
 	@xcode-select --install >/dev/null 2>&1 && \
-		echo '*** Installing xcode cli tools... Please follow the instructions in the GUI' || \
+		echo '*** Installing xcode cli tools... Please follow the instructions from the GUI' || \
 		exit 0
 
 taps: homebrew ## Install brew taps
