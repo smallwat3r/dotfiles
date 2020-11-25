@@ -10,5 +10,6 @@
 (package! deadgrep)
 (package! evil-surround)
 (package! info-colors)
-(package! modus-vivendi-theme)
-(package! modus-operandi-theme)
+
+;; (package! modus-vivendi-theme)
+;; (package! modus-operandi-theme)

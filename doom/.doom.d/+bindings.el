@@ -31,7 +31,9 @@
   ";q"       #'evil-save-and-close
   ";x"       #'evil-save-and-close
   ";vs"      #'split-window-horizontally
-  ";sp"      #'split-window-vertically)
+  ";vw"      #'evil-window-vnew
+  ";sp"      #'split-window-vertically
+  ";sw"      #'evil-window-new)
 
  (:leader
 
