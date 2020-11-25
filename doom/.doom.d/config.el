@@ -6,28 +6,28 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
+  ;; Operandi/Vivendi themes
+  ;; (use-package! modus-vivendi-theme
+  ;;   :init
+  ;;   (delq! t custom-theme-load-path)  ; do not show the default themes
+  ;;   :config
+  ;;   (setq modus-vivendi-theme-slanted-constructs t
+  ;;         modus-vivendi-theme-bold-constructs t
+  ;;         modus-vivendi-theme-completions 'opinionated
+  ;;         modus-vivendi-theme-faint-syntax t)
+  ;;   (load-theme 'modus-vivendi t))
+  ;; (use-package! modus-operandi-theme
+  ;;   :init
+  ;;   (delq! t custom-theme-load-path)  ; do not show the default themes
+  ;;   :config
+  ;;   (setq modus-operandi-theme-slanted-constructs t
+  ;;         modus-operandi-theme-bold-constructs t
+  ;;         modus-operandi-theme-completions 'opinionated)
+  ;;   (load-theme 'modus-operandi t))
+
   ;; Size
   (add-to-list 'default-frame-alist '(width  . 106))
-  (add-to-list 'default-frame-alist '(height . 64))
-
-  ;; Theme
-  (use-package! modus-vivendi-theme
-    :init
-    (delq! t custom-theme-load-path)  ; do not show the default themes
-    :config
-    (setq modus-vivendi-theme-slanted-constructs t
-          modus-vivendi-theme-bold-constructs t
-          modus-vivendi-theme-completions 'opinionated
-          modus-vivendi-theme-faint-syntax t)
-    (load-theme 'modus-vivendi t)))
-;; (use-package! modus-operandi-theme
-;;   :init
-;;   (delq! t custom-theme-load-path)  ; do not show the default themes
-;;   :config
-;;   (setq modus-operandi-theme-slanted-constructs t
-;;         modus-operandi-theme-bold-constructs t
-;;         modus-operandi-theme-completions 'opinionated)
-;;   (load-theme 'modus-operandi t)))
+  (add-to-list 'default-frame-alist '(height . 64)))
 
 ;; Don't show line numbers by default
 (setq display-line-numbers-type nil)
@@ -36,9 +36,12 @@
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
+;; Doom theme
+(setq doom-theme 'doom-one)
+
 ;; Font settings
 (setq
- doom-font (font-spec :family "Anonymous Pro" :size 14)
+ doom-font (font-spec :family "Courier Prime Code" :size 14)
  doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
  doom-big-font-increment 1)
 

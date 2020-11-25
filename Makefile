@@ -41,16 +41,22 @@ symlink: stow ## Symlinks dotfiles using stow
 	@echo '*** Symlinks all set-up'
 
 fonts: homebrew ## Install fonts
+define register_font
+	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
+endef
 	@echo '*** Installing Anonymous Pro fonts'
-	@[ -f $(FONTS_DIR)/AnonymousPro-Regular.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Regular.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/AnonymousPro-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Bold.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/AnonymousPro-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-Italic.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/AnonymousPro-BoldItalic.ttf ] || cp $(CURRENT_DIR)/fonts/AnonymousPro-BoldItalic.ttf $(FONTS_DIR)
-	@echo '*** Installing Hack (modified) font'
-	@[ -f $(FONTS_DIR)/Hack-Regular.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-Regular.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Hack-Bold.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-Bold.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Hack-Italic.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-Italic.ttf $(FONTS_DIR)
-	@[ -f $(FONTS_DIR)/Hack-BoldItalic.ttf ] || cp $(CURRENT_DIR)/fonts/Hack-BoldItalic.ttf $(FONTS_DIR)
+	$(call register_font,AnonymousPro-Regular)
+	$(call register_font,AnonymousPro-Bold)
+	$(call register_font,AnonymousPro-Italic)
+	$(call register_font,AnonymousPro-BoldItalic)
+	@echo '*** Installing Hack (modified) fonts'
+	$(call register_font,Hack-Regular)
+	$(call register_font,Hack-Bold)
+	$(call register_font,Hack-Italic)
+	$(call register_font,Hack-BoldItalic)
+	@echo '*** Installing Courier Prime Code fonts'
+	$(call register_font,Courier-Prime-Code)
+	$(call register_font,Courier-Prime-Code-Italic)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
