@@ -37,7 +37,7 @@
       user-mail-address "mpetiteau.pro@gmail.com")
 
 ;; Doom theme
-(setq doom-theme 'doom-molokai)
+(setq doom-theme 'doom-one)
 
 ;; Font settings
 (setq
