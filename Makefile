@@ -40,7 +40,7 @@ symlink: stow ## Symlinks dotfiles using stow
 		-vv -t $(HOME)
 	@echo '*** Symlinks all set-up'
 
-fonts: homebrew ## Install fonts
+fonts: ## Install fonts
 define register_font
 	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
 endef
