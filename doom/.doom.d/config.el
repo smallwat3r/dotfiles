@@ -38,12 +38,12 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "MonacoB2" :size 13)
+ doom-font (font-spec :family "Anonymous Pro" :size 14)
  doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
  doom-big-font-increment 1)
 
 ;; Line spacing
-(setq-default line-spacing 0)
+(setq-default line-spacing 1)
 
 ;; Overwrite theme stuff
 (custom-set-faces
