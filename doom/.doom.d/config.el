@@ -101,8 +101,6 @@
   (set-face-foreground 'git-gutter-fr:added    "#87ff87")
   (set-face-foreground 'git-gutter-fr:deleted  "#ff005f"))
 
-
-
 ;; Set up default projects folders
 (after! projectile
   (setq projectile-ignored-projects
