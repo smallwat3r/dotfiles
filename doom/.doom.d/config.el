@@ -101,6 +101,8 @@
   (set-face-foreground 'git-gutter-fr:added    "#87ff87")
   (set-face-foreground 'git-gutter-fr:deleted  "#ff005f"))
 
+
+
 ;; Set up default projects folders
 (after! projectile
   (setq projectile-ignored-projects
@@ -288,18 +290,6 @@
   :config
   (setq org-journal-dir "~/org/journal/"
         org-journal-date-format "%A, %d %B %Y"))
-
-;; Surrounds vim-bindings
-(use-package! evil-surround
-  :config
-  (global-evil-surround-mode 1))
-
-;; Extra coloring on manual pages
-(use-package! info-colors
-  :commands (info-colors-fontify-node))
-
-(add-hook 'Info-selection-hook 'info-colors-fontify-node)
-(add-hook 'Info-mode-hook #'mixed-pitch-mode)
 
 ;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
 ;; Thanks @Flo from the doom emacs discord

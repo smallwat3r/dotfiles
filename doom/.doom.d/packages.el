@@ -8,8 +8,6 @@
 (package! jinja2-mode)
 (package! dired-narrow)
 (package! deadgrep)
-(package! evil-surround)
-(package! info-colors)
 
 ;; (package! modus-vivendi-theme)
 ;; (package! modus-operandi-theme)
