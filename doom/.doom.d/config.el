@@ -37,16 +37,18 @@
       user-mail-address "mpetiteau.pro@gmail.com")
 
 ;; Doom theme
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-tomorrow-night)
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Courier Prime Code" :size 14)
+ ;; doom-font (font-spec :family "Courier Prime Code" :size 14)
+ ;; doom-font (font-spec :family "Monoid" :size 10)
+ doom-font (font-spec :family "Mononoki" :size 13)
  doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
  doom-big-font-increment 1)
 
 ;; Line spacing
-(setq-default line-spacing 1)
+(setq-default line-spacing 0)
 
 ;; Overwrite theme stuff
 (custom-set-faces
