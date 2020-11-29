@@ -42,8 +42,8 @@
 ;; Font settings
 (setq
  ;; doom-font (font-spec :family "Courier Prime Code" :size 14)
- ;; doom-font (font-spec :family "Monoid" :size 10)
- doom-font (font-spec :family "Mononoki" :size 13)
+ ;; doom-font (font-spec :family "Mononoki" :size 13)
+ doom-font (font-spec :family "Luculent 12" :size 12)
  doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
  doom-big-font-increment 1)
 

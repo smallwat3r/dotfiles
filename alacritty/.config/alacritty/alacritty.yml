@@ -31,10 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: Courier Prime Code
+    family: Luculent 12
     style: Regular
 
-  size: 14
+  size: 12
 
   offset:
     x: 0
