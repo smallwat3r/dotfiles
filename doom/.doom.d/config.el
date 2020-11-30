@@ -54,6 +54,7 @@
 (custom-set-faces
  '(default ((t (:background "#000000"))))  ; force black bg
  '(mode-line ((t (:background nil))))
+ '(hl-line ((t (:background nil))))
  '(fringe ((t (:foreground "#00afaf"))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
