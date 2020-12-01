@@ -117,6 +117,9 @@
 (add-hook! 'writeroom-mode-hook
   (text-scale-set (if writeroom-mode 1 0)))
 
+;; Activate writeroom on text-mode stuff
+(add-hook! 'text-mode-hook writeroom-mode)
+
 ;; OS executables
 (use-package! exec-path-from-shell
   :if (memq window-system '(mac ns x))
