@@ -53,9 +53,9 @@
 ;; Overwrite theme stuff
 (custom-set-faces
  '(default ((t (:background "#000000"))))  ; force black bg
- '(mode-line ((t (:background nil))))
+ '(mode-line ((t (:background nil :box nil))))
  '(hl-line ((t (:background nil))))
- '(fringe ((t (:foreground "#00afaf"))))
+ '(fringe ((t (:background nil))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
 
@@ -220,9 +220,8 @@
       (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
       (setq flycheck-pylintrc "~/.config/pylintrc"))))
 
-;; Elisp shell
+;; Elisp shell aliases
 (after! eshell
-  ;; Aliases
   (set-eshell-alias!
    "d" "dired $1"
    "c" "clear"
@@ -243,8 +242,8 @@
 ;; Mini-modeline (merge modeline with the mini-buffer)
 (use-package! mini-modeline
   :config
-  (setq mini-modeline-display-gui-line nil
-        mini-modeline-enhance-visual nil)
+  (setq mini-modeline-enhance-visual nil)
+  (setq mini-modeline-display-gui-line t)
   (setq mini-modeline-r-format
         (list
          '(:eval (propertize                ; Current filename
