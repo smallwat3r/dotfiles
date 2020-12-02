@@ -117,7 +117,7 @@
 (add-hook! 'writeroom-mode-hook
   (text-scale-set (if writeroom-mode 1 0)))
 
-;; Activate writeroom on text-mode stuff
+;; Auto-activate writeroom on text-mode stuff
 (add-hook! 'text-mode-hook writeroom-mode)
 
 ;; OS executables
