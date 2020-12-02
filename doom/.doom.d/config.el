@@ -37,7 +37,7 @@
       user-mail-address "mpetiteau.pro@gmail.com")
 
 ;; Doom theme
-;; (setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-dark+)
 
 ;; Font settings
 (setq
@@ -153,7 +153,7 @@
         +ivy-buffer-preview t))
 
 ;; Dired file explorer
-(after! dired
+(after! ired
   (setq delete-by-moving-to-trash t)
   (setq dired-listing-switches "-lat"))  ; sort by date
 
