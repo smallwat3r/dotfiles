@@ -153,7 +153,7 @@
         +ivy-buffer-preview t))
 
 ;; Dired file explorer
-(after! ired
+(after! dired
   (setq delete-by-moving-to-trash t)
   (setq dired-listing-switches "-lat"))  ; sort by date
 
