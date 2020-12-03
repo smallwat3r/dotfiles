@@ -243,7 +243,7 @@
 (use-package! mini-modeline
   :config
   (setq mini-modeline-enhance-visual nil)
-  (setq mini-modeline-display-gui-line t)
+  (setq mini-modeline-display-gui-line nil)
   (setq mini-modeline-r-format
         (list
          '(:eval (propertize                ; Current filename
