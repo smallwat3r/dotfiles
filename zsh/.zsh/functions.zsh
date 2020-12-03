@@ -11,6 +11,19 @@ checkdns() {
     ping -c1 "$1"
   fi
 }
+# }}}1
+# {{{1 (mpods) monitor kube pods memory from a namespace
+
+mpods() {
+  if [[ -z "$1" ]]; then
+    printf 'Please specify a namespace.\n'
+  else
+    while true; do
+      kubectl -n "$1" top pods
+      sleep 1
+    done
+  fi
+}
 
 # }}}1
 # {{{1 (cr) cd root of git repo
