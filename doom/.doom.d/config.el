@@ -53,7 +53,7 @@
 ;; Overwrite theme stuff
 (custom-set-faces
  '(default ((t (:background "#000000"))))  ; force black bg
- '(mode-line ((t (:background nil :box nil))))
+ '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
  '(hl-line ((t (:background nil))))
  '(fringe ((t (:background nil))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
