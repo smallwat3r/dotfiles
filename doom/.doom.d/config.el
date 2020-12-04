@@ -39,8 +39,22 @@
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
+;; Frame title
+(setq frame-title-format
+      '((:eval
+         (if (buffer-file-name)
+             (replace-regexp-in-string
+              ".*/[0-9]*-?" " "
+              (subst-char-in-string ?_ ? buffer-file-name)) "%b"))
+        (:eval
+         (if (buffer-modified-p) " (+)"))))
+
+;; Hide icon from frame
+(setq ns-use-proxy-icon nil)
+
 ;; Doom theme
 ;; (setq doom-theme 'doom-dark+)
+(setq doom-theme 'doom-one)
 
 ;; Font settings
 (setq
@@ -48,6 +62,7 @@
  ;; doom-font (font-spec :family "Mononoki" :size 13)
  ;; doom-font (font-spec :family "Luculent 12" :size 12)
  doom-font (font-spec :family "Hack" :size 12)
+ doom-serif-font (font-spec :family "Courier Prime Code" :size: 12)
  doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
  doom-big-font-increment 1)
 
@@ -174,6 +189,7 @@
   :after dired
   :config
   (map! :map dired-mode-map :n "/" 'dired-narrow-fuzzy))
+
 
 ;; Vterm
 (after! vterm
