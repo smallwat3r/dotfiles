@@ -153,6 +153,8 @@
   (unless (or (eq this-command 'self-insert-command)
               (eq this-command 'evil-backward-char)
               (eq this-command 'evil-forward-char)
+              (eq this-command 'scroll-up-line)
+              (eq this-command 'scroll-down-line)
               (eq this-command 'previous-line)
               (eq this-command 'next-line))
     (message "%s" this-command)))
