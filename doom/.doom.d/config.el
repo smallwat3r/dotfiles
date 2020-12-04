@@ -148,8 +148,11 @@
   (exec-path-from-shell-initialize))
 
 ;; Show command names in minibuffer as they are being used
+;; Do not show obvious command names tho
 (defun my-echo-command-name-hook()
   (unless (or (eq this-command 'self-insert-command)
+              (eq this-command 'evil-backward-char)
+              (eq this-command 'evil-forward-char)
               (eq this-command 'previous-line)
               (eq this-command 'next-line))
     (message "%s" this-command)))
@@ -190,17 +193,16 @@
   :config
   (map! :map dired-mode-map :n "/" 'dired-narrow-fuzzy))
 
-
 ;; Vterm
 (after! vterm
   ;; Auto-quit when exit
   (setq vterm-kill-buffer-on-exit t)
 
   ;; Terminal font settings
-  (add-hook! 'vterm-mode-hook
-    (lambda ()
-      (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
-      (buffer-face-mode t)))
+  ;; (add-hook! 'vterm-mode-hook
+  ;;   (lambda ()
+  ;;     (set (make-local-variable 'buffer-face-mode-face 'variable-pitch)
+  ;;     (buffer-face-mode t)))
 
   ;; Cursor behaviour when hitting ESC in evil mode
   (defun evil-collection-vterm-escape-stay ()
