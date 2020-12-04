@@ -5,7 +5,6 @@
  "C-k"       #'scroll-down-line
 
  (:map override
-
   "S-C-h"    #'shrink-window-horizontally  ; window sizes
   "S-C-l"    #'enlarge-window-horizontally
   "S-C-k"    #'enlarge-window
@@ -27,7 +26,8 @@
   ";vs"      #'split-window-horizontally
   ";vw"      #'evil-window-vnew
   ";sp"      #'split-window-vertically
-  ";sw"      #'evil-window-new)
+  ";sw"      #'evil-window-new
+  ";,"       #'evil-ex-nohighlight)
 
  (:leader
   (:prefix "b"  ; buffers
