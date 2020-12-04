@@ -32,18 +32,22 @@
 ;; Don't show line numbers by default
 (setq display-line-numbers-type nil)
 
+;; UK keyboard hash key support
+(define-key key-translation-map (kbd "M-3") (kbd "#"))
+
 ;; Personnal info
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
 ;; Doom theme
-(setq doom-theme 'doom-dark+)
+;; (setq doom-theme 'doom-dark+)
 
 ;; Font settings
 (setq
  ;; doom-font (font-spec :family "Courier Prime Code" :size 14)
  ;; doom-font (font-spec :family "Mononoki" :size 13)
- doom-font (font-spec :family "Luculent 12" :size 12)
+ ;; doom-font (font-spec :family "Luculent 12" :size 12)
+ doom-font (font-spec :family "Hack" :size 12)
  doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
  doom-big-font-increment 1)
 
@@ -52,7 +56,7 @@
 
 ;; Overwrite theme stuff
 (custom-set-faces
- '(default ((t (:background "#000000"))))  ; force black bg
+ ;; '(default ((t (:background "#000000"))))  ; force black bg
  '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
  '(hl-line ((t (:background nil))))
  '(fringe ((t (:background nil))))
@@ -128,6 +132,15 @@
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
+;; Show command names in minibuffer as they are being used
+(defun my-echo-command-name-hook()
+  (unless (or (eq this-command 'self-insert-command)
+              (eq this-command 'previous-line)
+              (eq this-command 'next-line))
+    (message "%s" this-command)))
+
+(add-hook! 'post-command-hook 'my-echo-command-name-hook)
+
 ;; Completion stuff
 (after! company
   (setq company-idle-delay 0.2
@@ -177,22 +190,16 @@
   (defun evil-collection-vterm-escape-stay ()
     (setq-local evil-move-cursor-back nil))
 
-  (add-hook! 'vterm-mode-hook #'evil-collection-vterm-escape-stay)
-
-  ;; Use of C-c is needed in the terminal, so prioritise it
-  (evil-define-key 'insert vterm-mode-map (kbd "C-c")      #'vterm--self-insert)
-
-  ;; Scroll
-  (evil-define-key 'insert vterm-mode-map (kbd "C-j")      #'scroll-up-line)
-  (evil-define-key 'insert vterm-mode-map (kbd "C-k")      #'scroll-down-line)
-  (evil-define-key 'normal vterm-mode-map (kbd "C-j")      #'scroll-up-line)
-  (evil-define-key 'normal vterm-mode-map (kbd "C-k")      #'scroll-down-line)
+  ;; Scrolling
+  (evil-define-key 'insert vterm-mode-map (kbd "C-j") 'scroll-up-line)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-k") 'scroll-down-line)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-j") 'scroll-up-line)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-k") 'scroll-down-line)
 
   ;; Insert mode
-  (evil-define-key 'normal vterm-mode-map (kbd ":")        #'evil-insert-resume)
-  (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
-  (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
-  (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "i")        'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "o")        'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "<return>") 'evil-insert-resume)
 
   ;; Delete the previous word
   (define-key vterm-mode-map (kbd "<C-backspace>")

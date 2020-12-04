@@ -7,7 +7,9 @@
 (package! kubernetes-evil)
 (package! jinja2-mode)
 (package! dired-narrow)
-(package! deadgrep)
+(package! ripgrep)
+
+;; (package! deadgrep)
 
 ;; (package! modus-vivendi-theme)
 ;; (package! modus-operandi-theme)
