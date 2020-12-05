@@ -63,7 +63,7 @@
  ;; doom-font (font-spec :family "Luculent 12" :size 12)
  doom-font (font-spec :family "Hack" :size 12)
  doom-serif-font (font-spec :family "Courier Prime Code" :size: 12)
- doom-variable-pitch-font (font-spec :family "Open Sans" :size 13)
+ doom-variable-pitch-font (font-spec :family "Open Sans" :size 12)
  doom-big-font-increment 1)
 
 ;; Line spacing
@@ -110,9 +110,9 @@
 (add-to-list '+word-wrap-disabled-modes 'vterm-mode)
 
 (setq visual-line-fringe-indicators
-      '(left-curly-arrow right-curly-arrow))  ; show wrap indicators
+      '(nil right-curly-arrow))  ; show right continuation indicator
 
-;; Delete all whitespace on save
+;; Delete all whitespace on save, except on markdown
 (add-hook! 'before-save-hook
   (lambda ()
     (unless (eq major-mode 'markdown-mode)
@@ -127,7 +127,7 @@
 ;; Set up default projects folders
 (after! projectile
   (setq projectile-ignored-projects
-        '("~/" "/tmp"))
+        '("~/" "/tmp" "~/Downloads"))
   (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
@@ -201,10 +201,10 @@
   (setq vterm-kill-buffer-on-exit t)
 
   ;; Terminal font settings
-  ;; (add-hook! 'vterm-mode-hook
-  ;;   (lambda ()
-  ;;     (set (make-local-variable 'buffer-face-mode-face 'variable-pitch)
-  ;;     (buffer-face-mode t)))
+  ;; (add-hook 'vterm-mode-hook
+  ;;           (lambda ()
+  ;;             (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
+  ;;             (buffer-face-mode t)))
 
   ;; Cursor behaviour when hitting ESC in evil mode
   (defun evil-collection-vterm-escape-stay ()
@@ -241,8 +241,7 @@
 
 ;; Static code analysis
 (after! flycheck
-  ;; Python settings
-  (add-hook! 'python-mode-hook
+  (add-hook! 'python-mode-hook  ; python stuff
     (lambda ()
       (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
       (setq flycheck-pylintrc "~/.config/pylintrc"))))
@@ -254,6 +253,7 @@
    "c" "clear"
    "sl" "ls"
    "emacs" "find-file $1"
+   "e" "find-file $1"
    "qq" "exit"))
 
 ;; Evil vim modes
