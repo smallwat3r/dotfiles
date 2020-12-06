@@ -6,24 +6,16 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
-  ;; Operandi/Vivendi themes
-  ;; (use-package! modus-vivendi-theme
-  ;;   :init
-  ;;   (delq! t custom-theme-load-path)  ; do not show the default themes
-  ;;   :config
-  ;;   (setq modus-vivendi-theme-slanted-constructs t
-  ;;         modus-vivendi-theme-bold-constructs t
-  ;;         modus-vivendi-theme-completions 'opinionated
-  ;;         modus-vivendi-theme-faint-syntax t)
-  ;;   (load-theme 'modus-vivendi t))
-  ;; (use-package! modus-operandi-theme
-  ;;   :init
-  ;;   (delq! t custom-theme-load-path)  ; do not show the default themes
-  ;;   :config
-  ;;   (setq modus-operandi-theme-slanted-constructs t
-  ;;         modus-operandi-theme-bold-constructs t
-  ;;         modus-operandi-theme-completions 'opinionated)
-  ;;   (load-theme 'modus-operandi t))
+  ;; Modus vivendi theme
+  (use-package! modus-vivendi-theme
+    :init
+    (delq! t custom-theme-load-path)  ; do not show the default themes
+    :config
+    (setq modus-vivendi-theme-slanted-constructs t
+          modus-vivendi-theme-bold-constructs t
+          modus-vivendi-theme-completions 'opinionated
+          modus-vivendi-theme-faint-syntax t)
+    (load-theme 'modus-vivendi t))
 
   ;; Size
   (add-to-list 'default-frame-alist '(width  . 106))
@@ -52,20 +44,13 @@
 ;; Hide icon from frame
 (setq ns-use-proxy-icon nil)
 
-;; Doom theme
-;; (setq doom-theme 'doom-dark+)
-(setq doom-theme 'doom-one)
-(delq! t custom-theme-load-path)
-
 ;; Font settings
 (setq
  ;; doom-font (font-spec :family "Courier Prime Code" :size 14)
  ;; doom-font (font-spec :family "Mononoki" :size 13)
- ;; doom-font (font-spec :family "Luculent 12" :size 12)
- doom-font (font-spec :family "Hack" :size 12)
- doom-serif-font (font-spec :family "Courier Prime Code" :size: 12)
- doom-variable-pitch-font (font-spec :family "Open Sans" :size 12)
- doom-big-font-increment 1)
+ doom-font (font-spec :family "Luculent 12" :size 12)
+ doom-serif-font (font-spec :family "Courier New" :size: 12)
+ doom-variable-pitch-font (font-spec :family "Open Sans" :size 12))
 
 ;; Line spacing
 (setq-default line-spacing 0)
@@ -74,7 +59,8 @@
 (custom-set-faces
  ;; '(default ((t (:background "#000000"))))  ; force black bg
  '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
- '(hl-line ((t (:background nil))))
+ ;; '(hl-line ((t (:background nil))))
+ '(hl-line ((t (:background "#000000"))))
  '(fringe ((t (:background nil))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
@@ -201,10 +187,10 @@
   ;; Auto-quit when exit
   (setq vterm-kill-buffer-on-exit t)
 
-  ;; Terminal font settings
+  ;; ;; Terminal font settings
   ;; (add-hook 'vterm-mode-hook
   ;;           (lambda ()
-  ;;             (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
+  ;;             (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch-serif)
   ;;             (buffer-face-mode t)))
 
   ;; Cursor behaviour when hitting ESC in evil mode

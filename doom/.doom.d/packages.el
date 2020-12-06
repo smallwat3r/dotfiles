@@ -8,8 +8,5 @@
 (package! jinja2-mode)
 (package! dired-narrow)
 (package! ripgrep)
-
-;; (package! deadgrep)
-
-;; (package! modus-vivendi-theme)
+(package! modus-vivendi-theme)
 ;; (package! modus-operandi-theme)
