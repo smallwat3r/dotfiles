@@ -12,7 +12,7 @@
     (delq! t custom-theme-load-path)  ; do not show the default themes
     :config
     (setq modus-vivendi-theme-slanted-constructs t
-          modus-vivendi-theme-bold-constructs t
+          ;; modus-vivendi-theme-bold-constructs t
           modus-vivendi-theme-completions 'opinionated
           modus-vivendi-theme-faint-syntax t)
     (load-theme 'modus-vivendi t))
@@ -46,11 +46,10 @@
 
 ;; Font settings
 (setq
- ;; doom-font (font-spec :family "Courier Prime Code" :size 14)
- ;; doom-font (font-spec :family "Mononoki" :size 13)
- doom-font (font-spec :family "Luculent 12" :size 12)
- doom-serif-font (font-spec :family "Courier New" :size: 12)
- doom-variable-pitch-font (font-spec :family "Open Sans" :size 12))
+ doom-font (font-spec :family "Monaco Nerd Font" :size 11)
+ doom-serif-font (font-spec :family "Courier New")
+ doom-variable-pitch-font (font-spec :family "Verdana")
+ doom-themes-treemacs-enable-variable-pitch nil)
 
 ;; Line spacing
 (setq-default line-spacing 0)
@@ -123,8 +122,8 @@
 (add-hook! 'writeroom-mode-hook
   (text-scale-set (if writeroom-mode 1 0)))
 
-;; Auto-activate writeroom on text-mode stuff
-(add-hook! 'text-mode-hook writeroom-mode)
+;; ;; Auto-activate writeroom on text-mode
+;; (add-hook! 'text-mode-hook writeroom-mode)
 
 ;; OS executables
 (use-package! exec-path-from-shell
@@ -134,8 +133,8 @@
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
-;; Show command names in minibuffer as they are being used
-;; Do not show obvious command names tho
+;; ;; Show command names in minibuffer as they are being used
+;; ;; Do not show obvious command names tho
 ;; (defun my-echo-command-name-hook()
 ;;   (unless (or (eq this-command 'self-insert-command)
 ;;               (eq this-command 'evil-backward-char)
@@ -311,7 +310,7 @@
         org-journal-date-format "%A, %d %B %Y"))
 
 ;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
-;; Thanks @Flo from the doom emacs discord
+;; credits to @Flo from the doom emacs discord channel
 (after! evil
   (require 'evil-textobj-anyblock)
   (evil-define-text-object my-evil-textobj-anyblock-inner-quote
@@ -337,8 +336,7 @@
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
 
-;; Insert hex color
-;; https://emacs.stackexchange.com/a/5583
+;; Insert hex color (https://emacs.stackexchange.com/a/5583)
 (defun zz/insert-color-hex (&optional arg)
   "Select a color and insert its 24-bit hexadecimal RGB format.
 
