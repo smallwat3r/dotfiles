@@ -44,7 +44,9 @@
   (:prefix ("k" . "kubernetes")  ; kubernetes
    :desc "Overview"                 "o" #'kubernetes-overview
    :desc "Set namespace"            "n" #'kubernetes-set-namespace
-   :desc "Describe"                 "d" #'kubernetes-describe-pod
+   :desc "Display service"          "s" #'kubernetes-display-service
+   :desc "Display deployment"       "d" #'kubernetes-display-deployment
+   :desc "Describe"                 "D" #'kubernetes-describe-pod
    :desc "Exec into"                "e" #'kubernetes-exec-into)
   (:prefix "s"  ; search
    :desc "Ripgrep"                  "g" #'ripgrep-regexp))
