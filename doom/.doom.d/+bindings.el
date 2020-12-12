@@ -48,6 +48,9 @@
    :desc "Display deployment"       "d" #'kubernetes-display-deployment
    :desc "Describe"                 "D" #'kubernetes-describe-pod
    :desc "Exec into"                "e" #'kubernetes-exec-into)
+  (:prefix ("d" . "docker")  ; docker
+   :desc "Images"                   "i" #'docker-images
+   :desc "Exec into"                "e" #'docker-container-shell)
   (:prefix "s"  ; search
    :desc "Ripgrep"                  "g" #'ripgrep-regexp))
 
