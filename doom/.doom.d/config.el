@@ -133,17 +133,16 @@
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
-;; ;; Show command names in minibuffer as they are being used
-;; ;; Do not show obvious command names tho
-;; (defun my-echo-command-name-hook()
-;;   (unless (or (eq this-command 'self-insert-command)
-;;               (eq this-command 'evil-backward-char)
-;;               (eq this-command 'evil-forward-char)
-;;               (eq this-command 'scroll-up-line)
-;;               (eq this-command 'scroll-down-line)
-;;               (eq this-command 'previous-line)
-;;               (eq this-command 'next-line))
-;;     (message "%s" this-command)))
+;; Function to command names in minibuffer as they are being used, hide obvious commands
+(defun my-echo-command-name-hook()
+  (unless (or (eq this-command 'self-insert-command)
+              (eq this-command 'evil-backward-char)
+              (eq this-command 'evil-forward-char)
+              (eq this-command 'scroll-up-line)
+              (eq this-command 'scroll-down-line)
+              (eq this-command 'previous-line)
+              (eq this-command 'next-line))
+    (message "%s" this-command)))
 
 ;; (add-hook! 'post-command-hook 'my-echo-command-name-hook)
 
