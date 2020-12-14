@@ -6,17 +6,6 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
-  ;; Modus vivendi theme
-  (use-package! modus-vivendi-theme
-    :init
-    (delq! t custom-theme-load-path)  ; do not show the default themes
-    :config
-    (setq modus-vivendi-theme-slanted-constructs t
-          ;; modus-vivendi-theme-bold-constructs t
-          modus-vivendi-theme-completions 'opinionated
-          modus-vivendi-theme-faint-syntax t)
-    (load-theme 'modus-vivendi t))
-
   ;; Size
   (add-to-list 'default-frame-alist '(width  . 106))
   (add-to-list 'default-frame-alist '(height . 64)))
@@ -43,6 +32,17 @@
 
 ;; Hide icon from frame
 (setq ns-use-proxy-icon nil)
+
+;; Modus vivendi theme
+(use-package! modus-vivendi-theme
+  :init
+  (delq! t custom-theme-load-path)  ; do not show the default themes
+  :config
+  (setq modus-vivendi-theme-slanted-constructs t
+        ;; modus-vivendi-theme-bold-constructs t
+        modus-vivendi-theme-completions 'opinionated
+        modus-vivendi-theme-faint-syntax t)
+  (load-theme 'modus-vivendi t))
 
 ;; Font settings
 (setq
