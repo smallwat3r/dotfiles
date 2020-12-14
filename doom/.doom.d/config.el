@@ -212,15 +212,15 @@
     (setq-local evil-move-cursor-back nil))
 
   ;; Scrolling
-  (evil-define-key 'insert vterm-mode-map (kbd "C-j") 'scroll-up-line)
-  (evil-define-key 'insert vterm-mode-map (kbd "C-k") 'scroll-down-line)
-  (evil-define-key 'normal vterm-mode-map (kbd "C-j") 'scroll-up-line)
-  (evil-define-key 'normal vterm-mode-map (kbd "C-k") 'scroll-down-line)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'scroll-up-line)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-k") #'scroll-down-line)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-j") #'scroll-up-line)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-k") #'scroll-down-line)
 
   ;; Insert mode
-  (evil-define-key 'normal vterm-mode-map (kbd "i")        'evil-insert-resume)
-  (evil-define-key 'normal vterm-mode-map (kbd "o")        'evil-insert-resume)
-  (evil-define-key 'normal vterm-mode-map (kbd "<return>") 'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
 
   ;; Delete the previous word
   (define-key vterm-mode-map (kbd "<C-backspace>")
