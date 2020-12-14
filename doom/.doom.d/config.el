@@ -69,7 +69,7 @@
  '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
  ;; '(hl-line ((t (:background nil))))
  '(hl-line ((t (:background "#000000"))))
- '(fringe ((t (:background nil))))
+ '(fringe ((t (:foreground "#111111"))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
 
@@ -102,6 +102,17 @@
 
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
+
+;; Whitespace mode
+(global-whitespace-mode +1)
+
+(setq whitespace-style '(trailing tabs newline tab-mark newline-mark))
+(setq whitespace-display-mappings
+      '((newline-mark 10 [?◦ 10])))  ; eol character
+
+(eval-after-load 'whitespace
+  (lambda ()
+    (set-face-attribute 'whitespace-newline nil :foreground "#383838" :background nil)))
 
 ;; Disable global word-wrap in vterm-mode
 (add-to-list '+word-wrap-disabled-modes 'vterm-mode)
