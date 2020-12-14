@@ -157,9 +157,9 @@
 
 ;; (add-hook! 'post-command-hook 'my-echo-command-name-hook)
 
-;; Completion stuff
+;; Completion
 (after! company
-  (setq company-idle-delay 0.2
+  (setq company-idle-delay 0.1
         company-tooltip-limit 10
         company-minimum-prefix-length 2)
 
@@ -176,6 +176,7 @@
   (set-company-backend! '(text-mode markdown-mode gfm-mode)
     '(:seperate company-ispell company-files company-yasnippet)))
 
+;; Ivy
 (after! ivy
   ;; Choose buffer when splitting the window
   (defadvice! prompt-for-buffer (&rest _)
@@ -198,8 +199,7 @@
 
 ;; Vterm
 (after! vterm
-  ;; Auto-quit when exit
-  (setq vterm-kill-buffer-on-exit t)
+  (setq vterm-kill-buffer-on-exit t)  ; kill buffer on exit
 
   ;; ;; Terminal font settings
   ;; (add-hook 'vterm-mode-hook
@@ -217,7 +217,7 @@
   (evil-define-key 'normal vterm-mode-map (kbd "C-j") #'scroll-up-line)
   (evil-define-key 'normal vterm-mode-map (kbd "C-k") #'scroll-down-line)
 
-  ;; Control C behaviour
+  ;; Ctrl-C behaviour
   (evil-define-key 'insert vterm-mode-map (kbd "C-c") #'vterm--self-insert)
 
   ;; Enter in insert mode
