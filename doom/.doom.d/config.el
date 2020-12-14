@@ -84,8 +84,6 @@
   :after '(evil-window-split evil-window-vsplit)
   (+ivy/switch-buffer))
 
-(setq +ivy-buffer-preview t)
-
 ;; My abbreviations
 (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
 (setq save-abbrevs 'silently)
