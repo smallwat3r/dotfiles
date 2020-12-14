@@ -213,20 +213,17 @@ frg() {
 }
 
 # }}}1
-# {{{1 (hs) Ripgrep history
+# {{{1 (hs) Grep history
 
 hs() {
-  history 1 | rg "$@"
+  history 1 | grep "$@"
 }
 
 # }}}1
-# {{{1 (hsu) Ripgrep history (unique matches)
+# {{{1 (hsu) Grep history (unique matches)
 
 hsu() {
-  history 1 |
-    cut -c 8- |
-    sort -u |
-    rg "$@"
+  history 1 | sort -u | grep "$@"
 }
 
 # }}}1
