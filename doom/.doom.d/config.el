@@ -177,7 +177,6 @@
     '(:seperate company-ispell company-files company-yasnippet)))
 
 (after! ivy
-
   ;; Choose buffer when splitting the window
   (defadvice! prompt-for-buffer (&rest _)
     :after '(evil-window-split evil-window-vsplit)
