@@ -217,7 +217,10 @@
   (evil-define-key 'normal vterm-mode-map (kbd "C-j") #'scroll-up-line)
   (evil-define-key 'normal vterm-mode-map (kbd "C-k") #'scroll-down-line)
 
-  ;; Insert mode
+  ;; Control C behaviour
+  (evil-define-key 'insert vterm-mode-map (kbd "C-c") #'vterm--self-insert)
+
+  ;; Enter in insert mode
   (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
   (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
   (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
