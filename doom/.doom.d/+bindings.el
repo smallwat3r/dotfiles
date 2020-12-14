@@ -23,9 +23,9 @@
   ";w"       #'evil-write
   ";q"       #'evil-save-and-close
   ";x"       #'evil-save-and-close
-  ";vs"      #'evil-window-split
+  ";vs"      #'evil-window-vsplit
   ";vw"      #'evil-window-vnew
-  ";sp"      #'evil-window-vsplit
+  ";sp"      #'evil-window-split
   ";sw"      #'evil-window-new
   ";,"       #'evil-ex-nohighlight)
 

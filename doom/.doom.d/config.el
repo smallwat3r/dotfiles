@@ -76,14 +76,6 @@
 ;; Load bindings
 (load! "+bindings")
 
-;; Choose buffer when splitting the window
-(setq evil-vsplit-window-right t
-      evil-split-window-below t)
-
-(defadvice! prompt-for-buffer (&rest _)
-  :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-
 ;; My abbreviations
 (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
 (setq save-abbrevs 'silently)
@@ -96,6 +88,8 @@
 
 ;; Some general settings
 (setq
+ evil-vsplit-window-right t
+ evil-split-window-below t
  default-directory "~/"
  undo-limit 80000000
  evil-want-fine-undo t             ; fine grained undo history
@@ -183,6 +177,12 @@
     '(:seperate company-ispell company-files company-yasnippet)))
 
 (after! ivy
+
+  ;; Choose buffer when splitting the window
+  (defadvice! prompt-for-buffer (&rest _)
+    :after '(evil-window-split evil-window-vsplit)
+    (+ivy/switch-buffer))
+
   (setq ivy-use-virtual-buffers t
         ivy-count-format "(%d/%d) "
         +ivy-buffer-preview t))
