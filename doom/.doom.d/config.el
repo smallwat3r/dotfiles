@@ -51,6 +51,15 @@
  doom-variable-pitch-font (font-spec :family "Verdana")
  doom-themes-treemacs-enable-variable-pitch nil)
 
+(defun my-buffer-face-mode-variable ()
+  "Set font to a variable width (proportional) fonts in current buffer"
+  (interactive)
+  (setq buffer-face-mode-face '(:family "Verdana"))
+  (buffer-face-mode))
+
+(add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
+(add-hook 'markdown-mode-hook 'my-buffer-face-mode-variable)
+
 ;; Line spacing
 (setq-default line-spacing 0)
 
@@ -66,6 +75,16 @@
 
 ;; Load bindings
 (load! "+bindings")
+
+;; Choose buffer when splitting the window
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (+ivy/switch-buffer))
+
+(setq +ivy-buffer-preview t)
 
 ;; My abbreviations
 (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
@@ -309,7 +328,7 @@
         org-journal-date-format "%A, %d %B %Y"))
 
 ;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
-;; credits to @Flo from the doom emacs discord channel
+;; (Credits to @Flo from the doom emacs discord channel)
 (after! evil
   (require 'evil-textobj-anyblock)
   (evil-define-text-object my-evil-textobj-anyblock-inner-quote
@@ -335,7 +354,8 @@
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
 
-;; Insert hex color (https://emacs.stackexchange.com/a/5583)
+;; Insert hex color
+;; (https://emacs.stackexchange.com/a/5583)
 (defun zz/insert-color-hex (&optional arg)
   "Select a color and insert its 24-bit hexadecimal RGB format.
 
