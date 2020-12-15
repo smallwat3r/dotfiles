@@ -130,8 +130,8 @@ xmap aa VGo1G
 imap <expr> <tab>   pumvisible() ? '<c-n>' : '<tab>'
 imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 
-" jj works as esc
-imap jj <esc>
+" jk works as esc
+imap jk <esc>
 
 " hjkl insert go-to (new line or end/start of line)
 imap 1h <esc>I
