@@ -19,6 +19,9 @@ alias -g \
 
 # General
 alias \
+  ...="cd ../.." \
+  ....="cd ../../.." \
+  .....="cd ../../../.." \
   c="clear" \
   p="pwd" \
   l="ls -pFf" \

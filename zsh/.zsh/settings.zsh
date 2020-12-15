@@ -23,7 +23,8 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt HIST_IGNORE_ALL_DUPS
 
-# Move up directories
+# Move up directories (... automatically become ../..)
+# TODO: to look into, this doesn't seem to work anymore
 _rationalise-dot() {
   if [[ $LBUFFER = *.. ]]; then
     LBUFFER+=/..
