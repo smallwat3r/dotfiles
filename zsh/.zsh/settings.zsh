@@ -52,7 +52,12 @@ bindkey -M vicmd 'j' down-line-or-beginning-search
 
 # Activate vim-mode
 # -----------------
+
+# If the keytimeout was too short, jk wouldn't work for ESC
+export KEYTIMEOUT=20
+
 bindkey -v
+bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
 
 # yank to clipboard

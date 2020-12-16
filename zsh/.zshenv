@@ -32,7 +32,5 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
 
-export KEYTIMEOUT=1
-
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
