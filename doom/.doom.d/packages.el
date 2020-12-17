@@ -9,5 +9,4 @@
 (package! dired-narrow)
 (package! ripgrep)
 (package! modus-vivendi-theme)
-
-;; (package! modus-operandi-theme)
+(package! modus-operandi-theme)

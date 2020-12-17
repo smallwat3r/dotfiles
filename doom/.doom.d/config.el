@@ -33,16 +33,22 @@
 ;; Hide icon from frame
 (setq ns-use-proxy-icon nil)
 
-;; Modus vivendi theme
-(use-package! modus-vivendi-theme
-  :init
-  (delq! t custom-theme-load-path)  ; do not show the default themes
+;; Emacs theme
+(use-package! modus-vivendi-theme  ; dark theme (default)
   :config
   (setq modus-vivendi-theme-slanted-constructs t
-        ;; modus-vivendi-theme-bold-constructs t
+        modus-vivendi-theme-bold-constructs t
         modus-vivendi-theme-completions 'opinionated
         modus-vivendi-theme-faint-syntax t)
   (load-theme 'modus-vivendi t))
+
+(use-package! modus-operandi-theme  ; light theme
+  :config
+  (setq modus-operandi-theme-slanted-constructs t
+        modus-operandi-theme-bold-constructs t
+        modus-operandi-theme-completions 'opinionated))
+
+(delq! t custom-theme-load-path)
 
 ;; Font settings
 (setq
@@ -67,8 +73,7 @@
 (custom-set-faces
  ;; '(default ((t (:background "#000000"))))  ; force black bg
  '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
- ;; '(hl-line ((t (:background nil))))
- '(hl-line ((t (:background "#000000"))))
+ '(hl-line ((t (:background nil))))
  '(fringe ((t (:foreground "#111111"))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
