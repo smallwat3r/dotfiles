@@ -37,7 +37,7 @@
 (use-package! modus-vivendi-theme  ; dark theme (default)
   :config
   (setq modus-vivendi-theme-slanted-constructs t
-        modus-vivendi-theme-bold-constructs t
+        ;; modus-vivendi-theme-bold-constructs t
         modus-vivendi-theme-completions 'opinionated
         modus-vivendi-theme-faint-syntax t)
   (load-theme 'modus-vivendi t))
@@ -265,6 +265,15 @@
     (lambda ()
       (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
       (setq flycheck-pylintrc "~/.config/pylintrc"))))
+
+;; Bash formatter settings
+(set-formatter! 'shfmt
+  (concat "shfmt -ci -i 2 -ln "
+          (cl-case (and (boundp 'sh-shell) (symbol-value 'sh-shell))
+            (bash "bash")
+            (mksh "mksh")
+            (t "posix")))
+  :modes '(sh-mode))
 
 ;; Elisp shell aliases
 (after! eshell
