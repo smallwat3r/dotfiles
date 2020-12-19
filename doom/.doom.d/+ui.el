@@ -26,6 +26,10 @@
 ;; Hide icon from frame
 (setq ns-use-proxy-icon nil)
 
+;; Terminal line wrap
+(set-display-table-slot standard-display-table 'truncation ?›)
+(set-display-table-slot standard-display-table 'wrap ?↵)
+
 ;; Emacs theme
 (use-package! modus-vivendi-theme  ; dark theme (default)
   :config
