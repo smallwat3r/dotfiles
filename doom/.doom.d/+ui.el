@@ -70,7 +70,6 @@
 
 (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
 (add-hook 'markdown-mode-hook 'my-buffer-face-mode-variable)
-(add-hook 'git-commit-mode-hook 'my-buffer-face-mode-variable)
 
 ;; Line spacing
 (setq-default line-spacing 0)
