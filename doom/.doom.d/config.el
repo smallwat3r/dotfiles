@@ -78,6 +78,8 @@
 
 ;; Completion
 (after! company
+  (setq company-global-modes '(not sh-mode))
+
   (setq company-idle-delay 0.1
         company-tooltip-limit 10
         company-minimum-prefix-length 2)
