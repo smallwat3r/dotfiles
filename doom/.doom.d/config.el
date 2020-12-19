@@ -60,7 +60,7 @@
 (defun my-buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
-  (setq buffer-face-mode-face '(:family "Verdana"))
+  (setq buffer-face-mode-face '(:family "Verdana" :height 130))
   (buffer-face-mode))
 
 (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
@@ -171,7 +171,7 @@
               (eq this-command 'next-line))
     (message "%s" this-command)))
 
-;; (add-hook! 'post-command-hook 'my-echo-command-name-hook)
+(add-hook! 'post-command-hook 'my-echo-command-name-hook)
 
 ;; Completion
 (after! company
