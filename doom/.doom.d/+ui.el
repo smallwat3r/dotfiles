@@ -30,7 +30,7 @@
 (use-package! modus-vivendi-theme  ; dark theme (default)
   :config
   (setq modus-vivendi-theme-slanted-constructs t
-        ;; modus-vivendi-theme-bold-constructs t
+        modus-vivendi-theme-bold-constructs t
         modus-vivendi-theme-completions 'opinionated
         modus-vivendi-theme-faint-syntax t)
   (load-theme 'modus-vivendi t))
@@ -45,7 +45,8 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Monaco Nerd Font" :size 11)
+ ;; doom-font (font-spec :family "Monaco Nerd Font" :size 11)
+ doom-font (font-spec :family "Fantasque Sans Mono" :size 13 :weight 'regular)
  doom-serif-font (font-spec :family "Courier New")
  doom-variable-pitch-font (font-spec :family "Verdana")
  doom-themes-treemacs-enable-variable-pitch nil)

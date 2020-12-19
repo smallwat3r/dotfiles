@@ -3,7 +3,7 @@
 SHELL=/bin/bash
 
 CURRENT_DIR=$(shell pwd)
-FONTS_DIR=/Library/Fonts
+# FONTS_DIR=/Library/Fonts
 
 help: ## Show this help menu
 	@echo "Usage: make [TARGET ...]"
@@ -40,23 +40,15 @@ symlink: stow ## Symlinks dotfiles using stow
 		-vv -t $(HOME)
 	@echo '*** Symlinks all set-up'
 
-fonts: ## Install fonts
-define register_font
-	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
-endef
-	@echo '*** Installing Anonymous Pro fonts'
-	$(call register_font,AnonymousPro-Regular)
-	$(call register_font,AnonymousPro-Bold)
-	$(call register_font,AnonymousPro-Italic)
-	$(call register_font,AnonymousPro-BoldItalic)
-	@echo '*** Installing Hack (modified) fonts'
-	$(call register_font,Hack-Regular)
-	$(call register_font,Hack-Bold)
-	$(call register_font,Hack-Italic)
-	$(call register_font,Hack-BoldItalic)
-	@echo '*** Installing Courier Prime Code fonts'
-	$(call register_font,Courier-Prime-Code)
-	$(call register_font,Courier-Prime-Code-Italic)
+# fonts: ## Install fonts
+# define register_font
+# 	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
+# endef
+# 	@echo '*** Installing Anonymous Pro fonts'
+# 	$(call register_font,AnonymousPro-Regular)
+# 	$(call register_font,AnonymousPro-Bold)
+# 	$(call register_font,AnonymousPro-Italic)
+# 	$(call register_font,AnonymousPro-BoldItalic)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
@@ -99,9 +91,9 @@ cask: taps ## Install brew casks
 	@echo '*** Installing brew casks ...'
 	@while read -r line; do \
 		echo "* Checking $$line" && \
-		brew cask list "$$line" >/dev/null || { \
+		brew list --cask "$$line" >/dev/null || { \
 			echo "* Installing cask $$line"; \
-			brew cask install "$$line" | true;\
+			brew cask install "$$line"; \
 		}; \
         done <./brew/cask
 
