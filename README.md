@@ -26,7 +26,6 @@ Usage: make [TARGET ...]
 help            Show this help menu
 install         Installs everything
 symlink         Symlinks dotfiles using stow
-fonts           Install fonts
 homebrew        Make sure homebrew is installed
 stow            Make sure stow is installed
 install-doom    Install doom emacs
