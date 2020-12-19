@@ -85,7 +85,7 @@
 
 (setq visual-line-fringe-indicators
       '(nil right-curly-arrow))  ; show right continuation indicator
-                                 ;
+
 ;; Show indicator for empty lines
 (setq-default indicate-empty-lines t)
 
