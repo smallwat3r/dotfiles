@@ -74,7 +74,7 @@
               (eq this-command 'next-line))
     (message "%s" this-command)))
 
-(add-hook! 'post-command-hook 'my-echo-command-name-hook)
+;; (add-hook! 'post-command-hook 'my-echo-command-name-hook)
 
 ;; Completion
 (after! company

@@ -35,6 +35,10 @@
   :config
   (setq modus-vivendi-theme-slanted-constructs t
         modus-vivendi-theme-bold-constructs t
+        modus-vivendi-theme-intense-hl-line nil
+        modus-vivendi-theme-subtle-diffs t
+        modus-vivendi-theme-intense-paren-match 'intense-bold
+        modus-vivendi-theme-org-blocks 'rainbow
         modus-vivendi-theme-completions 'opinionated
         modus-vivendi-theme-faint-syntax t)
   (load-theme 'modus-vivendi t))
@@ -43,13 +47,16 @@
   :config
   (setq modus-operandi-theme-slanted-constructs t
         modus-operandi-theme-bold-constructs t
+        modus-operandi-theme-intense-hl-line nil
+        modus-operandi-theme-subtle-diffs t
+        modus-operandi-theme-intense-paren-match 'intense-bold
+        modus-vivendi-theme-org-blocks 'rainbow
         modus-operandi-theme-completions 'opinionated))
 
 (delq! t custom-theme-load-path)
 
 ;; Font settings
 (setq
- ;; doom-font (font-spec :family "Monaco Nerd Font" :size 11)
  doom-font (font-spec :family "Fantasque Sans Mono" :size 13 :weight 'regular)
  doom-serif-font (font-spec :family "Courier New")
  doom-variable-pitch-font (font-spec :family "Verdana")
