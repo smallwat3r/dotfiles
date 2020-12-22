@@ -30,6 +30,27 @@
   ";,"       #'evil-ex-nohighlight)
 
  (:leader
+  (:map markdown-mode-map
+   (:prefix ("I" . "md-insert")
+    :desc "Blockquote"    "q" #'markdown-insert-blockquote
+    :desc "Bold"          "b" #'markdown-insert-bold
+    :desc "Code"          "c" #'markdown-insert-code
+    :desc "Emphasis"      "e" #'markdown-insert-italic
+    :desc "Footnote"      "f" #'markdown-insert-footnote
+    :desc "Code Block"    "s" #'markdown-insert-gfm-code-block
+    :desc "Image"         "i" #'markdown-insert-image
+    :desc "Link"          "l" #'markdown-insert-link
+    :desc "List Item"     "n" #'markdown-insert-list-item
+    :desc "Pre"           "p" #'markdown-insert-pre)
+   (:prefix ("H" . "md-headings")
+    :desc "One"   "1" #'markdown-insert-header-atx-1
+    :desc "Two"   "2" #'markdown-insert-header-atx-2
+    :desc "Three" "3" #'markdown-insert-header-atx-3
+    :desc "Four"  "4" #'markdown-insert-header-atx-4
+    :desc "Five"  "5" #'markdown-insert-header-atx-5
+    :desc "Six"   "6" #'markdown-insert-header-atx-6)))
+
+ (:leader
   (:prefix "b"  ; buffers
    :desc "Kill buffer"              "d" #'evil-delete-buffer)
   (:prefix "o"  ; open
