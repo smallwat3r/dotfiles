@@ -53,6 +53,7 @@
 (add-hook! 'writeroom-mode-hook
   (text-scale-set (if writeroom-mode 1 0)))
 
+;; Deft (notes)
 (after! deft
   (setq deft-extensions '("org" "md" "txt"))
   (setq deft-directory "~/notes"))
