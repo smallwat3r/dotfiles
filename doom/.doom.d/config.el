@@ -192,6 +192,10 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
+;; Emoji support
+(use-package! emojify
+  :hook (after-init . global-emojify-mode))
+
 ;; Org settings
 (setq
  org-directory "~/org/"
