@@ -53,6 +53,10 @@
 (add-hook! 'writeroom-mode-hook
   (text-scale-set (if writeroom-mode 1 0)))
 
+(after! deft
+  (setq deft-extensions '("org" "md" "txt"))
+  (setq deft-directory "~/notes"))
+
 ;; ;; Auto-activate writeroom on text-mode
 ;; (add-hook! 'text-mode-hook writeroom-mode)
 
