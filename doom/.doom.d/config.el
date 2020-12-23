@@ -172,13 +172,7 @@
       (setq flycheck-pylintrc "~/.config/pylintrc"))))
 
 ;; Bash formatter settings
-(set-formatter! 'shfmt
-  (concat "shfmt -ci -i 2 -ln "
-          (cl-case (and (boundp 'sh-shell) (symbol-value 'sh-shell))
-            (bash "bash")
-            (mksh "mksh")
-            (t "posix")))
-  :modes '(sh-mode))
+(set-formatter! 'shfmt "shfmt -i 2 -ci")
 
 ;; Elisp shell aliases
 (after! eshell
@@ -258,11 +252,11 @@ With prefix argument \\[universal-argument] insert the 48-bit value."
 
 ;; source: https://news.ycombinator.com/item?id=22131815
 (defun zz/arrayify (start end quote)
-    "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
-    (interactive "r\nMQuote: ")
-    (let ((insertion
-           (mapconcat
-            (lambda (x) (format "%s%s%s" quote x quote))
-            (split-string (buffer-substring start end)) ", ")))
-      (delete-region start end)
-      (insert insertion)))
+  "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
+  (interactive "r\nMQuote: ")
+  (let ((insertion
+         (mapconcat
+          (lambda (x) (format "%s%s%s" quote x quote))
+          (split-string (buffer-substring start end)) ", ")))
+    (delete-region start end)
+    (insert insertion)))
