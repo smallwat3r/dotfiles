@@ -9,7 +9,9 @@
  :completion
  company           ; the ultimate code completion backend
  (ivy               ; a search engine for love and life
-  +fuzzy)
+  +fuzzy
+  +childframe
+  +prescient)
 
  :ui
  ;;deft              ; notational velocity for Emacs

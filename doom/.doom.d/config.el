@@ -43,9 +43,9 @@
 
 ;; Set up default projects folders
 (after! projectile
+  (setq projectile-sort-order 'recentf)
   (setq projectile-ignored-projects
         '("~/" "/tmp" "~/Downloads"))
-  (setq projectile-sort-order 'recentf)
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
 
