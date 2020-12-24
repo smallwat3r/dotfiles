@@ -53,11 +53,6 @@
 (add-hook! 'writeroom-mode-hook
   (text-scale-set (if writeroom-mode 1 0)))
 
-;; Deft (notes)
-(after! deft
-  (setq deft-extensions '("org" "md" "txt"))
-  (setq deft-directory "~/notes"))
-
 ;; ;; Auto-activate writeroom on text-mode
 ;; (add-hook! 'text-mode-hook writeroom-mode)
 
@@ -200,6 +195,10 @@
 ;; Emoji support
 (use-package! emojify
   :hook (after-init . global-emojify-mode))
+
+;; Deft (notes)
+(after! deft
+  (setq deft-directory "~/org"))
 
 ;; Org settings
 (setq

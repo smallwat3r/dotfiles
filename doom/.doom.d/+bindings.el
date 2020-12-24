@@ -73,7 +73,10 @@
    :desc "Images"                   "i" #'docker-images
    :desc "Exec into"                "e" #'docker-container-shell)
   (:prefix "s"  ; search
-   :desc "Ripgrep"                  "g" #'ripgrep-regexp))
+   :desc "Ripgrep"                  "g" #'ripgrep-regexp)
+  (:prefix "n"  ; notes
+   :desc "Deft open"                "D" #'deft
+   :desc "Deft new"                 "d" #'deft-new-file))
 
  (:after org-journal
   :leader
