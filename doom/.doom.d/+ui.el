@@ -10,8 +10,9 @@
   (add-to-list 'default-frame-alist '(width  . 106))
   (add-to-list 'default-frame-alist '(height . 64)))
 
-;; Don't show line numbers by default
-(setq display-line-numbers-type nil)
+;; Line numbers
+(setq display-line-numbers-type nil)  ; hide line numbers by default
+;; (setq display-line-numbers-type 'relative)
 
 ;; Frame title
 (setq frame-title-format
@@ -81,6 +82,8 @@
  '(hl-line ((t (:background nil))))
  '(fringe ((t (:foreground "#111111"))))
  '(org-ellipsis ((t (:foreground "#00afaf"))))
+ '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
+ '(line-number-current-line ((t (:background nil :height 100))))
  '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
 
 (setq visual-line-fringe-indicators
