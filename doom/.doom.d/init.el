@@ -70,7 +70,8 @@
  vterm             ; the best terminal emulation in Emacs
 
  :checkers
- syntax              ; tasing you for every semicolon you forget
+ (syntax
+  +childframe)    ; tasing you for every semicolon you forget
  (spell
   +aspell)        ; tasing you for misspelling mispelling
  ;;grammar           ; tasing grammar mistake every you make
@@ -98,6 +99,10 @@
  ;;terraform         ; infrastructure as code
  ;;tmux              ; an API for interacting with tmux
  ;;upload            ; map local to remote projects via ssh/ftp
+
+ :os
+ (:if IS-MAC macos)    ; improve compatibility with macOS
+ tty                 ; improve the terminal Emacs experience
 
  :lang
  ;;agda              ; types of types of types of types...
@@ -154,7 +159,8 @@
  ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;;scala             ; java, but good
  ;;scheme            ; a fully conniving family of lisps
- sh                ; she sells {ba,z,fi}sh shells on the C xor
+ (sh
+  +lsp)             ; she sells {ba,z,fi}sh shells on the C xor
  ;;sml
  ;;solidity          ; do you need a blockchain? No.
  ;;swift             ; who asked for emoji variables?
