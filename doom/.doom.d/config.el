@@ -109,6 +109,11 @@
         ivy-count-format "(%d/%d) "
         +ivy-buffer-preview t))
 
+(after! ivy-posframe
+  (setq ivy-posframe-border-width 5)
+  (setq ivy-posframe-display-functions-alist
+        '((t . ivy-posframe-display-at-frame-center))))
+
 ;; Dired file explorer
 (after! dired
   (setq delete-by-moving-to-trash t)
@@ -175,7 +180,7 @@
 ;; Spell checks
 (after! spell-fu
   (setq spell-fu-idle-delay 0.5))  ; default is 0.25
-                                 
+
 ;; Bash formatter settings
 (set-formatter! 'shfmt "shfmt -i 2 -ci")
 
