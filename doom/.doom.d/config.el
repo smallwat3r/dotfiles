@@ -172,6 +172,10 @@
       (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
       (setq flycheck-pylintrc "~/.config/pylintrc"))))
 
+;; Spell checks
+(after! spell-fu
+  (setq spell-fu-idle-delay 0.5))  ; default is 0.25
+                                 
 ;; Bash formatter settings
 (set-formatter! 'shfmt "shfmt -i 2 -ci")
 
