@@ -7,12 +7,6 @@
 ;; Disable exit confirmation
 (setq confirm-kill-emacs nil)
 
-;; macOS keys
-(cond (IS-MAC
-       (setq mac-command-modifier      'meta
-             mac-option-modifier       'alt
-             mac-right-option-modifier 'alt)))
-
 ;; UK keyboard hash key support
 (define-key key-translation-map (kbd "M-3") (kbd "#"))
 

@@ -31,7 +31,7 @@
 (set-display-table-slot standard-display-table 'truncation ?›)
 (set-display-table-slot standard-display-table 'wrap ?↵)
 
-;; Emacs theme
+;; Themes
 (use-package! modus-vivendi-theme  ; dark theme (default)
   :config
   (setq modus-vivendi-theme-slanted-constructs t
@@ -41,8 +41,7 @@
         modus-vivendi-theme-intense-paren-match 'intense-bold
         modus-vivendi-theme-org-blocks 'rainbow
         modus-vivendi-theme-completions 'opinionated
-        modus-vivendi-theme-faint-syntax t)
-  (load-theme 'modus-vivendi t))
+        modus-vivendi-theme-faint-syntax t))
 
 (use-package! modus-operandi-theme  ; light theme
   :config
@@ -55,6 +54,9 @@
         modus-operandi-theme-completions 'opinionated))
 
 (delq! t custom-theme-load-path)
+
+;; Default theme
+(setq doom-theme 'modus-vivendi)
 
 ;; Font settings
 (setq
@@ -84,6 +86,7 @@
  '(org-ellipsis ((t (:foreground "#00afaf"))))
  '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
  '(line-number-current-line ((t (:background nil :height 100))))
+ '(whitespace-newline ((t (:background nil :foreground "#383838"))))
  '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
 
 (setq visual-line-fringe-indicators
@@ -101,10 +104,6 @@
 (setq whitespace-style '(trailing tabs newline tab-mark newline-mark))
 (setq whitespace-display-mappings
       '((newline-mark 10 [?◦ 10])))  ; eol character
-
-(eval-after-load 'whitespace
-  (lambda ()
-    (set-face-attribute 'whitespace-newline nil :foreground "#383838" :background nil)))
 
 ;; Git gutter fringe
 (after! git-gutter-fringe
