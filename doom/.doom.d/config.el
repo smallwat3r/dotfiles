@@ -204,6 +204,10 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
+;; Do not override the color of rainbow-mode with hl-line-mode.
+(add-hook! 'rainbow-mode-hook
+  (hl-line-mode (if rainbow-mode -1 +1)))
+
 ;; Emoji support
 (use-package! emojify
   :hook (after-init . global-emojify-mode))
