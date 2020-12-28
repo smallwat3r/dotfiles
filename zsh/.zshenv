@@ -34,3 +34,5 @@ export SAVEHIST=$HISTSIZE
 
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
+
+export NOTMUCH_CONFIG="$HOME/.config/.notmuch-config"
