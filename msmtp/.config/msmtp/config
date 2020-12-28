@@ -1,7 +1,7 @@
 ## MSMTP configuration file
 ##
 ## Remember to run:
-##   chmod 600 ~/.msmtprc
+##   chmod 600
 
 # Set default values for all following accounts.
 defaults
