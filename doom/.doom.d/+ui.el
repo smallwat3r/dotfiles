@@ -73,6 +73,12 @@
 
 (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
 (add-hook 'markdown-mode-hook 'my-buffer-face-mode-variable)
+(add-hook 'notmuch-show-mode-hook 'my-buffer-face-mode-variable)
+(add-hook 'notmuch-message-mode-hook 'my-buffer-face-mode-variable)
+
+;; Disable global word-wrap in a few modes
+(add-to-list '+word-wrap-disabled-modes 'vterm-mode)
+(add-to-list '+word-wrap-disabled-modes 'notmuch-search-mode)
 
 ;; Line spacing
 (setq-default line-spacing 0)

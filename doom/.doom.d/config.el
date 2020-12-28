@@ -43,9 +43,6 @@
  scroll-margin 7                   ; top and bottom margins to trigger scroll
  which-key-idle-delay 0.5)         ; delay to show key bindings menu
 
-;; Disable global word-wrap in vterm-mode
-(add-to-list '+word-wrap-disabled-modes 'vterm-mode)
-
 ;; Delete all whitespace on save, except on markdown
 (add-hook! 'before-save-hook
   (lambda ()
