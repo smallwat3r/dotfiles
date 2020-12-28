@@ -14,6 +14,14 @@
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
+;; Email stuff
+(setq mail-user-agent 'message-user-agent)
+(setq mail-specify-envelope-from t)
+(setq sendmail-program "/usr/local/bin/msmtp"
+      mail-specify-envelope-from t
+      mail-envelope-from 'header
+      message-sendmail-envelope-from 'header)
+
 ;; My abbreviations
 (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
 (setq save-abbrevs 'silently)
@@ -207,6 +215,13 @@
 ;; Do not override the color of rainbow-mode with hl-line-mode.
 (add-hook! 'rainbow-mode-hook
   (hl-line-mode (if rainbow-mode -1 +1)))
+
+;; Emails
+(after! notmuch
+  (setq +notmuch-sync-backend 'mbsync)
+  (setq notmuch-fcc-dirs
+        '(("mpetiteau.pro@gmail.com" . "personal/sent -inbox +sent -unread")
+          ("matthieu@smallwatersolutions.com" . "sws/sent -inbox +sent -unread"))))
 
 ;; Emoji support
 (use-package! emojify

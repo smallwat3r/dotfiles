@@ -54,6 +54,7 @@
   (:prefix "b"  ; buffers
    :desc "Kill buffer"              "d" #'evil-delete-buffer)
   (:prefix "o"  ; open
+   :desc "Emails"                   "m" #'notmuch
    :desc "Reveal in Finder"         "o" #'+macos/reveal-in-finder
    :desc "Reveal project in Finder" "O" #'+macos/reveal-project-in-finder)
   (:prefix ("e" . "errors")  ; erros

@@ -1,0 +1,106 @@
+### Personal
+IMAPAccount personal
+    Host imap.gmail.com
+    Port 993
+    User mpetiteau.pro@gmail.com
+    PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.personal-email.gpg"
+    SSLType IMAPS
+    SSLVersions TLSv1.2
+    AuthMechs LOGIN
+	CertificateFile /usr/local/etc/openssl/cert.pem
+
+IMAPStore personal-remote
+    Account personal
+
+MaildirStore personal-local
+    Path ~/Maildir/personal/
+    Inbox ~/Maildir/personal/INBOX
+
+Channel personal-inbox
+    Master :personal-remote:
+    Slave :personal-local:
+    Patterns "INBOX"
+
+Channel personal-sent
+    Master :personal-remote:"[Gmail]/Sent Mail"
+    Slave :personal-local:sent
+
+Channel personal-trash
+    Master :personal-remote:"[Gmail]/Trash"
+    Slave :personal-local:trash
+
+Channel personal-archive
+    Master :personal-remote:"[Gmail]/All Mail"
+    slave  :personal-local:All
+
+Channel personal-junk
+    Master :personal-remote:"[Gmail]/Spam"
+    slave  :personal-local:Junk
+
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Automatically delete messages on either side if they are found deleted on the other.
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+Group personal
+    Channel personal-inbox
+    Channel personal-sent
+    Channel personal-trash
+    Channel personal-archive
+    Channel personal-junk
+
+
+### SWS
+IMAPAccount sws
+    Host imap.gmail.com
+    Port 993
+    User matthieu@smallwatersolutions.com
+    PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.sws-email.gpg"
+    SSLType IMAPS
+    SSLVersions TLSv1.2
+    AuthMechs LOGIN
+	CertificateFile /usr/local/etc/openssl/cert.pem
+
+IMAPStore sws-remote
+    Account sws
+
+MaildirStore sws-local
+    Path ~/Maildir/sws/
+    Inbox ~/Maildir/sws/INBOX
+
+Channel sws-inbox
+    Master :sws-remote:
+    Slave :sws-local:
+    Patterns "INBOX"
+
+Channel sws-sent
+    Master :sws-remote:"[Gmail]/Sent Mail"
+    Slave :sws-local:sent
+
+Channel sws-trash
+    Master :sws-remote:"[Gmail]/Trash"
+    Slave :sws-local:trash
+
+Channel sws-archive
+    Master :sws-remote:"[Gmail]/All Mail"
+    slave  :sws-local:All
+
+Channel sws-junk
+    Master :sws-remote:"[Gmail]/Spam"
+    slave  :sws-local:Junk
+
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Automatically delete messages on either side if they are found deleted on the other.
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+Group sws
+    Channel sws-inbox
+    Channel sws-sent
+    Channel sws-trash
+    Channel sws-archive
+    Channel sws-junk

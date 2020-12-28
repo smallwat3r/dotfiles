@@ -1,4 +1,4 @@
-.PHONY: homebrew stow symlink cask brew python pip node npm taps xcode-cli fonts help install-doom
+.PHONY: homebrew stow symlink cask brew python pip node npm taps xcode-cli fonts help install-doom maildir
 
 SHELL=/bin/bash
 
@@ -14,7 +14,12 @@ help: ## Show this help menu
 install: npm pip cask brew fonts install-doom symlink ## Installs everything
 	@echo '*** -- Everything has been installed --'
 
-symlink: stow ## Symlinks dotfiles using stow
+maildir:
+	@mkdir ~/Maildir || exit 0  # make sure Mail directory exists
+	@mkdir ~/Maildir/personal || exit 0
+	@mkdir ~/Maildir/sws || exit 0
+
+symlink: stow maildir ## Symlinks dotfiles using stow
 	@stow stow -vv -t $(HOME)  # must be run first
 	@stow scripts -vv -t /usr/local
 	@stow \
@@ -26,6 +31,9 @@ symlink: stow ## Symlinks dotfiles using stow
 		isort \
 		kitty \
 		mypy \
+		mbsync \
+		msmtp \
+		notmuch \
 		nvim \
 		pip \
 		prettier \

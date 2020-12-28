@@ -16,12 +16,16 @@ gnu-sed
 gnupg
 go
 htop
+isync
 jq
 lua
 make
+msmtp
 neovim
 nmap
 node
+notmuch
+openssl
 python@3.8
 ripgrep
 shellcheck
