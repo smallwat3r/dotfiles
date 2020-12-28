@@ -7,7 +7,7 @@ IMAPAccount personal
     SSLType IMAPS
     SSLVersions TLSv1.2
     AuthMechs LOGIN
-	CertificateFile /usr/local/etc/openssl/cert.pem
+    CertificateFile /usr/local/etc/openssl/cert.pem
 
 IMAPStore personal-remote
     Account personal
@@ -61,7 +61,7 @@ IMAPAccount sws
     SSLType IMAPS
     SSLVersions TLSv1.2
     AuthMechs LOGIN
-	CertificateFile /usr/local/etc/openssl/cert.pem
+    CertificateFile /usr/local/etc/openssl/cert.pem
 
 IMAPStore sws-remote
     Account sws
