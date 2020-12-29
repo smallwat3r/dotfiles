@@ -238,7 +238,7 @@
 ;; Org settings
 (setq
  org-directory "~/org/"
- org-ellipsis " ↴ "
+ org-ellipsis " … "
  org-hide-emphasis-markers t  ; hide mark up symbols (eg. *bold*)
  org-adapt-indentation nil)   ; indentation of text below headlines
 
