@@ -1,4 +1,4 @@
-* smallwater's dotfiles
+* smallwat3r's dotfiles
 
 Feel free to pick whatever you want from this repo, but note it has been primary
 created for my personal use and is updated very frequently. Use at your own risks
