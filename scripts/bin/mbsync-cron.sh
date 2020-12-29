@@ -7,6 +7,6 @@
 #   */1 * * * * /usr/local/bin/mbsync-cron.sh >/tmp/mbsync-cron-stdout.log 2>/tmp/mbsync-cron-stderr.log
 
 /usr/bin/killall mbsync &>/dev/null  # kill current running instances of mbsync
-/usr/local/bin/mbsync -a -q
-/usr/local/bin/notmuch new &>/dev/null
+/usr/local/bin/mbsync -a
+/usr/local/bin/notmuch new
 exit 0
