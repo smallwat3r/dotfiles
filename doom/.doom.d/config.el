@@ -187,7 +187,6 @@
 
 ;; Spell checks
 (after! spell-fu
-  (setq spell-fu-directory (expand-file-name "spell" doom-private-dir))
   (setq spell-fu-idle-delay 0.5))  ; default is 0.25
 
 ;; Bash format settings
