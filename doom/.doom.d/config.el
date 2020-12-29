@@ -232,7 +232,8 @@
 
 ;; Deft (notes)
 (after! deft
-  (setq deft-directory "~/org"))
+  (setq deft-recursive t
+        deft-directory "~/org"))
 
 ;; Org settings
 (setq
@@ -247,7 +248,8 @@
   (setq org-journal-prefix-key "C-c j")
   :config
   (setq org-journal-dir "~/org/journal/"
-        org-journal-date-format "%A, %d %B %Y"))
+        org-journal-date-format "%A, %d %B %Y"
+        org-journal-file-format "%Y%m%d.org"))
 
 ;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
 ;; (Credits to @Flo from the doom emacs discord channel)
