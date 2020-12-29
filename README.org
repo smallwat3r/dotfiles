@@ -1,0 +1,44 @@
+#+TITLE: README
+
+* smallwat3r's dotfiles
+
+Feel free to pick whatever you want from this repo, but note it has been primary
+created for my personal use and is updated very frequently. Use at your own risks
+and please create back-ups of your current set-up if you intend to use the Makefile.
+
+Be aware these dotfiles are intended to be used on macOS, but most of it should
+work as well in other Unix/Linux environments.
+
+Dotfiles are managed by *GNU Stow*.
+
+** Clone
+
+Clone this repo into your ~$HOME~ directory.
+
+#+begin_src shell
+git clone https://github.com/smallwat3r/dotfiles.git $HOME
+#+end_src
+
+** Commands
+
+Note: you will need to install *GNU Make* (~brew install make~) to use the Makefile.
+
+#+begin_src text
+% make help
+Usage: make [TARGET ...]
+
+help            Show this help menu
+install         Installs everything
+symlink         Symlinks dotfiles using stow
+homebrew        Make sure homebrew is installed
+stow            Make sure stow is installed
+install-doom    Install doom emacs
+xcode-cli       Install xcode command line tools
+taps            Install brew taps
+brew            Install brew packages
+cask            Install brew casks
+node            Install node
+npm             Install npm packages
+python          Install python 3.8
+pip             Install pip packages
+#+end_src
