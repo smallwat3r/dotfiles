@@ -68,7 +68,7 @@
 (defun my-buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
-  (setq buffer-face-mode-face '(:family "Verdana" :height 130))
+  (setq buffer-face-mode-face '(:family "Verdana"))
   (buffer-face-mode))
 
 (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
