@@ -26,6 +26,7 @@ nmap
 node
 notmuch
 openssl
+pass
 python@3.8
 ripgrep
 shellcheck
