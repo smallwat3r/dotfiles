@@ -91,7 +91,6 @@
  ;; '(default ((t (:background "#000000"))))  ; force black bg
  '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
  '(fringe ((t (:foreground "#111111"))))
- '(Org-ellipsis ((t (:foreground "#00afaf"))))
  '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
  '(line-number-current-line ((t (:background nil :height 100))))
  '(whitespace-newline ((t (:background nil :foreground "#383838"))))

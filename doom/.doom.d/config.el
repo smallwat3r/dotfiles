@@ -215,6 +215,8 @@
 
 ;; Emails
 (after! notmuch
+  (custom-set-faces
+   '(notmuch-search-unread-face ((t (:background nil :foreground "#18cf00")))))
   (setq +notmuch-sync-backend 'mbsync)
   (setq notmuch-fcc-dirs
         '(("mpetiteau.pro@gmail.com" . "personal/sent -inbox +sent -unread")
