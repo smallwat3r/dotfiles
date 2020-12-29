@@ -215,15 +215,12 @@
 
 ;; Emails
 (after! notmuch
-  (custom-set-faces
-   '(notmuch-search-unread-face ((t (:background nil :foreground "#99d8ff")))))
-  (setq
-   notmuch-search-result-format
-   '(("date" . "%12s ")
-     ("count" . "%-7s ")
-     ("authors" . "%-15s ")
-     ("tags" . "(%s) ")
-     ("subject" . "%-72s")))
+  (setq notmuch-search-result-format
+        '(("date" . "%12s ")
+          ("count" . "%-7s ")
+          ("authors" . "%-15s ")
+          ("tags" . "(%s) ")
+          ("subject" . "%-72s")))
   (setq +notmuch-sync-backend 'mbsync)
   (setq notmuch-fcc-dirs
         '(("mpetiteau.pro@gmail.com" . "personal/sent -inbox +sent -unread")
