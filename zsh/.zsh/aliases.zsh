@@ -89,6 +89,10 @@ alias \
   kt="kubetail" \
   kns="kubectl get namespaces"
 
+# gpg
+alias gpg-pub-key="gpg --armor --export mpetiteau.pro@gmail.com" \
+  gpg-list-keys="gpg --list-secret-keys --keyid-format LONG"
+
 # Misc stuff
 alias \
   batt="bluebatt" \
