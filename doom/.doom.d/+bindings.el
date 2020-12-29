@@ -29,8 +29,10 @@
   ";sw"      #'evil-window-new
   ";,"       #'evil-ex-nohighlight)
 
+ ;; Markdown
  (:leader
   (:map markdown-mode-map
+
    (:prefix ("I" . "md-insert")
     :desc "Blockquote"    "q" #'markdown-insert-blockquote
     :desc "Bold"          "b" #'markdown-insert-bold
@@ -42,6 +44,7 @@
     :desc "Link"          "l" #'markdown-insert-link
     :desc "List Item"     "n" #'markdown-insert-list-item
     :desc "Pre"           "p" #'markdown-insert-pre)
+
    (:prefix ("H" . "md-headings")
     :desc "One"   "1" #'markdown-insert-header-atx-1
     :desc "Two"   "2" #'markdown-insert-header-atx-2
@@ -51,30 +54,46 @@
     :desc "Six"   "6" #'markdown-insert-header-atx-6)))
 
  (:leader
+  (:prefix "m" ; localleader
+   :desc "Makefile run"             "r" #'+make/run))
+
+ (:leader
   (:prefix "b"  ; buffers
-   :desc "Kill buffer"              "d" #'evil-delete-buffer)
+   :desc "Kill buffer"              "d" #'evil-delete-buffer))
+
+ (:leader
   (:prefix "o"  ; open
    :desc "Emails"                   "m" #'notmuch
    :desc "Reveal in Finder"         "o" #'+macos/reveal-in-finder
-   :desc "Reveal project in Finder" "O" #'+macos/reveal-project-in-finder)
+   :desc "Reveal project in Finder" "O" #'+macos/reveal-project-in-finder))
+
+ (:leader
   (:prefix ("e" . "errors")  ; erros
    :desc "Flycheck list errors"     "l" #'flycheck-list-errors
    :desc "Flycheck next error"      "n" #'flycheck-next-error
    :desc "Flycheck previous error"  "p" #'flycheck-previous-error
    :desc "Flycheck explain error"   "e" #'flycheck-explain-error-at-point
-   :desc "Flycheck verify setup"    "v" #'flycheck-verify-setup)
+   :desc "Flycheck verify setup"    "v" #'flycheck-verify-setup))
+
+ (:leader
   (:prefix ("k" . "kubernetes")  ; kubernetes
    :desc "Overview"                 "o" #'kubernetes-overview
    :desc "Set namespace"            "n" #'kubernetes-set-namespace
    :desc "Display service"          "s" #'kubernetes-display-service
    :desc "Display deployment"       "d" #'kubernetes-display-deployment
    :desc "Describe"                 "D" #'kubernetes-describe-pod
-   :desc "Exec into"                "e" #'kubernetes-exec-into)
+   :desc "Exec into"                "e" #'kubernetes-exec-into))
+
+ (:leader
   (:prefix ("d" . "docker")  ; docker
    :desc "Images"                   "i" #'docker-images
-   :desc "Exec into"                "e" #'docker-container-shell)
+   :desc "Exec into"                "e" #'docker-container-shell))
+
+ (:leader
   (:prefix "s"  ; search
-   :desc "Ripgrep"                  "g" #'ripgrep-regexp)
+   :desc "Ripgrep"                  "g" #'ripgrep-regexp))
+
+ (:leader
   (:prefix "n"  ; notes
    :desc "Deft open"                "D" #'deft
    :desc "Deft new"                 "d" #'deft-new-file))
@@ -90,8 +109,10 @@
   :map python-mode-map
   (:prefix ("I" . "imports")  ; imports
    :desc "Isort buffer"             "s" #'+python/optimize-imports)
+
   (:prefix ("v" . "venv")  ; virtual env
    :desc "Workon"                   "w" #'pyvenv-workon
    :desc "Activate pyvenv"          "a" #'pyvenv-activate
    :desc "Deactivate pyvenv"        "d" #'pyvenv-deactivate))
+
  )
