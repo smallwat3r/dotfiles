@@ -10,7 +10,7 @@
 ;; UK keyboard hash key support
 (define-key key-translation-map (kbd "M-3") (kbd "#"))
 
-;; Personnal info
+;; Personal info
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
@@ -187,9 +187,10 @@
 
 ;; Spell checks
 (after! spell-fu
+  (setq spell-fu-directory (expand-file-name "spell" doom-private-dir))
   (setq spell-fu-idle-delay 0.5))  ; default is 0.25
 
-;; Bash formatter settings
+;; Bash format settings
 (set-formatter! 'shfmt "shfmt -i 2 -ci")
 
 ;; Elisp shell aliases
