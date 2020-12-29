@@ -3,7 +3,7 @@ IMAPAccount personal
     Host imap.gmail.com
     Port 993
     User mpetiteau.pro@gmail.com
-    PassCmd "/usr/local/bin/gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.personal-email.gpg"
+    PassCmd "/usr/local/bin/gpg --quiet --for-your-eyes-only --pinentry-mode=loopback --decrypt ~/.personal-email.gpg"
     SSLType IMAPS
     SSLVersions TLSv1.2
     AuthMechs LOGIN
@@ -57,7 +57,7 @@ IMAPAccount sws
     Host imap.gmail.com
     Port 993
     User matthieu@smallwatersolutions.com
-    PassCmd "/usr/local/bin/gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.sws-email.gpg"
+    PassCmd "/usr/local/bin/gpg --quiet --for-your-eyes-only --pinentry-mode=loopback --decrypt ~/.sws-email.gpg"
     SSLType IMAPS
     SSLVersions TLSv1.2
     AuthMechs LOGIN

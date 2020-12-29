@@ -27,12 +27,13 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 		ctags \
 		doom \
 		git \
+		gnupg \
 		htop \
 		isort \
 		kitty \
-		mypy \
 		mbsync \
 		msmtp \
+		mypy \
 		notmuch \
 		nvim \
 		pip \
