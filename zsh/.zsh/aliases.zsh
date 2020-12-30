@@ -11,7 +11,9 @@ hash -d \
   zsh=$HOME/.zsh \
   tmux=$HOME/.config/tmux \
   nvim=$HOME/.config/nvim \
-  doom=$HOME/.doom.d
+  doom=$HOME/.doom.d \
+  fonts=$HOME/Library/Fonts \
+  dots=$HOME/dotfiles
 
 # Global aliases
 alias -g \
@@ -32,6 +34,7 @@ alias \
   ls="ls -pF" \
   sl="ls -pF" \
   lss="ls -la | grep --color=never '\->'" \
+  mkdir="mkdir -pv" \
   qq="exit"
 
 # Editing stuff
@@ -92,7 +95,8 @@ alias \
   kns="kubectl get namespaces"
 
 # gpg
-alias gpg-pub-key="gpg --armor --export mpetiteau.pro@gmail.com" \
+alias \
+  gpg-pub-key="gpg --armor --export mpetiteau.pro@gmail.com" \
   gpg-list-keys="gpg --list-secret-keys --keyid-format LONG"
 
 # Misc stuff
@@ -102,7 +106,6 @@ alias \
   diskspace="df -P -kHl" \
   dots="cd $HOME/dotfiles" \
   fonts="open $HOME/Library/Fonts" \
-  mkdir="mkdir -pv" \
   myip="curl http://ipecho.net/plain; echo" \
   pihole="ssh pi 'pihole status'" \
   pitemp="ssh pi 'vcgencmd measure_temp'" \
