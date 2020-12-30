@@ -60,15 +60,15 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Fantasque Sans Mono" :size 13 :weight 'regular)
+ doom-font (font-spec :family "Input Mono" :size 12)
  doom-serif-font (font-spec :family "Courier New")
- doom-variable-pitch-font (font-spec :family "Verdana")
+ doom-variable-pitch-font (font-spec :family "Input Serif")
  doom-themes-treemacs-enable-variable-pitch nil)
 
 (defun my-buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
-  (setq buffer-face-mode-face '(:family "Verdana"))
+  (setq buffer-face-mode-face '(:family "Input Serif"))
   (buffer-face-mode))
 
 (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
