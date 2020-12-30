@@ -60,7 +60,7 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Input Mono" :size 12)
+ doom-font (font-spec :family "Input Mono" :size 12 :weight 'light)
  doom-serif-font (font-spec :family "Courier New")
  doom-variable-pitch-font (font-spec :family "Input Serif")
  doom-themes-treemacs-enable-variable-pitch nil)
