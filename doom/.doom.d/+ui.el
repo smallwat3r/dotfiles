@@ -60,8 +60,8 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Input Mono" :size 12 :weight 'light)
- doom-serif-font (font-spec :family "Courier New")
+ doom-font (font-spec :family "Courier Prime Code" :size 13)
+ doom-serif-font (font-spec :family "Courier Prime")
  doom-variable-pitch-font (font-spec :family "Input Serif")
  doom-themes-treemacs-enable-variable-pitch nil)
 
@@ -94,8 +94,8 @@
  '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
  '(line-number-current-line ((t (:background nil :height 100))))
  '(whitespace-newline ((t (:background nil :foreground "#383838"))))
- '(font-lock-comment-face ((t (:family "Input Serif"))))
- '(font-lock-doc-face ((t (:family "Input Serif")))))
+ '(font-lock-comment-face ((t (:family "Courier Prime"))))
+ '(font-lock-doc-face ((t (:family "Courier Prime")))))
 
 (setq visual-line-fringe-indicators
       '(nil right-curly-arrow))  ; show right continuation indicator
