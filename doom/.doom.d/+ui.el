@@ -94,7 +94,8 @@
  '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
  '(line-number-current-line ((t (:background nil :height 100))))
  '(whitespace-newline ((t (:background nil :foreground "#383838"))))
- '(font-lock-comment-face ((t (:slant italic)))))  ; force italics on comments
+ '(font-lock-comment-face ((t (:family "Input Serif"))))
+ '(font-lock-doc-face ((t (:family "Input Serif")))))
 
 (setq visual-line-fringe-indicators
       '(nil right-curly-arrow))  ; show right continuation indicator
