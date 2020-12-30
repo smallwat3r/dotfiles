@@ -10,12 +10,14 @@ hash -d \
   ssh=$HOME/.ssh \
   zsh=$HOME/.zsh \
   tmux=$HOME/.config/tmux \
-  nvim=$HOME/.config/nvim
+  nvim=$HOME/.config/nvim \
+  doom=$HOME/.doom.d
 
 # Global aliases
 alias -g \
   G="| grep" \
-  L="| less"
+  L="| less" \
+  NE="2> /dev/null"
 
 # General
 alias \
