@@ -34,24 +34,26 @@
 ;; Themes
 (use-package! modus-vivendi-theme  ; dark theme (default)
   :config
-  (setq modus-vivendi-theme-slanted-constructs t
-        modus-vivendi-theme-bold-constructs t
-        modus-vivendi-theme-intense-hl-line nil
-        modus-vivendi-theme-subtle-diffs t
-        modus-vivendi-theme-intense-paren-match 'intense-bold
-        modus-vivendi-theme-org-blocks 'rainbow
-        modus-vivendi-theme-completions 'opinionated
-        modus-vivendi-theme-faint-syntax t))
+  (setq
+   ;; modus-vivendi-theme-slanted-constructs t
+   ;; modus-vivendi-theme-bold-constructs t
+   modus-vivendi-theme-intense-hl-line nil
+   modus-vivendi-theme-subtle-diffs t
+   modus-vivendi-theme-intense-paren-match 'intense-bold
+   modus-vivendi-theme-org-blocks 'rainbow
+   modus-vivendi-theme-completions 'opinionated
+   modus-vivendi-theme-faint-syntax t))
 
 (use-package! modus-operandi-theme  ; light theme
   :config
-  (setq modus-operandi-theme-slanted-constructs t
-        modus-operandi-theme-bold-constructs t
-        modus-operandi-theme-intense-hl-line nil
-        modus-operandi-theme-subtle-diffs t
-        modus-operandi-theme-intense-paren-match 'intense-bold
-        modus-operandi-theme-org-blocks 'rainbow
-        modus-operandi-theme-completions 'opinionated))
+  (setq
+   ;; modus-operandi-theme-slanted-constructs t
+   modus-operandi-theme-bold-constructs t
+   modus-operandi-theme-intense-hl-line nil
+   modus-operandi-theme-subtle-diffs t
+   modus-operandi-theme-intense-paren-match 'intense-bold
+   modus-operandi-theme-org-blocks 'rainbow
+   modus-operandi-theme-completions 'opinionated))
 
 (delq! t custom-theme-load-path)
 
@@ -60,15 +62,14 @@
 
 ;; Font settings
 (setq
- doom-font (font-spec :family "Courier Prime Code" :size 13)
- doom-serif-font (font-spec :family "Courier Prime")
- doom-variable-pitch-font (font-spec :family "Input Serif")
+ doom-font (font-spec :family "Monaco" :size 11)
+ doom-variable-pitch-font (font-spec :family "Verdana")
  doom-themes-treemacs-enable-variable-pitch nil)
 
 (defun my-buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
-  (setq buffer-face-mode-face '(:family "Input Serif"))
+  (setq buffer-face-mode-face '(:family "Verdana"))
   (buffer-face-mode))
 
 (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
@@ -94,8 +95,9 @@
  '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
  '(line-number-current-line ((t (:background nil :height 100))))
  '(whitespace-newline ((t (:background nil :foreground "#383838"))))
- '(font-lock-comment-face ((t (:family "Courier Prime"))))
- '(font-lock-doc-face ((t (:family "Courier Prime")))))
+ ;; '(font-lock-comment-face ((t (:inherit variable-pitch))))
+ ;; '(font-lock-doc-face ((t (:inherit variable-pitch)))))
+ )
 
 (setq visual-line-fringe-indicators
       '(nil right-curly-arrow))  ; show right continuation indicator
