@@ -52,13 +52,35 @@
   :config
   ;; Override modus-operandi colors
   (modus-operandi-theme-with-color-variables
-    (custom-theme-set-faces!
-      'modus-operandi
+    (custom-theme-set-faces! 'modus-operandi
       `(default :background "#efefd8")
       `(term :background "#e3e3c5")
       `(vterm-color-default :background "#e3e3c5")
       ))
   )
+
+;; Minimal dashboard menu
+(setq +doom-dashboard-functions
+      '(doom-dashboard-widget-shortmenu
+        doom-dashboard-widget-loaded))
+
+(setq +doom-dashboard-menu-sections
+      '(("Open project"
+         :action projectile-switch-project)
+        ("Recently opened files"
+         :action recentf-open-files)
+        ("Reload last session"
+         :when (cond ((require 'persp-mode nil t)
+                      (file-exists-p (expand-file-name persp-auto-save-fname persp-save-dir)))
+                     ((require 'desktop nil t)
+                      (file-exists-p (desktop-full-file-name))))
+         :face (:inherit (doom-dashboard-menu-title bold))
+         :action doom/quickload-session)
+        ("Open private configuration"
+         :when (file-directory-p doom-private-dir)
+         :action doom/open-private-config)
+        ("Open documentation"
+         :action doom/help)))
 
 ;; Do not show unwanted themes
 (delq! t custom-theme-load-path)
