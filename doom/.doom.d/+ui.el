@@ -29,10 +29,10 @@
 
 ;; Themes setup
 (use-package! modus-vivendi-theme  ; dark theme (default)
-  :config
+  :init
   (setq
-   ;; modus-vivendi-theme-slanted-constructs t
-   ;; modus-vivendi-theme-bold-constructs t
+   modus-vivendi-theme-slanted-constructs nil
+   modus-vivendi-theme-bold-constructs nil
    modus-vivendi-theme-intense-hl-line nil
    modus-vivendi-theme-subtle-diffs t
    modus-vivendi-theme-intense-paren-match 'intense-bold
@@ -41,21 +41,30 @@
    modus-vivendi-theme-faint-syntax t))
 
 (use-package! modus-operandi-theme  ; light theme
-  :config
+  :init
   (setq
-   ;; modus-operandi-theme-slanted-constructs t
+   modus-operandi-theme-slanted-constructs nil
    modus-operandi-theme-bold-constructs t
    modus-operandi-theme-intense-hl-line nil
-   modus-operandi-theme-subtle-diffs t
    modus-operandi-theme-intense-paren-match 'intense-bold
    modus-operandi-theme-org-blocks 'rainbow
-   modus-operandi-theme-completions 'opinionated))
+   modus-operandi-theme-completions 'opinionated)
+  :config
+  ;; Override modus-operandi colors
+  (modus-operandi-theme-with-color-variables
+    (custom-theme-set-faces!
+      'modus-operandi
+      `(default :background "#EFEFD8")
+      `(term :background "#e3e3c5")
+      `(vterm-color-default :background "#e3e3c5")
+      ))
+  )
 
 ;; Do not show unwanted themes
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'modus-operandi)
 
 ;; Font settings
 (setq
@@ -63,17 +72,17 @@
  doom-variable-pitch-font (font-spec :family "Verdana")
  doom-themes-treemacs-enable-variable-pitch nil)
 
-(defun my-buffer-face-mode-variable ()
+(defun zz/buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
   (setq buffer-face-mode-face '(:family "Verdana"))
   (buffer-face-mode))
 
 ;; Change default frame font in some specific modes
-(add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
-(add-hook 'markdown-mode-hook 'my-buffer-face-mode-variable)
-(add-hook 'notmuch-show-mode-hook 'my-buffer-face-mode-variable)
-(add-hook 'notmuch-message-mode-hook 'my-buffer-face-mode-variable)
+(add-hook 'org-mode-hook 'zz/buffer-face-mode-variable)
+(add-hook 'markdown-mode-hook 'zz/buffer-face-mode-variable)
+(add-hook 'notmuch-show-mode-hook 'zz/buffer-face-mode-variable)
+(add-hook 'notmuch-message-mode-hook 'zz/buffer-face-mode-variable)
 
 ;; Set up line spacing
 (setq-default line-spacing 0)
@@ -85,26 +94,23 @@
 (add-hook! 'rainbow-mode-hook
   (hl-line-mode (if rainbow-mode -1 +1)))
 
-;; Overwrite some theme stuff
-(custom-set-faces
- ;; Force background color (black)
- ;; '(default ((t (:background "#000000"))))
+;; Overwrite some global theme stuff
+(custom-set-faces!
+  ;; We use mini-modeline (merge modeline in minibuffer) so we want to keep
+  ;; our modeline as invisible and clean as possible.
+  '(mode-line :background nil :box nil :overline nil :underline nil)
 
- ;; We use mini-modeline (merge modeline in minibuffer) so we want to keep
- ;; our modeline as invisible and clean as possible.
- '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
+  ;; Line numbers (when on)
+  '(line-number :background nil :foreground "#3b3b3b" :height 100)
+  '(line-number-current-line :background nil :height 100)
 
- ;; Line numbers (when on)
- '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
- '(line-number-current-line ((t (:background nil :height 100))))
+  ;; Whitespace newline symbol
+  '(whitespace-newline :background nil :foreground "#383838")
 
- ;; Whitespace newline symbol
- '(whitespace-newline ((t (:background nil :foreground "#383838"))))
-
- ;; Comments and docstrings font face
- ;; '(font-lock-comment-face ((t (:inherit variable-pitch))))
- ;; '(font-lock-doc-face ((t (:inherit variable-pitch)))))
- )
+  ;; Comments and docstrings font face
+  ;; '(font-lock-comment-face :inherit variable-pitch)
+  ;; '(font-lock-doc-face :inherit variable-pitch)
+  )
 
 ;; Show visual indicators for line continuation in fringes
 ;; FIXME: Doesn't seems to work anymore for some reason...

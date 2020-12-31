@@ -74,7 +74,7 @@
 
 ;; Function to print command names in minibuffer as they are being used,
 ;; we make sure to hide some obvious commands to remove any fluff
-(defun my-echo-command-name-hook()
+(defun zz/echo-command-name-hook()
   (unless (or (eq this-command 'self-insert-command)
               (eq this-command 'evil-backward-char)
               (eq this-command 'evil-forward-char)
@@ -84,7 +84,7 @@
               (eq this-command 'next-line))
     (message "%s" this-command)))
 ;; Uncomment the below line to use the function above
-;; (add-hook! 'post-command-hook 'my-echo-command-name-hook)
+;; (add-hook! 'post-command-hook 'zz/echo-command-name-hook)
 
 ;; Completion
 (after! company
