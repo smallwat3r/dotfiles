@@ -139,7 +139,7 @@
   :config
   (map! :map dired-mode-map :n "/" 'dired-narrow-fuzzy))
 
-;; Vterm. The default shell I used in Emacs
+;; Vterm. The default shell I use in Emacs
 (after! vterm
   (setq vterm-kill-buffer-on-exit t)  ; kill buffer on exiting the term
 
