@@ -1,8 +1,8 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
-;; Frame settings (GUI)
+;; Default frame settings
 (when (display-graphic-p)
-  ;; Title
+  ;; Bar
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
@@ -10,11 +10,11 @@
   (add-to-list 'default-frame-alist '(width  . 106))
   (add-to-list 'default-frame-alist '(height . 64)))
 
-;; Line numbers
-(setq display-line-numbers-type nil)  ; hide line numbers by default
-;; (setq display-line-numbers-type 'relative)
+;; Disable line numbers by default
+(setq display-line-numbers-type nil)
 
-;; Frame title
+;; Set up frame title. It shows the title of the current file and an
+;; indicator if the file has been modified eg. (+)
 (setq frame-title-format
       '((:eval
          (if (buffer-file-name)
@@ -27,11 +27,7 @@
 ;; Hide icon from frame
 (setq ns-use-proxy-icon nil)
 
-;; Terminal line wrap
-(set-display-table-slot standard-display-table 'truncation ?›)
-(set-display-table-slot standard-display-table 'wrap ?↵)
-
-;; Themes
+;; Themes setup
 (use-package! modus-vivendi-theme  ; dark theme (default)
   :config
   (setq
@@ -55,9 +51,10 @@
    modus-operandi-theme-org-blocks 'rainbow
    modus-operandi-theme-completions 'opinionated))
 
+;; Do not show unwanted themes
 (delq! t custom-theme-load-path)
 
-;; Default theme
+;; Set up our default theme
 (setq doom-theme 'modus-vivendi)
 
 ;; Font settings
@@ -72,56 +69,76 @@
   (setq buffer-face-mode-face '(:family "Verdana"))
   (buffer-face-mode))
 
+;; Change default frame font in some specific modes
 (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
 (add-hook 'markdown-mode-hook 'my-buffer-face-mode-variable)
 (add-hook 'notmuch-show-mode-hook 'my-buffer-face-mode-variable)
 (add-hook 'notmuch-message-mode-hook 'my-buffer-face-mode-variable)
 
-;; Disable global word-wrap in a few modes
-(add-to-list '+word-wrap-disabled-modes 'vterm-mode)
-(add-to-list '+word-wrap-disabled-modes 'notmuch-search-mode)
-
-;; Line spacing
+;; Set up line spacing
 (setq-default line-spacing 0)
 
 ;; Disable hl-line-mode
 (remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
 
-;; Overwrite theme stuff
+;; Do not override the color of rainbow-mode with hl-line-mode.
+(add-hook! 'rainbow-mode-hook
+  (hl-line-mode (if rainbow-mode -1 +1)))
+
+;; Overwrite some theme stuff
 (custom-set-faces
- ;; '(default ((t (:background "#000000"))))  ; force black bg
+ ;; Force background color (black)
+ ;; '(default ((t (:background "#000000"))))
+
+ ;; We use mini-modeline (merge modeline in minibuffer) so we want to keep
+ ;; our modeline as invisible and clean as possible.
  '(mode-line ((t (:background nil :box nil :overline nil :underline nil))))
- '(fringe ((t (:foreground "#111111"))))
+
+ ;; Line numbers (when on)
  '(line-number ((t (:background nil :foreground "#3b3b3b" :height 100))))
  '(line-number-current-line ((t (:background nil :height 100))))
+
+ ;; Whitespace newline symbol
  '(whitespace-newline ((t (:background nil :foreground "#383838"))))
+
+ ;; Comments and docstrings font face
  ;; '(font-lock-comment-face ((t (:inherit variable-pitch))))
  ;; '(font-lock-doc-face ((t (:inherit variable-pitch)))))
  )
 
-(setq visual-line-fringe-indicators
-      '(nil right-curly-arrow))  ; show right continuation indicator
+;; Show visual indicators for line continuation in fringes
+;; FIXME: Doesn't seems to work anymore for some reason...
+;; (setq visual-line-fringe-indicators
+;;       '(nil right-curly-arrow))  ; show in right fringe only
 
-;; Show indicator for empty lines
-(setq-default indicate-empty-lines t)
+;; Show indicator for empty lines (eg. the tildes in vim after eof)
+;; (setq-default indicate-empty-lines t)
 
 ;; Enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
 
+;; Disable global by default word-wrap in a few modes
+(add-to-list '+word-wrap-disabled-modes 'vterm-mode)
+(add-to-list '+word-wrap-disabled-modes 'notmuch-search-mode)
+
+;; Terminal line wrap symbols
+(set-display-table-slot standard-display-table 'truncation ?›)
+(set-display-table-slot standard-display-table 'wrap ?↵)
+
 ;; Whitespace mode
 (global-whitespace-mode +1)
-
 (setq whitespace-style '(trailing tabs newline tab-mark newline-mark))
 (setq whitespace-display-mappings
       '((newline-mark 10 [?◦ 10])))  ; eol character
 
-;; Git gutter fringe
+;; Git gutter fringe.
 (after! git-gutter-fringe
-  (set-face-foreground 'git-gutter-fr:modified "#5f5fff")
-  (set-face-foreground 'git-gutter-fr:added    "#87ff87")
-  (set-face-foreground 'git-gutter-fr:deleted  "#ff005f"))
+  ;; Set default fringe colors based on action
+  (set-face-foreground 'git-gutter-fr:modified "yellow")
+  (set-face-foreground 'git-gutter-fr:added    "green")
+  (set-face-foreground 'git-gutter-fr:deleted  "red"))
 
-;; Evil vim modes
+;; Evil vim modes faces text representation and colors
 (setq
  evil-normal-state-tag   (propertize "N" 'face '((:foreground "DarkGoldenrod2")))
  evil-emacs-state-tag    (propertize "E" 'face '((:foreground "SkyBlue2")))
@@ -134,8 +151,13 @@
 ;; Mini-modeline (merge modeline with the mini-buffer)
 (use-package! mini-modeline
   :config
+  ;; Turn off some default settings, like to keep it as clean as possible.
   (setq mini-modeline-enhance-visual nil)
   (setq mini-modeline-display-gui-line nil)
+
+  ;; Keep modeline information on the right side of the mini-buffer so it still
+  ;; has enough space to display useful information on the left side (eg. commands
+  ;; information, echos, documentation etc).
   (setq mini-modeline-r-format
         (list
          '(:eval (propertize                ; Current filename
