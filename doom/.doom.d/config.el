@@ -22,7 +22,7 @@
       mail-envelope-from 'header
       message-sendmail-envelope-from 'header)
 
-;; My abbreviations. These are stored in a file name abbrev.el
+;; My abbreviations. These are stored in a file named abbrev.el
 (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
 (setq save-abbrevs 'silently)
 (setq-default abbrev-mode t)
