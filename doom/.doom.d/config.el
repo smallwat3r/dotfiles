@@ -72,7 +72,8 @@
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   (exec-path-from-shell-initialize))
 
-;; Function to command names in minibuffer as they are being used, hide obvious commands
+;; Function to print command names in minibuffer as they are being used,
+;; we make sure to hide some obvious commands to remove any fluff
 (defun my-echo-command-name-hook()
   (unless (or (eq this-command 'self-insert-command)
               (eq this-command 'evil-backward-char)
