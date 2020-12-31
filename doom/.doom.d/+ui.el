@@ -54,7 +54,7 @@
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces!
       'modus-operandi
-      `(default :background "#EFEFD8")
+      `(default :background "#efefd8")
       `(term :background "#e3e3c5")
       `(vterm-color-default :background "#e3e3c5")
       ))
@@ -148,7 +148,7 @@
 (setq
  evil-normal-state-tag   (propertize "N" 'face '((:foreground "DarkGoldenrod2")))
  evil-emacs-state-tag    (propertize "E" 'face '((:foreground "SkyBlue2")))
- evil-insert-state-tag   (propertize "I" 'face '((:foreground "Chartreuse1")))
+ evil-insert-state-tag   (propertize "I" 'face '((:foreground "green")))
  evil-replace-state-tag  (propertize "R" 'face '((:foreground "chocolate")))
  evil-motion-state-tag   (propertize "M" 'face '((:foreground "plum3")))
  evil-visual-state-tag   (propertize "V" 'face '((:foreground "red")))
