@@ -159,8 +159,8 @@
                     'help-echo "Buffer is read-only"
                     'face 'font-lock-type-face)))
          '(:eval (propertize                ; Time
-                  (format-time-string " %H:%M ")
-                  'help-echo (concat (format-time-string "%c; ")
+                  (format-time-string " %a %b %d %H:%M ")
+                  'help-echo (concat (format-time-string "%c; week %V; ")
                                      (emacs-uptime "Uptime: %hh"))))
          '(:eval evil-mode-line-tag)))      ; Evil mode
 
