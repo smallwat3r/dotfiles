@@ -258,6 +258,28 @@
         org-journal-date-format "%A, %d %B %Y"
         org-journal-file-format "%Y%m%d.org"))
 
+;; Scratch buffer add title in org-mode
+(add-hook 'org-mode-hook
+          (lambda ()
+            (when scratch-buffer
+              (save-excursion
+                (goto-char (point-min))
+                (insert "#+TITLE: Scratch")
+                (newline)
+                (newline)
+                'end-of-buffer))))
+
+;; Scratch buffer add shebang in sh-mode
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (when scratch-buffer
+              (save-excursion
+                (goto-char (point-min))
+                (insert "#!/usr/bin/env bash")
+                (newline)
+                (newline)
+                'end-of-buffer))))
+
 ;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
 ;; (Credits to @Flo from the doom emacs discord channel)
 (after! evil

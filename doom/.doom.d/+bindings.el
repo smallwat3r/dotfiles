@@ -28,13 +28,17 @@
  (:map evil-normal-state-map
   ";f"       #'format-all-buffer
   ";w"       #'evil-write
+  ";x"       #'evil-save
   ";q"       #'evil-save-and-close
-  ";x"       #'evil-save-and-close
   ";vs"      #'evil-window-vsplit
   ";vw"      #'evil-window-vnew
   ";sp"      #'evil-window-split
   ";sw"      #'evil-window-new
   ";,"       #'evil-ex-nohighlight)
+
+ ;; Pop up buffer with current mode
+ (:leader
+  :desc "Pop up scratch buffer"  "x" #'scratch)
 
  ;; Markdown
  (:leader
