@@ -92,7 +92,7 @@
         company-tooltip-limit 10          ; Dropdown of 10 lines long
         company-minimum-prefix-length 2)  ; Needs >2 chars before showing
 
-  (add-hook! 'evil-normal-state-entry-hook #'company-abort)  ; Hack
+  (add-hook! 'evil-normal-state-entry-hook #'company-abort)  ; Make aborting less annoying
 
   ;; Deactivate on sh-mode, as it seems to slow things down drastically when writing
   ;; bash scripts. FIXME: Investigate what is causing this? Is it really needed?
