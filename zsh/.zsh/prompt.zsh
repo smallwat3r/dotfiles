@@ -10,7 +10,7 @@ _display_git_info() {
   [[ ! -z $_git_branch ]] && echo " ${_git_branch}${_git_root}"
 }
 
-if [[ $INSIDE_EMACS ]]; then
+if [[ "$INSIDE_EMACS" ]]; then
   # Emacs shell prompt (do not run with tmux)
   # -----------------------------------------
   PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)$(shpwd)$(_display_git_info) %# '
