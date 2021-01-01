@@ -34,17 +34,17 @@ font:
     family: Monaco
     style: Regular
 
-  size: 12
+  size: 11
 
   offset:
-    x: 0
+    x: 1
     y: 0
 
   glyph_offset:
     x: 0
     y: 0
 
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # }}} font
 # {{{ colors
