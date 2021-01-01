@@ -28,7 +28,7 @@
 (setq ns-use-proxy-icon nil)
 
 ;; Themes setup
-(use-package! modus-vivendi-theme  ; dark theme (default)
+(use-package! modus-vivendi-theme  ; dark theme
   :init
   (setq
    modus-vivendi-theme-slanted-constructs nil
@@ -59,6 +59,12 @@
       ))
   )
 
+;; Do not show unwanted themes
+(delq! t custom-theme-load-path)
+
+;; Set up our default theme
+(setq doom-theme 'modus-operandi)
+
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
       '(doom-dashboard-widget-shortmenu
@@ -71,7 +77,8 @@
          :action recentf-open-files)
         ("Reload last session"
          :when (cond ((require 'persp-mode nil t)
-                      (file-exists-p (expand-file-name persp-auto-save-fname persp-save-dir)))
+                      (file-exists-p
+                       (expand-file-name persp-auto-save-fname persp-save-dir)))
                      ((require 'desktop nil t)
                       (file-exists-p (desktop-full-file-name))))
          :face (:inherit (doom-dashboard-menu-title bold))
@@ -81,12 +88,6 @@
          :action doom/open-private-config)
         ("Open documentation"
          :action doom/help)))
-
-;; Do not show unwanted themes
-(delq! t custom-theme-load-path)
-
-;; Set up our default theme
-(setq doom-theme 'modus-operandi)
 
 ;; Font settings
 (setq
@@ -127,7 +128,7 @@
   '(line-number-current-line :background nil :height 100)
 
   ;; Whitespace newline symbol
-  '(whitespace-newline :background nil :foreground "#383838")
+  '(whitespace-newline :background nil :inherit font-lock-comment-face)
 
   ;; Comments and docstrings font face
   ;; '(font-lock-comment-face :inherit variable-pitch)
@@ -214,4 +215,5 @@
                                      (emacs-uptime "Uptime: %hh"))))
          '(:eval evil-mode-line-tag)))      ; Evil mode
 
+  ;; Activate mini-modeline
   (mini-modeline-mode t))

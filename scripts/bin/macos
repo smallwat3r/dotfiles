@@ -4,7 +4,7 @@
 # Font smoothing
 # defaults -currentHost delete -globalDomain AppleFontSmoothing
 # defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-defaults -currentHost write -g AppleFontSmoothing -int 1
+defaults -currentHost write -g AppleFontSmoothing -int 3
 
 # Dark UI by default
 defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
