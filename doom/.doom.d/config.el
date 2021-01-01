@@ -60,9 +60,10 @@
 ;; Adds binaries to PATH, so we can use them from Emacs as it works from the shell
 (use-package! exec-path-from-shell
   :if (memq window-system '(mac ns x))
-  :config
+  :init
   (setq exec-path-from-shell-arguments '("-l"))  ; disable annoying warning
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
+  :config
   (exec-path-from-shell-initialize))
 
 ;; Function to print command names in minibuffer as they are being used,

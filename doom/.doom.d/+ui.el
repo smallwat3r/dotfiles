@@ -195,7 +195,7 @@
 
 ;; Mini-modeline (merge modeline with the mini-buffer)
 (use-package! mini-modeline
-  :config
+  :init
   ;; Turn off some default settings, like to keep it as clean as possible.
   (setq mini-modeline-enhance-visual nil)
   (setq mini-modeline-display-gui-line nil)
@@ -230,6 +230,6 @@
                   'help-echo (concat (format-time-string "%c; week %V; ")
                                      (emacs-uptime "Uptime: %hh"))))
          '(:eval evil-mode-line-tag)))      ; Evil mode
-
+  :config
   ;; Activate mini-modeline
   (mini-modeline-mode t))
