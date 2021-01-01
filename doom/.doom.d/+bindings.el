@@ -56,12 +56,12 @@
     :desc "Pre"           "p" #'markdown-insert-pre)
 
    (:prefix ("H" . "md-headings")
-    :desc "One"   "1" #'markdown-insert-header-atx-1
-    :desc "Two"   "2" #'markdown-insert-header-atx-2
-    :desc "Three" "3" #'markdown-insert-header-atx-3
-    :desc "Four"  "4" #'markdown-insert-header-atx-4
-    :desc "Five"  "5" #'markdown-insert-header-atx-5
-    :desc "Six"   "6" #'markdown-insert-header-atx-6)))
+    :desc "One"           "1" #'markdown-insert-header-atx-1
+    :desc "Two"           "2" #'markdown-insert-header-atx-2
+    :desc "Three"         "3" #'markdown-insert-header-atx-3
+    :desc "Four"          "4" #'markdown-insert-header-atx-4
+    :desc "Five"          "5" #'markdown-insert-header-atx-5
+    :desc "Six"           "6" #'markdown-insert-header-atx-6)))
 
  ;; localleader
  (:leader
@@ -79,6 +79,11 @@
    :desc "Emails"                   "m" #'notmuch
    :desc "Reveal in Finder"         "o" #'+macos/reveal-in-finder
    :desc "Reveal project in Finder" "O" #'+macos/reveal-project-in-finder))
+
+ ;; Toggles
+ (:leader
+  (:prefix "t"
+   :desc "Rainbow mode"             "c" #'rainbow-mode))
 
  ;; Errors
  (:leader
