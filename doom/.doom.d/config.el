@@ -57,13 +57,6 @@
   (setq projectile-project-search-path
         '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
 
-;; Writeroom font scaling
-(add-hook! 'writeroom-mode-hook
-  (text-scale-set (if writeroom-mode 1 0)))
-
-;; ;; Auto-activate writeroom on text-mode
-;; (add-hook! 'text-mode-hook writeroom-mode)
-
 ;; Adds binaries to PATH, so we can use them from Emacs as it works from the shell
 (use-package! exec-path-from-shell
   :if (memq window-system '(mac ns x))

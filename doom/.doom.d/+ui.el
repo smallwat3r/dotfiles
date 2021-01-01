@@ -13,6 +13,22 @@
 ;; Disable line numbers by default
 (setq display-line-numbers-type nil)
 
+;; Set window dividers width
+(defvar global-window-divider-width 2
+  "Default global width size of a window divider.")
+
+(setq window-divider-default-right-width global-window-divider-width
+      window-divider-default-bottom-width global-window-divider-width)
+
+;; Do not change the divider border width when using writeroom
+(setq +zen-window-divider-size global-window-divider-width)
+
+;; Writeroom font scaling
+(setq +zen-text-scale 1)
+
+;; ;; Auto-activate writeroom on text-mode
+;; (add-hook! 'text-mode-hook writeroom-mode)
+
 ;; Set up frame title. It shows the title of the current file and an
 ;; indicator if the file has been modified eg. (+)
 (setq frame-title-format
