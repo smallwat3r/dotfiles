@@ -167,7 +167,7 @@
 
   ;; Terminal pop-up settings
   (set-popup-rule! "*doom:vterm-popup:main"
-    :size 0.60
+    :size 0.40
     :vslot -4
     :select t
     :quit nil
