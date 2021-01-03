@@ -119,7 +119,8 @@
 
 ;; Font faces
 (setq
- doom-font (font-spec :family "Monaco" :size 11)
+ ;; doom-font (font-spec :family "Monaco" :size 11)
+ doom-font (font-spec :family "Recursive" :size 13)
  doom-variable-pitch-font (font-spec :family "Verdana"))
 
 ;; Steps used to increment fonts (default is 2)
