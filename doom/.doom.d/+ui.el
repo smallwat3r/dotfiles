@@ -70,8 +70,21 @@
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-operandi
       `(default :background "#efefd8")
-      `(vterm-color-default :background "#e3e3c5")
+      `(term :background "#efefd8")
+
+      ;; HACK: Removing hook for hl-line is not enough to stop showing it using the
+      ;; modus-operandi theme. So we make it the same color than our background
+      `(hl-line :background "#efefd8")
       ))
+
+  ;; HACK: Change default background color when using vterm within modus-operandi.
+  ;; Changing it by setting vterm-color-default above doesn't seems to work anymore.
+  (add-hook 'vterm-mode-hook
+            (lambda()
+              (when (string= doom-theme "modus-operandi")
+                (set (make-local-variable 'buffer-face-mode-face)
+                     '(:background "#e3e3c5"))
+                (buffer-face-mode t))))
   )
 
 ;; Do not show unwanted themes
