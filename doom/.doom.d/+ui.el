@@ -70,7 +70,6 @@
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-operandi
       `(default :background "#efefd8")
-      `(term :background "#e3e3c5")
       `(vterm-color-default :background "#e3e3c5")
       ))
   )

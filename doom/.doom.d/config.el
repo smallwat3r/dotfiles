@@ -135,17 +135,14 @@
 
 ;; Vterm. The default shell I use in Emacs
 (after! vterm
-  (setq vterm-kill-buffer-on-exit t)  ; kill buffer on exiting the term
+  ;; 9000 lines of scrollback, instead of 1000
+  (setq vterm-max-scrollback 9000)
 
   ;; Terminal font settings
   ;; (add-hook 'vterm-mode-hook
   ;;           (lambda ()
   ;;             (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch-serif)
   ;;             (buffer-face-mode t)))
-
-  ;; Cursor behaviour when hitting ESC in evil mode
-  (defun evil-collection-vterm-escape-stay ()
-    (setq-local evil-move-cursor-back nil))
 
   ;; Scrolling
   (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'scroll-up-line)
@@ -163,16 +160,7 @@
 
   ;; Delete the previous word
   (define-key vterm-mode-map (kbd "<C-backspace>")
-    (lambda () (interactive) (vterm-send-key (kbd "C-w"))))
-
-  ;; Terminal pop-up settings
-  (set-popup-rule! "*doom:vterm-popup:main"
-    :size 0.40
-    :vslot -4
-    :select t
-    :quit nil
-    :ttl 0
-    :side 'bottom))
+    (lambda () (interactive) (vterm-send-key (kbd "C-w")))))
 
 ;; Python configuration stuff
 (add-hook! python-mode
