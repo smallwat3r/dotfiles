@@ -117,11 +117,19 @@
         ("Open documentation"
          :action doom/help)))
 
-;; Font settings
+;; Font faces
 (setq
  doom-font (font-spec :family "Monaco" :size 11)
- doom-variable-pitch-font (font-spec :family "Verdana")
- doom-themes-treemacs-enable-variable-pitch nil)
+ doom-variable-pitch-font (font-spec :family "Verdana"))
+
+;; Steps used to increment fonts (default is 2)
+(setq doom-font-increment 1)
+
+;; Increment of 3 points in big-font-mode (default is 4)
+(setq doom-big-font-increment 3)
+
+;; Use default emacs font for treemacs
+(setq doom-themes-treemacs-enable-variable-pitch nil)
 
 (defun zz/buffer-face-mode-variable ()
   "Set font to a variable width (proportional) fonts in current buffer"
