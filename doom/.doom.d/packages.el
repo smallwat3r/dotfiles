@@ -8,7 +8,6 @@
 (package! jinja2-mode)
 (package! dired-narrow)
 (package! ripgrep)
-(package! emojify)
 (package! scratch)
 (package! modus-vivendi-theme)
 (package! modus-operandi-theme)

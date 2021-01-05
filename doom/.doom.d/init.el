@@ -14,6 +14,8 @@
  deft              ; notational velocity for Emacs
  doom              ; what makes DOOM look the way it does
  doom-dashboard    ; a nifty splash screen for Emacs
+ (emoji
+  +unicode)        ; 🙂
  hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
  ophints           ; highlight the region an operation acts on
  (popup

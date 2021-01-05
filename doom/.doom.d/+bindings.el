@@ -2,41 +2,55 @@
 
 (map!
 
- ;; Defaults
- "C-j"       #'scroll-up-line  ; scroll
- "C-k"       #'scroll-down-line
+ ;; Normal mode bindings
+ (:map evil-normal-state-map
+  ;; Scrollin
+  "C-j"      #'scroll-up-line
+  "C-k"      #'scroll-down-line
 
- ;; Override
- (:map override
-  "S-C-h"    #'shrink-window-horizontally  ; window sizes
+  ;; Shrink and enlarge windows
+  "S-C-h"    #'shrink-window-horizontally
   "S-C-l"    #'enlarge-window-horizontally
   "S-C-k"    #'enlarge-window
   "S-C-j"    #'shrink-window
 
-  "M-h"      #'windmove-left  ; switch windows
-  "M-l"      #'windmove-right
-  "M-k"      #'windmove-up
-  "M-j"      #'windmove-down
-
+  ;; Toggle spacing options
   "M-SPC"    #'cycle-spacing
+
+  ;; Delete blank lines below cursor position
   "M-o"      #'delete-blank-lines
 
-  "M-n"      #'+default/new-buffer
-  "M-`"      #'other-frame)
+  ;; Cycle through frames
+  "M-`"      #'other-frame
 
- ;; Normal mode
- (:map evil-normal-state-map
+  ;; NOTE: Using semicolon (;) as a sort of leader to perform
+  ;; general actions in normal mode (as I used to do in vim)
+
+  ;; Auto-format
   ";f"       #'format-all-buffer
+
+  ;; General actions (write, save, close etc)
   ";w"       #'evil-write
   ";x"       #'evil-save
   ";q"       #'evil-save-and-close
-  ";vs"      #'evil-window-vsplit
-  ";vw"      #'evil-window-vnew
-  ";sp"      #'evil-window-split
-  ";sw"      #'evil-window-new
+
+  ;; Splitting current buffer
+  ";vs"      #'evil-window-vsplit ; vertical
+  ";sp"      #'evil-window-split  ; horizontal
+
+  ;; Create new window (split screen)
+  ";vw"      #'evil-window-vnew   ; vertical
+  ";sw"      #'evil-window-new    ; horizontal
+
+  ;; Clear search highlights
   ";,"       #'evil-ex-nohighlight)
 
- ;; Pop up buffer with current mode
+ ;; Insert and Normal mode bindings
+ (:map (evil-insert-state-map evil-normal-state-map)
+  ;; Join lines instead of deleting region
+  "M-k"      #'evil-join)
+
+ ;; Pop up scratch buffer with current mode
  (:leader
   :desc "Pop up scratch buffer"  "x" #'scratch)
 
@@ -54,7 +68,6 @@
     :desc "Link"          "l" #'markdown-insert-link
     :desc "List Item"     "n" #'markdown-insert-list-item
     :desc "Pre"           "p" #'markdown-insert-pre)
-
    (:prefix ("H" . "md-headings")
     :desc "One"           "1" #'markdown-insert-header-atx-1
     :desc "Two"           "2" #'markdown-insert-header-atx-2
@@ -134,7 +147,6 @@
   :map python-mode-map
   (:prefix ("I" . "imports")  ; imports
    :desc "Isort buffer"             "s" #'+python/optimize-imports)
-
   (:prefix ("v" . "venv")  ; virtual env
    :desc "Workon"                   "w" #'pyvenv-workon
    :desc "Activate pyvenv"          "a" #'pyvenv-activate

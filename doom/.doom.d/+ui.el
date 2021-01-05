@@ -40,7 +40,7 @@
         (:eval
          (if (buffer-modified-p) " (+)"))))
 
-;; Hide icon from frame
+;; Hide file icon from frame window
 (setq ns-use-proxy-icon nil)
 
 ;; Themes setup
