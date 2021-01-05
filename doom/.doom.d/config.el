@@ -216,26 +216,27 @@
         '(("mpetiteau.pro@gmail.com" . "personal/sent -inbox +sent -unread")
           ("matthieu@smallwatersolutions.com" . "sws/sent -inbox +sent -unread"))))
 
+(defvar my-notes-directory "~/org"
+  "Where I'm storing all my notes stuff.")
+
 ;; Deft (notes)
 (after! deft
-  (setq deft-recursive t  ; Search recursively from the deft-directory
-        deft-directory "~/org"))
+  (setq deft-directory my-notes-directory
+        deft-recursive t       ; Search recursively from the deft-directory
+        ))
 
 ;; Org settings
-(setq
- org-directory "~/org/"
- org-ellipsis " … "
- org-hide-emphasis-markers t  ; hide mark up symbols (eg. *bold*)
- org-adapt-indentation nil)   ; indentation of text below headlines
+(after! org
+  (setq org-directory my-notes-directory
+        org-hide-emphasis-markers t  ; Hide mark symbols such as *bold* or ~code~
+        ))
 
 ;; Org-journal
-(use-package! org-journal
-  :init
-  (setq org-journal-prefix-key "C-c j")
-  :config
-  (setq org-journal-dir "~/org/journal/"
+(after! org-journal
+  (setq org-journal-dir (expand-file-name "journal/" my-notes-directory)
         org-journal-date-format "%A, %d %B %Y"
-        org-journal-file-format "%Y%m%d.org"))
+        org-journal-file-format "journal-%Y%m%d.org"
+        ))
 
 ;; Scratch buffer add title in org-mode
 (add-hook 'org-mode-hook

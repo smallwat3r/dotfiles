@@ -83,8 +83,7 @@
   +lsp)            ; all(hope(abandon(ye(who(enter(here))))))
  markdown          ; writing docs for people to ignore
  (org
-  +journal
-  +pretty)         ; organize your plain life in plain text
+  +journal)         ; organize your plain life in plain text
  (python
   +lsp)            ; beautiful is better than ugly
  rest              ; Emacs as a REST client

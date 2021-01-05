@@ -62,6 +62,7 @@
    modus-operandi-theme-slanted-constructs nil
    modus-operandi-theme-bold-constructs t
    modus-operandi-theme-intense-hl-line nil
+   modus-operandi-theme-subtle-diffs t
    modus-operandi-theme-intense-paren-match 'intense-bold
    modus-operandi-theme-org-blocks 'rainbow
    modus-operandi-theme-completions 'opinionated)
@@ -192,7 +193,7 @@
 (set-display-table-slot standard-display-table 'wrap ?↵)
 
 ;; Whitespace mode
-(global-whitespace-mode +1)
+;; (global-whitespace-mode +1)  ; turns on whitespace mode globally
 (setq whitespace-style '(trailing tabs newline tab-mark newline-mark))
 (setq whitespace-display-mappings
       '((newline-mark 10 [?◦ 10])))  ; eol character
