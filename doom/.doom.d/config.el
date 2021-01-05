@@ -1,5 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;; Load configs
 (load! "+ui")
 (load! "+bindings")
 (load! "+functions")
@@ -214,10 +215,6 @@
   (setq notmuch-fcc-dirs
         '(("mpetiteau.pro@gmail.com" . "personal/sent -inbox +sent -unread")
           ("matthieu@smallwatersolutions.com" . "sws/sent -inbox +sent -unread"))))
-
-;; Add emoji support
-(use-package! emojify
-  :hook (after-init . global-emojify-mode))
 
 ;; Deft (notes)
 (after! deft
