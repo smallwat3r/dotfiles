@@ -155,11 +155,18 @@
 
 ;; Static code analysis
 (after! flycheck
-  ;; Python stuff. Use Pylint by default.
-  (add-hook! 'python-mode-hook
-    (lambda ()
-      (setq flycheck-python-pylint-executable "/usr/local/bin/pylint")
-      (setq flycheck-pylintrc "~/.config/pylintrc"))))
+  ;; Pylint configs
+  (setq flycheck-python-pylint-executable "/usr/local/bin/pylint"
+        flycheck-pylintrc "~/.config/pylintrc")
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (setq flycheck-checker 'python-pylint)))
+  ;; Shellcheck configs
+  (setq flycheck-shellcheck-excluded-warnings '("SC1091"))
+  (add-hook 'sh-mode-hook
+            (lambda ()
+              (setq flycheck-checker 'sh-shellcheck)))
+  )
 
 ;; Spell checker
 (after! spell-fu
