@@ -59,12 +59,12 @@ alias \
 
 # Python stuff
 alias \
-  pif="pip3.8 freeze" \
-  pii="pip3.8 install" \
-  pip="pip3.8" \
-  py="python3.8" \
+  pif="pip3.9 freeze" \
+  pii="pip3.9 install" \
+  pip="pip3.9" \
+  py="python3.9" \
   python2="python2.7" \
-  python="python3.8" \
+  python="python3.9" \
   venv="python -m venv env"
 
 # Tmux stuff

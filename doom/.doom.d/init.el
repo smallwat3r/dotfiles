@@ -22,7 +22,6 @@
   +defaults)   ; tame sudden yet inevitable temporary windows
  treemacs          ; a project drawer, like neotree but cooler
  vc-gutter         ; vcs diff in the fringe
- vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  workspaces        ; tab emulation, persistence & separate workspaces
  zen               ; distraction-free coding or writing
 

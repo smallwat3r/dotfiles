@@ -2,6 +2,9 @@
 
 (map!
 
+ ;; Hack for hash key support, on UK macOS keyboard, M-3 wouldn't print a hash (#)
+ (:map key-translation-map "M-3" "#")
+
  ;; Normal mode bindings
  (:map evil-normal-state-map
   ;; Scrollin

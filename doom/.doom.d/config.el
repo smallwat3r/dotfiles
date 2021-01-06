@@ -8,20 +8,24 @@
 ;; Disable confirmation when exiting Emacs
 (setq confirm-kill-emacs nil)
 
-;; Hack for hash key support, on UK macOS keyboard, M-3 wouldn't print a hash (#)
-(define-key key-translation-map (kbd "M-3") (kbd "#"))
+;; Echo the command names in minibuffer as they are being used
+;; (add-hook! 'post-command-hook 'zz/echo-command-name)
 
 ;; Personal info
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com")
 
-;; Email stuff. We are using msmtp to send emails from Emacs
-(setq mail-user-agent 'message-user-agent)
-(setq mail-specify-envelope-from t)
-(setq sendmail-program "/usr/local/bin/msmtp"
-      mail-specify-envelope-from t
-      mail-envelope-from 'header
-      message-sendmail-envelope-from 'header)
+;; Some general settings
+(setq
+ evil-vsplit-window-right t
+ evil-split-window-below t
+ default-directory "~/"
+ undo-limit 80000000
+ evil-want-fine-undo t             ; fine grained undo history
+ inhibit-compacting-font-caches t  ; improve general perfs
+ scroll-margin 7                   ; top and bottom margins to trigger scroll
+ which-key-idle-delay 0.5          ; delay to show key bindings menu
+ )
 
 ;; My abbreviations. These are stored in a file named abbrev.el
 (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
@@ -33,16 +37,12 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Some general settings
-(setq
- evil-vsplit-window-right t
- evil-split-window-below t
- default-directory "~/"
- undo-limit 80000000
- evil-want-fine-undo t             ; fine grained undo history
- inhibit-compacting-font-caches t  ; improve general perfs
- scroll-margin 7                   ; top and bottom margins to trigger scroll
- which-key-idle-delay 0.5)         ; delay to show key bindings menu
+;; Email stuff. It's using msmtp to send emails
+(setq mail-user-agent 'message-user-agent
+      sendmail-program "/usr/local/bin/msmtp"
+      mail-specify-envelope-from t
+      mail-envelope-from 'header
+      message-sendmail-envelope-from 'header)
 
 ;; Delete all whitespace on save, except on markdown-mode
 (add-hook! 'before-save-hook
@@ -67,19 +67,9 @@
   :config
   (exec-path-from-shell-initialize))
 
-;; Function to print command names in minibuffer as they are being used,
-;; we make sure to hide some obvious commands to remove any fluff
-(defun zz/echo-command-name-hook()
-  (unless (or (eq this-command 'self-insert-command)
-              (eq this-command 'evil-backward-char)
-              (eq this-command 'evil-forward-char)
-              (eq this-command 'scroll-up-line)
-              (eq this-command 'scroll-down-line)
-              (eq this-command 'previous-line)
-              (eq this-command 'next-line))
-    (message "%s" this-command)))
-;; Uncomment the below line to use the function above
-;; (add-hook! 'post-command-hook 'zz/echo-command-name-hook)
+;; Auto add headers on scratch buffers in specific modes
+(add-hook! 'org-mode-hook (zz/add-scratch-buffer-header "#+TITLE: Scratch file"))
+(add-hook! 'sh-mode-hook (zz/add-scratch-buffer-header "#!/usr/bin/env bash"))
 
 ;; Completion
 (after! company
@@ -125,8 +115,9 @@
 
 ;; Dired file explorer
 (after! dired
-  (setq delete-by-moving-to-trash t)
-  (setq dired-listing-switches "-lat"))  ; sort by date
+  (setq delete-by-moving-to-trash t
+        dired-listing-switches "-lat"  ; sort by date
+        ))
 
 ;; Adds narrow fuzzy search functionality to Dired
 (use-package! dired-narrow
@@ -136,28 +127,22 @@
 
 ;; Vterm. The default shell I use in Emacs
 (after! vterm
-  ;; 9000 lines of scrollback, instead of 1000
-  (setq vterm-max-scrollback 9000)
-
-  ;; Terminal font settings
-  ;; (add-hook 'vterm-mode-hook
-  ;;           (lambda ()
-  ;;             (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch-serif)
-  ;;             (buffer-face-mode t)))
+  ;; 6000 lines of scrollback, instead of 1000
+  (setq vterm-max-scrollback 6000)
 
   ;; Scrolling
-  (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'scroll-up-line)
-  (evil-define-key 'insert vterm-mode-map (kbd "C-k") #'scroll-down-line)
-  (evil-define-key 'normal vterm-mode-map (kbd "C-j") #'scroll-up-line)
-  (evil-define-key 'normal vterm-mode-map (kbd "C-k") #'scroll-down-line)
+  (map! :map vterm-mode-map :i "C-j" #'scroll-up-line)
+  (map! :map vterm-mode-map :i "C-k" #'scroll-down-line)
+  (map! :map vterm-mode-map :n "C-j" #'scroll-up-line)
+  (map! :map vterm-mode-map :n "C-k" #'scroll-down-line)
 
   ;; Ctrl-C behaviour. Stop current command automatically
-  (evil-define-key 'insert vterm-mode-map (kbd "C-c") #'vterm--self-insert)
+  (map! :map vterm-mode-map :i "C-c" #'vterm--self-insert)
 
   ;; Enter in insert mode
-  (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
-  (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
-  (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
+  (map! :map vterm-mode-map :n "i" #'evil-insert-resume)
+  (map! :map vterm-mode-map :n "o" #'evil-insert-resume)
+  (map! :map vterm-mode-map :n "<return>" #'evil-insert-resume)
 
   ;; Delete the previous word
   (define-key vterm-mode-map (kbd "<C-backspace>")
@@ -166,7 +151,7 @@
 ;; Python configuration stuff
 (add-hook! python-mode
   (setq python-shell-interpreter
-        "/usr/local/opt/python@3.8/bin/python3.8"))
+        "/usr/local/opt/python@3.9/bin/python3.9"))
 
 ;; Static code analysis
 (after! flycheck
@@ -179,6 +164,9 @@
 ;; Spell checker
 (after! spell-fu
   (setq spell-fu-idle-delay 0.5))  ; default delay is 0.25
+
+;; spell-fu needs to be turn on manually
+(remove-hook! (text-mode) #'spell-fu-mode)
 
 ;; Bash formatter settings (shfmt)
 (set-formatter! 'shfmt "shfmt -i 2 -ci")
@@ -222,7 +210,7 @@
 ;; Deft (notes)
 (after! deft
   (setq deft-directory my-notes-directory
-        deft-recursive t       ; Search recursively from the deft-directory
+        deft-recursive t  ; Search recursively from the deft-directory
         ))
 
 ;; Org settings
@@ -237,28 +225,6 @@
         org-journal-date-format "%A, %d %B %Y"
         org-journal-file-format "journal-%Y%m%d.org"
         ))
-
-;; Scratch buffer add title in org-mode
-(add-hook 'org-mode-hook
-          (lambda ()
-            (when scratch-buffer
-              (save-excursion
-                (goto-char (point-min))
-                (insert "#+TITLE: Scratch")
-                (newline)
-                (newline)
-                'end-of-buffer))))
-
-;; Scratch buffer add shebang in sh-mode
-(add-hook 'sh-mode-hook
-          (lambda ()
-            (when scratch-buffer
-              (save-excursion
-                (goto-char (point-min))
-                (insert "#!/usr/bin/env bash")
-                (newline)
-                (newline)
-                'end-of-buffer))))
 
 ;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
 ;; (Credits to @Flo from the doom emacs discord channel)
