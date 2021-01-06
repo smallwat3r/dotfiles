@@ -83,13 +83,11 @@
   ;; bash scripts. FIXME: Investigate what is causing this? Is it really needed?
   (setq company-global-modes '(not sh-mode))
 
-  ;; Use tab to go through the choices
-  (eval-after-load 'company
-    '(progn
-       (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-       (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
-       (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
-       (define-key company-active-map (kbd "<backtab>") 'company-select-previous)))
+  ;; Use tab and shift-tab to go through the choices
+  (map! :map company-active-map "TAB"       #'company-complete-common-or-cycle)
+  (map! :map company-active-map "<tab>"     #'company-complete-common-or-cycle)
+  (map! :map company-active-map "S-TAB"     #'company-select-previous)
+  (map! :map company-active-map "<backtab>" #'company-select-previous)
 
   ;; Set specific backends for text stuff
   (set-company-backend! '(text-mode markdown-mode gfm-mode)
@@ -123,7 +121,7 @@
 (use-package! dired-narrow
   :after dired
   :config
-  (map! :map dired-mode-map :n "/" 'dired-narrow-fuzzy))
+  (map! :map dired-mode-map :n "/" #'dired-narrow-fuzzy))
 
 ;; Vterm. The default shell I use in Emacs
 (after! vterm
@@ -139,14 +137,16 @@
   ;; Ctrl-C behaviour. Stop current command automatically
   (map! :map vterm-mode-map :i "C-c" #'vterm--self-insert)
 
-  ;; Enter in insert mode
-  (map! :map vterm-mode-map :n "i" #'evil-insert-resume)
-  (map! :map vterm-mode-map :n "o" #'evil-insert-resume)
+  ;; Automatically enter in insert mode
+  (map! :map vterm-mode-map :n "i"        #'evil-insert-resume)
+  (map! :map vterm-mode-map :n "o"        #'evil-insert-resume)
   (map! :map vterm-mode-map :n "<return>" #'evil-insert-resume)
 
   ;; Delete the previous word
-  (define-key vterm-mode-map (kbd "<C-backspace>")
-    (lambda () (interactive) (vterm-send-key (kbd "C-w")))))
+  (map! :map vterm-mode-map "<C-backspace>"
+        (lambda ()
+          (interactive) (vterm-send-key (kbd "C-w"))))
+  )
 
 ;; Python configuration stuff
 (add-hook! python-mode
