@@ -48,7 +48,7 @@
   :init
   (setq
    modus-vivendi-theme-slanted-constructs nil
-   modus-vivendi-theme-bold-constructs nil
+   modus-vivendi-theme-bold-constructs t
    modus-vivendi-theme-intense-hl-line nil
    modus-vivendi-theme-subtle-diffs t
    modus-vivendi-theme-intense-paren-match 'intense-bold
