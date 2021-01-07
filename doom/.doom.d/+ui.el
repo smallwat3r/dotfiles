@@ -54,7 +54,14 @@
    modus-vivendi-theme-intense-paren-match 'intense-bold
    modus-vivendi-theme-org-blocks 'rainbow
    modus-vivendi-theme-completions 'opinionated
-   modus-vivendi-theme-faint-syntax t))
+   modus-vivendi-theme-faint-syntax t)
+  :config
+  ;; Override colors
+  (modus-vivendi-theme-with-color-variables
+    (custom-theme-set-faces! 'modus-vivendi
+      `(hl-line :background "#000000")
+      ))
+  )
 
 (use-package! modus-operandi-theme  ; light theme
   :init
@@ -67,14 +74,11 @@
    modus-operandi-theme-org-blocks 'rainbow
    modus-operandi-theme-completions 'opinionated)
   :config
-  ;; Override modus-operandi colors
+  ;; Override colors
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-operandi
       `(default :background "#efefd8")
       `(term :background "#efefd8")
-
-      ;; HACK: Removing hook for hl-line is not enough to stop showing it using the
-      ;; modus-operandi theme. So we make it the same color than our background
       `(hl-line :background "#efefd8")
       ))
 
@@ -120,9 +124,8 @@
 
 ;; Font faces
 (setq
- ;; doom-font (font-spec :family "Monaco" :size 11)
+ doom-font (font-spec :family "Monaco Nerd Font" :size 13)
  ;; doom-font (font-spec :family "Recursive Monospace Casual" :size 13)
- doom-font (font-spec :family "Hack" :size 13)
  doom-variable-pitch-font (font-spec :family "Verdana"))
 
 ;; Steps used to increment fonts (default is 2)
@@ -146,8 +149,8 @@
 (add-hook 'notmuch-show-mode-hook 'zz/buffer-face-mode-variable)
 (add-hook 'notmuch-message-mode-hook 'zz/buffer-face-mode-variable)
 
-;; Set up line spacing
-(setq-default line-spacing 0)
+;; No extra line spacing
+(setq-default line-spacing nil)
 
 ;; Disable hl-line-mode
 (remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
