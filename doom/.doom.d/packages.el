@@ -9,5 +9,6 @@
 (package! dired-narrow)
 (package! ripgrep)
 (package! scratch)
+(package! pinentry)
 (package! modus-vivendi-theme)
 (package! modus-operandi-theme)

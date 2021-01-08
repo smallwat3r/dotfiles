@@ -37,13 +37,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Email stuff. It's using msmtp to send emails
-(setq mail-user-agent 'message-user-agent
-      sendmail-program "/usr/local/bin/msmtp"
-      mail-specify-envelope-from t
-      mail-envelope-from 'header
-      message-sendmail-envelope-from 'header)
-
 ;; Delete all whitespace on save, except on markdown-mode
 (add-hook! 'before-save-hook
   (lambda ()
@@ -195,7 +188,19 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
-;; Email configuration. We use Notmuch to manage emails in Emacs
+;; Adds GPG pinentry comptatibility to Emacs
+;; TODO: Have a closer look into this solution
+(use-package! pinentry
+  :config (pinentry-start))
+
+;; Email config stuff. It's using msmtp to send emails
+(setq mail-user-agent 'message-user-agent
+      sendmail-program "/usr/local/bin/msmtp"
+      mail-specify-envelope-from t
+      mail-envelope-from 'header
+      message-sendmail-envelope-from 'header)
+
+;; We use Notmuch to manage emails in Emacs
 (after! notmuch
   ;; Email list formats
   (setq notmuch-search-result-format
@@ -204,8 +209,9 @@
           ("authors" . "%-15s ")
           ("tags" . "(%s) ")
           ("subject" . "%-72s")))
-  ;; Use mbsync to synchronise emails
-  (setq +notmuch-sync-backend 'mbsync)
+  ;; Command to fetch for new emails
+  (setq +notmuch-sync-backend 'custom)  ; so we can run our custom command
+  (setq +notmuch-sync-command "mbsync -a && notmuch new")
   ;; Set default tags on replies
   (setq notmuch-fcc-dirs
         '(("mpetiteau.pro@gmail.com" . "personal/sent -inbox +sent -unread")
