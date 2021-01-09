@@ -66,20 +66,14 @@
 
 ;; Completion
 (after! company
+  (add-hook! 'evil-normal-state-entry-hook #'company-abort)  ; Make aborting less annoying
+
   (setq +lsp-company-backends
         '(:separate company-yasnippet company-capf))
 
   (setq company-idle-delay 0.1            ; Add minimal delay
         company-tooltip-limit 10          ; Dropdown of 10 lines long
         company-minimum-prefix-length 2)  ; Needs >2 chars before showing
-
-  (add-hook! 'evil-normal-state-entry-hook #'company-abort)  ; Make aborting less annoying
-
-  ;; Use tab and shift-tab to go through the choices
-  (map! :map company-active-map "TAB"       #'company-complete-common-or-cycle)
-  (map! :map company-active-map "<tab>"     #'company-complete-common-or-cycle)
-  (map! :map company-active-map "S-TAB"     #'company-select-previous)
-  (map! :map company-active-map "<backtab>" #'company-select-previous)
   )
 
 ;; Python company backend
