@@ -53,28 +53,6 @@
   ;; Join lines instead of deleting region
   "M-k"      #'evil-join)
 
- ;; Markdown
- (:leader
-  (:map markdown-mode-map
-   (:prefix ("I" . "md-insert")
-    :desc "Blockquote"    "q" #'markdown-insert-blockquote
-    :desc "Bold"          "b" #'markdown-insert-bold
-    :desc "Code"          "c" #'markdown-insert-code
-    :desc "Emphasis"      "e" #'markdown-insert-italic
-    :desc "Footnote"      "f" #'markdown-insert-footnote
-    :desc "Code Block"    "s" #'markdown-insert-gfm-code-block
-    :desc "Image"         "i" #'markdown-insert-image
-    :desc "Link"          "l" #'markdown-insert-link
-    :desc "List Item"     "n" #'markdown-insert-list-item
-    :desc "Pre"           "p" #'markdown-insert-pre)
-   (:prefix ("H" . "md-headings")
-    :desc "One"           "1" #'markdown-insert-header-atx-1
-    :desc "Two"           "2" #'markdown-insert-header-atx-2
-    :desc "Three"         "3" #'markdown-insert-header-atx-3
-    :desc "Four"          "4" #'markdown-insert-header-atx-4
-    :desc "Five"          "5" #'markdown-insert-header-atx-5
-    :desc "Six"           "6" #'markdown-insert-header-atx-6)))
-
  ;; localleader
  (:leader
   (:prefix "m"
@@ -115,7 +93,9 @@
  (:leader
   (:prefix ("k" . "kubernetes")
    :desc "Overview"                 "o" #'kubernetes-overview
+   :desc "Set context"              "c" #'kubernetes-use-context
    :desc "Set namespace"            "n" #'kubernetes-set-namespace
+   :desc "Display logs"             "l" #'kubernetes-logs-fetch-all
    :desc "Display service"          "s" #'kubernetes-display-service
    :desc "Display deployment"       "d" #'kubernetes-display-deployment
    :desc "Describe"                 "D" #'kubernetes-describe-pod
@@ -146,11 +126,9 @@
    :desc "New journal entry"        "n" #'org-journal-new-entry))
 
  ;; Python
- (:after python
-  :leader
-  :map python-mode-map
-  (:prefix ("I" . "imports")  ; imports
-   :desc "Isort buffer"             "s" #'+python/optimize-imports)
+ (:map python-mode-map
+  :after python
+  :localleader
   (:prefix ("v" . "venv")  ; virtual env
    :desc "Workon"                   "w" #'pyvenv-workon
    :desc "Activate pyvenv"          "a" #'pyvenv-activate
