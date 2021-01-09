@@ -123,10 +123,8 @@
          :action doom/help)))
 
 ;; Font faces
-(setq
- doom-font (font-spec :family "Monaco Nerd Font" :size 13)
- ;; doom-font (font-spec :family "Recursive Monospace Casual" :size 13)
- doom-variable-pitch-font (font-spec :family "Verdana"))
+(setq doom-font (font-spec :family "Monaco Nerd Font" :size 13)
+      doom-variable-pitch-font (font-spec :family "Verdana"))
 
 ;; Steps used to increment fonts (default is 2)
 (setq doom-font-increment 1)
@@ -136,18 +134,6 @@
 
 ;; Use default emacs font for treemacs
 (setq doom-themes-treemacs-enable-variable-pitch nil)
-
-(defun zz/buffer-face-mode-variable ()
-  "Set font to a variable width (proportional) fonts in current buffer"
-  (interactive)
-  (setq buffer-face-mode-face '(:family "Verdana"))
-  (buffer-face-mode))
-
-;; Change default frame font in some specific modes
-(add-hook 'org-mode-hook 'zz/buffer-face-mode-variable)
-(add-hook 'markdown-mode-hook 'zz/buffer-face-mode-variable)
-(add-hook 'notmuch-show-mode-hook 'zz/buffer-face-mode-variable)
-(add-hook 'notmuch-message-mode-hook 'zz/buffer-face-mode-variable)
 
 ;; No extra line spacing
 (setq-default line-spacing nil)
