@@ -53,10 +53,6 @@
   ;; Join lines instead of deleting region
   "M-k"      #'evil-join)
 
- ;; Pop up scratch buffer with current mode
- (:leader
-  :desc "Pop up scratch buffer"  "x" #'scratch)
-
  ;; Markdown
  (:leader
   (:map markdown-mode-map
@@ -87,7 +83,12 @@
  ;; Buffers
  (:leader
   (:prefix "b"
-   :desc "Kill buffer"              "d" #'evil-delete-buffer))
+   :desc "Kill buffer"              "d" #'evil-delete-buffer
+   :desc "Pop up scratch buffer"    "x" #'scratch))
+
+ ;; Pop up scratch buffer with current mode
+ (:leader
+  :desc "Pop up scratch buffer"     "x" #'scratch)
 
  ;; Open
  (:leader

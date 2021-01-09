@@ -79,7 +79,8 @@
  json              ; At least it ain't XML
  (javascript
   +lsp)            ; all(hope(abandon(ye(who(enter(here))))))
- markdown          ; writing docs for people to ignore
+ (markdown
+  +grip)           ; writing docs for people to ignore
  (org
   +journal)         ; organize your plain life in plain text
  (python
