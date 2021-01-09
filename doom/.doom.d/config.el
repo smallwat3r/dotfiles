@@ -66,25 +66,35 @@
 
 ;; Completion
 (after! company
+  (setq +lsp-company-backends
+        '(:separate company-yasnippet company-capf))
+
   (setq company-idle-delay 0.1            ; Add minimal delay
         company-tooltip-limit 10          ; Dropdown of 10 lines long
         company-minimum-prefix-length 2)  ; Needs >2 chars before showing
 
   (add-hook! 'evil-normal-state-entry-hook #'company-abort)  ; Make aborting less annoying
 
-  ;; Deactivate on sh-mode, as it seems to slow things down drastically when writing
-  ;; bash scripts. FIXME: Investigate what is causing this? Is it really needed?
-  (setq company-global-modes '(not sh-mode))
-
   ;; Use tab and shift-tab to go through the choices
   (map! :map company-active-map "TAB"       #'company-complete-common-or-cycle)
   (map! :map company-active-map "<tab>"     #'company-complete-common-or-cycle)
   (map! :map company-active-map "S-TAB"     #'company-select-previous)
   (map! :map company-active-map "<backtab>" #'company-select-previous)
+  )
 
-  ;; Set specific backends for text stuff
-  (set-company-backend! '(text-mode markdown-mode gfm-mode)
-    '(:seperate company-ispell company-files company-yasnippet)))
+;; Python company backend
+(after! python-mode
+  (set-company-backend! 'python-mode
+    '(company-capf :separate company-yasnippet)))
+
+;; Javascript company backend
+(after! js2-modea
+  (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
+
+;; Bash company backend
+(after! sh-script
+  (set-company-backend! 'sh-mode
+    '(company-shell :with company-yasnippet)))
 
 ;; Ivy
 (after! ivy
