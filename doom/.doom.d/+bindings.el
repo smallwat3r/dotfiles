@@ -104,7 +104,8 @@
  ;; Docker
  (:leader
   (:prefix ("d" . "docker")
-   :desc "Images"                   "i" #'docker-images
+   :desc "List images"              "i" #'docker-images
+   :desc "List containers"          "c" #'docker-containers
    :desc "Exec into"                "e" #'docker-container-shell))
 
  ;; Search
