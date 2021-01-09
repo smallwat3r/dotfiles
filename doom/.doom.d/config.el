@@ -188,11 +188,6 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
-;; Adds GPG pinentry comptatibility to Emacs
-;; TODO: Have a closer look into this solution
-(use-package! pinentry
-  :config (pinentry-start))
-
 ;; Email config stuff. It's using msmtp to send emails
 (setq mail-user-agent 'message-user-agent
       sendmail-program "/usr/local/bin/msmtp"
