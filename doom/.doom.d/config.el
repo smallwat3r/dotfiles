@@ -78,12 +78,11 @@
 
 ;; Python company backend
 (after! python-mode
-  (set-company-backend! 'python-mode
-    '(company-capf :separate company-yasnippet)))
+  (set-company-backend! 'python-mode 'company-yasnippet))
 
 ;; Javascript company backend
-(after! js2-modea
-  (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
+(after! js2-mode
+  (set-company-backend! 'js2-mode 'company-yasnippet))
 
 ;; Bash company backend
 (after! sh-script
