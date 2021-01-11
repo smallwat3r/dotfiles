@@ -112,4 +112,5 @@ alias \
   pubip="curl http://ipecho.net/plain; echo" \
   sk="sketch" \
   ww="vifm ." \
-  mongo-docker="docker run -d -p 27000:27017 -v $HOME/.dockervolumes/mongo/db:/data/db mongo"
+  mongo-docker="docker run -d -p 27000:27017 -v $HOME/.dockervolumes/mongo/db:/data/db mongo" \
+  rmq-docker="docker run -d --hostname my-rabbit -p 5672:5672 -p 8080:15672 rabbitmq:3-management"
