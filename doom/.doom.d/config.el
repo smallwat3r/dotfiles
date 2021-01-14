@@ -227,7 +227,7 @@
 ;; Org settings
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers t  ; Hide mark symbols such as *bold* or ~code~
+        org-hide-emphasis-markers nil  ; Symbols such as *bold* or ~code~
         ))
 
 ;; Org-journal

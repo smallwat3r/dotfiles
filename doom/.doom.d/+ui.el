@@ -48,7 +48,7 @@
   :init
   (setq
    modus-vivendi-theme-slanted-constructs nil
-   modus-vivendi-theme-bold-constructs t
+   modus-vivendi-theme-bold-constructs nil
    modus-vivendi-theme-intense-hl-line nil
    modus-vivendi-theme-subtle-diffs t
    modus-vivendi-theme-intense-paren-match 'intense-bold
@@ -59,6 +59,7 @@
   ;; Override colors
   (modus-vivendi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-vivendi
+      `(default :background "#000000" :foreground "#f2f2f2")
       `(hl-line :background "#000000")
       ))
   )
@@ -67,7 +68,7 @@
   :init
   (setq
    modus-operandi-theme-slanted-constructs nil
-   modus-operandi-theme-bold-constructs t
+   modus-operandi-theme-bold-constructs nil
    modus-operandi-theme-intense-hl-line nil
    modus-operandi-theme-subtle-diffs t
    modus-operandi-theme-intense-paren-match 'intense-bold
@@ -96,7 +97,8 @@
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-(setq doom-theme 'modus-operandi)
+;; (setq doom-theme 'modus-operandi)
+(setq doom-theme 'modus-vivendi)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
