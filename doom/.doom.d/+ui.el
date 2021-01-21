@@ -97,8 +97,7 @@
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-;; (setq doom-theme 'modus-operandi)
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'modus-operandi)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
