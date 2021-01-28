@@ -1,14 +1,11 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
 ;; Default frame settings
-(when (display-graphic-p)
-  ;; Bar
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
-
-  ;; Size
-  (add-to-list 'default-frame-alist '(width  . 106))
-  (add-to-list 'default-frame-alist '(height . 64)))
+(setq default-frame-alist
+      '((ns-transparent-titlebar . t)
+        (ns-appearance . dark)
+        (width . 106)
+        (height . 64)))
 
 ;; Disable line numbers by default
 (setq display-line-numbers-type nil)
@@ -60,7 +57,6 @@
   (modus-vivendi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-vivendi
       `(default :background "#000000" :foreground "#f2f2f2")
-      `(hl-line :background "#000000")
       ))
   )
 
@@ -80,7 +76,6 @@
     (custom-theme-set-faces! 'modus-operandi
       `(default :background "#efefd8")
       `(term :background "#efefd8")
-      `(hl-line :background "#efefd8")
       ))
 
   ;; HACK: Change default background color when using vterm within modus-operandi.
@@ -97,7 +92,7 @@
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-(setq doom-theme 'modus-operandi)
+(setq doom-theme 'modus-vivendi)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
@@ -115,7 +110,6 @@
                        (expand-file-name persp-auto-save-fname persp-save-dir)))
                      ((require 'desktop nil t)
                       (file-exists-p (desktop-full-file-name))))
-         :face (:inherit (doom-dashboard-menu-title bold))
          :action doom/quickload-session)
         ("Open private configuration"
          :when (file-directory-p doom-private-dir)
@@ -124,8 +118,9 @@
          :action doom/help)))
 
 ;; Font faces
-(setq doom-font (font-spec :family "Monaco Nerd Font" :size 13)
-      doom-variable-pitch-font (font-spec :family "Verdana"))
+(setq
+ doom-font (font-spec :family "Monaco Nerd Font" :size 13)
+ doom-variable-pitch-font (font-spec :family "Verdana"))
 
 ;; Steps used to increment fonts (default is 2)
 (setq doom-font-increment 1)
@@ -140,11 +135,12 @@
 (setq-default line-spacing nil)
 
 ;; Disable hl-line-mode
-(remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
+(add-hook! (prog-mode text-mode conf-mode special-mode) (hl-line-mode -1))
 
+;; NOTE: Not needed as hl-line-mode is disabled by default (see above)
 ;; Do not override the color of rainbow-mode with hl-line-mode.
-(add-hook! 'rainbow-mode-hook
-  (hl-line-mode (if rainbow-mode -1 +1)))
+;; (add-hook! 'rainbow-mode-hook
+;;   (hl-line-mode (if rainbow-mode -1 +1)))
 
 ;; Overwrite some global theme stuff
 (custom-set-faces!
