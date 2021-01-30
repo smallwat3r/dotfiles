@@ -7,6 +7,11 @@
         (width . 106)
         (height . 64)))
 
+;; Disable UI fluff
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+
 ;; Disable line numbers by default
 (setq display-line-numbers-type nil)
 
@@ -51,7 +56,7 @@
    modus-vivendi-theme-intense-paren-match 'intense-bold
    modus-vivendi-theme-org-blocks 'rainbow
    modus-vivendi-theme-completions 'opinionated
-   modus-vivendi-theme-faint-syntax t)
+   modus-vivendi-theme-faint-syntax nil)
   :config
   ;; Override colors
   (modus-vivendi-theme-with-color-variables
