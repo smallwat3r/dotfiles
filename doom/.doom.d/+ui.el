@@ -4,6 +4,7 @@
 (setq default-frame-alist
       '((ns-transparent-titlebar . t)
         (ns-appearance . dark)
+        (vertical-scroll-bars . nil)
         (width . 106)
         (height . 64)))
 

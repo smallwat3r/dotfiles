@@ -86,8 +86,7 @@
 
 ;; Bash company backend
 (after! sh-script
-  (set-company-backend! 'sh-mode
-    '(company-shell :with company-yasnippet)))
+  (set-company-backend! 'sh-mode))
 
 ;; Ivy
 (after! ivy
