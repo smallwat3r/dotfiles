@@ -5,8 +5,8 @@
       '((ns-transparent-titlebar . t)
         (ns-appearance . dark)
         (vertical-scroll-bars . nil)
-        (width . 106)
-        (height . 64)))
+        (width . 99)
+        (height . 75)))
 
 ;; Disable UI fluff
 (menu-bar-mode -1)
@@ -62,7 +62,7 @@
   ;; Override colors
   (modus-vivendi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-vivendi
-      `(default :background "#000000" :foreground "#f2f2f2")
+      `(default :background "#000004" :foreground "#f2f2f2")
       ))
   )
 
@@ -98,7 +98,8 @@
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-(setq doom-theme 'modus-vivendi)
+;; (setq doom-theme 'modus-vivendi)
+(setq doom-theme 'doom-laserwave)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
@@ -124,9 +125,15 @@
          :action doom/help)))
 
 ;; Font faces
+(defvar default-monospace-font "Input Mono"
+  "Default Monospace font")
+
+(defvar default-serif-font "Input Serif"
+  "Default Serif font")
+
 (setq
- doom-font (font-spec :family "Monaco Nerd Font" :size 13)
- doom-variable-pitch-font (font-spec :family "Verdana"))
+ doom-font (font-spec :family default-monospace-font :size 12)
+ doom-variable-pitch-font (font-spec :family default-serif-font))
 
 ;; Steps used to increment fonts (default is 2)
 (setq doom-font-increment 1)
@@ -138,7 +145,7 @@
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 
 ;; No extra line spacing
-(setq-default line-spacing nil)
+(setq-default line-spacing 2)
 
 ;; Disable hl-line-mode
 (add-hook! (prog-mode text-mode conf-mode special-mode) (hl-line-mode -1))
@@ -160,6 +167,11 @@
 
   ;; Whitespace newline symbol
   '(whitespace-newline :background nil :inherit font-lock-comment-face)
+
+  ;; Git gutter fringe colors
+  '(git-gutter-fr:added :background "SeaGreen3")
+  '(git-gutter-fr:modified :background "goldenrod2")
+  '(git-gutter-fr:deleted :background "IndianRed3")
 
   ;; Comments and docstrings font face
   ;; '(font-lock-comment-face :inherit variable-pitch)
@@ -191,18 +203,11 @@
 (setq whitespace-display-mappings
       '((newline-mark 10 [?◦ 10])))  ; eol character
 
-;; Git gutter fringe.
-(after! git-gutter-fringe
-  ;; Set default fringe colors based on action
-  (set-face-foreground 'git-gutter-fr:modified "yellow")
-  (set-face-foreground 'git-gutter-fr:added    "green")
-  (set-face-foreground 'git-gutter-fr:deleted  "red"))
-
 ;; Evil vim modes faces text representation and colors
 (setq
  evil-normal-state-tag   (propertize "N" 'face '((:foreground "DarkGoldenrod2")))
  evil-emacs-state-tag    (propertize "E" 'face '((:foreground "SkyBlue2")))
- evil-insert-state-tag   (propertize "I" 'face '((:foreground "green")))
+ evil-insert-state-tag   (propertize "I" 'face '((:foreground "medium sea green")))
  evil-replace-state-tag  (propertize "R" 'face '((:foreground "chocolate")))
  evil-motion-state-tag   (propertize "M" 'face '((:foreground "plum3")))
  evil-visual-state-tag   (propertize "V" 'face '((:foreground "red")))

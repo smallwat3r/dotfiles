@@ -76,6 +76,10 @@
         company-minimum-prefix-length 2)  ; Needs >2 chars before showing
   )
 
+;; Go company backend
+(after! go-mode
+  (set-company-backend! 'go-mode 'company-yasnippet))
+
 ;; Python company backend
 (after! python-mode
   (set-company-backend! 'python-mode 'company-yasnippet))
@@ -226,7 +230,7 @@
 ;; Org settings
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers nil  ; Symbols such as *bold* or ~code~
+        org-hide-emphasis-markers nil  ; Show symbols such as *bold* or ~code~
         ))
 
 ;; Org-journal

@@ -3,7 +3,7 @@
 SHELL=/bin/bash
 
 CURRENT_DIR=$(shell pwd)
-# FONTS_DIR=/Library/Fonts
+FONTS_DIR=/Library/Fonts
 
 help: ## Show this help menu
 	@echo "Usage: make [TARGET ...]"
@@ -49,15 +49,19 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 		-vv -t $(HOME)
 	@echo '*** Symlinks all set-up'
 
-# fonts: ## Install fonts
-# define register_font
-# 	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
-# endef
-# 	@echo '*** Installing Anonymous Pro fonts'
-# 	$(call register_font,AnonymousPro-Regular)
-# 	$(call register_font,AnonymousPro-Bold)
-# 	$(call register_font,AnonymousPro-Italic)
-# 	$(call register_font,AnonymousPro-BoldItalic)
+fonts: ## Install fonts
+define register_font
+	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
+endef
+	@echo '*** Installing Input fonts'
+	$(call register_font,InputMono-Light)
+	$(call register_font,InputMono-LightItalic)
+	$(call register_font,InputMono-Medium)
+	$(call register_font,InputMono-MediumItalic)
+	$(call register_font,InputSerif-Light)
+	$(call register_font,InputSerif-LightItalic)
+	$(call register_font,InputSerif-Medium)
+	$(call register_font,InputSerif-MediumItalic)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
