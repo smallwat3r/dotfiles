@@ -51,7 +51,7 @@
   :init
   (setq
    modus-vivendi-theme-slanted-constructs nil
-   modus-vivendi-theme-bold-constructs nil
+   modus-vivendi-theme-bold-constructs t
    modus-vivendi-theme-intense-hl-line nil
    modus-vivendi-theme-subtle-diffs t
    modus-vivendi-theme-intense-paren-match 'intense-bold
@@ -59,7 +59,6 @@
    modus-vivendi-theme-completions 'opinionated
    modus-vivendi-theme-faint-syntax nil)
   :config
-  ;; Override colors
   (modus-vivendi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-vivendi
       `(default :background "#000004" :foreground "#f2f2f2")
@@ -70,36 +69,34 @@
   :init
   (setq
    modus-operandi-theme-slanted-constructs nil
-   modus-operandi-theme-bold-constructs nil
+   modus-operandi-theme-bold-constructs t
    modus-operandi-theme-intense-hl-line nil
    modus-operandi-theme-subtle-diffs t
    modus-operandi-theme-intense-paren-match 'intense-bold
    modus-operandi-theme-org-blocks 'rainbow
    modus-operandi-theme-completions 'opinionated)
   :config
-  ;; Override colors
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-operandi
       `(default :background "#efefd8")
       `(term :background "#efefd8")
       ))
-
-  ;; HACK: Change default background color when using vterm within modus-operandi.
-  ;; Changing it by setting vterm-color-default above doesn't seems to work anymore.
-  (add-hook 'vterm-mode-hook
-            (lambda()
-              (when (string= doom-theme "modus-operandi")
-                (set (make-local-variable 'buffer-face-mode-face)
-                     '(:background "#e3e3c5"))
-                (buffer-face-mode t))))
   )
+
+;; HACK: Change default background color when using vterm within modus-operandi.
+;; Changing it by setting vterm-color-default above doesn't seems to work anymore.
+(add-hook 'vterm-mode-hook
+          (lambda()
+            (when (string= doom-theme "modus-operandi")
+              (set (make-local-variable 'buffer-face-mode-face)
+                   '(:background "#e3e3c5"))
+              (buffer-face-mode t))))
 
 ;; Do not show unwanted themes
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-;; (setq doom-theme 'modus-vivendi)
-(setq doom-theme 'doom-laserwave)
+(setq doom-theme 'modus-vivendi)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
