@@ -8,8 +8,10 @@
  ;; Normal mode bindings
  (:map evil-normal-state-map
   ;; Scrollin
-  "C-j"      #'scroll-up-line
-  "C-k"      #'scroll-down-line
+  "C-j"      #'zz/scroll-up
+  "C-k"      #'zz/scroll-down
+  "C-y"      #'zz/scroll-up
+  "C-e"      #'zz/scroll-down
 
   ;; Shrink and enlarge windows
   "S-C-h"    #'shrink-window-horizontally

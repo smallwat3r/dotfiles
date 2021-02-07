@@ -1,5 +1,15 @@
 ;;; $DOOMDIR/+functions.el -*- lexical-binding: t; -*-
 
+(defun zz/scroll-up ()
+  "Scroll up by 3 lines."
+  (interactive)
+  (evil-scroll-line-up 3))
+
+(defun zz/scroll-down ()
+  "Scroll down by 3 lines."
+  (interactive)
+  (evil-scroll-line-down 3))
+
 (defun zz/add-scratch-buffer-header (text)
   "Add an automatic header to a scratch buffer."
   (when scratch-buffer
