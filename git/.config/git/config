@@ -4,7 +4,7 @@ email = mpetiteau.pro@gmail.com
 
 [core]
 autocrlf = input
-editor = nvim
+editor = emacsclient
 pager = delta
 
 [delta]

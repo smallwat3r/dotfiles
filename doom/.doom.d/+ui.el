@@ -51,10 +51,10 @@
   :init
   (setq
    modus-vivendi-theme-slanted-constructs nil
-   modus-vivendi-theme-bold-constructs t
+   modus-vivendi-theme-bold-constructs nil
    modus-vivendi-theme-intense-hl-line nil
    modus-vivendi-theme-subtle-diffs t
-   modus-vivendi-theme-intense-paren-match 'intense-bold
+   modus-vivendi-theme-intense-paren-match t
    modus-vivendi-theme-org-blocks 'rainbow
    modus-vivendi-theme-completions 'opinionated
    modus-vivendi-theme-faint-syntax nil)
@@ -69,10 +69,10 @@
   :init
   (setq
    modus-operandi-theme-slanted-constructs nil
-   modus-operandi-theme-bold-constructs t
+   modus-operandi-theme-bold-constructs nil
    modus-operandi-theme-intense-hl-line nil
    modus-operandi-theme-subtle-diffs t
-   modus-operandi-theme-intense-paren-match 'intense-bold
+   modus-operandi-theme-intense-paren-match t
    modus-operandi-theme-org-blocks 'rainbow
    modus-operandi-theme-completions 'opinionated)
   :config
@@ -122,14 +122,14 @@
          :action doom/help)))
 
 ;; Font faces
-(defvar default-monospace-font "Input Mono"
+(defvar default-monospace-font "Monaco Nerd Font"
   "Default Monospace font")
 
-(defvar default-serif-font "Input Serif"
+(defvar default-serif-font "Verdana"
   "Default Serif font")
 
 (setq
- doom-font (font-spec :family default-monospace-font :size 12)
+ doom-font (font-spec :family default-monospace-font :size 13)
  doom-variable-pitch-font (font-spec :family default-serif-font))
 
 ;; Steps used to increment fonts (default is 2)
@@ -142,7 +142,7 @@
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 
 ;; No extra line spacing
-(setq-default line-spacing 2)
+(setq-default line-spacing 0)
 
 ;; Disable hl-line-mode
 (add-hook! (prog-mode text-mode conf-mode special-mode) (hl-line-mode -1))
