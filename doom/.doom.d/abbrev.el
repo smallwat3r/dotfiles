@@ -25,8 +25,8 @@
     ("wether"   "whether")
 
     ;; Unicode stuff
-    ("uok" "✗")
-    ("uno" "✓")
+    ("uno" "✗")
+    ("uok" "✓")
     ("ura" "→" )
 
     ;; Personal stuff
