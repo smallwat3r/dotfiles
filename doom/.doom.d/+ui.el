@@ -78,8 +78,8 @@
   :config
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-operandi
-      `(default :background "#efefd8")
-      `(term :background "#efefd8")
+      `(default :background "papaya whip")
+      `(term :background "papaya whip")
       ))
   )
 
@@ -89,14 +89,14 @@
           (lambda()
             (when (string= doom-theme "modus-operandi")
               (set (make-local-variable 'buffer-face-mode-face)
-                   '(:background "#e3e3c5"))
+                   '(:background "peach puff"))
               (buffer-face-mode t))))
 
 ;; Do not show unwanted themes
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'modus-operandi)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions

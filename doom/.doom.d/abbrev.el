@@ -7,12 +7,13 @@
 (define-abbrev-table 'global-abbrev-table
   '(
     ;; General
-    ("btw"  "by the way")
-    ("pov"  "point of view")
-    ("atm"  "at the moment" )
-    ("plz"  "please")
-    ("ty"   "thank you")
-    ("afaict" "as far as I can tell")
+    ("btw"     "by the way")
+    ("pov"     "point of view")
+    ("atm"     "at the moment" )
+    ("plz"     "please")
+    ("ty"      "thank you")
+    ("its"     "it's")
+    ("afaict"  "as far as I can tell")
 
     ;; Typos
     ("altough"  "although")
