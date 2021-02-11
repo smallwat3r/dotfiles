@@ -47,18 +47,18 @@
 
 (define-abbrev-table 'sh-mode-abbrev-table
   '(
-    ("#sh" "#!/usr/bin/env bash")
+    ("shb" "#!/usr/bin/env bash\n")
     ("ec" "echo")
     ("pf" "printf")
     ))
 
 (define-abbrev-table 'python-mode-abbrev-table
   '(
-    ("#sh" "#!/usr/bin/env python")
+    ("shb" "#!/usr/bin/env python\n")
     ("ffi" "from flask import")
     ("pr" "print")
     ("cl" "class")
-    ("ifn" "if __name__ == \"__main__\":\n")
+    ("ifn" "if __name__ == \"__main__\":\n    ")
     ("pdb" "import pdb; pdb.set_trace()  # Debug")
     ))
 
