@@ -5,8 +5,8 @@
       '((ns-transparent-titlebar . t)
         (ns-appearance . dark)
         (vertical-scroll-bars . nil)
-        (width . 99)
-        (height . 75)))
+        (width . 90)
+        (height . 60)))
 
 ;; Disable UI fluff
 (menu-bar-mode -1)
@@ -78,8 +78,8 @@
   :config
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-operandi
-      `(default :background "papaya whip")
-      `(term :background "papaya whip")
+      `(default :background "bisque")
+      `(term :background "bisque")
       ))
   )
 
@@ -89,7 +89,7 @@
           (lambda()
             (when (string= doom-theme "modus-operandi")
               (set (make-local-variable 'buffer-face-mode-face)
-                   '(:background "peach puff"))
+                   '(:background "PeachPuff"))
               (buffer-face-mode t))))
 
 ;; Do not show unwanted themes
