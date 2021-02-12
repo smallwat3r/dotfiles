@@ -136,9 +136,10 @@
   ;; Ctrl-C behaviour. Stop current command automatically
   (map! :map vterm-mode-map :i "C-c" #'vterm--self-insert)
 
-  ;; Automatically enter in insert mode
-  (map! :map vterm-mode-map :n "i"        #'evil-insert-resume)
-  (map! :map vterm-mode-map :n "o"        #'evil-insert-resume)
+  ;; Go to beginning of command
+  (map! :map vterm-mode-map :n "B"   #'vterm-beginning-of-line)
+
+  ;; Auto enter insert mode on Return key
   (map! :map vterm-mode-map :n "<return>" #'evil-insert-resume)
 
   ;; Delete the previous word

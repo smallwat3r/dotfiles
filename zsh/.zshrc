@@ -8,6 +8,7 @@ _configs=(
   'plugins.zsh'
   'prompt.zsh'
   'completion.zsh'
+  'vterm.zsh'
 )
 
 for file in $_configs; do
