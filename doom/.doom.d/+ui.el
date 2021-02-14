@@ -122,15 +122,14 @@
          :action doom/help)))
 
 ;; Font faces
-(defvar default-monospace-font "Menlo"
+(defvar default-monospace-font "Monaco Nerd Font"
   "Default Monospace font")
 
 (defvar default-serif-font "Verdana"
   "Default Serif font")
 
-(setq
- doom-font (font-spec :family default-monospace-font :size 13)
- doom-variable-pitch-font (font-spec :family default-serif-font))
+(setq doom-font (font-spec :family default-monospace-font :size 13)
+      doom-variable-pitch-font (font-spec :family default-serif-font))
 
 ;; Steps used to increment fonts (default is 2)
 (setq doom-font-increment 1)

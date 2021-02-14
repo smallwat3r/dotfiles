@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
-# Shorten pwd
+#
+# Shortened pwd
+# This prints only the first letters of each parent directories
+# ie. ~/Documents/bar/foo becomes ~/D/b/foo
 
-_shpwd=$(
-  echo ~+ |
-    sed "s;$HOME;~;" |
-    sed 's;\(/.\)[^/]*;\1;g' |
-    sed 's/.$//'
-)
-
-if [[ $PWD == "$HOME" ]]; then
-  echo '~'
-else
-  echo "$_shpwd${PWD##*/}"
-fi
+case $PWD in
+  "$HOME") printf '~' ;;
+  *)
+    _shpwd=$(
+      echo ~+ |
+        sed "s;$HOME;~;" |
+        sed 's;\(/.\)[^/]*;\1;g' |
+        sed 's/.$//'
+    )
+    printf '%s' "$_shpwd${PWD##*/}"
+    ;;
+esac
