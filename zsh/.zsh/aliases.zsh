@@ -92,7 +92,7 @@ alias \
 alias \
   k="kubectl" \
   kt="kubetail" \
-  kns="kubectl get namespaces"
+  kgn="kubectl get namespaces"
 
 # gpg
 alias \

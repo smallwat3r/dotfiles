@@ -96,7 +96,7 @@
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-(setq doom-theme 'modus-operandi)
+(setq doom-theme 'modus-vivendi)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
@@ -122,7 +122,7 @@
          :action doom/help)))
 
 ;; Font faces
-(defvar default-monospace-font "Monaco Nerd Font"
+(defvar default-monospace-font "Menlo"
   "Default Monospace font")
 
 (defvar default-serif-font "Verdana"

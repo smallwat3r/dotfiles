@@ -8,8 +8,8 @@
  ;; Normal mode bindings
  (:map evil-normal-state-map
   ;; Scrollin
-  "C-k"      #'zz/scroll-up
-  "C-j"      #'zz/scroll-down
+  "C-2"      #'zz/scroll-up
+  "C-1"      #'zz/scroll-down
   "C-y"      #'zz/scroll-up
   "C-e"      #'zz/scroll-down
 
