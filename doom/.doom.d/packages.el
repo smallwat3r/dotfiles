@@ -1,4 +1,4 @@
-                                        ; -*- no-byte-compile: t; -*-
+; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
 (package! exec-path-from-shell)
