@@ -87,7 +87,7 @@ xcode-cli: ## Install xcode command line tools
 taps: homebrew ## Install brew taps
 	@while read -r line; do \
 		brew tap "$$line"; \
-        done <./brew/taps
+		done <./brew/taps
 
 brew: taps xcode-cli ## Install brew packages
 	@echo '*** Installing brew packages ...'
@@ -97,7 +97,7 @@ brew: taps xcode-cli ## Install brew packages
 			echo "* Installing $$line"; \
 			brew install "$$line"; \
 		}; \
-        done <./brew/brew
+		done <./brew/brew
 	@ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications/Emacs.app
 
 cask: taps ## Install brew casks
@@ -108,7 +108,7 @@ cask: taps ## Install brew casks
 			echo "* Installing cask $$line"; \
 			brew cask install "$$line"; \
 		}; \
-        done <./brew/cask
+		done <./brew/cask
 
 node: homebrew ## Install node
 ifeq ($(shell brew ls --versions node),)

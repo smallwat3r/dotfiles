@@ -72,8 +72,8 @@ exclude_tags=deleted;spam;
 #	If true, then the following maildir flags (in message filenames)
 #	will be synchronized with the corresponding notmuch tags:
 #
-#		Flag	Tag
-#		----	-------
+#		Flag Tag
+#		-----------
 #		D	draft
 #		F	flagged
 #		P	passed

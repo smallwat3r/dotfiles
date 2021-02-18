@@ -1,4 +1,4 @@
-; -*- no-byte-compile: t; -*-
+                                        ; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
 (package! exec-path-from-shell)
@@ -9,5 +9,11 @@
 (package! dired-narrow)
 (package! ripgrep)
 (package! scratch)
+
+;; Themes
 (package! modus-vivendi-theme)
 (package! modus-operandi-theme)
+
+(package! simplicity-theme :recipe
+  (:host github
+   :repo "smallwat3r/emacs-simplicity-theme"))

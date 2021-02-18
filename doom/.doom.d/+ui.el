@@ -5,7 +5,7 @@
       '((ns-transparent-titlebar . t)
         (ns-appearance . dark)
         (vertical-scroll-bars . nil)
-        (width . 90)
+        (width . 100)
         (height . 60)))
 
 ;; Disable UI fluff
@@ -57,11 +57,11 @@
    modus-vivendi-theme-intense-paren-match t
    modus-vivendi-theme-org-blocks 'rainbow
    modus-vivendi-theme-completions 'opinionated
-   modus-vivendi-theme-faint-syntax nil)
+   modus-vivendi-theme-faint-syntax t)
   :config
   (modus-vivendi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-vivendi
-      `(default :background "#000004" :foreground "#f2f2f2")
+      `(default :background "grey3" :foreground "grey90")
       ))
   )
 
@@ -78,8 +78,8 @@
   :config
   (modus-operandi-theme-with-color-variables
     (custom-theme-set-faces! 'modus-operandi
-      `(default :background "bisque")
-      `(term :background "bisque")
+      `(default :background "papaya whip")
+      `(term :background "papaya whip")
       ))
   )
 
@@ -89,14 +89,14 @@
           (lambda()
             (when (string= doom-theme "modus-operandi")
               (set (make-local-variable 'buffer-face-mode-face)
-                   '(:background "PeachPuff"))
+                   '(:background "bisque"))
               (buffer-face-mode t))))
 
 ;; Do not show unwanted themes
 (delq! t custom-theme-load-path)
 
 ;; Set up our default theme
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'simplicity)
 
 ;; Minimal dashboard menu
 (setq +doom-dashboard-functions
@@ -122,7 +122,7 @@
          :action doom/help)))
 
 ;; Font faces
-(defvar default-monospace-font "Monaco Nerd Font"
+(defvar default-monospace-font "Monaco"
   "Default Monospace font")
 
 (defvar default-serif-font "Verdana"
@@ -141,7 +141,7 @@
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 
 ;; No extra line spacing
-(setq-default line-spacing 0)
+(setq-default line-spacing nil)
 
 ;; Disable hl-line-mode
 (add-hook! (prog-mode text-mode conf-mode special-mode) (hl-line-mode -1))
@@ -165,9 +165,9 @@
   '(whitespace-newline :background nil :inherit font-lock-comment-face)
 
   ;; Git gutter fringe colors
-  '(git-gutter-fr:added :background "SeaGreen3")
-  '(git-gutter-fr:modified :background "goldenrod2")
-  '(git-gutter-fr:deleted :background "IndianRed3")
+  ;; '(git-gutter-fr:added :background "SeaGreen3")
+  ;; '(git-gutter-fr:modified :background "goldenrod2")
+  ;; '(git-gutter-fr:deleted :background "IndianRed3")
 
   ;; Comments and docstrings font face
   ;; '(font-lock-comment-face :inherit variable-pitch)
