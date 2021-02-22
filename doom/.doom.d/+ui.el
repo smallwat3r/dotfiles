@@ -8,6 +8,10 @@
         (width . 100)
         (height . 60)))
 
+;; Frame transparency
+(set-frame-parameter (selected-frame) 'alpha '(97 97))
+(add-to-list 'default-frame-alist '(alpha 97 97))
+
 ;; Disable UI fluff
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -122,7 +126,7 @@
          :action doom/help)))
 
 ;; Font faces
-(defvar default-monospace-font "Monaco"
+(defvar default-monospace-font "Hack"
   "Default Monospace font")
 
 (defvar default-serif-font "Verdana"
