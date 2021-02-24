@@ -99,6 +99,11 @@
 ;; Do not show unwanted themes
 (delq! t custom-theme-load-path)
 
+;; High contrast override
+(setq simplicity-override-colors-alist
+      '(("simplicity-background" . "#000000")
+        ("simplicity-foreground" . "#eeeeee")))
+
 ;; Set up our default theme
 (setq doom-theme 'simplicity)
 
@@ -126,13 +131,13 @@
          :action doom/help)))
 
 ;; Font faces
-(defvar default-monospace-font "Hack"
+(defvar default-monospace-font "Fira Code"
   "Default Monospace font")
 
 (defvar default-serif-font "Verdana"
   "Default Serif font")
 
-(setq doom-font (font-spec :family default-monospace-font :size 13)
+(setq doom-font (font-spec :family default-monospace-font :size 14)
       doom-variable-pitch-font (font-spec :family default-serif-font))
 
 ;; Steps used to increment fonts (default is 2)
@@ -145,7 +150,7 @@
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 
 ;; No extra line spacing
-(setq-default line-spacing nil)
+(setq-default line-spacing 1)
 
 ;; Disable hl-line-mode
 (add-hook! (prog-mode text-mode conf-mode special-mode) (hl-line-mode -1))
@@ -178,10 +183,9 @@
   ;; '(font-lock-doc-face :inherit variable-pitch)
   )
 
-;; Show visual indicators for line continuation in fringes
-;; FIXME: Doesn't seems to work anymore for some reason...
-;; (setq visual-line-fringe-indicators
-;;       '(nil right-curly-arrow))  ; show in right fringe only
+;; git-gutter-fringe
+(after! git-gutter-fringe
+  (setq fringe-mode 2))
 
 ;; Show indicator for empty lines (eg. the tildes in vim after eof)
 ;; (setq-default indicate-empty-lines t)

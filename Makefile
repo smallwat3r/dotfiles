@@ -58,6 +58,9 @@ endef
 	$(call register_font,Custom-Hack-Bold)
 	$(call register_font,Custom-Hack-Italic)
 	$(call register_font,Custom-Hack-BoldItalic)
+	@echo '*** Installing Custom Fira Code fonts'
+	$(call register_font,Custom-FiraCode-Light)
+	$(call register_font,Custom-FiraCode-SemiBold)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
