@@ -3,13 +3,16 @@
 Feel free to pick whatever you want from this repo, but note it has been primary
 created for my personal use and is updated very frequently. Use at your own risks
 and please create back-ups of your current set-up if you intend to use the Makefile.
-
 Be aware these dotfiles are intended to be used on macOS, but most of it should
-work as well in other Unix/Linux environments.
+work as well in other Unix/Linux environments. Dotfiles are managed by *GNU Stow*.
 
-Dotfiles are managed by *GNU Stow*.
+** Disclaimer
 
-** Clone
+Some of these configs are not maintained anymore, but are kept as reference
+(ex: kitty, vifm, etc). Most of these days I'm using zsh and Doom Emacs, so these
+should be pretty much up-to-date.
+
+** Instructions
 
 Clone this repo into your ~$HOME~ directory.
 
@@ -17,11 +20,11 @@ Clone this repo into your ~$HOME~ directory.
 git clone https://github.com/smallwat3r/dotfiles.git $HOME
 #+end_src
 
-** Commands
+Install *GNU Make* (~brew install make~) to use the Makefile.
 
-Note: you will need to install *GNU Make* (~brew install make~) to use the Makefile.
+Makefile commands:
 
-#+begin_src text
+#+begin_src console
 % make help
 Usage: make [TARGET ...]
 
