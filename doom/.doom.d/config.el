@@ -4,6 +4,7 @@
 (load! "+ui")
 (load! "+bindings")
 (load! "+functions")
+(load! "+eshell")
 
 ;; Disable confirmation when exiting Emacs
 (setq confirm-kill-emacs nil)
@@ -177,16 +178,6 @@
 
 ;; Bash formatter settings (shfmt)
 (set-formatter! 'shfmt "shfmt -i 2 -ci")
-
-;; Elisp shell aliases
-(after! eshell
-  (set-eshell-alias!
-   "d" "dired $1"
-   "c" "clear"
-   "sl" "ls"
-   "emacs" "find-file $1"
-   "e" "find-file $1"
-   "qq" "exit"))
 
 ;; Kubernetes integration
 (use-package! kubernetes

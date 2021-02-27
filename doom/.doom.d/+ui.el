@@ -5,6 +5,8 @@
       '((ns-transparent-titlebar . t)
         (ns-appearance . dark)
         (vertical-scroll-bars . nil)
+        (left-fringe 2)
+        (right-fringe 2)
         (width . 100)
         (height . 60)))
 

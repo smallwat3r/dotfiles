@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# Check public ip
+
+curl -X GET http://ipecho.net/plain; echo

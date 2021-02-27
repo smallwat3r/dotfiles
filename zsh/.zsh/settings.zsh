@@ -73,6 +73,6 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Private kube settings
-# ---------------------
+# Private kube functions
+# ----------------------
 [[ -f "$HOME/.kubeprivate" ]] && source "$HOME/.kubeprivate"

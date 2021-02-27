@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Start mongo DB from Docker
+
+docker run \
+  -d \
+  -p 27000:27017 \
+  -v "$HOME/.dockervolumes/mongo/db:/data/db" \
+  mongo
