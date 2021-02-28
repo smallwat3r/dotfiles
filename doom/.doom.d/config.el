@@ -126,17 +126,11 @@
 ;; Vterm
 (after! vterm
   (setq vterm-max-scrollback 6000)
-
-  ;; Go to beginning of command
-  (map! :map vterm-mode-map :n "B" #'vterm-beginning-of-line)
-
-  ;; Auto enter insert mode on Return key
-  (map! :map vterm-mode-map :n "<return>" #'evil-insert-resume)
-
-  ;; Delete the previous word
-  (map! :map vterm-mode-map "<C-backspace>"
-        (lambda ()
-          (interactive) (vterm-send-key (kbd "C-w")))))
+  (map!
+   :map vterm-mode-map :n "B" #'vterm-beginning-of-line
+   :map vterm-mode-map :n "<return>" #'evil-insert-resume
+   :map vterm-mode-map "<C-backspace>" (lambda ()
+                                         (interactive) (vterm-send-key (kbd "C-w")))))
 
 ;; Python configuration stuff
 (add-hook! python-mode
