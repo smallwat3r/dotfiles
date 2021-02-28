@@ -121,13 +121,6 @@
    :desc "Deft open"                "D" #'deft
    :desc "Deft new"                 "d" #'deft-new-file))
 
- ;; Org-journal
- (:after org-journal
-  :leader
-  (:prefix ("j" . "journal")
-   :desc "Search journal"           "s" #'org-journal-search
-   :desc "New journal entry"        "n" #'org-journal-new-entry))
-
  ;; Python
  (:map python-mode-map
   :after python
@@ -136,5 +129,4 @@
    :desc "Workon"                   "w" #'pyvenv-workon
    :desc "Activate pyvenv"          "a" #'pyvenv-activate
    :desc "Deactivate pyvenv"        "d" #'pyvenv-deactivate))
-
  )

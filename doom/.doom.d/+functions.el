@@ -35,7 +35,6 @@ Some obvious commands are hidden to remove any fluff."
 ;; https://emacs.stackexchange.com/a/5583
 (defun zz/insert-color-hex (&optional arg)
   "Select a color and insert its 24-bit hexadecimal RGB format.
-
 With prefix argument \\[universal-argument] insert the 48-bit value."
   (interactive "*P")
   (let ((buf (current-buffer)))

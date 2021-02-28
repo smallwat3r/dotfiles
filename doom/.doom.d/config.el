@@ -123,22 +123,12 @@
   :config
   (map! :map dired-mode-map :n "/" #'dired-narrow-fuzzy))
 
-;; Vterm. The default shell I use in Emacs
+;; Vterm
 (after! vterm
-  ;; 6000 lines of scrollback, instead of 1000
   (setq vterm-max-scrollback 6000)
 
-  ;; Scrolling
-  (map! :map vterm-mode-map :i "C-j" #'scroll-up-line)
-  (map! :map vterm-mode-map :i "C-k" #'scroll-down-line)
-  (map! :map vterm-mode-map :n "C-j" #'scroll-up-line)
-  (map! :map vterm-mode-map :n "C-k" #'scroll-down-line)
-
-  ;; Ctrl-C behaviour. Stop current command automatically
-  (map! :map vterm-mode-map :i "C-c" #'vterm--self-insert)
-
   ;; Go to beginning of command
-  (map! :map vterm-mode-map :n "B"   #'vterm-beginning-of-line)
+  (map! :map vterm-mode-map :n "B" #'vterm-beginning-of-line)
 
   ;; Auto enter insert mode on Return key
   (map! :map vterm-mode-map :n "<return>" #'evil-insert-resume)
@@ -146,8 +136,7 @@
   ;; Delete the previous word
   (map! :map vterm-mode-map "<C-backspace>"
         (lambda ()
-          (interactive) (vterm-send-key (kbd "C-w"))))
-  )
+          (interactive) (vterm-send-key (kbd "C-w")))))
 
 ;; Python configuration stuff
 (add-hook! python-mode
@@ -186,7 +175,11 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
-;; Email config stuff. It's using msmtp to send emails
+;;
+;; Email config stuff
+;;
+
+;; It's using msmtp to send emails
 (setq mail-user-agent 'message-user-agent
       sendmail-program "/usr/local/bin/msmtp"
       mail-specify-envelope-from t
@@ -210,51 +203,25 @@
         '(("mpetiteau.pro@gmail.com" . "personal/sent -inbox +sent -unread")
           ("matthieu@smallwatersolutions.com" . "sws/sent -inbox +sent -unread"))))
 
+;;
+;; Org config stuff
+;;
+
 (defvar my-notes-directory "~/org"
-  "Where I'm storing all my notes stuff.")
+  "Where I'm storing my notes.")
 
 ;; Deft (notes)
 (after! deft
   (setq deft-directory my-notes-directory
-        deft-recursive t  ; Search recursively from the deft-directory
-        ))
+        deft-recursive t))
 
 ;; Org settings
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers nil  ; Show symbols such as *bold* or ~code~
-        ))
+        org-hide-emphasis-markers nil))
 
 ;; Org-journal
 (after! org-journal
   (setq org-journal-dir (expand-file-name "journal/" my-notes-directory)
         org-journal-date-format "%A, %d %B %Y"
-        org-journal-file-format "journal-%Y%m%d.org"
-        ))
-
-;; Abilitiy to use `ciq' `yiq' etc in normal mode (literally "Inside Quotes")
-;; (Credits to @Flo from the doom emacs discord channel)
-(after! evil
-  (require 'evil-textobj-anyblock)
-  (evil-define-text-object my-evil-textobj-anyblock-inner-quote
-    (count &optional beg end type)
-    "Select the closest outer quote."
-    (let ((evil-textobj-anyblock-blocks
-           '(("'" . "'")
-             ("\"" . "\"")
-             ("`" . "`")
-             ("“" . "”"))))
-      (evil-textobj-anyblock--make-textobj beg end type count nil)))
-
-  (evil-define-text-object my-evil-textobj-anyblock-a-quote
-    (count &optional beg end type)
-    "Select the closest outer quote."
-    (let ((evil-textobj-anyblock-blocks
-           '(("'" . "'")
-             ("\"" . "\"")
-             ("`" . "`")
-             ("“" . "”"))))
-      (evil-textobj-anyblock--make-textobj beg end type count t)))
-
-  (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
-  (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
+        org-journal-file-format "journal-%Y%m%d.org"))
