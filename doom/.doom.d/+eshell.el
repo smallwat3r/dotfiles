@@ -30,7 +30,9 @@
      ; user / super user
      (propertize (if (= (user-uid) 0) " # " " % ") 'face 'default))))
 
-;; Remove the virtual env variable once the env has been deactivated
+;; Remove the virtual env variable once the env has been deactivated, it will
+;; get recreated once we reactivate the env. It's used in our eshell prompt
+;; so we need to remove it when not in use.
 (add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
 
 (after! eshell
