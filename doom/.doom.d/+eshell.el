@@ -16,15 +16,27 @@
   "Default Eshell prompt."
   (let ((base/dir (shrink-path-prompt default-directory))
         (base/branch (zz/eshell-current-git-branch)))
-    (concat (propertize (car base/dir) 'face 'font-lock-comment-face)
-            (propertize (cdr base/dir) 'face 'default)
-            (if base/branch
-                (propertize (format " (%s)" base/branch) 'face 'default))
-            (propertize (if (= (user-uid) 0) " # " " % ") 'face 'default))))
+    (concat
+     ; python venv
+     (if (getenv "VIRTUAL_ENV")
+         (let ((venv (file-name-nondirectory (getenv "VIRTUAL_ENV"))))
+           (propertize (format "(%s) " venv) 'face 'default)))
+     ; directory path
+     (propertize (car base/dir) 'face 'font-lock-comment-face)
+     (propertize (cdr base/dir) 'face 'default)
+     ; git branch
+     (if base/branch
+         (propertize (format " (%s)" base/branch) 'face 'default))
+     ; user / super user
+     (propertize (if (= (user-uid) 0) " # " " % ") 'face 'default))))
+
+;; Remove the virtual env variable once the env has been deactivated
+(add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
 
 (after! eshell
   (setq eshell-history-size 10000
         eshell-buffer-maximum-lines 5000
+        eshell-modify-global-environment t
         eshell-prompt-regexp "^.* [#%] "
         eshell-prompt-function #'zz/eshell-prompt)
 
