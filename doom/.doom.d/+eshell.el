@@ -1,8 +1,32 @@
 ;;; $DOOMDIR/+eshell.el -*- lexical-binding: t; -*-
 
+(use-package! shrink-path
+  :commands shrink-path-prompt)
+
+(defun zz/eshell-current-git-branch ()
+  "Get current branch name from repository."
+  (let ((args '("symbolic-ref" "HEAD" "--short")))
+    (with-temp-buffer
+      (apply #'process-file "git" nil (list t nil) nil args)
+      (unless (bobp)
+        (goto-char (point-min))
+        (buffer-substring-no-properties (point) (line-end-position))))))
+
+(defun zz/eshell-prompt ()
+  "Default Eshell prompt."
+  (let ((base/dir (shrink-path-prompt default-directory))
+        (base/branch (zz/eshell-current-git-branch)))
+    (concat (propertize (car base/dir) 'face 'font-lock-comment-face)
+            (propertize (cdr base/dir) 'face 'default)
+            (if base/branch
+                (propertize (format " (%s)" base/branch) 'face 'default))
+            (propertize " % " 'face 'default))))
+
 (after! eshell
   (setq eshell-history-size 10000
-        eshell-buffer-maximum-lines 5000)
+        eshell-buffer-maximum-lines 5000
+        eshell-prompt-regexp "^.* % "
+        eshell-prompt-function #'zz/eshell-prompt)
 
   ;; List of eshell aliases
   (set-eshell-alias!
@@ -28,15 +52,12 @@
    "gpg-list-keys" "gpg --list-secret-keys --keyid-format LONG"
    "diskspace" "df -P -kHl"))
 
-;; Provides a custom eshell prompt
-(use-package! eshell-git-prompt
-  :after eshell
-  :commands eshell-git-prompt-use-theme
-  :init (eshell-git-prompt-use-theme 'robbyrussell))
-
-;; Autosuggestions
 (use-package! esh-autosuggest
   :hook (eshell-mode . esh-autosuggest-mode))
+
+;;
+;; Custom Eshell functions
+;;
 
 (defun eshell/cr ()
   "cd into the repository root directory."

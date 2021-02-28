@@ -9,7 +9,6 @@
 (package! dired-narrow)
 (package! ripgrep)
 (package! scratch)
-(package! eshell-git-prompt)
 (package! esh-autosuggest)
 
 ;; Themes
