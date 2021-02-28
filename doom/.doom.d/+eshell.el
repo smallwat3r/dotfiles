@@ -26,7 +26,7 @@
      (propertize (cdr base/dir) 'face 'default)
      ; git branch
      (if base/branch
-         (propertize (format " (%s)" base/branch) 'face 'default))
+         (propertize (format " \ue0a0 %s" base/branch) 'face 'default))
      ; user / super user
      (propertize (if (= (user-uid) 0) " # " " → ") 'face 'default))))
 
