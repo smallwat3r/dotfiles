@@ -20,12 +20,12 @@
             (propertize (cdr base/dir) 'face 'default)
             (if base/branch
                 (propertize (format " (%s)" base/branch) 'face 'default))
-            (propertize " % " 'face 'default))))
+            (propertize (if (= (user-uid) 0) " # " " % ") 'face 'default))))
 
 (after! eshell
   (setq eshell-history-size 10000
         eshell-buffer-maximum-lines 5000
-        eshell-prompt-regexp "^.* % "
+        eshell-prompt-regexp "^.* [#%] "
         eshell-prompt-function #'zz/eshell-prompt)
 
   ;; List of eshell aliases
