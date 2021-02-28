@@ -28,7 +28,7 @@
      (if base/branch
          (propertize (format " (%s)" base/branch) 'face 'default))
      ; user / super user
-     (propertize (if (= (user-uid) 0) " # " " % ") 'face 'default))))
+     (propertize (if (= (user-uid) 0) " # " " → ") 'face 'default))))
 
 ;; Remove the virtual env variable once the env has been deactivated, it will
 ;; get recreated once we reactivate the env. It's used in our eshell prompt
@@ -39,7 +39,7 @@
   (setq eshell-history-size 10000
         eshell-buffer-maximum-lines 5000
         eshell-modify-global-environment t
-        eshell-prompt-regexp "^.* [#%] "
+        eshell-prompt-regexp "^.* [#→] "
         eshell-prompt-function #'zz/eshell-prompt)
 
   ;; List of eshell aliases
