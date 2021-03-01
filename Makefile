@@ -25,7 +25,6 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 	@stow \
 		alacritty \
 		ctags \
-		doom \
 		git \
 		gnupg \
 		htop \
@@ -48,6 +47,9 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 		zsh \
 		-vv -t $(HOME)
 	@echo '*** Symlinks all set-up'
+	@echo '/!\ Note: Doom Emacs configs have not been automatically linked.'
+	@echo 'To do so, you can run:'
+	@echo '    stow doom -vv -t <home-directory>'
 
 fonts: ## Install fonts
 define register_font
