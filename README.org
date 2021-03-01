@@ -8,9 +8,8 @@ work as well in other Unix/Linux environments. Dotfiles are managed by *GNU Stow
 
 ** Disclaimer
 
-Some of these configs are not maintained anymore, but are kept as reference
-(ex: kitty, vifm, etc). Most of these days I'm using zsh and Doom Emacs, so these
-should be pretty much up-to-date.
+Some of these configs are not maintained anymore, but are kept for reference
+(ex: kitty, vifm, etc).
 
 ** Instructions
 
