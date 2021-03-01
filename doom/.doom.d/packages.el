@@ -11,7 +11,9 @@
 (package! scratch)
 (package! esh-autosuggest)
 
-;; Themes
+;;
+;;; Themes
+
 (package! modus-vivendi-theme)
 (package! modus-operandi-theme)
 

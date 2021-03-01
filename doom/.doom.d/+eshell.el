@@ -70,8 +70,7 @@
   :hook (eshell-mode . esh-autosuggest-mode))
 
 ;;
-;; Custom Eshell functions
-;;
+;;; Custom Eshell functions
 
 (defun eshell/cr ()
   "cd into the repository root directory."

@@ -1,6 +1,8 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
-;; Default frame settings
+;;
+;;; Frame
+
 (setq default-frame-alist
       '((ns-transparent-titlebar . t)
         (ns-appearance . dark)
@@ -19,25 +21,6 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
-;; Disable line numbers by default
-(setq display-line-numbers-type nil)
-
-;; Set window dividers width
-(defvar global-window-divider-width 2
-  "Default global width size of a window divider.")
-
-(setq window-divider-default-right-width global-window-divider-width
-      window-divider-default-bottom-width global-window-divider-width)
-
-;; Do not change the divider border width when using writeroom
-(setq +zen-window-divider-size global-window-divider-width)
-
-;; Writeroom font scaling
-(setq +zen-text-scale 1)
-
-;; ;; Auto-activate writeroom on text-mode
-;; (add-hook! 'text-mode-hook writeroom-mode)
-
 ;; Set up frame title. It shows the title of the current file and an
 ;; indicator if the file has been modified eg. (+)
 (setq frame-title-format
@@ -49,10 +32,30 @@
         (:eval
          (if (buffer-modified-p) " (+)"))))
 
-;; Hide file icon from frame window
-(setq ns-use-proxy-icon nil)
+;;
+;;; Fonts
 
-;; Themes setup
+(defvar default-monospace-font "Fira Code"
+  "Default Monospace font")
+
+(defvar default-serif-font "Verdana"
+  "Default Serif font")
+
+(setq doom-font (font-spec :family default-monospace-font :size 14)
+      doom-variable-pitch-font (font-spec :family default-serif-font))
+
+;; Steps used to increment fonts (default is 2)
+(setq doom-font-increment 1)
+
+;; Increment of 3 points in big-font-mode (default is 4)
+(setq doom-big-font-increment 3)
+
+;; Use default emacs font for treemacs
+(setq doom-themes-treemacs-enable-variable-pitch nil)
+
+;;
+;;; Themes config
+
 (use-package! modus-vivendi-theme  ; dark theme
   :init
   (setq
@@ -109,51 +112,6 @@
 ;; Set up our default theme
 (setq doom-theme 'simplicity)
 
-;; Minimal dashboard menu
-(setq +doom-dashboard-functions
-      '(doom-dashboard-widget-shortmenu
-        doom-dashboard-widget-loaded))
-
-(setq +doom-dashboard-menu-sections
-      '(("Open project"
-         :action projectile-switch-project)
-        ("Recently opened files"
-         :action recentf-open-files)
-        ("Reload last session"
-         :when (cond ((require 'persp-mode nil t)
-                      (file-exists-p
-                       (expand-file-name persp-auto-save-fname persp-save-dir)))
-                     ((require 'desktop nil t)
-                      (file-exists-p (desktop-full-file-name))))
-         :action doom/quickload-session)
-        ("Open private configuration"
-         :when (file-directory-p doom-private-dir)
-         :action doom/open-private-config)
-        ("Open documentation"
-         :action doom/help)))
-
-;; Font faces
-(defvar default-monospace-font "Fira Code"
-  "Default Monospace font")
-
-(defvar default-serif-font "Verdana"
-  "Default Serif font")
-
-(setq doom-font (font-spec :family default-monospace-font :size 14)
-      doom-variable-pitch-font (font-spec :family default-serif-font))
-
-;; Steps used to increment fonts (default is 2)
-(setq doom-font-increment 1)
-
-;; Increment of 3 points in big-font-mode (default is 4)
-(setq doom-big-font-increment 3)
-
-;; Use default emacs font for treemacs
-(setq doom-themes-treemacs-enable-variable-pitch nil)
-
-;; No extra line spacing
-(setq-default line-spacing 1)
-
 ;; Disable hl-line-mode
 (add-hook! (prog-mode text-mode conf-mode special-mode) (hl-line-mode -1))
 
@@ -185,6 +143,31 @@
   ;; '(font-lock-doc-face :inherit variable-pitch)
   )
 
+;;
+;;; Editor
+
+;; Hide file icon from frame window
+(setq ns-use-proxy-icon nil)
+
+;; Disable line numbers by default
+(setq display-line-numbers-type nil)
+
+;; Set window dividers width
+(defvar global-window-divider-width 2
+  "Default global width size of a window divider.")
+
+(setq window-divider-default-right-width global-window-divider-width
+      window-divider-default-bottom-width global-window-divider-width)
+
+;; Do not change the divider border width when using writeroom
+(setq +zen-window-divider-size global-window-divider-width)
+
+;; Writeroom font scaling
+(setq +zen-text-scale 1)
+
+;; No extra line spacing
+(setq-default line-spacing 1)
+
 ;; git-gutter-fringe
 (after! git-gutter-fringe
   (setq fringe-mode 2))
@@ -209,6 +192,37 @@
 (setq whitespace-display-mappings
       '((newline-mark 10 [?◦ 10])))  ; eol character
 
+;; ;; Auto-activate writeroom on text-mode
+;; (add-hook! 'text-mode-hook writeroom-mode)
+
+;;
+;;; Doom-dashboard
+
+(setq +doom-dashboard-functions
+      '(doom-dashboard-widget-shortmenu
+        doom-dashboard-widget-loaded))
+
+(setq +doom-dashboard-menu-sections
+      '(("Open project"
+         :action projectile-switch-project)
+        ("Recently opened files"
+         :action recentf-open-files)
+        ("Reload last session"
+         :when (cond ((require 'persp-mode nil t)
+                      (file-exists-p
+                       (expand-file-name persp-auto-save-fname persp-save-dir)))
+                     ((require 'desktop nil t)
+                      (file-exists-p (desktop-full-file-name))))
+         :action doom/quickload-session)
+        ("Open private configuration"
+         :when (file-directory-p doom-private-dir)
+         :action doom/open-private-config)
+        ("Open documentation"
+         :action doom/help)))
+
+;;
+;;; Mini-modeline
+
 ;; Evil vim modes faces text representation and colors
 (setq
  evil-normal-state-tag   (propertize "N" 'face '((:foreground "DarkGoldenrod2")))
@@ -219,43 +233,40 @@
  evil-visual-state-tag   (propertize "V" 'face '((:foreground "red")))
  evil-operator-state-tag (propertize "O" 'face '((:foreground "sandy brown"))))
 
-;; Mini-modeline (merge modeline with the mini-buffer)
 (use-package! mini-modeline
   :init
-  ;; Turn off some default settings, like to keep it as clean as possible.
-  (setq mini-modeline-enhance-visual nil)
-  (setq mini-modeline-display-gui-line nil)
-
-  ;; Keep modeline information on the right side of the mini-buffer so it still
+  ;; Turn off some default settings, like to keep it as clean as possible. Also
+  ;; keep the modeline information on the right side of the mini-buffer so it still
   ;; has enough space to display useful information on the left side (eg. commands
   ;; information, echos, documentation etc).
-  (setq mini-modeline-r-format
-        (list
-         '(:eval (propertize                ; Current filename
-                  " %b"
-                  'help-echo (buffer-file-name)))
-         '(vc-mode vc-mode)                 ; Current git branch
-         " "
-         (propertize "%02l,%02c "           ; Current line and column
-                     'help-echo "Line and column index")
-         '(:eval (propertize                ; Major Mode
-                  "%m"
-                  'help-echo "Buffer major mode"))
-         '(:eval (when (buffer-modified-p)  ; Modified?
-                   (propertize
-                    " [Mod]"
-                    'help-echo "Buffer has been modified"
-                    'face 'font-lock-warning-face)))
-         '(:eval (when buffer-read-only     ; Read only?
-                   (propertize
-                    " [RO]"
-                    'help-echo "Buffer is read-only"
-                    'face 'font-lock-type-face)))
-         '(:eval (propertize                ; Time
-                  (format-time-string " %a %b %d %H:%M ")
-                  'help-echo (concat (format-time-string "%c; week %V; ")
-                                     (emacs-uptime "Uptime: %hh"))))
-         '(:eval evil-mode-line-tag)))      ; Evil mode
-  :config
-  ;; Activate mini-modeline
-  (mini-modeline-mode t))
+  (setq
+   mini-modeline-enhance-visual nil
+   mini-modeline-display-gui-line nil
+   mini-modeline-r-format
+   (list
+    '(:eval (propertize                ; Current filename
+             " %b"
+             'help-echo (buffer-file-name)))
+    '(vc-mode vc-mode)                 ; Current git branch
+    " "
+    (propertize "%02l,%02c "           ; Current line and column
+                'help-echo "Line and column index")
+    '(:eval (propertize                ; Major Mode
+             "%m"
+             'help-echo "Buffer major mode"))
+    '(:eval (when (buffer-modified-p)  ; Modified?
+              (propertize
+               " [Mod]"
+               'help-echo "Buffer has been modified"
+               'face 'font-lock-warning-face)))
+    '(:eval (when buffer-read-only     ; Read only?
+              (propertize
+               " [RO]"
+               'help-echo "Buffer is read-only"
+               'face 'font-lock-type-face)))
+    '(:eval (propertize                ; Time
+             (format-time-string " %a %b %d %H:%M ")
+             'help-echo (concat (format-time-string "%c; week %V; ")
+                                (emacs-uptime "Uptime: %hh"))))
+    '(:eval evil-mode-line-tag)))      ; Evil mode
+  :config (mini-modeline-mode t))

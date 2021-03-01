@@ -1,10 +1,15 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Load configs
+;;
+;;; Load configs
+
 (load! "+ui")
 (load! "+bindings")
 (load! "+functions")
 (load! "+eshell")
+
+;;
+;;; General
 
 ;; Disable confirmation when exiting Emacs
 (setq confirm-kill-emacs nil)
@@ -38,20 +43,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Delete all whitespace on save, except on markdown-mode
-(add-hook! 'before-save-hook
-  (lambda ()
-    (unless (eq major-mode 'markdown-mode)
-      (delete-trailing-whitespace))))
-
-;; Projectile. Setup default project folders.
-(after! projectile
-  (setq projectile-sort-order 'recentf)
-  (setq projectile-ignored-projects
-        '("~/" "/tmp" "~/Downloads"))
-  (setq projectile-project-search-path
-        '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
-
 ;; Adds binaries to PATH, so we can use them from Emacs as it works from the shell
 (use-package! exec-path-from-shell
   :if (memq window-system '(mac ns x))
@@ -61,11 +52,62 @@
   :config
   (exec-path-from-shell-initialize))
 
-;; Auto add headers on scratch buffers in specific modes
-(add-hook! 'org-mode-hook (zz/add-scratch-buffer-header "#+TITLE: Scratch file"))
-(add-hook! 'sh-mode-hook (zz/add-scratch-buffer-header "#!/usr/bin/env bash"))
+;;
+;;; Projectile
 
-;; Completion
+(after! projectile
+  (setq projectile-sort-order 'recentf)
+  (setq projectile-ignored-projects
+        '("~/" "/tmp" "~/Downloads"))
+  (setq projectile-project-search-path
+        '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
+
+;;
+;;; Ivy
+
+(after! ivy
+  ;; Popup to choose buffer when splitting the window
+  (defadvice! prompt-for-buffer (&rest _)
+    :after '(evil-window-split evil-window-vsplit)
+    (+ivy/switch-buffer))
+
+  ;; Default ivy settings
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        +ivy-buffer-preview t))
+
+;; (after! ivy-posframe
+;;   (setq ivy-posframe-border-width 5)
+;;   (setq ivy-posframe-display-functions-alist
+;;         '((t . ivy-posframe-display-at-frame-center))))
+
+;;
+;;; Dired
+
+(after! dired
+  (setq delete-by-moving-to-trash t
+        dired-listing-switches "-lat"  ; sort by date
+        ))
+
+(use-package! dired-narrow
+  :after dired
+  :config
+  (map! :map dired-mode-map :n "/" #'dired-narrow-fuzzy))
+
+;;
+;;; Vterm
+
+(after! vterm
+  (setq vterm-max-scrollback 6000)
+  (map!
+   :map vterm-mode-map :n "B" #'vterm-beginning-of-line
+   :map vterm-mode-map :n "<return>" #'evil-insert-resume
+   :map vterm-mode-map "<C-backspace>" (lambda ()
+                                         (interactive) (vterm-send-key (kbd "C-w")))))
+
+;;
+;;; Company
+
 (after! company
   (add-hook! 'evil-normal-state-entry-hook #'company-abort)  ; Make aborting less annoying
 
@@ -93,51 +135,13 @@
 (after! sh-script
   (set-company-backend! 'sh-mode))
 
-;; Ivy
-(after! ivy
-  ;; Popup to choose buffer when splitting the window
-  (defadvice! prompt-for-buffer (&rest _)
-    :after '(evil-window-split evil-window-vsplit)
-    (+ivy/switch-buffer))
+;;
+;;; Linters, checkers and programming language specifics
 
-  ;; Default ivy settings
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "(%d/%d) "
-        +ivy-buffer-preview t))
-
-;; Use a specific window to pop-up Ivy
-;; (after! ivy-posframe
-;;   (setq ivy-posframe-border-width 5)
-;;   (setq ivy-posframe-display-functions-alist
-;;         '((t . ivy-posframe-display-at-frame-center))))
-
-;; Dired file explorer
-(after! dired
-  (setq delete-by-moving-to-trash t
-        dired-listing-switches "-lat"  ; sort by date
-        ))
-
-;; Adds narrow fuzzy search functionality to Dired
-(use-package! dired-narrow
-  :after dired
-  :config
-  (map! :map dired-mode-map :n "/" #'dired-narrow-fuzzy))
-
-;; Vterm
-(after! vterm
-  (setq vterm-max-scrollback 6000)
-  (map!
-   :map vterm-mode-map :n "B" #'vterm-beginning-of-line
-   :map vterm-mode-map :n "<return>" #'evil-insert-resume
-   :map vterm-mode-map "<C-backspace>" (lambda ()
-                                         (interactive) (vterm-send-key (kbd "C-w")))))
-
-;; Python configuration stuff
 (add-hook! python-mode
   (setq python-shell-interpreter
         "/usr/local/opt/python@3.9/bin/python3.9"))
 
-;; Static code analysis
 (after! flycheck
   ;; Pylint configs
   (setq flycheck-python-pylint-executable "/usr/local/bin/pylint"
@@ -154,15 +158,27 @@
 
 ;; Spell checker
 (after! spell-fu
-  (setq spell-fu-idle-delay 0.5))  ; default delay is 0.25
+  (setq spell-fu-idle-delay 0.5))
 
-;; spell-fu needs to be turn on manually
+;; Make spell-fu to be turn on manually
 (remove-hook! (text-mode) #'spell-fu-mode)
 
 ;; Bash formatter settings (shfmt)
 (set-formatter! 'shfmt "shfmt -i 2 -ci")
 
-;; Kubernetes integration
+;; Auto add headers on scratch buffers in specific modes
+(add-hook! 'org-mode-hook (zz/add-scratch-buffer-header "#+TITLE: Scratch file"))
+(add-hook! 'sh-mode-hook (zz/add-scratch-buffer-header "#!/usr/bin/env bash"))
+
+;; Delete all whitespace on save, except on markdown-mode
+(add-hook! 'before-save-hook
+  (lambda ()
+    (unless (eq major-mode 'markdown-mode)
+      (delete-trailing-whitespace))))
+
+;;
+;;; Kubernetes
+
 (use-package! kubernetes
   :commands (kubernetes-overview))
 
@@ -170,8 +186,7 @@
   :after kubernetes)
 
 ;;
-;; Email config stuff
-;;
+;;; Emails
 
 ;; It's using msmtp to send emails
 (setq mail-user-agent 'message-user-agent
@@ -198,8 +213,7 @@
           ("matthieu@smallwatersolutions.com" . "sws/sent -inbox +sent -unread"))))
 
 ;;
-;; Org config stuff
-;;
+;;; Org
 
 (defvar my-notes-directory "~/org"
   "Where I'm storing my notes.")

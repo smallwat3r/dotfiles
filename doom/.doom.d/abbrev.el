@@ -1,6 +1,4 @@
-;; -*- coding: utf-8; lexical-binding: t; -*-
-
-;; Manage abbrev
+;;; abbrev.el -*- coding: utf-8; lexical-binding: t; -*-
 
 (clear-abbrev-table global-abbrev-table)
 
@@ -37,8 +35,7 @@
     ))
 
 ;;
-;; Define abbreviations from specific major-mode
-;;
+;;; Specific major-modes
 
 (define-abbrev-table 'prog-mode-abbrev-table
   '(
