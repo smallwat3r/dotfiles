@@ -25,6 +25,7 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 	@stow \
 		alacritty \
 		ctags \
+		doom \
 		git \
 		gnupg \
 		htop \

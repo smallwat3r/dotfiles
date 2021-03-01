@@ -17,7 +17,7 @@ should be pretty much up-to-date.
 Clone this repo into your ~$HOME~ directory.
 
 #+begin_src shell
-git clone https://github.com/smallwat3r/dotfiles.git $HOME
+git clone --recurse-submodules -j8 https://github.com/smallwat3r/dotfiles.git $HOME
 #+end_src
 
 Install *GNU Make* (~brew install make~) to use the Makefile.
