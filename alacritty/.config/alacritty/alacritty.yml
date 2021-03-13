@@ -31,10 +31,10 @@ scrolling:
 
 font:
   normal:
-    family: Monaco
-    style: Regular
+    family: Fira Code
+    style: Light
 
-  size: 13
+  size: 14
 
   offset:
     x: 1
