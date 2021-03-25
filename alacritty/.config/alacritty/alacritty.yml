@@ -31,10 +31,13 @@ scrolling:
 
 font:
   normal:
-    family: Fira Code
+    family: Inconsolata
     style: Light
+  bold:
+    family: Inconsolata
+    style: Bold
 
-  size: 14
+  size: 16
 
   offset:
     x: 1
@@ -53,28 +56,28 @@ background_opacity: 1
 
 colors:
   primary:
-    background: '#000000'
-    foreground: '#d0d0d0'
+    background: "#000000"
+    foreground: "#d0d0d0"
 
   normal:
-    black:   '#4e4e4e'
-    red:     '#d68787'
-    green:   '#5f865f'
-    yellow:  '#d8af5f'
-    blue:    '#85add4'
-    magenta: '#d7afaf'
-    cyan:    '#87afaf'
-    white:   '#d0d0d0'
+    black: "#4e4e4e"
+    red: "#d68787"
+    green: "#5f865f"
+    yellow: "#d8af5f"
+    blue: "#85add4"
+    magenta: "#d7afaf"
+    cyan: "#87afaf"
+    white: "#d0d0d0"
 
   bright:
-    black:   '#626262'
-    red:     '#d75f87'
-    green:   '#87af87'
-    yellow:  '#ffd787'
-    blue:    '#add4fb'
-    magenta: '#ffafaf'
-    cyan:    '#87d7d7'
-    white:   '#e4e4e4'
+    black: "#626262"
+    red: "#d75f87"
+    green: "#87af87"
+    yellow: "#ffd787"
+    blue: "#add4fb"
+    magenta: "#ffafaf"
+    cyan: "#87d7d7"
+    white: "#e4e4e4"
 
 # }}} colors
 # {{{ mouse / cursor
@@ -98,9 +101,9 @@ selection:
   save_to_clipboard: true
 
 cursor:
-  style: Block
-  vi_mode_style: Beam
-  unfocused_hollow: true
+  style:
+    shape: Block
+
 
 # }}} mouse / cursor
 # {{{ other
@@ -210,5 +213,4 @@ key_bindings:
   - { key: F, mods: Command|Control, action: ToggleFullscreen }
   - { key: F, mods: Command, action: SearchForward }
   - { key: B, mods: Command, action: SearchBackward }
-
 # }}} keybindings

@@ -63,6 +63,9 @@ endef
 	@echo '*** Installing Custom Fira Code fonts'
 	$(call register_font,Custom-FiraCode-Light)
 	$(call register_font,Custom-FiraCode-SemiBold)
+	@echo '*** Installing Inconsolata fonts'
+	$(call register_font,Inconsolata-Light)
+	$(call register_font,Inconsolata-SemiBold)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
