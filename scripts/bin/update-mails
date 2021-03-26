@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# Sync emails and add to notmuch
+
+mbsync -a
+notmuch new
