@@ -1,17 +1,6 @@
 # Zsh functions
 # ~~~~~~~~~~~~~
 
-# {{{1 (checkdns) check DNS records
-
-checkdns() {
-  if [[ -z "$1" ]]; then
-    printf 'Please specify a host.\n'
-  else
-    dig @$(dig @8.8.8.8 "$1" ns +short | head -n1) "$1" ANY +noall +answer
-    ping -c1 "$1"
-  fi
-}
-# }}}1
 # {{{1 (mpods) monitor kube pods memory from a namespace
 
 mpods() {

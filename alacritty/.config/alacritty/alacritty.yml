@@ -31,13 +31,9 @@ scrolling:
 
 font:
   normal:
-    family: Inconsolata
-    style: Light
-  bold:
-    family: Inconsolata
-    style: Bold
+    family: DejaVu Sans Mono
 
-  size: 16
+  size: 13
 
   offset:
     x: 1
