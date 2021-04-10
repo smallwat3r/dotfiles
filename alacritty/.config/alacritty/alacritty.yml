@@ -31,9 +31,9 @@ scrolling:
 
 font:
   normal:
-    family: DejaVu Sans Mono
+    family: Monaco
 
-  size: 13
+  size: 14
 
   offset:
     x: 1
