@@ -18,7 +18,7 @@ from           Matthieu Petiteau
 user           mpetiteau.pro@gmail.com
 passwordeval   "/usr/local/bin/gpg --quiet --for-your-eyes-only --decrypt ~/.personal-email.gpg"
 
-# ses
+# sws
 account        sws
 host           smtp.gmail.com
 port           587
