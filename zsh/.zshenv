@@ -16,7 +16,5 @@ export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/flutter/bin:$PATH"
 export GOPATH="$HOME/go"
 
-export CLICOLOR=1
-
 export EDITOR='emacsclient'
 # export EDITOR='/usr/local/bin/nvim'

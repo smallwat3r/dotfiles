@@ -53,6 +53,8 @@ export LC_ALL=en_US.UTF-8
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
 
+export CLICOLOR=1
+
 export LDFLAGS='-L/usr/local/opt/python@3.8/lib'
 export PER5LIB="$HOME/lib/perl5"
 
