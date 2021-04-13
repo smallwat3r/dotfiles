@@ -1,5 +1,4 @@
-# Zsh functions
-# ~~~~~~~~~~~~~
+#!/usr/bin/env bash
 
 # {{{1 (mpods) monitor kube pods memory from a namespace
 

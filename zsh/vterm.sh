@@ -1,6 +1,5 @@
-#
+#!/usr/bin/env bash
 # Vterm Emacs shell side config
-#
 
 vterm_printf() {
   if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
