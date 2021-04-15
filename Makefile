@@ -52,21 +52,15 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 	@echo 'To do so, you can run:'
 	@echo '    stow doom -vv -t <home-directory>'
 
-fonts: ## Install fonts
-define register_font
-	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
-endef
-	@echo '*** Installing Custom Glyphs Hack fonts'
-	$(call register_font,Custom-Hack-Regular)
-	$(call register_font,Custom-Hack-Bold)
-	$(call register_font,Custom-Hack-Italic)
-	$(call register_font,Custom-Hack-BoldItalic)
-	@echo '*** Installing Custom Fira Code fonts'
-	$(call register_font,Custom-FiraCode-Light)
-	$(call register_font,Custom-FiraCode-SemiBold)
-	@echo '*** Installing Inconsolata fonts'
-	$(call register_font,Inconsolata-Light)
-	$(call register_font,Inconsolata-SemiBold)
+# fonts: ## Install fonts
+# define register_font
+# 	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
+# endef
+# 	@echo '*** Installing Custom Glyphs Hack fonts'
+# 	$(call register_font,Custom-Hack-Regular)
+# 	$(call register_font,Custom-Hack-Bold)
+# 	$(call register_font,Custom-Hack-Italic)
+# 	$(call register_font,Custom-Hack-BoldItalic)
 
 homebrew: ## Make sure homebrew is installed
 ifeq ($(shell command -v brew),)
@@ -128,11 +122,11 @@ npm: node ## Install npm packages
 		prettydiff \
 		http-server
 
-python: homebrew ## Install python 3.8
-ifeq ($(shell brew ls --versions python@3.8),)
-	@echo '*** Installing python 3.8 ...'
-	brew install python@3.8
-	ln -s -f $(shell which python3.8) /usr/local/bin/python
+python: homebrew ## Install python 3.9
+ifeq ($(shell brew ls --versions python@3.9),)
+	@echo '*** Installing python 3.9 ...'
+	brew install python@3.9
+	ln -s -f $(shell which python3.9) /usr/local/bin/python
 endif
 
 pip: python ## Install pip packages

@@ -8,19 +8,18 @@ work as well in other Unix/Linux environments. Dotfiles are managed by *GNU Stow
 
 ** Disclaimer
 
-Some of these configs are not maintained anymore, but are kept for reference
-(ex: kitty, vifm, etc).
+Some of these configs are not maintained anymore, but are kept for reference.
 
 ** Instructions
 
-Clone this repo into your ~$HOME~ directory.
+Clone this repo into your ~$HOME~ directory, including it's submodules (Emacs config).
 
 #+begin_src shell
 cd $HOME
 git clone --recurse-submodules -j8 https://github.com/smallwat3r/dotfiles.git
 #+end_src
 
-Install *GNU Make* (~brew install make~) to use the Makefile.
+Make sure you have *GNU Make* installed to use the Makefile.
 
 Makefile commands:
 
@@ -31,7 +30,6 @@ Usage: make [TARGET ...]
 help            Show this help menu
 install         Installs everything
 symlink         Symlinks dotfiles using stow
-fonts           Install fonts
 homebrew        Make sure homebrew is installed
 stow            Make sure stow is installed
 install-doom    Install doom emacs
@@ -41,6 +39,6 @@ brew            Install brew packages
 cask            Install brew casks
 node            Install node
 npm             Install npm packages
-python          Install python 3.8
+python          Install python 3.9
 pip             Install pip packages
 #+end_src
