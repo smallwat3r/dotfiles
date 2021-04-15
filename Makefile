@@ -42,6 +42,7 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 		sketch \
 		ssh \
 		tmux \
+		vim \
 		vifm \
 		yapf \
 		zsh \
