@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+brew "antigen"
+brew "aspell"
+brew "bash"
+brew "cmake"
+brew "coreutils"
+brew "ctags"
+brew "curl"
+brew "dockutil"
+brew "eslint"
+brew "fd"
+brew "git"
+brew "gnupg"
+brew "go"
+brew "htop"
+brew "isync"
+brew "jq"
+brew "lua"
+brew "make"
+brew "msmtp"
+brew "neovim"
+brew "nmap"
+brew "node"
+brew "notmuch"
+brew "openssl"
+brew "pass"
+brew "python@3.9"
+brew "ripgrep"
+brew "shellcheck"
+brew "shfmt"
+brew "stow"
+brew "tmux"
+brew "wget"
+brew "zsh"
+
+# Taps
+
+tap "smallwat3r/scripts"
+brew "shhh"
+brew "sketch"
+brew "synonym"
+brew "tubestatus"
+
+tap "teamookla/speedtest"
+brew "speedtest"
+
+# Casks
+
+cask_args appdir: '/Applications'
+
+cask "alacritty"
+cask "alfred"
+cask "docker"
+cask "firefox"
+cask "google-chrome"
+cask "keybase"
+cask "ngrok"
+cask "slack"
+cask "signal"
+cask "tunnelblick"

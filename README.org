@@ -32,13 +32,10 @@ install         Installs everything
 symlink         Symlinks dotfiles using stow
 homebrew        Make sure homebrew is installed
 stow            Make sure stow is installed
-install-doom    Install doom emacs
 xcode-cli       Install xcode command line tools
-taps            Install brew taps
-brew            Install brew packages
-cask            Install brew casks
-node            Install node
+brew-bundle     Install packages from Brewfile
+node            Install Node
 npm             Install npm packages
-python          Install python 3.9
-pip             Install pip packages
+python          Install Python 3.9
+pip             Install Python packages
 #+end_src
