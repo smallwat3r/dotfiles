@@ -169,7 +169,6 @@ nmap <leader>pu :source $MYVIMRC<cr>:PlugUpdate<cr>
 
 call plug#begin()
 
-Plug 'christoomey/vim-tmux-navigator'  " Tmux navigation
 Plug 'jiangmiao/auto-pairs'            " Auto close pairs
 Plug 'junegunn/vim-easy-align'         " Align pieces of text
 xmap ga <Plug>(EasyAlign)
