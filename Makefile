@@ -26,27 +26,19 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 	@stow scripts -vv -t /usr/local
 	@stow \
 		alacritty \
-		ctags \
 		git \
 		gnupg \
 		htop \
-		isort \
-		kitty \
-		mbsync \
-		msmtp \
-		mypy \
-		notmuch \
+		formatters \
+		mail \
 		nvim \
 		pip \
-		prettier \
-		pylint \
 		rg \
 		sketch \
 		ssh \
 		tmux \
 		vim \
 		vifm \
-		yapf \
 		zsh \
 		-vv -t $(HOME)
 	@echo '*** Symlinks all set-up'
