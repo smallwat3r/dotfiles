@@ -50,11 +50,13 @@ cask_args appdir: '/Applications'
 
 cask "alacritty"
 cask "alfred"
+cask "bitwarden"
 cask "docker"
 cask "firefox"
 cask "google-chrome"
 cask "keybase"
 cask "ngrok"
+cask "nordvpn"
 cask "slack"
 cask "signal"
 cask "tunnelblick"
