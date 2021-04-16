@@ -27,11 +27,12 @@ help            Show this help menu
 install         Installs everything
 symlink         Symlinks dotfiles using stow
 homebrew        Make sure homebrew is installed
+nvim            Setup neovim
 stow            Make sure stow is installed
 xcode-cli       Install xcode command line tools
 brew-bundle     Install packages from Brewfile
-node            Install Node
+node            Install Node if not installed already
 npm             Install npm packages
-python          Install Python 3.9
+python          Install Python 3.9 if not installed already
 pip             Install Python packages
 #+end_src
