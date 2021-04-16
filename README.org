@@ -6,11 +6,7 @@ and please create back-ups of your current set-up if you intend to use the Makef
 Be aware these dotfiles are intended to be used on macOS, but most of it should
 work as well in other Unix/Linux environments. Dotfiles are managed by *GNU Stow*.
 
-** Disclaimer
-
-Some of these configs are not maintained anymore, but are kept for reference.
-
-** Instructions
+** Installation instructions
 
 Clone this repo into your ~$HOME~ directory, including it's submodules (Emacs config).
 
