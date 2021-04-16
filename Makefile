@@ -23,22 +23,19 @@ maildir:
 .PHONY: symlink
 symlink: stow maildir ## Symlinks dotfiles using stow
 	@stow stow -vv -t $(HOME)  # must be run first
-	@stow scripts -vv -t /usr/local
+	@stow bin -vv -t /usr/local
 	@stow \
 		alacritty \
 		git \
 		gnupg \
-		htop \
 		formatters \
 		mail \
 		nvim \
 		pip \
 		rg \
-		sketch \
 		ssh \
 		tmux \
 		vim \
-		vifm \
 		zsh \
 		-vv -t $(HOME)
 	@echo '*** Symlinks all set-up'
