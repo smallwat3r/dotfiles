@@ -11,7 +11,7 @@ help: ## Show this help menu
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
 .PHONY: install
-install: npm pip symlink homebrew-bundle ## Installs everything
+install: npm pip symlink nvim homebrew-bundle ## Installs everything
 	@echo '*** -- Everything has been installed --'
 
 .PHONY: maildir
@@ -61,6 +61,15 @@ ifeq ($(shell command -v brew),)
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
 endif
 
+.PHONY: nvim
+nvim: homebrew  ## Setup neovim
+ifeq ($(shell brew ls --versions nvim),)
+	@echo '*** Installing neovim ...'
+	brew install nvim
+endif
+	@nvim +PlugInstall +qall >/dev/null
+	@echo "Neovim setup successfully"
+
 .PHONY: stow
 stow: homebrew ## Make sure stow is installed
 ifeq ($(shell command -v stow),)
@@ -80,7 +89,7 @@ brew-bundle: homebrew xcode-cli  ## Install packages from Brewfile
 	@brew bundle
 
 .PHONY: node
-node: homebrew ## Install Node
+node: homebrew ## Install Node if not installed already
 ifeq ($(shell brew ls --versions node),)
 	@echo '*** Installing node ...'
 	brew install node
@@ -95,7 +104,7 @@ npm: node ## Install npm packages
 		http-server
 
 .PHONY: python
-python: homebrew ## Install Python 3.9
+python: homebrew ## Install Python 3.9 if not installed already
 ifeq ($(shell brew ls --versions python@3.9),)
 	@echo '*** Installing python 3.9 ...'
 	brew install python@3.9
