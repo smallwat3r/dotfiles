@@ -17,4 +17,5 @@ export PATH="$HOME/flutter/bin:$PATH"
 export GOPATH="$HOME/go"
 
 export EDITOR='emacsclient'
+export EMACS='/Applications/Emacs.app/Contents/MacOS/Emacs'
 # export EDITOR='/usr/local/bin/nvim'
