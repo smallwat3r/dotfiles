@@ -4,6 +4,8 @@
 *.pyc
 *.zwc
 
+Brewfile.lock.json
+
 nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/autoload/
 nvim/.config/nvim/colors/

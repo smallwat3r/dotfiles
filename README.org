@@ -15,8 +15,6 @@ cd $HOME
 git clone --recurse-submodules -j8 https://github.com/smallwat3r/dotfiles.git
 #+end_src
 
-Make sure you have *GNU Make* installed to use the Makefile.
-
 Makefile commands:
 
 #+begin_src console

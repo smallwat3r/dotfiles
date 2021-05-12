@@ -13,6 +13,15 @@
 .env
 .venv
 
+# Sensitive
+*.gpg
+*.kbx
+*.key
+*.ovpn
+*.p12
+*.pem
+*.sec
+
 # Folders
 **/.mypy_cache/
 **/__pycache__/

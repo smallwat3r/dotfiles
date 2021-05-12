@@ -81,6 +81,8 @@ alias gpg-pub-key="gpg --armor --export mpetiteau.pro@gmail.com"
 alias gpg-list-keys="gpg --list-secret-keys --keyid-format LONG"
 
 # Misc stuff
+alias python="python3"
+alias pip="pip3"
 alias batt="bluebatt"
 alias ctags="/usr/local/bin/ctags"
 alias diskspace="df -P -kHl"

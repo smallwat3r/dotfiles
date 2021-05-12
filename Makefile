@@ -11,7 +11,7 @@ help: ## Show this help menu
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
 .PHONY: install
-install: npm pip symlink nvim homebrew-bundle ## Installs everything
+install: npm pip symlink nvim brew-bundle ## Installs everything
 	@echo '*** -- Everything has been installed --'
 
 .PHONY: maildir
