@@ -122,5 +122,6 @@ pip: python ## Install Python packages
 		jsbeautifier \
 		pylint \
 		pynvim \
+		pyflakes \
 		sqlparse \
 		yapf
