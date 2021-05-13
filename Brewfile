@@ -44,6 +44,9 @@ brew "tubestatus"
 tap "teamookla/speedtest"
 brew "speedtest"
 
+tap "heroku/brew"
+brew "heroku"
+
 # Casks
 
 cask_args appdir: '/Applications'
