@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Set up system default python version to 3.8
+# Set up system default python version to 3.9
 
-if which python3.8 >/dev/null; then
-  ln -s -f "$(which python3.8)" /usr/local/bin/python
-  printf 'python3.8 symlinked to default.\n'
+if which python3.9 >/dev/null; then
+  ln -s -f "$(which python3.9)" /usr/local/bin/python
+  printf 'python3.9 symlinked to default.\n'
 else
-  printf 'python3.8 not found.\n' >&2
+  printf 'python3.9 not found.\n' >&2
   exit 1
 fi
