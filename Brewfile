@@ -31,6 +31,7 @@ brew "shfmt"
 brew "stow"
 brew "tmux"
 brew "wget"
+brew "yarn"
 brew "zsh"
 
 # Taps
