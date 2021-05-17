@@ -70,9 +70,9 @@ autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-bindkey '^[[A' up-line-or-beginning-search    # Arrow up
+bindkey '^[[A' up-line-or-beginning-search # Arrow up
 bindkey '^[OA' up-line-or-beginning-search
-bindkey '^[[B' down-line-or-beginning-search  # Arrow down
+bindkey '^[[B' down-line-or-beginning-search # Arrow down
 bindkey '^[OB' down-line-or-beginning-search
 
 bindkey -M vicmd 'k' up-line-or-beginning-search
@@ -123,14 +123,16 @@ export FZF_DEFAULT_OPTS='
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
 
 # antigen
-[[ -f '/usr/local/share/antigen/antigen.zsh' ]] && source '/usr/local/share/antigen/antigen.zsh'
+[[ -f '/usr/local/share/antigen/antigen.zsh' ]] && {
+  source '/usr/local/share/antigen/antigen.zsh'
 
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle hlissner/zsh-autopair
-antigen bundle skywind3000/z.lua
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen bundle zsh-users/zsh-autosuggestions
+  antigen bundle hlissner/zsh-autopair
+  antigen bundle skywind3000/z.lua
 
-antigen apply
+  antigen apply
+}
 
 # zsh syntax-highlight options
 # ----------------------------
@@ -142,8 +144,6 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 export ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
 export ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
 export ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
-export ZSH_HIGHLIGHT_STYLES[global-alias]='fg=cyan,bold'
-export ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=cyan,bold'
 export ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
 export ZSH_HIGHLIGHT_STYLES[globbing]='fg=magenta,bold'
 export ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta,bold'
@@ -167,34 +167,19 @@ _display_git_info() {
 }
 
 if [[ "$INSIDE_EMACS" ]]; then
-  # Emacs shell prompt (do not run with tmux)
-  # -----------------------------------------
+  # If we are in Emacs, run a standard prompt and do not run tmux.
   PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)$(shpwd)$(_display_git_info) %# '
 else
-  # Other shell emulators (run tmux by default)
-  # Tmux is turn on by default, so I'm using the individual pane titles
-  # to display the majority of the prompt information.
-  # -------------------------------------------------------------------
+  # In other shell emulators: activate tmux by default
+  # As tmux is activated by default, its using the individual pane titles
+  # to display the prompt information.
+
+  # Auto-activate tmux
   if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
     exec tmux
   fi
 
-  vim_ins_mode='%#'
-  vim_cmd_mode=';;'
-  vim_mode=$vim_ins_mode
-
-  zle-keymap-select() {
-    vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
-    zle reset-prompt
-  }
-  zle -N zle-keymap-select
-
-  zle-line-finish() {
-    vim_mode=$vim_ins_mode
-  }
-  zle -N zle-line-finish
-
-  PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)${vim_mode} '
+  PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)%# '
 
   _pane_number() {
     echo $(tmux list-panes | grep "active" | cut -d ':' -f 1)
@@ -217,7 +202,6 @@ fi
 
 autoload -Uz compinit && compinit
 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' accept-exact '*(N)'
@@ -227,3 +211,4 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:rm:*' ignore-line-yes
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
