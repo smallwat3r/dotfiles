@@ -38,10 +38,13 @@ symlink: stow maildir ## Symlinks dotfiles using stow
 		vim \
 		zsh \
 		-vv -t $(HOME)
-	@echo '*** Symlinks all set-up'
-	@echo '/!\ Note: Doom Emacs configs have not been automatically linked.'
-	@echo 'To do so, you can run:'
+	@echo ''
+	@echo '*** Note: Doom Emacs configs have not been automatically linked'
+	@echo 'as it is managed from its own repository.'
+	@echo 'To use the stow version, you can run:'
 	@echo '    stow doom -vv -t <home-directory>'
+	@echo ''
+	@echo '*** Successfully linked all dotfiles'
 
 # .PHONY: fonts
 # fonts: ## Install fonts

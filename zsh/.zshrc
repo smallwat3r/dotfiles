@@ -4,7 +4,7 @@
 # Source external files
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases" end
 [[ -f "$HOME/.functions" ]] && source "$HOME/.functions" end
-[[ -f "$HOME/vterm.sh" ]] && source "$HOME/vterm.sh" end
+[[ -f "$HOME/.vterm.sh" ]] && source "$HOME/.vterm.sh" end
 
 # General settings
 # *****************************************************************************
