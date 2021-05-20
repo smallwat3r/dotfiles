@@ -2,10 +2,10 @@
 # Build macos dock
 
 dockutil --no-restart --remove all
-dockutil --no-restart --add "/Applications/Thunderbird.app"
-dockutil --no-restart --add "/Applications/Alacritty.app"
 dockutil --no-restart --add "/Applications/Emacs.app"
-dockutil --no-restart --add "/Applications/Google Chrome.app"
+dockutil --no-restart --add "/Applications/Firefox.app"
 dockutil --no-restart --add "/Applications/Slack.app"
+dockutil --no-restart --add "/Applications/Bitwarden.app"
+dockutil --no-restart --add "/System/Applications/Utilities/Activity Monitor.app"
 
 killall Dock
