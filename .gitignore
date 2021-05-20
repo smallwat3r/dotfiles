@@ -17,6 +17,10 @@ vifm/.config/vifm/vifm-help.txt
 vifm/.config/vifm/vifm-info.json
 vifm/.config/vifm/vifminfo
 
+gnupg/.gnupg/*
+!gnupg/.gnupg/gpg.conf
+!gnupg/.gnupg/gpg-agent.conf
+
 *.pem
 *.pub
 ssh/.ssh/id_rsa
