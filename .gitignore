@@ -21,8 +21,8 @@ gnupg/.gnupg/*
 !gnupg/.gnupg/gpg.conf
 !gnupg/.gnupg/gpg-agent.conf
 
+ssh/.ssh/*
+!ssh/.ssh/config
+
 *.pem
 *.pub
-ssh/.ssh/id_rsa
-ssh/.ssh/known_hosts
-ssh/.ssh/private
