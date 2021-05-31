@@ -3,7 +3,7 @@ overrides:
   - files: "*.js"
     options:
       bracketSpacing: true
-      printWidth: 110
+      printWidth: 120
       tabWidth: 2
       singleQuote: false
       semi: true
@@ -11,5 +11,5 @@ overrides:
       proseWrap: always
   - files: "*.html"
     options:
-      printWidth: 110
+      printWidth: 140
       tabWidth: 2
