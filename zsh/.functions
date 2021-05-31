@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# {{{1 (monitor-pods) monitor kube pods memory from a namespace
-
+# Monitor kube pods memory
 monitor-pods() {
   if [[ -z "$1" ]]; then
     printf 'Please specify a namespace.\n'
@@ -13,101 +12,93 @@ monitor-pods() {
   fi
 }
 
-# }}}1
-# {{{1 (cr) cd root of git repo
-
+# Cd back into root of git repo
 cr() {
   cd "$(git rev-parse --show-toplevel)" || exit
 }
 
-# }}}1
-# {{{1 (dip) docker ip by name
-
+# Docker get ip
 dip() {
-  docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
-    "$(docker ps |
-      grep "$1" 2>/dev/null |
-      cut -d ' ' -f1)" 2>/dev/null || printf 'Cannot find %s\n' "$1" >&2
+  if [[ -z "$1" ]]; then
+    printf 'Please specify an image.\n'
+  else
+    docker inspect --format '{{ .NetworkSettings.IPAddress }}' \
+      "$(docker ps |
+        grep "$1" 2>/dev/null |
+        cut -d ' ' -f1)" 2>/dev/null || printf 'Cannot find %s\n' "$1" >&2
+  fi
 }
 
-# }}}1
-# {{{1 (dlog) docker show logs by name
-
+# Docker show logs
 dlog() {
-  docker logs --follow \
-    "$(docker ps |
-      grep "$1" 2>/dev/null |
-      cut -d ' ' -f1)" 2>/dev/null || printf 'Cannot find %s\n' "$1" >&2
+  if [[ -z "$1" ]]; then
+    printf 'Please specify an image.\n'
+  else
+    docker logs --follow \
+      "$(docker ps |
+        grep "$1" 2>/dev/null |
+        cut -d ' ' -f1)" 2>/dev/null || printf 'Cannot find %s\n' "$1" >&2
+  fi
 }
 
-# }}}1
-# {{{1 (dps) shorten docker ps
-
+# Shorter Docker ps
 dps() {
   docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
     column -t -s '¬¬¬' -c "$(tput cols)"
 }
 
-# }}}1
-# {{{1 (dpsa) shorten docker ps -a
-
+# Shorter Docker ps all
 dpsa() {
   docker ps -a --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' |
     column -t -s '¬¬¬' -c "$(tput cols)"
 }
 
-# }}}1
-# {{{1 (dprune) docker prune
-
+# Docker system prune
 dprune() {
   printf 'y' | docker system prune
 }
 
-# }}}1
-# {{{1 (drm) docker delete image
-
+# Docker delete image
 drm() {
-  docker rmi "$1" -f
+  if [[ -z "$1" ]]; then
+    printf 'Please specify an image.\n'
+  else
+    docker rmi "$1" -f
+  fi
 }
 
-# }}}1
-# {{{1 (dsh) docker enter in shell by name
-
+# Docker exec into
 dsh() {
-  local _name
-  _name=$(
-    docker ps |
-      grep "$1" 2>/dev/null |
-      cut -d ' ' -f1
-  )
-  docker exec -it "$_name" /bin/sh 2>/dev/null ||
-    printf 'Error finding %s\n' "$1" >&2
+  if [[ -z "$1" ]]; then
+    printf 'Please specify an image.\n'
+  else
+    local _name
+    _name=$(
+      docker ps |
+        grep "$1" 2>/dev/null |
+        cut -d ' ' -f1
+    )
+    docker exec -it "$_name" /bin/sh 2>/dev/null ||
+      printf 'Error finding %s\n' "$1" >&2
+  fi
 }
 
-# }}}1
-# {{{1 (hs) Grep history
-
+# Grep history
 hs() {
   history 1 | grep "$@"
 }
 
-# }}}1
-# {{{1 (hsu) Grep history (unique matches)
-
+# Grep history unique
 hsu() {
   history 1 | sort -u | grep "$@"
 }
 
-# }}}1
-# {{{1 (mkd) create and enter directory
-
+# Create and enter directory
 mkd() {
   mkdir -p "$@" && cd "$@" || exit
 }
 
-# }}}1
-# {{{1 (o) open current dir or the one in args
-
+# Open in finder
 o() {
   if [[ $# -eq 0 ]]; then
     open .
@@ -116,29 +107,21 @@ o() {
   fi
 }
 
-# }}}1
-# {{{1 (pubkey) copy public key to clipboard
-
+# Copy public key to clipboard
 pubkey() {
   more "$HOME/.ssh/id_rsa.pub" | pbcopy
   printf 'Public key copied to clipboard.\n'
 }
 
-# }}}1
-# {{{1 (urls) rg - get urls
-
+# Ripgrep url pattern
 urls() {
   rg '[a-zA-Z]+://[-a-zA-Z0-9._+]+[-a-zA-Z0-9._+#=?&:;%/!~()]+'
 }
 
-# }}}1
-# {{{1 (zipall) zip all individual files in current directory into a zipfile.
-
+# Zip all files in current directory into a zipfile
 zipall() {
   local file
   for file in $(echo *(^/)); do
     zip "${file%.*}.zip" "$file"
   done
 }
-
-# }}}1
