@@ -6,6 +6,13 @@
 [[ -f "$HOME/.functions" ]] && source "$HOME/.functions" end
 [[ -f "$HOME/.vterm.sh" ]] && source "$HOME/.vterm.sh" end
 
+# fzf
+[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh" end
+
+# Private kube functions
+# ----------------------
+[[ -f "$HOME/.kubeprivate" ]] && source "$HOME/.kubeprivate" end
+
 # General settings
 # *****************************************************************************
 
@@ -30,18 +37,6 @@ setopt INC_APPEND_HISTORY
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt HIST_IGNORE_ALL_DUPS
-
-# Move up directories (... automatically become ../..)
-# TODO: to look into, this doesn't seem to work anymore
-_rationalise-dot() {
-  if [[ $LBUFFER = *.. ]]; then
-    LBUFFER+=/..
-  else
-    LBUFFER+=.
-  fi
-}
-zle -N _rationalise-dot
-bindkey . _rationalise-dot
 
 export TERM='xterm-256color'
 
@@ -93,14 +88,10 @@ _vi_yank_pbcopy() {
 zle -N _vi_yank_pbcopy
 bindkey -M vicmd 'y' _vi_yank_pbcopy
 
-# edit command in vim
+# edit command in preferred editor
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
-
-# Private kube functions
-# ----------------------
-[[ -f "$HOME/.kubeprivate" ]] && source "$HOME/.kubeprivate"
 
 # Plugins
 # *****************************************************************************
@@ -111,9 +102,6 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
-
-# fzf
-[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
 
 export FZF_DEFAULT_OPTS='
   --height 96% --reverse --border
@@ -213,3 +201,17 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:rm:*' ignore-line-yes
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+
+# Misc
+# *****************************************************************************
+
+# Move up directories (... automatically become ../..)
+_rationalise-dot() {
+  if [[ $LBUFFER = *.. ]]; then
+    LBUFFER+=/..
+  else
+    LBUFFER+=.
+  fi
+}
+zle -N _rationalise-dot
+bindkey "." _rationalise-dot
