@@ -205,7 +205,7 @@ zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 # Misc
 # *****************************************************************************
 
-# Move up directories (... automatically become ../..)
+# Move up directories (... automatically becomes ../..)
 _rationalise-dot() {
   if [[ $LBUFFER = *.. ]]; then
     LBUFFER+=/..
