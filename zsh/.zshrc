@@ -4,7 +4,10 @@
 # Source external files
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases" end
 [[ -f "$HOME/.functions" ]] && source "$HOME/.functions" end
-[[ -f "$HOME/.vterm.sh" ]] && source "$HOME/.vterm.sh" end
+
+# vterm
+[[ -f "$HOME/.emacs.d/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" ]] &&
+  source "$HOME/.emacs.d/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" end
 
 # fzf
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh" end
@@ -125,6 +128,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "
 
 # zsh syntax-highlight options
 # ----------------------------
+
 # By default only main is activated
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
