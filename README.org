@@ -4,21 +4,18 @@ Feel free to pick whatever you want from this repo, but note it has been primary
 created for my personal use and its updated very frequently. Use at your own risks
 and please create back-ups of your current set-up if you intend to use the Makefile.
 Be aware these dotfiles are intended to be used on macOS, but most of it should
-work as well in other Unix/Linux environments. Dotfiles are managed by *GNU Stow*.
+work as well in other Unix/Linux environments. Dotfiles are managed by GNU Stow.
 
-** Installation instructions
-
-Clone this repo into your ~$HOME~ directory, including it's submodules (Emacs config).
+Clone this repo into your home directory.
 
 #+begin_src shell
-cd $HOME
-git clone --recurse-submodules -j8 https://github.com/smallwat3r/dotfiles.git
+cd $HOME && git clone --recursive https://github.com/smallwat3r/dotfiles.git
 #+end_src
 
-Makefile commands:
+Makefile usage:
 
 #+begin_src console
-% make help
+~/dotfiles % make help
 Usage: make [TARGET ...]
 
 help            Show this help menu
