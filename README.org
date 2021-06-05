@@ -14,7 +14,7 @@ cd $HOME && git clone --recursive https://github.com/smallwat3r/dotfiles.git
 
 Makefile usage:
 
-#+begin_src console
+#+begin_src
 ~/dotfiles % make help
 Usage: make [TARGET ...]
 
