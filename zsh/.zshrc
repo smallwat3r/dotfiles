@@ -13,7 +13,6 @@
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh" end
 
 # Private kube functions
-# ----------------------
 [[ -f "$HOME/.kubeprivate" ]] && source "$HOME/.kubeprivate" end
 
 # General settings
