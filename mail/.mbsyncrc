@@ -7,7 +7,7 @@ IMAPAccount personal
     SSLType IMAPS
     SSLVersions TLSv1.2
     AuthMechs LOGIN
-    CertificateFile /usr/local/etc/openssl/cert.pem
+    CertificateFile /usr/local/etc/openssl@1.1/cert.pem
 
 IMAPStore personal-remote
     Account personal
@@ -17,32 +17,35 @@ MaildirStore personal-local
     Inbox ~/Maildir/personal/INBOX
 
 Channel personal-inbox
-    Master :personal-remote:
-    Slave :personal-local:
+    Far :personal-remote:
+    Near :personal-local:
     Patterns "INBOX"
+    Create Both
+    Expunge Both
 
 Channel personal-sent
-    Master :personal-remote:"[Gmail]/Sent Mail"
-    Slave :personal-local:sent
+    Far :personal-remote:"[Gmail]/Sent Mail"
+    Near :personal-local:sent
+    Create Both
+    Expunge Both
 
 Channel personal-trash
-    Master :personal-remote:"[Gmail]/Trash"
-    Slave :personal-local:trash
+    Far :personal-remote:"[Gmail]/Trash"
+    Near :personal-local:trash
+    Create Both
+    Expunge Both
 
 Channel personal-archive
-    Master :personal-remote:"[Gmail]/All Mail"
-    slave  :personal-local:All
+    Far :personal-remote:"[Gmail]/All Mail"
+    Near :personal-local:All
+    Create Both
+    Expunge Both
 
 Channel personal-junk
-    Master :personal-remote:"[Gmail]/Spam"
-    slave  :personal-local:Junk
-
-# Automatically create missing mailboxes, both locally and on the server
-Create Both
-# Automatically delete messages on either side if they are found deleted on the other.
-Expunge Both
-# Save the synchronization state files in the relevant directory
-SyncState *
+    Far :personal-remote:"[Gmail]/Spam"
+    Near :personal-local:Junk
+    Create Both
+    Expunge Both
 
 Group personal
     Channel personal-inbox
@@ -50,7 +53,6 @@ Group personal
     Channel personal-trash
     Channel personal-archive
     Channel personal-junk
-
 
 ### SWS
 IMAPAccount sws
@@ -61,7 +63,7 @@ IMAPAccount sws
     SSLType IMAPS
     SSLVersions TLSv1.2
     AuthMechs LOGIN
-    CertificateFile /usr/local/etc/openssl/cert.pem
+    CertificateFile /usr/local/etc/openssl@1.1/cert.pem
 
 IMAPStore sws-remote
     Account sws
@@ -71,32 +73,35 @@ MaildirStore sws-local
     Inbox ~/Maildir/sws/INBOX
 
 Channel sws-inbox
-    Master :sws-remote:
-    Slave :sws-local:
+    Far :sws-remote:
+    Near :sws-local:
     Patterns "INBOX"
+    Create Both
+    Expunge Both
 
 Channel sws-sent
-    Master :sws-remote:"[Gmail]/Sent Mail"
-    Slave :sws-local:sent
+    Far :sws-remote:"[Gmail]/Sent Mail"
+    Near :sws-local:sent
+    Create Both
+    Expunge Both
 
 Channel sws-trash
-    Master :sws-remote:"[Gmail]/Trash"
-    Slave :sws-local:trash
+    Far :sws-remote:"[Gmail]/Trash"
+    Near :sws-local:trash
+    Create Both
+    Expunge Both
 
 Channel sws-archive
-    Master :sws-remote:"[Gmail]/All Mail"
-    slave  :sws-local:All
+    Far :sws-remote:"[Gmail]/All Mail"
+    Near :sws-local:All
+    Create Both
+    Expunge Both
 
 Channel sws-junk
-    Master :sws-remote:"[Gmail]/Spam"
-    slave  :sws-local:Junk
-
-# Automatically create missing mailboxes, both locally and on the server
-Create Both
-# Automatically delete messages on either side if they are found deleted on the other.
-Expunge Both
-# Save the synchronization state files in the relevant directory
-SyncState *
+    Far :sws-remote:"[Gmail]/Spam"
+    Near :sws-local:Junk
+    Create Both
+    Expunge Both
 
 Group sws
     Channel sws-inbox
