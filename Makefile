@@ -11,11 +11,11 @@ help: ## Show this help menu and exit
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
 .PHONY: install
-install: npm pip symlink nvim brew-bundle ## * Install everything
+install: npm pip symlink nvim brew-bundle ## * Install everything and symlink
 	@echo '*** -- Everything has been installed --'
 
 .PHONY: symlink
-symlink: stow maildir ## * Symlinks all the dotfiles using stow
+symlink: stow maildir ## * Symlink all the dotfiles using stow
 	@stow stow -vv -t $(HOME)  # must be run first
 	@stow bin -vv -t /usr/local
 	@stow \

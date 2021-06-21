@@ -19,8 +19,8 @@ Makefile usage:
 Usage: make [TARGET ...]
 
 help            Show this help menu and exit
-install         * Install everything
-symlink         * Symlinks all the dotfiles using stow
+install         * Install everything and symlink
+symlink         * Symlink all the dotfiles using stow
 brew-bundle     Install all packages from Brewfile
 npm             Install npm packages
 pip             Install pip packages
