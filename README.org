@@ -18,16 +18,15 @@ Makefile usage:
 ~/dotfiles % make help
 Usage: make [TARGET ...]
 
-help            Show this help menu
-install         Installs everything
-symlink         Symlinks dotfiles using stow
-homebrew        Make sure homebrew is installed
-nvim            Setup neovim
-stow            Make sure stow is installed
-xcode-cli       Install xcode command line tools
-brew-bundle     Install packages from Brewfile
-node            Install Node if not installed already
+help            Show this help menu and exit
+install         * Install everything
+symlink         * Symlinks all the dotfiles using stow
+brew-bundle     Install all packages from Brewfile
 npm             Install npm packages
-python          Install Python 3.9 if not installed already
-pip             Install Python packages
+pip             Install pip packages
+python          Install Python 3.9
+node            Install Node
+homebrew        Install Homebrew
+nvim            Install and setup Neovim
+xcode-cli       Install macOS command line tools
 #+end_src
