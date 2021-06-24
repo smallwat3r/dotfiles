@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-#
-# Start mongo DB from Docker
+# Start a MongoDB instance in Docker
 
 docker run \
   -d \

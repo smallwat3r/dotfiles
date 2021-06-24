@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Start a Redis instance in Docker
+
+docker run \
+  -d \
+  -p 6379:6379 \
+  redis

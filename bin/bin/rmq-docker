@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-#
-# Start RabbitMQ from Docker
+# Start a RabbitMQ instance in Docker
 
 docker run \
   -d \
