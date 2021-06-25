@@ -1,6 +1,6 @@
 * smallwat3r's dotfiles
 
-Feel free to pick whatever you want from this repo, but note it has been primary
+Feel free to pick whatever you want from this repo, but note it has been mostly
 created for my personal use and its updated very frequently. Use at your own risks
 and please create back-ups of your current set-up if you intend to use the Makefile.
 Be aware these dotfiles are intended to be used on macOS, but most of it should
