@@ -7,11 +7,15 @@
 *.rdb
 *.tar
 *.zip
+*.elc
 *~
 .*.sw?
 .DS_Store
 .env
 .venv
+flycheck_*.el
+*_flymake.*
+.dir-locals.el
 
 # Sensitive
 *.gpg
