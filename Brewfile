@@ -48,6 +48,9 @@ brew "speedtest"
 tap "heroku/brew"
 brew "heroku"
 
+tap "homebrew/cask-fonts"
+brew "font-fantasque-sans-mono-noloopk"
+
 # Casks
 
 cask_args appdir: '/Applications'

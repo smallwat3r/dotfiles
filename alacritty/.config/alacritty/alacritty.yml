@@ -31,9 +31,9 @@ scrolling:
 
 font:
   normal:
-    family: MonacoB2
+    family: Fantasque Sans Mono
 
-  size: 11
+  size: 13
 
   offset:
     x: 1
