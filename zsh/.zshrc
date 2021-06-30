@@ -1,8 +1,8 @@
 # smallwat3r's config for zsh
 
 # Load my custom functions and aliases
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases" end
-[[ -f "$HOME/.functions" ]] && source "$HOME/.functions" end
+[[ -f "$HOME/.aliases.zsh" ]] && source "$HOME/.aliases.zsh" end
+[[ -f "$HOME/.functions.zsh" ]] && source "$HOME/.functions.zsh" end
 
 # Load vterm helper functions (emacs)
 [[ -f "$HOME/.emacs.d/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" ]] &&
