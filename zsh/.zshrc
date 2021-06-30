@@ -31,22 +31,23 @@ export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;30;42'
 
-setopt AUTOCD       # auto cd into typed directory
+setopt AUTO_CD      # auto cd into typed directory
 setopt CHASE_LINKS  # resolve symlinks to their true values when changing directory
 setopt GLOB_DOTS    # do not require a leading ‘.’ in a filename to be matched explicitly
 setopt INTERACTIVE_COMMENTS  # allow comments in interactive shell
 setopt LIST_PACKED  # make the completion list occupying less lines
 setopt PRINT_EXIT_VALUE  # print exit value if not 0
+setopt VI           # Emulate vim mode in zsh (same as 'bindkey -v')
 
-unsetopt BEEP        # do no beep on errors
-unsetopt LIST_BEEP   # do not beep on anbiguous completion
+unsetopt BEEP       # do no beep on errors
+unsetopt LIST_BEEP  # do not beep on anbiguous completion
 
 # history options
-setopt APPEND_HISTORY        # keep history of commands
-setopt EXTENDED_HISTORY      # add timestamp and duration to the history
-setopt INC_APPEND_HISTORY    # add commands as soon as they are entered
-setopt HIST_REDUCE_BLANKS    # get rid of superfluous blank lines
-setopt HIST_VERIFY           # perform history expansion and reload the line into the editing buffer.
+setopt APPEND_HISTORY      # keep history of commands
+setopt EXTENDED_HISTORY    # add timestamp and duration to the history
+setopt INC_APPEND_HISTORY  # add commands as soon as they are entered
+setopt HIST_REDUCE_BLANKS  # get rid of superfluous blank lines
+setopt HIST_VERIFY         # perform history expansion and reload the line into the editing buffer.
 
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999    # store (almost) infinite history
@@ -66,11 +67,8 @@ bindkey '^[OB' down-line-or-beginning-search
 bindkey -M vicmd 'k' up-line-or-beginning-search
 bindkey -M vicmd 'j' down-line-or-beginning-search
 
-# Emulate vim mode in zsh
-
+# Adding more support to zsh vim mode
 export KEYTIMEOUT=20  # if the keytimeout was too short, jk wouldn't work for ESC
-
-setopt VI  # same as 'bindkey -v'
 
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
