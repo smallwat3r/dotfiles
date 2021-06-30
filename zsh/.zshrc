@@ -1,7 +1,7 @@
 # ZSH config
 # ~~~~~~~~~~
 
-# Source external files
+# Source my functions and aliases
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases" end
 [[ -f "$HOME/.functions" ]] && source "$HOME/.functions" end
 
@@ -15,8 +15,25 @@
 # Private kube functions
 [[ -f "$HOME/.kubeprivate" ]] && source "$HOME/.kubeprivate" end
 
-# General settings
-# *****************************************************************************
+
+#
+## General settings
+
+
+export TERM='xterm-256color'
+
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='0;30;42'
+
+export CLICOLOR=1
+
+export LDFLAGS='-L/usr/local/opt/python@3.8/lib'
+export PER5LIB="$HOME/lib/perl5"
 
 # colors
 autoload -U colors && colors
@@ -40,33 +57,17 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt HIST_IGNORE_ALL_DUPS
 
-export TERM='xterm-256color'
-
-export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='0;30;42'
-
-export CLICOLOR=1
-
-export LDFLAGS='-L/usr/local/opt/python@3.8/lib'
-export PER5LIB="$HOME/lib/perl5"
-
-# Search history
-# --------------
-
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
 
+# Search history
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
+# TODO: Fix these
 bindkey '^[[A' up-line-or-beginning-search # Arrow up
 bindkey '^[OA' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search # Arrow down
@@ -78,6 +79,7 @@ bindkey -M vicmd 'j' down-line-or-beginning-search
 # If the keytimeout was too short, jk wouldn't work for ESC
 export KEYTIMEOUT=20
 
+# Emulate vim mode in zsh
 bindkey -v
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
@@ -95,8 +97,10 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Plugins
-# *****************************************************************************
+
+#
+## Plugins
+
 
 # homebrew
 export HOMEBREW_NO_ANALYTICS=1
@@ -112,7 +116,7 @@ export FZF_DEFAULT_OPTS='
 '
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "!.git/"'
 
-# antigen
+# antigen (load external plugins)
 [[ -f '/usr/local/share/antigen/antigen.zsh' ]] && {
   source '/usr/local/share/antigen/antigen.zsh'
 
@@ -126,7 +130,6 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!__pycache__/" -g "
 }
 
 # zsh syntax-highlight options
-# ----------------------------
 
 # By default only main is activated
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -141,13 +144,14 @@ export ZSH_HIGHLIGHT_STYLES[globbing]='fg=magenta,bold'
 export ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta,bold'
 
 # zsh auto-suggestions options
-# ----------------------------
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=241'
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-# Prompt stuff
-# *****************************************************************************
+
+#
+## Prompt stuff
+
 
 export VIRTUAL_ENV_DISABLE_PROMPT=false
 setopt PROMPT_SUBST
@@ -189,8 +193,10 @@ else
   }
 fi
 
-# Completion
-# *****************************************************************************
+
+#
+## Completion
+
 
 autoload -Uz compinit && compinit
 
@@ -205,8 +211,10 @@ zstyle ':completion:*:rm:*' ignore-line-yes
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 
-# Misc
-# *****************************************************************************
+
+#
+## Misc
+
 
 # Move up directories (... automatically becomes ../..)
 _rationalise-dot() {
