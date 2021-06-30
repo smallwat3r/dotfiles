@@ -33,13 +33,13 @@ export GREP_COLOR='0;30;42'
 
 setopt AUTOCD       # auto cd into typed directory
 setopt CHASE_LINKS  # resolve symlinks to their true values when changing directory
-setopt AUTO_REMOVE_SLASH
 setopt GLOB_DOTS    # do not require a leading ‘.’ in a filename to be matched explicitly
 setopt INTERACTIVE_COMMENTS  # allow comments in interactive shell
+setopt LIST_PACKED  # make the completion list occupying less lines
+setopt PRINT_EXIT_VALUE  # print exit value if not 0
 
 unsetopt BEEP        # do no beep on errors
 unsetopt LIST_BEEP   # do not beep on anbiguous completion
-unsetopt IGNORE_EOF  # do not exit on EOF
 
 # history options
 setopt APPEND_HISTORY        # keep history of commands
@@ -70,7 +70,8 @@ bindkey -M vicmd 'j' down-line-or-beginning-search
 export KEYTIMEOUT=20
 
 # Emulate vim mode in zsh
-bindkey -v
+
+setopt VI  # same as 'bindkey -v'
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
 
@@ -146,7 +147,8 @@ _display_git_info() {
 
 if [[ "$INSIDE_EMACS" ]]; then
   # If we are in Emacs, run a standard prompt and do not run tmux.
-  PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)$(shpwd)$(_display_git_info) %# '
+  # PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)$(shpwd)$(_display_git_info) %# '
+  PROMPT='$(is-venv)$(shpwd)$(_display_git_info) %# '
 else
   # In other shell emulators: activate tmux by default
   # As tmux is activated by default, its using the individual pane titles
@@ -157,7 +159,8 @@ else
     exec tmux
   fi
 
-  PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)%# '
+  # PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)%# '
+  PROMPT='$(is-venv)%# '
 
   _pane_number() {
     echo $(tmux list-panes | grep "active" | cut -d ':' -f 1)
