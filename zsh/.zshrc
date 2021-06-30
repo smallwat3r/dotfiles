@@ -66,12 +66,12 @@ bindkey '^[OB' down-line-or-beginning-search
 bindkey -M vicmd 'k' up-line-or-beginning-search
 bindkey -M vicmd 'j' down-line-or-beginning-search
 
-# If the keytimeout was too short, jk wouldn't work for ESC
-export KEYTIMEOUT=20
-
 # Emulate vim mode in zsh
 
+export KEYTIMEOUT=20  # if the keytimeout was too short, jk wouldn't work for ESC
+
 setopt VI  # same as 'bindkey -v'
+
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
 
