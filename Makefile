@@ -15,11 +15,11 @@ install: npm pip symlink nvim brew-bundle ## * Install everything and symlink
 	@echo '*** -- Everything has been installed --'
 
 .PHONY: symlink
-symlink: stow maildir ## * Symlink all the dotfiles using stow
-	@stow stow -vv -t $(HOME)  # must be run first
-	@stow bin -vv -t /usr/local
+symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
+	@stow stow -vv -t $(HOME)  # must be run first, symlink the stow config file
 	@stow \
 		alacritty \
+		bin \
 		git \
 		gnupg \
 		formatters \
@@ -122,9 +122,12 @@ xcode-cli: ## Install macOS command line tools
 
 .PHONY: maildir
 maildir:
-	@mkdir ~/Maildir || exit 0  # make sure Mail directory exists
-	@mkdir ~/Maildir/personal || exit 0
-	@mkdir ~/Maildir/sws || exit 0
+	@mkdir -p ~/Maildir/personal || exit 0
+	@mkdir -p ~/Maildir/sws || exit 0
+
+.PHONY: localbin
+localbin:
+	@mkdir -p ~/.local/bin || exit 0
 
 .PHONY: stow
 stow: homebrew
