@@ -1,4 +1,4 @@
-" vimrc
+" smallwat3r's vim config
 
 "{{{1 General Settings
 

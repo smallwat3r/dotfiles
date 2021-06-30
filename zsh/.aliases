@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# smallwat3r's aliases
 
 # Directory shortcuts
 hash -d d="$HOME/dotfiles"

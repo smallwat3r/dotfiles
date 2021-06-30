@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# smallwat3r's shell functions
 
 # Monitor kube pods memory
 monitor-pods() {
