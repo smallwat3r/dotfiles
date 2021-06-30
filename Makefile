@@ -70,6 +70,7 @@ pip: python ## Install pip packages
 	pip3 install \
 		bandit \
 		black \
+		font-line \
 		isort \
 		jedi \
 		jsbeautifier \
