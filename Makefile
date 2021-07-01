@@ -77,6 +77,7 @@ pip: python ## Install pip packages
 		pylint \
 		pynvim \
 		pyflakes \
+		pytest \
 		sqlparse \
 		yapf
 
