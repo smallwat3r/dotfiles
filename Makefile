@@ -25,8 +25,6 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 		formatters \
 		mail \
 		nvim \
-		pip \
-		rg \
 		ssh \
 		tmux \
 		vim \
