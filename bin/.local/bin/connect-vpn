@@ -1,6 +1,6 @@
 #!/usr/bin/env osascript
-# Connect to VPN using Tunnelblick
-# Required parameter: VPN configuration name
+-- Connect to VPN using Tunnelblick
+-- Required parameter: VPN configuration name
 
 on run argv
   if (count of argv) is 0 then return "Please enter a vpn configuration name."
