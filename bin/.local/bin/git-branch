@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Parse git branch
+# Parse git branch, show '*' if there has been any changes from the remote
 
-_dirty() {
+dirty() {
   [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] && echo "*"
 }
 
 git branch --no-color 2>/dev/null |
-  sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(_dirty)/"
+  sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(dirty)/"

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#
 # Check Raspberry PiHole status and temperature
 
 ssh pi 'pihole status; vcgencmd measure_temp'

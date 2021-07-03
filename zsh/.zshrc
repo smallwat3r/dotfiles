@@ -137,7 +137,7 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export VIRTUAL_ENV_DISABLE_PROMPT=false
 setopt PROMPT_SUBST
 
-_display_git_info() {
+__display_git_info() {
   local _git_root=$(echo $(git-root) | sed 's/true/~/')
   local _git_branch=$(echo $(git-branch))
   [[ ! -z $_git_branch ]] && echo " ${_git_branch}${_git_root}"
@@ -145,8 +145,8 @@ _display_git_info() {
 
 if [[ "$INSIDE_EMACS" ]]; then
   # If we are in Emacs, run a standard prompt and do not run tmux.
-  # PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)$(shpwd)$(_display_git_info) %# '
-  PROMPT='$(is-venv)$(shpwd)$(_display_git_info) %# '
+  # PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)$(shortened-path)$(__display_git_info) %# '
+  PROMPT='$(is-venv)$(shortened-path)$(__display_git_info) %# '
 else
   # In other shell emulators: activate tmux by default
   # As tmux is activated by default, its using the individual pane titles
@@ -160,19 +160,19 @@ else
   # PROMPT='%(?..%{$fg[red]%}%? )$resetcolor$(is-venv)%# '
   PROMPT='$(is-venv)%# '
 
-  _pane_number() {
+  __pane_number() {
     echo $(tmux list-panes | grep "active" | cut -d ':' -f 1)
   }
 
   ssh() {
     [[ -z $TMUX ]] ||
-      tmux select-pane -t $(_pane_number) -T "#[fg=red,bold]$(echo $* | cut -d . -f 1)#[fg=default]"
+      tmux select-pane -t $(__pane_number) -T "#[fg=red,bold]$(echo $* | cut -d . -f 1)#[fg=default]"
     command ssh "$@"
   }
 
   precmd() {
     [[ -z $TMUX ]] ||
-      tmux select-pane -t $(_pane_number) -T "$(shpwd)$(_display_git_info)"
+      tmux select-pane -t $(__pane_number) -T "$(shortened-path)$(__display_git_info)"
   }
 fi
 
@@ -193,12 +193,12 @@ zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 #   - ... becomes ../..
 #   - .... becomes ../../...
 #   - etc
-_rationalise-dot() {
+__rationalise-dot() {
   if [[ $LBUFFER = *.. ]]; then
     LBUFFER+=/..
   else
     LBUFFER+=.
   fi
 }
-zle -N _rationalise-dot
-bindkey "." _rationalise-dot
+zle -N __rationalise-dot
+bindkey "." __rationalise-dot

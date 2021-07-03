@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This returns a shortened path by printing only the first letters
+# of each parent directories; i.e. ~/Docs/bar/foo becomes ~/D/b/foo
+
+shortened_path() {
+  echo ~+ \
+    | sed "s;$HOME;~;" \
+    | sed 's;\(/.\)[^/]*;\1;g' \
+    | sed 's/.$//'
+}
+
+current_dir() {
+  echo "${PWD##*/}"
+}
+
+case $PWD in
+  "$HOME") printf '~' ;;
+  *) printf '%s%s' "$(shortened_path)" "$(current_dir)" ;;
+esac

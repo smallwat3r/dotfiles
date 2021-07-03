@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Matthieu Petiteau <mpetiteau.pro@gmail.com>
 # Serve a local directory
 
 import argparse
