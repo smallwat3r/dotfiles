@@ -17,3 +17,4 @@ export GOPATH="$HOME/go"
 
 export EDITOR='emacsclient'
 export EMACS='/Applications/Emacs.app/Contents/MacOS/Emacs'
+export EMACS_DOOM="$HOME/.emacs.doom"

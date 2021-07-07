@@ -5,8 +5,8 @@
 [[ -f "$HOME/.functions.zsh" ]] && source "$HOME/.functions.zsh" end
 
 # Load vterm helper functions (emacs)
-[[ -f "$HOME/.emacs.d/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" ]] &&
-  source "$HOME/.emacs.d/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" end
+[[ -f "$EMACS_DOOM/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" ]] &&
+  source "$EMACS_DOOM/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" end
 
 # Load fzf
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh" end
