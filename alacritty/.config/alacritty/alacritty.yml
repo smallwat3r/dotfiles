@@ -56,24 +56,26 @@ colors:
     foreground: "#d0d0d0"
 
   cursor:
-   text: CellBackground
-   cursor: CellForeground
+    text: CellBackground
+    cursor: "#d7ff00"
 
   vi_mode_cursor:
-   text: CellBackground
-   cursor: CellForeground
+    text: CellBackground
+    cursor: "#d7ff00"
 
 # }}} colors
 # {{{ mouse / cursor
 
 cursor:
   style:
-    shape: Underline
+    shape: Block
     blinking: Always
-    blink_interval: 500
 
-  vi_mode_style: None
-  blink_interval: 750
+  vi_cursor_style:
+    shape: Block
+    blinking: Always
+
+  blink_interval: 450
   unfocused_hollow: true
   thickness: 0.15
 
