@@ -5,22 +5,6 @@ email = mpetiteau.pro@gmail.com
 [core]
 autocrlf = input
 editor = emacsclient
-pager = delta
-
-[delta]
-features = decorations
-syntax-theme = none
-minus-style = "#FFFFFF" bold red
-plus-style = "#0c4000" bold green
-
-[delta "decorations"]
-commit-decoration-style = bold yellow ul
-file-style = bold yellow ul
-file-decoration-style = none
-hunk-header-decoration-style = yellow
-
-[interactive]
-diffFilter = delta --color-only
 
 [merge]
 tool = vimdiff

@@ -61,7 +61,8 @@ npm: node ## Install npm packages
 	npm install -g \
 		prettier \
 		prettydiff \
-		http-server
+		http-server \
+		tree-sitter-cli
 
 .PHONY: pip
 pip: python ## Install pip packages

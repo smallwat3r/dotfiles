@@ -53,7 +53,7 @@ background_opacity: 1
 colors:
   primary:
     background: "#000000"
-    foreground: "#d0d0d0"
+    foreground: "#ffffff"
 
   cursor:
     text: CellBackground
