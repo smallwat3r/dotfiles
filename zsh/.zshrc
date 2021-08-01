@@ -91,7 +91,7 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Ripgrep custom config path
-export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
+# export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
 
 # fzf
 export FZF_DEFAULT_OPTS='
