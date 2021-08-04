@@ -31,7 +31,7 @@ scrolling:
 
 font:
   normal:
-    family: Hack
+    family: Monaco
 
   size: 13
 
@@ -43,7 +43,7 @@ font:
     x: 0
     y: 0
 
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # }}} font
 # {{{ colors
@@ -53,7 +53,6 @@ background_opacity: 1
 colors:
   primary:
     background: "#000000"
-    foreground: "#ffffff"
 
   cursor:
     text: CellBackground

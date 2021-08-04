@@ -52,6 +52,9 @@ brew "heroku"
 tap "homebrew/cask-fonts"
 brew "font-fantasque-sans-mono-noloopk"
 
+tap "johanhaleby/kubetail"
+brew "kubetail"
+
 # Casks
 
 cask_args appdir: '/Applications'

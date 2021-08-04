@@ -2,9 +2,7 @@
 # macOS preferences
 
 # Font smoothing
-defaults -currentHost write -g AppleFontSmoothing -int 0
-# defaults write org.gnu.Emacs CGFontRenderingFontSmoothingDisabled 0
-# defaults write io.alacritty CGFontRenderingFontSmoothingDisabled 0
+defaults -currentHost write -g AppleFontSmoothing -int 1
 
 # Dark UI by default
 defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
@@ -47,4 +45,4 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move right a space
 # Restart dock
 killall Dock
 
-echo "All done, you might need to restart your laptop for changes to take effect."
+echo "All done."
