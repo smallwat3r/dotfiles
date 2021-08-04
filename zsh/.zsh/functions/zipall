@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Zip all files from current directory into a zipall
+
+for file in $(echo *(^/)); do
+  zip "${file%.*}.zip" "$file"
+done

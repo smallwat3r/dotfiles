@@ -30,8 +30,10 @@ setopt HIST_VERIFY          # perform history expansion and reload the line into
 unsetopt BEEP               # do no beep on errors
 unsetopt LIST_BEEP          # do not beep on anbiguous completion
 
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-[[ -f "$HOME/.functions" ]] && source "$HOME/.functions"
+fpath=($HOME/.zsh/functions $fpath)
+autoload -U "$HOME"/.zsh/functions/*(:t)
+
+[[ -f "$HOME/.zsh/.aliases" ]] && source "$HOME/.zsh/.aliases"
 
 # Adding more support to zsh vim mode
 export KEYTIMEOUT=20 # if the keytimeout was too short, jk wouldn't work for ESC

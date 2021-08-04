@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Open in finder
+
+if [[ $# -eq 0 ]]; then
+  open .
+else
+  open "$@"
+fi

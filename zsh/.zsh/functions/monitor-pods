@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Monitor kube pods memory
+
+if [[ -z "$1" ]]; then
+  printf 'Please specify a namespace.\n'
+else
+  while true; do
+    kubectl -n "$1" top pods --use-protocol-buffers
+    sleep 1
+  done
+fi

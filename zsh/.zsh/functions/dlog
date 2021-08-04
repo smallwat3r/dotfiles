@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Docker show logs
+
+if [[ -z "$1" ]]; then
+  printf 'Please specify an image.\n'
+else
+  docker logs --follow \
+    "$(docker ps \
+      | grep "$1" 2>/dev/null \
+      | cut -d ' ' -f1)" 2>/dev/null || printf 'Cannot find %s\n' "$1" >&2
+fi

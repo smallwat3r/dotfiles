@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Create and cd into directory
+
+mkdir -p "$@" && cd "$@" || exit

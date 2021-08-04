@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Grep history
+
+history 1 | grep "$@"

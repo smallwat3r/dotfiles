@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Docker ps
+
+docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' \
+  | column -t -s '¬¬¬' -c "$(tput cols)"

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Docker system prune
+
+printf 'y' | docker system prune
