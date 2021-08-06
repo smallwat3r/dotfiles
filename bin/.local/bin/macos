@@ -2,9 +2,8 @@
 # macOS preferences
 
 # Font smoothing
-defaults -currentHost write -g AppleFontSmoothing -int 1
-defaults write org.gnu.Emacs AppleFontSmoothing -int 0
-defaults write io.alacritty AppleFontSmoothing -int 0
+defaults -currentHost write -g AppleFontSmoothing -int 3
+defaults write org.gnu.Emacs AppleFontSmoothing -int 3
 
 # Dark UI by default
 defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'

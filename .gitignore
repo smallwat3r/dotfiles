@@ -6,16 +6,11 @@
 
 Brewfile.lock.json
 
-nvim/.config/nvim/.netrwhist
-nvim/.config/nvim/autoload/
-nvim/.config/nvim/colors/
-nvim/.config/nvim/plugged/
-nvim/.config/nvim/undodir/
-
-vifm/.config/vifm/scripts/
-vifm/.config/vifm/vifm-help.txt
-vifm/.config/vifm/vifm-info.json
-vifm/.config/vifm/vifminfo
+vim/.config/nvim/.netrwhist
+vim/.config/nvim/autoload/
+vim/.config/nvim/colors/
+vim/.config/nvim/plugged/
+vim/.config/nvim/undodir/
 
 gnupg/.gnupg/*
 !gnupg/.gnupg/gpg.conf
