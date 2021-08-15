@@ -6,8 +6,8 @@ end tell
 
 tell application "System Events"
   if os_version >= 10.15
-    set picture of every desktop to "/System/Library/Desktop Pictures/Solid Colors/Teal.png"
+    set picture of every desktop to "/System/Library/Desktop Pictures/Solid Colors/Black.png"
   else
-    set picture of every desktop to "/Library/Desktop Pictures/Solid Colors/Teal.png"
+    set picture of every desktop to "/Library/Desktop Pictures/Solid Colors/Black.png"
   end if
 end tell
