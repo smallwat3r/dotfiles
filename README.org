@@ -9,7 +9,7 @@ work as well in other Unix/Linux environments. Dotfiles are managed by GNU Stow.
 Clone this repo into your home directory.
 
 #+begin_src shell
-cd $HOME && git clone --recursive https://github.com/smallwat3r/dotfiles.git
+cd $HOME && git clone https://github.com/smallwat3r/dotfiles.git
 #+end_src
 
 Makefile usage:
