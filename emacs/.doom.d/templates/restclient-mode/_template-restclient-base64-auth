@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Restclient base64 auth
+# --
+#
+# Base64 authenticated request
+#
+
+:user = $1
+:password = $2
+:auth-token := (format "Basic %s" (base64-encode-string (format "%s:%s" ":user" ":password")))
+GET $3
+Authorization: :auth-token
+-> run-hook (message (format "Authenticated with '%s'" (restclient-get-var ":auth-token")))

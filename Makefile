@@ -21,6 +21,7 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 		alacritty \
 		bin \
 		chemacs \
+		emacs \
 		git \
 		gnupg \
 		formatters \
@@ -30,11 +31,6 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 		vim \
 		zsh \
 		-vv -t $(HOME)
-	@echo ''
-	@echo '*** Note: Emacs configs have not been automatically linked'
-	@echo 'as it is managed from its own repository.'
-	@echo 'To use the stow version, you can run:'
-	@echo '    stow emacs -vv -t "$$HOME"'
 	@echo ''
 	@echo '*** Successfully linked all dotfiles'
 

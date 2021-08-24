@@ -1,3 +1,0 @@
-[submodule "emacs/.doom.d"]
-	path = emacs/.doom.d
-	url = https://github.com/smallwat3r/.doom.d

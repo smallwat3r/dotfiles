@@ -570,7 +570,7 @@ augroup END
 try
   colo codedark
 catch /^Vim\%((\a\+)\)\=:E185/
-  colo desert
+  colo elflord
 endtry
 
 "}}}1 Theme
