@@ -3,7 +3,7 @@
 
 # Font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 3
-defaults write org.gnu.Emacs AppleFontSmoothing -int 3
+defaults write org.gnu.Emacs AppleFontSmoothing -int 1
 
 # Dark UI by default
 defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
