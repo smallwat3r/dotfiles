@@ -18,7 +18,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 setopt AUTO_CD              # auto cd into typed directory
 setopt CHASE_LINKS          # resolve symlinks to their true values when changing directory
-setopt GLOB_DOTS            # do not require a leading ‘.’ in a filename to be matched explicitly
+setopt GLOB_DOTS            # do not require a leading '.' in a filename to be matched explicitly
 setopt INTERACTIVE_COMMENTS # allow comments in interactive shell
 setopt LIST_PACKED          # make the completion list occupying less lines
 setopt VI                   # Emulate vim mode in zsh (same as 'bindkey -v')
@@ -75,9 +75,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-VIRTUAL_ENV_DISABLE_PROMPT=false
-setopt PROMPT_SUBST
-
 __git_root() {
   if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]; then
     [[ $(git rev-parse --show-toplevel 2>/dev/null) == "$PWD" ]] && echo true
@@ -121,7 +118,7 @@ __is_venv() {
   fi
 }
 
-export VIRTUAL_ENV_DISABLE_PROMPT=false
+VIRTUAL_ENV_DISABLE_PROMPT=false
 setopt PROMPT_SUBST
 
 # If we are from Emacs, run a standard prompt and do not run tmux. Else, in other shell emulators

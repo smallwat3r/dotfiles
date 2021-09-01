@@ -3,7 +3,7 @@
 # {{{ env
 
 env:
-  TERM: screen-256color
+  TERM: alacritty
 
 # }}} env
 # {{{ window
@@ -115,7 +115,7 @@ debug:
 # {{{ keybindings
 
 key_bindings:
-  # Fix char "#" on UK keyboard
+  # Fix hash char on UK keyboard
   - { key: Key3, mods: Alt, chars: "\x23" }
 
   # mac OS Alt key in Vim
@@ -123,77 +123,4 @@ key_bindings:
   - { key: K, mods: Alt, chars: "\x1bk" }
   - { key: H, mods: Alt, chars: "\x1bh" }
 
-  # Standard
-  - { key: Paste, action: Paste }
-  - { key: Copy, action: Copy }
-  - { key: L, mods: Control, action: ClearLogNotice }
-  - { key: L, mods: Control, mode: ~Vi, chars: "\x0c" }
-  - { key: PageUp, mods: Shift, mode: ~Alt, action: ScrollPageUp }
-  - { key: PageDown, mods: Shift, mode: ~Alt, action: ScrollPageDown }
-  - { key: Home, mods: Shift, mode: ~Alt, action: ScrollToTop }
-  - { key: End, mods: Shift, mode: ~Alt, action: ScrollToBottom }
-
-  # Vi Mode
-  - { key: Space, mods: Shift|Control, mode: Vi, action: ScrollToBottom }
-  - { key: Space, mods: Shift|Control, action: ToggleViMode }
-  - { key: Escape, mode: Vi, action: ClearSelection }
-  - { key: I, mode: Vi, action: ScrollToBottom }
-  - { key: I, mode: Vi, action: ToggleViMode }
-  - { key: Y, mods: Control, mode: Vi, action: ScrollLineUp }
-  - { key: E, mods: Control, mode: Vi, action: ScrollLineDown }
-  - { key: G, mode: Vi, action: ScrollToTop }
-  - { key: G, mods: Shift, mode: Vi, action: ScrollToBottom }
-  - { key: B, mods: Control, mode: Vi, action: ScrollPageUp }
-  - { key: F, mods: Control, mode: Vi, action: ScrollPageDown }
-  - { key: U, mods: Control, mode: Vi, action: ScrollHalfPageUp }
-  - { key: D, mods: Control, mode: Vi, action: ScrollHalfPageDown }
-  - { key: Y, mode: Vi, action: Copy }
-  - { key: Y, mode: Vi, action: ClearSelection }
-  - { key: Copy, mode: Vi, action: ClearSelection }
-  - { key: V, mode: Vi, action: ToggleNormalSelection }
-  - { key: V, mods: Shift, mode: Vi, action: ToggleLineSelection }
-  - { key: V, mods: Control, mode: Vi, action: ToggleBlockSelection }
-  - { key: V, mods: Alt, mode: Vi, action: ToggleSemanticSelection }
-  - { key: Return, mode: Vi, action: Open }
-  - { key: K, mode: Vi, action: Up }
-  - { key: J, mode: Vi, action: Down }
-  - { key: H, mode: Vi, action: Left }
-  - { key: L, mode: Vi, action: Right }
-  - { key: Up, mode: Vi, action: Up }
-  - { key: Down, mode: Vi, action: Down }
-  - { key: Left, mode: Vi, action: Left }
-  - { key: Right, mode: Vi, action: Right }
-  - { key: Key0, mode: Vi, action: First }
-  - { key: Key4, mods: Shift, mode: Vi, action: Last }
-  - { key: Key6, mods: Shift, mode: Vi, action: FirstOccupied }
-  - { key: H, mods: Shift, mode: Vi, action: High }
-  - { key: M, mods: Shift, mode: Vi, action: Middle }
-  - { key: L, mods: Shift, mode: Vi, action: Low }
-  - { key: B, mode: Vi, action: SemanticLeft }
-  - { key: W, mode: Vi, action: SemanticRight }
-  - { key: E, mode: Vi, action: SemanticRightEnd }
-  - { key: B, mods: Shift, mode: Vi, action: WordLeft }
-  - { key: W, mods: Shift, mode: Vi, action: WordRight }
-  - { key: E, mods: Shift, mode: Vi, action: WordRightEnd }
-  - { key: Key5, mods: Shift, mode: Vi, action: Bracket }
-  - { key: Slash, mode: Vi, action: SearchForward }
-  - { key: Slash, mods: Shift, mode: Vi, action: SearchBackward }
-  - { key: N, mode: Vi, action: SearchNext }
-  - { key: N, mods: Shift, mode: Vi, action: SearchPrevious }
-
-  # macOS
-  - { key: K, mods: Command, mode: ~Vi, chars: "\x0c" }
-  - { key: Key0, mods: Command, action: ResetFontSize }
-  - { key: K, mods: Command, action: ClearHistory }
-  - { key: V, mods: Command, action: Paste }
-  - { key: C, mods: Command, action: Copy }
-  - { key: C, mods: Command, mode: Vi, action: ClearSelection }
-  - { key: H, mods: Command, action: Hide }
-  - { key: M, mods: Command, action: Minimize }
-  - { key: Q, mods: Command, action: Quit }
-  - { key: W, mods: Command, action: Quit }
-  - { key: N, mods: Command, action: SpawnNewInstance }
-  - { key: F, mods: Command|Control, action: ToggleFullscreen }
-  - { key: F, mods: Command, action: SearchForward }
-  - { key: B, mods: Command, action: SearchBackward }
 # }}} keybindings

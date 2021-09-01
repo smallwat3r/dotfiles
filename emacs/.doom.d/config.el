@@ -52,13 +52,13 @@
 
 (setq ns-use-thin-smoothing t)
 
-(defvar my-monospace-font "Monaco"
+(defvar my-monospace-font "Tamzen"
   "Monospace font")
 
 (defvar my-sans-serif-font "Lucida Grande"
   "Sans serif font")
 
-(setq doom-font (font-spec :family my-monospace-font :size 13)
+(setq doom-font (font-spec :family my-monospace-font :size 15)
       doom-variable-pitch-font (font-spec :family my-sans-serif-font :size 14))
 
 (setq doom-font-increment 1
