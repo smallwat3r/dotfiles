@@ -12,7 +12,8 @@
       modus-themes-org-blocks 'tinted-background)
 
 (setq modus-themes-vivendi-color-overrides
-      '((fg-main . "grey88")
+      '((bg-main . "grey0")
+        (fg-main . "grey88")
         (fg-comment-yellow . "#00bab6")
         (magenta . "#b5b600")
         (magenta-alt . "#b5b600")
