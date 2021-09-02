@@ -52,7 +52,7 @@
 
 (setq ns-use-thin-smoothing t)
 
-(defvar my-monospace-font "Cascadia Mono"  ; semi-light
+(defvar my-monospace-font "Monaco"
   "Monospace font")
 
 (defvar my-sans-serif-font "Lucida Grande"
