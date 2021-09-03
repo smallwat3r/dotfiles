@@ -1,6 +1,15 @@
 [MESSAGES CONTROL]
-disable=bad-continuation,missing-module-docstring,invalid-name,too-few-public-methods,import-error,import-outside-toplevel,logging-fstring-interpolation,protected-access,too-many-arguments
+
+disable=bad-continuation,
+        missing-module-docstring,
+        invalid-name,too-few-public-methods,
+        import-error,import-outside-toplevel,
+        logging-fstring-interpolation,
+        protected-access,
+        too-many-arguments
+
 ignored-argument-names=arg|args|kw|kwargs
 
 [FORMAT]
+
 max-line-length=110

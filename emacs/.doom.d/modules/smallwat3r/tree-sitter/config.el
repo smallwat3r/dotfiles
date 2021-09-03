@@ -17,6 +17,9 @@
                   (not (string= capture-name "property"))))
   (add-function :before-while tree-sitter-hl-face-mapping-function
                 (lambda (capture-name)
+                  (not (string= capture-name "operator"))))
+  (add-function :before-while tree-sitter-hl-face-mapping-function
+                (lambda (capture-name)
                   (not (string= capture-name "method.call"))))
   (add-function :before-while tree-sitter-hl-face-mapping-function
                 (lambda (capture-name)
