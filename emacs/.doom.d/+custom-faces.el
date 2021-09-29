@@ -49,7 +49,8 @@
      font-lock-constant-face
      font-lock-type-face)
     :foreground unspecified)
-  '(web-mode-html-attr-equal-face :inherit font-lock-keyword-face)
-  '(web-mode-html-attr-name-face :inherit font-lock-keyword-face)
-  '(web-mode-html-tag-face :inherit font-lock-keyword-face)
+  '((web-mode-html-attr-equal-face
+     web-mode-html-attr-name-face
+     web-mode-html-tag-face)
+    :inherit font-lock-keyword-face)
   '(web-mode-html-tag-bracket-face :inherit font-lock-builtin-face))
