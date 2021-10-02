@@ -6,7 +6,7 @@
 (setq default-frame-alist
       (append default-frame-alist
               '((width . 105)
-                (height . 60)
+                (height . 50)
                 (drag-internal-border . 1)
                 (internal-border-width . 0)
                 (inhibit-double-buffering . t))))
