@@ -17,5 +17,6 @@
 (package! lorem-ipsum)
 (package! applescript-mode)
 (package! nginx-mode)
+(package! vimrc-mode)
 (package! tubestatus)
 (package! untappd)
