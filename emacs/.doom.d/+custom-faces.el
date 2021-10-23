@@ -6,15 +6,15 @@
 
 (setq modus-themes-slanted-constructs nil
       modus-themes-bold-constructs nil
-      modus-themes-syntax 'faint-yellow-comments
+      modus-themes-syntax '(faint yellow-comments)
       modus-themes-mode-line '3d
       modus-themes-completions 'opinionated
+      modus-themes-prompts 'intense
       modus-themes-org-blocks 'tinted-background)
 
 (setq modus-themes-vivendi-color-overrides
       '((bg-main . "grey0")
         (fg-main . "grey88")
-        (fg-comment-yellow . "#00bab6")
         (magenta . "#b5b600")
         (magenta-alt . "#b5b600")
         (magenta-alt-faint . "#b5b600")

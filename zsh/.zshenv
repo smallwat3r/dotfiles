@@ -13,8 +13,9 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.emacs.doom/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/flutter/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 export GOPATH="$HOME/go"
 
 export EDITOR='emacsclient'
-export EMACS='/Applications/Emacs.app/Contents/MacOS/Emacs'
+export EMACS='/usr/local/bin/emacs'
 export EMACS_DOOM="$HOME/.emacs.doom"

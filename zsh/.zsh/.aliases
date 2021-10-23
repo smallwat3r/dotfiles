@@ -84,6 +84,9 @@ alias k="kubectl"
 alias kt="kubetail"
 alias kgn="kubectl get namespaces"
 
+# Docker
+alias dpsq="docker ps -q"
+
 # gpg
 alias gpg-pub-key="gpg --armor --export mpetiteau.pro@gmail.com"
 alias gpg-list-keys="gpg --list-secret-keys --keyid-format LONG"
