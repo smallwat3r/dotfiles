@@ -9,7 +9,6 @@
       modus-themes-syntax '(faint yellow-comments)
       modus-themes-mode-line '3d
       modus-themes-completions 'opinionated
-      modus-themes-prompts 'intense
       modus-themes-org-blocks 'tinted-background)
 
 (setq modus-themes-vivendi-color-overrides
