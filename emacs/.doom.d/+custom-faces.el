@@ -2,7 +2,8 @@
 
 ;; Lets use a default theme as a base and override some faces to my liking
 
-(setq doom-theme 'modus-vivendi)
+;; (setq doom-theme 'modus-vivendi)
+(setq doom-theme 'organic-green)
 
 (setq modus-themes-slanted-constructs nil
       modus-themes-bold-constructs nil
@@ -21,9 +22,12 @@
         (blue-faint . "#ad7fa8")
         (blue-alt-faint . "#ad7fa8")))
 
+(setq organic-green-boldless t)
+
 (custom-set-faces!
   '((term
      magit-diff-context-highlight
+     fringe
      flycheck-error
      flycheck-warning)
     :background unspecified)
@@ -31,10 +35,9 @@
   '(diff-refine-added :inherit magit-diff-added-highlight :inverse-video nil :weight bold)
   '(diff-refine-removed :inherit magit-diff-removed-highlight :inverse-video nil :weight bold)
   '(diff-refine-changed :inverse-video nil :weight bold)
-
-  '(git-gutter-fr:added :inherit diff-added)
-  '(git-gutter-fr:modified :inherit diff-changed)
-  '(git-gutter-fr:deleted :inherit diff-removed)
+  '(git-gutter-fr:added :foreground "lime green")
+  '(git-gutter-fr:modified :foreground "turquoise")
+  '(git-gutter-fr:deleted :foreground "red")
 
   '(slack-preview-face :background unspecified)
   '((slack-mrkdwn-code-face slack-mrkdwn-code-block-face)
@@ -47,7 +50,7 @@
      font-lock-variable-name-face
      font-lock-constant-face
      font-lock-type-face)
-    :foreground unspecified)
+    :foreground unspecified :weight normal)
   '((web-mode-html-attr-equal-face
      web-mode-html-attr-name-face
      web-mode-html-tag-face)
