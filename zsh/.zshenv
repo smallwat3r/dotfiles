@@ -19,3 +19,4 @@ export GOPATH="$HOME/go"
 export EDITOR='emacsclient'
 export EMACS='/usr/local/bin/emacs'
 export EMACS_DOOM="$HOME/.emacs.doom"
+export NVM_DIR="$HOME/.nvm"

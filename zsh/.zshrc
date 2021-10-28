@@ -155,3 +155,7 @@ fi
 [[ -f "$HOME/.kubeprivate" ]] && source "$HOME/.kubeprivate"
 [[ -f "$EMACS_DOOM/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh" ]] \
   && source "$EMACS_DOOM/.local/straight/repos/emacs-libvterm/etc/emacs-vterm-zsh.sh"
+
+# nvm
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm"

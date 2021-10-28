@@ -300,7 +300,8 @@
 (after! flycheck
   ;; Pylint (python)
   (setq flycheck-python-pylint-executable "/usr/local/bin/pylint"
-        flycheck-pylintrc "~/.config/pylintrc")
+        flycheck-pylintrc "~/.config/pylintrc"
+        flycheck-python-mypy-config "~/.config/mypy/config")
   (setq-hook! 'python-mode-hook flycheck-checker 'python-pylint)
 
   ;; Shellcheck (bash)
