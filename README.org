@@ -21,7 +21,7 @@ Usage: make [TARGET ...]
 help            Show this help menu and exit
 install         * Install everything and symlink
 symlink         * Symlink all the dotfiles using stow
-brew-bundle     Install all packages from Brewfile
+brew            Install all packages from Brewfile
 npm             Install npm packages
 pip             Install pip packages
 python          Install Python 3.9

@@ -11,7 +11,7 @@ help: ## Show this help menu and exit
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
 .PHONY: install
-install: npm pip symlink nvim brew-bundle ## * Install everything and symlink
+install: npm pip symlink nvim brew ## * Install everything and symlink
 	@echo '*** -- Everything has been installed --'
 
 .PHONY: symlink
@@ -45,8 +45,8 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 # 	$(call register_font,Custom-Hack-Italic)
 # 	$(call register_font,Custom-Hack-BoldItalic)
 
-.PHONY: brew-bundle
-brew-bundle: homebrew xcode-cli  ## Install all packages from Brewfile
+.PHONY: brew
+brew: homebrew xcode-cli  ## Install all packages from Brewfile
 	@brew update
 	@brew bundle
 
