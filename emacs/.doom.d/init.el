@@ -67,7 +67,7 @@
        json
        (markdown +grip)
        (org +journal)
-       (python +lsp +pyright +poetry)
+       (python +lsp +pyright)
        rest
        (sh +lsp)
        web

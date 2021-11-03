@@ -39,6 +39,9 @@
   '(git-gutter-fr:modified :foreground "turquoise")
   '(git-gutter-fr:deleted :foreground "red")
 
+  '(flycheck-error :underline (:color "red" :style wave))
+  '(flycheck-warning :underline (:color "orange" :style wave))
+
   '(slack-preview-face :background unspecified)
   '((slack-mrkdwn-code-face slack-mrkdwn-code-block-face)
     :foreground "grey51" :inherit fixed-pitch)
