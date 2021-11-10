@@ -2,8 +2,8 @@
 
 ;; Lets use a default theme as a base and override some faces to my liking
 
-;; (setq doom-theme 'modus-vivendi)
-(setq doom-theme 'organic-green)
+(setq doom-theme 'modus-vivendi)
+;; (setq doom-theme 'organic-green)
 
 (setq modus-themes-slanted-constructs nil
       modus-themes-bold-constructs nil
