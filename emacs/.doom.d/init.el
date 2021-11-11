@@ -46,6 +46,7 @@
 
        :tools
        docker
+       editorconfig
        (eval +overlay)
        (lookup +dictionary +docsets)
        lsp

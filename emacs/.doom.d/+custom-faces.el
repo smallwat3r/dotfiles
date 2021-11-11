@@ -7,7 +7,7 @@
 
 (setq modus-themes-slanted-constructs nil
       modus-themes-bold-constructs nil
-      modus-themes-syntax '(faint yellow-comments)
+      modus-themes-syntax '(faint)
       modus-themes-mode-line '3d
       modus-themes-completions 'opinionated
       modus-themes-org-blocks 'tinted-background)
@@ -19,8 +19,10 @@
         (magenta-alt . "#b5b600")
         (magenta-alt-faint . "#b5b600")
         (magenta-faint . "#b5b600")
-        (blue-faint . "#ad7fa8")
-        (blue-alt-faint . "#ad7fa8")))
+        (magenta-alt-other . "#57c8ca")
+        (magenta-alt-other-faint . "#57c8ca")
+        (blue-faint . "#c27ba0")
+        (blue-alt-faint . "#c27ba0")))
 
 (setq organic-green-boldless t)
 
@@ -31,6 +33,13 @@
      flycheck-error
      flycheck-warning)
     :background unspecified)
+
+  '(highlight-numbers-number :foreground "#8e7cc3")
+
+  '((font-lock-comment-face
+     font-lock-doc-face)
+    :foreground "#306518")
+  '(font-lock-comment-delimiter-face :foreground "#143903" :weight bold)
 
   '(diff-refine-added :inherit magit-diff-added-highlight :inverse-video nil :weight bold)
   '(diff-refine-removed :inherit magit-diff-removed-highlight :inverse-video nil :weight bold)
