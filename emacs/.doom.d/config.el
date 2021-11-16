@@ -337,6 +337,7 @@
     '("black"
       "--quiet"
       "--line-length" "100"
+      "--skip-string-normalization"
       "-")  ; apply in file changes
     :modes '(python-mode)))
 
