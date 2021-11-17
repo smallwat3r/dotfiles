@@ -26,6 +26,14 @@ insteadOf = gist:
 
 [alias]
 find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+a = add
+b = branch
+c = commit -v --message
+ca = commit -v --amend --message
+co = checkout
+d = diff
+p = push
+s = status
 
 [filter "lfs"]
 required = true
