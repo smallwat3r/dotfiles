@@ -29,6 +29,7 @@ alias sl="ls -pF"
 alias lss="ls -la | grep --color=never '->'"
 alias mkdir="mkdir -pv"
 alias qq="exit"
+alias g="git"
 
 # Editing stuff
 alias e="$EDITOR"
@@ -55,18 +56,6 @@ alias tks="tmux kill-session -t"
 alias tksa="tmux kill-session -a"
 alias tls="tmux list-sessions"
 alias vs="tmux splitw -h"
-
-# Git stuff
-alias g="git"
-alias ga="git add"
-alias gb="git branch"
-alias gc!="git commit -v --amend"
-alias gc="git commit -v"
-alias gcb="git checkout -b"
-alias gcq="git commit -m 'Quick commit'"
-alias gd="git diff"
-alias gp="git push"
-alias gs="git status"
 
 # Ripgrep
 alias rg="rg \
