@@ -50,7 +50,7 @@
 ;;
 ;;; Fonts
 
-(setq ns-use-thin-smoothing nil)
+(setq ns-use-thin-smoothing t)
 
 (defvar my-monospace-font "Monaco"
   "Monospace font")
