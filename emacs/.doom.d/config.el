@@ -134,6 +134,7 @@
   (setq evil-goggles-duration 0.25)
   (evil-goggles-use-magit-faces))
 
+
 ;;
 ;;; Custom templates
 
@@ -151,6 +152,7 @@
          :mode emacs-lisp-mode)
         (restclient-mode)
         (sh-mode)))
+
 
 ;;
 ;;; Dashboard
