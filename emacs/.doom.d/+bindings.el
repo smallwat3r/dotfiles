@@ -84,4 +84,4 @@
    :desc "Insert list" "l" #'lorem-ipsum-insert-list)
 
   (:prefix "p"
-   :desc "Run Makefile target" "m" #'makefile-executor-execute-project-target)))
+   :desc "Run Makefile target" "m" #'+make/run)))
