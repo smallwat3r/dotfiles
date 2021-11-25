@@ -1,6 +1,8 @@
-export KEYTIMEOUT=20 # if the keytimeout was too short, jk wouldn't work for ESC
+setopt VI  # Emulate vim mode in zsh (same as 'bindkey -v')
 
+export KEYTIMEOUT=20  # need at least 20 for jk binding to work properly
 bindkey -M viins 'jk' vi-cmd-mode
+
 bindkey '^?' backward-delete-char
 
 # yank to clipboard
