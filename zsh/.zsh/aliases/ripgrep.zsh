@@ -3,7 +3,6 @@ alias rg="rg \
   --glob '!git/*' \
   --glob '!__pycache__/*' \
   --smart-case \
-  --colors 'line:fg:green' \
-  --colors 'path:fg:green' \
-  --colors 'match:bg:green' \
-  --colors 'match:fg:black'"
+  --colors 'line:fg:cyan' \
+  --colors 'path:fg:cyan' \
+  --colors 'match:fg:red' "
