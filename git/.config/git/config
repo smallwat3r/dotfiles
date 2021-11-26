@@ -34,6 +34,7 @@ co = checkout
 d = diff
 p = push
 s = status
+rhh = reset --hard HEAD
 
 [filter "lfs"]
 required = true
