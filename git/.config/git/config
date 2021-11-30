@@ -34,7 +34,9 @@ co = checkout
 d = diff
 p = push
 s = status
+ss = status --short
 rhh = reset --hard HEAD
+init-empty = !"f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
 
 [filter "lfs"]
 required = true
