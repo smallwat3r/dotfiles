@@ -10,4 +10,4 @@
 #
 # see-also: git-resume
 
-git commit --no-verify -a -m 'PAUSED: Use git-resume to continue working.'
+git commit --no-verify -a -m 'PAUSED: Use "git resume" to continue working.'

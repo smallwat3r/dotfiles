@@ -10,5 +10,5 @@
 if git log -1 --format="%s" | grep -q '^PAUSED'; then
   git reset HEAD^
 else
-  printf 'Latest commit was not created by git-pause.\n'
+  printf 'Latest commit was not created by "git pause".\n'
 fi
