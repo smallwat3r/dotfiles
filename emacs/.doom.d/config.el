@@ -235,48 +235,18 @@
 ;; Code completion
 ;; doc: https://www.emacswiki.org/emacs/CompanyMode
 
-(defface my-company-icons-face
-  '((t :background unspecified :inherit default))
-  "The face used to display the company icons.")
+(defun company-spaced-dark-icons-margin (candidate selected)
+  (concat
+   (company--render-icons-margin company-vscode-icons-mapping
+                                 (expand-file-name "vscode-dark" company-icons-root)
+                                 candidate
+                                 selected) " "))
 
 (after! company
   (setq company-idle-delay 0.1
         company-tooltip-limit 10
-        company-minimum-prefix-length 1)
-
-  ;; Company icons
-  (setq company-format-margin-function #'company-text-icons-margin
-        company-text-icons-format " %s "
-        company-text-icons-add-background nil)
-
-  (setq company-text-icons-mapping
-        '((array "[" my-company-icons-face)
-          (boolean "1" my-company-icons-face)
-          (class "C" my-company-icons-face)
-          (color "#" my-company-icons-face)
-          (constant "c" my-company-icons-face)
-          (enum-member "e" my-company-icons-face)
-          (enum "e" my-company-icons-face)
-          (field "f" my-company-icons-face)
-          (file "F" my-company-icons-face)
-          (folder "D" my-company-icons-face)
-          (interface "i" my-company-icons-face)
-          (keyword "k" my-company-icons-face)
-          (method "m" my-company-icons-face)
-          (function "f" my-company-icons-face)
-          (module "{" my-company-icons-face)
-          (numeric "n" my-company-icons-face)
-          (operator "o" my-company-icons-face)
-          (parameter "p" my-company-icons-face)
-          (property "p" my-company-icons-face)
-          (ruler "r" my-company-icons-face)
-          (snippet "S" my-company-icons-face)
-          (string "s" my-company-icons-face)
-          (struct "%" my-company-icons-face)
-          (text "w" my-company-icons-face)
-          (value "v" my-company-icons-face)
-          (variable "v" my-company-icons-face)
-          (t "." my-company-icons-face))))
+        company-minimum-prefix-length 1
+        company-format-margin-function 'company-spaced-dark-icons-margin))
 
 
 ;;
