@@ -31,6 +31,7 @@
      flycheck-warning)
     :background unspecified)
 
+  '(cursor :background "#d7ff00")
   '(highlight-numbers-number :foreground "#8e7cc3")
 
   '(diff-refine-added :inherit magit-diff-added-highlight :inverse-video nil :weight bold)

@@ -83,6 +83,8 @@
 ;;
 ;;; Editor
 
+(blink-cursor-mode 1)
+
 (setq-default with-editor-emacsclient-executable "emacsclient")
 (setq display-line-numbers-type nil)  ; no line number
 
@@ -401,7 +403,7 @@
        (if base/branch
            (propertize (format " (%s)" base/branch) 'face 'default))
        ;; user / super user
-       (propertize (if (= (user-uid) 0) " # " " λ ") 'face 'default))))
+       (propertize " % " 'face 'default))))
 
   (setq eshell-history-size 1000000
         eshell-buffer-maximum-lines 5000
@@ -411,7 +413,7 @@
   (remove-hook! 'eshell-mode-hook #'hide-mode-line-mode)  ; always display modeline
 
   ;; Prompt settings
-  (setq eshell-prompt-regexp "^.* [#λ] "
+  (setq eshell-prompt-regexp "^.* [%] "
         eshell-prompt-function #'my/eshell-prompt)
 
   ;; List of eshell aliases
