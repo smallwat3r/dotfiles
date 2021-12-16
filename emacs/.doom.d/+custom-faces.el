@@ -3,11 +3,10 @@
 ;; Lets use a default theme as a base and override some faces to my liking
 
 (setq doom-theme 'modus-vivendi)
-;; (setq doom-theme 'organic-green)
 
 (setq modus-themes-slanted-constructs nil
       modus-themes-bold-constructs nil
-      modus-themes-syntax '(faint)
+      modus-themes-syntax '(faint yellow-comments)
       modus-themes-mode-line '3d
       modus-themes-completions 'opinionated
       modus-themes-org-blocks 'tinted-background)
@@ -24,8 +23,6 @@
         (blue-faint . "#c27ba0")
         (blue-alt-faint . "#c27ba0")))
 
-(setq organic-green-boldless t)
-
 (custom-set-faces!
   '((term
      magit-diff-context-highlight
@@ -35,11 +32,6 @@
     :background unspecified)
 
   '(highlight-numbers-number :foreground "#8e7cc3")
-
-  '((font-lock-comment-face
-     font-lock-doc-face)
-    :foreground "#306518")
-  '(font-lock-comment-delimiter-face :foreground "#143903" :weight bold)
 
   '(diff-refine-added :inherit magit-diff-added-highlight :inverse-video nil :weight bold)
   '(diff-refine-removed :inherit magit-diff-removed-highlight :inverse-video nil :weight bold)

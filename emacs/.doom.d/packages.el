@@ -27,4 +27,3 @@
 (package! vimrc-mode)
 (package! tubestatus)
 (package! untappd)
-(package! organic-green-theme)
