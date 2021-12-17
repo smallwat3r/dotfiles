@@ -33,10 +33,10 @@ autoload -U "${zsh_root}"/functions/*(:t)
 
 # Load config files
 zsh_configs=(
-  "${zsh_root}"/extensions
+  "${zsh_root}"/prompt.zsh
   "${zsh_root}"/aliases
   "${zsh_root}"/utils
-  "${zsh_root}"/prompt.zsh
+  "${zsh_root}"/extensions
 )
 
 __source_config() {

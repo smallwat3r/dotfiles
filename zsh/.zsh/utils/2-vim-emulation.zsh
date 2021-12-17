@@ -6,12 +6,12 @@ bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
 
 # yank to clipboard
-_vi_yank_pbcopy() {
+__vi_yank_pbcopy() {
   zle vi-yank
   echo "$CUTBUFFER" | pbcopy
 }
-zle -N _vi_yank_pbcopy
-bindkey -M vicmd 'y' _vi_yank_pbcopy
+zle -N __vi_yank_pbcopy
+bindkey -M vicmd 'y' __vi_yank_pbcopy
 
 # Edit command in preferred editor
 autoload edit-command-line
