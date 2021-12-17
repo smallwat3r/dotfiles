@@ -14,10 +14,8 @@ __git_branch() {
 }
 
 __display_git_info() {
-  local _git_root
-  local _git_branch
-  _git_root="$(__git_root | sed 's/true/~/')"
-  _git_branch="$(__git_branch)"
+  local _git_root="$(__git_root | sed 's/true/~/')"
+  local _git_branch="$(__git_branch)"
   [[ -n $_git_branch ]] && echo " ${_git_branch}${_git_root}"
 }
 
@@ -31,6 +29,7 @@ __shrink_path() {
 __path() {
   case $PWD in
     "$HOME") printf '~' ;;
+    "/") printf '/' ;;
     *) printf '%s%s' "$(__shrink_path)" "${PWD##*/}" ;;
   esac
 }
