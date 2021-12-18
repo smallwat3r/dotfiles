@@ -1,5 +1,0 @@
-alias sp="tmux splitw -v"
-alias tks="tmux kill-session -t"
-alias tksa="tmux kill-session -a"
-alias tls="tmux list-sessions"
-alias vs="tmux splitw -h"
