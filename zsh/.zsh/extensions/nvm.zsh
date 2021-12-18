@@ -1,6 +1,6 @@
 export NVM_DIR="$HOME/.nvm"
 
-# I find nvm quite bulky in my zsh config, so this provides a way to lazy load it
+# I find nvm quite bulky to load on startup, so this provides a way to lazy load it
 nvm() {
   if ! command -v foo >/dev/null; then
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"
