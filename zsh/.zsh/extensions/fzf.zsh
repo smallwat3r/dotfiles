@@ -1,15 +1,20 @@
-if [ -d '/usr/local/opt/fzf' ]; then
-  if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-    export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-  fi
-
-  [[ $- == *i* ]] && source '/usr/local/opt/fzf/shell/completion.zsh' 2>/dev/null
-
-  source '/usr/local/opt/fzf/shell/key-bindings.zsh'
-
-  export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-    --color=fg:#d0d0d0,bg:#000000,hl:#ffd966
-    --color=fg+:#d0d0d0,bg+:#000000,hl+:#daa915
-    --color=info:#d0d0d0,prompt:#d0d0d0,pointer:#d0d0d0
-    --color=marker:#d0d0d0,spinner:#d0d0d0,header:#d0d0d0'
+if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
+
+if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
+  source '/usr/local/opt/fzf/shell/completion.zsh'
+fi
+
+if [ -e /usr/local/opt/fzf/shell/key-bindings.zsh ]; then
+  source '/usr/local/opt/fzf/shell/key-bindings.zsh'
+fi
+
+export FZF_DEFAULT_OPTS='
+  --height 40% --reverse
+  --color fg:242,bg:232,hl:65,fg+:15,bg+:232,hl+:108
+  --color info:242,prompt:242,spinner:108,pointer:242,marker:168
+'
+export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
