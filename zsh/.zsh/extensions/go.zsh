@@ -1,5 +1,6 @@
-if [[ ! "$PATH" == "*/$HOME/go/bin*" ]]; then
-  export PATH="${PATH:+${PATH}:}$HOME/go/bin"
+export GOPATH="$HOME/go"
+
+if [[ ! "$PATH" == "*/$GOPATH/bin*" ]]; then
+  export PATH="${PATH:+${PATH}:}$GOPATH/bin"
 fi
 
-export GOPATH="$HOME/go"
