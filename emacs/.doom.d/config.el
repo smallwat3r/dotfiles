@@ -360,6 +360,9 @@
   (setq vterm-max-scrollback 6000)
   (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)  ; always display modeline
 
+  (define-key vterm-mode-map (kbd "C-j") (kbd "<down>"))
+  (define-key vterm-mode-map (kbd "C-k") (kbd "<up>"))
+
   (defun my/vterm-delete-word ()
     (interactive)
     (vterm-send-key (kbd "C-w"))))
@@ -625,3 +628,13 @@
   :commands (untappd-feed)
   :config (setq untappd-access-token
                 (auth-source-pass-get 'secret "untappd/token")))
+
+;; Testing
+
+(defun my-echo-command-name-hook ()
+  "Echo live command names."
+  (unless (or (eq this-command 'self-insert-command)
+              (eq this-command 'next-line))
+    (message "%s" this-command)))
+
+;; (add-hook 'post-command-hook 'my-echo-command-name-hook)

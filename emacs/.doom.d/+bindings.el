@@ -5,10 +5,10 @@
   "M-3" "#") ; Make sure M-3 prints a hash symbol
 
  (:map evil-insert-state-map
-  "C-h" #'left-char
-  "C-l" #'right-char
-  "C-k" #'previous-line
-  "C-j" #'next-line)
+  "C-h" #'evil-backward-char
+  "C-l" #'evil-forward-char
+  "C-k" #'evil-previous-line
+  "C-j" #'evil-next-line)
 
  (:map evil-visual-state-map
   ";f" #'+format/region)
