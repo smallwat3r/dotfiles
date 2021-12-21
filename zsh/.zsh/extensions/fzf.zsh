@@ -2,11 +2,11 @@ if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
 
-if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
+if [ -f /usr/local/opt/fzf/shell/completion.zsh ]; then
   source '/usr/local/opt/fzf/shell/completion.zsh'
 fi
 
-if [ -e /usr/local/opt/fzf/shell/key-bindings.zsh ]; then
+if [ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]; then
   source '/usr/local/opt/fzf/shell/key-bindings.zsh'
 fi
 
@@ -17,4 +17,3 @@ export FZF_DEFAULT_OPTS='
 '
 export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
