@@ -1,4 +1,7 @@
-# vim-bindings emulation, only if outside of Emacs
+# Vim bindings emulation in Zsh
+
+# Make it only if outside of Emacs, as it sometimes conflicts with Emacs
+# internal commands, specially when using Evil mode
 if [[ ! "$INSIDE_EMACS" ]]; then
   setopt VI  # same as 'bindkey -v'
 
