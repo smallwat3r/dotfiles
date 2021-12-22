@@ -3,7 +3,7 @@ autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$HOME/.cache/.zcompcache"
+zstyle ':completion:*' cache-path "${HOME}/.cache/.zcompcache"
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' file-sort modification

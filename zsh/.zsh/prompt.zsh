@@ -1,5 +1,5 @@
 __is_venv() {
-  if [[ $VIRTUAL_ENV ]]; then
+  if [[ ${VIRTUAL_ENV} ]]; then
     echo '%s' "(.${VIRTUAL_ENV##*/}) "
   fi
 }
@@ -26,8 +26,8 @@ PROMPT='%(?..%F{red}?%? )%f$(__is_venv)%F{cyan}%2~%f %# '
 
 # When outside of emacs, activate tmux by default and use the individual pane titles
 # to display the main prompt information.
-if [[ ! "$INSIDE_EMACS" ]]; then
-  if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+if [[ ! "${INSIDE_EMACS}" ]]; then
+  if [ -t 0 ] && [[ -z ${TMUX} ]] && [[ $- = *i* ]]; then
     exec tmux
   fi
 
@@ -40,7 +40,7 @@ if [[ ! "$INSIDE_EMACS" ]]; then
       || tmux select-pane \
         -t "$(__pane_number)" \
         -T "#[fg=red,bold]$(echo "$*" | cut -d . -f 1)#[fg=default]"
-    command ssh "$@"
+    command ssh "${@}"
   }
 
   __git_dirty() {
@@ -49,7 +49,7 @@ if [[ ! "$INSIDE_EMACS" ]]; then
 
   __git_root() {
     if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]; then
-      [[ $(git rev-parse --show-toplevel 2>/dev/null) == "$PWD" ]] && echo true
+      [[ $(git rev-parse --show-toplevel 2>/dev/null) == "${PWD}" ]] && echo true
     fi
   }
 
@@ -61,26 +61,26 @@ if [[ ! "$INSIDE_EMACS" ]]; then
   __display_git_info() {
     local _git_root="$(__git_root | sed 's/true/~/')"
     local _git_branch="$(__git_branch)"
-    [[ -n $_git_branch ]] && echo " ${_git_branch}${_git_root}"
+    [[ -n ${_git_branch} ]] && echo " ${_git_branch}${_git_root}"
   }
 
   __shrink_path() {
     echo ~+ \
-      | sed "s;$HOME;~;" \
+      | sed "s;${HOME};~;" \
       | sed 's;\(/.\)[^/]*;\1;g' \
       | sed 's/.$//'
   }
 
   __path() {
-    case $PWD in
-      "$HOME") printf '~' ;;
+    case "${PWD}" in
+      "${HOME}") printf '~' ;;
       "/") printf '/' ;;
       *) printf '%s%s' "$(__shrink_path)" "${PWD##*/}" ;;
     esac
   }
 
   precmd() {
-    [[ -z $TMUX ]] \
+    [[ -z "${TMUX}" ]] \
       || tmux select-pane \
         -t "$(__pane_number)" \
         -T "$(__path)$(__display_git_info)"

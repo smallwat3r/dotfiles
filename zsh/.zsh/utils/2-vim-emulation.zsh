@@ -2,7 +2,7 @@
 
 # Make it only if outside of Emacs, as it sometimes conflicts with Emacs
 # internal commands, specially when using Evil mode
-if [[ ! "$INSIDE_EMACS" ]]; then
+if [[ ! "${INSIDE_EMACS}" ]]; then
   setopt VI  # same as 'bindkey -v'
 
   export KEYTIMEOUT=20  # need at least 20 for jk binding to work properly
@@ -13,7 +13,7 @@ if [[ ! "$INSIDE_EMACS" ]]; then
   # yank to clipboard
   __vi_yank_pbcopy() {
     zle vi-yank
-    echo "$CUTBUFFER" | pbcopy
+    echo "${CUTBUFFER}" | pbcopy
   }
   zle -N __vi_yank_pbcopy
   bindkey -M vicmd 'y' __vi_yank_pbcopy

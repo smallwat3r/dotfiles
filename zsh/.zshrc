@@ -25,7 +25,7 @@ setopt HIST_VERIFY          # perform history expansion and reload the line into
 unsetopt BEEP               # do no beep on errors
 unsetopt LIST_BEEP          # do not beep on anbiguous completion
 
-zsh_root="${HOME}"/.zsh
+zsh_root="${HOME}/.zsh"
 
 # Load functions
 fpath=("${zsh_root}"/functions $fpath)

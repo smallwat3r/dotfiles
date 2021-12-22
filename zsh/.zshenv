@@ -1,7 +1,7 @@
 # .zshenv
 
-if [[ -z "$XDG_CONFIG_HOME" ]]; then
-  export XDG_CONFIG_HOME="$HOME/.config"
+if [[ -z "${XDG_CONFIG_HOME}" ]]; then
+  export XDG_CONFIG_HOME="${HOME}/.config"
 fi
 
 typeset -U PATH path cdpath manpath
