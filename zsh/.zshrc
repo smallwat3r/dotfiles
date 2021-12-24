@@ -1,5 +1,7 @@
 # smallwat3r's config for zsh
 
+zmodload zsh/zprof  # profiler
+
 setopt AUTO_CD              # auto cd into typed directory
 setopt CHASE_LINKS          # resolve symlinks to their true values when changing directory
 setopt GLOB_DOTS            # do not require a leading '.' in a filename to be matched explicitly
