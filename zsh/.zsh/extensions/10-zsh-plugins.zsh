@@ -6,6 +6,8 @@ if [ -f /usr/local/share/antigen/antigen.zsh ]; then
   antigen bundle zdharma-continuum/fast-syntax-highlighting
 
   antigen apply
+fi
 
+if [ ! -d "${FAST_WORK_DIR}" ]; then
   fast-theme --quiet clean
 fi
