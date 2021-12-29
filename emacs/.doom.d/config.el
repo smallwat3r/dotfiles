@@ -360,9 +360,6 @@
   (setq vterm-max-scrollback 6000)
   (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)  ; always display modeline
 
-  (define-key vterm-mode-map (kbd "C-j") (kbd "<down>"))
-  (define-key vterm-mode-map (kbd "C-k") (kbd "<up>"))
-
   (defun my/vterm-delete-word ()
     (interactive)
     (vterm-send-key (kbd "C-w"))))

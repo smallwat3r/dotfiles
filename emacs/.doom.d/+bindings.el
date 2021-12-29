@@ -47,7 +47,9 @@
   (:map vterm-mode-map
    :n "B" #'vterm-beginning-of-line
    :n "<return>" #'evil-insert-resume
-   "<C-backspace>" #'my/vterm-delete-word))
+   "<C-backspace>" #'my/vterm-delete-word
+   :in "C-k" #'vterm-send-up
+   :in "C-j" #'vterm-send-down))
 
  (:leader
   "§" #'other-frame
