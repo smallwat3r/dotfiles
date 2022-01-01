@@ -29,7 +29,7 @@ PROMPT='%(?..%F{red}?%? )%f$(__is_venv)%F{cyan}%2~%f %# '
 # When outside of emacs, activate tmux by default and use the individual pane titles
 # to display the main prompt information.
 if [[ ! "${INSIDE_EMACS}" ]]; then
-  if [ -t 0 ] && [[ -z ${TMUX} ]] && [[ $- = *i* ]]; then
+  if [ -t 0 ] && [[ -z "${TMUX}" ]] && [[ $- = *i* ]]; then
     exec tmux
   fi
 
@@ -38,7 +38,7 @@ if [[ ! "${INSIDE_EMACS}" ]]; then
   }
 
   ssh() {
-    [[ -z $TMUX ]] \
+    [[ -z "${TMUX}" ]] \
       || tmux select-pane \
         -t "$(__pane_number)" \
         -T "#[fg=red,bold]$(echo "$*" | cut -d . -f 1)#[fg=default]"
@@ -76,8 +76,8 @@ if [[ ! "${INSIDE_EMACS}" ]]; then
   __path() {
     case "${PWD}" in
       "${HOME}") printf '~' ;;
-      "/") printf '/' ;;
-      *) printf '%s%s' "$(__shrink_path)" "${PWD##*/}" ;;
+      "/"      ) printf '/' ;;
+      *        ) printf '%s%s' "$(__shrink_path)" "${PWD##*/}" ;;
     esac
   }
 
