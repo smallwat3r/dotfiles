@@ -17,11 +17,13 @@ precmd_functions+=(
   precmd_vcs_info
 )
 
-RPROMPT=\$vcs_info_msg_0_
-
-zstyle ':vcs_info:git:*' formats '%F{245}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' stagedstr '%F{green}+'
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}!'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' formats '(%b)%m%c%u'
 
+RPROMPT=\$vcs_info_msg_0_
 PROMPT='%(?..%F{red}?%? )%f$(__is_venv)%F{cyan}%2~%f %# '
 
 # When outside of emacs, activate tmux by default and use the individual pane titles
