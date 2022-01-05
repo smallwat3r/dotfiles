@@ -1,7 +1,7 @@
 alias c="clear"
 alias p="pwd"
 alias l="ls -pFf"
-alias ll="ls -la"
+alias ll="ls -lah"
 alias ls.="ls -pF -d .*"
 alias ls="ls -pF"
 alias sl="ls -pF"
