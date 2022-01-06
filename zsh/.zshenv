@@ -25,14 +25,19 @@ manpath=(
 export PATH
 
 export EDITOR='emacsclient'
+
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
+
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
 export TERM='xterm-256color'
 export CLICOLOR=1
+
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;31'
+
 export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=999999999
 export SAVEHIST="${HISTSIZE}"
