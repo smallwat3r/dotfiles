@@ -3,12 +3,16 @@
 ;;
 ;;; Frame
 
+(setq initial-frame-alist
+      (append initial-frame-alist
+              '((fullscreen . maximized))))
+
 (setq default-frame-alist
       (append default-frame-alist
               '((width . 105)
-                (height . 50)
-                (drag-internal-border . 1)
-                (internal-border-width . 0)
+                (height . 40)
+                (drag-internal-border . t)
+                (internal-border-width . 3)
                 (inhibit-double-buffering . t))))
 
 (setq frame-title-format '("Emacs " emacs-version))
