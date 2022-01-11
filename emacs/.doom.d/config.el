@@ -256,7 +256,7 @@
 
 
 ;;
-;;; Programmation Language server protocol
+;;; Programming
 
 ;; doc: https://emacs-lsp.github.io/lsp-mode/
 
