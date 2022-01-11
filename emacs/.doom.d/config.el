@@ -258,6 +258,7 @@
 ;;
 ;;; Programming
 
+;; Language Server Protocol
 ;; doc: https://emacs-lsp.github.io/lsp-mode/
 
 (setq +lsp-prompt-to-install-server 'quiet
