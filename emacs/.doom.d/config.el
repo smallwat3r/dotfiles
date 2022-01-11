@@ -68,7 +68,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 2)
 (setq-default tab-width 8)
 
 
@@ -361,7 +361,9 @@
 ;; doc: https://github.com/akermu/emacs-libvterm
 
 (after! vterm
-  (setq vterm-max-scrollback 6000)
+  (setq vterm-max-scrollback 6000
+        vterm-timer-delay 0.01)
+
   (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)  ; always display modeline
 
   (defun my/vterm-delete-word ()
