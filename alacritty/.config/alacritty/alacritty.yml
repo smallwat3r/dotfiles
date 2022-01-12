@@ -14,17 +14,8 @@ window:
     lines: 40
 
   padding:
-    x: 10
-    y: 10
-
-  dynamic_padding: true
-  decorations: buttonless
-  startup_mode: Windowed
-
-scrolling:
-  history: 10000
-  multiplier: 3
-  scrolling_multiplier: 3
+    x: 0
+    y: 0
 
 # }}} window
 # {{{ font
@@ -95,14 +86,10 @@ selection:
 # {{{ other
 
 live_config_reload: true
-enable_experimental_conpty_backend: false
-
 alt_send_esc: true
 
 bell:
-  animation: EaseOutExpo
   duration: 0
-  color: "#ffffff"
 
 debug:
   render_timer: false
