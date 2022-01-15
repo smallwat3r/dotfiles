@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Grep history unique
-
-history 1 | sort -u | grep "$@"
