@@ -23,27 +23,29 @@ ZSH_ROOT="${HOME}/.zsh"
 fpath=("${ZSH_ROOT}"/functions $fpath)
 autoload -U "${ZSH_ROOT}"/functions/*(:t)
 
-# Load config files
+# Config files and directories (from `ZSH_ROOT`)
 zsh_configs=(
-  "${ZSH_ROOT}"/prompt.zsh
-  "${ZSH_ROOT}"/aliases
-  "${ZSH_ROOT}"/utils
-  "${ZSH_ROOT}"/extensions
+  prompt.zsh
+  aliases
+  utils
+  extensions
 )
 
 __source_config() {
-  if [[ -d "${1}" ]]; then
+  local config_path="${ZSH_ROOT}/${1}"
+  if [[ -d "${config_path}" ]]; then
     local config_file
-    for config_file ("${1}"/*.zsh(N)); do
+    for config_file ("${config_path}"/*.zsh(N)); do
       source "${config_file}"
     done
-  elif [[ -f "${1}" ]]; then
-    source "${1}"
+  elif [[ -f "${config_path}" ]]; then
+    source "${config_path}"
   else
-    printf 'Could not find configs for %s\n' "${1}"
+    printf 'Could not find configs for %s\n' "${config_path}"
   fi
 }
 
+# Load configs
 for config ("${zsh_configs[@]}"); do
   __source_config "${config}"
 done
