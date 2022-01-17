@@ -17,24 +17,25 @@ setopt HISTIGNORESPACE      # do not save in history commands that starts by a s
 unsetopt BEEP               # do no beep on errors
 unsetopt LIST_BEEP          # do not beep on anbiguous completion
 
-zsh_root="${HOME}/.zsh"
+ZSH_ROOT="${HOME}/.zsh"
 
 # Load functions
-fpath=("${zsh_root}"/functions $fpath)
-autoload -U "${zsh_root}"/functions/*(:t)
+fpath=("${ZSH_ROOT}"/functions $fpath)
+autoload -U "${ZSH_ROOT}"/functions/*(:t)
 
 # Load config files
 zsh_configs=(
-  "${zsh_root}"/prompt.zsh
-  "${zsh_root}"/aliases
-  "${zsh_root}"/utils
-  "${zsh_root}"/extensions
+  "${ZSH_ROOT}"/prompt.zsh
+  "${ZSH_ROOT}"/aliases
+  "${ZSH_ROOT}"/utils
+  "${ZSH_ROOT}"/extensions
 )
 
 __source_config() {
   if [[ -d "${1}" ]]; then
-    for file in "${1}"/*.zsh; do
-      source "${file}"
+    local config_file
+    for config_file ("${1}"/*.zsh(N)); do
+      source "${config_file}"
     done
   elif [[ -f "${1}" ]]; then
     source "${1}"
@@ -43,6 +44,7 @@ __source_config() {
   fi
 }
 
-for config in "${zsh_configs[@]}"; do
+for config ("${zsh_configs[@]}"); do
   __source_config "${config}"
 done
+unset config
