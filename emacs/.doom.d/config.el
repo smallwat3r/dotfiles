@@ -209,7 +209,7 @@
         projectile-mode-line-prefix "P"
         projectile-mode-line-function '(lambda () (format " P[%s]" (projectile-project-name)))
         projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups")
-        projectile-project-search-path '("~/dotfiles/" "~/Projects/" "~/Code/" "~/Github/")))
+        projectile-project-search-path '("~/dotfiles/" "~/projects/" "~/code/" "~/github/")))
 
 
 ;;
@@ -293,8 +293,10 @@
 (after! spell-fu
   (setq spell-fu-idle-delay 0.5))
 
-;; Force grammar spell checking to be turn on manually
+;; Force spell checking to be turn on manually
 (remove-hook! (text-mode) #'spell-fu-mode)
+
+;; Linting stuff
 
 (after! sh-script
   (set-formatter! 'shfmt
