@@ -5,6 +5,7 @@
 *.zwc
 
 Brewfile.lock.json
+emacs/.doom.d/.custom.el
 
 vim/.config/nvim/.netrwhist
 vim/.config/nvim/autoload/
