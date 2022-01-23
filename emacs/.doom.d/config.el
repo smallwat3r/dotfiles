@@ -348,7 +348,6 @@
   (setq sql-mysql-login-params
         (append sql-mysql-login-params '(port :default 3306))))
 
-
 ;; Detect specific modes
 
 (setq auto-mode-alist
