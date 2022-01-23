@@ -54,7 +54,7 @@
 ;;
 ;;; Fonts
 
-(setq ns-use-thin-smoothing t)
+(setq ns-use-thin-smoothing nil)
 
 (defvar my-monospace-font "Monaco"
   "Monospace font")
@@ -645,4 +645,9 @@
               (eq this-command 'next-line))
     (message "%s" this-command)))
 
-;; (add-hook 'post-command-hook 'my-echo-command-name-hook)
+(define-minor-mode my-debug-mode
+  "Custom debug mode.")
+
+(add-hook! 'post-command-hook
+  (if (bound-and-true-p my-debug-mode)
+      (my-echo-command-name-hook)))
