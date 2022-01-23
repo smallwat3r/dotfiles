@@ -267,7 +267,7 @@
 (after! lsp-mode
   (setq lsp-enable-file-watchers nil))
 
-;; Git porcelain
+;; Magit
 ;; doc: https://github.com/magit/magit
 
 (after! magit
@@ -295,8 +295,6 @@
 
 ;; Force spell checking to be turn on manually
 (remove-hook! (text-mode) #'spell-fu-mode)
-
-;; Linting stuff
 
 (after! sh-script
   (set-formatter! 'shfmt
@@ -345,6 +343,11 @@
 
 (setq-hook! 'html-mode-hook +format-with :none)
 (setq-hook! 'web-mode-hook +format-with :none)
+
+(after! sql
+  (setq sql-mysql-login-params
+        (append sql-mysql-login-params '(port :default 3306))))
+
 
 ;; Detect specific modes
 
