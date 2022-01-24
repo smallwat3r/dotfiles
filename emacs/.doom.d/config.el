@@ -16,7 +16,12 @@
                 (inhibit-double-buffering . t))))
 
 (setq frame-title-format '("Emacs " emacs-version))
-(setq ns-use-proxy-icon nil)  ; hide file icon from titlebar
+
+(when (eq window-system 'ns)
+  (setq ns-use-thin-smoothing t
+        ns-use-native-fullscreen nil
+        ns-use-proxy-icon nil
+        ns-use-fullscreen-animation nil))
 
 
 ;;
@@ -26,19 +31,19 @@
       user-mail-address "mpetiteau.pro@gmail.com"
       user-mail-address-2 "matthieu@smallwatersolutions.com")
 
-(defvar my-dotfiles-dir "~/dotfiles"
-  "Dotfiles directory.")
+(setq default-directory "~/"
+      my-dotfiles-dir (concat default-directory "dotfiles"))
 
-(setq confirm-kill-emacs nil
+(setq confirm-kill-emacs nil            ; quit emacs without confirmation
       load-prefer-newer t               ; always load newer bytes compiled files
-      evil-vsplit-window-right t
+      inhibit-compacting-font-caches t) ; improve general perfs
+
+(setq evil-vsplit-window-right t
       evil-split-window-below t
-      default-directory "~/"
-      undo-limit 80000000
-      evil-want-fine-undo t             ; fine grained undo history
-      inhibit-compacting-font-caches t  ; improve general perfs
-      scroll-margin 7                   ; top and bottom margins to trigger scroll
-      which-key-idle-delay 0.2)         ; delay to show key bindings menu
+      evil-want-fine-undo t)
+
+(setq undo-limit 80000000 ; yep, this is almost infinite
+      scroll-margin 7)    ; top and bottom margins to trigger scroll
 
 ;; Abbreviations
 (setq-default abbrev-mode t)
@@ -54,16 +59,12 @@
 ;;
 ;;; Fonts
 
-(setq ns-use-thin-smoothing nil)
-
-(defvar my-monospace-font "Monaco"
-  "Monospace font")
-
-(defvar my-sans-serif-font "Lucida Grande"
-  "Sans serif font")
-
-(setq doom-font (font-spec :family my-monospace-font :size 13)
-      doom-variable-pitch-font (font-spec :family my-sans-serif-font :size 14))
+(let* ((font "Monaco")
+       (font-variable "Lucida Grande")
+       (font-size 13))
+  (setq doom-font (font-spec :family font :size font-size)
+        doom-serif-font (font-spec :family font :size font-size)
+        doom-variable-pitch-font (font-spec :family font-variable :size font-size)))
 
 (setq doom-font-increment 1
       doom-big-font-increment 2)
@@ -91,6 +92,12 @@
 
 (setq-default with-editor-emacsclient-executable "emacsclient")
 (setq display-line-numbers-type nil)  ; no line number
+
+;; Show keybings
+;; doc: https://github.com/justbur/emacs-which-key
+
+(after! which-key
+  (setq which-key-idle-delay 0.1))
 
 ;; Vertical file explorer
 ;; doc: https://github.com/Alexander-Miller/treemacs
