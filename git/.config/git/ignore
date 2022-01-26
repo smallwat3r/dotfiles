@@ -25,6 +25,7 @@ flycheck_*.*
 *.p12
 *.pem
 *.sec
+*.private
 
 # Folders
 **/.mypy_cache/

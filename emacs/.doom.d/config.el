@@ -93,7 +93,7 @@
 (setq-default with-editor-emacsclient-executable "emacsclient")
 (setq display-line-numbers-type nil)  ; no line number
 
-;; Show keybings
+;; Show keybindings
 ;; doc: https://github.com/justbur/emacs-which-key
 
 (after! which-key

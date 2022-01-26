@@ -3,6 +3,7 @@
 *.swo
 *.pyc
 *.zwc
+*.private
 
 Brewfile.lock.json
 emacs/.doom.d/.custom.el
