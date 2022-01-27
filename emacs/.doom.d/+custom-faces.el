@@ -44,6 +44,10 @@
   '(flycheck-error :underline (:color "red" :style wave))
   '(flycheck-warning :underline (:color "orange" :style wave))
 
+  '((markdown-inline-code-face
+     markdown-language-keyword-face)
+    :background unspecified)
+
   '(slack-preview-face :background unspecified)
   '((slack-mrkdwn-code-face slack-mrkdwn-code-block-face)
     :foreground "grey51" :inherit fixed-pitch)
