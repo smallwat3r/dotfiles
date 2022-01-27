@@ -13,7 +13,7 @@ fi
 
 projectile-clean-cache() {
   if [[ -f "${EMACS_DOOM}/.local/cache/projectile.cache" ]]; then
-    rm ${EMACS_DOOM}/.local/cache/projectile.cache
+    rm "${EMACS_DOOM}/.local/cache/projectile.cache"
     printf "Projectile cache cleaned.\n"
   fi
 }
