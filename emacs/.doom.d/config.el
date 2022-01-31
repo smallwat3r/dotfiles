@@ -55,6 +55,13 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+;; Scrolling
+(if (boundp 'mac-mouse-wheel-smooth-scroll)
+    (setq mac-mouse-wheel-smooth-scroll t))
+
+(if (> emacs-major-version 28)
+    (pixel-scroll-precision-mode))
+
 
 ;;
 ;;; Fonts
