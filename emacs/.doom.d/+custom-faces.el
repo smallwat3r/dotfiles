@@ -33,6 +33,8 @@
      markdown-language-keyword-face)
     :background unspecified)
 
+  '(italic :slant unspecified)  ; enforce no italics
+
   '(cursor :background "#d7ff00")
   '(highlight-numbers-number :foreground "#8e7cc3")
 
