@@ -11,6 +11,8 @@
       (append default-frame-alist
               '((width . 105)
                 (height . 40)
+                (left-fringe . 0)
+                (right-fringe . 0)
                 (drag-internal-border . t)
                 (internal-border-width . 3)
                 (inhibit-double-buffering . t))))
