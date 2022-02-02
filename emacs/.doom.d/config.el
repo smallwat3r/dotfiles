@@ -368,7 +368,8 @@
 
 (setq auto-mode-alist
       (append '(("\\.restclient" . restclient-mode)
-                ("abbrev_defs" . emacs-lisp-mode))
+                ("abbrev_defs" . emacs-lisp-mode)
+                ("Makefile.*" . makefile-mode))
               auto-mode-alist))
 
 (setq interpreter-mode-alist
