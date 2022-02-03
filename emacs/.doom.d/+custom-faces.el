@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/+custom-faces.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-solarized-dark-high-contrast)
+(setq doom-theme 'doom-sourcerer)
 
 ;; When using modus themes, let's change some default colors and settings
 (setq modus-themes-slanted-constructs nil
@@ -23,7 +23,6 @@
 
 ;; Lets override some faces to my liking
 (custom-set-faces!
-  '(default :background "black")  ; enforce a black bg
   '(cursor :background "#d7ff00")
 
   '((term
@@ -38,14 +37,15 @@
      slack-preview-face)
     :background unspecified)
 
+  '((font-lock-comment-face font-lock-doc-face)
+    :slant italic)
+
   '(evil-ex-search :background "#e69138"
                    :foreground "#222222"
                    :weight bold)
   '(evil-ex-lazy-highlight :background "#ffd966"
                            :foreground "#444444"
                            :weight bold)
-
-  '(lsp-face-highlight-textual :foreground "#bcbcbc")
 
   '(diff-refine-added :inherit magit-diff-added-highlight
                       :inverse-video nil
@@ -62,8 +62,9 @@
   '(font-lock-warning-face :foreground "red"
                            :underline (:color "red" :style wave))
 
-  '(flycheck-error :underline (:color "red" :style wave))
-  '(flycheck-warning :underline (:color "orange" :style wave))
+  '(flycheck-info :underline (:color "green" :style wave) :background unspecified)
+  '(flycheck-error :underline (:color "red" :style wave) :background unspecified)
+  '(flycheck-warning :underline (:color "orange" :style wave) :background unspecified)
 
   '((slack-mrkdwn-code-face slack-mrkdwn-code-block-face)
     :foreground "grey51" :inherit fixed-pitch)
