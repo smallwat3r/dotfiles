@@ -46,6 +46,7 @@
        syntax
 
        :tools
+       (debugger +lsp)
        docker
        editorconfig
        (eval +overlay)

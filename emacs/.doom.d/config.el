@@ -376,6 +376,13 @@
       (append '(("osascript" . applescript-mode))
               interpreter-mode-alist))
 
+;; Debugger
+;; doc: https://github.com/emacs-lsp/dap-mode
+
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy
+        dap-python-executable "python3"))
+
 
 ;;
 ;;; Vterm
