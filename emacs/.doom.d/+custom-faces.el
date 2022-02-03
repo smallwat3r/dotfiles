@@ -33,10 +33,7 @@
      markdown-language-keyword-face)
     :background unspecified)
 
-  '(italic :slant unspecified)  ; enforce no italics
-
   '(cursor :background "#d7ff00")
-  '(highlight-numbers-number :foreground "#8e7cc3")
 
   '(diff-refine-added :inherit magit-diff-added-highlight :inverse-video nil :weight bold)
   '(diff-refine-removed :inherit magit-diff-removed-highlight :inverse-video nil :weight bold)
@@ -45,6 +42,7 @@
   '(git-gutter-fr:modified :foreground "turquoise")
   '(git-gutter-fr:deleted :foreground "red")
 
+  '(font-lock-warning-face :foreground "red" :underline (:color "red" :style wave))
   '(flycheck-error :underline (:color "red" :style wave))
   '(flycheck-warning :underline (:color "orange" :style wave))
 

@@ -262,7 +262,8 @@
    (company--render-icons-margin company-vscode-icons-mapping
                                  (expand-file-name "vscode-dark" company-icons-root)
                                  candidate
-                                 selected) " "))
+                                 selected)
+   " "))
 
 (after! company
   (setq company-idle-delay 0.1
