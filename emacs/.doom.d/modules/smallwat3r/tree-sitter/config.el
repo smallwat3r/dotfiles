@@ -11,7 +11,7 @@
   :after tree-sitter
   :config
   (defvar my-tree-sitter-ignore-faces
-    '("property" "operator" "method.call" "function.call" "label")
+    '("property" "operator" "method.call" "function.call" "function.special" "label")
     "Alist of tree-sitter face attributes to ignore.")
 
   ;; Deactivate faces on some specific programming nodes, as I find this
