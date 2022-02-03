@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
-# Docker exec into
+# Docker exec into container
 
 if [[ -z "$1" ]]; then
   printf 'Please specify an image.\n'
 else
-  _name=$(
-    docker ps \
-      | grep "$1" 2>/dev/null \
-      | cut -d ' ' -f1
-  )
-  docker exec -it "$_name" /bin/sh 2>/dev/null \
+  docker exec -it \
+    "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" "${2:-/bin/sh}" 2>/dev/null \
     || printf 'Error finding %s\n' "$1" >&2
 fi
