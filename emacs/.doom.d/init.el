@@ -13,6 +13,7 @@
        vertico
 
        :ui
+       doom
        doom-dashboard
        (emoji +unicode)
        hl-todo
