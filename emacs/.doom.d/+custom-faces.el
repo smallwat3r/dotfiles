@@ -38,6 +38,15 @@
      slack-preview-face)
     :background unspecified)
 
+  '(evil-ex-search :background "#e69138"
+                   :foreground "#222222"
+                   :weight bold)
+  '(evil-ex-lazy-highlight :background "#ffd966"
+                           :foreground "#444444"
+                           :weight bold)
+
+  '(lsp-face-highlight-textual :foreground "#bcbcbc")
+
   '(diff-refine-added :inherit magit-diff-added-highlight
                       :inverse-video nil
                       :weight bold
