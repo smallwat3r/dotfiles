@@ -67,7 +67,7 @@ set nobackup
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set undolevels=4000
 set undoreload=100000
-set undodir=~/.config/nvim/undodir
+set undodir=~/.vim/undodir
 set undofile
 
 " Indentation
@@ -198,6 +198,7 @@ let g:shfmt_opt = '-ci'
 
 nmap ;f :Neoformat<cr>
 
+Plug 'tpope/vim-vividchalk'            " Theme
 Plug 'tpope/vim-commentary'            " Comments mappings
 Plug 'tpope/vim-fugitive'              " Git wrapper
 nnoremap <leader>gd :Gvdiffsplit!<cr>
@@ -221,9 +222,6 @@ augroup END
 
 let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
-
-" Plug 'vifm/vifm.vim'                   " File manager (commented out as using Vaffle as a file explorer)
-"   nnoremap <silent>- :execute 'Vifm ' . ((strlen(bufname('')) == 0) ? '.' : '%:h')<CR>
 
 Plug 'Vimjas/vim-python-pep8-indent'   " Better python indentation
 
@@ -285,7 +283,7 @@ nmap B ^
 nmap E $
 
 " join to previous line
-nmap <silent>`j :-join<CR>
+nmap <silent><C-k> :-join<CR>
 
 " navigate between brackets
 nmap <tab> %
@@ -296,9 +294,6 @@ nmap <leader><leader> `.
 " align paragraph
 nmap <leader>a =ip
 
-" copy paragraph
-nmap cp yap<S-}>p
-
 " delete to blackhole register (don't lose previous yank)
 nmap s  "_d
 nmap ss "_dd
@@ -306,55 +301,28 @@ nmap ss "_dd
 " remove search highlight
 map <silent><leader><space> :nohlsearch<cr>
 
-" edit config file
-nmap <leader>e :e! $MYVIMRC<cr>
-
-" source init.vim
-nmap <silent><leader>so :source $MYVIMRC<cr>:echo 'config sourced'<cr>
-
 " cd into current buffer directory
 nmap <silent><leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " cd into previous directory
 nmap <silent><leader>cdp :cd ..<cr>:pwd<cr>
 
-" pwd
-nmap <leader>d :pwd<cr>
-
 " delete current buffer
-nmap <silent>;d :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
+nmap <silent><space>bd :bp\|bd #<cr>:echo 'Buffer deleted'<cr>
 
-" toggle spell
-nmap <leader>sp :setl spell!<cr>
-
-" quick write & quit
+" quick write and exit
 nmap ;w :w<cr>
-nmap ;q :q!<cr>
-nmap ;x :x<cr>
+nmap ;q :q<cr>
 
 " splits
-nmap ;sp :sp<cr>
-nmap ;vs :vs<cr>
-
-" quick substitutes (whole file)
-nmap ;s/ :%s///g<left><left><left>
+nmap <space>ws :sp<cr>
+nmap <space>wv :vs<cr>
 
 " navigate window panels
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
-" extend previous search
-nmap // /<C-R>/
-
-" window scroll
-nmap <A-j> <C-e>
-nmap <A-k> <C-y>
-
-" case insensitive replace word (aka multiple cursors)
-nmap <leader>x /\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgn
-nmap <leader>X ?\<<C-R>=expand('<cword>')<cr>\>\C<cr>``cgN
+nmap <space>wh <C-w>h
+nmap <space>wj <C-w>j
+nmap <space>wk <C-w>k
+nmap <space>wl <C-w>l
 
 " resize splits
 nmap <silent><S-k> :res +5<cr>
@@ -385,7 +353,6 @@ xmap < <gv
 " vaa select the entire file
 xmap aa VGo1G
 
-
 "}}}2 visual mode
 "{{{2 insert mode
 
@@ -396,31 +363,13 @@ imap <expr> <s-tab> pumvisible() ? '<c-p>' : '<s-tab>'
 " jk works as esc
 imap jk <esc>
 
-" hjkl insert go-to (new line or end/start of line)
-imap 1h <esc>I
-imap 1j <esc>o
-imap 1k <esc>O
-imap 1l <esc>A
-
 " crtl + hjkl cursor movement on insert mode
 imap <C-h> <left>
 imap <C-j> <down>
 imap <C-k> <up>
 imap <C-l> <right>
 
-" Delete a word
-imap <C-d> <ESC>ciw
-
 "}}}2 insert mode
-"{{{2 command mode
-
-" crtl + hjkl cursor movement on command mode
-cmap <C-h> <left>
-cmap <C-j> <down>
-cmap <C-k> <up>
-cmap <C-l> <right>
-
-"}}}2 command mode
 "{{{2 insert mode abbreviations
 
 " Personal stuff
@@ -470,6 +419,20 @@ function! GitInfo()
   endtry
   return ''
 endfunction
+
+function! StatuslineColors() abort
+  hi SLCommandColor  ctermbg=210 ctermfg=88
+  hi SLInsertColor   ctermbg=157 ctermfg=22
+  hi SLNormalColor   ctermbg=15  ctermfg=233
+  hi SLReplaceColor  ctermbg=159 ctermfg=17
+  hi SLTerminalColor ctermbg=230 ctermfg=136
+  hi SLVisualColor   ctermbg=222 ctermfg=166
+endfunction
+
+augroup statusline_colors
+  au!
+  au ColorScheme * call StatuslineColors()
+augroup END
 
 " Manage statusline colors from vim mode
 function! ColorMode()
@@ -523,7 +486,6 @@ let &t_SI .= '\e[6 q' " INSERT mode
 let &t_SR .= '\e[4 q' " REPLACE mode
 let &t_EI .= '\e[2 q' " NORMAL mode or others
 
-" Custom colors (overwriting current colorscheme)
 function! DefaultColors() abort
   if &diff
     syntax off
@@ -552,25 +514,16 @@ function! DefaultColors() abort
   hi Todo         ctermbg=NONE ctermfg=120
   hi VertSplit    ctermfg=242  ctermbg=NONE cterm=NONE
   hi Visual       cterm=reverse
-
-  " Custom statusline colors
-  hi SLCommandColor  ctermbg=210 ctermfg=88
-  hi SLInsertColor   ctermbg=157 ctermfg=22
-  hi SLNormalColor   ctermbg=15  ctermfg=233
-  hi SLReplaceColor  ctermbg=159 ctermfg=17
-  hi SLTerminalColor ctermbg=230 ctermfg=136
-  hi SLVisualColor   ctermbg=222 ctermfg=166
 endfunction
 
-augroup custom_colors
-  au!
-  au ColorScheme * call DefaultColors()
-augroup END
-
 try
-  colo codedark
+  colo vividchalk
 catch /^Vim\%((\a\+)\)\=:E185/
   colo elflord
+  augroup custom_colors
+    au!
+    au ColorScheme * call DefaultColors()
+  augroup END
 endtry
 
 "}}}1 Theme
