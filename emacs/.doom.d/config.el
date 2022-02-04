@@ -84,7 +84,16 @@
 ;;
 ;;; Themes
 
-(load! "+custom-faces")
+(setq doom-theme 'simplicity)
+
+;; Make sure these are always disabled on all themes, it helps focus
+(custom-set-faces!
+  '((font-lock-function-name-face
+     font-lock-variable-name-face
+     font-lock-constant-face
+     font-lock-builtin-face
+     font-lock-type-face)
+    :foreground unspecified :weight normal))
 
 
 ;;
