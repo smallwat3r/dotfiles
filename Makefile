@@ -24,7 +24,7 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 		emacs \
 		git \
 		gnupg \
-		formatters \
+		linters \
 		mail \
 		ssh \
 		tmux \
