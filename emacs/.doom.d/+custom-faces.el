@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/+custom-faces.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-sourcerer)
+(setq doom-theme 'modus-vivendi)
 
 ;; When using modus themes, let's change some default colors and settings
 (setq modus-themes-slanted-constructs nil
@@ -37,9 +37,6 @@
      slack-preview-face)
     :background unspecified)
 
-  '((font-lock-comment-face font-lock-doc-face)
-    :slant italic)
-
   '(evil-ex-search :background "#e69138"
                    :foreground "#222222"
                    :weight bold)
@@ -59,6 +56,10 @@
                         :weight bold
                         :foreground "blue")
 
+  '(git-gutter-fr:added :foreground "lime green")
+  '(git-gutter-fr:modified :foreground "turquoise")
+  '(git-gutter-fr:deleted :foreground "red")
+
   '(font-lock-warning-face :foreground "red"
                            :underline (:color "red" :style wave))
 
@@ -75,8 +76,8 @@
   '((font-lock-function-name-face
      font-lock-variable-name-face
      font-lock-constant-face
-     font-lock-type-face
-     font-lock-builtin-face)
+     font-lock-builtin-face
+     font-lock-type-face)
     :foreground unspecified :weight normal)
 
   '((web-mode-html-attr-equal-face

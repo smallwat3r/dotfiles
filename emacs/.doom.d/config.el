@@ -68,8 +68,8 @@
 ;;
 ;;; Fonts
 
-(let* ((font "Fantasque Sans Mono")
-       (font-size 15))
+(let* ((font "Monaco")
+       (font-size 13))
   (setq doom-font (font-spec :family font :size font-size)
         doom-serif-font (font-spec :family font :size font-size)
         doom-variable-pitch-font (font-spec :family font :size font-size)))
@@ -77,7 +77,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 1)
 (setq-default tab-width 8)
 
 
