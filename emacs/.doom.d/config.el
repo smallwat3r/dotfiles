@@ -107,16 +107,6 @@
 (after! which-key
   (setq which-key-idle-delay 0.1))
 
-;; Vertical file explorer
-;; doc: https://github.com/Alexander-Miller/treemacs
-
-(after! treemacs
-  (setq doom-themes-treemacs-enable-variable-pitch t
-        doom-themes-treemacs-line-spacing 0
-        doom-themes-treemacs-theme "doom-colors"
-        treemacs-width 35)
-  (treemacs-resize-icons 14))
-
 ;; Git fringe indicator
 ;; doc: https://github.com/emacsorphanage/git-gutter-fringe
 
@@ -228,8 +218,9 @@
 
 
 ;;
-;;; File explorer
+;;; File explorers
 
+;; Dired
 ;; doc: https://www.emacswiki.org/emacs/DiredMode
 ;;      https://github.com/Fuco1/dired-hacks
 
@@ -248,6 +239,16 @@
 (use-package! dired-subtree
   :after dired
   :commands (dired-subtree-toggle dired-subtree-cycle))
+
+;; Treemacs
+;; doc: https://github.com/Alexander-Miller/treemacs
+
+(after! treemacs
+  (setq doom-themes-treemacs-enable-variable-pitch t
+        doom-themes-treemacs-line-spacing 0
+        doom-themes-treemacs-theme "doom-colors"
+        treemacs-width 35)
+  (treemacs-resize-icons 14))
 
 
 ;;
