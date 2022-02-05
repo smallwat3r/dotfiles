@@ -68,11 +68,12 @@
 ;;
 ;;; Fonts
 
-(let* ((font "Monaco")
+(let* ((font-default "Monaco")
+       (font-pitch "Menlo")
        (font-size 13))
-  (setq doom-font (font-spec :family font :size font-size)
-        doom-serif-font (font-spec :family font :size font-size)
-        doom-variable-pitch-font (font-spec :family font :size font-size)))
+  (setq doom-font (font-spec :family font-default :size font-size)
+        doom-serif-font (font-spec :family font-default :size font-size)
+        doom-variable-pitch-font (font-spec :family font-pitch :size font-size)))
 
 (setq doom-font-increment 1
       doom-big-font-increment 2)
@@ -86,8 +87,14 @@
 
 (setq doom-theme 'simplicity)
 
-;; Make sure these are always disabled on all themes, it helps focus
+;; Enforce these faces for all the themes
 (custom-set-faces!
+  '((markdown-inline-code-face
+     markdown-code-face
+     org-block
+     org-inline-src-block )
+    :inherit variable-pitch)
+
   '((font-lock-function-name-face
      font-lock-variable-name-face
      font-lock-constant-face
