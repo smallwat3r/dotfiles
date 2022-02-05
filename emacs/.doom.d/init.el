@@ -78,5 +78,8 @@
        :email
        notmuch
 
+       :app
+       everywhere
+
        :config
        (default +bindings +smartparens))

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-# Build macos dock
+# Build macOS dock
+
+if [ "$(uname -s)" != "Darwin" ]; then
+  printf 'This script must be ran from a Darwin system.\n'
+  exit 0
+fi
 
 dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/Emacs.app"
