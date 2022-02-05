@@ -67,6 +67,7 @@
        (go +lsp)
        (javascript +lsp)
        json
+       lua
        (markdown +grip)
        (org +journal)
        (python +lsp +pyright)
