@@ -89,6 +89,8 @@
 
 ;; Enforce these faces for all the themes
 (custom-set-faces!
+  '(italic :slant normal)
+
   '((markdown-inline-code-face
      markdown-code-face
      org-block
