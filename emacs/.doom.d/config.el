@@ -69,7 +69,7 @@
 ;;; Fonts
 
 (let* ((font-default "Monaco")
-       (font-pitch "Menlo")
+       (font-pitch "Courier")
        (font-size 13))
   (setq doom-font (font-spec :family font-default :size font-size)
         doom-serif-font (font-spec :family font-default :size font-size)
@@ -92,6 +92,7 @@
   '((markdown-inline-code-face
      markdown-code-face
      org-block
+     org-code
      org-inline-src-block )
     :inherit variable-pitch)
 
