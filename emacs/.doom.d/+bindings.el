@@ -8,7 +8,8 @@
   "C-h" #'evil-backward-char
   "C-l" #'evil-forward-char
   "C-k" #'evil-previous-line
-  "C-j" #'evil-next-line)
+  "C-j" #'evil-next-line
+  "<F18>" #'evil-normal-state)
 
  (:map evil-visual-state-map
   ";f" #'+format/region)

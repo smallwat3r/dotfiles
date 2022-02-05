@@ -25,6 +25,12 @@
         ns-use-proxy-icon nil
         ns-use-fullscreen-animation nil))
 
+(after! emacs-everywhere
+  (setq emacs-everywhere-frame-parameters
+        `((name . "emacs-everywhere")
+          (width . 90)
+          (height . 20))))
+
 
 ;;
 ;;; General
