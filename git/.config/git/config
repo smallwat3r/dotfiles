@@ -7,10 +7,7 @@ autocrlf = input
 editor = emacsclient
 
 [merge]
-tool = vimdiff
-
-[mergetool "vimdiff"]
-path = nvim
+conflictstyle = diff3
 
 [pull]
 rebase = true
@@ -25,18 +22,18 @@ insteadOf = gh:
 insteadOf = gist:
 
 [alias]
-find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
 a = add
 b = branch
 c = commit -v --message
 ca = commit -v --amend --message
 co = checkout
 d = diff
+find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+init-empty = !"f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
 p = push
+rhh = reset --hard HEAD
 s = status
 ss = status --short
-rhh = reset --hard HEAD
-init-empty = !"f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
 
 [filter "lfs"]
 required = true
