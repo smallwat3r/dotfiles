@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 # macOS preferences
 
+if [ "$(uname -s)" != "Darwin" ]; then
+  printf 'This script must be ran from a Darwin system.\n'
+  exit 0
+fi
+
+# Set highlight color to green
+defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+
 # Font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 3
 defaults write org.gnu.Emacs AppleFontSmoothing -int 0
@@ -21,14 +29,13 @@ defaults write com.apple.dock show-recents           -bool  false
 defaults write com.apple.dock autohide-time-modifier -float 0.25
 defaults write com.apple.dock tilesize               -int   25
 
-# Disable special characters when holding keys
+# Blazing fast key repeat
+defaults write NSGlobalDomain KeyRepeat -int 0
+
+# Disable special characters when holding keys (this allows super fast keyrepeat)
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Keyrepeat
-defaults write -g InitialKeyRepeat -int 8
-defaults write -g KeyRepeat        -int 1
-
-# Text
+# Disable auto-correct, capitalisation and substitution
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled     -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
@@ -42,6 +49,35 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Mission Control' n
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Application windows' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move left a space' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move right a space' nil
+
+# Finder settings
+defaults write NSGlobalDomain   AppleShowAllExtensions  -bool true
+defaults write com.apple.finder ShowStatusBar           -bool true
+defaults write com.apple.finder ShowPathbar             -bool true
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Do not ask confirmation for changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Do not create .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Enforce finder list view
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+
+# Do not send search queries to Apple when using Safari
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
+# Visualize CPU usage in the Activity Monitor Dock icon
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+# Show all processes in Activity Monitor
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+# Sort Activity Monitor results by CPU usage
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 # Restart dock
 killall Dock
