@@ -21,6 +21,10 @@ insteadOf = gh:
 [url "https://gist.github.com/"]
 insteadOf = gist:
 
+[format]
+pretty = format:%Cred%h%Creset - %Cgreen%an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset
+date = relative
+
 [alias]
 a = add
 b = branch
@@ -37,3 +41,24 @@ ss = status --short
 
 [credential]
 helper = store
+
+[color]
+branch = auto
+diff = auto
+status = auto
+
+[color "branch"]
+current = yellow reverse
+local = yellow
+remote = green
+
+[color "diff"]
+meta = yellow bold
+frag = magenta bold
+old = red bold
+new = green bold
+
+[color "status"]
+added = yellow
+changed = green
+untracked = cyan
