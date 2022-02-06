@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Initialise emacs daemon to boot on start up
+
+launchctl load -w ~/Library/LaunchAgents/gnu.emacs.daemon.plist

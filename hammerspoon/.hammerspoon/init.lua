@@ -15,6 +15,12 @@ end
 -- Karabiner is mapping F18 to caps-lock, this works as our hyper key
 f18 = hs.hotkey.bind({}, 'F18', enterHyperMode, exitHyperMode)
 
+-- Trigger emacs client
+hyper:bind({}, "c", function()
+  hs.task.new("/bin/bash", nil, { "-l", "-c", "emacsclient -c" }):start()
+  hyper.triggered = true
+end)
+
 -- Trigger emacs-everywhere
 hyper:bind({}, "e", function()
   hs.task.new("/bin/bash", nil, { "-l", "-c", "emacsclient --eval '(emacs-everywhere)'" }):start()
