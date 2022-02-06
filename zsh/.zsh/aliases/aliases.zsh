@@ -41,8 +41,6 @@ alias etmu="$EDITOR $HOME/.config/tmux/tmux.conf"
 alias evim="$EDITOR $HOME/.config/nvim/init.vim"
 alias ezsh="$EDITOR $HOME/.zsh"
 
-alias ec="emacsclient"
-
 alias v="nvim"
 alias vi="nvim"
 alias vidiff="nvim -d"
