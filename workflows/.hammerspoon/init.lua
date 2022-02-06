@@ -1,3 +1,8 @@
+-- smallwat3r's hammerspoon config
+
+-- Karabiner is mapping a virtual F18 key to caps-lock, so we can use
+-- it from Hammerspoon to enter hyper mode
+
 hyper = hs.hotkey.modal.new({}, 'F17')
 
 function enterHyperMode()
@@ -12,17 +17,7 @@ function exitHyperMode()
   end
 end
 
--- Karabiner is mapping F18 to caps-lock, this works as our hyper key
 f18 = hs.hotkey.bind({}, 'F18', enterHyperMode, exitHyperMode)
 
--- Trigger emacs client
-hyper:bind({}, "c", function()
-  hs.task.new("/bin/bash", nil, { "-l", "-c", "emacsclient -a '' -c" }):start()
-  hyper.triggered = true
-end)
-
--- Trigger emacs-everywhere
-hyper:bind({}, "e", function()
-  hs.task.new("/bin/bash", nil, { "-l", "-c", "emacsclient -a '' --eval '(emacs-everywhere)'" }):start()
-  hyper.triggered = true
-end)
+require('z-emacs-bindings')
+require('z-ctrl-hjkl-to-arrows')

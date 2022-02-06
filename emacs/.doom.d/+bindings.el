@@ -25,7 +25,7 @@
   "M-o" #'delete-blank-lines
   ";d" #'my/save-and-close-buffer
   ";w" #'my/save-buffer
-  "C-k" #'join-line
+  "M-k" #'join-line
   "B" #'beginning-of-line-text
   "E" #'end-of-line)
 
