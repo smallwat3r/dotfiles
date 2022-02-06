@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Start emacs daemon
+
+emacs --daemon

@@ -75,7 +75,7 @@
 ;;; Fonts
 
 (let* ((font-default "Monaco")
-       (font-pitch "Courier")
+       (font-pitch "Menlo")
        (font-size 13))
   (setq doom-font (font-spec :family font-default :size font-size)
         doom-serif-font (font-spec :family font-default :size font-size)
