@@ -20,7 +20,6 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 	@stow \
 		alacritty \
 		bin \
-		chemacs \
 		emacs \
 		git \
 		gnupg \
