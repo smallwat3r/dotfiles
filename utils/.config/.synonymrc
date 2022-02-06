@@ -1,0 +1,2 @@
+SYNONYM_THESAURUS_KEY=$(pass synonym/thesaurus/key)
+SYNONYM_SEARCH_LANG=en

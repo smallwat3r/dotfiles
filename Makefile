@@ -18,18 +18,17 @@ install: npm pip symlink nvim brew ## * Install everything and symlink
 symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 	@stow stow -vv -t $(HOME)  # must be run first, symlink the stow config file
 	@stow \
-		alacritty \
 		bin \
 		emacs \
 		git \
 		gnupg \
-		hammerspoon \
-		karabiner \
 		linters \
 		mail \
 		ssh \
-		tmux \
+		terminal \
+		utils \
 		vim \
+		workflows \
 		zsh \
 		-vv -t $(HOME)
 	@echo ''
