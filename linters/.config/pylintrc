@@ -1,6 +1,7 @@
 [MESSAGES CONTROL]
 
 disable=bad-continuation,
+        consider-using-f-string,
         import-error,
         import-outside-toplevel,
         inconsistent-return-statements,

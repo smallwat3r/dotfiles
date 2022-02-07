@@ -18,13 +18,10 @@ precmd_functions+=(
 )
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' stagedstr '%F{green}+'
-zstyle ':vcs_info:*' unstagedstr '%F{yellow}!'
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' formats '(%b)%m%c%u'
+zstyle ':vcs_info:*' check-for-changes false  # less expensive
+zstyle ':vcs_info:*' formats ' (%b)'
 
-RPROMPT=\$vcs_info_msg_0_
-PROMPT='%(?..%F{red}?%? )%f$(__is_venv)%F{cyan}%2~%f %# '
+PROMPT='%(?..%F{red}?%? )%f$(__is_venv)%F{cyan}%2~%f${vcs_info_msg_0_} %# '
 
 # When outside of emacs, activate tmux by default and use the individual pane titles
 # to display the main prompt information.
