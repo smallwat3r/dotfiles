@@ -1,9 +1,9 @@
 local hotkey = require "hs.hotkey"
 
--- Trigger new emacs client
+-- New emacs client
 hotkey.bind(
   mod_cmd,
-  'n',
+  'e',
   function()
     hs.task.new('/usr/bin/osascript', nil, { '-e', 'display notification "New Emacs client!"' }):start()
     hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" -c' }):start()
@@ -13,7 +13,7 @@ hotkey.bind(
 -- Trigger emacs-everywhere
 hotkey.bind(
   mod_cmd,
-  'e',
+  '.',
   function()
     hs.task.new('/usr/bin/osascript', nil, { '-e', 'display notification "Emacs everywhere!"' }):start()
     hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" --eval "(emacs-everywhere)"' }):start()
