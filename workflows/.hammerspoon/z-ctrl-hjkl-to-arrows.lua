@@ -1,6 +1,3 @@
--- Remap Ctrl+hjkl to arrow keys
--- src: https://github.com/kkamdooong/hammerspoon-control-hjkl-to-arrow/blob/master/init.lua
-
 local function pressFn(mods, key)
   if key == nil then
     key = mods
