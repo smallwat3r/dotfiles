@@ -25,9 +25,10 @@ defaults write com.apple.Terminal ShowLineMarks       -bool   false
 defaults write com.apple.Terminal AppleShowScrollBars -string 'Automatic'
 
 # Dock
-defaults write com.apple.dock show-recents           -bool  false
-defaults write com.apple.dock autohide-time-modifier -float 0.25
-defaults write com.apple.dock tilesize               -int   25
+defaults write com.apple.dock show-recents   -bool  false
+defaults write com.apple.Dock autohide       -bool  true
+defaults write com.apple.dock autohide-delay -float 0.0001
+defaults write com.apple.dock tilesize       -int   25
 
 # Blazing fast key repeat
 defaults write -g InitialKeyRepeat -int 8
