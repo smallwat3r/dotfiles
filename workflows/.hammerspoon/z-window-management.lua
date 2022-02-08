@@ -37,3 +37,12 @@ hotkey.bind(mod_cmd, 'k', grid.resizeWindowShorter)
 hotkey.bind(mod_cmd, 'j', grid.resizeWindowTaller)
 hotkey.bind(mod_cmd, 'l', grid.resizeWindowWider)
 hotkey.bind(mod_cmd, 'h', grid.resizeWindowThinner)
+
+-- Hints
+hotkey.bind(
+  mod_ctrl_cmd,
+  'h',
+  function()
+    hs.hints.windowHints()
+  end
+)
