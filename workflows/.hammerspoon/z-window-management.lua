@@ -40,8 +40,8 @@ hotkey.bind(mod_cmd, 'h', grid.resizeWindowThinner)
 
 -- Hints
 hotkey.bind(
-  mod_ctrl_cmd,
-  'u',
+  mod_alt,
+  'Tab',
   function()
     hs.hints.windowHints()
   end
