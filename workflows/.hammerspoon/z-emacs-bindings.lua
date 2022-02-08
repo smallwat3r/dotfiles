@@ -5,7 +5,7 @@ hotkey.bind(
   mod_cmd,
   'e',
   function()
-    hs.task.new('/usr/bin/osascript', nil, { '-e', 'display notification "New Emacs client!"' }):start()
+    hs.alert.show("New Emacs client!")
     hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" -c' }):start()
   end
 )
@@ -15,7 +15,7 @@ hotkey.bind(
   mod_cmd,
   '.',
   function()
-    hs.task.new('/usr/bin/osascript', nil, { '-e', 'display notification "Emacs everywhere!"' }):start()
+    hs.alert.show("Emacs everywhere!")
     hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" --eval "(emacs-everywhere)"' }):start()
   end
 )
@@ -26,6 +26,6 @@ hotkey.bind(
   'x',
   function()
     hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -e "(kill-emacs)"' }):start()
-    hs.task.new('/usr/bin/osascript', nil, { '-e', 'display notification "Stopped Emacs daemon!"' }):start()
+    hs.alert.show("Stopped Emacs daemon!")
   end
 )
