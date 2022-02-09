@@ -2,6 +2,7 @@
 
 mod_alt = {'alt'}
 mod_cmd = {'cmd'}
+mod_ctrl = {'alt'}
 mod_ctrl_cmd = {'ctrl', 'cmd'}
 
 require('z-emacs-bindings')
