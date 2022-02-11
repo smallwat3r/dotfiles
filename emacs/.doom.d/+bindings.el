@@ -1,5 +1,9 @@
 ;;; $DOOMDIR/+bindings.el -*- lexical-binding: t; -*-
 
+;; Disable keys, due to other conflicts (Hammerspoon etc)
+(map! "M-k" nil
+      "M-j" nil)
+
 (map!
  (:map key-translation-map
   "M-3" "#") ; Make sure M-3 prints a hash symbol
@@ -24,7 +28,7 @@
   "M-o" #'delete-blank-lines
   ";d" #'my/save-and-close-buffer
   ";w" #'my/save-buffer
-  "M-k" #'join-line
+  "C-k" #'join-line
   "B" #'beginning-of-line-text
   "E" #'end-of-line)
 
