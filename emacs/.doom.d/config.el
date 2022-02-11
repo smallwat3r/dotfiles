@@ -313,7 +313,7 @@
 ;; doc: https://github.com/magit/magit
 
 (after! magit
-  (setq git-commit-summary-max-length 70))
+  (setq git-commit-summary-max-length 90))
 
 ;; Interactive code analysis and linting
 ;; doc: https://www.flycheck.org/en/latest/
