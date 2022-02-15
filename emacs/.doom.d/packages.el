@@ -18,7 +18,13 @@
 (package! applescript-mode)
 (package! nginx-mode)
 (package! vimrc-mode)
-(package! tubestatus)
-(package! untappd)
 (package! keycast)
-(package! simplicity-theme)
+
+(package! tubestatus :recipe
+  (:host github :repo "smallwat3r/tubestatus.el"))
+
+(package! untappd :recipe
+  (:host github :repo "smallwat3r/untappd.el"))
+
+(package! simplicity-theme :recipe
+  (:host github :repo "smallwat3r/emacs-simplicity-theme"))
