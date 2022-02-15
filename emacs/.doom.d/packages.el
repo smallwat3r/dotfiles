@@ -21,5 +21,4 @@
 (package! tubestatus)
 (package! untappd)
 (package! keycast)
-(package! simplicity-theme :recipe
-  (:host github :repo "smallwat3r/emacs-simplicity-theme"))
+(package! simplicity-theme)
