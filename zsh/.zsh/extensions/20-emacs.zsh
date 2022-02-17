@@ -11,9 +11,23 @@ if [[ "${INSIDE_EMACS}" = 'vterm' ]] \
   source "${EMACS_VTERM_PATH}"/etc/emacs-vterm-zsh.sh
 fi
 
-projectile-clean-cache() {
+# Utils
+
+emacs-projectile-clear-cache() {
   if [[ -f "${EMACS_DOOM}/.local/cache/projectile.cache" ]]; then
     rm "${EMACS_DOOM}/.local/cache/projectile.cache"
-    printf "Projectile cache cleaned.\n"
+    printf 'Projectile cache has been cleared.\n'
+  fi
+}
+
+emacs-straight-clear-cache() {
+  if read -q 'REPLY?It might be slow to rebuild the packages once cache is cleared. Press Y/y to continue: '; then
+    local straight="${EMACS_DOOM}/.local/straight"
+
+    if [[ -d "${straight}/repos/melpa" ]]; then
+      git -C "${straight}/repos/melpa" pull
+      find "${straight}" -type f -name 'build-*cache.el' -delete
+      printf 'Straight cache has been cleared.\n'
+    fi
   fi
 }
