@@ -139,7 +139,9 @@
 (defun my/where-am-i ()
   "Show where I'm at."
   (interactive)
-  (message (kill-new (if (buffer-file-name) (buffer-file-name) (buffer-name)))))
+  (message (kill-new (if (buffer-file-name)
+                         (buffer-file-name)
+                       (buffer-name)))))
 
 ;;;###autoload
 (defun my/vterm/toggle-current-buffer ()
@@ -158,5 +160,7 @@
   "Open alacritty from the current directory."
   (interactive "@")
   (shell-command
-   (format "alacritty --working-directory %S >/dev/null 2>&1 & disown"
-           default-directory)))
+   (format "INSIDE_EMACS=1 alacritty --working-directory %S >/dev/null 2>&1 & disown"
+           (if (buffer-file-name)
+               (file-name-directory (buffer-file-name))
+             "$HOME"))))
