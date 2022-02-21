@@ -21,7 +21,14 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false  # less expensive
 zstyle ':vcs_info:*' formats ' (%b)'
 
-PROMPT='%(?..%F{red}?%? )%f$(__is_venv)%F{cyan}%2~%f${vcs_info_msg_0_} %# '
+# Placeholder to manually input custom text in prompt, set __=XXX in the shell
+_placeholder() {
+  if [ ! -z "${__}" ]; then
+    echo "%B%F{87}%K{20}[${(U)__}]%b%f%k "
+  fi
+}
+
+PROMPT='%(?..%F{red}?%? )$(_placeholder)$(__is_venv)%F{cyan}%2~%f${vcs_info_msg_0_} %# '
 
 # When outside of emacs, activate tmux by default and use the individual pane titles
 # to display the main prompt information.
