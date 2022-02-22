@@ -42,5 +42,7 @@ if [[ ! "${INSIDE_EMACS}" || "${INSIDE_EMACS}" = 'alacritty' ]]; then
     echo -ne '\e[5 q'
   }
 
-  precmd_functions+=(__fix_cursor)
+  precmd_functions+=(
+    __fix_cursor
+  )
 fi
