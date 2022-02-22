@@ -22,7 +22,7 @@ if [[ ! "${INSIDE_EMACS}" || "${INSIDE_EMACS}" = 'alacritty' ]]; then
   bindkey -M vicmd 'y' __vi_yank_pbcopy
 
   # Manage cursor shape from insert and normal modes
-  function zle-keymap-select {
+  zle-keymap-select() {
     if [[ "${KEYMAP}" == vicmd ]] \
       || [[ $1 = 'block' ]]; then
       echo -ne '\e[1 q'
