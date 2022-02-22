@@ -160,7 +160,7 @@
   "Open alacritty from the current directory."
   (interactive "@")
   (shell-command
-   (format "INSIDE_EMACS=1 alacritty --working-directory %S >/dev/null 2>&1 & disown"
+   (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
            (if (buffer-file-name)
                (file-name-directory (buffer-file-name))
              "$HOME"))))
