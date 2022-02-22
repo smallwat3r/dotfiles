@@ -170,6 +170,12 @@
   (setq evil-goggles-duration 0.25)
   (evil-goggles-use-magit-faces))
 
+;; Evil escape
+;; doc: https://github.com/syl20bnr/evil-escape
+
+(after! evil-escape
+  (setq evil-escape-excluded-major-modes '(treemacs-mode)))
+
 
 ;;
 ;;; Custom templates
@@ -421,6 +427,7 @@
 
   (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)  ; always display modeline
 
+  ;; Used in bindings
   (defun my/vterm-delete-word ()
     (interactive)
     (vterm-send-key (kbd "C-w"))))
