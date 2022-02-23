@@ -444,7 +444,6 @@
 (add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
 
 ;; Disable company in eshell
-;; (setq-hook! 'eshell-mode-hook company-idle-delay nil)
 (add-hook! 'eshell-mode-hook (company-mode -1))
 
 (after! eshell
