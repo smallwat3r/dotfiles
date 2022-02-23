@@ -1,12 +1,7 @@
 # Alacritty config
 
-# {{{ env
-
 env:
   TERM: alacritty
-
-# }}} env
-# {{{ window
 
 window:
   dimensions:
@@ -16,9 +11,6 @@ window:
   padding:
     x: 0
     y: 0
-
-# }}} window
-# {{{ font
 
 font:
   normal:
@@ -36,9 +28,6 @@ font:
 
   use_thin_strokes: true
 
-# }}} font
-# {{{ colors
-
 background_opacity: 1
 
 colors:
@@ -52,9 +41,6 @@ colors:
   vi_mode_cursor:
     text: CellBackground
     cursor: "#d7ff00"
-
-# }}} colors
-# {{{ mouse / cursor
 
 cursor:
   style:
@@ -82,9 +68,6 @@ selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
 
-# }}} mouse / cursor
-# {{{ other
-
 live_config_reload: true
 alt_send_esc: true
 
@@ -98,9 +81,6 @@ debug:
   print_events: false
   ref_test: false
 
-# }}} other
-# {{{ keybindings
-
 key_bindings:
   # Fix hash char on UK keyboard
   - { key: Key3, mods: Alt, chars: "\x23" }
@@ -109,5 +89,3 @@ key_bindings:
   - { key: J, mods: Alt, chars: "\x1bj" }
   - { key: K, mods: Alt, chars: "\x1bk" }
   - { key: H, mods: Alt, chars: "\x1bh" }
-
-# }}} keybindings
