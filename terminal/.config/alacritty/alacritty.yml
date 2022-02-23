@@ -4,7 +4,6 @@ window:
   dimensions:
     columns: 140
     lines: 40
-
   padding:
     x: 0
     y: 0
@@ -12,17 +11,13 @@ window:
 font:
   normal:
     family: Monaco
-
   size: 13
-
   offset:
     x: 1
     y: 5
-
   glyph_offset:
     x: 0
     y: 0
-
   use_thin_strokes: true
 
 background_opacity: 1
@@ -30,12 +25,7 @@ background_opacity: 1
 colors:
   primary:
     background: "#000000"
-
   cursor:
-    text: CellBackground
-    cursor: "#d7ff00"
-
-  vi_mode_cursor:
     text: CellBackground
     cursor: "#d7ff00"
 
@@ -43,27 +33,7 @@ cursor:
   style:
     shape: Block
     blinking: Always
-
-  vi_cursor_style:
-    shape: Block
-    blinking: Always
-
   blink_interval: 450
-  unfocused_hollow: true
-  thickness: 0.15
-
-mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
-
-mouse:
-  double_click: { threshold: 300 }
-  triple_click: { threshold: 300 }
-
-  hide_when_typing: true
-
-selection:
-  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
-  save_to_clipboard: true
 
 live_config_reload: true
 alt_send_esc: true
@@ -71,18 +41,8 @@ alt_send_esc: true
 bell:
   duration: 0
 
-debug:
-  render_timer: false
-  persistent_logging: false
-  log_level: Warn
-  print_events: false
-  ref_test: false
-
 key_bindings:
-  # Fix hash char on UK keyboard
   - { key: Key3, mods: Alt, chars: "\x23" }
-
-  # mac OS Alt key in Vim
   - { key: J, mods: Alt, chars: "\x1bj" }
   - { key: K, mods: Alt, chars: "\x1bk" }
   - { key: H, mods: Alt, chars: "\x1bh" }
