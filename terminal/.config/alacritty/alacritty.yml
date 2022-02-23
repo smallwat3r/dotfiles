@@ -1,8 +1,5 @@
 # Alacritty config
 
-env:
-  TERM: alacritty
-
 window:
   dimensions:
     columns: 140
