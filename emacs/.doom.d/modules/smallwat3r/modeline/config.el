@@ -63,8 +63,11 @@
 (setq-default mode-line-format
               '(("%e"
                  evil-mode-line-tag
+                 mode-line-client
                  mode-line-modified
+                 mode-line-remote
                  mode-line-buffer-identification
                  (vc-mode (:eval (propertize vc-mode 'face 'my-git-branch-face)))
                  "   %p %l,%c   "
+                 mode-line-misc-info
                  mode-line-modes)))
