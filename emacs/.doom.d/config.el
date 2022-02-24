@@ -423,7 +423,8 @@
 
 (after! vterm
   (setq vterm-max-scrollback 6000
-        vterm-timer-delay 0.01)
+        vterm-timer-delay 0.01
+        vterm-always-compile-module t)
 
   (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)  ; always display modeline
 
