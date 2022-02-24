@@ -66,6 +66,5 @@
                  mode-line-modified
                  mode-line-buffer-identification
                  (vc-mode (:eval (propertize vc-mode 'face 'my-git-branch-face)))
-                 "   %p %l,%c"
-                 (:eval (format-time-string "   %a, %d %b %H:%M "))
+                 "   %p %l,%c   "
                  mode-line-modes)))
