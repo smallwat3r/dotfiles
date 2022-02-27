@@ -185,19 +185,19 @@
 ;; Highlight todos
 ;; doc: https://github.com/tarsius/hl-todo
 
-(defface my-todos
+(defface my-todos-face
   '((t :background unspecified :foreground "#f54260" :weight bold))
   "The face used to display todos from hl-todo.")
 
 (after! hl-todo
   (setq hl-todo-keyword-faces
-        `(("TODO" . my-todos)
-          ("DEPRECATED" . my-todos)
-          ("FIXME" . my-todos)
-          ("HACK" . my-todos)
-          ("BUG" . my-todos)
-          ("NOTE" . my-todos)
-          ("SECURITY" . my-todos))))
+        `(("TODO" . my-todos-face)
+          ("DEPRECATED" . my-todos-face)
+          ("FIXME" . my-todos-face)
+          ("HACK" . my-todos-face)
+          ("BUG" . my-todos-face)
+          ("NOTE" . my-todos-face)
+          ("SECURITY" . my-todos-face))))
 
 
 ;;
