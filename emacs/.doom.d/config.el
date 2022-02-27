@@ -25,11 +25,16 @@
         ns-use-proxy-icon nil
         ns-use-fullscreen-animation nil))
 
+;; Emacs everywhere
+;; doc: https://github.com/tecosaur/emacs-everywhere
+
 (after! emacs-everywhere
   (setq emacs-everywhere-frame-parameters
         `((name . "emacs-everywhere")
           (width . 90)
-          (height . 20))))
+          (height . 20)))
+
+  (add-hook! 'emacs-everywhere-mode-hook #'hide-mode-line-mode))
 
 
 ;;
@@ -124,7 +129,8 @@
 (blink-cursor-mode 1)
 
 (setq-default with-editor-emacsclient-executable "emacsclient")
-(setq display-line-numbers-type nil)  ; no line number
+
+(setq display-line-numbers-type nil)
 
 ;; Show keybindings
 ;; doc: https://github.com/justbur/emacs-which-key
