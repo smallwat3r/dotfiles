@@ -717,6 +717,11 @@
   :config (setq untappd-access-token
                 (auth-source-pass-get 'secret "untappd/token")))
 
+;; Look up
+(setq +lookup-provider-url-alist
+      (append +lookup-provider-url-alist
+              '(("Sourcegraph" "https://sourcegraph.com/search?q=context:global+%s&patternType=literal"))))
+
 ;; Testing
 
 (defun my-echo-command-name-hook ()
