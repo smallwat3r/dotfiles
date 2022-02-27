@@ -182,6 +182,23 @@
 (after! evil-escape
   (setq evil-escape-excluded-major-modes '(treemacs-mode)))
 
+;; Highlight todos
+;; doc: https://github.com/tarsius/hl-todo
+
+(defface my-todos
+  '((t :background unspecified :foreground "#f54260" :weight bold))
+  "The face used to display todos from hl-todo.")
+
+(after! hl-todo
+  (setq hl-todo-keyword-faces
+        `(("TODO" . my-todos)
+          ("DEPRECATED" . my-todos)
+          ("FIXME" . my-todos)
+          ("HACK" . my-todos)
+          ("BUG" . my-todos)
+          ("NOTE" . my-todos)
+          ("SECURITY" . my-todos))))
+
 
 ;;
 ;;; Custom templates
