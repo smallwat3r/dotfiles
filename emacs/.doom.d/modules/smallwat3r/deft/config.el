@@ -13,6 +13,4 @@
     '((noslash . "-")
       (nospace . "-")
       (case-fn . downcase)))
-  :config
-  (set-evil-initial-state! 'deft-mode 'insert)  ; start on insert mode for filtering
-  (add-hook 'deft-mode-hook #'doom-mark-buffer-as-real-h))
+  (deft-use-filename-as-title t))
