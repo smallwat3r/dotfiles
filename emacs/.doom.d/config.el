@@ -193,6 +193,7 @@
   (setq hl-todo-keyword-faces
         `(("TODO" . my-todos-face)
           ("DEPRECATED" . my-todos-face)
+          ("QUESTION" . my-todos-face)
           ("FIXME" . my-todos-face)
           ("HACK" . my-todos-face)
           ("BUG" . my-todos-face)
