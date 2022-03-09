@@ -79,12 +79,11 @@
 ;;
 ;;; Fonts
 
-(let* ((font-default "Monaco")
-       (font-pitch "Monaco")
+(let* ((font "Monaco")
        (font-size 13))
-  (setq doom-font (font-spec :family font-default :size font-size)
-        doom-serif-font (font-spec :family font-default :size font-size)
-        doom-variable-pitch-font (font-spec :family font-pitch :size font-size)))
+  (setq doom-font (font-spec :family font :size font-size)
+        doom-serif-font (font-spec :family font :size font-size)
+        doom-variable-pitch-font (font-spec :family font :size font-size)))
 
 (setq doom-font-increment 1
       doom-big-font-increment 2)
