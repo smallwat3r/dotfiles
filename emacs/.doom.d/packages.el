@@ -19,6 +19,7 @@
 (package! nginx-mode)
 (package! vimrc-mode)
 (package! keycast)
+(package! symbol-overlay)
 
 (package! tubestatus :recipe
   (:host github :repo "smallwat3r/tubestatus.el"))
