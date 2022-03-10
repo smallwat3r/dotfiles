@@ -23,7 +23,7 @@ hotkey.bind(
 -- Kill emacs daemon
 hotkey.bind(
   mod_cmd,
-  'x',
+  '§',
   function()
     hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -e "(kill-emacs)"' }):start()
     hs.alert.show("Stopped Emacs daemon!")
