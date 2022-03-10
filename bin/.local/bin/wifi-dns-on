@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Use Google public DNS
+
+sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
