@@ -84,6 +84,10 @@
    :desc "Open deft" "d" #'deft
    :desc "Deft new file" "D" #'deft-new-file-named)
 
+  (:prefix "c"
+   :desc "Add overlay" "h" #'symbol-overlay-put
+   :desc "Remove all overlays" "H" #'symbol-overlay-remove-all)
+
   (:prefix ("l" . "lorem")
    :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
    :desc "Insert sentences" "s" #'lorem-ipsum-insert-sentences
