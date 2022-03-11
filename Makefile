@@ -1,7 +1,12 @@
-SHELL=/bin/bash
+SHELL = /bin/bash
 
-CURRENT_DIR=$(shell pwd)
-FONTS_DIR=/Library/Fonts
+CURRENT_DIR := $(shell pwd)
+FONTS_DIR   := /Library/Fonts
+
+SUCCESS := $(shell tput setaf 40)
+INFO    := $(shell tput setaf 111)
+WARNING := $(shell tput setaf 178)
+SGR0    := $(shell tput sgr0)
 
 .PHONY: help
 help: ## Show this help menu and exit
@@ -12,7 +17,7 @@ help: ## Show this help menu and exit
 
 .PHONY: install
 install: npm pip symlink nvim brew ## * Install everything and symlink
-	@echo '*** -- Everything has been installed --'
+	@echo '$(SUCCESS)*** -- Everything has been installed --$(SGR0)'
 
 .PHONY: symlink
 symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
@@ -32,7 +37,7 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 		zsh \
 		-vv -t $(HOME)
 	@echo ''
-	@echo '*** Successfully linked all dotfiles'
+	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 
 # .PHONY: fonts
 # fonts: ## Install fonts
@@ -52,7 +57,7 @@ brew: homebrew xcode-cli  ## Install all packages from Brewfile
 
 .PHONY: npm
 npm: node ## Install npm packages
-	@echo '*** Installing npm packages ...'
+	@echo '$(INFO)*** Installing npm packages ...$(SGR0)'
 	npm install -g \
 		prettier \
 		prettydiff \
@@ -61,7 +66,7 @@ npm: node ## Install npm packages
 
 .PHONY: pip
 pip: python ## Install pip packages
-	@echo '*** Installing pip packages ...'
+	@echo '$(INFO)*** Installing pip packages ...$(SGR0)'
 	pip3 install \
 		bandit \
 		black \
@@ -79,7 +84,7 @@ pip: python ## Install pip packages
 .PHONY: python
 python: homebrew ## Install Python 3.9
 ifeq ($(shell brew ls --versions python@3.9),)
-	@echo '*** Installing python 3.9 ...'
+	@echo '$(INFO)*** Installing python 3.9 ...$(SGR0)'
 	brew install python@3.9
 	ln -s -f $(shell which python3.9) /usr/local/bin/python
 endif
@@ -87,34 +92,35 @@ endif
 .PHONY: node
 node: homebrew ## Install Node
 ifeq ($(shell brew ls --versions node),)
-	@echo '*** Installing node ...'
+	@echo '$(INFO)*** Installing node ...$(SGR0)'
 	brew install node
 endif
 
 .PHONY: homebrew
 homebrew: ## Install Homebrew
 ifeq ($(shell command -v brew),)
-	@echo '*** Installing Homebrew ...'
+	@echo '$(INFO)*** Installing Homebrew ...$(SGR0)'
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
 endif
 
 .PHONY: nvim
 nvim: homebrew  ## Install and setup Neovim
 ifeq ($(shell brew ls --versions nvim),)
-	@echo '*** Installing neovim ...'
+	@echo '$(INFO)*** Installing neovim ...$(SGR0)'
 	brew install nvim
 endif
 	@nvim +PlugInstall +qall >/dev/null
-	@echo "Neovim setup successfully"
+	@echo '$(SUCCESS)Neovim setup successfully!$(SGR0)'
 
 .PHONY: xcode-cli
 xcode-cli: ## Install macOS command line tools
 	@xcode-select --install >/dev/null 2>&1 && \
-		echo '*** Installing macOS command line tools... Please follow the instructions from the GUI' || \
+		echo '$(INFO)*** Installing macOS command line tools...$(SGR0)' && \
+		echo '$(WARNING)...Please follow the instructions from the GUI...$(SGR0)' || \
 		exit 0
 
-#
-## Utils formulas (not showing in help menu)
+
+# Utils (not showing in help menu)
 
 .PHONY: maildir
 maildir:
@@ -128,6 +134,6 @@ localbin:
 .PHONY: stow
 stow: homebrew
 ifeq ($(shell command -v stow),)
-	@echo '*** Installing Stow ...'
+	@echo '$(INFO)*** Installing Stow ...$(SGR0)'
 	brew install stow
 endif
