@@ -29,6 +29,7 @@
      (js2-mode "Js" :major)
 
      ;; hidden minor-modes from modeline
+     (mini-modeline-mode nil mini-modeline)
      (company-mode nil company)
      (git-gutter-mode nil git-gutter)
      (highlight-indent-guides-mode nil highlight-indent-guides)
