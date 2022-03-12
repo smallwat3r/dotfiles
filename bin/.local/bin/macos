@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # macOS preferences
 
-if [ "$(uname -s)" != "Darwin" ]; then
+if [ "$(uname -s)" != 'Darwin' ]; then
   printf 'This script must be ran from a Darwin system.\n'
   exit 0
 fi
 
 # Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.568600'
 
 # Font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 3
@@ -78,10 +78,10 @@ defaults write com.apple.ActivityMonitor IconType -int 5
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
 # Sort Activity Monitor results by CPU usage
-defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortColumn -string 'CPUUsage'
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 # Restart dock
 killall Dock
 
-echo "All done."
+echo 'All done.'
