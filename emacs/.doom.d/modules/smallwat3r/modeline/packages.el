@@ -4,3 +4,4 @@
 (package! anzu)
 (package! evil-anzu)
 (package! delight)
+(package! mini-modeline)

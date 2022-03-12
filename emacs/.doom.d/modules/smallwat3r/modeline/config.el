@@ -60,14 +60,28 @@
   '((t :background unspecified :foreground unspecified))
   "The face used to display the current git branch in mode-line.")
 
-(setq-default mode-line-format
-              '(("%e"
-                 evil-mode-line-tag
-                 mode-line-client
-                 mode-line-modified
-                 mode-line-remote
-                 mode-line-buffer-identification
-                 (vc-mode (:eval (propertize vc-mode 'face 'my-git-branch-face)))
-                 "   %p %l,%c   "
-                 mode-line-misc-info
-                 mode-line-modes)))
+(defvar my-modeline-format
+  '(("%e"
+     evil-mode-line-tag
+     mode-line-client
+     mode-line-modified
+     mode-line-remote
+     mode-line-buffer-identification
+     (vc-mode (:eval (propertize vc-mode 'face 'my-git-branch-face)))
+     "   %p %l,%c   "
+     mode-line-misc-info
+     mode-line-modes))
+  "Custom modeline format Alist")
+
+;; Display modeline into the minibuffer
+;; doc: https://github.com/kiennq/emacs-mini-modeline
+
+(use-package! mini-modeline
+  :custom
+  (mini-modeline-r-format my-modeline-format)
+  (mini-modeline-echo-duration 0.5)
+  (mini-modeline-enhance-visual t)
+  (mini-modeline-truncate-p nil)
+  (mini-modeline-right-padding 1)
+  :config
+  (mini-modeline-mode t))
