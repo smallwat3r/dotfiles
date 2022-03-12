@@ -72,7 +72,7 @@
      "   %p %l,%c   "
      mode-line-misc-info
      mode-line-modes))
-  "Custom modeline format Alist")
+  "Custom modeline format Alist.")
 
 ;; Display modeline into the minibuffer
 ;; doc: https://github.com/kiennq/emacs-mini-modeline
