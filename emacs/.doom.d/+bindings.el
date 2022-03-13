@@ -15,7 +15,7 @@
   "C-j" #'evil-next-line)
 
  (:map evil-visual-state-map
-  ";f" #'+format/region)
+  ";f"  #'+format/region)
 
  (:map evil-normal-state-map
   "C-2"   #'my/scroll-up
@@ -39,7 +39,7 @@
      :desc "Open Python repl" "r" #'my/open-python-repl
      (:prefix ("e" . "env")
       :desc "Deactivate venv" "d" #'my/deactivate-python-venv
-      :desc "Activate venv" "a"   #'my/activate-closest-python-venv)))))
+      :desc "Activate venv"   "a" #'my/activate-closest-python-venv)))))
 
  (:after dired
   (:map dired-mode-map
@@ -60,38 +60,38 @@
   "1" #'my/where-am-i
 
   (:prefix ("d" . "docker")
-   :desc "List images" "i"     #'docker-images
+   :desc "List images"     "i" #'docker-images
    :desc "List containers" "c" #'docker-containers
-   :desc "Exec into" "e"       #'docker-container-shell)
+   :desc "Exec into"       "e" #'docker-container-shell)
 
   (:prefix "f"
    :desc "Find file in dotfiles" "P" #'my/find-file-in-dotfiles)
 
   (:prefix "o"
-  :desc "Alacritty" "a"                   #'my/alacritty-here
-  :desc "Link at point" "l"               #'browse-url-at-point
-  :desc "Vterm at root" "T"               #'+vterm/here
-  :desc "Toggle vterm at root" "t"        #'+vterm/toggle
-  :desc "Vterm at buffer" "V"             #'my/vterm/here-current-buffer
-  :desc "Toggle vterm at buffer" "v"      #'my/vterm/toggle-current-buffer
-  :desc "Scratch buffer current mode" "x" #'scratch
-  :desc "Scratch buffer restclient" "h"   #'my/scratch-rest-mode)
+  :desc "Alacritty"              "a" #'my/alacritty-here
+  :desc "Link at point"          "l" #'browse-url-at-point
+  :desc "Vterm at root"          "T" #'+vterm/here
+  :desc "Toggle vterm at root"   "t" #'+vterm/toggle
+  :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
+  :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer
+  :desc "Scr. buffer cur. mode"  "x" #'scratch
+  :desc "Scr. buffer restclient" "h" #'my/scratch-rest-mode)
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines)
 
   (:prefix "n"
-   :desc "Open deft" "d"     #'deft
+   :desc "Open deft"     "d" #'deft
    :desc "Deft new file" "D" #'deft-new-file-named)
 
   (:prefix "c"
-   :desc "Add overlay" "h"         #'symbol-overlay-put
-   :desc "Remove all overlays" "H" #'symbol-overlay-remove-all)
+   :desc "Add overlay"     "h" #'symbol-overlay-put
+   :desc "Remove overlays" "H" #'symbol-overlay-remove-all)
 
   (:prefix ("l" . "lorem")
    :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
-   :desc "Insert sentences" "s"  #'lorem-ipsum-insert-sentences
-   :desc "Insert list" "l"       #'lorem-ipsum-insert-list)
+   :desc "Insert sentences"  "s" #'lorem-ipsum-insert-sentences
+   :desc "Insert list"       "l" #'lorem-ipsum-insert-list)
 
   (:prefix "p"
    :desc "Run Makefile target" "m" #'+make/run)))
