@@ -105,7 +105,7 @@
      markdown-code-face
      org-block
      org-code
-     org-inline-src-block )
+     org-inline-src-block)
     :inherit variable-pitch)
 
   '((font-lock-function-name-face
