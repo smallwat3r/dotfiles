@@ -1,3 +1,5 @@
+# Provides bindings to go through commands history
+
 autoload -U history-search-end
 
 zle -N history-beginning-search-backward-end history-search-end
