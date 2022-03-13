@@ -1,3 +1,5 @@
+# ZSH completion configuration
+
 autoload -U compinit && compinit
 
 setopt COMPLETE_IN_WORD  # complete from both end of a word

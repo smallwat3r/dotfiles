@@ -1,4 +1,8 @@
-# Move up directories i.e. ... >> ../.. and .... >> ../../... etc.
+# Move up directories easily
+# i.e.:
+#   ...  becomes ../..
+#   .... becomes ../../..
+#   etc...
 
 __rationalise-dot() {
   [[ $LBUFFER = *.. ]] && LBUFFER+=/.. || LBUFFER+=.
