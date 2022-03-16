@@ -74,15 +74,17 @@
      mode-line-modes))
   "Custom modeline format Alist.")
 
+(setq-default mode-line-format my-modeline-format)
+
 ;; Display modeline into the minibuffer
 ;; doc: https://github.com/kiennq/emacs-mini-modeline
 
-(use-package! mini-modeline
-  :custom
-  (mini-modeline-r-format my-modeline-format)
-  (mini-modeline-echo-duration 0.5)
-  (mini-modeline-enhance-visual t)
-  (mini-modeline-truncate-p nil)
-  (mini-modeline-right-padding 1)
-  :config
-  (mini-modeline-mode t))
+;; (use-package! mini-modeline
+;;   :custom
+;;   (mini-modeline-r-format my-modeline-format)
+;;   (mini-modeline-echo-duration 0.5)
+;;   (mini-modeline-enhance-visual t)
+;;   (mini-modeline-truncate-p nil)
+;;   (mini-modeline-right-padding 1)
+;;   :config
+;;   (mini-modeline-mode t))
