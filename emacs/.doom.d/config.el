@@ -99,7 +99,10 @@
 
 ;; Enforce these faces for all the themes
 (custom-set-faces!
-  '(italic :slant normal)
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-doc-face :slant italic :foreground "#c7a7d6")
+  '(git-commit-summary :weight bold :foreground "#f6b26b")
+  '((mode-line mode-line-inactive) :weight bold)
 
   '((markdown-inline-code-face
      markdown-code-face
