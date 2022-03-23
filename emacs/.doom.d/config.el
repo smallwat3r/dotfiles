@@ -79,8 +79,8 @@
 ;;
 ;;; Fonts
 
-(let* ((font "Monaco")
-       (font-size 13))
+(let* ((font "tty0")
+       (font-size 18))
   (setq doom-font (font-spec :family font :size font-size)
         doom-serif-font (font-spec :family font :size font-size)
         doom-variable-pitch-font (font-spec :family font :size font-size)))
@@ -88,7 +88,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 0)
 (setq-default tab-width 8)
 
 
