@@ -20,6 +20,8 @@
 (package! vimrc-mode)
 (package! keycast)
 (package! symbol-overlay)
+(package! undo-hl :recipe
+  (:host github :repo "casouri/undo-hl"))
 
 (package! tubestatus :recipe
   (:host github :repo "smallwat3r/tubestatus.el"))

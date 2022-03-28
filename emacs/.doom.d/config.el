@@ -30,7 +30,7 @@
 
 (after! emacs-everywhere
   (setq emacs-everywhere-frame-parameters
-        `((name . "emacs-everywhere")
+        '((name . "emacs-everywhere")
           (width . 90)
           (height . 20)))
 
@@ -79,8 +79,8 @@
 ;;
 ;;; Fonts
 
-(let* ((font "tty0")
-       (font-size 18))
+(let* ((font "Monaco")
+       (font-size 13))
   (setq doom-font (font-spec :family font :size font-size)
         doom-serif-font (font-spec :family font :size font-size)
         doom-variable-pitch-font (font-spec :family font :size font-size)))
@@ -88,7 +88,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 1)
 (setq-default tab-width 8)
 
 
@@ -99,10 +99,10 @@
 
 ;; Enforce these faces for all the themes
 (custom-set-faces!
-  '(font-lock-comment-face :slant italic)
-  '(font-lock-doc-face :slant italic :foreground "#c7a7d6")
-  '(git-commit-summary :weight bold :foreground "#f6b26b")
-  '((mode-line mode-line-inactive) :weight bold)
+  ;; '(font-lock-comment-face :slant italic)
+  ;; '(font-lock-doc-face :slant italic :foreground "#c7a7d6")
+  '(font-lock-doc-face :foreground "#c7a7d6")
+  '(git-commit-summary :foreground "#f6b26b")
 
   '((markdown-inline-code-face
      markdown-code-face
@@ -138,7 +138,8 @@
 ;; doc: https://github.com/justbur/emacs-which-key
 
 (after! which-key
-  (setq which-key-idle-delay 0.1))
+  (setq which-key-idle-delay 0.2
+        which-key-allow-imprecise-window-fit nil))
 
 ;; Git fringe indicator
 ;; doc: https://github.com/emacsorphanage/git-gutter-fringe
@@ -177,6 +178,19 @@
 (after! evil-goggles
   (setq evil-goggles-duration 0.25)
   (evil-goggles-use-magit-faces))
+
+;; Highlight undos
+;; doc: https://github.com/casouri/undo-hl
+
+(use-package! undo-hl
+  :custom
+  (undo-hl-flash-duration 0.1)
+  :config
+  (custom-set-faces!
+    '(undo-hl-delete :foreground unspecified :inherit diff-removed)
+    '(undo-hl-insert :foreground unspecified :inherit diff-added)))
+
+(add-hook! (prog-mode text-mode) (undo-hl-mode t))
 
 ;; Evil escape
 ;; doc: https://github.com/syl20bnr/evil-escape
