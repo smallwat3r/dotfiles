@@ -26,8 +26,7 @@ autoload -U "${ZSH_ROOT}"/functions/*(:t)
 # Config files and directories (from `ZSH_ROOT`)
 zsh_configs=(
   prompt.zsh
-  aliases
-  utils
+  core
   extensions
 )
 
