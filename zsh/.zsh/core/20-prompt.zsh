@@ -1,3 +1,5 @@
+# ZSH prompt
+
 __is_venv() {
   if [[ ${VIRTUAL_ENV} ]]; then
     echo '%s' "(.${VIRTUAL_ENV##*/}) "
