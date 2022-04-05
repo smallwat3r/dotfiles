@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# Docker delete image
-
-if [[ -z "$1" ]]; then
-  printf 'Please specify an image.\n'
-else
-  docker rmi "$1" -f
-fi
