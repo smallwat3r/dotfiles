@@ -1,5 +1,7 @@
 if [ -f /usr/local/bin/docker ]; then
 
+  # Make sure a pattern parameter has been passed to a function
+  # This function needs to be ran from a subshell, else it would quit the terminal session
   __docker_ensure_pattern() {
     if [[ -z "$1" ]]; then
       printf 'Please specify an pattern.\n'
@@ -17,6 +19,8 @@ if [ -f /usr/local/bin/docker ]; then
       | column -t -s '¬¬¬' -c "$(tput cols)"
   }
 
+  # List all running container image ids
+  # This is handy to use in command substitution like: docker stop $(dpsq)
   dpsq() {
     docker ps -q
   }
@@ -25,27 +29,30 @@ if [ -f /usr/local/bin/docker ]; then
     printf 'y' | docker system prune
   }
 
+  dstop() {
+    docker ps --filter name="${1}" --filter status=running -aq | xargs docker stop
+  }
+
+  # Show container logs
   dlog() {
     (__docker_ensure_pattern "$1" \
       && docker logs --follow "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" 2>/dev/null \
       || printf 'Could not match [%s]\n' "$1" >&2)
   }
 
+  # Exec into container
   dexe() {
     (__docker_ensure_pattern "$1" \
       && docker exec -it "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" "${2:-/bin/sh}" 2>/dev/null \
       || printf 'Could not match [%s]\n' "$1" >&2)
   }
 
+  # Print out container IP
   dip() {
     (__docker_ensure_pattern "$1" \
       && docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
         "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" 2>/dev/null \
       || printf 'Could not match [%s]\n' "$1" >&2)
-  }
-
-  dstop() {
-    docker ps --filter name="${1}" --filter status=running -aq | xargs docker stop
   }
 
   docker-rmq() {
