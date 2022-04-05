@@ -179,19 +179,6 @@
   (setq evil-goggles-duration 0.25)
   (evil-goggles-use-magit-faces))
 
-;; Highlight undos
-;; doc: https://github.com/casouri/undo-hl
-
-(use-package! undo-hl
-  :custom
-  (undo-hl-flash-duration 0.1)
-  :config
-  (custom-set-faces!
-    '(undo-hl-delete :foreground unspecified :inherit diff-removed)
-    '(undo-hl-insert :foreground unspecified :inherit diff-added)))
-
-(add-hook! (prog-mode text-mode) (undo-hl-mode t))
-
 ;; Evil escape
 ;; doc: https://github.com/syl20bnr/evil-escape
 
