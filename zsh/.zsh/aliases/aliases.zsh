@@ -17,14 +17,10 @@ alias lss="ls -la | grep --color=never '->'"
 alias mkdir="mkdir -pv"
 
 alias g="git"
-alias dpsq="docker ps -q"
 
 alias k="kubectl"
 alias kt="kubetail"
 alias kgn="kubectl get namespaces"
-
-alias gpg-pub-key="gpg --armor --export mpetiteau.pro@gmail.com"
-alias gpg-list-keys="gpg --list-secret-keys --keyid-format LONG"
 
 alias python="python3"
 alias pip="pip3"
