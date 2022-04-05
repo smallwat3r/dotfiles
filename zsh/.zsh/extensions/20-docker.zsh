@@ -1,4 +1,12 @@
 if [ -f /usr/local/bin/docker ]; then
+
+  __docker_ensure_pattern() {
+    if [[ -z "$1" ]]; then
+      printf 'Please specify an pattern.\n'
+      exit 1
+    fi
+  }
+
   dps() {
     docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' \
       | column -t -s '¬¬¬' -c "$(tput cols)"
@@ -11,6 +19,33 @@ if [ -f /usr/local/bin/docker ]; then
 
   dpsq() {
     docker ps -q
+  }
+
+  dprune() {
+    printf 'y' | docker system prune
+  }
+
+  dlog() {
+    (__docker_ensure_pattern "$1" \
+      && docker logs --follow "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" 2>/dev/null \
+      || printf 'Could not match [%s]\n' "$1" >&2)
+  }
+
+  dexe() {
+    (__docker_ensure_pattern "$1" \
+      && docker exec -it "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" "${2:-/bin/sh}" 2>/dev/null \
+      || printf 'Could not match [%s]\n' "$1" >&2)
+  }
+
+  dip() {
+    (__docker_ensure_pattern "$1" \
+      && docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
+        "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" 2>/dev/null \
+      || printf 'Could not match [%s]\n' "$1" >&2)
+  }
+
+  dstop() {
+    docker ps --filter name="${1}" --filter status=running -aq | xargs docker stop
   }
 
   docker-rmq() {

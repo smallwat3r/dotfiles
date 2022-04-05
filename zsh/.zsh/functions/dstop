@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Docker stop matching name pattern
-
-docker ps --filter name="${1}" --filter status=running -aq | xargs docker stop
