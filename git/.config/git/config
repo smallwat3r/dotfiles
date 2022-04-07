@@ -34,6 +34,7 @@ co = checkout
 d = diff
 find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
 init-empty = !"f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
+last-commit-msg = log -1 --format=%s
 p = push
 rhh = reset --hard HEAD
 s = status
