@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Display last commit message
+
+git log -1 --format=%s
