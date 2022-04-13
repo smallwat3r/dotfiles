@@ -22,6 +22,9 @@ alias g="git"
 alias python="python3"
 alias pip="pip3"
 
+alias vim="nvim"
+alias v="nvim"
+
 alias rg="rg \
   --max-columns 120 \
   --glob '!git/*' \
