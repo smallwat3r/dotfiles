@@ -7,4 +7,4 @@ mod_ctrl_cmd = {'ctrl', 'cmd'}
 
 require('z-emacs-bindings')
 require('z-ctrl-hjkl-to-arrows')
-require('z-window-management')
+require('z-window-manager')
