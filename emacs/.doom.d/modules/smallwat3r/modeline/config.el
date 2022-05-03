@@ -19,14 +19,9 @@
 (use-package! delight
   :config
   (delight
-   '((yas-minor-mode " Y" yasnippet)
-     (dired-mode "δ" :major)
-     (emacs-lisp-mode "ξ" :major)
-     (python-mode "π" :major)
-     (restclient-mode "Ɽest" :major)
-     (sh-mode "Sh" :major)
-     (org-mode "Org" :major)
+   '((emacs-lisp-mode "ξ" :major)
      (js2-mode "Js" :major)
+     (yas-minor-mode " Y" yasnippet)
 
      ;; hidden minor-modes from modeline
      (mini-modeline-mode nil mini-modeline)
