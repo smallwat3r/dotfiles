@@ -11,7 +11,7 @@ window:
 font:
   normal:
     family: Monaco
-  size: 13
+  size: 11
   offset:
     x: 1
     y: 2
