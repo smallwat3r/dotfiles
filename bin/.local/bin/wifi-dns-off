@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Clear manually assigned DNS and use the default
-
-sudo networksetup -setdnsservers Wi-Fi Empty

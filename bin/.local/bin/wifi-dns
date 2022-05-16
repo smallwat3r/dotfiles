@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Toggle using Google public DNS.
+# Turn the DNS on with `wifi-dns on`, turn it off with `wifi-dns off`.
+
+if [ "$1" == 'on' ]; then
+  sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+  printf 'Google DNS on\n'
+elif [ "$1" == 'off' ]; then
+  sudo networksetup -setdnsservers Wi-Fi Empty
+  printf 'Google DNS off\n'
+else
+  printf 'You need to specify "on" or "off" to toggle the wifi dns\n' >&2
+  exit 1
+fi
