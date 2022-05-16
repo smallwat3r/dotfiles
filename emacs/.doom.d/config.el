@@ -172,6 +172,15 @@
   (setq +zen-window-divider-size global-window-divider-width
         +zen-text-scale 0))
 
+;; Overlay keywords
+;; doc: https://github.com/wolray/symbol-overlay
+
+(use-package! symbol-overlay
+  :config
+  ;; Do not conflict with vim bindings when using overlays
+  (define-key symbol-overlay-map (kbd "h") nil)
+  (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
+
 ;; Evil visual hints
 ;; doc: https://github.com/edkolev/evil-goggles
 
