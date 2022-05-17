@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Show mac battery percentage
+# Show macOS current battery information
 
-pmset -g ps |
-  sed -n 's/.*[[:blank:]]+*\(.*%\).*/\1/p'
+pmset -g ps | sed -n 's/.*[[:blank:]]+*\(.*%\).*/\1/p'

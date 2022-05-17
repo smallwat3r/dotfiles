@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
+# Install homebrew. This might take some time...
 
 if [[ $(command -v brew) == '' ]]; then
   printf 'Installing Homebrew ...\n'
-  printf 'y' |
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" >/dev/null
+  printf 'y' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" >/dev/null
 fi

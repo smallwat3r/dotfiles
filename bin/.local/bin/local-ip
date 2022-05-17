@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Show local IP (except 127.0.0.1)
-# If multiple (ie. connected via VPN) the ips will be appended
+# If multiple (ie. connected via VPN) the IPs will be appended
 
 ifconfig |
   grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |

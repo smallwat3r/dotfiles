@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Parse git branch, show '*' if there has been any changes from the remote
+# Parse git branch, show '*' if there has been any changes from the remote.
+# This is useful to use in a custom shell prompt.
 
 dirty() {
   [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] && echo "*"

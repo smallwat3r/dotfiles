@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Check dns utility
+# Spit out information for a given domain name server (DNS)
 
 if [[ -z "$1" ]]; then
   printf 'Please specify a host.\n'

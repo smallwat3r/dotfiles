@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# List battery level of external bluetooth devices on macos.
+# List battery levels of external bluetooth devices currently connected
+# to macbook.
 
 _bluebatt() {
   local _devices

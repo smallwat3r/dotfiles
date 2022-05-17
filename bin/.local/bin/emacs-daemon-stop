@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Stop emacs daemon
+# Stop emacs daemon. Killing all client instances of Emacs.
 
 emacsclient -e "(kill-emacs)"

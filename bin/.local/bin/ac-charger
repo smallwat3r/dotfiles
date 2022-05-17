@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Check if an AC adapter is connected
+# Return 'on' if mac is AC adapter is plugged in and charging. Else
+# return 'off'. This script is useful when you want to display this
+# information in a statusbar (like in tmux or other terminal interface).
 
 if [[ $(pmset -g ac) != "No adapter attached." ]]; then
   printf "on\n"

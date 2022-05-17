@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# This returns a shortened path by printing only the first letters
-# of each parent directories; i.e. ~/Docs/bar/foo becomes ~/D/b/foo
+# This returns a shortened path by printing only the first letters of
+# each parent directories; i.e. ~/Docs/bar/foo becomes ~/D/b/foo.
+# This is useful to use this in a custom shell to customise the prompt.
 
 shortened_path() {
   echo ~+ \

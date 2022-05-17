@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Toggle using Google public DNS.
+# Toggle usage of Google public DNS.
+# Google public DNS values are 8.8.8.8 and 8.8.4.4
 # Turn the DNS on with `wifi-dns on`, turn it off with `wifi-dns off`.
 
 if [ "$1" == 'on' ]; then

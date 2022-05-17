@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Virtual env indicator
+# Print our Python current virtual environment.
+# This is useful to use in a custom shell or terminal environment.
 
 if [[ $VIRTUAL_ENV ]]; then
   printf '%s' "(.${VIRTUAL_ENV##*/}) "

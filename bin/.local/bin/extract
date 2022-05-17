@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# File extractor.
+# Generic extractor depending for most major compress file extensions.
 
 set -e
 

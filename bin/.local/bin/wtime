@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Print current time from different cities
+# Print current time from different major cities
 
 echo 'NYC:' "$(TZ="America/New_York" date +%H:%M)"
 echo 'Los Angeles:' "$(TZ="America/Los_Angeles" date +%H:%M)"

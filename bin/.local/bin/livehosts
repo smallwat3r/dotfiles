@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Discover live hosts on network
+# Discover live hosts on the current connected network.
 
 _ip=${1:-192.168.0.1/24}
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Kill active process running on a specific port
+# Kill active process running on a specific port.
 
 set -e
 

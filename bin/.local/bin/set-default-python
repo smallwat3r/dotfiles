@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Set up system default python version to 3.9
+# Set up default python version to 3.9
 
 if which python3.9 >/dev/null; then
   ln -s -f "$(which python3.9)" /usr/local/bin/python

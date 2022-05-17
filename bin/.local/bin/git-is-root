@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Returns true if at root of git repo
+# Returns true if we're currently at the root of git repo.
+# This is useful to display custom information in a statusbar on the shell
+# prompt depending on where the user cd into. I sometimes want to know if I'm
+# already located at the root of the repo.
 
 if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]; then
   [[ $(git rev-parse --show-toplevel 2>/dev/null) == "$PWD" ]] && echo true
