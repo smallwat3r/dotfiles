@@ -99,8 +99,6 @@
 
 ;; Enforce these faces for all the themes
 (custom-set-faces!
-  ;; '(font-lock-comment-face :slant italic)
-  ;; '(font-lock-doc-face :slant italic :foreground "#c7a7d6")
   '(font-lock-doc-face :foreground "#c7a7d6")
   '(git-commit-summary :foreground "#f6b26b")
 
