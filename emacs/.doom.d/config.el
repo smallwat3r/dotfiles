@@ -26,7 +26,7 @@
         ns-use-fullscreen-animation nil))
 
 ;; Emacs everywhere.
-;; Ability to pop-up an Emacs buffer anywhere to type some text and input it.
+;; Ability to pop-up an Emacs buffer anywhere to type some text.
 ;; doc: https://github.com/tecosaur/emacs-everywhere
 (after! emacs-everywhere
   (setq emacs-everywhere-frame-parameters
@@ -690,7 +690,7 @@
 ;; doc: https://github.com/seagle0128/grip-mode
 (after! grip-mode
   ;; TODO: even by providing credentials, the API rate limitation is really
-  ;;       annoying as super limited. I feel like there must be a bette
+  ;;       annoying as super limited. I feel like there must be a better
   ;;       solution to this.
   (setq grip-github-user "smallwat3r"
         grip-github-password (+pass-get-secret "github/password")))
