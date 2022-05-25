@@ -732,7 +732,7 @@
 ;;; Testing...
 
 ;; I use the below commands when testing/debugging my Emacs config. I'm sure
-;; there are better ways or tools to do most this, but hey, it works for me!
+;; there are better ways or tools to do most of this, but hey, it works for me!
 
 (defun my-echo-command-name-hook ()
   "Echo live command names."
