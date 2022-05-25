@@ -20,8 +20,6 @@ font:
     y: 0
   use_thin_strokes: true
 
-background_opacity: 1
-
 colors:
   primary:
     background: "#000000"
