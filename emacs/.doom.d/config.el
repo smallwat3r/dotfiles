@@ -25,9 +25,9 @@
         ns-use-proxy-icon nil
         ns-use-fullscreen-animation nil))
 
-;; Emacs everywhere
+;; Emacs everywhere.
+;; Ability to pop-up an Emacs buffer anywhere to type some text and input it.
 ;; doc: https://github.com/tecosaur/emacs-everywhere
-
 (after! emacs-everywhere
   (setq emacs-everywhere-frame-parameters
         '((name . "emacs-everywhere")
@@ -137,14 +137,12 @@
 
 ;; Show keybindings
 ;; doc: https://github.com/justbur/emacs-which-key
-
 (after! which-key
   (setq which-key-idle-delay 0.2
         which-key-allow-imprecise-window-fit nil))
 
 ;; Git fringe indicator
 ;; doc: https://github.com/emacsorphanage/git-gutter-fringe
-
 (after! git-gutter-fringe
   (fringe-mode 2))
 
@@ -168,36 +166,36 @@
 
 ;; Zen mode
 ;; doc: https://github.com/joostkremers/writeroom-mode
-
 (after! writeroom-mode
   (setq +zen-window-divider-size global-window-divider-width
         +zen-text-scale 0))
 
 ;; Overlay keywords
 ;; doc: https://github.com/wolray/symbol-overlay
-
 (use-package! symbol-overlay
   :config
-  ;; Do not conflict with vim bindings when using overlays
+  ;; Do not conflict with vim bindings when using overlays.
+  ;; Change `symbol-overlay-map-help' to be triggered from 'H' instead of 'h'.
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
 
 ;; Evil visual hints
 ;; doc: https://github.com/edkolev/evil-goggles
-
 (after! evil-goggles
   (setq evil-goggles-duration 0.25)
   (evil-goggles-use-magit-faces))
 
 ;; Evil escape
 ;; doc: https://github.com/syl20bnr/evil-escape
-
 (after! evil-escape
+  ;; Do not activate evil-escape through the 'jk' escape sequence in the
+  ;; following modes. It might be because 'j' and 'k' allow scrolling up or
+  ;; down even in insert-mode, or it is just breaking the expected mode
+  ;; behaviour.
   (setq evil-escape-excluded-major-modes '(treemacs-mode)))
 
 ;; Highlight todos
 ;; doc: https://github.com/tarsius/hl-todo
-
 (defface my-todos-face
   '((t :background unspecified :foreground "#f54260" :weight bold))
   "The face used to display todos from hl-todo.")
@@ -236,6 +234,10 @@
 ;;
 ;;; Dashboard
 
+;; This is the dashboard displayed when starting Emacs.
+;; It displays a menu with useful links to go to. As a personal preference, I
+;; like to keep it short and simple.
+
 (setq +doom-dashboard-functions
       '(doom-dashboard-widget-shortmenu
         doom-dashboard-widget-loaded))
@@ -271,12 +273,12 @@
 ;;
 ;;; Project space management
 
+;; Projectile
 ;; doc: https://github.com/bbatsov/projectile
 ;;      https://docs.projectile.mx/projectile/index.html
 ;;
 ;; Run `projectile-discover-projects-in-search-path' to autoload all the projects from the
 ;; `projectile-project-search-path' list.
-
 (after! projectile
   (setq projectile-sort-order 'recentf
         projectile-mode-line-prefix "P"
@@ -291,7 +293,6 @@
 ;; Dired
 ;; doc: https://www.emacswiki.org/emacs/DiredMode
 ;;      https://github.com/Fuco1/dired-hacks
-
 (add-hook! 'dired-mode-hook 'dired-hide-details-mode)
 
 (after! dired
@@ -310,7 +311,6 @@
 
 ;; Treemacs
 ;; doc: https://github.com/Alexander-Miller/treemacs
-
 (after! treemacs
   (setq doom-themes-treemacs-enable-variable-pitch t
         doom-themes-treemacs-line-spacing 0
@@ -324,7 +324,6 @@
 
 ;; Code completion
 ;; doc: https://www.emacswiki.org/emacs/CompanyMode
-
 (defun company-spaced-dark-icons-margin (candidate selected)
   (concat
    (company--render-icons-margin company-vscode-icons-mapping
@@ -345,7 +344,6 @@
 
 ;; Language Server Protocol
 ;; doc: https://emacs-lsp.github.io/lsp-mode/
-
 (setq +lsp-prompt-to-install-server 'quiet
       +format-with-lsp nil)
 
@@ -354,13 +352,11 @@
 
 ;; Magit
 ;; doc: https://github.com/magit/magit
-
 (after! magit
   (setq git-commit-summary-max-length 90))
 
 ;; Interactive code analysis and linting
 ;; doc: https://www.flycheck.org/en/latest/
-
 (after! flycheck
   ;; Pylint (python)
   (setq flycheck-python-pylint-executable "/usr/local/bin/pylint"
@@ -374,7 +370,6 @@
 
 ;; Check for spelling mistakes
 ;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
-
 (after! spell-fu
   (setq spell-fu-idle-delay 0.5))
 
@@ -430,24 +425,25 @@
 (setq-hook! 'web-mode-hook +format-with :none)
 
 (after! sql
+  ;; MySQL settings does not provide a default port. Use 3306 as the default as
+  ;; this is the most widely used.
   (setq sql-mysql-login-params
         (append sql-mysql-login-params '(port :default 3306))))
 
-;; Detect specific modes
-
+;; Activate specific modes from the current file name or extension.
 (setq auto-mode-alist
       (append '(("\\.restclient" . restclient-mode)
                 ("abbrev_defs" . emacs-lisp-mode)
                 ("Makefile.*" . makefile-mode))
               auto-mode-alist))
 
+;; Activate specific modes from the current file shebang.
 (setq interpreter-mode-alist
       (append '(("osascript" . applescript-mode))
               interpreter-mode-alist))
 
 ;; Debugger
 ;; doc: https://github.com/emacs-lsp/dap-mode
-
 (after! dap-mode
   (setq dap-python-debugger 'debugpy
         dap-python-executable "python3"))
@@ -457,15 +453,16 @@
 ;;; Vterm
 
 ;; doc: https://github.com/akermu/emacs-libvterm
-
 (after! vterm
   (setq vterm-max-scrollback 6000
         vterm-timer-delay 0.01
         vterm-always-compile-module t)
 
-  (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)  ; always display modeline
+  ;; Make sure to always display the modeline when using vterm. I feel like even
+  ;; in a terminal, its still useful to see the modeline and its information.
+  (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
-  ;; Used in bindings
+  ;; This function gets used in the bindings configuration.
   (defun my/vterm-delete-word ()
     (interactive)
     (vterm-send-key (kbd "C-w"))))
@@ -474,16 +471,15 @@
 ;;
 ;;; Eshell
 
-;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
-
 ;; Remove the virtual env variable once the env has been deactivated, it will
 ;; get recreated once we reactivate the env. It's used in the eshell prompt
 ;; so we need to remove it when not in use.
 (add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
 
-;; Disable company in eshell
+;; Disable company completion in eshell.
 (add-hook! 'eshell-mode-hook (company-mode -1))
 
+;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
 (after! eshell
   (defun my/eshell-current-git-branch ()
     (let ((args '("symbolic-ref" "HEAD" "--short")))
@@ -515,7 +511,9 @@
         eshell-modify-global-environment t
         eshell-destroy-buffer-when-process-dies t)
 
-  (remove-hook! 'eshell-mode-hook #'hide-mode-line-mode)  ; always display modeline
+  ;; Make sure to always display the modeline when using eshell. I feel like even
+  ;; in a terminal, its still useful to see the modeline and its information.
+  (remove-hook! 'eshell-mode-hook #'hide-mode-line-mode)
 
   ;; Prompt settings
   (setq eshell-prompt-regexp "^.* [%] "
@@ -611,26 +609,21 @@
 ;;
 ;;; Org
 
-;; doc: https://orgmode.org/manual/
-
 (defvar my-notes-directory "~/org"
   "Where I'm storing my notes.")
 
+;; doc: https://orgmode.org/manual/
 (after! org
   (setq org-directory my-notes-directory
         org-hide-emphasis-markers t))
 
-;; (add-hook! 'org-mode-hook 'variable-pitch-mode)
-
 ;; Deft
 ;; doc: https://github.com/jrblevin/deft
-
 (after! deft
   (setq deft-directory my-notes-directory))
 
 ;; Make invisible parts of Org elements appear visible
 ;; doc: https://github.com/awth13/org-appear
-
 (use-package! org-appear
   :after org-mode
   :custom
@@ -643,7 +636,6 @@
 
 ;; Journal
 ;; doc: https://github.com/bastibe/org-journal
-
 (after! org-journal
   (setq org-journal-dir (expand-file-name "journal/" my-notes-directory)
         org-journal-date-format "%A, %d %B %Y"
@@ -653,17 +645,14 @@
 ;;
 ;;; Mail
 
-;; Emails are sent using msmtp
-(setq sendmail-program "/usr/local/bin/msmtp")
-
-(setq mail-user-agent 'message-user-agent
+(setq sendmail-program "/usr/local/bin/msmtp"
+      mail-user-agent 'message-user-agent
       mail-specify-envelope-from t
       mail-envelope-from 'header
       message-sendmail-envelope-from 'header)
 
 ;; Email client
 ;; doc: https://notmuchmail.org/emacstips/
-
 (after! notmuch
   ;; Main buffer sections
   (setq notmuch-show-log nil
@@ -699,14 +688,15 @@
 
 ;; Markdown visualiser
 ;; doc: https://github.com/seagle0128/grip-mode
-
 (after! grip-mode
+  ;; TODO: even by providing credentials, the API rate limitation is really
+  ;;       annoying as super limited. I feel like there must be a bette
+  ;;       solution to this.
   (setq grip-github-user "smallwat3r"
         grip-github-password (+pass-get-secret "github/password")))
 
 ;; Scratch buffers
 ;; doc: https://github.com/ieure/scratch-el
-
 (use-package! scratch
   :commands (scratch))
 
@@ -717,7 +707,6 @@
 
 ;; Insert lorem-ipsum text
 ;; doc: https://github.com/jschaf/emacs-lorem-ipsum
-
 (use-package! lorem-ipsum
   :commands (lorem-ipsum-insert-paragraphs
              lorem-ipsum-insert-sentences
@@ -725,7 +714,6 @@
 
 ;; Untappd
 ;; doc: https://github.com/smallwat3r/untappd.el
-
 (use-package! untappd
   :commands (untappd-feed)
   :config (setq untappd-access-token
@@ -733,10 +721,18 @@
 
 ;; Look up
 (setq +lookup-provider-url-alist
+      ;; Searching stuff on sourcegraph is quite useful. It provides lots of
+      ;; code implementations and examples.
       (append +lookup-provider-url-alist
-              '(("Sourcegraph" "https://sourcegraph.com/search?q=context:global+%s&patternType=literal"))))
+              '(("Sourcegraph"
+                 "https://sourcegraph.com/search?q=context:global+%s&patternType=literal"))))
 
-;; Testing
+
+;;
+;;; Testing...
+
+;; I use the below commands when testing/debugging my Emacs config. I'm sure
+;; there are better ways or tools to do most this, but hey, it works for me!
 
 (defun my-echo-command-name-hook ()
   "Echo live command names."
