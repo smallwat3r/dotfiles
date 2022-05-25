@@ -102,12 +102,15 @@
   '(font-lock-doc-face :foreground "#c7a7d6")
   '(git-commit-summary :foreground "#f6b26b")
 
-  '((markdown-inline-code-face
-     markdown-code-face
+  '((markdown-code-face
+     markdown-pre-face
      org-block
-     org-code
      org-inline-src-block)
-    :inherit variable-pitch)
+    :background "#262626" :foreground "#eeeeee" :extend t)
+
+  '((markdown-inline-code-face
+     org-code)
+    :inherit help-key-binding :foreground "#eeeeee")
 
   '((font-lock-function-name-face
      font-lock-variable-name-face
