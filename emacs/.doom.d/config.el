@@ -20,8 +20,8 @@
 (setq frame-title-format '("Emacs:" emacs-version))
 
 ;; Check if Emacs is displaying the frame in a Nextstep inferface. This is used
-;; to by macOS (and GNUstep). So the below settings would only be applied on
-;; these systems.
+;; by macOS (and GNUstep). So the below settings would only be applied on these
+;; systems.
 (when (eq window-system 'ns)
   (setq ns-use-thin-smoothing t
         ns-use-native-fullscreen nil
