@@ -84,22 +84,21 @@
 ;; Enforce these faces for all the themes. This must comes after the theme gets
 ;; defined in the config.
 (custom-set-faces!
-  '(font-lock-doc-face :foreground "#c7a7d6")
-  '(git-commit-summary :foreground "#f6b26b")
+  '(git-commit-summary :foreground "orange1")
 
   '(magit-section-highlight :background unspecified)
-  '(magit-diff-hunk-heading-highlight :background "#0b0169" :foreground "#ff3c00")
-  '(magit-diff-hunk-heading :background "#0b0169" :foreground "#17dcff")
+  '(magit-diff-hunk-heading-highlight :background "blue2" :foreground "coral1")
+  '(magit-diff-hunk-heading :background "blue2" :foreground "cyan1")
 
   '((markdown-code-face
      markdown-pre-face
      org-block
      org-inline-src-block)
-    :background "#262626" :foreground "#eeeeee" :extend t)
+    :background "gray16" :foreground "gray93" :extend t)
 
   '((markdown-inline-code-face
      org-code)
-    :inherit help-key-binding :foreground "#eeeeee")
+    :inherit help-key-binding :foreground "gray93")
 
   ;; I like to keep my editor clean and simple. Do not activate code
   ;; highlighting on some major code faces like variables or functions, as I
