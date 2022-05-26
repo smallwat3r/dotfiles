@@ -57,6 +57,12 @@
       evil-split-window-below t
       evil-want-fine-undo t)
 
+;; Prompt to select file after an evil window split action. Press ESC to cancel
+;; and the split windown will be for the current file.
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (ido-find-file))
+
 (setq undo-limit 80000000 ; yep, this is almost infinite
       scroll-margin 7)    ; top and bottom margins to trigger scroll
 
