@@ -1,6 +1,7 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
+;; Disable some of Doom's default packages, as not used or obsolete.
 (disable-packages!
  anaconda-mode
  company-anaconda

@@ -469,18 +469,17 @@
 ;; Debug Adapter Protocol
 ;; Enables communication between client and a debug server, for powerful
 ;; interactive debugging.
+;; TODO: I need to spend a bit more time setting this up and getting used to it.
 ;; doc: https://github.com/emacs-lsp/dap-mode
-;;
-;; TODO: I need to spend a bit more time setting this up and getting used
-;;       to it.
 (after! dap-mode
   (setq dap-python-debugger 'debugpy
         dap-python-executable "python3"))
 
 
 ;;
-;;; Vterm
+;;; Terminals
 
+;; vterm
 ;; doc: https://github.com/akermu/emacs-libvterm
 (after! vterm
   (setq vterm-max-scrollback 6000
@@ -496,18 +495,7 @@
     (interactive)
     (vterm-send-key (kbd "C-w"))))
 
-
-;;
-;;; Eshell
-
-;; Remove the virtual env variable once the env has been deactivated, it will
-;; get recreated once we reactivate the env. It's used in the eshell prompt
-;; so we need to remove it when not in use.
-(add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
-
-;; Disable company completion in eshell.
-(add-hook! 'eshell-mode-hook (company-mode -1))
-
+;; eshell
 ;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
 (after! eshell
   (defun my/eshell-current-git-branch ()
@@ -606,8 +594,15 @@
     "Activate a python ENV."
     (if env
         (pyvenv-activate env)
-      (pyvenv-activate "env")))
-      (eshell-command-result (concat command " " file)))
+      (pyvenv-activate "env"))))
+
+;; Remove the virtual env variable once the env has been deactivated, it will
+;; get recreated once we reactivate the env. It's used in the eshell prompt
+;; so we need to remove it when not in use.
+(add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
+
+;; Disable company completion in eshell.
+(add-hook! 'eshell-mode-hook (company-mode -1))
 
 
 ;;
