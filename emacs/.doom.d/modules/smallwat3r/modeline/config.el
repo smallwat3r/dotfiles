@@ -3,7 +3,6 @@
 ;; Show counter while in search modes
 ;; doc: https://github.com/emacsorphanage/anzu
 ;; doc: https://github.com/emacsorphanage/evil-anzu
-
 (use-package! anzu
   :delight
   :after-call isearch-mode)
@@ -15,7 +14,6 @@
 
 ;; Manage how modes are displayed
 ;; doc: https://www.emacswiki.org/emacs/DelightedModes
-
 (use-package! delight
   :config
   (delight
@@ -70,16 +68,3 @@
   "Custom modeline format Alist.")
 
 (setq-default mode-line-format my-modeline-format)
-
-;; Display modeline into the minibuffer
-;; doc: https://github.com/kiennq/emacs-mini-modeline
-
-;; (use-package! mini-modeline
-;;   :custom
-;;   (mini-modeline-r-format my-modeline-format)
-;;   (mini-modeline-echo-duration 0.5)
-;;   (mini-modeline-enhance-visual t)
-;;   (mini-modeline-truncate-p nil)
-;;   (mini-modeline-right-padding 1)
-;;   :config
-;;   (mini-modeline-mode t))

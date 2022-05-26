@@ -1,15 +1,15 @@
 ;;; smallwat3r/slack/config.el -*- lexical-binding: t; -*-
 
 ;; Slack
-;; doc: https://github.com/yuya373/emacs-slack
-
+;;
 ;; To get a token:
 ;;   - Open Chrome and sign into slack at https://my.slack.com/customize
 ;;   - From the dev tools console type: TS.boot_data.api_token
 ;;
 ;; To get a cookie:
 ;;   - Get cookie entry "d" with its default encoded value
-
+;;
+;; doc: https://github.com/yuya373/emacs-slack
 (use-package! slack
   :commands (slack-start)
   :custom
@@ -44,10 +44,3 @@
     ",mc" 'slack-message-embed-channel))
 
 (add-hook! 'slack-mode-hook 'variable-pitch-mode)
-
-;; Trigger alerts
-;; doc: https://github.com/jwiegley/alert
-
-(use-package! alert
-  :commands (alert)
-  :custom (alert-default-style 'notifier))

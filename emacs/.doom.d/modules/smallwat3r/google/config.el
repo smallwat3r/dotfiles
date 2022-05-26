@@ -2,7 +2,6 @@
 
 ;; google-translate
 ;; doc: https://github.com/atykhonov/google-translate
-
 (use-package! google-translate
   :commands (google-translate-at-point
              google-translate-query-translate
@@ -13,7 +12,7 @@
   (after! google-translate-backend
     (setq google-translate-backend-method 'curl))
 
-  ;; fix
+  ;; HACK: resolve ttk to be able to communicate with google translate.
   (after! google-translate-tk
     (advice-add #'google-translate--search-tkk
                 :override (lambda () "Search TKK fix." (list 430675 2721866130))))
@@ -27,7 +26,6 @@
 
 ;; google-this
 ;; doc: https://github.com/Malabarba/emacs-google-this
-
 (use-package! google-this
   :commands (google-this google-this-word google-this-line)
   :init (map!

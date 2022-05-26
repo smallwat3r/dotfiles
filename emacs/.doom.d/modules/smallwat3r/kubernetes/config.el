@@ -1,7 +1,7 @@
 ;;; smallwat3r/kubernetes/config.el -*- lexical-binding: t; -*-
 
+;; Manage kubernetes from Emacs
 ;; doc: https://github.com/chrisbarrett/kubernetes-el
-
 (use-package! kubernetes
   :commands (kubernetes-overview)
   :custom

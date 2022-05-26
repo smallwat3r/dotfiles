@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/autoload/music.el -*- lexical-binding: t; -*-
 
-;; Wrapper around pytunes to manage Apple music
+;; Wrapper around pytunes to control Apple music.
 ;;
 ;; Install pytunes with:
 ;;   git clone https://github.com/hile/pytunes
