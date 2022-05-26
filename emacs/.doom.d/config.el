@@ -17,8 +17,11 @@
                 (internal-border-width . 3)
                 (inhibit-double-buffering . t))))
 
-(setq frame-title-format '("Emacs " emacs-version))
+(setq frame-title-format '("Emacs:" emacs-version))
 
+;; Check if Emacs is displaying the frame in a Nextstep inferface. This is used
+;; to by macOS (and GNUstep). So the below settings would only be applied on
+;; these systems.
 (when (eq window-system 'ns)
   (setq ns-use-thin-smoothing t
         ns-use-native-fullscreen nil
@@ -26,15 +29,14 @@
         ns-use-fullscreen-animation nil))
 
 ;; Emacs everywhere.
-;; Ability to pop-up an Emacs buffer anywhere to type some text.
+;; Ability to pop-up an Emacs buffer anywhere to type some text and send it back
+;; to the GUI using C-c.
 ;; doc: https://github.com/tecosaur/emacs-everywhere
 (after! emacs-everywhere
   (setq emacs-everywhere-frame-parameters
         '((name . "emacs-everywhere")
-          (width . 90)
-          (height . 20)))
-
-  (add-hook! 'emacs-everywhere-mode-hook #'hide-mode-line-mode))
+          (width . 110)
+          (height . 30))))
 
 
 ;;
@@ -63,7 +65,7 @@
 (setq save-abbrevs nil)
 (setq abbrev-file-name (expand-file-name "abbrev_defs" doom-private-dir))
 
-;; Custom File, used by Emacs to cache some data relative to the config
+;; Custom File, used by Emacs to cache some data related to its config
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
@@ -97,7 +99,8 @@
 
 (setq doom-theme 'simplicity)
 
-;; Enforce these faces for all the themes
+;; Enforce these faces for all the themes. This must comes after the theme gets
+;; defined in the config.
 (custom-set-faces!
   '(font-lock-doc-face :foreground "#c7a7d6")
   '(git-commit-summary :foreground "#f6b26b")
@@ -112,6 +115,9 @@
      org-code)
     :inherit help-key-binding :foreground "#eeeeee")
 
+  ;; I like to keep my editor clean and simple. Do not activate code
+  ;; highlighting on some major code faces like variables or functions, as I
+  ;; don't think having lots of colors helps with readability.
   '((font-lock-function-name-face
      font-lock-variable-name-face
      font-lock-constant-face
@@ -135,7 +141,7 @@
 
 (setq display-line-numbers-type nil)
 
-;; Show keybindings
+;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
 (after! which-key
   (setq which-key-idle-delay 0.2
@@ -144,27 +150,30 @@
 ;; Git fringe indicator
 ;; doc: https://github.com/emacsorphanage/git-gutter-fringe
 (after! git-gutter-fringe
+  ;; `fringe-mode' is not a git-gutter-fringe specific parameter. But it
+  ;; specifies the pixel width of the fringe used for git-gutter-fringe.
   (fringe-mode 2))
 
-;; Disable hl-line
+;; Disable globally hightlighting the current line the cursor is on.
 (remove-hook! 'doom-first-buffer-hook #'global-hl-line-mode)
 
-;; When hl-line is available, do not override the color of rainbow-mode
+;; When hl-line is available, do not override the color of rainbow-mode.
 (add-hook! 'rainbow-mode-hook
   (hl-line-mode (if rainbow-mode -1 +1)))
 
-(defvar global-window-divider-width 2
-  "Default global width size of a window divider.")
+(defvar my-global-window-divider-width 2
+  "Default global width size (in pixels) of a window divider.")
 
-;; Set window dividers width
-(setq window-divider-default-right-width global-window-divider-width
-      window-divider-default-bottom-width global-window-divider-width)
+;; Set window dividers widths.
+(setq window-divider-default-right-width my-global-window-divider-width
+      window-divider-default-bottom-width my-global-window-divider-width)
 
-;; Activate goto-address mode on some major modes
+;; Activate goto-address mode on some major modes.
+;; This mode activates and highlights URLs and email addresses in the current buffer.
 (add-hook! (prog-mode text-mode restclient-mode vterm-mode eshell-mode)
   (goto-address-mode t))
 
-;; Zen mode
+;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
 (after! writeroom-mode
   (setq +zen-window-divider-size global-window-divider-width
@@ -179,7 +188,7 @@
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
 
-;; Evil visual hints
+;; Evil visual hints when yanking, pasting, deleting etc.
 ;; doc: https://github.com/edkolev/evil-goggles
 (after! evil-goggles
   (setq evil-goggles-duration 0.25)
@@ -196,11 +205,11 @@
 
 ;; Highlight todos
 ;; doc: https://github.com/tarsius/hl-todo
-(defface my-todos-face
-  '((t :background unspecified :foreground "#f54260" :weight bold))
-  "The face used to display todos from hl-todo.")
-
 (after! hl-todo
+  (defface my-todos-face
+    '((t :background unspecified :foreground "#f54260" :weight bold))
+    "The face used to display todos from hl-todo.")
+
   (setq hl-todo-keyword-faces
         `(("TODO" . my-todos-face)
           ("DEPRECATED" . my-todos-face)
@@ -215,11 +224,10 @@
 ;;
 ;;; Custom templates
 
-;; Custom file templates
 (setq +file-templates-dir "~/.doom.d/templates"
       +file-templates-default-trigger "_template")
 
-;; Use file templates only for a few specific modes
+;; Allow some file templates to be used only in specific modes.
 (setq +file-templates-alist
       '(("/packages\\.el$" :when +file-templates-in-emacs-dirs-p
          :trigger "_template-doom-packages"
@@ -322,9 +330,11 @@
 ;;
 ;;; Completion frameworks
 
-;; Code completion
-;; doc: https://www.emacswiki.org/emacs/CompanyMode
-(defun company-spaced-dark-icons-margin (candidate selected)
+;; This function gets used for `company-format-margin-function'. The default
+;; displayed the company icons without a space between the icons and the text.
+;; Which makes it a bit innelegant. This function adds a space between the two
+;; values.
+(defun my/company-spaced-dark-icons-margin (candidate selected)
   (concat
    (company--render-icons-margin company-vscode-icons-mapping
                                  (expand-file-name "vscode-dark" company-icons-root)
@@ -332,11 +342,13 @@
                                  selected)
    " "))
 
+;; Code completion
+;; doc: https://www.emacswiki.org/emacs/CompanyMode
 (after! company
   (setq company-idle-delay 0.1
         company-tooltip-limit 10
         company-minimum-prefix-length 1
-        company-format-margin-function 'company-spaced-dark-icons-margin))
+        company-format-margin-function 'my/company-spaced-dark-icons-margin))
 
 
 ;;
@@ -348,6 +360,8 @@
       +format-with-lsp nil)
 
 (after! lsp-mode
+  ;; I had issues with file watchers enabled in the past as Emacs would freeze
+  ;; because it took too much memory. So I just disable it as a default.
   (setq lsp-enable-file-watchers nil))
 
 ;; Magit
@@ -371,10 +385,11 @@
 ;; Check for spelling mistakes
 ;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
 (after! spell-fu
-  (setq spell-fu-idle-delay 0.5))
-
-;; Force spell checking to be turn on manually
-(remove-hook! (text-mode) #'spell-fu-mode)
+  (setq spell-fu-idle-delay 0.5)
+  ;; spell-fu is by default enabled in text-mode, but I think this quite
+  ;; annoying, so force it to be disabled, and we can explicitly enable it
+  ;; if we need to use it.
+  (remove-hook! (text-mode) #'spell-fu-mode))
 
 (after! sh-script
   (set-formatter! 'shfmt
@@ -384,11 +399,9 @@
       "-bn")   ; binary ops may start a line
     :modes '(sh-mode)))
 
+;; Disabled company auto completion on shell mode. I experienced some heavy
+;; performance issues when it was enabled.
 (add-hook! 'shell-mode-hook (company-mode -1))
-
-(setq-hook! 'sh-mode-hook
-  sh-basic-offset 2
-  indent-tabs-mode nil)
 
 (after! python
   (setq python-shell-interpreter "python3")
@@ -401,9 +414,6 @@
 
 (set-popup-rule! "^\\*pytest*" :size 0.3)
 
-;; Disable warnings in python repl
-(add-hook! 'inferior-python-mode-hook 'python-shell-completion-native-turn-off)
-
 (after! js2-mode
   (set-formatter! 'prettier
     '("prettier"
@@ -412,8 +422,11 @@
     :modes '(js2-mode)))
 
 (setq-hook! 'js2-mode js2-basic-offset 2)
+
 (setq-hook! 'json-mode js-indent-level 2)
+
 (setq-hook! 'go-mode indent-tabs-mode t)
+
 (setq-hook! 'web-mode-hook
   tab-width 2
   web-mode-markup-indent-offset 2
@@ -421,6 +434,11 @@
   web-mode-script-padding 2
   web-mode-style-padding 2)
 
+(setq-hook! 'sh-mode-hook
+  sh-basic-offset 2
+  indent-tabs-mode nil)
+
+;; Disable formatters for html and web modes
 (setq-hook! 'html-mode-hook +format-with :none)
 (setq-hook! 'web-mode-hook +format-with :none)
 
@@ -442,8 +460,13 @@
       (append '(("osascript" . applescript-mode))
               interpreter-mode-alist))
 
-;; Debugger
+;; Debug Adapter Protocol
+;; Enables communication between client and a debug server, for powerful
+;; interactive debugging.
 ;; doc: https://github.com/emacs-lsp/dap-mode
+;;
+;; TODO: I need to spend a bit more time setting this up and getting used
+;;       to it.
 (after! dap-mode
   (setq dap-python-debugger 'debugpy
         dap-python-executable "python3"))
@@ -482,6 +505,7 @@
 ;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
 (after! eshell
   (defun my/eshell-current-git-branch ()
+    "Get current git branch."
     (let ((args '("symbolic-ref" "HEAD" "--short")))
       (with-temp-buffer
         (apply #'process-file "git" nil (list t nil) nil args)
@@ -490,6 +514,7 @@
           (buffer-substring-no-properties (point) (line-end-position))))))
 
   (defun my/eshell-prompt ()
+    "Build eshell custom prompt."
     (let ((base/dir (shrink-path-prompt default-directory))
           (base/branch (my/eshell-current-git-branch)))
       (concat
@@ -539,6 +564,8 @@
    "ls" "my/eshell/ls $*")
 
   ;; Custom Eshell functions
+  ;; These can be used directly in eshell by omitting the 'eshell/' prefixes.
+  ;; For example 'eshell/cr' can be used directly by invoking 'cr' in eshell.
 
   (defun eshell/cr ()
     "Go to git repository root."
@@ -574,36 +601,7 @@
     (if env
         (pyvenv-activate env)
       (pyvenv-activate "env")))
-
-  (defun eshell/e (&rest args)
-    "Invoke `find-file' on the file.
-\"e +42 foo\" also goes to line 42 in the buffer."
-    (while args
-      (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
-          (let* ((line (string-to-number (match-string 1 (pop args))))
-                 (file (pop args)))
-            (find-file file)
-            (forward-line line))
-        (find-file (pop args)))))
-
-  (defun eshell/extract (file)
-    "Extract archive file."
-    (let ((command
-           (some (lambda (x)
-                   (if (string-match-p (car x) file)
-                       (cadr x)))
-                 '((".*\.tar.bz2" "tar xjf")
-                   (".*\.tar.gz" "tar xzf")
-                   (".*\.bz2" "bunzip2")
-                   (".*\.rar" "unrar x")
-                   (".*\.gz" "gunzip")
-                   (".*\.tar" "tar xf")
-                   (".*\.tbz2" "tar xjf")
-                   (".*\.tgz" "tar xzf")
-                   (".*\.zip" "unzip")
-                   (".*\.Z" "uncompress")
-                   (".*" "echo 'Could not extract the file:'")))))
-      (eshell-command-result (concat command " " file)))))
+      (eshell-command-result (concat command " " file)))
 
 
 ;;
@@ -612,6 +610,7 @@
 (defvar my-notes-directory "~/org"
   "Where I'm storing my notes.")
 
+;; Org mode
 ;; doc: https://orgmode.org/manual/
 (after! org
   (setq org-directory my-notes-directory
@@ -654,12 +653,13 @@
 ;; Email client
 ;; doc: https://notmuchmail.org/emacstips/
 (after! notmuch
-  ;; Main buffer sections
+  ;; Main buffer sections information.
   (setq notmuch-show-log nil
         notmuch-hello-sections '(notmuch-hello-insert-saved-searches
                                  notmuch-hello-insert-alltags))
 
-  ;; Remove pop-up rule, so it opens in its own buffer
+  ;; By default, Doom's implementation of Notmuch makes it open in a pop-up
+  ;; buffer. But I prefer Notmuch to open in its own buffer window.
   (set-popup-rule! "^\\*notmuch-hello" :ignore t)
 
   ;; Email list formats
@@ -682,7 +682,8 @@
 ;;
 ;;; Misc
 
-;; shrink-path util
+;; shrink-path provides functions to shrink filepaths to be displayed such as
+;; '/foo/bar/file.el' becomes 'f/b/file.el'.
 (use-package! shrink-path
   :commands (shrink-path-file shrink-path-prompt))
 
@@ -700,7 +701,7 @@
 (use-package! scratch
   :commands (scratch))
 
-;; Auto add headers on scratch buffers in specific modes
+;; Automatically add headers on scratch buffers in specific modes.
 (add-hook! 'org-mode-hook (my/add-scratch-buffer-header "#+TITLE: Scratch file"))
 (add-hook! 'sh-mode-hook (my/add-scratch-buffer-header "#!/usr/bin/env bash"))
 (add-hook! 'restclient-mode-hook (my/add-scratch-buffer-header "#\n# restclient\n#"))
