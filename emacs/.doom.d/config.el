@@ -111,6 +111,10 @@
   '(font-lock-doc-face :foreground "#c7a7d6")
   '(git-commit-summary :foreground "#f6b26b")
 
+  '(magit-section-highlight :background unspecified)
+  '(magit-diff-hunk-heading-highlight :background "#0b0169" :foreground "#ff3c00")
+  '(magit-diff-hunk-heading :background "#0b0169" :foreground "#17dcff")
+
   '((markdown-code-face
      markdown-pre-face
      org-block
@@ -146,6 +150,15 @@
 (setq-default with-editor-emacsclient-executable "emacsclient")
 
 (setq display-line-numbers-type nil)
+
+;; Magit
+;; doc: https://github.com/magit/magit
+(after! magit
+  ;; These bindings are hard to work with as I'm running evil mode. I don't
+  ;; want the 'h' or the 'l' key to be bound to anything as I'm expected those
+  ;; keys to allow me to move the cursor to the left and right.
+  (define-key magit-mode-map (kbd "l") nil)
+  (define-key magit-mode-map (kbd "h") nil))
 
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
