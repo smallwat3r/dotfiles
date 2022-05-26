@@ -49,23 +49,6 @@
 (setq default-directory "~/"
       my-dotfiles-dir (concat default-directory "dotfiles"))
 
-(setq confirm-kill-emacs nil            ; quit emacs without confirmation
-      load-prefer-newer t               ; always load newer bytes compiled files
-      inhibit-compacting-font-caches t) ; improve general perfs
-
-(setq evil-vsplit-window-right t
-      evil-split-window-below t
-      evil-want-fine-undo t)
-
-;; Prompt to select file after an evil window split action. Press ESC to cancel
-;; and the split windown will be for the current file.
-(defadvice! prompt-for-buffer (&rest _)
-  :after '(evil-window-split evil-window-vsplit)
-  (ido-find-file))
-
-(setq undo-limit 80000000 ; yep, this is almost infinite
-      scroll-margin 7)    ; top and bottom margins to trigger scroll
-
 ;; Abbreviations
 (setq-default abbrev-mode t)
 (setq save-abbrevs nil)
@@ -75,13 +58,6 @@
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
-
-;; Scrolling
-(if (boundp 'mac-mouse-wheel-smooth-scroll)
-    (setq mac-mouse-wheel-smooth-scroll t))
-
-(if (> emacs-major-version 28)
-    (pixel-scroll-precision-mode))
 
 
 ;;
@@ -149,7 +125,28 @@
 
 (setq-default with-editor-emacsclient-executable "emacsclient")
 
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type nil ; no line numbers
+      scroll-margin 7)              ; top and bottom margins to trigger scroll
+
+(setq confirm-kill-emacs nil            ; quit emacs without confirmation
+      load-prefer-newer t               ; always load newer bytes compiled files
+      inhibit-compacting-font-caches t) ; improve general perfs
+
+(setq evil-vsplit-window-right t
+      evil-split-window-below t
+      evil-want-fine-undo t)
+
+;; Prompt to select file after an evil window split action. Press ESC to cancel
+;; and the split windown will be for the current file.
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (ido-find-file))
+
+;; Scrolling
+(if (boundp 'mac-mouse-wheel-smooth-scroll)
+    (setq mac-mouse-wheel-smooth-scroll t))
+(if (> emacs-major-version 28)
+    (pixel-scroll-precision-mode))
 
 ;; Magit
 ;; doc: https://github.com/magit/magit
