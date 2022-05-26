@@ -2,6 +2,9 @@
 name = Matthieu Petiteau
 email = mpetiteau.pro@gmail.com
 
+[github]
+user = smallwat3r
+
 [core]
 autocrlf = input
 editor = emacsclient
