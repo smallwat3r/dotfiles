@@ -9,11 +9,13 @@ if [ -f /usr/local/bin/docker ]; then
     fi
   }
 
+  # Shorter alternative to `docker ps`
   dps() {
     docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' \
       | column -t -s '¬¬¬' -c "$(tput cols)"
   }
 
+  # Shorter alternative to `docker ps -a`
   dpsa() {
     docker ps -a --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' \
       | column -t -s '¬¬¬' -c "$(tput cols)"
@@ -25,10 +27,12 @@ if [ -f /usr/local/bin/docker ]; then
     docker ps -q
   }
 
+  # Docker prune
   dprune() {
     printf 'y' | docker system prune
   }
 
+  # Stop a docker container
   dstop() {
     docker ps --filter name="${1}" --filter status=running -aq | xargs docker stop
   }
@@ -55,14 +59,17 @@ if [ -f /usr/local/bin/docker ]; then
       || printf 'Could not match [%s]\n' "$1" >&2)
   }
 
+  # Spin up a rmq instance from Docker
   docker-rmq() {
     docker run -d --hostname my-rabbit -p 5672:5672 -p 8080:15672 rabbitmq:3-management
   }
 
+  # Spin up a MongoDB instance from Docker
   docker-mongo() {
     docker run -d -p 27000:27017 -v "$HOME/.dockervolumes/mongo/db:/data/db" mongo
   }
 
+  # Spin up a Redis instance from Docker
   docker-redis() {
     docker run -d -p 6379:6379 redis
   }

@@ -1,6 +1,6 @@
 export NVM_DIR="${HOME}/.nvm"
 
-# I find nvm quite bulky to load on startup, so this provides a way to lazy load it
+# I find nvm quite bulky to load on startup, so this provides a way to lazy load it.
 nvm() {
   if ! command -v nvm --help >/dev/null; then
     if [ -s "/usr/local/opt/nvm/nvm.sh" ]; then

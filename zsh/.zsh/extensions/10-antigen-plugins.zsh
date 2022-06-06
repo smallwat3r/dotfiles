@@ -8,6 +8,7 @@ if [ -f /usr/local/share/antigen/antigen.zsh ]; then
   antigen apply
 fi
 
+# TODO: fix this as this doesn't seem to work out of the box
 if [ ! -d "${FAST_WORK_DIR}" ]; then
   fast-theme --quiet clean
 fi
