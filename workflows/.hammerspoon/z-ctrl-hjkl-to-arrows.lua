@@ -1,7 +1,6 @@
 -- Make the combination of Ctrl + hjkl to emulate the arrow keys behaviour.
 -- It emulates the vim bindings to go left, up, down or right. This is very
--- useful as it fits my workflow in Emacs when browsing up or down up or down
--- menus.
+-- useful as it fits my workflow in Emacs when browsing up or down up menus.
 
 local function pressFn(mods, key)
   if key == nil then
