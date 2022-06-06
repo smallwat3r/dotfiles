@@ -31,7 +31,7 @@ zstyle ':vcs_info:*' check-for-changes false  # less expensive
 zstyle ':vcs_info:*' formats ' (%b)'
 
 # Placeholder to manually input custom text in the prompt.
-# Usage: __=<placholder>
+# Usage: __=<placeholder>
 __placeholder() {
   if [ ! -z "${__}" ]; then
     echo "%B%F{87}%K{20}[${(U)__}]%b%f%k "
@@ -42,17 +42,21 @@ __placeholder() {
 # command fails.
 PROMPT='%(?..%F{red}?%? )$(__placeholder)$(__is_venv)%F{cyan}%2~%f${vcs_info_msg_0_} %# '
 
-# When outside of emacs, activate tmux by default and use the individual pane titles
-# to display the main prompt information.
+# When outside of emacs, activate tmux by default and use the individual pane
+# titles to display the main prompt information.
 if [[ ! "${INSIDE_EMACS}" ]]; then
+  # Activate tmux
   if [ -t 0 ] && [[ -z "${TMUX}" ]] && [[ $- = *i* ]]; then
     exec tmux
   fi
 
+  # Return the current activate pane number
   __pane_number() {
     tmux list-panes | grep "active" | cut -d ':' -f 1
   }
 
+  # Wrapper around the `ssh` command. It will print out the ssh instance in the
+  # active tmux pane number.
   ssh() {
     [[ -z "${TMUX}" ]] \
       || tmux select-pane \
@@ -61,27 +65,33 @@ if [[ ! "${INSIDE_EMACS}" ]]; then
     command ssh "${@}"
   }
 
-  __git_dirty() {
-    [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] && echo "*"
-  }
-
+  # Return true if the current directory is the root of a git repository.
   __git_root() {
     if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]; then
       [[ $(git rev-parse --show-toplevel 2>/dev/null) == "${PWD}" ]] && echo true
     fi
   }
 
+  # Show a `*` next to the branch name if the Git branch is dirty.
+  __git_dirty() {
+    [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] && echo "*"
+  }
+
+  # Display current git branch.
   __git_branch() {
     git branch --no-color 2>/dev/null \
       | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(__git_dirty)/"
   }
 
+  # Display git information.
   __display_git_info() {
     local _git_root="$(__git_root | sed 's/true/~/')"
     local _git_branch="$(__git_branch)"
     [[ -n ${_git_branch} ]] && echo " ${_git_branch}${_git_root}"
   }
 
+  # Shrink the current directory path.
+  # Example: ~/foo/bar/hello.py would become ~/f/b/hello.py
   __shrink_path() {
     echo ~+ \
       | sed "s;${HOME};~;" \
@@ -89,6 +99,7 @@ if [[ ! "${INSIDE_EMACS}" ]]; then
       | sed 's/.$//'
   }
 
+  # Print current directory path.
   __path() {
     case "${PWD}" in
       "${HOME}") printf '~' ;;
@@ -97,6 +108,8 @@ if [[ ! "${INSIDE_EMACS}" ]]; then
     esac
   }
 
+  # Run whenever the Zsh prompt is reloaded. Update the information in the
+  # active Tmux pane session title.
   precmd() {
     [[ -z "${TMUX}" ]] \
       || tmux select-pane \
