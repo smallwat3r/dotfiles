@@ -1,35 +1,45 @@
 # ZSH prompt
 
+# Display Python virtual environment name. This function is used in the Zsh prompt.
 __is_venv() {
   if [[ ${VIRTUAL_ENV} ]]; then
     echo '%s' "(.${VIRTUAL_ENV##*/}) "
   fi
 }
 
+# Disable showing any Python virtual environment information in the shell prompt.
+# Indeed I'm using my own function to display this information.
 VIRTUAL_ENV_DISABLE_PROMPT=false
+
+# Allow parameter expansion, command substitution and arithmetic expansion in
+# the prompt string.
 setopt PROMPT_SUBST
 
+# Enable colors.
 autoload -U colors && colors
-autoload -Uz vcs_info
 
+# Display Git information in the prompt. Keep it minimal.
+autoload -Uz vcs_info
 precmd_vcs_info() {
   vcs_info
 }
 precmd_functions+=(
   precmd_vcs_info
 )
-
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false  # less expensive
 zstyle ':vcs_info:*' formats ' (%b)'
 
-# Placeholder to manually input custom text in prompt, set __=XXX in the shell
+# Placeholder to manually input custom text in the prompt.
+# Usage: __=<placholder>
 __placeholder() {
   if [ ! -z "${__}" ]; then
     echo "%B%F{87}%K{20}[${(U)__}]%b%f%k "
   fi
 }
 
+# Prompt format definition. It will print out return codes in red in case the
+# command fails.
 PROMPT='%(?..%F{red}?%? )$(__placeholder)$(__is_venv)%F{cyan}%2~%f${vcs_info_msg_0_} %# '
 
 # When outside of emacs, activate tmux by default and use the individual pane titles
