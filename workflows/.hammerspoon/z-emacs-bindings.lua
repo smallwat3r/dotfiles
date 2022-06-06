@@ -1,6 +1,6 @@
 local hotkey = require "hs.hotkey"
 
--- New emacs client
+-- Spawn a new emacs client
 hotkey.bind(
   mod_cmd,
   'e',
@@ -10,7 +10,7 @@ hotkey.bind(
   end
 )
 
--- Trigger emacs-everywhere
+-- Spawn an instance of emacs-everywhere
 hotkey.bind(
   mod_cmd,
   '.',
@@ -20,7 +20,7 @@ hotkey.bind(
   end
 )
 
--- Kill emacs daemon
+-- Kill the running emacs daemon
 hotkey.bind(
   mod_cmd,
   '§',
