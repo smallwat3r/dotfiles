@@ -29,6 +29,8 @@
    :cookie (+pass-get-secret "slack/s/cookie")
    :full-and-display-names t)
 
+  ;; TODO: These are some weird bindings, need to review at some point to make
+  ;;       it more user friendly.
   (evil-define-key 'normal slack-mode-map
     ",ra" 'slack-message-add-reaction
     ",rr" 'slack-message-remove-reaction
