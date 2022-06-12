@@ -11,16 +11,10 @@
 (defun my/kill-buffer ()
   "Kill current buffer."
   (interactive)
-  (when (eq major-mode 'vterm-mode)
-    ;; If vterm is the major mode, disable confirmation for processes
-    ;; and buffer modified.
+  ;; On specific major modes, disable confirmation of checking
+  ;; running for processes and modified buffers.
+  (when (derived-mode-p 'vterm-mode 'term-mode 'eshell-mode)
     (set-buffer-modified-p nil)
-    ;; Annoyingly every time I try to kill a vterm buffer it asks me
-    ;; for confirmation as it has a running process. This allows me to
-    ;; bypass this and kill it regardless.
-    ;; NOTE: Doom is supposed to have a hook for this, setting
-    ;; `confirm-kill-processes' to nil, but it doesn't seems to work
-    ;; properly for some reason.
     (let ((proc (get-buffer-process (current-buffer))))
       (when (processp proc)
         (set-process-query-on-exit-flag proc nil))))
