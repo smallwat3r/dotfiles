@@ -1,12 +1,19 @@
 ;;; $DOOMDIR/+bindings.el -*- lexical-binding: t; -*-
 
-;; Disable keys, due to other conflicts (Hammerspoon etc)
+;; This file bundles most of my custom bindings for using Doom Emacs. Some
+;; bindings are not included here, when there are specific to packages and
+;; cannot be bundled outside of the package configuration.
+
+;; Disable bindings, due to other conflicts (specially coming from Hammerspoon).
 (map! "M-k" nil
       "M-j" nil)
 
+;; Bindings
 (map!
+ ;; For some reason, Emacs wouldn't print # on ^3, even when configured with
+ ;; an English UK keyboard. This re-enabled this behaviour.
  (:map key-translation-map
-  "M-3" "#") ; Make sure M-3 prints a hash symbol
+  "M-3" "#")
 
  (:map evil-insert-state-map
   "C-h" #'evil-backward-char
@@ -68,14 +75,14 @@
    :desc "Find file in dotfiles" "P" #'my/find-file-in-dotfiles)
 
   (:prefix "o"
-  :desc "Alacritty"              "a" #'my/alacritty-here
-  :desc "Link at point"          "l" #'browse-url-at-point
-  :desc "Vterm at root"          "T" #'+vterm/here
-  :desc "Toggle vterm at root"   "t" #'+vterm/toggle
-  :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
-  :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer
-  :desc "Scr. buffer cur. mode"  "x" #'scratch
-  :desc "Scr. buffer restclient" "h" #'my/scratch-rest-mode)
+   :desc "Alacritty"              "a" #'my/alacritty-here
+   :desc "Link at point"          "l" #'browse-url-at-point
+   :desc "Vterm at root"          "T" #'+vterm/here
+   :desc "Toggle vterm at root"   "t" #'+vterm/toggle
+   :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
+   :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer
+   :desc "Scr. buffer cur. mode"  "x" #'scratch
+   :desc "Scr. buffer restclient" "h" #'my/scratch-rest-mode)
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines)
