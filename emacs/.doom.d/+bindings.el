@@ -71,6 +71,9 @@
    :desc "List containers" "c" #'docker-containers
    :desc "Exec into"       "e" #'docker-container-shell)
 
+  (:prefix "b"
+   :desc "Kill buffer" "d" #'my/kill-buffer)
+
   (:prefix "f"
    :desc "Find file in dotfiles" "P" #'my/find-file-in-dotfiles)
 

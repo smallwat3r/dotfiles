@@ -501,20 +501,7 @@
   (defun my/vterm-delete-word ()
     "Binding function to delete a word."
     (interactive)
-    (vterm-send-key (kbd "C-w")))
-
-  (defun my/set-no-process-query-on-exit ()
-    "Disable dialog to confirm killing buffer with running process."
-    (let ((proc (get-buffer-process (current-buffer))))
-      (when (processp proc)
-        (set-process-query-on-exit-flag proc nil))))
-
-  ;; Annoyingly every time I try to kill a vterm buffer it asks me for confirmation
-  ;; as it has a running process. This hook allows me to bypass this and kill it
-  ;; regardless.
-  ;; NOTE: Doom is supposed to have a hook for this, setting `confirm-kill-processes'
-  ;; to nil, but it doesn't seems to work properly for some reason.
-  (add-hook! 'vterm-mode-hook #'my/set-no-process-query-on-exit))
+    (vterm-send-key (kbd "C-w"))))
 
 ;; eshell
 ;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
