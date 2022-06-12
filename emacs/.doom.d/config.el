@@ -316,11 +316,10 @@
 ;; Dired
 ;; doc: https://www.emacswiki.org/emacs/DiredMode
 ;;      https://github.com/Fuco1/dired-hacks
-(add-hook! 'dired-mode-hook 'dired-hide-details-mode)
-
 (after! dired
   (setq delete-by-moving-to-trash t
-        dired-listing-switches "-lat"))  ; sort by date
+        dired-listing-switches "-lat")  ; sort by date
+  (add-hook! 'dired-mode-hook 'dired-hide-details-mode))
 
 ;; Narrowing searchs in dired
 (use-package! dired-narrow
@@ -499,23 +498,23 @@
   ;; in a terminal, its still useful to see the modeline and its information.
   (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
-  ;; This function gets used in the bindings configuration.
   (defun my/vterm-delete-word ()
+    "Binding function to delete a word."
     (interactive)
-    (vterm-send-key (kbd "C-w"))))
+    (vterm-send-key (kbd "C-w")))
 
-(defun my/set-no-process-query-on-exit ()
-  "Disable dialog to confirm killing buffer with running process."
-  (let ((proc (get-buffer-process (current-buffer))))
-    (when (processp proc)
-      (set-process-query-on-exit-flag proc nil))))
+  (defun my/set-no-process-query-on-exit ()
+    "Disable dialog to confirm killing buffer with running process."
+    (let ((proc (get-buffer-process (current-buffer))))
+      (when (processp proc)
+        (set-process-query-on-exit-flag proc nil))))
 
-;; Annoyingly every time I try to kill a vterm buffer it asks me for confirmation
-;; as it has a running process. This hook allows me to bypass this and kill it
-;; regardless.
-;; NOTE: Doom is supposed to have a hook for this, setting `confirm-kill-processes'
-;; to nil, but it doesn't seems to work properly for some reason.
-(add-hook! 'vterm-mode-hook #'my/set-no-process-query-on-exit)
+  ;; Annoyingly every time I try to kill a vterm buffer it asks me for confirmation
+  ;; as it has a running process. This hook allows me to bypass this and kill it
+  ;; regardless.
+  ;; NOTE: Doom is supposed to have a hook for this, setting `confirm-kill-processes'
+  ;; to nil, but it doesn't seems to work properly for some reason.
+  (add-hook! 'vterm-mode-hook #'my/set-no-process-query-on-exit))
 
 ;; eshell
 ;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
@@ -559,6 +558,14 @@
   ;; Prompt settings
   (setq eshell-prompt-regexp "^.* [%] "
         eshell-prompt-function #'my/eshell-prompt)
+
+  ;; Remove the virtual env variable once the env has been deactivated, it will
+  ;; get recreated once we reactivate the env. It's used in the eshell prompt
+  ;; so we need to remove it when not in use.
+  (add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
+
+  ;; Disable company completion in eshell.
+  (add-hook! 'eshell-mode-hook (company-mode -1))
 
   ;; List of eshell aliases
   (set-eshell-alias!
@@ -617,14 +624,6 @@
     (if env
         (pyvenv-activate env)
       (pyvenv-activate "env"))))
-
-;; Remove the virtual env variable once the env has been deactivated, it will
-;; get recreated once we reactivate the env. It's used in the eshell prompt
-;; so we need to remove it when not in use.
-(add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
-
-;; Disable company completion in eshell.
-(add-hook! 'eshell-mode-hook (company-mode -1))
 
 
 ;;
