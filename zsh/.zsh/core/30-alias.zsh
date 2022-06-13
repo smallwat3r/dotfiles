@@ -6,17 +6,18 @@ alias e="$EDITOR"
 # Handy to allow ignoring prompt characters when copying commands from
 # documentation. Also acts as an alias to make a command not appear in
 # the history when using HISTIGNORESPACE.
-alias \$=" "
-alias %=" "
+alias \
+  \$=" " \
+  %=" "
 
-alias l="ls -pFf"
-alias ll="ls -lah"
-alias ls.="ls -pF -d .*"
-alias ls="ls -pF"
-alias sl="ls -pF"
-alias lss="ls -la | grep --color=never '->'"
-alias mkdir="mkdir -pv"
-alias diskspace="df -P -kHl"
+# List files
+alias \
+  l="ls -pFf" \
+  ll="ls -lah" \
+  ls.="ls -pF -d .*" \
+  ls="ls -pF" \
+  sl="ls -pF" \
+  lss="ls -l *(@)"
 
 # Define git aliases from git config.
 #
@@ -38,12 +39,17 @@ __define_git_aliases() {
 }
 __define_git_aliases
 
-alias python="python3"
-alias pip="pip3"
+# Python
+alias \
+  python="python3" \
+  pip="pip3"
 
-alias vim="nvim"
-alias v="nvim"
+# Use Neovim over Vim
+alias \
+  vim="nvim" \
+  v="nvim"
 
+# Ripgrep
 alias rg="rg \
   --max-columns 120 \
   --glob '!git/*' \
@@ -53,30 +59,36 @@ alias rg="rg \
   --colors 'path:fg:cyan' \
   --colors 'match:fg:red' "
 
+# Misc
+alias mkdir="mkdir -pv"
+alias diskspace="df -P -kHl"
 alias dots="cd $HOME/dotfiles"
 alias fonts="open $HOME/Library/Fonts"
 
 # Global aliases
-alias -g G="| grep"
-alias -g L="| less"
-alias -g NE="2> /dev/null"
-alias -g C="| pbcopy"
-alias -g H="| head"
-alias -g T="| tail"
-alias -g S="| sort"
+alias \
+  -g G="| grep" \
+  -g L="| less" \
+  -g NE="2> /dev/null" \
+  -g C="| pbcopy" \
+  -g H="| head" \
+  -g T="| tail" \
+  -g S="| sort"
 
 # Tracked aliases
-hash -d d="$HOME/dotfiles"
-hash -d g="$HOME/Github"
-hash -d dw="$HOME/Downloads"
-hash -d de="$HOME/Desktop"
-hash -d ssh="$HOME/.ssh"
-hash -d zsh="$HOME/.zsh"
-hash -d tmux="$HOME/.config/tmux"
-hash -d nvim="$HOME/.config/nvim"
-hash -d doom="$HOME/.doom.d"
-hash -d fonts="$HOME/Library/Fonts"
-hash -d dots="$HOME/dotfiles"
-hash -d config="$HOME/.config"
-hash -d etc="/etc"
-hash -d opt="/opt"
+hash -d \
+  d="$HOME/dotfiles" \
+  c="$HOME/Code" \
+  g="$HOME/Github" \
+  dw="$HOME/Downloads" \
+  de="$HOME/Desktop" \
+  ssh="$HOME/.ssh" \
+  zsh="$HOME/.zsh" \
+  tmux="$HOME/.config/tmux" \
+  nvim="$HOME/.config/nvim" \
+  doom="$HOME/.doom.d" \
+  fonts="$HOME/Library/Fonts" \
+  dots="$HOME/dotfiles" \
+  config="$HOME/.config" \
+  etc="/etc" \
+  opt="/opt"
