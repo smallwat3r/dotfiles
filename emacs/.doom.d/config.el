@@ -73,7 +73,6 @@
       doom-big-font-increment 2)
 
 (setq-default line-spacing 1)
-(setq-default tab-width 8)
 
 
 ;;
@@ -123,14 +122,13 @@
 
 (blink-cursor-mode 1)
 
+(setq-default tab-width 8)
 (setq-default with-editor-emacsclient-executable "emacsclient")
 
 (setq display-line-numbers-type nil ; no line numbers
-      scroll-margin 7)              ; top and bottom margins to trigger scroll
-
-(setq confirm-kill-emacs nil            ; quit emacs without confirmation
-      load-prefer-newer t               ; always load newer bytes compiled files
-      inhibit-compacting-font-caches t) ; improve general perfs
+      scroll-margin 7               ; top and bottom margins to trigger scroll
+      confirm-kill-emacs nil        ; quit emacs without confirmation
+      load-prefer-newer t)          ; always load newer bytes compiled files
 
 (setq evil-vsplit-window-right t
       evil-split-window-below t
