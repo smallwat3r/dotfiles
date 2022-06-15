@@ -84,6 +84,7 @@
 ;; Enforce these faces for all the themes. This must comes after the theme gets
 ;; defined in the config.
 (custom-set-faces!
+  '(default :foreground "grey100")
   '(git-commit-summary :foreground "orange1")
 
   '(magit-section-highlight :background unspecified)
