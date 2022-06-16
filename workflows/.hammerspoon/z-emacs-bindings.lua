@@ -1,26 +1,23 @@
 local hotkey = require "hs.hotkey"
 
 -- Spawn a new emacs client
-hotkey.bind(
-  mod_cmd,
-  'e',
-  function()
-    hs.alert.show("New Emacs client!")
-    hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" -c' }):start()
-  end
-)
+local function newEmacsClient()
+  hs.alert.show("New Emacs client!")
+  hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" -c' }):start()
+end
+
+hotkey.bind(mod_cmd, 'e', function() newEmacsClient() end)
 
 -- Spawn an instance of emacs-everywhere
-hotkey.bind(
-  mod_cmd,
-  '.',
-  function()
-    hs.alert.show("Emacs everywhere!")
-    hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" --eval "(emacs-everywhere)"' }):start()
-  end
-)
+local function emacsEverywhere()
+  hs.alert.show("Emacs everywhere!")
+  hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" --eval "(emacs-everywhere)"' }):start()
+end
 
-function confirmationDialog(actionFunc)
+hotkey.bind(mod_cmd, '.', function() emacsEverywhere() end)
+
+-- Kill the running emacs daemon with confirmation
+local function confirmationDialog(actionFunc)
   test = hs.chooser.new(actionFunc)
   test:rows(2)
   test:choices({
@@ -30,16 +27,11 @@ function confirmationDialog(actionFunc)
   test:show()
 end
 
-function stopEmacsDaemon(input)
+local function stopEmacsDaemon(input)
   if input and input.id == "yes" then
     hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -e "(kill-emacs)"' }):start()
     hs.alert.show("Stopped Emacs daemon!")
   end
 end
 
--- Kill the running emacs daemon
-hotkey.bind(
-  mod_cmd,
-  '§',
-  function() confirmationDialog(stopEmacsDaemon) end
-)
+hotkey.bind(mod_cmd, '§', function() confirmationDialog(stopEmacsDaemon) end)

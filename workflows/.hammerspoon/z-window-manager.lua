@@ -9,22 +9,10 @@ grid.GRIDHEIGHT = 3
 grid.GRIDWIDTH = 3
 
 -- Center
-hotkey.bind(
-  mod_cmd,
-  '[',
-  function()
-    hs.window.focusedWindow():centerOnScreen()
-  end
-)
+hotkey.bind(mod_cmd, '[', function() hs.window.focusedWindow():centerOnScreen() end)
 
 -- Fullscreen
-hotkey.bind(
-  mod_cmd,
-  ']',
-  function()
-    hs.window.focusedWindow():maximize(0)
-  end
-)
+hotkey.bind(mod_cmd, ']', function() hs.window.focusedWindow():maximize(0) end)
 
 --Move
 hotkey.bind(mod_ctrl_cmd, 'j', grid.pushWindowDown)
@@ -39,10 +27,4 @@ hotkey.bind(mod_cmd, 'l', grid.resizeWindowWider)
 hotkey.bind(mod_cmd, 'h', grid.resizeWindowThinner)
 
 -- Hints
-hotkey.bind(
-  mod_alt,
-  'Tab',
-  function()
-    hs.hints.windowHints()
-  end
-)
+hotkey.bind(mod_alt, 'Tab', function() hs.hints.windowHints() end)
