@@ -20,8 +20,10 @@ install: npm pip symlink nvim brew ## * Install everything and symlink
 	@echo '$(SUCCESS)*** -- Everything has been installed --$(SGR0)'
 
 .PHONY: symlink
-symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
-	@stow stow -vv -t $(HOME)  # must be run first, symlink the stow config file
+symlink: _stow _localbin _maildir ## * Symlink all the dotfiles using stow
+# This instruction must be run first as this is linking the main stow configuration.
+	@stow stow --verbose=2 --target "$(HOME)"
+# Stow home directory relative configurationss.
 	@stow \
 		bin \
 		emacs \
@@ -35,7 +37,10 @@ symlink: stow localbin maildir ## * Symlink all the dotfiles using stow
 		vim \
 		workflows \
 		zsh \
-		-vv -t $(HOME)
+		--verbose=2 --restow --target "$(HOME)"
+# Stow root directory relative configurations. This might need to run with `sudo`
+# as it is targetting the system root directory.
+	@stow plist --verbose=2 --target '/'
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 
@@ -122,17 +127,17 @@ xcode-cli: ## Install macOS command line tools
 
 # Utils (not showing in help menu)
 
-.PHONY: maildir
-maildir:
+.PHONY: _maildir
+_maildir:
 	@mkdir -p ~/Maildir/personal || exit 0
 	@mkdir -p ~/Maildir/sws || exit 0
 
-.PHONY: localbin
-localbin:
+.PHONY: _localbin
+_localbin:
 	@mkdir -p ~/.local/bin || exit 0
 
-.PHONY: stow
-stow: homebrew
+.PHONY: _stow
+_stow: homebrew
 ifeq ($(shell command -v stow),)
 	@echo '$(INFO)*** Installing Stow ...$(SGR0)'
 	brew install stow
