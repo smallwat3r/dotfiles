@@ -5,6 +5,6 @@ mod_cmd = {'cmd'}
 mod_ctrl = {'alt'}
 mod_ctrl_cmd = {'ctrl', 'cmd'}
 
-require('z-emacs-bindings')
-require('z-ctrl-hjkl-to-arrows')
-require('z-window-manager')
+require('emacs')
+require('hjkl')
+require('windows')
