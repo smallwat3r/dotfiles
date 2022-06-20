@@ -493,14 +493,14 @@
         vterm-timer-delay 0.01
         vterm-always-compile-module t)
 
-  ;; Make sure to always display the modeline when using vterm. I feel like even
-  ;; in a terminal, its still useful to see the modeline and its information.
-  (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
-
   (defun my/vterm-delete-word ()
     "Binding function to delete a word."
     (interactive)
     (vterm-send-key (kbd "C-w"))))
+
+;; Make sure to always display the modeline when using vterm. I feel like even
+;; in a terminal, its still useful to see the modeline and its information.
+(remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
 ;; eshell
 ;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
