@@ -22,6 +22,7 @@
      (yas-minor-mode " Y" yasnippet)
 
      ;; hidden minor-modes from modeline
+     (editorconfig-mode nil editorconfig)
      (mini-modeline-mode nil mini-modeline)
      (company-mode nil company)
      (git-gutter-mode nil git-gutter)
