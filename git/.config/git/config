@@ -37,13 +37,19 @@ ca = commit -v --amend --message
 co = checkout
 d = diff
 find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
-init-empty = !"f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
+init-empty = "!f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
 last-commit-msg = log -1 --format=%s
 p = push
 pu = pull
 rhh = reset --hard HEAD
 s = status
 ss = status --short
+ours = "!f() { git co --ours $@ && git add $@; }; f"
+theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+cp = cherry-pick
+cl = clone
+l = log
+fl = log -u
 
 [credential]
 helper = store
