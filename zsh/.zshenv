@@ -33,10 +33,6 @@ export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;31'
 
-export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=999999999
-export SAVEHIST="${HISTSIZE}"
-
 if [[ -f "${HOME}/.zshenv.private" ]]; then
   source "${HOME}/.zshenv.private"
 fi
