@@ -29,6 +29,8 @@ export EDITOR='emacsclient'
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
+export TERM=xterm-256color
+
 export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;31'
