@@ -28,7 +28,7 @@ precmd_functions+=(
 )
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false  # less expensive
-zstyle ':vcs_info:*' formats ' (%b)'
+zstyle ':vcs_info:*' formats ' (%F{yellow}%b%f)'
 
 # Placeholder to manually input custom text in the prompt.
 # Usage: __=<placeholder>
