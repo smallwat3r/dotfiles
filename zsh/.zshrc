@@ -31,3 +31,8 @@ __main_load_zsh_config
 # Load functions
 fpath=("${ZSH_ROOT}"/functions $fpath)
 autoload -U "${ZSH_ROOT}"/functions/*(:t)
+
+# Load private configs
+if [[ -f "${HOME}/.zshrc.private" ]]; then
+  source "${HOME}/.zshrc.private"
+fi
