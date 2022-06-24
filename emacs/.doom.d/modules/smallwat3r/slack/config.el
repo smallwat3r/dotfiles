@@ -18,15 +18,15 @@
   :config
   (slack-register-team
    :default t
-   :name "B"
-   :token (+pass-get-secret "slack/b/token")
-   :cookie (+pass-get-secret "slack/b/cookie")
+   :name "Work"
+   :token (+pass-get-secret "slack/work/token")
+   :cookie (+pass-get-secret "slack/work/cookie")
    :full-and-display-names t)
 
   (slack-register-team
-   :name "S"
-   :token (+pass-get-secret "slack/s/token")
-   :cookie (+pass-get-secret "slack/s/cookie")
+   :name "Personal"
+   :token (+pass-get-secret "slack/personal/token")
+   :cookie (+pass-get-secret "slack/personal/cookie")
    :full-and-display-names t)
 
   ;; TODO: These are some weird bindings, need to review at some point to make
