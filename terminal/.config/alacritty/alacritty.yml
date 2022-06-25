@@ -10,8 +10,8 @@ window:
 
 font:
   normal:
-    family: Mononoki
-  size: 15
+    family: Monaco
+  size: 13
   offset:
     x: 1
     y: 2

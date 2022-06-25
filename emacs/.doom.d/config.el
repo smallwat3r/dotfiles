@@ -63,8 +63,8 @@
 ;;
 ;;; Fonts
 
-(let* ((font "Mononoki")
-       (font-size 15))
+(let* ((font "Monaco")
+       (font-size 13))
   (setq doom-font (font-spec :family font :size font-size)
         doom-serif-font (font-spec :family font :size font-size)
         doom-variable-pitch-font (font-spec :family font :size font-size)))
