@@ -48,24 +48,20 @@
      (evil-goggles-mode nil evil-goggles)
      (evil-snipe-local-mode nil evil-snipe))))
 
-;;
-;;; Set default modeline format
+;; Set default modeline format.
+(let ((standard-mode-line-format
+       (list "%e"
+             'mode-line-client
+             'mode-line-modified
+             'mode-line-remote
+             "%12b"
+             '(vc-mode vc-mode)
+             "   %p %l,%c   "
+             'mode-line-misc-info
+             'mode-line-modes)))
+  (setq-default mode-line-format standard-mode-line-format))
 
-(defface my-git-branch-face
-  '((t :background unspecified :foreground unspecified))
-  "The face used to display the current git branch in mode-line.")
-
-(defvar my-modeline-format
-  '(("%e"
-     evil-mode-line-tag
-     mode-line-client
-     mode-line-modified
-     mode-line-remote
-     mode-line-buffer-identification
-     (vc-mode (:eval (propertize vc-mode 'face 'my-git-branch-face)))
-     "   %p %l,%c   "
-     mode-line-misc-info
-     mode-line-modes))
-  "Custom modeline format Alist.")
-
-(setq-default mode-line-format my-modeline-format)
+;; Override modeline faces.
+(custom-set-faces!
+  '(mode-line :box nil :foreground "black" :background "gray91")
+  '(mode-line-inactive :box nil :foreground "black" :background "gray60"))
