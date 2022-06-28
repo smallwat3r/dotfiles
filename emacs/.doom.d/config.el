@@ -418,7 +418,7 @@
 ;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
 (after! spell-fu
   (setq spell-fu-idle-delay 0.5)
-  ;; spell-fu is by default enabled in text-mode, but I think this quite
+  ;; spell-fu is by default enabled in text-mode, but I find this quite
   ;; annoying, so force it to be disabled, and we can explicitly enable it
   ;; if we need to use it.
   (remove-hook! (text-mode) #'spell-fu-mode))
