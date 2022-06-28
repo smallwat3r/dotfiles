@@ -80,35 +80,22 @@
 
 (setq doom-theme 'simplicity)
 
-;; Enforce these faces for all the themes. This must comes after the theme gets
-;; defined in the config.
+;; I like to keep my editor clean and simple. Do not activate code
+;; highlighting on some major code faces like variables or functions, as I
+;; don't think having lots of colors helps with readability.
 (custom-set-faces!
-  '(default :foreground "grey100")
-  '(git-commit-summary :foreground "orange1")
-
-  '(magit-section-highlight :background unspecified)
-  '(magit-diff-hunk-heading-highlight :background "blue2" :foreground "coral1")
-  '(magit-diff-hunk-heading :background "blue2" :foreground "cyan1")
-
-  '((markdown-code-face
-     markdown-pre-face
-     org-block
-     org-inline-src-block)
-    :background "gray16" :foreground "gray93" :extend t)
-
-  '((markdown-inline-code-face
-     org-code)
-    :inherit help-key-binding :foreground "gray93")
-
-  ;; I like to keep my editor clean and simple. Do not activate code
-  ;; highlighting on some major code faces like variables or functions, as I
-  ;; don't think having lots of colors helps with readability.
   '((font-lock-function-name-face
      font-lock-variable-name-face
      font-lock-constant-face
      font-lock-builtin-face
      font-lock-type-face)
     :foreground unspecified :weight normal))
+
+(custom-theme-set-faces! 'simplicity
+  '((markdown-code-face markdown-pre-face org-block org-inline-src-block)
+    :background "gray16" :foreground "gray93" :extend t)
+  '((markdown-inline-code-face org-code)
+    :inherit help-key-binding :foreground "gray93"))
 
 
 ;;
