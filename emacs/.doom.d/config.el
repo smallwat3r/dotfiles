@@ -173,7 +173,7 @@
 ;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
 (after! writeroom-mode
-  (setq +zen-window-divider-size global-window-divider-width
+  (setq +zen-window-divider-size my-global-window-divider-width
         +zen-text-scale 0))
 
 ;; Overlay keywords
