@@ -6,6 +6,7 @@
        kubernetes
        modeline
        slack
+       tree-sitter
 
        :completion
        company
@@ -55,7 +56,6 @@
        pass
        pdf
        rgb
-       tree-sitter
 
        :os
        (:if IS-MAC macos)
@@ -63,16 +63,16 @@
 
        :lang
        emacs-lisp
-       (go +lsp +tree-sitter)
-       (javascript +lsp +tree-sitter)
-       (json +tree-sitter)
+       (go +lsp)
+       (javascript +lsp)
+       (json)
        lua
        (markdown +grip)
        (org +journal)
-       (python +lsp +pyright +tree-sitter)
+       (python +lsp +pyright)
        rest
-       (sh +lsp +tree-sitter)
-       (web +lsp +tree-sitter)
+       (sh +lsp)
+       (web +lsp)
        yaml
 
        :email
