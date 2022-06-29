@@ -296,6 +296,13 @@
 ;; Toggle directories with TAB in dired
 (use-package! dired-subtree
   :after dired
+  :custom-face
+  (dired-subtree-depth-1-face ((t (:background unspecified))))
+  (dired-subtree-depth-2-face ((t (:background unspecified))))
+  (dired-subtree-depth-3-face ((t (:background unspecified))))
+  (dired-subtree-depth-4-face ((t (:background unspecified))))
+  (dired-subtree-depth-5-face ((t (:background unspecified))))
+  (dired-subtree-depth-6-face ((t (:background unspecified))))
   :commands (dired-subtree-toggle dired-subtree-cycle))
 
 ;; Treemacs

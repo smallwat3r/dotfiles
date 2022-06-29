@@ -18,12 +18,6 @@
  `(fringe ((t (:background unspecified))))
  `(magit-section-highlight ((t (:background unspecified))))
  `(magit-diff-context-highlight ((t (:background unspecified))))
- `(dired-subtree-depth-1-face ((t (:background unspecified))))
- `(dired-subtree-depth-2-face ((t (:background unspecified))))
- `(dired-subtree-depth-3-face ((t (:background unspecified))))
- `(dired-subtree-depth-4-face ((t (:background unspecified))))
- `(dired-subtree-depth-5-face ((t (:background unspecified))))
- `(dired-subtree-depth-6-face ((t (:background unspecified))))
  `(markdown-inline-code-face ((t (:box (:line-width 2 :style released-button)
                                   :background "lightgrey"
                                   :foreground "DarkMagenta"))))
