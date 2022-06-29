@@ -15,6 +15,7 @@
  `(highlight ((t (:background "DarkSlateGray1"))))
  `(lazy-highlight ((t (:background "gold2" :foreground "black"))))
  `(whitespace-tab ((t (:background "PaleTurquoise1"))))
+ `(fringe ((t (:background unspecified))))
 
  `(magit-section-highlight ((t (:background unspecified))))
  `(magit-diff-context-highlight ((t (:background unspecified))))
