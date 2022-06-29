@@ -33,6 +33,7 @@
  `(org-block ((t (:background "lightgrey" :foreground "black" :extend t))))
  `(org-block-begin-line ((t (:background unspecified :foreground "red3"))))
  `(org-block-end-line ((t (:background unspecified :foreground "red3"))))
+ `(term-color-white ((t (:foreground "grey41"))))
  ;; I like to keep my editor clean and simple. De-activate syntax highlighting
  ;; on some major programming related faces such as variables or functions, as
  ;; I don't think having lots of colors helps with focus and readability.
