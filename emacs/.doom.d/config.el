@@ -61,8 +61,11 @@
 
 
 ;;
-;;; Fonts
+;;; Editor
 
+(load! "+bindings")
+
+;; Fonts
 (let* ((font "Monaco")
        (font-size 13))
   (setq doom-font (font-spec :family font :size font-size)
@@ -74,40 +77,8 @@
 
 (setq-default line-spacing 1)
 
-
-;;
-;;; Themes
-
-(setq doom-theme 'simplicity)
-
-;; I like to keep my editor clean and simple. Do not activate code
-;; highlighting on some major code faces like variables or functions, as I
-;; don't think having lots of colors helps with readability.
-(custom-set-faces!
-  '((font-lock-function-name-face
-     font-lock-variable-name-face
-     font-lock-constant-face
-     font-lock-builtin-face
-     font-lock-type-face)
-    :foreground unspecified :weight normal))
-
-(custom-theme-set-faces! 'simplicity
-  '((markdown-code-face markdown-pre-face org-block org-inline-src-block)
-    :background "gray16" :foreground "gray93" :extend t)
-  '((markdown-inline-code-face org-code)
-    :inherit help-key-binding :foreground "gray93"))
-
-
-;;
-;;; Bindings
-
-(load! "+bindings")
-
-
-;;
-;;; Editor
-
-(blink-cursor-mode 1)
+;; Use a custom minimalistic theme.
+(setq doom-theme 'smallwat3r)
 
 (setq-default tab-width 8)
 (setq-default with-editor-emacsclient-executable "emacsclient")
@@ -117,15 +88,40 @@
       confirm-kill-emacs nil        ; quit emacs without confirmation
       load-prefer-newer t)          ; always load newer bytes compiled files
 
-(setq evil-vsplit-window-right t
-      evil-split-window-below t
-      evil-want-fine-undo t)
+(after! evil
+  ;; Change cursor color and shape based on evil mode.
+  (setq evil-emacs-state-cursor '("DarkMagenta" box)
+        evil-normal-state-cursor '("DarkMagenta" box)
+        evil-visual-state-cursor '("DarkCyan" box)
+        evil-insert-state-cursor '("DarkCyan" box)
+        evil-replace-state-cursor '("red" bar)
+        evil-operator-state-cursor '("red" hollow))
 
-;; Prompt to select file after an evil window split action. Press ESC to cancel
-;; and the split windown will be for the current file.
-(defadvice! prompt-for-buffer (&rest _)
-  :after '(evil-window-split evil-window-vsplit)
-  (ido-find-file))
+  ;; General evil mode settings.
+  (setq evil-vsplit-window-right t
+        evil-split-window-below t
+        evil-want-fine-undo t)
+
+  ;; Prompt to select file after an evil window split action. Press ESC to cancel
+  ;; and the split windown will be for the current file.
+  (defadvice! prompt-for-buffer (&rest _)
+    :after '(evil-window-split evil-window-vsplit)
+    (ido-find-file)))
+
+;; Evil visual hints when yanking, pasting, deleting etc.
+;; doc: https://github.com/edkolev/evil-goggles
+(after! evil-goggles
+  (setq evil-goggles-duration 0.25)
+  (evil-goggles-use-magit-faces))
+
+;; Evil escape
+;; doc: https://github.com/syl20bnr/evil-escape
+(after! evil-escape
+  ;; Do not activate evil-escape through the 'jk' escape sequence in the
+  ;; following modes. It might be because 'j' and 'k' allow scrolling up or
+  ;; down even in insert-mode, or it is just breaking the expected mode
+  ;; behaviour.
+  (setq evil-escape-excluded-major-modes '(treemacs-mode)))
 
 ;; Scrolling
 (if (boundp 'mac-mouse-wheel-smooth-scroll)
@@ -188,21 +184,6 @@
   ;; Change `symbol-overlay-map-help' to be triggered from 'H' instead of 'h'.
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
-
-;; Evil visual hints when yanking, pasting, deleting etc.
-;; doc: https://github.com/edkolev/evil-goggles
-(after! evil-goggles
-  (setq evil-goggles-duration 0.25)
-  (evil-goggles-use-magit-faces))
-
-;; Evil escape
-;; doc: https://github.com/syl20bnr/evil-escape
-(after! evil-escape
-  ;; Do not activate evil-escape through the 'jk' escape sequence in the
-  ;; following modes. It might be because 'j' and 'k' allow scrolling up or
-  ;; down even in insert-mode, or it is just breaking the expected mode
-  ;; behaviour.
-  (setq evil-escape-excluded-major-modes '(treemacs-mode)))
 
 ;; Highlight todos
 ;; doc: https://github.com/tarsius/hl-todo
@@ -404,11 +385,12 @@
 ;; Check for spelling mistakes
 ;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
 (after! spell-fu
-  (setq spell-fu-idle-delay 0.5)
-  ;; spell-fu is by default enabled in text-mode, but I find this quite
-  ;; annoying, so force it to be disabled, and we can explicitly enable it
-  ;; if we need to use it.
-  (remove-hook! (text-mode) #'spell-fu-mode))
+  (setq spell-fu-idle-delay 0.5))
+
+;; spell-fu is by default enabled in text-mode, but I find this quite
+;; annoying, so force it to be disabled, and we can explicitly enable it
+;; if we need to use it.
+(remove-hook! (text-mode) #'spell-fu-mode)
 
 (after! sh-script
   (set-formatter! 'shfmt

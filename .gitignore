@@ -4,15 +4,15 @@
 *.pyc
 *.zwc
 *.private
+*.pem
+*.pub
 
 Brewfile.lock.json
+
 emacs/.doom.d/.custom.el
 
-vim/.config/nvim/.netrwhist
-vim/.config/nvim/autoload/
-vim/.config/nvim/colors/
-vim/.config/nvim/plugged/
-vim/.config/nvim/undodir/
+vim/.config/nvim/*
+!vim/.config/nvim/init.vim
 
 gnupg/.gnupg/*
 !gnupg/.gnupg/gpg.conf
@@ -20,6 +20,3 @@ gnupg/.gnupg/*
 
 ssh/.ssh/*
 !ssh/.ssh/config
-
-*.pem
-*.pub

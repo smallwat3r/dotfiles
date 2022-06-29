@@ -60,8 +60,3 @@
              'mode-line-misc-info
              'mode-line-modes)))
   (setq-default mode-line-format standard-mode-line-format))
-
-;; Override modeline faces.
-(custom-set-faces!
-  '(mode-line :box nil :foreground "black" :background "gray91")
-  '(mode-line-inactive :box nil :foreground "black" :background "gray60"))

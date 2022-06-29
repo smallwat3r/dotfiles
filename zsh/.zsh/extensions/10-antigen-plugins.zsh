@@ -10,5 +10,5 @@ fi
 
 # TODO: fix this as this doesn't seem to work out of the box
 if [ ! -d "${FAST_WORK_DIR}" ]; then
-  fast-theme --quiet clean
+  fast-theme --quiet sv-orple
 fi
