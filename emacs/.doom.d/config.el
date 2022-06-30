@@ -449,6 +449,12 @@
       (append '(("osascript" . applescript-mode))
               interpreter-mode-alist))
 
+;; Remap YAML keys to use `font-lock-keyword-face'.
+(add-hook! 'yaml-mode-hook
+           #'(lambda ()
+               (face-remap-add-relative
+                'font-lock-variable-name-face :inherit font-lock-keyword-face)))
+
 ;; Debug Adapter Protocol
 ;; Enables communication between client and a debug server, for powerful
 ;; interactive debugging.
