@@ -15,34 +15,26 @@
   :custom
   (slack-buffer-emojify t)
   (slack-prefer-current-team t)
+  :custom-face
+  (slack-message-mention-keyword-face
+   ((t (:box (:line-width 2 :style released-button)
+        :background "LightCyan1"
+        :foreground "turquoise3"))))
+  (slack-message-mention-face
+   ((t (:box (:line-width 2 :style released-button)
+        :background "LightCyan1"
+        :foreground "turquoise2"))))
+  (slack-mrkdwn-list-face ((t (:foreground unspecified))))
+  (slack-mrkdwn-code-face
+   ((t (:box (:line-width 2 :style released-button)
+        :background "lightgrey"
+        :foreground "DarkMagenta"))))
+  (slack-mrkdwn-code-block-face
+   ((t (:background "lightgrey" :foreground "black" :extend t))))
   :config
   (slack-register-team
    :default t
    :name "Work"
    :token (+pass-get-secret "slack/work/token")
    :cookie (+pass-get-secret "slack/work/cookie")
-   :full-and-display-names t)
-
-  (slack-register-team
-   :name "Personal"
-   :token (+pass-get-secret "slack/personal/token")
-   :cookie (+pass-get-secret "slack/personal/cookie")
-   :full-and-display-names t)
-
-  ;; TODO: These are some weird bindings, need to review at some point to make
-  ;;       it more user friendly.
-  (evil-define-key 'normal slack-mode-map
-    ",ra" 'slack-message-add-reaction
-    ",rr" 'slack-message-remove-reaction
-    ",rs" 'slack-message-show-reaction-users
-    ",me" 'slack-message-edit
-    ",md" 'slack-message-delete
-    ",mu" 'slack-message-embed-mention
-    ",mc" 'slack-message-embed-channel)
-
-  (evil-define-key 'normal slack-edit-message-mode-map
-    ",k" 'slack-message-cancel-edit
-    ",mu" 'slack-message-embed-mention
-    ",mc" 'slack-message-embed-channel))
-
-(add-hook! 'slack-mode-hook 'variable-pitch-mode)
+   :full-and-display-names t))
