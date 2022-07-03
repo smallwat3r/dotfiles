@@ -1,6 +1,12 @@
 export EMACS='/usr/local/bin/emacs'
 export EMACS_DOOM="${HOME}/.emacs.doom"
 
+# lsp-mode can be compiled in 2 modes plist and hash-table based lsp-use-plists flag.
+# plists provide better performance in deserialization and also put less presure than
+# hash-tables.
+# NOTE lsp-mode related packages need to uninstalled and reinstalled again.
+export LSP_USE_PLISTS=true
+
 if [[ ! "${PATH}" == "*/${EMACS_DOOM}/bin*" ]]; then
   export PATH="${PATH:+${PATH}:}${EMACS_DOOM}/bin"
 fi
