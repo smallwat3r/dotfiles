@@ -350,7 +350,9 @@
 (after! lsp-mode
   ;; I had issues with file watchers enabled in the past as Emacs would freeze
   ;; because it took too much memory. So I just disable it as a default.
-  (setq lsp-enable-file-watchers nil))
+  (setq lsp-enable-file-watchers nil)
+  ;; Ignore asking to restart if server failed to boot.
+  (setq lsp-restart 'ignore))
 
 ;; Magit
 ;; doc: https://github.com/magit/magit
