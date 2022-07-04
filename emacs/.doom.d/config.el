@@ -720,6 +720,11 @@
               '(("Sourcegraph"
                  "https://sourcegraph.com/search?q=context:global+%s&patternType=literal"))))
 
+;; Notifications
+;; doc: https://github.com/jwiegley/alert
+(use-package! alert
+  :custom (alert-default-style 'osx-notifier))
+
 
 ;;
 ;;; Testing...
