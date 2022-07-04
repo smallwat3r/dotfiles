@@ -35,6 +35,7 @@ bb = branch -b
 c = commit -v --message
 ca = commit -v --amend --message
 co = checkout
+com = checkout master
 d = diff
 find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
 init-empty = "!f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
@@ -42,6 +43,7 @@ last-commit-msg = log -1 --format=%s
 p = push
 pu = pull
 rhh = reset --hard HEAD
+rhm = reset --hard origin/master
 s = status
 ss = status --short
 ours = "!f() { git co --ours $@ && git add $@; }; f"
