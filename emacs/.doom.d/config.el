@@ -396,6 +396,9 @@
 
 (after! python
   (setq python-shell-interpreter "python3")
+  ;; Disable annoying warnings about `python-shell-interpreter' readline support.
+  (setq python-shell-completion-native-enable nil)
+
   (set-formatter! 'black
     '("black"
       "--quiet"
