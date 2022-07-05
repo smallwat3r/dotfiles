@@ -165,18 +165,23 @@
 (setq window-divider-default-right-width my-global-window-divider-width
       window-divider-default-bottom-width my-global-window-divider-width)
 
-;; Goto-address mode
-;; This mode activates and highlights URLs and email addresses in the current buffer.
-;; The default face for mail is `italic', which I don't like.
-(defface my-goto-address-mail-face
-  '((t :background unspecified :inherit default :underline t))
-  "The face used to display goto-address mail entities.")
-
-(setq goto-address-mail-face 'my-goto-address-mail-face)
-
-;; Activate goto-address mode on some major modes.
-(add-hook! (prog-mode text-mode restclient-mode vterm-mode eshell-mode)
-  (goto-address-mode t))
+;; Goto-address mode. This mode activates and highlights URLs and email addresses
+;; in the current buffer.
+(use-package! goto-addr
+  :hook ((compilation-mode . goto-address-mode)
+         (prog-mode . goto-address-prog-mode)
+         (text-mode . goto-address-mode)
+         (restclient-mode . goto-address-mode)
+         (eshell-mode . goto-address-mode)
+         (vterm-mode . goto-address-mode)
+         (shell-mode . goto-address-mode))
+  :commands (goto-address-prog-mode goto-address-mode)
+  :config
+  ;; The default face for mail is `italic', which I don't like.
+  (defface my-goto-address-mail-face
+    '((t :background unspecified :inherit default :underline t))
+    "The face used to display goto-address mail entities.")
+  (setq goto-address-mail-face 'my-goto-address-mail-face))
 
 ;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
