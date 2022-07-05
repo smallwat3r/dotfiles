@@ -1,9 +1,14 @@
 ;;; $DOOMDIR/autoload/python.el -*- lexical-binding: t; -*-
 
+(defvar my-python-virtual-env-directory ".venv"
+  "Common name used for python virtual env directories.")
+
 (defun my/venv--locate-python-path ()
   "Look for the closest Python virtual envs in the workspace."
-  (when-let (venv-base-directory (locate-dominating-file default-directory "env/"))
-    (concat venv-base-directory "env")))
+  (when-let (venv-base-directory (locate-dominating-file
+                                  default-directory
+                                  my-python-virtual-env-directory))
+    (concat venv-base-directory my-python-virtual-env-directory)))
 
 (defun my/venv--locate-python-executable ()
   "Look for a Python executable from the closest virtual env."

@@ -36,3 +36,5 @@ autoload -U "${ZSH_ROOT}"/functions/*(:t)
 if [[ -f "${HOME}/.zshrc.private" ]]; then
   source "${HOME}/.zshrc.private"
 fi
+
+export PATH="$HOME/.poetry/bin:$PATH"

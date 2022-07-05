@@ -54,10 +54,8 @@
 (setq save-abbrevs nil)
 (setq abbrev-file-name (expand-file-name "abbrev_defs" doom-private-dir))
 
-;; Custom File, used by Emacs to cache some data related to its config
+;; Custom File, used by Emacs to cache some data related to its config.
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 
 ;;
@@ -141,8 +139,7 @@
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
 (after! which-key
-  (setq which-key-idle-delay 0.2
-        which-key-allow-imprecise-window-fit nil))
+  (setq which-key-idle-delay 0.2))
 
 ;; Git fringe indicator
 ;; doc: https://github.com/emacsorphanage/git-gutter-fringe
@@ -394,7 +391,7 @@
   (setq python-shell-interpreter "python3")
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
   (setq python-shell-completion-native-enable nil)
-
+  ;; Linter
   (set-formatter! 'black
     '("black"
       "--quiet"
@@ -402,7 +399,13 @@
       "-")  ; apply in file changes
     :modes '(python-mode)))
 
+;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
+
+(after! lsp-pyright
+  (after! python
+    ;; Make sure pyright uses the correct python executable.
+    (setq lsp-pyright-python-executable-cmd python-shell-interpreter)))
 
 (after! js2-mode
   (set-formatter! 'prettier
@@ -462,8 +465,9 @@
 ;; TODO: I need to spend a bit more time setting this up and getting used to it.
 ;; doc: https://github.com/emacs-lsp/dap-mode
 (after! dap-mode
-  (setq dap-python-debugger 'debugpy
-        dap-python-executable "python3"))
+  (after! python
+    (setq dap-python-debugger 'debugpy
+          dap-python-executable python-shell-interpreter)))
 
 
 ;;

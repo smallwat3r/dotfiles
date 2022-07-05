@@ -11,7 +11,7 @@
 ;; Bindings
 (map!
  ;; For some reason, Emacs wouldn't print # on ^3, even when configured with
- ;; an English UK keyboard. This re-enabled this behaviour.
+ ;; an English UK keyboard. Re-enable this behaviour.
  (:map key-translation-map
   "M-3" "#")
 
@@ -75,7 +75,7 @@
    :desc "Kill buffer" "d" #'my/kill-buffer)
 
   (:prefix "f"
-   :desc "Find file in dotfiles" "P" #'my/find-file-in-dotfiles)
+   :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
 
   (:prefix "o"
    :desc "Alacritty"              "a" #'my/alacritty-here
