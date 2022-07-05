@@ -4,7 +4,7 @@
   "Common name used for python virtual env directories.")
 
 (defun my/venv--locate-python-path ()
-  "Look for the closest Python virtual envs in the workspace."
+  "Look for the closest Python virtual env in the workspace."
   (when-let (venv-base-directory (locate-dominating-file
                                   default-directory
                                   my-python-virtual-env-directory))
