@@ -198,23 +198,6 @@
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
 
-;; Highlight todos
-;; doc: https://github.com/tarsius/hl-todo
-(after! hl-todo
-  (defface my-todos-face
-    '((t :background unspecified :foreground "#f54260" :weight bold))
-    "The face used to display todos from hl-todo.")
-
-  (setq hl-todo-keyword-faces
-        `(("TODO" . my-todos-face)
-          ("DEPRECATED" . my-todos-face)
-          ("QUESTION" . my-todos-face)
-          ("FIXME" . my-todos-face)
-          ("HACK" . my-todos-face)
-          ("BUG" . my-todos-face)
-          ("NOTE" . my-todos-face)
-          ("SECURITY" . my-todos-face))))
-
 
 ;;
 ;;; Custom templates

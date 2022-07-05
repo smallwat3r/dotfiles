@@ -3,6 +3,7 @@
 (doom! :smallwat3r
        deft
        google
+       hl-todo
        kubernetes
        modeline
        slack
@@ -15,7 +16,6 @@
        :ui
        doom-dashboard
        (emoji +unicode)
-       hl-todo
        ophints
        (popup +defaults)
        treemacs
