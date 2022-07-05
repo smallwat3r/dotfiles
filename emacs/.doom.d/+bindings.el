@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/+bindings.el -*- lexical-binding: t; -*-
 
 ;; This file bundles most of my custom bindings for using Doom Emacs. Some
-;; bindings are not included here, when there are specific to packages and
+;; bindings are not included here, when they are specific to packages and
 ;; cannot be bundled outside of the package configuration.
 
 ;; Disable bindings, due to other conflicts (specially coming from Hammerspoon).
