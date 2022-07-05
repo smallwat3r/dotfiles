@@ -165,8 +165,16 @@
 (setq window-divider-default-right-width my-global-window-divider-width
       window-divider-default-bottom-width my-global-window-divider-width)
 
-;; Activate goto-address mode on some major modes.
+;; Goto-address mode
 ;; This mode activates and highlights URLs and email addresses in the current buffer.
+;; The default face for mail is `italic', which I don't like.
+(defface my-goto-address-mail-face
+  '((t :background unspecified :inherit default :underline t))
+  "The face used to display goto-address mail entities.")
+
+(setq goto-address-mail-face 'my-goto-address-mail-face)
+
+;; Activate goto-address mode on some major modes.
 (add-hook! (prog-mode text-mode restclient-mode vterm-mode eshell-mode)
   (goto-address-mode t))
 
