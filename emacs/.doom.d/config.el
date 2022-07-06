@@ -121,6 +121,13 @@
   ;; behaviour.
   (setq evil-escape-excluded-major-modes '(treemacs-mode)))
 
+;; Icons
+;; doc: https://github.com/domtronn/all-the-icons.el
+(after! all-the-icons
+  ;; Keep icons small.
+  (setq all-the-icons-scale-factor 0
+        all-the-icons-default-adjust 0))
+
 ;; Scrolling
 (if (boundp 'mac-mouse-wheel-smooth-scroll)
     (setq mac-mouse-wheel-smooth-scroll t))
@@ -304,7 +311,7 @@
   (setq doom-themes-treemacs-enable-variable-pitch t
         doom-themes-treemacs-line-spacing 0
         doom-themes-treemacs-theme "doom-colors"
-        treemacs-width 35)
+        treemacs-width 50)
   (treemacs-resize-icons 14))
 
 
@@ -477,13 +484,14 @@
 ;; doc: https://github.com/akermu/emacs-libvterm
 (after! vterm
   (setq vterm-max-scrollback 6000
-        vterm-timer-delay 0.01
-        vterm-always-compile-module t)
+        vterm-timer-delay 0.01)
 
   (defun my/vterm-delete-word ()
     "Binding function to delete a word."
     (interactive)
     (vterm-send-key (kbd "C-w"))))
+
+(setq vterm-always-compile-module t)
 
 ;; Make sure to always display the modeline when using vterm. I feel like even
 ;; in a terminal, its still useful to see the modeline and its information.

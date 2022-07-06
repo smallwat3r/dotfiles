@@ -11,7 +11,7 @@
 
        :completion
        company
-       vertico
+       (vertico +icons)
 
        :ui
        doom-dashboard
@@ -31,7 +31,7 @@
        snippets
 
        :emacs
-       dired
+       (dired +icons)
        electric
        undo
        vc
