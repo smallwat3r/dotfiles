@@ -44,6 +44,8 @@
    (:leader
     (:localleader
      :desc "Open Python repl" "r" #'my/open-python-repl
+     (:prefix "i"
+      :desc "Remove unused imports" "R" #'pyimport-remove-unused)
      (:prefix ("e" . "env")
       :desc "Deactivate venv" "d" #'my/deactivate-python-venv
       :desc "Activate venv"   "a" #'my/activate-closest-python-venv)))))
