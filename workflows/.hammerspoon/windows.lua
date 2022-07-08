@@ -14,7 +14,7 @@ hotkey.bind(mod_cmd, '[', function() hs.window.focusedWindow():centerOnScreen() 
 -- Fullscreen
 hotkey.bind(mod_cmd, ']', function() hs.window.focusedWindow():maximize(0) end)
 
---Move
+-- Move
 hotkey.bind(mod_ctrl_cmd, 'j', grid.pushWindowDown)
 hotkey.bind(mod_ctrl_cmd, 'k', grid.pushWindowUp)
 hotkey.bind(mod_ctrl_cmd, 'h', grid.pushWindowLeft)
