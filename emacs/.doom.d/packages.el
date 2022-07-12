@@ -23,6 +23,7 @@
 (package! symbol-overlay :pin "c439b73a5f9713bb3dce98986b589bb901e22130")
 (package! vimrc-mode :pin "13bc150a870d5d4a95f1111e4740e2b22813c30e")
 (package! alert :pin "7046393272686c7a1a9b3e7f7b1d825d2e5250a6")
+(package! yaml-mode :pin "535273d5a1eb76999d20afbcf4d9f056d8ffd2da")
 
 ;; I'm ok with not pinning those as they are managed by me.
 (package! simplicity-theme :recipe (:host github :repo "smallwat3r/emacs-simplicity-theme"))

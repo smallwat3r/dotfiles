@@ -65,7 +65,7 @@
        emacs-lisp
        (go +lsp)
        (javascript +lsp)
-       (json)
+       json
        lua
        (markdown +grip)
        (org +journal)
@@ -73,7 +73,6 @@
        rest
        (sh +lsp)
        (web +lsp)
-       yaml
 
        :email
        notmuch

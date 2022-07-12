@@ -462,7 +462,11 @@
       (append '(("osascript" . applescript-mode))
               interpreter-mode-alist))
 
-;; Remap YAML keys to use `font-lock-keyword-face'.
+;; Yaml mode
+;; doc: https://github.com/yoshiki/yaml-mode
+(use-package! yaml-mode
+  :mode ("\\.yaml\\'" "\\.yml\\'"))
+
 (add-hook! 'yaml-mode-hook
            #'(lambda ()
                (face-remap-add-relative
