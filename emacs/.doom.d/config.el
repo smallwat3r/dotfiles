@@ -50,12 +50,21 @@
       my-dotfiles-dir (concat default-directory "dotfiles"))
 
 ;; Abbreviations
-(setq-default abbrev-mode t)
-(setq save-abbrevs nil)
-(setq abbrev-file-name (expand-file-name "abbrev_defs" doom-private-dir))
+(use-package! abbrev
+  :hook ((text-mode prog-mode) . abbrev-mode)
+  :custom
+  (save-abbrevs nil)
+  (abbrev-file-name (expand-file-name "abbrev_defs" doom-private-dir))
+  :config
+  (if (file-exists-p abbrev-file-name)
+      (quietly-read-abbrev-file)))
 
 ;; Custom File, used by Emacs to cache some data related to its config.
-(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
+(use-package! cus-edit
+  :custom (custom-file expand-file-name ".custom.el" doom-private-dir)
+  :config
+  (when (file-exists-p custom-file)
+    (load custom-file t)))
 
 
 ;;
