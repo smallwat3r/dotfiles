@@ -17,7 +17,7 @@ local function remap(mods, key, pressFn)
   hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
 end
 
-remap(mod_ctrl, 'h', pressFn('left'))
-remap(mod_ctrl, 'j', pressFn('down'))
-remap(mod_ctrl, 'k', pressFn('up'))
-remap(mod_ctrl, 'l', pressFn('right'))
+remap(mod_alt, 'h', pressFn('left'))
+remap(mod_alt, 'j', pressFn('down'))
+remap(mod_alt, 'k', pressFn('up'))
+remap(mod_alt, 'l', pressFn('right'))

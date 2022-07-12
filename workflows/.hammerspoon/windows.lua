@@ -1,12 +1,12 @@
-hs.window.animationDuration=0
-
 local hotkey = require "hs.hotkey"
 local grid = require "hs.grid"
 
-grid.MARGINX = 5
-grid.MARGINY = 5
-grid.GRIDHEIGHT = 3
-grid.GRIDWIDTH = 3
+hs.window.animationDuration = 0
+
+grid.MARGINX = 2
+grid.MARGINY = 2
+grid.GRIDHEIGHT = 4
+grid.GRIDWIDTH = 4
 
 -- Center
 hotkey.bind(mod_cmd, '[', function() hs.window.focusedWindow():centerOnScreen() end)
