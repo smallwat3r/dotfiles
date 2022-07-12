@@ -181,13 +181,14 @@
 ;; Goto-address mode. This mode activates and highlights URLs and email addresses
 ;; in the current buffer.
 (use-package! goto-addr
-  :hook ((compilation-mode . goto-address-mode)
-         (prog-mode . goto-address-prog-mode)
-         (text-mode . goto-address-mode)
-         (restclient-mode . goto-address-mode)
-         (eshell-mode . goto-address-mode)
-         (vterm-mode . goto-address-mode)
-         (shell-mode . goto-address-mode))
+  :hook (((compilation-mode
+           text-mode
+           restclient-mode
+           eshell-mode
+           vterm-mode
+           shell-mode)
+          . goto-address-mode)
+         (prog-mode . goto-address-prog-mode))
   :commands (goto-address-prog-mode goto-address-mode)
   :config
   ;; Improve email regex matching, check for domain extension.
