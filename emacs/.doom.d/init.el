@@ -67,7 +67,7 @@
        (javascript +lsp)
        json
        lua
-       (markdown +grip)
+       markdown
        (org +journal)
        (python +lsp +pyright)
        rest

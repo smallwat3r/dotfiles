@@ -706,15 +706,6 @@
 (use-package! shrink-path
   :commands (shrink-path-file shrink-path-prompt))
 
-;; Markdown visualiser
-;; doc: https://github.com/seagle0128/grip-mode
-(after! grip-mode
-  ;; TODO: even by providing credentials, the API rate limitation is really
-  ;;       annoying as super limited. I feel like there must be a better
-  ;;       solution to this.
-  (setq grip-github-user "smallwat3r"
-        grip-github-password (+pass-get-secret "github/password")))
-
 ;; Scratch buffers
 ;; doc: https://github.com/ieure/scratch-el
 (use-package! scratch
