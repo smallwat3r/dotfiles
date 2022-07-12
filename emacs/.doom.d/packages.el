@@ -24,7 +24,6 @@
 (package! vimrc-mode :pin "13bc150a870d5d4a95f1111e4740e2b22813c30e")
 (package! alert :pin "7046393272686c7a1a9b3e7f7b1d825d2e5250a6")
 (package! yaml-mode :pin "535273d5a1eb76999d20afbcf4d9f056d8ffd2da")
-(package! markdown-preview-mode :pin "dde87b96de9e81dd01d174da67ef68687b3a5eb5")
 
 ;; I'm ok with not pinning those as they are managed by me.
 (package! simplicity-theme :recipe (:host github :repo "smallwat3r/emacs-simplicity-theme"))
