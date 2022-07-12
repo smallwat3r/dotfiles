@@ -475,7 +475,7 @@
 ;; Yaml mode
 ;; doc: https://github.com/yoshiki/yaml-mode
 (use-package! yaml-mode
-  :mode ("\\.yaml\\'" "\\.yml\\'"))
+  :mode ("\\.\\(yaml\\|yml\\)\\'"))
 
 (add-hook! 'yaml-mode-hook
            #'(lambda ()
