@@ -182,7 +182,7 @@
   :commands (goto-address-prog-mode goto-address-mode)
   :config
   ;; Improve email regex matching, check for domain extension.
-  (setq goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
+  (setq goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
   ;; The default face for mail is `italic', which I don't like.
   (defface my-goto-address-mail-face
     '((t :background unspecified :inherit default :underline t))

@@ -35,6 +35,7 @@ bb = branch -b
 c = commit -v --message
 ca = commit -v --amend --message
 co = checkout
+cob = checkout -b
 com = checkout master
 d = diff
 find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep

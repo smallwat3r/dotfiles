@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # List battery levels of external bluetooth devices currently connected
 # to macbook.
+# TODO: this script seems to work ok for Magic Mouse and Magic Keyboard
+#       but fails to return results for Airpods.
 
 _bluebatt() {
   local _devices
