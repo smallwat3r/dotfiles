@@ -50,12 +50,6 @@
       :desc "Deactivate venv" "d" #'my/deactivate-python-venv
       :desc "Activate venv"   "a" #'my/activate-closest-python-venv)))))
 
- (:after dired
-  (:map dired-mode-map
-   "<tab>"     #'dired-subtree-toggle
-   "<backtab>" #'dired-subtree-cycle
-   :n "/"      #'dired-narrow-fuzzy))
-
  (:after vterm
   (:map vterm-mode-map
    :n "B"          #'vterm-beginning-of-line

@@ -61,11 +61,10 @@
 
 ;; Custom File, used by Emacs to cache some data related to its config.
 (use-package! cus-edit
-  :defer t
   :custom (custom-file expand-file-name ".custom.el" doom-private-dir)
   :config
-  (when (file-exists-p custom-file)
-    (load custom-file t)))
+  (if (file-exists-p custom-file)
+      (load custom-file t)))
 
 
 ;;
@@ -83,7 +82,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 2)
 
 ;; Use a custom minimalistic theme.
 (setq doom-theme 'smallwat3r)
@@ -277,11 +276,15 @@
 ;; Run `projectile-discover-projects-in-search-path' to autoload all the projects from the
 ;; `projectile-project-search-path' list.
 (after! projectile
-  (setq projectile-sort-order 'recentf
+  (setq projectile-indexing-method 'alien
+        projectile-sort-order 'recentf
         projectile-mode-line-prefix "P"
         projectile-mode-line-function '(lambda () (format " P[%s]" (projectile-project-name)))
         projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups")
-        projectile-project-search-path '("~/dotfiles/" "~/projects/" "~/code/" "~/github/")))
+        projectile-project-search-path '("~/dotfiles/" "~/projects/" "~/code/" "~/github/")
+        projectile-globally-ignored-directories (append projectile-globally-ignored-directories
+                                                        '("^\\.npm$" "^\\.poetry$" "^\\GoogleDriven$"
+                                                          "^\\.mypy_cache$"))))
 
 
 ;;
@@ -298,19 +301,21 @@
 ;; Narrowing searchs in dired
 (use-package! dired-narrow
   :after dired
-  :commands (dired-narrow-fuzzy))
+  :config (map! (:map dired-mode-map :n "/" #'dired-narrow-fuzzy)))
 
 ;; Toggle directories with TAB in dired
 (use-package! dired-subtree
   :after dired
+  :bind (:map dired-mode-map
+         ("<tab>" . dired-subtree-toggle)
+         ("<backtab>" . dired-subtree-cycle))
   :custom-face
   (dired-subtree-depth-1-face ((t (:background unspecified))))
   (dired-subtree-depth-2-face ((t (:background unspecified))))
   (dired-subtree-depth-3-face ((t (:background unspecified))))
   (dired-subtree-depth-4-face ((t (:background unspecified))))
   (dired-subtree-depth-5-face ((t (:background unspecified))))
-  (dired-subtree-depth-6-face ((t (:background unspecified))))
-  :commands (dired-subtree-toggle dired-subtree-cycle))
+  (dired-subtree-depth-6-face ((t (:background unspecified)))))
 
 ;; Treemacs
 ;; doc: https://github.com/Alexander-Miller/treemacs
