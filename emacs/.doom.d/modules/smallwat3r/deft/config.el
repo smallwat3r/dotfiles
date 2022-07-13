@@ -6,6 +6,10 @@
 ;; doc: https://github.com/jrblevin/deft/
 (use-package! deft
   :commands (deft deft-new-file-named)
+  :init
+  (map! (:leader (:prefix "n"
+                  :desc "Open deft"     "d" #'deft
+                  :desc "Deft new file" "D" #'deft-new-file-named)))
   :custom
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)

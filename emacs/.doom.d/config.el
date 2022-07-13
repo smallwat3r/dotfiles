@@ -61,6 +61,7 @@
 
 ;; Custom File, used by Emacs to cache some data related to its config.
 (use-package! cus-edit
+  :defer t
   :custom (custom-file expand-file-name ".custom.el" doom-private-dir)
   :config
   (when (file-exists-p custom-file)
@@ -189,15 +190,9 @@
            shell-mode)
           . goto-address-mode)
          (prog-mode . goto-address-prog-mode))
-  :commands (goto-address-prog-mode goto-address-mode)
-  :config
-  ;; Improve email regex matching, check for domain extension.
-  (setq goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
-  ;; The default face for mail is `italic', which I don't like.
-  (defface my-goto-address-mail-face
-    '((t :background unspecified :inherit default :underline t))
-    "The face used to display goto-address mail entities.")
-  (setq goto-address-mail-face 'my-goto-address-mail-face))
+  :custom
+  (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
+  (goto-address-mail-face '((t :background unspecified :inherit default :underline t))))
 
 ;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
@@ -208,11 +203,11 @@
 ;; Overlay keywords
 ;; doc: https://github.com/wolray/symbol-overlay
 (use-package! symbol-overlay
-  :config
-  ;; Do not conflict with vim bindings when using overlays.
-  ;; Change `symbol-overlay-map-help' to be triggered from 'H' instead of 'h'.
-  (define-key symbol-overlay-map (kbd "h") nil)
-  (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
+  :commands (symbol-overlay-put symbol-overlay-remove-all)
+  :init
+  (map! (:leader (:prefix "c"
+                  :desc "Add overlay"     "h" #'symbol-overlay-put
+                  :desc "Remove overlays" "H" #'symbol-overlay-remove-all))))
 
 
 ;;
@@ -454,7 +449,9 @@
 (setq-hook! 'html-mode-hook +format-with :none)
 (setq-hook! 'web-mode-hook +format-with :none)
 
-(after! sql
+(use-package! sql
+  :mode (("\\.\\(m\\|my\\)?sql\\'" . sql-mode))
+  :config
   ;; MySQL settings does not provide a default port. Use 3306 as the default as
   ;; this is the most widely used.
   (setq sql-mysql-login-params
@@ -475,17 +472,15 @@
 ;; Yaml mode
 ;; doc: https://github.com/yoshiki/yaml-mode
 (use-package! yaml-mode
-  :mode ("\\.\\(yaml\\|yml\\)\\'"))
+  :mode ("\\.\\(yaml\\|yml\\)\\'")
+  :hook (yaml-mode . my/remap-yaml-faces)
+  :config
+  (defun my/remap-yaml-faces ()
+    (face-remap-add-relative
+     'font-lock-variable-name-face :inherit font-lock-keyword-face)))
 
-(add-hook! 'yaml-mode-hook
-           #'(lambda ()
-               (face-remap-add-relative
-                'font-lock-variable-name-face :inherit font-lock-keyword-face)))
-
-;; Debug Adapter Protocol
-;; Enables communication between client and a debug server, for powerful
-;; interactive debugging.
-;; TODO: I need to spend a bit more time setting this up and getting used to it.
+;; Debug Adapter Protocol, enables communication between client and a debug server,
+;; for powerful interactive debugging.
 ;; doc: https://github.com/emacs-lsp/dap-mode
 (after! dap-mode
   (after! python
@@ -513,115 +508,6 @@
 ;; in a terminal, its still useful to see the modeline and its information.
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
-;; eshell
-;; doc: https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html
-(after! eshell
-  (defun my/eshell-current-git-branch ()
-    "Get current git branch."
-    (let ((args '("symbolic-ref" "HEAD" "--short")))
-      (with-temp-buffer
-        (apply #'process-file "git" nil (list t nil) nil args)
-        (unless (bobp)
-          (goto-char (point-min))
-          (buffer-substring-no-properties (point) (line-end-position))))))
-
-  (defun my/eshell-prompt ()
-    "Build eshell custom prompt."
-    (let ((base/dir (shrink-path-prompt default-directory))
-          (base/branch (my/eshell-current-git-branch)))
-      (concat
-       ;; python venv
-       (if (getenv "VIRTUAL_ENV")
-           (let ((venv (file-name-nondirectory (getenv "VIRTUAL_ENV"))))
-             (propertize (format "(%s) " venv) 'face 'default)))
-       ;; directory path
-       (propertize (car base/dir) 'face 'font-lock-comment-face)
-       (propertize (cdr base/dir) 'face 'default)
-       ;; git branch
-       (if base/branch
-           (propertize (format " (%s)" base/branch) 'face 'default))
-       ;; user / super user
-       (propertize " % " 'face 'default))))
-
-  (setq eshell-history-size 1000000
-        eshell-buffer-maximum-lines 5000
-        eshell-modify-global-environment t
-        eshell-destroy-buffer-when-process-dies t)
-
-  ;; Make sure to always display the modeline when using eshell. I feel like even
-  ;; in a terminal, its still useful to see the modeline and its information.
-  (remove-hook! 'eshell-mode-hook #'hide-mode-line-mode)
-
-  ;; Prompt settings
-  (setq eshell-prompt-regexp "^.* [%] "
-        eshell-prompt-function #'my/eshell-prompt)
-
-  ;; Remove the virtual env variable once the env has been deactivated, it will
-  ;; get recreated once we reactivate the env. It's used in the eshell prompt
-  ;; so we need to remove it when not in use.
-  (add-hook! 'pyvenv-post-deactivate-hooks (lambda () (setenv "VIRTUAL_ENV" nil)))
-
-  ;; Disable company completion in eshell.
-  (add-hook! 'eshell-mode-hook (company-mode -1))
-
-  ;; List of eshell aliases
-  (set-eshell-alias!
-   "d" "dired $1"
-   "clear" "clear-scrollback"
-   "c" "clear-scrollback"
-   "g" "git $*"
-   "qq" "exit"
-   "gs" "magit-status"
-   "gc" "magit-commit"
-   "gd" "magit-diff-unstaged"
-   "gds" "magit-diff-staged"
-   "..." "cd ../.."
-   "...." "cd ../../.."
-   "....." "cd ../../../.."
-   "k" "kubectl $*"
-   "kt" "kubetail $*"
-   "kgn" "kubectl get namespaces"
-   "ls" "my/eshell/ls $*")
-
-  ;; Custom Eshell functions
-  ;; These can be used directly in eshell by omitting the 'eshell/' prefixes.
-  ;; For example 'eshell/cr' can be used directly by invoking 'cr' in eshell.
-
-  (defun eshell/cr ()
-    "Go to git repository root."
-    (eshell/cd (locate-dominating-file default-directory ".git")))
-
-  (defun eshell/md (dir)
-    "mkdir and cd into DIR."
-    (eshell/mkdir dir)
-    (eshell/cd dir))
-
-  (defun eshell/dots ()
-    "cd into my dotfiles directory."
-    (eshell/cd "~/dotfiles"))
-
-  (defun my/eshell/ls (&rest args)
-    "ls command list hidden files by default."
-    (eshell/ls "-a" args))
-
-  (defun eshell/sl (&rest args)
-    "Same as ls, used to avoid typos."
-    (my/eshell/ls args))
-
-  (defun eshell/o ()
-    "Open in finder."
-    (+macos/reveal-in-finder))
-
-  (defun eshell/deactivate ()
-    "Deactivate a python venv."
-    (pyvenv-deactivate))
-
-  (defun eshell/activate (&optional env)
-    "Activate a python ENV."
-    (if env
-        (pyvenv-activate env)
-      (pyvenv-activate "env"))))
-
 
 ;;
 ;;; Org
@@ -643,14 +529,12 @@
 ;; Make invisible parts of Org elements appear visible
 ;; doc: https://github.com/awth13/org-appear
 (use-package! org-appear
-  :after org-mode
+  :hook (org-mode . org-appear-mode)
   :custom
   (org-appear-autoemphasis t)
   (org-appear-autolinks t)
   (org-appear-autosubmarkers t)
   (org-appear-autoentities t))
-
-(add-hook! 'org-mode-hook 'org-appear-mode)
 
 ;; Journal
 ;; doc: https://github.com/bastibe/org-journal
@@ -706,42 +590,31 @@
 (use-package! shrink-path
   :commands (shrink-path-file shrink-path-prompt))
 
-;; Scratch buffers
-;; doc: https://github.com/ieure/scratch-el
-(use-package! scratch
-  :commands (scratch))
-
-;; Automatically add headers on scratch buffers in specific modes.
-(add-hook! 'org-mode-hook (my/add-scratch-buffer-header "#+TITLE: Scratch file"))
-(add-hook! 'sh-mode-hook (my/add-scratch-buffer-header "#!/usr/bin/env bash"))
-(add-hook! 'restclient-mode-hook (my/add-scratch-buffer-header "#\n# restclient\n#"))
-
-;; Insert lorem-ipsum text
+;; Insert random text
 ;; doc: https://github.com/jschaf/emacs-lorem-ipsum
 (use-package! lorem-ipsum
   :commands (lorem-ipsum-insert-paragraphs
              lorem-ipsum-insert-sentences
-             lorem-ipsum-insert-list))
+             lorem-ipsum-insert-list)
+  :init
+  (map! (:leader ((:prefix ("l" . "lorem")
+                   :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
+                   :desc "Insert sentences"  "s" #'lorem-ipsum-insert-sentences
+                   :desc "Insert list"       "l" #'lorem-ipsum-insert-list)))))
 
 ;; Untappd
 ;; doc: https://github.com/smallwat3r/untappd.el
 (use-package! untappd
   :commands (untappd-feed)
-  :config (setq untappd-access-token
-                (auth-source-pass-get 'secret "untappd/token")))
+  :custom (untappd-access-token (auth-source-pass-get 'secret "untappd/token")))
 
 ;; Look up
 (setq +lookup-provider-url-alist
       ;; Searching stuff on sourcegraph is quite useful. It provides lots of
       ;; code implementations and examples.
       (append +lookup-provider-url-alist
-              '(("Sourcegraph"
-                 "https://sourcegraph.com/search?q=context:global+%s&patternType=literal"))))
-
-;; Notifications
-;; doc: https://github.com/jwiegley/alert
-(use-package! alert
-  :custom (alert-default-style 'osx-notifier))
+              '(("Sourcegraph" (concat "https://sourcegraph.com/search?"
+                                       "q=context:global+%s&patternType=literal")))))
 
 
 ;;

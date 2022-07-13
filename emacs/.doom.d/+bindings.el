@@ -68,11 +68,6 @@
   "§" #'other-frame
   "1" #'my/where-am-i
 
-  (:prefix ("d" . "docker")
-   :desc "List images"     "i" #'docker-images
-   :desc "List containers" "c" #'docker-containers
-   :desc "Exec into"       "e" #'docker-container-shell)
-
   (:prefix "b"
    :desc "Kill buffer" "d" #'my/kill-buffer)
 
@@ -91,19 +86,6 @@
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines)
-
-  (:prefix "n"
-   :desc "Open deft"     "d" #'deft
-   :desc "Deft new file" "D" #'deft-new-file-named)
-
-  (:prefix "c"
-   :desc "Add overlay"     "h" #'symbol-overlay-put
-   :desc "Remove overlays" "H" #'symbol-overlay-remove-all)
-
-  (:prefix ("l" . "lorem")
-   :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
-   :desc "Insert sentences"  "s" #'lorem-ipsum-insert-sentences
-   :desc "Insert list"       "l" #'lorem-ipsum-insert-list)
 
   (:prefix "p"
    :desc "Run Makefile target" "m" #'+make/run)))

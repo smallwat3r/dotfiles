@@ -1,11 +1,12 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :smallwat3r
+       containerization
        deft
        google
        hl-todo
-       kubernetes
        modeline
+       scratch
        slack
        tree-sitter
 
@@ -37,7 +38,6 @@
        vc
 
        :term
-       eshell
        vterm
 
        :checkers
@@ -46,7 +46,6 @@
 
        :tools
        (debugger +lsp)
-       docker
        editorconfig
        (eval +overlay)
        (lookup +dictionary +docsets)

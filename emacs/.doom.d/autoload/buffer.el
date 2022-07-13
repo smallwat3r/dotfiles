@@ -36,22 +36,6 @@
     (message "%d buffers in total" buf-count)))
 
 ;;;###autoload
-(defun my/add-scratch-buffer-header (text)
-  "Open scratch buffer with a TEXT header."
-  (when scratch-buffer
-    (save-excursion
-      (goto-char (point-min))
-      (insert text)
-      (newline 2))
-    (goto-char (point-max))))
-
-;;;###autoload
-(defun my/scratch-rest-mode ()
-  "Open a scratch buffer with restclient."
-  (interactive)
-  (scratch 'restclient-mode))
-
-;;;###autoload
 (defun my/vterm/toggle-current-buffer ()
   "Toggles a vterm buffer from the current directory."
   (interactive)
