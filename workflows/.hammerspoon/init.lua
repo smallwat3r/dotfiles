@@ -8,6 +8,20 @@ mod_ctrl_cmd = {'ctrl', 'cmd'}
 local hotkey = require "hs.hotkey"
 local grid = require "hs.grid"
 
+hs.alert.defaultStyle = {
+    strokeWidth  = 5,
+    strokeColor = { white = 1, alpha = 1 },
+    fillColor = { white = 0, alpha = 1 },
+    textColor = { white = 1, alpha = 1 },
+    textFont = "Monaco",
+    textSize = 15,
+    radius = 0,
+    atScreenEdge = 0,
+    fadeInDuration = 0,
+    fadeOutDuration = 0,
+    padding = nil,
+}
+
 -- ***
 -- Emacs stuff
 -- ***
@@ -49,32 +63,6 @@ end
 hotkey.bind(mod_cmd, '§', function() confirmationDialog(stopEmacsDaemon) end)
 
 -- ***
--- Make the combination of Ctrl + hjkl to emulate the arrow keys behaviour.
--- It emulates the vim bindings to go left, up, down or right. This is very
--- useful as it fits my workflow in Emacs when browsing up or down up menus.
--- ***
-
-local function pressFn(mods, key)
-  if key == nil then
-    key = mods
-    mods = {}
-  end
-
-  return function()
-    hs.eventtap.keyStroke(mods, key, 1000)
-  end
-end
-
-local function remap(mods, key, pressFn)
-  hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
-end
-
-remap(mod_alt, 'h', pressFn('left'))
-remap(mod_alt, 'j', pressFn('down'))
-remap(mod_alt, 'k', pressFn('up'))
-remap(mod_alt, 'l', pressFn('right'))
-
--- ***
 -- Window management
 -- ***
 
@@ -105,3 +93,41 @@ hotkey.bind(mod_cmd, 'h', grid.resizeWindowThinner)
 
 -- Show window hints
 hotkey.bind(mod_alt, 'Tab', function() hs.hints.windowHints() end)
+
+-- ***
+-- Clipboard manager
+-- ***
+
+hs.loadSpoon("ClipboardTool")
+
+spoon.ClipboardTool:start()
+spoon.ClipboardTool.paste_on_select = true
+spoon.ClipboardTool.show_copied_alert = false
+
+hotkey.bind(mod_alt, 'v', function() spoon.ClipboardTool:toggleClipboard() end)
+
+-- ***
+-- Make the combination of Ctrl + hjkl to emulate the arrow keys behaviour.
+-- It emulates the vim bindings to go left, up, down or right. This is very
+-- useful as it fits my workflow in Emacs when browsing up or down up menus.
+-- ***
+
+local function pressFn(mods, key)
+  if key == nil then
+    key = mods
+    mods = {}
+  end
+
+  return function()
+    hs.eventtap.keyStroke(mods, key, 1000)
+  end
+end
+
+local function remap(mods, key, pressFn)
+  hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
+end
+
+remap(mod_alt, 'h', pressFn('left'))
+remap(mod_alt, 'j', pressFn('down'))
+remap(mod_alt, 'k', pressFn('up'))
+remap(mod_alt, 'l', pressFn('right'))
