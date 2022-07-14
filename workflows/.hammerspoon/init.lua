@@ -95,18 +95,6 @@ hotkey.bind(mod_cmd, 'h', grid.resizeWindowThinner)
 hotkey.bind(mod_alt, 'Tab', function() hs.hints.windowHints() end)
 
 -- ***
--- Clipboard manager
--- ***
-
-hs.loadSpoon("ClipboardTool")
-
-spoon.ClipboardTool:start()
-spoon.ClipboardTool.paste_on_select = true
-spoon.ClipboardTool.show_copied_alert = false
-
-hotkey.bind(mod_alt, 'v', function() spoon.ClipboardTool:toggleClipboard() end)
-
--- ***
 -- Make the combination of Ctrl + hjkl to emulate the arrow keys behaviour.
 -- It emulates the vim bindings to go left, up, down or right. This is very
 -- useful as it fits my workflow in Emacs when browsing up or down up menus.
