@@ -624,7 +624,11 @@
 ;; Clipboard history, interact with Flycut.app
 ;; doc: https://github.com/redguardtoo/cliphist
 (use-package! cliphist
-  :commands (cliphist-select-item cliphist-paste-item))
+  :commands (cliphist-select-item cliphist-paste-item)
+  :init
+  (map! (:leader ((:prefix ("C" . "clipboard")
+                   :desc "Select item" "s" #'cliphist-select-item
+                   :desc "Paste item"  "p" #'cliphist-paste-item)))))
 
 
 ;;
