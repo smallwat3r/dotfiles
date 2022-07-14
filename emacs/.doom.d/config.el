@@ -280,7 +280,7 @@
         projectile-sort-order 'recentf
         projectile-mode-line-prefix "P"
         projectile-mode-line-function '(lambda () (format " P[%s]" (projectile-project-name)))
-        projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups")
+        projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups" "/Applications")
         projectile-project-search-path '("~/dotfiles/" "~/projects/" "~/code/" "~/github/")
         projectile-globally-ignored-directories (append projectile-globally-ignored-directories
                                                         '("^\\.npm$" "^\\.poetry$" "^\\GoogleDriven$"
