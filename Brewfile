@@ -71,6 +71,7 @@ cask "nordvpn"
 cask "signal"
 cask "slack"
 cask "tunnelblick"
+cask "flycut"
 
 tap "homebrew/cask-versions"
 cask 'sequel-pro-nightly'

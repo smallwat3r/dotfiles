@@ -621,6 +621,11 @@
               '(("Sourcegraph" (concat "https://sourcegraph.com/search?"
                                        "q=context:global+%s&patternType=literal")))))
 
+;; Clipboard history, interact with Flycut.app
+;; doc: https://github.com/redguardtoo/cliphist
+(use-package! cliphist
+  :commands (cliphist-select-item cliphist-paste-item))
+
 
 ;;
 ;;; Testing...
