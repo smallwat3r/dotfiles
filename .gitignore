@@ -20,3 +20,5 @@ gnupg/.gnupg/*
 
 ssh/.ssh/*
 !ssh/.ssh/config
+
+workflows/.hammerspoon/Spoons/*
