@@ -408,21 +408,25 @@
   (setq python-shell-interpreter "python3")
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
   (setq python-shell-completion-native-enable nil)
-  ;; Linter
+
   (set-formatter! 'black
     '("black"
       "--quiet"
       "--line-length" "100"
       "-")  ; apply in file changes
-    :modes '(python-mode)))
+    :modes '(python-mode))
+
+  (add-hook! 'python-mode-hook 'rainbow-delimiters-mode)
+
+  (after! lsp-pyright
+    (setq lsp-pyright-python-executable-cmd python-shell-interpreter))
+
+  (after! dap-mode
+    (setq dap-python-debugger 'debugpy
+          dap-python-executable python-shell-interpreter)))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
-
-(after! lsp-pyright
-  (after! python
-    ;; Make sure pyright uses the correct python executable.
-    (setq lsp-pyright-python-executable-cmd python-shell-interpreter)))
 
 (after! js2-mode
   (set-formatter! 'prettier
@@ -481,14 +485,6 @@
   (defun my/remap-yaml-faces ()
     (face-remap-add-relative
      'font-lock-variable-name-face :inherit font-lock-keyword-face)))
-
-;; Debug Adapter Protocol, enables communication between client and a debug server,
-;; for powerful interactive debugging.
-;; doc: https://github.com/emacs-lsp/dap-mode
-(after! dap-mode
-  (after! python
-    (setq dap-python-debugger 'debugpy
-          dap-python-executable python-shell-interpreter)))
 
 
 ;;
