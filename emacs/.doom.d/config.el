@@ -630,6 +630,14 @@
                    :desc "Select item" "s" #'cliphist-select-item
                    :desc "Paste item"  "p" #'cliphist-paste-item)))))
 
+;; Bitwarden
+;; doc: https://github.com/seanfarley/emacs-bitwarden
+(use-package! bitwarden
+  :custom
+  (bitwarden-user user-mail-address)
+  (bitwarden-automatic-unlock
+   (lambda () (auth-source-pass-get 'secret "bitwarden/password"))))
+
 
 ;;
 ;;; Testing...

@@ -3,6 +3,7 @@
 brew "antigen"
 brew "aspell"
 brew "bash"
+brew "bitwarden-cli"
 brew "cmake"
 brew "coreutils"
 brew "curl"

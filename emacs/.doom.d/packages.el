@@ -23,6 +23,9 @@
 (package! vimrc-mode :pin "13bc150a870d5d4a95f1111e4740e2b22813c30e")
 (package! yaml-mode :pin "535273d5a1eb76999d20afbcf4d9f056d8ffd2da")
 (package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
+(package! bitwarden :pin "b536543d785d38d4d33ff7ea44ab435f0e12a20f"
+  :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
+
 
 ;; I'm ok with not pinning those as they are managed by me.
 (package! simplicity-theme :recipe (:host github :repo "smallwat3r/emacs-simplicity-theme"))
