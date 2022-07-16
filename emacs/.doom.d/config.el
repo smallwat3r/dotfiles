@@ -432,8 +432,6 @@
       "-")  ; apply in file changes
     :modes '(python-mode))
 
-  (add-hook! 'python-mode-hook 'rainbow-delimiters-mode)
-
   (after! lsp-pyright
     (setq lsp-pyright-python-executable-cmd python-shell-interpreter))
 
