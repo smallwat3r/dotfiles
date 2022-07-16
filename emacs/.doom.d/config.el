@@ -284,7 +284,7 @@
 
   (setq projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc"))
 
-  ;; Make the projectile command use fd with some more sensitive defaults to as I noticed some
+  ;; Make the projectile command use fd with some more sensitive defaults, as I noticed some
   ;; performance issues with the one used by Doom or projectile.
   (let ((excludes (mapcar (lambda (val) (format "-E '%s'" val))
                           (append projectile-globally-ignored-files
