@@ -276,13 +276,29 @@
 (after! projectile
   (setq projectile-indexing-method 'alien
         projectile-sort-order 'recentf
-        projectile-mode-line-prefix "P"
-        projectile-mode-line-function '(lambda () (format " P[%s]" (projectile-project-name)))
-        projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups" "/Applications")
-        projectile-project-search-path '("~/dotfiles/" "~/projects/" "~/code/" "~/github/")
-        projectile-globally-ignored-directories (append projectile-globally-ignored-directories
-                                                        '("^\\.npm$" "^\\.poetry$" "^\\GoogleDriven$"
-                                                          "^\\.mypy_cache$"))))
+        projectile-mode-line-function '(lambda () (format " P[%s]" (projectile-project-name))))
+
+  (setq projectile-globally-ignored-directories
+        '(".npm" ".poetry" "GoogleDrive" ".mypy_cache" "Library" ".git" "__pycache__"
+          "node_modules" ".idea" ".vscode" ".svn" ".tox" ".cache"))
+
+  (setq projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc"))
+
+  ;; Make the projectile command use fd with some more sensitive defaults to as I noticed some
+  ;; performance issues with the one used by Doom or projectile.
+  (let ((excludes (mapcar (lambda (val) (format "-E '%s'" val))
+                          (append projectile-globally-ignored-files
+                                  projectile-globally-ignored-directories))))
+    (setq projectile-generic-command
+          (format "%s" (cons "fd . -0 -H -c never -t file -t symlink --strip-cwd-prefix"
+                             excludes))))
+
+  ;; Ignore all projects from within these directories.
+  (setq projectile-ignored-projects
+        '("~/" "/tmp" "~/Downloads" "~/backups" "/Applications" "/Volumes/GoogleDrive"))
+
+  ;; Allow projectile to automatically find projects from any of these directories.
+  (setq projectile-project-search-path '("~/dotfiles/" "~/projects/" "~/code/" "~/github/")))
 
 
 ;;
@@ -609,10 +625,9 @@
 
 ;; Look up
 (setq +lookup-provider-url-alist
-      ;; Searching stuff on sourcegraph is quite useful. It provides lots of
-      ;; code implementations and examples.
       (append +lookup-provider-url-alist
-              '(("Sourcegraph" (concat "https://sourcegraph.com/search?"
+              '(("Python Docs" "https://docs.python.org/3/search.html?q=%s")
+                ("Sourcegraph" (concat "https://sourcegraph.com/search?"
                                        "q=context:global+%s&patternType=literal")))))
 
 ;; Clipboard history, interact with Flycut.app
