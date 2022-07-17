@@ -31,6 +31,7 @@ symlink: _stow _localbin _maildir ## * Symlink all the dotfiles using stow
 		gnupg \
 		linters \
 		mail \
+		qutebrowser \
 		ssh \
 		terminal \
 		utils \
