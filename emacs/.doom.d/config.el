@@ -500,6 +500,11 @@
     (face-remap-add-relative
      'font-lock-variable-name-face :inherit font-lock-keyword-face)))
 
+;; Logs
+;; doc: https://github.com/doublep/logview
+(use-package! logview
+  :mode ("\\.log.*" . logview-mode))
+
 
 ;;
 ;;; Terminals

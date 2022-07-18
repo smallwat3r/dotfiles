@@ -25,6 +25,7 @@
 (package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
 (package! bitwarden :pin "b536543d785d38d4d33ff7ea44ab435f0e12a20f"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
+(package! logview :pin "6446ccf25f834519d7f5c71e5293b062d599b355")
 
 
 ;; I'm ok with not pinning those as they are managed by me.
