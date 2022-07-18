@@ -1,0 +1,24 @@
+@font-face {
+    font-family:'SFMono-Regular';
+    src: local('Monaco');
+}
+@font-face {
+    font-family:'Cousine';
+    src: local('Monaco');
+}
+@font-face {
+    font-family:'Menlo';
+    src: local('Monaco');
+}
+@font-face {
+    font-family:'Consolas';
+    src: local('Monaco');
+}
+@font-face {
+    font-family:'Cascadia Mono';
+    src: local('Monaco');
+}
+@font-face {
+    font-family:'Monospace';
+    src: local('Monaco');
+}

@@ -9,3 +9,6 @@ c.editor.command = ["emacsclient", "-c", "{}"]
 
 # Download location
 c.downloads.location.directory = "~/Downloads"
+
+# Stylesheets
+c.content.user_stylesheets = ['~/.qutebrowser/css/stylesheet.css']
