@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Zip all files from current directory into a zipfile
+# Zip all files from current directory into their own zipfile
 
 for file in $(echo *(^/)); do
   zip "${file%.*}.zip" "$file"
