@@ -26,6 +26,7 @@
 (package! bitwarden :pin "b536543d785d38d4d33ff7ea44ab435f0e12a20f"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
 (package! logview :pin "6446ccf25f834519d7f5c71e5293b062d599b355")
+(package! golden-ratio :pin "007911d8a431b72670f5fe5f0e5b4380c2777a31")
 
 
 ;; I'm ok with not pinning those as they are managed by me.

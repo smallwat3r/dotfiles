@@ -46,7 +46,8 @@
      (whitespace-mode nil whitespace)
      (smartparens-mode nil smartparens)
      (evil-goggles-mode nil evil-goggles)
-     (evil-snipe-local-mode nil evil-snipe))))
+     (evil-snipe-local-mode nil evil-snipe)
+     (golden-ratio-mode nil golden-ratio))))
 
 ;; Set default modeline format.
 (let ((standard-mode-line-format

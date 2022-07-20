@@ -153,7 +153,13 @@
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
 (after! which-key
-  (setq which-key-idle-delay 0.2))
+  (setq which-key-idle-delay 0.2)
+  ;; Make evil commands less verbose, use small arrow symbols instead.
+  ;; Stolen from: https://tecosaur.github.io/emacs-config/config.html#which-key,code--2
+  (pushnew!
+   which-key-replacement-alist
+   '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
+   '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))))
 
 ;; Git fringe indicator
 ;; doc: https://github.com/emacsorphanage/git-gutter-fringe
@@ -205,6 +211,21 @@
   (map! (:leader (:prefix "c"
                   :desc "Add overlay"     "h" #'symbol-overlay-put
                   :desc "Remove overlays" "H" #'symbol-overlay-remove-all))))
+
+;; Conveniently resize windows
+;; doc: https://github.com/roman/golden-ratio.el
+(use-package! golden-ratio
+  :bind (:map evil-window-map
+         ("g" . golden-ratio)
+         ("G" . golden-ratio-mode))
+  :config
+  (setq golden-ratio-extra-commands
+        (append golden-ratio-extra-commands
+                '(evil-window-left
+                  evil-window-right
+                  evil-window-up
+                  evil-window-down
+                  ace-window))))
 
 
 ;;
