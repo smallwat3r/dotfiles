@@ -80,7 +80,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 3)
 
 ;; Use a custom minimalistic theme.
 (setq doom-theme 'smallwat3r)

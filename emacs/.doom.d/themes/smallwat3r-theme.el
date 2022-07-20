@@ -10,7 +10,7 @@
 
 (custom-theme-set-faces
  'smallwat3r
- `(default ((t (:background "honeydew" :foreground "MidnightBlue"))))
+ `(default ((t (:background "honeydew" :foreground "black"))))
  `(region ((t (:background "wheat2"))))
  `(highlight ((t (:background "DarkSlateGray1"))))
  `(lazy-highlight ((t (:background "gold2" :foreground "black"))))
