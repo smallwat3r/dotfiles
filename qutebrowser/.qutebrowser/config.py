@@ -5,7 +5,7 @@ c.fonts.default_family = 'Monaco'
 c.fonts.default_size = '13pt'
 
 # Editor
-c.editor.command = ["emacsclient", "-c", "{}"]
+c.editor.command = ["/usr/local/bin/emacsclient", "-c", "{}"]
 
 # Download location
 c.downloads.location.directory = "~/Downloads"
