@@ -531,6 +531,19 @@
 (use-package! logview
   :mode ("\\.log.*" . logview-mode))
 
+;; Applescript
+;; doc: https://github.com/emacsorphanage/applescript-mode
+(use-package! applescript-mode
+  :mode (("\\.scpt\\'" . applescript-mode)
+         ("\\.applescript\\'" . applescript-mode)))
+
+;; Nginx
+;; doc: https://github.com/ajc/nginx-mode
+(use-package nginx-mode
+  :mode (("/nginx/conf.d/.*" . nginx-mode)
+         ("/nginx/.*\\.conf\\'" . nginx-mode)
+         ("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
+
 
 ;;
 ;;; Terminals
@@ -628,11 +641,6 @@
 
 ;;
 ;;; Misc
-
-;; shrink-path provides functions to shrink filepaths to be displayed such as
-;; '/foo/bar/file.el' becomes 'f/b/file.el'.
-(use-package! shrink-path
-  :commands (shrink-path-file shrink-path-prompt))
 
 ;; Insert random text
 ;; doc: https://github.com/jschaf/emacs-lorem-ipsum
