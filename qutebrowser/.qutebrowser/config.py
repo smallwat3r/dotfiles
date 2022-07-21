@@ -22,6 +22,3 @@ c.content.default_encoding = "utf-8"
 
 # Custom headers
 c.content.headers.custom = {}
-
-# Enable smooth scrolling
-c.scrolling.smooth = True
