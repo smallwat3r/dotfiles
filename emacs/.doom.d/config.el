@@ -406,30 +406,14 @@
 (after! magit
   (setq git-commit-summary-max-length 90))
 
-;; Interactive code analysis and linting
-;; doc: https://www.flycheck.org/en/latest/
-(after! flycheck
-  ;; Pylint (python)
-  (setq flycheck-python-pylint-executable "/usr/local/bin/pylint"
-        flycheck-pylintrc "~/.config/pylintrc"
-        flycheck-python-mypy-config "~/.config/mypy/config")
-  (setq-hook! 'python-mode-hook flycheck-checker 'python-pylint)
-
-  ;; Shellcheck (bash)
-  (setq flycheck-shellcheck-excluded-warnings '("SC1091"))
-  (setq-hook! 'sh-mode-hook flycheck-checker 'sh-shellcheck))
-
-;; Check for spelling mistakes
-;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
-(after! spell-fu
-  (setq spell-fu-idle-delay 0.5))
-
-;; spell-fu is by default enabled in text-mode, but I find this quite
-;; annoying, so force it to be disabled, and we can explicitly enable it
-;; if we need to use it.
-(remove-hook! (text-mode) #'spell-fu-mode)
-
-(after! sh-script
+;; Shell scripts (bash, zsh...)
+(after! sh-mode
+  (setq-hook! 'sh-mode-hook
+    flycheck-checker 'sh-shellcheck
+    flycheck-shellcheck-excluded-warnings '("SC1091")
+    sh-basic-offset 2
+    indent-tabs-mode nil)
+  ;; Formatter
   (set-formatter! 'shfmt
     '("shfmt"
       "-i" "2" ; nb of spaces used for indentation
@@ -441,11 +425,23 @@
 ;; performance issues when it was enabled.
 (add-hook! 'shell-mode-hook (company-mode -1))
 
+;; Check for spelling mistakes
+;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
+(after! spell-fu
+  (setq spell-fu-idle-delay 0.5))
+
+;; spell-fu is by default enabled in text-mode, but I find this quite
+;; annoying, so force it to be disabled, and we can explicitly enable it
+;; if we need to use it.
+(remove-hook! (text-mode) #'spell-fu-mode)
+
+;; Python
 (after! python
   (setq python-shell-interpreter "python3")
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
   (setq python-shell-completion-native-enable nil)
 
+  ;; Formatter
   (set-formatter! 'black
     '("black"
       "--quiet"
@@ -453,29 +449,41 @@
       "-")  ; apply in file changes
     :modes '(python-mode))
 
+  ;; Lsp with Pyright
   (after! lsp-pyright
     (setq lsp-pyright-python-executable-cmd python-shell-interpreter))
 
+  ;; Debugger
   (after! dap-mode
     (setq dap-python-debugger 'debugpy
-          dap-python-executable python-shell-interpreter)))
+          dap-python-executable python-shell-interpreter))
+
+  (setq-hook! 'python-mode-hook
+    flycheck-checker 'python-pylint
+    flycheck-pylintrc "~/.config/pylintrc"
+    flycheck-python-mypy-config "~/.config/mypy/config"
+    flycheck-python-mypy-executable "mypy"))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
 
+;; Javascript
 (after! js2-mode
+  (setq-hook! 'js2-mode-hook js2-basic-offset 2)
+  ;; Formatter
   (set-formatter! 'prettier
     '("prettier"
       "--print-width" "120"
       ("--stdin-filepath" "%s" buffer-file-name))
     :modes '(js2-mode)))
 
-(setq-hook! 'js2-mode js2-basic-offset 2)
+;; Json
+(setq-hook! 'json-mode-hook tab-width 2)
 
-(setq-hook! 'json-mode js-indent-level 2)
+;; Golang
+(setq-hook! 'go-mode-hook indent-tabs-mode t)
 
-(setq-hook! 'go-mode indent-tabs-mode t)
-
+;; Web mode
 (setq-hook! 'web-mode-hook
   tab-width 2
   web-mode-markup-indent-offset 2
@@ -483,14 +491,11 @@
   web-mode-script-padding 2
   web-mode-style-padding 2)
 
-(setq-hook! 'sh-mode-hook
-  sh-basic-offset 2
-  indent-tabs-mode nil)
-
 ;; Disable formatters for html and web modes
-(setq-hook! 'html-mode-hook +format-with :none)
-(setq-hook! 'web-mode-hook +format-with :none)
+(setq-hook! '(html-mode-hook web-mode-hook)
+  +format-with :none)
 
+;; SQL
 (use-package! sql
   :mode (("\\.\\(m\\|my\\)?sql\\'" . sql-mode))
   :config
