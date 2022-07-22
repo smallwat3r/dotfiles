@@ -93,6 +93,7 @@
       confirm-kill-emacs nil        ; quit emacs without confirmation
       load-prefer-newer t)          ; always load newer bytes compiled files
 
+;; Evil-mode
 (after! evil
   ;; Change cursor color and shape based on evil mode.
   (setq evil-emacs-state-cursor '("DarkMagenta" box)

@@ -6,7 +6,6 @@ setopt COMPLETE_IN_WORD  # complete from both end of a word
 setopt AUTO_MENU         # use menu completion after the second consecutive request for completion
 setopt AUTO_LIST         # list choices on an ambiguous completion
 setopt AUTO_PARAM_SLASH  # add a trailing slash instead of a space in case of a directory
-setopt COMPLETE_ALIASES  # make aliases a distinct command for completion purposes
 setopt ALWAYS_TO_END     # move cursor to the end after completion
 
 zstyle ':completion:*' use-cache on
