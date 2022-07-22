@@ -70,6 +70,8 @@
 ;;
 ;;; Editor
 
+(setq doom-theme 'smallwat3r)
+
 ;; Fonts
 (let* ((font "Monaco")
        (font-size 13))
@@ -80,13 +82,9 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 3)
-
-;; Use a custom minimalistic theme.
-(setq doom-theme 'smallwat3r)
-
-(setq-default tab-width 8)
-(setq-default with-editor-emacsclient-executable "emacsclient")
+(setq-default line-spacing 0
+              tab-width 8
+              with-editor-emacsclient-executable "emacsclient")
 
 (setq display-line-numbers-type nil ; no line numbers
       scroll-margin 7               ; top and bottom margins to trigger scroll
@@ -366,21 +364,21 @@
 ;;
 ;;; Completion frameworks
 
-;; This function gets used for `company-format-margin-function'. The default
-;; displayed the company icons without a space between the icons and the text.
-;; Which makes it a bit innelegant. This function adds a space between the two
-;; values.
-(defun my/company-spaced-dark-icons-margin (candidate selected)
-  (concat
-   (company--render-icons-margin company-vscode-icons-mapping
-                                 (expand-file-name "vscode-dark" company-icons-root)
-                                 candidate
-                                 selected)
-   " "))
-
 ;; Code completion
 ;; doc: https://www.emacswiki.org/emacs/CompanyMode
 (after! company
+  ;; This function gets used for `company-format-margin-function'. The default
+  ;; displayed the company icons without a space between the icons and the text.
+  ;; Which makes it a bit innelegant. This function adds a space between the two
+  ;; values.
+  (defun my/company-spaced-dark-icons-margin (candidate selected)
+    (concat
+     (company--render-icons-margin company-vscode-icons-mapping
+                                   (expand-file-name "vscode-dark" company-icons-root)
+                                   candidate
+                                   selected)
+     " "))
+
   (setq company-idle-delay 0.1
         company-tooltip-limit 10
         company-minimum-prefix-length 1
@@ -690,6 +688,28 @@
                   :desc "Bitwarden unlock"   "u" #'bitwarden-unlock
                   :desc "Bitwarden lock"     "L" #'bitwarden-lock
                   :desc "Bitwarden list all" "b" #'bitwarden-list-all))))
+
+;; Elfeed, web feed reader (RSS, Atom)
+;; doc: https://github.com/skeeto/elfeed
+(after! elfeed
+  ;; Fetch feeds from a month ago.
+  (setq elfeed-search-filter "@1-month-ago +unread")
+
+  ;; Hook on new entries.
+  (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "github.com" :add '(git)))
+
+  ;; Set up feeds.
+  (setq elfeed-feeds
+        '(("https://www.reddit.com/r/emacs.rss" redit emacs)
+          ("https://github.com/doomemacs/doomemacs/commits/master.atom" git emacs)
+          ("https://realpython.com/atom.xml?format=xml" python)
+          ("http://feeds.feedburner.com/PythonInsider" python)))
+
+  ;; Add private Github RSS feed to list of feeds. This needs to fetch my Github RSS token,
+  ;; so this is done separately.
+  (let ((github-rss (format "https://github.com/smallwat3r.private.atom?token=%s"
+                            (auth-source-pass-get 'secret "github/rss/token"))))
+    (add-to-list 'elfeed-feeds (list github-rss))))
 
 
 ;;

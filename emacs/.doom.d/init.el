@@ -78,6 +78,7 @@
 
        :app
        everywhere
+       rss
 
        :config
        (default +bindings +smartparens))
