@@ -378,11 +378,15 @@
                                    candidate
                                    selected)
      " "))
+  (setq company-format-margin-function 'my/company-spaced-dark-icons-margin)
 
+  ;; This makes completion feeling snappy.
   (setq company-idle-delay 0.1
-        company-tooltip-limit 10
         company-minimum-prefix-length 1
-        company-format-margin-function 'my/company-spaced-dark-icons-margin))
+        company-tooltip-limit 6)
+
+  (setq company-tooltip-align-annotations nil
+        company-tooltip-offset-display 'lines))
 
 
 ;;
