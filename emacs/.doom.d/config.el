@@ -727,9 +727,16 @@
 
   ;; Add private Github RSS feed to list of feeds. This needs to fetch my Github RSS token,
   ;; so this is done separately.
-  (let ((github-rss (format "https://github.com/smallwat3r.private.atom?token=%s"
-                            (auth-source-pass-get 'secret "github/rss/token"))))
-    (add-to-list 'elfeed-feeds (list github-rss))))
+  (setq my-github-rss-feed (format "https://github.com/smallwat3r.private.atom?token=%s"
+                              (auth-source-pass-get 'secret "github/rss/token")))
+  (add-to-list 'elfeed-feeds (list my-github-rss-feed))
+
+  ;; Rename some feeds titles.
+  (defadvice elfeed-search-update (before configure-elfeed-search-update activate)
+    (let ((github-feed (elfeed-db-get-feed my-github-rss-feed))
+          (git-doom-feed (elfeed-db-get-feed "https://github.com/doomemacs/doomemacs/commits/master.atom")))
+      (setf (elfeed-feed-title github-feed) "Github feed")
+      (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
 
 ;; Turn this off as images wouldn't render correctly with `line-spacing' set
 ;; greater than zero.
