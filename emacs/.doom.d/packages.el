@@ -4,6 +4,7 @@
 ;; Disable some of Doom's default packages, as not used or obsolete.
 (disable-packages!
  anaconda-mode
+ elfeed-goodies
  company-anaconda
  nose
  lsp-python-ms
