@@ -697,15 +697,25 @@
 ;; doc: https://github.com/skeeto/elfeed
 (after! elfeed
   ;; Fetch feeds from a month ago.
-  (setq elfeed-search-filter "@1-month-ago +unread")
+  (setq elfeed-search-filter "@1-month-ago")
 
   ;; Hook on new entries.
-  (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "github.com" :add '(git)))
+  (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "github.com" :add '(git perso)))
+
+  (defface my-perso-elfeed-entry-face '((t :foreground "cyan4"))
+    "Face for a personal Elfeed entry.")
+
+  (defface my-python-elfeed-entry-face '((t :foreground "IndianRed4"))
+    "Face for a python related Elfeed entry.")
+
+  ;; Distinguish faces depending on tags for Elfeed entries.
+  (push '(perso my-perso-elfeed-entry-face) elfeed-search-face-alist)
+  (push '(python my-python-elfeed-entry-face) elfeed-search-face-alist)
 
   ;; Set up feeds.
   (setq elfeed-feeds
-        '(("https://www.reddit.com/r/emacs.rss" redit emacs)
-          ("https://github.com/doomemacs/doomemacs/commits/master.atom" git emacs)
+        '(("https://www.reddit.com/r/emacs.rss" reddit emacs)
+          ("https://github.com/doomemacs/doomemacs/commits/master.atom" git doom)
           ("https://realpython.com/atom.xml?format=xml" python)
           ("http://feeds.feedburner.com/PythonInsider" python)))
 
