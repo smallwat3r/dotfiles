@@ -82,7 +82,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 0
+(setq-default line-spacing 3
               tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
@@ -693,7 +693,7 @@
                   :desc "Bitwarden lock"     "L" #'bitwarden-lock
                   :desc "Bitwarden list all" "b" #'bitwarden-list-all))))
 
-;; Elfeed, web feed reader (RSS, Atom)
+;; Elfeed, web feed reader (RSS)
 ;; doc: https://github.com/skeeto/elfeed
 (after! elfeed
   ;; Fetch feeds from a month ago.
@@ -730,6 +730,10 @@
   (let ((github-rss (format "https://github.com/smallwat3r.private.atom?token=%s"
                             (auth-source-pass-get 'secret "github/rss/token"))))
     (add-to-list 'elfeed-feeds (list github-rss))))
+
+;; Turn this off as images wouldn't render correctly with `line-spacing' set
+;; greater than zero.
+(setq +rss-enable-sliced-images nil)
 
 
 ;;
