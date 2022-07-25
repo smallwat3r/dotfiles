@@ -512,22 +512,14 @@
                             (server :default "127.0.0.1")
                             (port :default 3306))))
 
-;; Activate specific modes from the current file name or extension.
-(setq auto-mode-alist
-      (append '(("\\.restclient" . restclient-mode)
-                ("abbrev_defs" . emacs-lisp-mode)
-                ("Makefile.*" . makefile-mode))
-              auto-mode-alist))
-
-;; Activate specific modes from the current file shebang.
-(setq interpreter-mode-alist
-      (append '(("osascript" . applescript-mode))
-              interpreter-mode-alist))
+;; Makefile
+(use-package! makefile-mode
+  :mode ("Makefile.*" . makefile-mode))
 
 ;; Yaml mode
 ;; doc: https://github.com/yoshiki/yaml-mode
 (use-package! yaml-mode
-  :mode ("\\.\\(yaml\\|yml\\)\\'")
+  :mode ("\\.\\(yaml\\|yml\\)\\'" . yaml-mode)
   :hook (yaml-mode . my/remap-yaml-faces)
   :config
   (defun my/remap-yaml-faces ()
@@ -543,7 +535,8 @@
 ;; doc: https://github.com/emacsorphanage/applescript-mode
 (use-package! applescript-mode
   :mode (("\\.scpt\\'" . applescript-mode)
-         ("\\.applescript\\'" . applescript-mode)))
+         ("\\.applescript\\'" . applescript-mode))
+  :interpreter ("osascript" . applescript-mode))
 
 ;; Nginx
 ;; doc: https://github.com/ajc/nginx-mode
@@ -551,6 +544,12 @@
   :mode (("/nginx/conf.d/.*" . nginx-mode)
          ("/nginx/.*\\.conf\\'" . nginx-mode)
          ("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
+
+;; Activate specific modes from the current file name or extension.
+(setq auto-mode-alist
+      (append '(("\\.restclient" . restclient-mode)
+                ("abbrev_defs" . emacs-lisp-mode))
+              auto-mode-alist))
 
 
 ;;
