@@ -465,7 +465,8 @@
     flycheck-checker 'python-pylint
     flycheck-pylintrc "~/.config/pylintrc"
     flycheck-python-mypy-config "~/.config/mypy/config"
-    flycheck-python-mypy-executable "mypy"))
+    flycheck-python-mypy-executable "mypy"
+    flycheck-python-pyright-executable "pyright"))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
