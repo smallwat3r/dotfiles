@@ -502,11 +502,15 @@
 ;; SQL
 (use-package! sql
   :mode (("\\.\\(m\\|my\\)?sql\\'" . sql-mode))
-  :config
-  ;; MySQL settings does not provide a default port. Use 3306 as the default as
-  ;; this is the most widely used.
-  (setq sql-mysql-login-params
-        (append sql-mysql-login-params '(port :default 3306))))
+  :custom
+  ;; I this for local development only. Disable SSL mode to ease connectivity
+  ;; using localhost.
+  (sql-mysql-options '("--ssl-mode=DISABLED"))
+  (sql-mysql-login-params '((user :default "root")
+                            password
+                            database
+                            (server :default "127.0.0.1")
+                            (port :default 3306))))
 
 ;; Activate specific modes from the current file name or extension.
 (setq auto-mode-alist
