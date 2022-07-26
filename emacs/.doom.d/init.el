@@ -67,7 +67,7 @@
        json
        lua
        markdown
-       (org +journal)
+       (org +journal +pandoc)
        (python +lsp +pyright)
        rest
        (sh +lsp)

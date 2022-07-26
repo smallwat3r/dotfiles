@@ -30,7 +30,6 @@
 (package! dired-subtree :pin "7c0ef09d57a80068a11edc74c3568e5ead5cc15a")
 (package! keycast :pin "296fba536287e7a0d88109e75a0bc0181647dc5e")
 (package! lorem-ipsum :pin "da75c155da327c7a7aedb80f5cfe409984787049")
-(package! org-appear :pin "60ba267c5da336e75e603f8c7ab3f44e6f4e4dac")
 (package! symbol-overlay :pin "c439b73a5f9713bb3dce98986b589bb901e22130")
 (package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
 (package! golden-ratio :pin "007911d8a431b72670f5fe5f0e5b4380c2777a31")

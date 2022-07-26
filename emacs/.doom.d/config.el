@@ -591,16 +591,6 @@
 (after! deft
   (setq deft-directory my-notes-directory))
 
-;; Make invisible parts of Org elements appear visible
-;; doc: https://github.com/awth13/org-appear
-(use-package! org-appear
-  :hook (org-mode . org-appear-mode)
-  :custom
-  (org-appear-autoemphasis t)
-  (org-appear-autolinks t)
-  (org-appear-autosubmarkers t)
-  (org-appear-autoentities t))
-
 ;; Journal
 ;; doc: https://github.com/bastibe/org-journal
 (after! org-journal
