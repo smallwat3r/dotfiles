@@ -586,6 +586,11 @@
   (setq org-directory my-notes-directory
         org-hide-emphasis-markers t))
 
+;; Org bullets
+;; doc: https://github.com/sabof/org-bullets
+(use-package! org-bullets
+  :hook (org-mode . org-bullets-mode))
+
 ;; Deft
 ;; doc: https://github.com/jrblevin/deft
 (after! deft
