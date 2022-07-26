@@ -18,6 +18,14 @@
  `(fringe ((t (:background unspecified))))
  `(magit-section-highlight ((t (:background unspecified))))
  `(magit-diff-context-highlight ((t (:background unspecified))))
+ `(term-color-white ((t (:foreground "grey41"))))
+ `(diredfl-dir-name ((t (:background unspecified :underline t))))
+ `(markdown-header-face-1 ((t (:foreground "#0000FF"))))
+ `(markdown-header-face-2 ((t (:foreground "#1F1FFF"))))
+ `(markdown-header-face-3 ((t (:foreground "#4949FF"))))
+ `(markdown-header-face-4 ((t (:foreground "#7879FF"))))
+ `(markdown-header-face-5 ((t (:foreground "#A3A3FF"))))
+ `(markdown-header-face-6 ((t (:foreground "#BFBFFF"))))
  `(markdown-inline-code-face ((t (:box (:line-width 2 :style released-button)
                                   :background "lightgrey"
                                   :foreground "DarkMagenta"))))
@@ -27,8 +35,14 @@
  `(org-block ((t (:background "lightgrey" :foreground "black" :extend t))))
  `(org-block-begin-line ((t (:background unspecified :foreground "red3"))))
  `(org-block-end-line ((t (:background unspecified :foreground "red3"))))
- `(term-color-white ((t (:foreground "grey41"))))
- `(diredfl-dir-name ((t (:background unspecified :underline t))))
+ `(org-level-1 ((t (:foreground "#0000FF"))))
+ `(org-level-2 ((t (:foreground "#1F1FFF"))))
+ `(org-level-3 ((t (:foreground "#4949FF"))))
+ `(org-level-4 ((t (:foreground "#7879FF"))))
+ `(org-level-5 ((t (:foreground "#A3A3FF"))))
+ `(org-level-6 ((t (:foreground "#BFBFFF"))))
+ `(org-level-7 ((t (:foreground "DarkViolet"))))
+ `(org-level-8 ((t (:foreground "SkyBlue2"))))
  ;; I like to keep my editor clean and simple. De-activate syntax highlighting
  ;; on some major programming related faces such as variables or functions, as
  ;; I don't think having lots of colors helps with focus and readability.
