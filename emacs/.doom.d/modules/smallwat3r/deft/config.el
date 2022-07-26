@@ -5,11 +5,8 @@
 ;; my own as the configurations are very light.
 ;; doc: https://github.com/jrblevin/deft/
 (use-package! deft
-  :commands (deft deft-new-file-named)
-  :init
-  (map! (:leader (:prefix "n"
-                  :desc "Open deft"     "d" #'deft
-                  :desc "Deft new file" "D" #'deft-new-file-named)))
+  :commands deft
+  :init (map! (:leader (:prefix "n" :desc "Open deft" "d" #'deft)))
   :custom
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
@@ -19,4 +16,13 @@
     '((noslash . "-")
       (nospace . "-")
       (case-fn . downcase)))
-  (deft-use-filename-as-title t))
+  (deft-use-filename-as-title t)
+  :config
+  (map! :localleader
+        "RET" #'deft-new-file-named
+        "c"   #'deft-filter-clear
+        "d"   #'deft-delete-file
+        "f"   #'deft-find-file
+        "g"   #'deft-refresh
+        "n"   #'deft-new-file
+        "r"   #'deft-rename-file))
