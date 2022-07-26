@@ -449,6 +449,7 @@
     '("black"
       "--quiet"
       "--line-length" "100"
+      "--target-version" "py310"
       "-")  ; apply in file changes
     :modes '(python-mode))
 
