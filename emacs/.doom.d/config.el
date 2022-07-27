@@ -88,8 +88,7 @@
 
 (setq display-line-numbers-type nil ; no line numbers
       scroll-margin 7               ; top and bottom margins to trigger scroll
-      confirm-kill-emacs nil        ; quit emacs without confirmation
-      load-prefer-newer t)          ; always load newer bytes compiled files
+      confirm-kill-emacs nil)       ; quit emacs without confirmation
 
 ;; Evil-mode
 (after! evil
