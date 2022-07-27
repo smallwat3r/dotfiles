@@ -848,4 +848,7 @@
    :desc "Run Makefile target" "m" #'+make/run)
 
   (:prefix ("P" . "password")
-   :desc "Open password-store buffer" "p" #'pass)))
+   :desc "Open password-store buffer" "p" #'pass)
+
+  (:prefix "s"
+   :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point)))
