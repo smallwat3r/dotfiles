@@ -61,7 +61,7 @@
              "$HOME"))))
 
 ;;;###autoload
-(defun my/vertico-search-project-symbol-at-point ()
+(defun my/vertico-search-project-symbol-at-point (&optional arg)
   "Performs a live project search from the project root for the thing at point."
   (interactive)
-  (+vertico/project-search nil (thing-at-point 'symbol)))
+  (+vertico/project-search arg (thing-at-point 'symbol)))
