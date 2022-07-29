@@ -379,8 +379,8 @@
      " "))
   (setq company-format-margin-function 'my/company-spaced-dark-icons-margin)
 
-  ;; This makes completion feeling snappy.
-  (setq company-idle-delay 0.1
+  ;; Make completion feel snappy.
+  (setq company-idle-delay 0
         company-minimum-prefix-length 1
         company-tooltip-limit 6)
 
