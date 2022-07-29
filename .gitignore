@@ -9,6 +9,7 @@
 
 Brewfile.lock.json
 
+emacs/.doom.d/custom.el
 emacs/.doom.d/.custom.el
 
 vim/.config/nvim/*
