@@ -10,8 +10,11 @@
 
 (custom-theme-set-faces
  'smallwat3r
- `(default ((t (:background "honeydew" :foreground "black"))))
- `(region ((t (:background "wheat2"))))
+ `(default ((t (:background "cornsilk" :foreground "black"))))
+ `(company-tooltip ((t (:background "moccasin"))))
+ `(font-lock-comment-face ((t (:foreground "Firebrick" :slant italic))))
+ `(font-lock-doc-face ((t (:foreground "Firebrick" :slant italic))))
+ `(region ((t (:background "wheat2" :extend nil))))
  `(highlight ((t (:background "DarkSlateGray1"))))
  `(lazy-highlight ((t (:background "gold2" :foreground "black"))))
  `(whitespace-tab ((t (:background "PaleTurquoise1"))))
@@ -55,8 +58,6 @@
 ;;;###autoload
 (when load-file-name
   (add-to-list 'custom-theme-load-path
-               (file-name-as-directory (file-name-directory load-file-name)))
-  (when (not window-system)
-    (custom-set-faces '(default ((t (:background nil)))))))
+               (file-name-as-directory (file-name-directory load-file-name))))
 
 (provide-theme 'smallwat3r)

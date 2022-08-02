@@ -73,8 +73,8 @@
 (setq doom-theme 'smallwat3r)
 
 ;; Fonts
-(let* ((font "Monaco")
-       (font-size 13))
+(let* ((font "Triplicate A Code")
+       (font-size 15))
   (setq doom-font (font-spec :family font :size font-size)
         doom-serif-font (font-spec :family font :size font-size)
         doom-variable-pitch-font (font-spec :family font :size font-size)))
@@ -82,7 +82,7 @@
 (setq doom-font-increment 1
       doom-big-font-increment 2)
 
-(setq-default line-spacing 3
+(setq-default line-spacing 2
               tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
