@@ -3,6 +3,7 @@
 (doom! :smallwat3r
        containerization
        deft
+       everywhere
        google
        hl-todo
        modeline
@@ -77,7 +78,6 @@
        notmuch
 
        :app
-       everywhere
        rss
 
        :config

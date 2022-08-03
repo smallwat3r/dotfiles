@@ -28,16 +28,6 @@
         ns-use-proxy-icon nil
         ns-use-fullscreen-animation nil))
 
-;; Emacs everywhere.
-;; Ability to pop-up an Emacs buffer anywhere to type some text and send it back
-;; to the GUI using C-c.
-;; doc: https://github.com/tecosaur/emacs-everywhere
-(after! emacs-everywhere
-  (setq emacs-everywhere-frame-parameters
-        '((name . "emacs-everywhere")
-          (width . 110)
-          (height . 30))))
-
 
 ;;
 ;;; General
