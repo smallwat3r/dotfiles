@@ -10,9 +10,8 @@
 
 (custom-theme-set-faces
  'smallwat3r
- `(default ((t (:background "cornsilk" :foreground "black"))))
+ `(default ((t (:background "antique white" :foreground "black"))))
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
- `(company-tooltip ((t (:background "moccasin"))))
  `(font-lock-comment-face ((t (:foreground "Firebrick" :slant italic))))
  `(font-lock-doc-face ((t (:foreground "Firebrick" :slant italic))))
  `(region ((t (:background "wheat2" :extend nil))))
