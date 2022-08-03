@@ -52,9 +52,6 @@
  `(markdown-inline-code-face ((t :inherit org-block)))
  `(markdown-pre-face ((t (:inherit org-code))))
  `(markdown-language-keyword-face ((t (:inherit org-block-begin-line))))
- ;; I like to keep my editor clean and simple. De-activate syntax highlighting
- ;; on some major programming related faces such as variables or functions, as
- ;; I don't think having lots of colors helps with focus and readability.
  `(font-lock-function-name-face ((t (:foreground unspecified :weight normal))))
  `(font-lock-variable-name-face ((t (:foreground unspecified :weight normal))))
  `(font-lock-constant-face ((t (:foreground unspecified :weight normal))))

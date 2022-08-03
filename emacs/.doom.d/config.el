@@ -62,6 +62,18 @@
 
 (setq doom-theme 'smallwat3r)
 
+;; I like to keep my editor clean and simple. De-activate syntax highlighting
+;; on some major programming related faces such as variables or functions, as
+;; I don't think having lots of colors helps with focus and readability.
+;; These face settings will apply for all the themes.
+(custom-set-faces!
+  '((font-lock-function-name-face
+     font-lock-variable-name-face
+     font-lock-constant-face
+     font-lock-builtin-face
+     font-lock-type-face)
+    :foreground unspecified :weight normal))
+
 ;; Fonts
 (setq doom-font (font-spec :family "Triplicate A Code" :size 15)
       doom-variable-pitch-font (font-spec :family "Triplicate A"))
