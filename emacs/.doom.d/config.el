@@ -76,9 +76,9 @@
               tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq display-line-numbers-type nil ; no line numbers
-      scroll-margin 7               ; top and bottom margins to trigger scroll
-      confirm-kill-emacs nil)       ; quit emacs without confirmation
+(setq display-line-numbers-type nil
+      scroll-margin 7
+      confirm-kill-emacs nil)
 
 ;; Evil-mode
 (after! evil
