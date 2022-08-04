@@ -10,10 +10,16 @@
 
 (custom-theme-set-faces
  'smallwat3r
- `(default ((t (:background "antique white" :foreground "black"))))
+ `(default ((t (:background "ivory2" :foreground "black"))))
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
  `(font-lock-comment-face ((t (:foreground "Firebrick" :slant italic))))
  `(font-lock-doc-face ((t (:foreground "Firebrick" :slant italic))))
+ `(font-lock-keyword-face ((t (:foreground "Purple" :weight bold))))
+ `(font-lock-function-name-face ((t (:foreground unspecified :weight normal))))
+ `(font-lock-variable-name-face ((t (:foreground unspecified :weight normal))))
+ `(font-lock-constant-face ((t (:foreground unspecified :weight normal))))
+ `(font-lock-builtin-face ((t (:foreground unspecified :weight normal))))
+ `(font-lock-type-face ((t (:foreground unspecified :weight normal))))
  `(font-lock-regexp-grouping-backslash ((t :foreground "chartreuse4" :weight bold)))
  `(region ((t (:background "wheat2" :extend nil))))
  `(highlight ((t (:background "DarkSlateGray1"))))
@@ -51,12 +57,7 @@
  `(markdown-header-face-6 ((t (:inherit outline-6))))
  `(markdown-inline-code-face ((t :inherit org-block)))
  `(markdown-pre-face ((t (:inherit org-code))))
- `(markdown-language-keyword-face ((t (:inherit org-block-begin-line))))
- `(font-lock-function-name-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-variable-name-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-constant-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-builtin-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-type-face ((t (:foreground unspecified :weight normal)))))
+ `(markdown-language-keyword-face ((t (:inherit org-block-begin-line)))))
 
 ;;;###autoload
 (when load-file-name

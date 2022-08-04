@@ -23,7 +23,7 @@
 ;; by macOS (and GNUstep). So the below settings would only be applied on these
 ;; systems.
 (when (eq window-system 'ns)
-  (setq ns-use-thin-smoothing t
+  (setq ns-use-thin-smoothing nil
         ns-use-native-fullscreen nil
         ns-use-proxy-icon nil
         ns-use-fullscreen-animation nil))
@@ -62,17 +62,21 @@
 
 (setq doom-theme 'smallwat3r)
 
-;; I like to keep my editor clean and simple. De-activate syntax highlighting
-;; on some major programming related faces such as variables or functions, as
-;; I don't think having lots of colors helps with focus and readability.
-;; These face settings will apply for all the themes.
+;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
+;; on some major programming related faces such as variables or functions, as I don't
+;; think having lots of colors helps with focus and readability. These face settings
+;; will apply for all the themes.
 (custom-set-faces!
   '((font-lock-function-name-face
      font-lock-variable-name-face
      font-lock-constant-face
      font-lock-builtin-face
      font-lock-type-face)
-    :foreground unspecified :weight normal))
+    :foreground unspecified :weight normal)
+  '(mode-line :background "grey75" :foreground "black" :box (:line-width -1 :style released-button))
+  '(mode-line-inactive :background "grey90" :foreground "grey20" :box (:line-width -1 :color "grey75" :style nil))
+  '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
+  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold))
 
 ;; Fonts
 (setq doom-font (font-spec :family "Triplicate A Code" :size 15)
@@ -585,7 +589,19 @@
 ;; doc: https://orgmode.org/manual/
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers t))
+        org-hide-emphasis-markers t)
+
+  ;; Allow using `fixed-pitch' font for code related text.
+  (custom-set-faces!
+    '(org-code :inherit fixed-pitch)
+    '(org-block :inherit fixed-pitch)
+    '(org-indent :inherit (org-hide fixed-pitch))
+    '(org-table :inherit fixed-pitch :foreground "gray41")
+    '(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+    '(org-property-value :inherit fixed-pitch)
+    '(org-tag :inherit (shadow fixed-pitch) :weight bold :height 0.8)
+    '(org-verbatim :inherit (shadow fixed-pitch))
+    '(org-document-info-keyword :inherit (shadow fixed-pitch))))
 
 ;; Org bullets
 ;; doc: https://github.com/sabof/org-bullets
