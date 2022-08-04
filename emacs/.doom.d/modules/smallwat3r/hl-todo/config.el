@@ -6,14 +6,16 @@
   :hook (prog-mode . hl-todo-mode)
   :config
   (defface my-todos-face
-    '((t :background unspecified :foreground "#f54260" :weight bold))
+    '((t :background "grey96"
+         :foreground "dark red"
+         :weight bold
+         :box (:line-width (1 . -1) :color "grey80")))
     "The face used to display todos from hl-todo.")
+
   (setq hl-todo-keyword-faces
         `(("TODO" . my-todos-face)
           ("DEPRECATED" . my-todos-face)
-          ("QUESTION" . my-todos-face)
           ("FIXME" . my-todos-face)
           ("HACK" . my-todos-face)
           ("BUG" . my-todos-face)
-          ("NOTE" . my-todos-face)
-          ("SECURITY" . my-todos-face))))
+          ("NOTE" . my-todos-face))))
