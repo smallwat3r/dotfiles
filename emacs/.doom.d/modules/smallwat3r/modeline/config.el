@@ -60,6 +60,7 @@
 ;; Set default modeline format.
 (let ((standard-mode-line-format
        (list "%e"
+             'mode-line-front-space
              'mode-line-client
              'mode-line-modified
              'mode-line-remote
@@ -68,5 +69,6 @@
              '(:eval (format "  b:%s" (my/number-of-buffers)))
              " %p %l,%c  "
              'mode-line-misc-info
-             'mode-line-modes)))
+             'mode-line-modes
+             'mode-line-end-spaces)))
   (setq-default mode-line-format standard-mode-line-format))
