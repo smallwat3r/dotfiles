@@ -3,30 +3,26 @@
 ;;
 ;;; Frame
 
-(setq initial-frame-alist
-      (append initial-frame-alist
-              '((fullscreen . maximized))))
+(push '(width . 105) default-frame-alist)
+(push '(height . 40) default-frame-alist)
+(push '(left-fringe . 2) default-frame-alist)
+(push '(right-fringe . 2) default-frame-alist)
+(push '(drag-internal-border . t) default-frame-alist)
+(push '(internal-border-width . 0) default-frame-alist)
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(inhibit-double-buffering . t) default-frame-alist)
 
-(setq default-frame-alist
-      (append default-frame-alist
-              '((width . 105)
-                (height . 40)
-                (left-fringe . 0)
-                (right-fringe . 0)
-                (drag-internal-border . t)
-                (internal-border-width . 3)
-                (inhibit-double-buffering . t))))
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 " %b"))
+        " @emacs:" emacs-version))
 
-(setq frame-title-format '("Emacs:" emacs-version))
-
-;; Check if Emacs is displaying the frame in a Nextstep inferface. This is used
-;; by macOS (and GNUstep). So the below settings would only be applied on these
-;; systems.
-(when (eq window-system 'ns)
-  (setq ns-use-thin-smoothing nil
-        ns-use-native-fullscreen nil
-        ns-use-proxy-icon nil
-        ns-use-fullscreen-animation nil))
+;; Nextstep inferface settings. This is used by macOS (and GNUstep).
+(setq ns-use-thin-smoothing nil
+      ns-use-native-fullscreen nil
+      ns-use-fullscreen-animation nil
+      ns-antialias-text t)
 
 
 ;;

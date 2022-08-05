@@ -15,7 +15,8 @@
  ;; UI packages
  elfeed-goodies ; keep Elfeed simple
  lsp-ui
- solaire-mode)
+ solaire-mode
+ ns-auto-titlebar)
 
 ;;
 ;;; Additional packages.

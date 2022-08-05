@@ -29,13 +29,6 @@
   (kill-this-buffer))
 
 ;;;###autoload
-(defun my/count-buffers ()
-  "Display the current number of buffers."
-  (interactive)
-  (let ((buf-count (length (buffer-list))))
-    (message "%d buffers in total" buf-count)))
-
-;;;###autoload
 (defun my/vterm/toggle-current-buffer ()
   "Toggles a vterm buffer from the current directory."
   (interactive)

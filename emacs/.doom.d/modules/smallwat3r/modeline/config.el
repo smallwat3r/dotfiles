@@ -49,6 +49,14 @@
      (evil-snipe-local-mode nil evil-snipe)
      (golden-ratio-mode nil golden-ratio))))
 
+(defun my/number-of-buffers ()
+  "Count the number of buffers."
+  (cl-count-if
+   (lambda (b)
+     (or (buffer-file-name b)
+         (not (string-match "^ " (buffer-name b)))))
+   (buffer-list)))
+
 ;; Set default modeline format.
 (let ((standard-mode-line-format
        (list "%e"
@@ -57,7 +65,8 @@
              'mode-line-remote
              "%12b"
              '(vc-mode vc-mode)
-             "   %p %l,%c   "
+             '(:eval (format "  b:%s" (my/number-of-buffers)))
+             " %p %l,%c  "
              'mode-line-misc-info
              'mode-line-modes)))
   (setq-default mode-line-format standard-mode-line-format))
