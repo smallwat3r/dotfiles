@@ -13,7 +13,7 @@
  pipenv         ; prefer poetry
  nose           ; prefer pytest
  ;; UI packages
- elfeed-goodies ; keep Elfeed simple
+ elfeed-goodies
  lsp-ui
  solaire-mode
  ns-auto-titlebar)
