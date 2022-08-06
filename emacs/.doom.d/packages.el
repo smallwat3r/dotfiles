@@ -35,6 +35,7 @@
 (package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
 (package! golden-ratio :pin "007911d8a431b72670f5fe5f0e5b4380c2777a31")
 (package! org-bullets :pin "b70ac2ec805bcb626a6e39ea696354577c681b36")
+(package! shrink-path :pin "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
 
 ;; Github
 (package! bitwarden :pin "b536543d785d38d4d33ff7ea44ab435f0e12a20f"

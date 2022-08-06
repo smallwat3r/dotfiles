@@ -12,9 +12,14 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(inhibit-double-buffering . t) default-frame-alist)
 
+;; Shrink file paths
+;; doc: https://gitlab.com/bennya/shrink-path.el
+(use-package! shrink-path
+  :commands (shrink-path-file))
+
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
+                   (shrink-path-file (buffer-file-name))
                  " %b"))
         " @emacs:" emacs-version))
 
