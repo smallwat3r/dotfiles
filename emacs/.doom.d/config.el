@@ -45,7 +45,7 @@
   :hook ((text-mode prog-mode) . abbrev-mode)
   :custom
   (save-abbrevs nil)
-  (abbrev-file-name (expand-file-name "abbrev_defs" doom-private-dir))
+  (abbrev-file-name (expand-file-name "abbrev_defs.el" doom-private-dir))
   :config
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))

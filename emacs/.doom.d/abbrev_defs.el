@@ -19,10 +19,7 @@
     ("es" "#+end_src" nil 0)))
 
 (define-abbrev-table 'global-abbrev-table
-  '(("uno" "✗" nil 0)
-    ("uok" "✓" nil 0)
-    ("ura" "→" nil 0)
-    ("isnt" "isn't" nil 0)
+  '(("isnt" "isn't" nil 0)
     ("accross" "across" nil 0)
     ("bellow" "below" nil 0)
     ("altough" "although" nil 0)
