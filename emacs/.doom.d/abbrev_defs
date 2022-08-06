@@ -11,6 +11,13 @@
 (define-abbrev-table 'sh-mode-abbrev-table
   '(("shb" "#!/usr/bin/env bash\n" nil 0)))
 
+(define-abbrev-table 'org-mode-abbrev-table
+  '(("bs" "#+begin_src " nil 0)
+    ("bsb" "#+begin_src bash " nil 0)
+    ("bsp" "#+begin_src python " nil 0)
+    ("bse" "#+begin_src emacs-lisp" nil 0)
+    ("es" "#+end_src" nil 0)))
+
 (define-abbrev-table 'global-abbrev-table
   '(("uno" "✗" nil 0)
     ("uok" "✓" nil 0)
@@ -21,7 +28,6 @@
     ("altough" "although" nil 0)
     ("widht" "width" nil 0)
     ("thougth" "thought" nil 0)
-    ("tought" "thought" nil 0)
     ("lenght" "length" nil 0)
     ("strenght" "strength" nil 0)
     ("weigth" "weight" nil 0)
