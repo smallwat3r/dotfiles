@@ -9,7 +9,7 @@
     '((t :background "grey96"
          :foreground "dark red"
          :weight bold
-         :box (:line-width (1 . -1) :color "grey80")))
+         :inherit help-key-binding))
     "The face used to display todos from hl-todo.")
 
   (setq hl-todo-keyword-faces

@@ -200,7 +200,10 @@
          (prog-mode . goto-address-prog-mode))
   :custom
   (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
-  (goto-address-mail-face '((t :background unspecified :inherit default :underline t))))
+  (goto-address-mail-face 'my-goto-address-mail-face)
+  :config
+  (defface my-goto-address-mail-face '((t :italic nil :underline t))
+    "Face for email address."))
 
 ;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
@@ -409,6 +412,9 @@
   (setq lsp-enable-file-watchers nil)
   ;; Ignore asking to restart if server failed to boot.
   (setq lsp-restart 'ignore))
+
+(after! lsp-pyright
+  (set-lsp-priority! 'pyright 1))
 
 ;; Magit
 ;; doc: https://github.com/magit/magit
