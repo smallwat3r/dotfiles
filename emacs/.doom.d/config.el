@@ -558,12 +558,6 @@
          ("/nginx/.*\\.conf\\'" . nginx-mode)
          ("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
 
-;; Activate specific modes from the current file name or extension.
-(setq auto-mode-alist
-      (append '(("\\.restclient" . restclient-mode)
-                ("abbrev_defs" . emacs-lisp-mode))
-              auto-mode-alist))
-
 
 ;;
 ;;; Terminals
