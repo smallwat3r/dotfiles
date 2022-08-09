@@ -497,6 +497,9 @@
 ;; Json
 (setq-hook! 'json-mode-hook tab-width 2)
 
+;; Restclient
+(setq-hook! 'restclient-mode-hook tab-width 4)
+
 ;; Golang
 (setq-hook! 'go-mode-hook indent-tabs-mode t)
 
@@ -858,8 +861,10 @@
    :desc "Toggle vterm at root"   "t" #'+vterm/toggle
    :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
    :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer
-   :desc "Scr. buffer cur. mode"  "x" #'scratch
-   :desc "Scr. buffer restclient" "h" #'my/scratch-rest-mode)
+
+   (:prefix ("s" . "Scratch buffer")
+    :desc "Current mode" "o" #'scratch
+    :desc "Restclient"   "r" #'my/scratch-rest-mode))
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines)
