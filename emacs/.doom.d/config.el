@@ -300,9 +300,6 @@
 ;; Projectile
 ;; doc: https://github.com/bbatsov/projectile
 ;;      https://docs.projectile.mx/projectile/index.html
-;;
-;; Run `projectile-discover-projects-in-search-path' to autoload all the projects from the
-;; `projectile-project-search-path' list.
 (after! projectile
   (setq projectile-indexing-method 'alien
         projectile-sort-order 'recentf
