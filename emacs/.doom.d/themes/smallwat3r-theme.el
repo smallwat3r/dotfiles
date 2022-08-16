@@ -57,7 +57,10 @@
  `(markdown-header-face-6 ((t (:inherit outline-6))))
  `(markdown-inline-code-face ((t :inherit org-block)))
  `(markdown-pre-face ((t (:inherit org-code))))
- `(markdown-language-keyword-face ((t (:inherit org-block-begin-line)))))
+ `(markdown-language-keyword-face ((t (:inherit org-block-begin-line))))
+ `(git-gutter-fr:added ((t (:background "green" :foreground "green"))))
+ `(git-gutter-fr:deleted ((t (:background "red" :foreground "red"))))
+ `(git-gutter-fr:modified ((t (:background "magenta" :foreground "magenta")))))
 
 ;;;###autoload
 (when load-file-name

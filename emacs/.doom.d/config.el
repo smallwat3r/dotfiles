@@ -6,7 +6,7 @@
 (push '(width . 105) default-frame-alist)
 (push '(height . 40) default-frame-alist)
 (push '(left-fringe . 2) default-frame-alist)
-(push '(right-fringe . 2) default-frame-alist)
+(push '(right-fringe . 0) default-frame-alist)
 (push '(drag-internal-border . t) default-frame-alist)
 (push '(internal-border-width . 0) default-frame-alist)
 (push '(menu-bar-lines . 0) default-frame-alist)
@@ -166,13 +166,6 @@
    which-key-replacement-alist
    '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
    '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))))
-
-;; Git fringe indicator
-;; doc: https://github.com/emacsorphanage/git-gutter-fringe
-(after! git-gutter-fringe
-  ;; `fringe-mode' is not a git-gutter-fringe specific parameter. But it
-  ;; specifies the pixel width of the fringe used for git-gutter-fringe.
-  (fringe-mode 2))
 
 ;; Disable globally hightlighting the current line the cursor is on.
 (remove-hook! 'doom-first-buffer-hook #'global-hl-line-mode)
@@ -533,7 +526,9 @@
   :config
   (defun my/remap-yaml-faces ()
     (face-remap-add-relative
-     'font-lock-variable-name-face :inherit font-lock-keyword-face)))
+     'font-lock-variable-name-face :inherit font-lock-keyword-face)
+    ;; The above seems to leave `buffer-face-mode' on, disable it.
+    (buffer-face-mode -1)))
 
 ;; Logs
 ;; doc: https://github.com/doublep/logview
