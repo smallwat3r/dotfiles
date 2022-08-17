@@ -414,6 +414,7 @@
     flycheck-shellcheck-excluded-warnings '("SC1091")
     sh-basic-offset 2
     indent-tabs-mode nil)
+
   ;; Formatter
   (set-formatter! 'shfmt
     '("shfmt"
@@ -438,15 +439,23 @@
 
 ;; Python
 (after! python
+  (defvar my-default-python-line-length 100
+    "Default python line length")
+
   (setq python-shell-interpreter "python3")
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
   (setq python-shell-completion-native-enable nil)
+
+  ;; Isort
+  (after! py-isort
+    (setq py-isort-options '("--trailing-comma" "--use-parentheses"))
+    (add-to-list 'py-isort-options (format "-l %s" my-default-python-line-length)))
 
   ;; Formatter
   (set-formatter! 'black
     '("black"
       "--quiet"
-      "--line-length" "100"
+      "--line-length" (format "%s" my-default-python-line-length)
       "--target-version" "py310"
       "-")  ; apply in file changes
     :modes '(python-mode))
@@ -473,6 +482,7 @@
 ;; Javascript
 (after! js2-mode
   (setq-hook! 'js2-mode-hook js2-basic-offset 2)
+
   ;; Formatter
   (set-formatter! 'prettier
     '("prettier"
