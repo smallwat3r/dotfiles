@@ -212,7 +212,10 @@
   :init
   (map! (:leader (:prefix "c"
                   :desc "Add overlay"     "h" #'symbol-overlay-put
-                  :desc "Remove overlays" "H" #'symbol-overlay-remove-all))))
+                  :desc "Remove overlays" "H" #'symbol-overlay-remove-all)))
+  :config
+  ;; Deactivate binding for `symbol-overlay-map-help', as it conflicts with evil.
+  (define-key symbol-overlay-map (kbd "h") nil))
 
 ;; Conveniently resize windows
 ;; doc: https://github.com/roman/golden-ratio.el
