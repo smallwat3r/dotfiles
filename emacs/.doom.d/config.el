@@ -215,7 +215,9 @@
                   :desc "Remove overlays" "H" #'symbol-overlay-remove-all)))
   :config
   ;; Deactivate binding for `symbol-overlay-map-help', as it conflicts with evil.
-  (define-key symbol-overlay-map (kbd "h") nil))
+  ;; Remap it to a capital 'H' instead.
+  (define-key symbol-overlay-map (kbd "h") nil)
+  (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
 
 ;; Conveniently resize windows
 ;; doc: https://github.com/roman/golden-ratio.el
