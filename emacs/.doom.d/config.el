@@ -409,9 +409,6 @@
   ;; Ignore asking to restart if server failed to boot.
   (setq lsp-restart 'ignore))
 
-(after! lsp-pyright
-  (set-lsp-priority! 'pyright 1))
-
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
   (setq-hook! 'sh-mode-hook
@@ -467,6 +464,7 @@
 
   ;; Lsp with Pyright
   (after! lsp-pyright
+    (set-lsp-priority! 'pyright 1)
     (setq lsp-pyright-python-executable-cmd python-shell-interpreter))
 
   ;; Debugger
