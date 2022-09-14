@@ -6,8 +6,7 @@
   :hook (prog-mode . hl-todo-mode)
   :config
   (defface my-todos-face
-    '((t :background "grey96"
-         :foreground "dark red"
+    '((t :foreground "dark red"
          :weight bold
          :inherit help-key-binding))
     "The face used to display todos from hl-todo.")
