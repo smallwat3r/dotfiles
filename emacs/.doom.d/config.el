@@ -52,7 +52,7 @@
 
 ;; Custom File, used by Emacs to cache some data related to its config.
 (use-package! cus-edit
-  :custom (custom-file expand-file-name ".custom.el" doom-private-dir)
+  :custom (custom-file (expand-file-name ".custom.el" doom-private-dir))
   :config
   (if (file-exists-p custom-file)
       (load custom-file t)))
