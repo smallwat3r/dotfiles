@@ -74,8 +74,14 @@
      font-lock-builtin-face
      font-lock-type-face)
     :foreground unspecified :weight normal)
-  '(mode-line :background "grey75" :foreground "black" :box (:line-width -1 :style released-button))
-  '(mode-line-inactive :background "grey90" :foreground "grey20" :box (:line-width -1 :color "grey75" :style nil))
+  '(mode-line
+    :background "grey75"
+    :foreground "black"
+    :box (:line-width -1 :style released-button))
+  '(mode-line-inactive
+    :background "grey90"
+    :foreground "grey20"
+    :box (:line-width -1 :color "grey75" :style nil))
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold))
 
