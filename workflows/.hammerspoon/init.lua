@@ -70,8 +70,8 @@ hs.window.animationDuration = 0
 
 grid.MARGINX = 2
 grid.MARGINY = 2
-grid.GRIDHEIGHT = 4
-grid.GRIDWIDTH = 4
+grid.GRIDHEIGHT = 5
+grid.GRIDWIDTH = 5
 
 -- Center window
 hotkey.bind(mod_cmd, '[', function() hs.window.focusedWindow():centerOnScreen() end)
