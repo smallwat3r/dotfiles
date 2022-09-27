@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Quit and restart Docker GUI
+
+osascript -e 'quit app "Docker"' && open '/Applications/Docker.app'
