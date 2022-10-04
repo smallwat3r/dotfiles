@@ -1,11 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-(use-package-hook! lsp-pyright
-  :pre-init
-  ;; Enforce lsp-pyright to use one session per project. This needs to be set-up
-  ;; before initialising lsp-pyright to work.
-  (setq lsp-pyright-multi-root nil))
-
 (doom! :smallwat3r
        containerization
        deft
@@ -75,7 +69,7 @@
        lua
        markdown
        (org +journal +pandoc)
-       (python +lsp +pyright)
+       (python +lsp)
        rest
        (sh +lsp)
        (web +lsp)

@@ -445,6 +445,19 @@
 ;; if we need to use it.
 (remove-hook! (text-mode yaml-mode) #'spell-fu-mode)
 
+;; LSP python
+(use-package! lsp-pyright
+  :after lsp-mode
+  :init
+  ;; Enforce lsp-pyright to use one session per project. This needs to be set-up
+  ;; before initialising lsp-pyright to work.
+  (setq lsp-pyright-multi-root nil)
+  :preface
+  (after! python
+    (setq lsp-pyright-python-executable-cmd python-shell-interpreter))
+  :config
+  (set-lsp-priority! 'pyright 1))
+
 ;; Python
 (after! python
   (defvar my-default-python-line-length 100
@@ -467,11 +480,6 @@
       "--target-version" "py310"
       "-")  ; apply in file changes
     :modes '(python-mode))
-
-  ;; Lsp with Pyright
-  (after! lsp-pyright
-    (set-lsp-priority! 'pyright 1)
-    (setq lsp-pyright-python-executable-cmd python-shell-interpreter))
 
   ;; Debugger
   (after! dap-mode
