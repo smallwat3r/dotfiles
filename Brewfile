@@ -57,6 +57,10 @@ brew "font-fantasque-sans-mono-noloopk"
 tap "johanhaleby/kubetail"
 brew "kubetail"
 
+# Save screen display arrangement
+tap "jakehilborn/jakehilborn"
+brew "displayplacer"
+
 # Casks
 
 cask_args appdir: '/Applications'
