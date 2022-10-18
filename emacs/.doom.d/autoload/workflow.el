@@ -58,7 +58,8 @@
    (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
            (if (buffer-file-name)
                (file-name-directory (buffer-file-name))
-             "$HOME"))))
+             "$HOME")))
+  (message "Alacritty is ready!"))
 
 ;;;###autoload
 (defun my/vertico-search-project-symbol-at-point (&optional arg)

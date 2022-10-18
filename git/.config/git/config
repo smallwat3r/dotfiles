@@ -36,7 +36,7 @@ c = commit -v --message
 ca = commit -v --amend --message
 co = checkout
 cob = checkout -b
-com = checkout master
+com = "!f() { git checkout master || git checkout main; }; f"
 d = diff
 find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
 init-empty = "!f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"

@@ -42,17 +42,17 @@
 
 ;; Abbreviations
 (use-package! abbrev
-  :hook ((text-mode prog-mode) . abbrev-mode)
+  :init (add-hook 'after-init-hook 'abbrev-mode)
   :custom
   (save-abbrevs nil)
-  (abbrev-file-name (expand-file-name "abbrev_defs.el" doom-private-dir))
+  (abbrev-file-name (expand-file-name "abbrev_defs.el" doom-user-dir))
   :config
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
 
 ;; Custom File, used by Emacs to cache some data related to its config.
 (use-package! cus-edit
-  :custom (custom-file (expand-file-name ".custom.el" doom-private-dir))
+  :custom (custom-file (expand-file-name ".custom.el" doom-user-dir))
   :config
   (if (file-exists-p custom-file)
       (load custom-file t)))
@@ -61,7 +61,7 @@
 ;;
 ;;; Editor
 
-(setq doom-theme 'smallwat3r)
+(setq doom-theme 'simplicity)
 
 ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
 ;; on some major programming related faces such as variables or functions, as I don't
@@ -83,10 +83,19 @@
     :foreground "grey20"
     :box (:line-width -1 :color "grey75" :style nil))
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
-  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold))
+  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
+  '(git-gutter:added :foreground unspecified :background "SeaGreen3")
+  '(git-gutter:modified :foreground unspecified :background "goldenrod")
+  '(git-gutter:deleted :foreground unspecified :background "DarkRed"))
+
+(custom-theme-set-faces! 'simplicity
+  '((font-lock-comment-face font-lock-doc-face)
+    :foreground "#b4a7d6"
+    :slant italic)
+  '(font-lock-keyword-face :weight bold))
 
 ;; Fonts
-(setq doom-font (font-spec :family "Triplicate A Code" :size 15)
+(setq doom-font (font-spec :family "Triplicate A Code" :size 16)
       doom-variable-pitch-font (font-spec :family "Triplicate A"))
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -106,10 +115,10 @@
 ;; Evil-mode
 (after! evil
   ;; Change cursor color and shape based on evil mode.
-  (setq evil-emacs-state-cursor '("DarkMagenta" box)
-        evil-normal-state-cursor '("DarkMagenta" box)
-        evil-visual-state-cursor '("DarkCyan" box)
-        evil-insert-state-cursor '("DarkCyan" box)
+  (setq evil-emacs-state-cursor '("DarkTurquoise" box)
+        evil-normal-state-cursor '("DarkTurquoise" box)
+        evil-visual-state-cursor '("LawnGreen" box)
+        evil-insert-state-cursor '("LawnGreen" box)
         evil-replace-state-cursor '("red" bar)
         evil-operator-state-cursor '("red" hollow))
 
