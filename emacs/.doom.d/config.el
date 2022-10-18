@@ -117,8 +117,8 @@
   ;; Change cursor color and shape based on evil mode.
   (setq evil-emacs-state-cursor '("DarkTurquoise" box)
         evil-normal-state-cursor '("DarkTurquoise" box)
-        evil-visual-state-cursor '("LawnGreen" box)
-        evil-insert-state-cursor '("LawnGreen" box)
+        evil-visual-state-cursor '("white" box)
+        evil-insert-state-cursor '("white" box)
         evil-replace-state-cursor '("red" bar)
         evil-operator-state-cursor '("red" hollow))
 
