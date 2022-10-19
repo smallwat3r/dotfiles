@@ -14,6 +14,7 @@
  nose           ; prefer pytest
  ;; UI packages
  elfeed-goodies
+ flycheck-popup-tip
  lsp-ui
  solaire-mode
  ns-auto-titlebar)
