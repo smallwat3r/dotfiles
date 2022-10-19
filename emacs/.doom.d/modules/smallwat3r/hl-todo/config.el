@@ -7,8 +7,8 @@
   :config
   (defface my-todos-face
     '((t :foreground "dark red"
-         :weight bold
-         :inherit help-key-binding))
+       :background unspecified
+       :weight bold))
     "The face used to display todos from hl-todo.")
 
   (setq hl-todo-keyword-faces

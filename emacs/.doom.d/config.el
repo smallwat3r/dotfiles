@@ -90,13 +90,14 @@
 
 (custom-theme-set-faces! 'simplicity
   '((font-lock-comment-face font-lock-doc-face)
-    :foreground "#b4a7d6"
+    :foreground "chartreuse4"
     :slant italic)
-  '(font-lock-keyword-face :weight bold))
+  '(font-lock-string-face :foreground "CadetBlue1")
+  '(font-lock-keyword-face :foreground "yellow2" :weight bold))
 
 ;; Fonts
-(setq doom-font (font-spec :family "Triplicate A Code" :size 16)
-      doom-variable-pitch-font (font-spec :family "Triplicate A"))
+(setq doom-font (font-spec :family "Triplicate B Code" :size 16)
+      doom-variable-pitch-font (font-spec :family "Triplicate B"))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
@@ -117,8 +118,8 @@
   ;; Change cursor color and shape based on evil mode.
   (setq evil-emacs-state-cursor '("DarkTurquoise" box)
         evil-normal-state-cursor '("DarkTurquoise" box)
-        evil-visual-state-cursor '("white" box)
-        evil-insert-state-cursor '("white" box)
+        evil-visual-state-cursor '("SlateGray2" box)
+        evil-insert-state-cursor '("SlateGray2" box)
         evil-replace-state-cursor '("red" bar)
         evil-operator-state-cursor '("red" hollow))
 
