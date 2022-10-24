@@ -19,7 +19,7 @@
                 (lambda (capture-name)
                   (not (member capture-name
                                '("property" "operator" "method.call" "function.call"
-                                 "function.special" "label")))))
+                                 "function.method.call" "function.special" "label")))))
 
   ;; Fix rendering python docstring apostrophes.
   (tree-sitter-hl-add-patterns 'python
