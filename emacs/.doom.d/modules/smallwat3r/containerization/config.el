@@ -27,6 +27,3 @@
 ;; Evil integration to Kubernetes
 (use-package! kubernetes-evil
   :after kubernetes-overview)
-
-(use-package! kubernetes-tramp
-  :after tramp)
