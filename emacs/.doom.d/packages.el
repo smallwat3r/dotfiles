@@ -22,25 +22,37 @@
 ;;
 ;;; Additional packages.
 
-;; Melpa
-(package! applescript-mode :pin "9b84a7cb74d687745df37ba15113933fc6256274")
-(package! logview :pin "6446ccf25f834519d7f5c71e5293b062d599b355")
+;; https://github.com/emacsorphanage/applescript-mode/commits/master
+(package! applescript-mode :pin "5b7a9195ffc25ed58f2c2437dd9c742241734904")
+;; https://github.com/doublep/logview/commits/master
+(package! logview :pin "a185254605d212881648ceaf6d1504d34413ef8c")
+;; https://github.com/ajc/nginx-mode/commits/master
 (package! nginx-mode :pin "6e9d96f58eddd69f62f7fd443d9b9753e16e0e96")
+;; https://github.com/mcandre/vimrc-mode/commits/master
 (package! vimrc-mode :pin "13bc150a870d5d4a95f1111e4740e2b22813c30e")
-(package! yaml-mode :pin "535273d5a1eb76999d20afbcf4d9f056d8ffd2da")
+;; https://github.com/yoshiki/yaml-mode/commits/master
+(package! yaml-mode :pin "3fcb36d6039bef57e2a0f6e24c51f623c0bf5fb7")
+;; https://github.com/Fuco1/dired-hacks/commits/master
 (package! dired-narrow :pin "7c0ef09d57a80068a11edc74c3568e5ead5cc15a")
 (package! dired-subtree :pin "7c0ef09d57a80068a11edc74c3568e5ead5cc15a")
-(package! keycast :pin "296fba536287e7a0d88109e75a0bc0181647dc5e")
+;; https://github.com/tarsius/keycast/commits/master
+(package! keycast :pin "30f2b446c013dda490f44dbf82d0ab34eb016726")
+;; https://github.com/jschaf/emacs-lorem-ipsum/commits/master
 (package! lorem-ipsum :pin "da75c155da327c7a7aedb80f5cfe409984787049")
+;; https://github.com/wolray/symbol-overlay/commits/master
 (package! symbol-overlay :pin "c439b73a5f9713bb3dce98986b589bb901e22130")
+;; https://github.com/redguardtoo/cliphist/commits/master
 (package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
+;; https://github.com/roman/golden-ratio.el/commits/master
 (package! golden-ratio :pin "007911d8a431b72670f5fe5f0e5b4380c2777a31")
+;; https://github.com/sabof/org-bullets/commits/master
 (package! org-bullets :pin "b70ac2ec805bcb626a6e39ea696354577c681b36")
+;; https://github.com/emacsmirror/shrink-path/commits/master
 (package! shrink-path :pin "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
-(package! lsp-pyright :pin "c745228f39fdb35372b29b909f25fa6c98dc7c88")
-
-;; Github
-(package! bitwarden :pin "b536543d785d38d4d33ff7ea44ab435f0e12a20f"
+;; https://github.com/emacs-lsp/lsp-pyright/commits/master
+(package! lsp-pyright :pin "2fa2c897659909ba9804baba72a108578d007677")
+;; https://github.com/seanfarley/emacs-bitwarden/commits/main
+(package! bitwarden :pin "02d6410003a42e7fbeb4aa109aba949eea553706"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
 
 ;; Personal (I'm ok with not pinning those as I manage them)
