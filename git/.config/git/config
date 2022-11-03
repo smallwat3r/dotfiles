@@ -47,7 +47,7 @@ last-commit-msg = log -1 --format=%s
 p = push
 pu = pull
 rhh = reset --hard HEAD
-rhm = reset --hard origin/master
+rhr = "!f() { git reset --hard origin/$(git branch --show-current); }; f"
 s = status
 ss = status --short
 ours = "!f() { git co --ours $@ && git add $@; }; f"
