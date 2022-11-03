@@ -18,6 +18,9 @@ rebase = true
 [push]
 default = simple
 
+[branch]
+sort = -committerdate
+
 [url "https://github.com/"]
 insteadOf = gh:
 
