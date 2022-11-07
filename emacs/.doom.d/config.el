@@ -89,9 +89,7 @@
   '(git-gutter:deleted :foreground unspecified :background "DarkRed"))
 
 (custom-theme-set-faces! 'simplicity
-  '((font-lock-comment-face font-lock-doc-face)
-    :foreground "chartreuse4"
-    :slant italic)
+  '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)
   '(font-lock-string-face :foreground "CadetBlue1")
   '(font-lock-keyword-face :foreground "yellow2" :weight bold))
 
