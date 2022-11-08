@@ -61,7 +61,7 @@
 ;;
 ;;; Editor
 
-(setq doom-theme 'simplicity)
+(setq doom-theme 'zenburn)
 
 ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
 ;; on some major programming related faces such as variables or functions, as I don't
@@ -84,14 +84,17 @@
     :box (:line-width -1 :color "grey75" :style nil))
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
-  '(git-gutter:added :foreground unspecified :background "SeaGreen3")
-  '(git-gutter:modified :foreground unspecified :background "goldenrod")
-  '(git-gutter:deleted :foreground unspecified :background "DarkRed"))
+  '(git-gutter-fr:added :foreground unspecified :background "SeaGreen3")
+  '(git-gutter-fr:modified :foreground unspecified :background "goldenrod")
+  '(git-gutter-fr:deleted :foreground unspecified :background "DarkRed"))
 
 (custom-theme-set-faces! 'simplicity
   '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)
   '(font-lock-string-face :foreground "CadetBlue1")
   '(font-lock-keyword-face :foreground "yellow2" :weight bold))
+
+(custom-theme-set-faces! 'zenburn
+  '((font-lock-comment-face font-lock-doc-face) :foreground "#7f9f7f" :slant italic))
 
 ;; Fonts
 (setq doom-font (font-spec :family "Triplicate B Code" :size 16)

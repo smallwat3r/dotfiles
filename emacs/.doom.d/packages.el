@@ -54,6 +54,8 @@
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
 (package! bitwarden :pin "02d6410003a42e7fbeb4aa109aba949eea553706"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
+;; https://github.com/bbatsov/zenburn-emacs/commits/master
+(package! zenburn-theme :pin "4788de0bcfecf8faec69251decb9924492d008f3")
 
 ;; Personal (I'm ok with not pinning those as I manage them)
 (package! simplicity-theme
