@@ -94,7 +94,9 @@
   '(font-lock-keyword-face :foreground "yellow2" :weight bold))
 
 (custom-theme-set-faces! 'zenburn
-  '((font-lock-comment-face font-lock-doc-face) :foreground "#7f9f7f" :slant italic))
+  '((font-lock-comment-face font-lock-doc-face) :foreground "#7f9f7f" :slant italic)
+  '(vertico-current :background "DarkSlateGray" :foreground "white" :weight bold)
+  '((isearch lazy-highlight) :background "khaki2" :foreground "black" :weight bold))
 
 ;; Fonts
 (setq doom-font (font-spec :family "Triplicate B Code" :size 16)
