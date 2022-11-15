@@ -61,7 +61,7 @@
 ;;
 ;;; Editor
 
-(setq doom-theme 'zenburn)
+(setq doom-theme 'simplicity)
 
 ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
 ;; on some major programming related faces such as variables or functions, as I don't
@@ -92,11 +92,6 @@
   '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)
   '(font-lock-string-face :foreground "CadetBlue1")
   '(font-lock-keyword-face :foreground "yellow2" :weight bold))
-
-(custom-theme-set-faces! 'zenburn
-  '((font-lock-comment-face font-lock-doc-face) :foreground "#7f9f7f" :slant italic)
-  '(vertico-current :background "DarkSlateGray" :foreground "white" :weight bold)
-  '((isearch lazy-highlight) :background "khaki2" :foreground "black" :weight bold))
 
 ;; Fonts
 (setq doom-font (font-spec :family "Triplicate B Code" :size 16)

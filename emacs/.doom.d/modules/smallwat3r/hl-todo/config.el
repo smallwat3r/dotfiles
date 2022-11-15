@@ -6,7 +6,7 @@
   :hook (prog-mode . hl-todo-mode)
   :config
   (defface my-todos-face
-    '((t :foreground "dark red"
+    '((t :foreground "salmon1"
        :background unspecified
        :weight bold))
     "The face used to display todos from hl-todo.")
