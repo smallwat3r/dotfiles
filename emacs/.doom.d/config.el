@@ -541,7 +541,7 @@
 (use-package! sql
   :mode (("\\.\\(m\\|my\\)?sql\\'" . sql-mode))
   :custom
-  ;; I this for local development only. Disable SSL mode to ease connectivity
+  ;; I use this for local development only. Disable SSL mode to ease connectivity
   ;; using localhost.
   (sql-mysql-options '("--ssl-mode=DISABLED"))
   (sql-mysql-login-params '((user :default "root")
