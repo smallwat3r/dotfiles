@@ -12,16 +12,7 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(inhibit-double-buffering . t) default-frame-alist)
 
-;; Shrink file paths
-;; doc: https://gitlab.com/bennya/shrink-path.el
-(use-package! shrink-path
-  :commands (shrink-path-file))
-
-(setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (shrink-path-file (buffer-file-name))
-                 " %b"))
-        " @emacs:" emacs-version))
+(setq frame-title-format (concat "Emacs @" emacs-version))
 
 ;; Nextstep inferface settings. This is used by macOS (and GNUstep).
 (setq ns-use-thin-smoothing nil
@@ -32,6 +23,9 @@
 
 ;;
 ;;; General
+
+(defvar my-user-alias "smallwat3r"
+  "User alias.")
 
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address "mpetiteau.pro@gmail.com"
@@ -106,6 +100,19 @@
 (setq-default line-spacing 2
               tab-width 8
               with-editor-emacsclient-executable "emacsclient")
+
+(setq fancy-splash-image (concat doom-user-dir "/etc/emacs.svg"))
+
+(defun my-dashboard-message ()
+  (insert (+doom-dashboard--center
+           +doom-dashboard--width
+           (concat "MAIN BUFFER - " my-user-alias " - Emacs @" emacs-version))))
+
+;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
+;; it very simple. It is ligther than the default scratch buffer in many cases. But
+;; it can also not be killed, hence remembers the working directory of the last open
+;; buffer, `find-file' will work from the directory I expect.
+(setq +doom-dashboard-functions '(doom-dashboard-widget-banner my-dashboard-message))
 
 (setq display-line-numbers-type nil
       scroll-margin 7
@@ -266,45 +273,6 @@
          :mode emacs-lisp-mode)
         (restclient-mode)
         (sh-mode)))
-
-
-;;
-;;; Dashboard
-
-;; This is the dashboard displayed when starting Emacs.
-;; It displays a menu with useful links to go to. As a personal preference, I
-;; like to keep it short and simple.
-
-(setq +doom-dashboard-functions
-      '(doom-dashboard-widget-shortmenu
-        doom-dashboard-widget-loaded))
-
-(setq +doom-dashboard-menu-sections
-      '(("Open project"
-         :action projectile-switch-project
-         :face default)
-        ("Recently opened files"
-         :action recentf-open-files
-         :face default)
-        ("Reload last session"
-         :when (cond ((require 'persp-mode nil t)
-                      (file-exists-p
-                       (expand-file-name persp-auto-save-fname persp-save-dir)))
-                     ((require 'desktop nil t)
-                      (file-exists-p (desktop-full-file-name))))
-         :action doom/quickload-session
-         :face default)
-        ("Find file in dotfiles"
-         :when (file-directory-p my-dotfiles-dir)
-         :action my/find-file-in-dotfiles
-         :face default)
-        ("Find file in Doom config"
-         :when (file-directory-p doom-private-dir)
-         :action doom/find-file-in-private-config
-         :face default)
-        ("Open documentation"
-         :action doom/help
-         :face default)))
 
 
 ;;

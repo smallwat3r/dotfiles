@@ -47,8 +47,6 @@
 (package! golden-ratio :pin "007911d8a431b72670f5fe5f0e5b4380c2777a31")
 ;; https://github.com/sabof/org-bullets/commits/master
 (package! org-bullets :pin "b70ac2ec805bcb626a6e39ea696354577c681b36")
-;; https://github.com/emacsmirror/shrink-path/commits/master
-(package! shrink-path :pin "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
 (package! lsp-pyright :pin "2fa2c897659909ba9804baba72a108578d007677")
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
