@@ -106,7 +106,7 @@
 (defun my-dashboard-message ()
   (insert (+doom-dashboard--center
            +doom-dashboard--width
-           (concat "MAIN BUFFER - " my-user-alias " - Emacs @" emacs-version))))
+           (concat "MAIN BUFFER - Emacs @" emacs-version))))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
 ;; it very simple. It is ligther than the default scratch buffer in many cases. But

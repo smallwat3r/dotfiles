@@ -14,21 +14,19 @@ Clone this repo into your home directory.
 
 Makefile usage:
 
+To install everything
 #+begin_src
-~/dotfiles % make help
-Usage: make [TARGET ...]
+make install
+#+end_src
 
-help            Show this help menu and exit
-install         * Install everything and symlink
-symlink         * Symlink all the dotfiles using stow
-brew            Install all packages from Brewfile
-npm             Install npm packages
-pip             Install pip packages
-python          Install Python 3.9
-node            Install Node
-homebrew        Install Homebrew
-nvim            Install and setup Neovim
-xcode-cli       Install macOS command line tools
+To symlink all dotfiles
+#+begin_src
+make install
+#+end_src
+
+To discover other commands
+#+begin_src
+make help
 #+end_src
 
 ** Emacs
@@ -36,7 +34,7 @@ xcode-cli       Install macOS command line tools
 Install Emacs, I'm using Emacs 28 with native compilation (=gccEmacs=) from the =emacs-plus= port
 #+begin_src shell
 brew tap d12frosted/emacs-plus
-brew install emacs-plus@28 --with-cacodemon-icon --with-native-comp
+brew install emacs-plus@28 --with-native-comp
 #+end_src
 
 Install Doom in a custom =~/.emacs.doom= directory which allows me to use [[https://github.com/plexus/chemacs2][Chemacs2]]
