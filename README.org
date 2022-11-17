@@ -12,7 +12,7 @@ Clone this repo into your home directory.
 (cd $HOME && git clone https://github.com/smallwat3r/dotfiles.git)
 #+end_src
 
-Makefile usage:
+*Makefile usage:*
 
 To install everything
 #+begin_src
@@ -21,7 +21,7 @@ make install
 
 To symlink all dotfiles
 #+begin_src
-make install
+make symlink
 #+end_src
 
 To discover other commands
