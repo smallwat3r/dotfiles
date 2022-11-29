@@ -576,11 +576,13 @@
 
 ;; Nginx
 ;; doc: https://github.com/ajc/nginx-mode
-(use-package nginx-mode
+(use-package! nginx-mode
   :mode (("/nginx/conf.d/.*" . nginx-mode)
          ("/nginx/.*\\.conf\\'" . nginx-mode)
          ("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
 
+;; TOML
+(add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
 
 ;;
 ;;; Terminals
