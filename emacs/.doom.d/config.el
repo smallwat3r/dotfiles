@@ -280,6 +280,10 @@
 (after! flycheck-popup-tip
   (setq flycheck-popup-tip-error-prefix "* "))
 
+;; Imenu list
+;; doc: https://github.com/bmag/imenu-list
+(use-package! imenu-list
+  :commands (imenu-list-smart-toggle))
 
 ;;
 ;;; Custom templates
@@ -871,7 +875,8 @@
     :desc "Restclient"   "r" #'my/scratch-rest-mode))
 
   (:prefix "t"
-   :desc "Truncate lines" "t" #'toggle-truncate-lines)
+   :desc "Truncate lines" "t" #'toggle-truncate-lines
+   :desc "Imenu"          "i" #'imenu-list-smart-toggle)
 
   (:prefix "p"
    :desc "Run Makefile target" "m" #'+make/run)

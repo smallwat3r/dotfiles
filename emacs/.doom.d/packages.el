@@ -51,6 +51,8 @@
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
 (package! bitwarden :pin "02d6410003a42e7fbeb4aa109aba949eea553706"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
+;; https://github.com/bmag/imenu-list/commits/master
+(package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
 
 ;; Personal (I'm ok with not pinning those as I manage them)
 (package! simplicity-theme
