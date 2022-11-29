@@ -55,7 +55,7 @@
 ;;
 ;;; Editor
 
-(setq doom-theme 'simplicity)
+(setq doom-theme 'doom-zenburn)
 
 ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
 ;; on some major programming related faces such as variables or functions, as I don't
@@ -68,14 +68,8 @@
      font-lock-builtin-face
      font-lock-type-face)
     :foreground unspecified :weight normal)
-  '(mode-line
-    :background "grey75"
-    :foreground "black"
-    :box (:line-width -1 :style released-button))
-  '(mode-line-inactive
-    :background "grey90"
-    :foreground "grey20"
-    :box (:line-width -1 :color "grey75" :style nil))
+  '(mode-line :background "grey75" :foreground "black" :box (:line-width -1 :style released-button))
+  '(mode-line-inactive :background "grey90" :foreground "grey20" :box (:line-width -1 :color "grey75" :style nil))
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
   '(git-gutter-fr:added :foreground unspecified :background "SeaGreen3")
@@ -87,9 +81,15 @@
   '(font-lock-string-face :foreground "CadetBlue1")
   '(font-lock-keyword-face :foreground "yellow2" :weight bold))
 
+(custom-theme-set-faces! 'doom-zenburn
+  '(font-lock-comment-face :foreground "#7F9F7F" :slant italic)
+  '((term-color-black vterm-color-black) :background "gray59")
+  '(shadow :foreground "gray55")
+  '(match :foreground "#acd4d6" :background "#464d4d" :weight bold))
+
 ;; Fonts
-(setq doom-font (font-spec :family "Triplicate B Code" :size 16)
-      doom-variable-pitch-font (font-spec :family "Triplicate B"))
+(setq doom-font (font-spec :family "Triplicate A Code" :size 16)
+      doom-variable-pitch-font (font-spec :family "Triplicate A"))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
