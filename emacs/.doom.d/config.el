@@ -57,24 +57,42 @@
 
 (setq doom-theme 'doom-zenburn)
 
-;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
-;; on some major programming related faces such as variables or functions, as I don't
-;; think having lots of colors helps with focus and readability. These face settings
-;; will apply for all the themes.
 (custom-set-faces!
+  ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
+  ;; on some major programming related faces such as variables or functions, as I don't
+  ;; think having lots of colors helps with focus and readability.
   '((font-lock-function-name-face
      font-lock-variable-name-face
      font-lock-constant-face
      font-lock-builtin-face
      font-lock-type-face)
     :foreground unspecified :weight normal)
+  ;; Modeline
   '(mode-line :background "grey75" :foreground "black" :box (:line-width -1 :style released-button))
   '(mode-line-inactive :background "grey90" :foreground "grey20" :box (:line-width -1 :color "grey75" :style nil))
+  ;; Parenthesis
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
+  ;; Git gutter
   '(git-gutter-fr:added :foreground unspecified :background "SeaGreen3")
   '(git-gutter-fr:modified :foreground unspecified :background "goldenrod")
-  '(git-gutter-fr:deleted :foreground unspecified :background "DarkRed"))
+  '(git-gutter-fr:deleted :foreground unspecified :background "DarkRed")
+  ;; Org
+  '(org-code :inherit fixed-pitch :foreground "#006400" :background "#fdfff7")
+  '(org-block :inherit fixed-pitch :background "gray34")
+  '(org-indent :inherit (org-hide fixed-pitch))
+  '(org-block-background :background "#ffffe0")
+  '(org-block-begin-line :underline "#a7a6aa" :foreground "#555555" :background "#e2e1d5")
+  '(org-block-end-line :overline "#a7a6aa" :foreground "#555555" :background "#e2e1d5")
+  '(org-table :inherit fixed-pitch :foreground "gray41")
+  '(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+  '(org-property-value :inherit fixed-pitch)
+  '(org-tag :inherit (shadow fixed-pitch) :weight bold :height 0.8)
+  '(org-verbatim :inherit (shadow fixed-pitch))
+  '(org-document-info-keyword :inherit (shadow fixed-pitch))
+  ;; Markdown
+  '(markdown-markup-face :foreground "#e2e1d5")
+  '(markdown-pre-face :inherit fixed-pitch :background "gray34" :extend t))
 
 (custom-theme-set-faces! 'simplicity
   '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)
@@ -585,19 +603,7 @@
 ;; doc: https://orgmode.org/manual/
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers t)
-
-  ;; Allow using `fixed-pitch' font for code related text.
-  (custom-set-faces!
-    '(org-code :inherit fixed-pitch)
-    '(org-block :inherit fixed-pitch)
-    '(org-indent :inherit (org-hide fixed-pitch))
-    '(org-table :inherit fixed-pitch :foreground "gray41")
-    '(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
-    '(org-property-value :inherit fixed-pitch)
-    '(org-tag :inherit (shadow fixed-pitch) :weight bold :height 0.8)
-    '(org-verbatim :inherit (shadow fixed-pitch))
-    '(org-document-info-keyword :inherit (shadow fixed-pitch))))
+        org-hide-emphasis-markers t))
 
 ;; Org bullets
 ;; doc: https://github.com/sabof/org-bullets
