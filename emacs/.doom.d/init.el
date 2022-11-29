@@ -5,7 +5,6 @@
        deft
        everywhere
        google
-       hl-todo
        modeline
        scratch
        slack

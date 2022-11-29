@@ -103,7 +103,8 @@
   '(font-lock-comment-face :foreground "#7F9F7F" :slant italic)
   '((term-color-black vterm-color-black) :background "gray59")
   '(shadow :foreground "gray55")
-  '(match :foreground "#acd4d6" :background "#464d4d" :weight bold))
+  '(match :foreground "#acd4d6" :background "#464d4d" :weight bold)
+  '(popup-tip-face :foreground "black" :background "bisque1"))
 
 ;; Fonts
 (setq doom-font (font-spec :family "Triplicate A Code" :size 16)
@@ -273,6 +274,11 @@
                   evil-window-up
                   evil-window-down
                   ace-window))))
+
+;; Flycheck pop-up tooltips
+;; doc: https://github.com/flycheck/flycheck-popup-tip
+(after! flycheck-popup-tip
+  (setq flycheck-popup-tip-error-prefix "* "))
 
 
 ;;
