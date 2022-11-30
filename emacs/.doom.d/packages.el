@@ -53,6 +53,9 @@
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
 ;; https://github.com/bmag/imenu-list/commits/master
 (package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
+;; https://github.com/protesilaos/standard-themes/commits/main
+(package! standard-themes :pin "d1921204c14a651f1bbba90722429a8835868f7a"
+  :recipe (:host github :repo "protesilaos/standard-themes"))
 
 ;; Personal (I'm ok with not pinning those as I manage them)
 (package! simplicity-theme

@@ -12,7 +12,7 @@ defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.5
 # Font smoothing
 # Max smoothing is 3, no smoothing is 0
 defaults -currentHost write -g AppleFontSmoothing -int 3
-defaults write org.gnu.Emacs AppleFontSmoothing -int 1
+defaults write org.gnu.Emacs AppleFontSmoothing -int 3
 
 # Dark UI by default
 defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'

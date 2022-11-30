@@ -36,13 +36,14 @@
 
 ;; Abbreviations
 (use-package! abbrev
-  :init (add-hook 'after-init-hook 'abbrev-mode)
   :custom
   (save-abbrevs nil)
   (abbrev-file-name (expand-file-name "abbrev_defs.el" doom-user-dir))
   :config
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
+
+(setq-default abbrev-mode t)
 
 ;; Custom File, used by Emacs to cache some data related to its config.
 (use-package! cus-edit
@@ -55,7 +56,14 @@
 ;;
 ;;; Editor
 
-(setq doom-theme 'doom-zenburn)
+(use-package! standard-themes
+  :custom
+  (standard-themes-bold-constructs nil)
+  (standard-themes-italic-constructs t)
+  (standard-themes-mode-line-accented t)
+  (standard-themes-prompts '(bold))
+  :config
+  (setq doom-theme 'standard-dark))
 
 (custom-set-faces!
   ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
@@ -70,7 +78,7 @@
   ;; Modeline
   '(mode-line :background "grey75" :foreground "black" :box (:line-width -1 :style released-button))
   '(mode-line-inactive :background "grey90" :foreground "grey20" :box (:line-width -1 :color "grey75" :style nil))
-  ;; Parenthesis
+  ;; Matching parenthesis
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
   ;; Git gutter
@@ -78,37 +86,27 @@
   '(git-gutter-fr:modified :foreground unspecified :background "goldenrod")
   '(git-gutter-fr:deleted :foreground unspecified :background "DarkRed")
   ;; Org
-  '(org-code :inherit fixed-pitch :foreground "#006400" :background "#fdfff7")
-  '(org-block :inherit fixed-pitch :background "gray34")
+  '(org-code :inherit fixed-pitch)
+  '(org-block :inherit fixed-pitch)
   '(org-indent :inherit (org-hide fixed-pitch))
-  '(org-block-background :background "#ffffe0")
-  '(org-block-begin-line :underline "#a7a6aa" :foreground "#555555" :background "#e2e1d5")
-  '(org-block-end-line :overline "#a7a6aa" :foreground "#555555" :background "#e2e1d5")
-  '(org-table :inherit fixed-pitch :foreground "gray41")
+  '(org-table :inherit fixed-pitch)
   '(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
   '(org-property-value :inherit fixed-pitch)
   '(org-tag :inherit (shadow fixed-pitch) :weight bold :height 0.8)
   '(org-verbatim :inherit (shadow fixed-pitch))
-  '(org-document-info-keyword :inherit (shadow fixed-pitch))
-  ;; Markdown
-  '(markdown-markup-face :foreground "#e2e1d5")
-  '(markdown-pre-face :inherit fixed-pitch :background "gray34" :extend t))
+  '(org-document-info-keyword :inherit (shadow fixed-pitch)))
 
 (custom-theme-set-faces! 'simplicity
   '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)
   '(font-lock-string-face :foreground "CadetBlue1")
   '(font-lock-keyword-face :foreground "yellow2" :weight bold))
 
-(custom-theme-set-faces! 'doom-zenburn
-  '(font-lock-comment-face :foreground "#7F9F7F" :slant italic)
-  '((term-color-black vterm-color-black) :background "gray59")
-  '(shadow :foreground "gray55")
-  '(match :foreground "#acd4d6" :background "#464d4d" :weight bold)
-  '(popup-tip-face :foreground "black" :background "bisque1"))
+(custom-theme-set-faces! 'standard-dark
+  '(term-color-black :background "gray59"))
 
 ;; Fonts
-(setq doom-font (font-spec :family "Triplicate A Code" :size 16)
-      doom-variable-pitch-font (font-spec :family "Triplicate A"))
+(setq doom-font (font-spec :family "Triplicate B Code" :size 16)
+      doom-variable-pitch-font (font-spec :family "Triplicate B"))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
@@ -615,7 +613,7 @@
 ;; doc: https://orgmode.org/manual/
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers t))
+        org-hide-emphasis-markers nil))
 
 ;; Org bullets
 ;; doc: https://github.com/sabof/org-bullets
