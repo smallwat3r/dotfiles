@@ -94,7 +94,9 @@
   '(org-property-value :inherit fixed-pitch)
   '(org-tag :inherit (shadow fixed-pitch) :weight bold :height 0.8)
   '(org-verbatim :inherit (shadow fixed-pitch))
-  '(org-document-info-keyword :inherit (shadow fixed-pitch)))
+  '(org-document-info-keyword :inherit (shadow fixed-pitch))
+  ;; Tooltips
+  '(popup-tip-face :background "moccasin" :foreground "black" :slant italic :weight bold))
 
 (custom-theme-set-faces! 'simplicity
   '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)

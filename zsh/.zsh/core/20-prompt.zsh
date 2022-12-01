@@ -40,7 +40,9 @@ __placeholder() {
 
 # Prompt format definition. It will print out return codes in red in case the
 # command fails.
-PROMPT='%(?..%F{red}?%? )$(__placeholder)$(__is_venv)%F{cyan}%2~%f${vcs_info_msg_0_} %# '
+PROMPT='
+%(?..%F{red}?%? )$(__placeholder)$(__is_venv)%F{cyan}%5~%f${vcs_info_msg_0_}
+%# '
 
 # When outside of emacs, activate tmux by default and use the individual pane
 # titles to display the main prompt information.
