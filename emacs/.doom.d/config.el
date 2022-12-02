@@ -96,7 +96,7 @@
   '(org-verbatim :inherit (shadow fixed-pitch))
   '(org-document-info-keyword :inherit (shadow fixed-pitch))
   ;; Tooltips
-  '(popup-tip-face :background "moccasin" :foreground "black" :slant italic :weight bold))
+  '(popup-tip-face :background "moccasin" :foreground "black"))
 
 (custom-theme-set-faces! 'simplicity
   '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)
@@ -239,6 +239,11 @@
   :config
   (defface my-goto-address-mail-face '((t :italic nil :underline t))
     "Face for email address."))
+
+;; todos
+;; doc: https://github.com/tarsius/hl-todo
+(after! hl-todo
+  (add-to-list 'hl-todo-keyword-faces '("HACK" . "VioletRed1")))
 
 ;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
