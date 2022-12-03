@@ -9,6 +9,9 @@ user = smallwat3r
 autocrlf = input
 editor = emacsclient
 
+[commit]
+gpgsign = true
+
 [merge]
 conflictstyle = diff3
 
