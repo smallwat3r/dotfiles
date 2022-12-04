@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# cd into the directory of a file
+
+cd "$(dirname "${1}")" || exit
