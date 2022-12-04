@@ -30,18 +30,24 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false  # less expensive
 zstyle ':vcs_info:*' formats ' (%F{yellow}%b%f)'
 
-# Placeholder to manually input custom text in the prompt.
-# Usage: __=<placeholder>
-__placeholder() {
-  if [ ! -z "${__}" ]; then
-    echo "%B%F{87}%K{20}[${(U)__}]%b%f%k "
+# Manually input custom text in the prompt. Fetch the value of the tag from the
+# `_PROMPT_TAG` variable and add custom colors and faces.
+__tag() {
+  if [ ! -z "${_PROMPT_TAG}" ]; then
+    echo "%B%F{87}%K{20}[${(U)_PROMPT_TAG}]%b%f%k "
   fi
+}
+
+# Convenience function to define a tag (custom text) in the prompt by setting a value
+# for an `_PROMPT_TAG` variable. See __tag private function.
+tag() {
+  _PROMPT_TAG="${1}"
 }
 
 # Prompt format definition. It will print out return codes in red in case the
 # command fails.
 PROMPT='
-%(?..%F{red}?%? )$(__placeholder)$(__is_venv)%F{cyan}%5~%f${vcs_info_msg_0_}
+%(?..%F{red}?%? )$(__tag)$(__is_venv)%F{cyan}%5~%f${vcs_info_msg_0_}
 %# '
 
 # When outside of emacs, activate tmux by default and use the individual pane
