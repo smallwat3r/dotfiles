@@ -54,7 +54,7 @@
 ;; https://github.com/bmag/imenu-list/commits/master
 (package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
 ;; https://github.com/protesilaos/standard-themes/commits/main
-(package! standard-themes :pin "6b67a19857e6d91dedee19e333a4e2c73cbca40d"
+(package! standard-themes :pin "9b370dfee695010b6944386d9e5f7842deb26eea"
   :recipe (:host github :repo "protesilaos/standard-themes"))
 
 ;; Personal (I'm ok with not pinning those as I manage them)
