@@ -190,7 +190,7 @@
 ;; doc: https://github.com/magit/magit
 (after! magit
   (after! git-commit
-    (setq git-commit-summary-max-length 80))
+    (setq git-commit-summary-max-length 74))
   ;; These bindings are hard to work with as I'm running evil mode. I don't
   ;; want the 'h' or the 'l' key to be bound to anything as I'm expected those
   ;; keys to allow me to move the cursor to the left and right.
@@ -620,7 +620,10 @@
 ;; doc: https://orgmode.org/manual/
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers nil))
+        org-hide-emphasis-markers nil)
+
+  ;; Do not wrap lines when converting to markdown.
+  (setq org-pandoc-options-for-markdown '((wrap . "none"))))
 
 ;; Org bullets
 ;; doc: https://github.com/sabof/org-bullets
