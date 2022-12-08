@@ -64,10 +64,10 @@
              'mode-line-client
              'mode-line-modified
              'mode-line-remote
+             " %l,%c %p "
              "%12b"
              '(vc-mode vc-mode)
-             '(:eval (format "  b:%s" (my/number-of-buffers)))
-             " %p %l,%c  "
+             '(:eval (format "  b:%s " (my/number-of-buffers)))
              'mode-line-misc-info
              'mode-line-modes
              'mode-line-end-spaces)))
