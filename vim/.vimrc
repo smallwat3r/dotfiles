@@ -198,7 +198,6 @@ let g:shfmt_opt = '-ci'
 
 nmap ;f :Neoformat<cr>
 
-Plug 'tpope/vim-vividchalk'            " Theme
 Plug 'tpope/vim-commentary'            " Comments mappings
 Plug 'tpope/vim-fugitive'              " Git wrapper
 nnoremap <leader>gd :Gvdiffsplit!<cr>
@@ -371,22 +370,6 @@ imap <C-l> <right>
 
 "}}}2 insert mode
 "{{{2 insert mode abbreviations
-
-" Personal stuff
-iab @e,  mpetiteau.pro@gmail.com
-iab @me, Matthieu Petiteau <mpetiteau.pro@gmail.com>
-iab @c,  Copyright 2020 Matthieu Petiteau, all rights reserved.
-
-" Shebang
-iab @s,  #!/usr/bin/env
-iab @sh, #!/usr/bin/env bash
-iab @pe, #!/usr/bin/env perl
-iab @py, #!/usr/bin/env python3
-
-" Current date / datetime / timestamp ISO8601/W3C
-iab @d,  <C-R>=strftime("%a, %d %b %Y")<cr>
-iab @dt, <C-R>=strftime("%a, %d %b %Y at %H:%M")<cr>
-iab @ts, <C-R>=strftime("%FT%T%z")<cr>
 
 " Annoying words I don't know how to write
 iab widht    width
