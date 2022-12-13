@@ -44,8 +44,6 @@
 (package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
 ;; https://github.com/roman/golden-ratio.el/commits/master
 (package! golden-ratio :pin "007911d8a431b72670f5fe5f0e5b4380c2777a31")
-;; https://github.com/sabof/org-bullets/commits/master
-(package! org-bullets :pin "b70ac2ec805bcb626a6e39ea696354577c681b36")
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
 (package! lsp-pyright :pin "2fa2c897659909ba9804baba72a108578d007677")
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
@@ -54,8 +52,10 @@
 ;; https://github.com/bmag/imenu-list/commits/master
 (package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
 ;; https://github.com/protesilaos/standard-themes/commits/main
-(package! standard-themes :pin "9b370dfee695010b6944386d9e5f7842deb26eea"
+(package! standard-themes :pin "f0d1f81be433af76830ae87b6c44595b187639ef"
   :recipe (:host github :repo "protesilaos/standard-themes"))
+;; https://github.com/minad/org-modern/commits/main
+(package! org-modern :pin "067f9319d67b1170d46a394e039537bb9cb413e3")
 
 ;; Personal (I'm ok with not pinning those as I manage them)
 (package! simplicity-theme

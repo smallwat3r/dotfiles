@@ -60,10 +60,9 @@
   :custom
   (standard-themes-bold-constructs nil)
   (standard-themes-italic-constructs t)
-  (standard-themes-mode-line-accented t)
-  (standard-themes-prompts '(bold))
-  :config
-  (setq doom-theme 'standard-dark))
+  (standard-themes-prompts '(bold)))
+
+(setq doom-theme 'standard-dark)
 
 (custom-set-faces!
   ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
@@ -75,9 +74,6 @@
      font-lock-builtin-face
      font-lock-type-face)
     :foreground unspecified :weight normal)
-  ;; Modeline
-  '(mode-line :background "grey75" :foreground "black" :box (:line-width -1 :style released-button))
-  '(mode-line-inactive :background "grey90" :foreground "grey20" :box (:line-width -1 :color "grey75" :style nil))
   ;; Matching parenthesis
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
@@ -104,6 +100,9 @@
   '(font-lock-keyword-face :foreground "yellow2" :weight bold))
 
 (custom-theme-set-faces! 'standard-dark
+  '(term-color-black :background "gray59"))
+
+(custom-theme-set-faces! 'leuven
   '(term-color-black :background "gray59"))
 
 ;; Fonts
@@ -150,13 +149,7 @@
   ;; General evil mode settings.
   (setq evil-vsplit-window-right t
         evil-split-window-below t
-        evil-want-fine-undo t)
-
-  ;; Prompt to select file after an evil window split action. Press ESC to cancel
-  ;; and the split windown will be for the current file.
-  (defadvice! prompt-for-buffer (&rest _)
-    :after '(evil-window-split evil-window-vsplit)
-    (ido-find-file)))
+        evil-want-fine-undo t))
 
 ;; Evil visual hints when yanking, pasting, deleting etc.
 ;; doc: https://github.com/edkolev/evil-goggles
@@ -620,15 +613,17 @@
 ;; doc: https://orgmode.org/manual/
 (after! org
   (setq org-directory my-notes-directory
-        org-hide-emphasis-markers nil)
+        org-hide-emphasis-markers nil
+        org-pretty-entities t
+        org-ellipsis "…")
 
   ;; Do not wrap lines when converting to markdown.
   (setq org-pandoc-options-for-markdown '((wrap . "none"))))
 
-;; Org bullets
-;; doc: https://github.com/sabof/org-bullets
-(use-package! org-bullets
-  :hook (org-mode . org-bullets-mode))
+;; Org modern
+;; doc: https://github.com/minad/org-modern
+(use-package! org-modern
+  :hook (org-mode . org-modern-mode))
 
 ;; Deft
 ;; doc: https://github.com/jrblevin/deft
