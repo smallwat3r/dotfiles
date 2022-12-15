@@ -5,7 +5,6 @@
        deft
        everywhere
        google
-       modeline
        scratch
        slack
        tree-sitter
@@ -18,6 +17,7 @@
        doom-dashboard
        (emoji +unicode)
        hl-todo
+       modeline
        ophints
        (popup +defaults)
        treemacs
