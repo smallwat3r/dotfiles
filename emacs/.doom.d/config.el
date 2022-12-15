@@ -56,58 +56,11 @@
 ;;
 ;;; Editor
 
-(use-package! standard-themes
-  :custom
-  (standard-themes-bold-constructs nil)
-  (standard-themes-italic-constructs t)
-  (standard-themes-prompts '(bold)))
-
-(setq doom-theme 'standard-dark)
-
-(custom-set-faces!
-  ;; I like to keep my editor clean and simple. Enforce de-activate syntax highlighting
-  ;; on some major programming related faces such as variables or functions, as I don't
-  ;; think having lots of colors helps with focus and readability.
-  '((font-lock-function-name-face
-     font-lock-variable-name-face
-     font-lock-constant-face
-     font-lock-builtin-face
-     font-lock-type-face)
-    :foreground unspecified :weight normal)
-  ;; Matching parenthesis
-  '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
-  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
-  ;; Git gutter
-  '(git-gutter-fr:added :foreground unspecified :background "SeaGreen3")
-  '(git-gutter-fr:modified :foreground unspecified :background "goldenrod")
-  '(git-gutter-fr:deleted :foreground unspecified :background "DarkRed")
-  ;; Org
-  '(org-code :inherit fixed-pitch)
-  '(org-block :inherit fixed-pitch)
-  '(org-indent :inherit (org-hide fixed-pitch))
-  '(org-table :inherit fixed-pitch)
-  '(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
-  '(org-property-value :inherit fixed-pitch)
-  '(org-tag :inherit (shadow fixed-pitch) :weight bold :height 0.8)
-  '(org-verbatim :inherit (shadow fixed-pitch))
-  '(org-document-info-keyword :inherit (shadow fixed-pitch))
-  ;; Tooltips
-  '(popup-tip-face :background "moccasin" :foreground "black"))
-
-(custom-theme-set-faces! 'simplicity
-  '((font-lock-comment-face font-lock-doc-face) :foreground "#b4a7d6" :slant italic)
-  '(font-lock-string-face :foreground "CadetBlue1")
-  '(font-lock-keyword-face :foreground "yellow2" :weight bold))
-
-(custom-theme-set-faces! 'standard-dark
-  '(term-color-black :background "gray59"))
-
-(custom-theme-set-faces! 'leuven
-  '(term-color-black :background "gray59"))
+(setq doom-theme 'smallwat3r)
 
 ;; Fonts
-(setq doom-font (font-spec :family "Triplicate B Code" :size 16)
-      doom-variable-pitch-font (font-spec :family "Triplicate B"))
+(setq doom-font (font-spec :family "Triplicate A Code" :size 16)
+      doom-variable-pitch-font (font-spec :family "Triplicate A"))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)

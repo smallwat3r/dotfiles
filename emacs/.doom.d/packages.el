@@ -51,9 +51,6 @@
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
 ;; https://github.com/bmag/imenu-list/commits/master
 (package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
-;; https://github.com/protesilaos/standard-themes/commits/main
-(package! standard-themes :pin "f0d1f81be433af76830ae87b6c44595b187639ef"
-  :recipe (:host github :repo "protesilaos/standard-themes"))
 ;; https://github.com/minad/org-modern/commits/main
 (package! org-modern :pin "067f9319d67b1170d46a394e039537bb9cb413e3")
 
