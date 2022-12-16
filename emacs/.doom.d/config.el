@@ -187,20 +187,18 @@
 ;; Goto-address mode. This mode activates and highlights URLs and email addresses
 ;; in the current buffer.
 (use-package! goto-addr
-  :hook (((compilation-mode
-           text-mode
-           restclient-mode
-           eshell-mode
-           vterm-mode
-           shell-mode)
-          . goto-address-mode)
-         (prog-mode . goto-address-prog-mode))
+  :defer t
   :custom
   (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
   (goto-address-mail-face 'my-goto-address-mail-face)
-  :config
+  :init
   (defface my-goto-address-mail-face '((t :italic nil :underline t))
-    "Face for email address."))
+    "Face for email address."
+    :group 'basic-faces))
+
+(add-hook! 'prog-mode-hook 'goto-address-prog-mode)
+(add-hook! '(compilation-mode-hook text-mode-hook restclient-mode-hook vterm-mode-hook)
+           'goto-address-mode)
 
 ;; todos
 ;; doc: https://github.com/tarsius/hl-todo
