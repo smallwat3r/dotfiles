@@ -89,6 +89,22 @@
       scroll-margin 7
       confirm-kill-emacs nil)
 
+;; Doom modeline
+;; doc: https://github.com/seagle0128/doom-modeline
+(after! doom-modeline
+  (setq doom-modeline-buffer-file-name-style 'truncate-with-project
+        doom-modeline-vcs-max-length 20)
+
+  ;; Prefer no icons on the modeline.
+  (setq doom-modeline-icon nil)
+
+  ;; HACK: Make sure the modeline renders thin (default is too wide).
+  ;; https://github.com/seagle0128/doom-modeline/issues/187#issuecomment-507201556
+  (defun my-doom-modeline--font-height ()
+    "Calculate the actual char height of the mode-line."
+    (+ (frame-char-height) 2))
+  (advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height))
+
 ;; Evil-mode
 (after! evil
   ;; Change cursor color and shape based on evil mode.
