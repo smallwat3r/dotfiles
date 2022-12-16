@@ -1,14 +1,5 @@
 if [ -f /usr/local/bin/docker ]; then
 
-  # Make sure a pattern parameter has been passed to a function
-  # This function needs to be ran from a subshell, else it would quit the terminal session
-  __docker_ensure_pattern() {
-    if [[ -z "$1" ]]; then
-      printf 'Please specify an pattern.\n'
-      exit 1
-    fi
-  }
-
   # Shorter alternative to `docker ps`
   dps() {
     docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' \
@@ -32,45 +23,18 @@ if [ -f /usr/local/bin/docker ]; then
     printf 'y' | docker system prune
   }
 
-  # Stop a docker container
-  dstop() {
-    docker ps --filter name="${1}" --filter status=running -aq | xargs docker stop
-  }
-
   # Show container logs
   dlog() {
-    (__docker_ensure_pattern "$1" \
-      && docker logs --follow "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" 2>/dev/null \
-      || printf 'Could not match [%s]\n' "$1" >&2)
+    docker logs --follow --tail 10 "${1}"
   }
 
-  # Exec into container
+  # Exec into container (use /bin/sh as default if no shell if specified)
   dexe() {
-    (__docker_ensure_pattern "$1" \
-      && docker exec -it "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" "${2:-/bin/sh}" 2>/dev/null \
-      || printf 'Could not match [%s]\n' "$1" >&2)
+    docker exec -it "${1}" "${2:-/bin/sh}"
   }
 
-  # Print out container IP
+  # Print out container IP address
   dip() {
-    (__docker_ensure_pattern "$1" \
-      && docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
-        "$(docker ps | grep "$1" 2>/dev/null | cut -d ' ' -f1)" 2>/dev/null \
-      || printf 'Could not match [%s]\n' "$1" >&2)
-  }
-
-  # Spin up a rmq instance from Docker
-  docker-rmq() {
-    docker run -d --hostname my-rabbit -p 5672:5672 -p 8080:15672 rabbitmq:3-management
-  }
-
-  # Spin up a MongoDB instance from Docker
-  docker-mongo() {
-    docker run -d -p 27000:27017 -v "$HOME/.dockervolumes/mongo/db:/data/db" mongo
-  }
-
-  # Spin up a Redis instance from Docker
-  docker-redis() {
-    docker run -d -p 6379:6379 redis
+    docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "${1}"
   }
 fi
