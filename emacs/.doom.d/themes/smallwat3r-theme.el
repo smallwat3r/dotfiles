@@ -113,6 +113,9 @@
  `(markdown-pre-face ((t (:inherit org-code :extend t))))
  `(markdown-language-keyword-face ((t (:inherit org-block-begin-line))))
 
+ `(whitespace-space ((t (:inherit whitespace-newline))))
+ `(whitespace-tabs ((t (:inherit whitespace-newline))))
+
  `(git-gutter-fr:added ((t (:background "green" :foreground "green"))))
  `(git-gutter-fr:deleted ((t (:background "red" :foreground "red"))))
  `(git-gutter-fr:modified ((t (:background "magenta" :foreground "magenta")))))
