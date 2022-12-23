@@ -39,8 +39,10 @@
 (setq user-full-name "Matthieu Petiteau"
       user-mail-address (cdr (assoc "gmail" my-email-addresses-alist)))
 
-(setq default-directory "~/"
-      my-dotfiles-dir (concat default-directory "dotfiles"))
+(setq default-directory "~/")
+
+(defvar my-dotfiles-dir (concat default-directory "dotfiles")
+  "Directory containing my dotfiles.")
 
 ;; Abbreviations
 (use-package! abbrev
@@ -111,6 +113,7 @@
   (defun my-doom-modeline--font-height ()
     "Calculate the actual char height of the mode-line."
     (+ (frame-char-height) 2))
+
   (advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height))
 
 ;; Evil-mode
