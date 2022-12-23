@@ -442,7 +442,7 @@
 ;; Python
 (after! python
   (defvar my-default-python-line-length 100
-    "Default python line length")
+    "Default python line length.")
 
   (setq python-shell-interpreter "python3")
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
