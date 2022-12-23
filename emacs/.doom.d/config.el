@@ -560,6 +560,7 @@
 ;; TOML
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
 
+
 ;;
 ;;; Terminals
 
