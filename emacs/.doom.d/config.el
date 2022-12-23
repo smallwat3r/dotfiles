@@ -30,9 +30,14 @@
 (defvar my-user-alias "smallwat3r"
   "User alias.")
 
+(defvar my-email-addresses-alist
+  '(("gmail". "mpetiteau.pro@gmail.com")
+    ("sws" . "matthieu@smallwatersolutions.com")
+    ("smallwat3r" . "matt@smallwat3r.com"))
+  "Alist of my email addresses.")
+
 (setq user-full-name "Matthieu Petiteau"
-      user-mail-address "mpetiteau.pro@gmail.com"
-      user-mail-address-2 "matthieu@smallwatersolutions.com")
+      user-mail-address (cdr (assoc "gmail" my-email-addresses-alist)))
 
 (setq default-directory "~/"
       my-dotfiles-dir (concat default-directory "dotfiles"))
@@ -640,10 +645,12 @@
   ;; Use a custom command to fetch for new emails with mbsync
   (setq +notmuch-sync-backend "mbsync -a && notmuch new")
 
+  (setq my-user-mail-address-2 (cdr (assoc "sws" my-email-addresses-alist)))
+
   ;; Set default tags on replies
   (setq notmuch-fcc-dirs
         '((user-mail-address . "personal/sent -inbox +sent -unread")
-          (user-mail-address-2 . "sws/sent -inbox +sent -unread"))))
+          (my-user-mail-address-2 . "sws/sent -inbox +sent -unread"))))
 
 
 ;;
