@@ -12,7 +12,10 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(inhibit-double-buffering . t) default-frame-alist)
 
-(setq frame-title-format (concat "Emacs @" emacs-version))
+(defvar my-title-emacs-version (concat "Emacs @ " emacs-version)
+  "Running Emacs version as a title.")
+
+(setq frame-title-format my-title-emacs-version)
 
 ;; Nextstep inferface settings. This is used by macOS (and GNUstep).
 (setq ns-use-thin-smoothing nil
@@ -77,7 +80,7 @@
 (defun my-dashboard-message ()
   (insert (+doom-dashboard--center
            +doom-dashboard--width
-           (concat "MAIN BUFFER - Emacs @" emacs-version))))
+           (concat "MAIN BUFFER - " my-title-emacs-version))))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
 ;; it very simple. It is ligther than the default scratch buffer in many cases. But
