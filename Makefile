@@ -2,6 +2,7 @@ SHELL = /bin/bash
 
 CURRENT_DIR := $(shell pwd)
 FONTS_DIR   := /Library/Fonts
+OS          := $(shell uname)
 
 SUCCESS := $(shell tput setaf 40)
 INFO    := $(shell tput setaf 111)
@@ -15,14 +16,14 @@ help: ## Show this help menu and exit
 	@grep --no-filename -E '^[a-zA-Z_%-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
-.PHONY: install
-install: npm pip symlink nvim brew ## * Install everything and symlink
+.PHONY: install-mac
+install-mac: _macos npm pip symlink nvim brew ## * Install everything for macos and symlink
 	@echo '$(SUCCESS)*** -- Everything has been installed --$(SGR0)'
 
 .PHONY: symlink
-symlink: _stow _localbin _maildir ## * Symlink all the dotfiles using stow
+symlink: _localbin _maildir ## * Symlink all the dotfiles using stow
 # This instruction must be run first as this is linking the main stow configuration.
-	@stow stow --verbose=2 --target "$(HOME)"
+	@stow stow --verbose=1 --restow --target "$(HOME)"
 # Stow home directory relative configurationss.
 	@stow \
 		bin \
@@ -36,12 +37,15 @@ symlink: _stow _localbin _maildir ## * Symlink all the dotfiles using stow
 		terminal \
 		utils \
 		vim \
-		workflows \
 		zsh \
-		--verbose=2 --restow --target "$(HOME)"
+		--verbose=1 --restow --target "$(HOME)"
+# Macos specific dotfiles
+ifeq ($(OS), Darwin)
+	@stow macos --verbose=1 --restow --target "$(HOME)"
 # Stow root directory relative configurations. This might need to run with `sudo`
 # as it is targetting the system root directory.
-	@stow plist --verbose=2 --target '/'
+	@stow macos-root --verbose=1 --restow --target '/'
+endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 
@@ -103,7 +107,7 @@ ifeq ($(shell brew ls --versions node),)
 endif
 
 .PHONY: homebrew
-homebrew: ## Install Homebrew
+homebrew: _macos  ## Install Homebrew
 ifeq ($(shell command -v brew),)
 	@echo '$(INFO)*** Installing Homebrew ...$(SGR0)'
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
@@ -119,14 +123,11 @@ endif
 	@echo '$(SUCCESS)Neovim setup successfully!$(SGR0)'
 
 .PHONY: xcode-cli
-xcode-cli: ## Install macOS command line tools
+xcode-cli: _macos  ## Install macOS command line tools
 	@xcode-select --install >/dev/null 2>&1 && \
 		echo '$(INFO)*** Installing macOS command line tools...$(SGR0)' && \
 		echo '$(WARNING)...Please follow the instructions from the GUI...$(SGR0)' || \
 		exit 0
-
-
-# Utils (not showing in help menu)
 
 .PHONY: _maildir
 _maildir:
@@ -142,4 +143,14 @@ _stow: homebrew
 ifeq ($(shell command -v stow),)
 	@echo '$(INFO)*** Installing Stow ...$(SGR0)'
 	brew install stow
+endif
+
+# Ensure the OS is macos
+.PHONY: _macos
+_macos:
+ifeq ($(OS), Darwin)
+	@printf 'Running on macos\n'
+else
+	@printf 'This command is reserved for macos\n'
+	@exit 1
 endif

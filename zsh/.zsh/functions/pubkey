@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 # Copy public key to clipboard
 
-more "${HOME}/.ssh/id_rsa.pub" | pbcopy
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  more "${HOME}/.ssh/id_rsa.pub" | pbcopy
+else
+  more "${HOME}/.ssh/id_rsa.pub" | xclip -selection clipboard
+fi
+
 printf 'Public key copied to clipboard.\n'

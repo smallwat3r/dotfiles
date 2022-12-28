@@ -17,11 +17,12 @@
 
 (setq frame-title-format my-title-emacs-version)
 
-;; Nextstep inferface settings. This is used by macOS (and GNUstep).
-(setq ns-use-thin-smoothing nil
-      ns-use-native-fullscreen nil
-      ns-use-fullscreen-animation nil
-      ns-antialias-text t)
+(when IS-MAC
+  ;; Nextstep inferface settings. This is used by macOS (and GNUstep).
+  (setq ns-use-thin-smoothing nil
+        ns-use-native-fullscreen nil
+        ns-use-fullscreen-animation nil
+        ns-antialias-text t))
 
 
 ;;

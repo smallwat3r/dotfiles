@@ -14,9 +14,9 @@ Clone this repo into your home directory.
 
 *Makefile usage:*
 
-To install everything
+To install everything (macos only)
 #+begin_src
-make install
+make install-mac
 #+end_src
 
 To symlink all dotfiles
