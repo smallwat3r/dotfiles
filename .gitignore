@@ -7,8 +7,6 @@
 *.pem
 *.pub
 
-Brewfile.lock.json
-
 emacs/.doom.d/custom.el
 emacs/.doom.d/.custom.el
 
@@ -17,9 +15,11 @@ vim/.config/nvim/*
 
 gnupg/.gnupg/*
 !gnupg/.gnupg/gpg.conf
-!gnupg/.gnupg/gpg-agent.conf
 
 ssh/.ssh/*
 !ssh/.ssh/config
 
-workflows/.hammerspoon/Spoons/*
+macos/Brewfile.lock.json
+macos/.hammerspoon/Spoons/*
+macos/.gnupg/*
+!macos/.gnupg/gpg-agent.conf
