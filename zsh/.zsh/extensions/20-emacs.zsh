@@ -1,4 +1,9 @@
-export EMACS='/usr/local/bin/emacs'
+if [[ $(uname) == 'Darwin' ]]; then
+  export EMACS='/usr/local/bin/emacs'
+else
+  export EMACS='/usr/bin/emacs'
+fi
+
 export EMACS_DOOM="${HOME}/.emacs.doom"
 
 # lsp-mode can be compiled in 2 modes plist and hash-table based lsp-use-plists flag.

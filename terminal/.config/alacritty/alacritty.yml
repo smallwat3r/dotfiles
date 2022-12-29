@@ -10,15 +10,14 @@ window:
 
 font:
   normal:
-    family: Triplicate B Code
-  size: 16
+    family: Triplicate A Code
+  size: 14
   offset:
-    x: 1
-    y: 1
+    x: 0
+    y: 0
   glyph_offset:
     x: 0
     y: 0
-  use_thin_strokes: true
 
 colors:
   primary:

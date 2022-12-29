@@ -70,8 +70,11 @@
 (setq doom-theme 'smallwat3r)
 
 ;; Fonts
-(setq doom-font (font-spec :family "Triplicate A Code" :size 16)
-      doom-variable-pitch-font (font-spec :family "Triplicate A"))
+(if IS-LINUX
+    (setq doom-font (font-spec :family "Triplicate A Code" :size 18))
+  (setq doom-font (font-spec :family "Triplicate A Code" :size 16)))
+
+(setq doom-variable-pitch-font (font-spec :family "Triplicate A"))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)

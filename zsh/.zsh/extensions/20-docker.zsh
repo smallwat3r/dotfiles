@@ -1,4 +1,4 @@
-if [ -f /usr/local/bin/docker ]; then
+if [ -f /usr/local/bin/docker ] || [ -f /usr/bin/docker ]; then
 
   # Shorter alternative to `docker ps`
   dps() {
