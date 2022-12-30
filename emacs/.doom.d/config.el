@@ -12,6 +12,9 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(inhibit-double-buffering . t) default-frame-alist)
 
+(when IS-LINUX
+  (add-hook 'window-setup-hook #'toggle-frame-maximized))
+
 (defvar my-title-emacs-version (concat "Emacs @ " emacs-version)
   "Running Emacs version as a title.")
 

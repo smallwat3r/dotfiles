@@ -48,7 +48,6 @@ endif
 # distinguish in case I use it on another device.
 ifeq ($(OS), Linux)
 	@stow linux-gpd --verbose=1 --restow --target "$(HOME)"
-	@stow linux-gpd-root --verbose=1 --restow --target '/'
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
