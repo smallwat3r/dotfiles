@@ -1,0 +1,22 @@
+configuration {
+  modi: "window,run,ssh,drun,filebrowser";
+  show-icons: true;
+  terminal: "alacritty";
+  kb-row-up: "Up,Control+k";
+  kb-row-down: "Down,Control+j";
+  kb-mode-next: "Shift+Right,Control+l,Control+Tab";
+  kb-mode-previous: "Shift+Left,Control+h,Control+ISO_Left_Tab";
+  timeout {
+    action: "kb-cancel";
+    delay:  0;
+  }
+  filebrowser {
+    directories-first: true;
+    sorting-method: "name";
+  }
+
+  kb-mode-complete: "";
+  kb-remove-char-back: "BackSpace,Shift+BackSpace";
+  kb-remove-to-eol: "Control+n";
+  kb-accept-entry: "Control+p,Control+m,Return,KP_Enter";
+}
