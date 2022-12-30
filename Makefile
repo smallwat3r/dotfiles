@@ -48,7 +48,7 @@ endif
 # I only use Linux on my GPD for now, might need something else in the future to
 # distinguish in case I use it on another device.
 ifeq ($(OS), Linux)
-	@stow linux-gdp-root --verbose=1 --restow --target '/'
+	@stow linux-gpd-root --verbose=1 --restow --target '/'
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
