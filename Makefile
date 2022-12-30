@@ -39,12 +39,16 @@ symlink: _localbin _maildir ## * Symlink all the dotfiles using stow
 		vim \
 		zsh \
 		--verbose=1 --restow --target "$(HOME)"
-# Macos specific dotfiles
+# Stow root directory relative configurations.
 ifeq ($(OS), Darwin)
 	@stow macos --verbose=1 --restow --target "$(HOME)"
-# Stow root directory relative configurations. This might need to run with `sudo`
-# as it is targetting the system root directory.
+# The below stow commands might need sudo to run successfully.
 	@stow macos-root --verbose=1 --restow --target '/'
+endif
+# I only use Linux on my GPD for now, might need something else in the future to
+# distinguish in case I use it on another device.
+ifeq ($(OS), Linux)
+	@stow linux-gdp-root --verbose=1 --restow --target '/'
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
