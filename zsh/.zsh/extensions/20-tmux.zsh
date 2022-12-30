@@ -1,4 +1,4 @@
-if [ -f /usr/local/bin/tmux ]; then
+if [ -f /usr/local/bin/tmux ] || [ -f /usr/bin/tmux ]; then
   # Kill all Tmux sessions.
   tksa() {
     tmux kill-session -a
