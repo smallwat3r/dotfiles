@@ -39,7 +39,6 @@ symlink: _localbin _maildir ## * Symlink all the dotfiles using stow
 		vim \
 		zsh \
 		--verbose=1 --restow --target "$(HOME)"
-# Stow root directory relative configurations.
 ifeq ($(OS), Darwin)
 	@stow macos --verbose=1 --restow --target "$(HOME)"
 # The below stow commands might need sudo to run successfully.
@@ -48,6 +47,7 @@ endif
 # I only use Linux on my GPD for now, might need something else in the future to
 # distinguish in case I use it on another device.
 ifeq ($(OS), Linux)
+	@stow linux-gpd --verbose=1 --restow --target "$(HOME)"
 	@stow linux-gpd-root --verbose=1 --restow --target '/'
 endif
 	@echo ''
