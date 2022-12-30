@@ -47,6 +47,8 @@
  `(font-lock-keyword-face ((t (:foreground "Purple" :weight bold))))
  `(font-lock-string-face ((t (:foreground "turquoise4"))))
 
+ `(makefile-targets ((t (:inherit font-lock-keyword-face))))
+
  ;; Remove highlighting on some major programming faces. Keep it clean and simple.
  `(font-lock-function-name-face ((t (:foreground unspecified :weight normal))))
  `(font-lock-variable-name-face ((t (:foreground unspecified :weight normal))))
