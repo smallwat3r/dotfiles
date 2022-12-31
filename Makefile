@@ -41,8 +41,7 @@ symlink: _localbin _maildir ## * Symlink all the dotfiles using stow
 		--verbose=1 --restow --target "$(HOME)"
 ifeq ($(OS), Darwin)
 	@stow macos --verbose=1 --restow --target "$(HOME)"
-# The below stow commands might need sudo to run successfully.
-	@stow macos-root --verbose=1 --restow --target '/'
+	@sudo stow macos-root --verbose=1 --restow --target '/'
 endif
 # I only use Linux on my GPD for now, might need something else in the future to
 # distinguish in case I use it on another device.
