@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Make sure xmodmap loads user config
+
+xmodmap "${HOME}"/.xmodmap
