@@ -24,6 +24,12 @@ manpath=(
 
 export PATH
 
+if [[ $(uname) == 'Darwin' ]]; then
+  export TERMINAL='alacritty'
+else
+  export TERMINAL='st'
+fi
+
 export EDITOR='emacsclient'
 
 export LANG=en_US.UTF-8
