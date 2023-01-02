@@ -51,26 +51,22 @@
                        (buffer-name)))))
 
 ;;;###autoload
-(defun my/alacritty-here ()
-  "Open alacritty from the current directory."
+(defun my/terminal-here ()
+  "Open a terminal window in the current directory."
   (interactive "@")
   (shell-command
-   (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
-           (if (buffer-file-name)
-               (file-name-directory (buffer-file-name))
-             "$HOME")))
-  (message "Alacritty is ready!"))
-
-;;;###autoload
-(defun my/st-here ()
-  "Open suckless terminal from the current directory."
-  (interactive "@")
-  (shell-command
-   (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1 & disown"
-           (if (buffer-file-name)
-               (file-name-directory (buffer-file-name))
-             "$HOME")))
-  (message "Suckless Terminal is ready!"))
+   (if IS-MAC
+       ;; Use Alacritty on MacOS
+       (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
+               (if (buffer-file-name)
+                   (file-name-directory (buffer-file-name))
+                 "$HOME"))
+     ;; Prefer st (Suckless Terminal) in Linux
+     (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1 & disown"
+             (if (buffer-file-name)
+                 (file-name-directory (buffer-file-name))
+               "$HOME"))))
+  (message "Terminal is ready!"))
 
 ;;;###autoload
 (defun my/vertico-search-project-symbol-at-point (&optional arg)
