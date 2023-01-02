@@ -34,7 +34,7 @@ symlink: _localbin _maildir ## * Symlink all the dotfiles using stow
 		mail \
 		qutebrowser \
 		ssh \
-		terminal \
+		tmux \
 		utils \
 		vim \
 		zsh \
