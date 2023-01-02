@@ -23,3 +23,5 @@ macos/Brewfile.lock.json
 macos/.hammerspoon/Spoons/*
 macos/.gnupg/*
 !macos/.gnupg/gpg-agent.conf
+
+qutebrowser/.config/qutebrowser/autoconfig.yml
