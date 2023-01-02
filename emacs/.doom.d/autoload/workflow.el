@@ -62,6 +62,17 @@
   (message "Alacritty is ready!"))
 
 ;;;###autoload
+(defun my/st-here ()
+  "Open suckless terminal from the current directory."
+  (interactive "@")
+  (shell-command
+   (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1 & disown"
+           (if (buffer-file-name)
+               (file-name-directory (buffer-file-name))
+             "$HOME")))
+  (message "Suckless Terminal is ready!"))
+
+;;;###autoload
 (defun my/vertico-search-project-symbol-at-point (&optional arg)
   "Performs a live project search from the project root for the thing at point."
   (interactive)

@@ -2,7 +2,7 @@
 # Activate it only when running outside of Emacs, as it can conflicts with Emacs
 # internal bindings, specially when using Evil mode
 
-if [[ ! "${INSIDE_EMACS}" || "${INSIDE_EMACS}" = 'alacritty' ]]; then
+if [[ ! "${INSIDE_EMACS}" || "${INSIDE_EMACS}" = 'alacritty' || "${INSIDE_EMACS}" = 'st' ]]; then
   setopt VI
 
   # Use `jk` as ESC

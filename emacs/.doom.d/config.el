@@ -857,6 +857,7 @@
 
   (:prefix "o"
    :desc "Alacritty"              "1" #'my/alacritty-here
+   :desc "Suckless Terminal"      "2" #'my/st-here
    :desc "Link at point"          "l" #'browse-url-at-point
    :desc "Vterm at root"          "T" #'+vterm/here
    :desc "Toggle vterm at root"   "t" #'+vterm/toggle
