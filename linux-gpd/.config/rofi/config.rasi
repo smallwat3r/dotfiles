@@ -1,7 +1,7 @@
 configuration {
   modi: "window,run,ssh,drun,filebrowser";
   show-icons: true;
-  terminal: "alacritty";
+  terminal: "st";
   kb-row-up: "Up,Control+k";
   kb-row-down: "Down,Control+j";
   kb-mode-next: "Shift+Right,Control+l,Control+Tab";
