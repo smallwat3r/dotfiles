@@ -70,10 +70,15 @@ alias \
   -g G="| grep" \
   -g L="| less" \
   -g NE="2> /dev/null" \
-  -g C="| pbcopy" \
   -g H="| head" \
   -g T="| tail" \
   -g S="| sort"
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  alias -g C="| pbcopy"
+else
+  alias -g C="| xclip -selection clipboard"
+fi
 
 # Tracked aliases
 hash -d \

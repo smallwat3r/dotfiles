@@ -13,13 +13,17 @@ if [[ ! "${INSIDE_EMACS}" || "${INSIDE_EMACS}" = 'alacritty' || "${INSIDE_EMACS}
   bindkey '^?' backward-delete-char
 
   # Copy behaviour
-  __vi_yank_pbcopy() {
+  __vi_yank_copy() {
     zle vi-yank
-    echo "${CUTBUFFER}" | pbcopy
+    if [[ "$OSTYPE" =~ ^darwin ]]; then
+      echo "${CUTBUFFER}" | pbcopy
+    else
+      echo "${CUTBUFFER}" | xclip -selection clipboard
+    fi
   }
 
-  zle -N __vi_yank_pbcopy
-  bindkey -M vicmd 'y' __vi_yank_pbcopy
+  zle -N __vi_yank_copy
+  bindkey -M vicmd 'y' __vi_yank_copy
 
   # Manage cursor shape from insert and normal modes
   zle-keymap-select() {
