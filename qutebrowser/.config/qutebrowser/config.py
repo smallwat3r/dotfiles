@@ -2,8 +2,8 @@
 config.load_autoconfig(False)
 
 # Fonts
-c.fonts.default_family = "Triplicate A Code"
-c.fonts.default_size = "13pt"
+c.fonts.default_family = "Monaco"
+c.fonts.default_size = "11pt"
 
 # Editor
 c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
