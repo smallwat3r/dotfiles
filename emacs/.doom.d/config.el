@@ -18,7 +18,7 @@
 (defvar my-title-emacs-version (concat "Emacs @ " emacs-version)
   "Running Emacs version as a title.")
 
-(setq frame-title-format my-title-emacs-version)
+(setq frame-title-format (concat my-title-emacs-version " - %b"))
 
 (when IS-MAC
   ;; Nextstep inferface settings. This is used by macOS (and GNUstep).
