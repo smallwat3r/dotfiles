@@ -10,10 +10,10 @@ window:
 
 font:
   normal:
-    family: Triplicate A Code
+    family: Triplicate B Code
   size: 16
   offset:
-    x: 0
+    x: 1
     y: 0
   glyph_offset:
     x: 0
