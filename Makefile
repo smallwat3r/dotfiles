@@ -23,26 +23,15 @@ install-mac: _macos npm pip symlink nvim brew ## * Install everything for macos 
 .PHONY: symlink
 symlink: _localbin _maildir ## * Symlink all the dotfiles using stow
 # This instruction must be run first as this is linking the main stow configuration.
-	@stow stow --verbose=1 --restow --target "$(HOME)"
-# Stow home directory relative configurationss.
-	@stow \
-		bin \
-		emacs \
-		git \
-		gnupg \
-		linters \
-		mail \
-		qutebrowser \
-		ssh \
-		tmux \
-		utils \
-		vim \
-		zsh \
-		--verbose=1 --restow --target "$(HOME)"
+	@stow _stow --verbose=1 --restow --target "$(HOME)"
+# Stow cross platform dotfiles.
+	@stow cross-platform --verbose=1 --restow --target "$(HOME)"
+# Stow macOS dotfiles
 ifeq ($(OS), Darwin)
 	@stow macos --verbose=1 --restow --target "$(HOME)"
 	@sudo stow macos-root --verbose=1 --restow --target '/'
 endif
+# Stow Linux GPD dotfiles
 # I only use Linux on my GPD for now, might need something else in the future to
 # distinguish in case I use it on another device.
 ifeq ($(OS), Linux)
@@ -50,17 +39,6 @@ ifeq ($(OS), Linux)
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
-
-# .PHONY: fonts
-# fonts: ## Install fonts
-# define register_font
-# 	@[ -f $(FONTS_DIR)/$(1).ttf ] || cp $(CURRENT_DIR)/fonts/$(1).ttf $(FONTS_DIR)
-# endef
-# 	@echo '*** Installing Custom Glyphs Hack fonts'
-# 	$(call register_font,Custom-Hack-Regular)
-# 	$(call register_font,Custom-Hack-Bold)
-# 	$(call register_font,Custom-Hack-Italic)
-# 	$(call register_font,Custom-Hack-BoldItalic)
 
 .PHONY: brew
 brew: homebrew xcode-cli  ## Install all packages from Brewfile

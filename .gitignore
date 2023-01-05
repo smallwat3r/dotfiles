@@ -7,21 +7,17 @@
 *.pem
 *.pub
 
-emacs/.doom.d/custom.el
-emacs/.doom.d/.custom.el
-
-vim/.config/nvim/*
-!vim/.config/nvim/init.vim
-
-gnupg/.gnupg/*
-!gnupg/.gnupg/gpg.conf
-
-ssh/.ssh/*
-!ssh/.ssh/config
+cross-platform/.doom.d/custom.el
+cross-platform/.doom.d/.custom.el
+cross-platform/.config/nvim/*
+!cross-platform/.config/nvim/init.vim
+cross-platform/.gnupg/*
+!cross-platform/.gnupg/gpg.conf
+cross-platform/.ssh/*
+!cross-platform/.ssh/config
+crossplatform/.config/qutebrowser/autoconfig.yml
 
 macos/Brewfile.lock.json
 macos/.hammerspoon/Spoons/*
 macos/.gnupg/*
 !macos/.gnupg/gpg-agent.conf
-
-qutebrowser/.config/qutebrowser/autoconfig.yml
