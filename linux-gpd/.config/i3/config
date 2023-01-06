@@ -13,11 +13,15 @@ font pango:Monaco 11
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# screen resolution
+exec --no-startup-id ~/.local/bin/screen-resolution
+
+# allow screen rotation to work, this also applies the right touchscreen
+# coordinates.
+exec --no-startup-id ~/.local/bin/2in1screen
+
 # key rate speed
 exec --no-startup-id xset r rate 150 50
-
-# screen resolution
-exec --no-startup-id xrandr --output DSI1 --scale 0.7x0.7
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
