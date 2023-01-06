@@ -50,8 +50,8 @@ bindsym $mod+Return exec st
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start rofi
-bindsym $mod+d exec "rofi -modi window,run,ssh,drun,filebrowser -show drun"
+# start rofi, also allows to run shell command by pressing shift+enter
+bindsym $mod+d exec --no-startup-id rofi -show drun -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
 
 # change focus
 bindsym $mod+h focus left

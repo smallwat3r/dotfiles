@@ -20,3 +20,5 @@ configuration {
   kb-remove-to-eol: "Control+n";
   kb-accept-entry: "Control+p,Control+m,Return,KP_Enter";
 }
+
+@theme "Paper"
