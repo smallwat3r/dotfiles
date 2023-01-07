@@ -19,3 +19,4 @@ keysym y = y Y bracketleft  braceleft  NoSymbol NoSymbol
 keysym u = u U bracketright braceright NoSymbol NoSymbol
 keysym i = i I underscore   minus      NoSymbol NoSymbol
 keysym o = o O plus         equal      NoSymbol NoSymbol
+keysym p = p P backslash    bar        NoSymbol NoSymbol
