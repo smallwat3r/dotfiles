@@ -1,19 +1,21 @@
-! Remap caps-lock to a super key to move around using vim like bindings:
-! up:    'caps-lock+k'
-! down:  'caps-lock+j'
-! left:  'caps-lock+h'
-! right: 'caps-lock+l'
+!! Remove Caps Lock (don't think this is actually needed as we remap the keycode).
+! clear lock
+! remove Lock = Caps_Lock
 
-! remove Caps Lock
-clear lock
-remove Lock = Caps_Lock
-remove Shift = Caps_Lock
-
-! add Mode_switch
+!! Remap caps lock (keycode 66) to a super key.
 keycode 66 = NoSymbol NoSymbol
 keycode 66 = Mode_switch
 
-keysym h = h H Left NoSymbol NoSymbol NoSymbol
-keysym j = j J Down NoSymbol NoSymbol NoSymbol
-keysym k = k K Up NoSymbol NoSymbol NoSymbol
-keysym l = l L Right NoSymbol lstroke Lstroke
+!! Move around using vim like bindings by using the caps lock super key.
+keysym h = h H Left  NoSymbol NoSymbol NoSymbol
+keysym j = j J Down  NoSymbol NoSymbol NoSymbol
+keysym k = k K Up    NoSymbol NoSymbol NoSymbol
+keysym l = l L Right NoSymbol lstroke  Lstroke
+
+!! Some special character keys are not handy to reach, especially via the US
+!! keyboard of the GPD pocket 3. Remap these using the mode switch key from
+!! our remap of caps lock.
+keysym y = y Y bracketleft  braceleft  NoSymbol NoSymbol
+keysym u = u U bracketright braceright NoSymbol NoSymbol
+keysym i = i I underscore   minus      NoSymbol NoSymbol
+keysym o = o O plus         equal      NoSymbol NoSymbol
