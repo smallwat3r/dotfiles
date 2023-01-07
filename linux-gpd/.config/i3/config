@@ -20,6 +20,9 @@ exec --no-startup-id ~/.local/bin/screen-resolution
 # coordinates.
 exec --no-startup-id ~/.local/bin/2in1screen
 
+# redshift
+exec --no-startup-id redshift-gtk
+
 # key rate speed
 exec --no-startup-id xset r rate 150 50
 
@@ -154,25 +157,39 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Control+l exec i3lock -c "#33262d"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+mode "$resize" {
+    # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing h will shrink the window’s width.
-        # Pressing l will grow the window’s width.
-        # Pressing k will shrink the window’s height.
-        # Pressing j will grow the window’s height.
-        bindsym h resize shrink width 20 px or 20 ppt
-        bindsym j resize grow height 20 px or 20 ppt
-        bindsym k resize shrink height 20 px or 20 ppt
-        bindsym l resize grow width 20 px or 20 ppt
+    # Pressing h will shrink the window’s width.
+    # Pressing l will grow the window’s width.
+    # Pressing k will shrink the window’s height.
+    # Pressing j will grow the window’s height.
+    bindsym h resize shrink width 20 px or 20 ppt
+    bindsym j resize grow height 20 px or 20 ppt
+    bindsym k resize shrink height 20 px or 20 ppt
+    bindsym l resize grow width 20 px or 20 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "$resize"
+
+# quick launcher
+mode "$launcher" {
+    bindsym e exec emacs
+    bindsym q exec qutebrowser
+    bindsym f exec firefox
+    bindsym b exec bitwarden
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+set $launcher Launch: [e]macs [q]utebrowser [f]irefox [b]itwarden
+bindsym $mod+o mode "$launcher"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
