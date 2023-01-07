@@ -1,7 +1,14 @@
+! Remap caps-lock to a super key to move around using vim like bindings:
+! up:    'caps-lock+k'
+! down:  'caps-lock+j'
+! left:  'caps-lock+h'
+! right: 'caps-lock+l'
+
 ! remove Caps Lock
 clear lock
 remove Lock = Caps_Lock
 remove Shift = Caps_Lock
+
 ! add Mode_switch
 keycode 66 = NoSymbol NoSymbol
 keycode 66 = Mode_switch
