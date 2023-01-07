@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022 Matthieu Petiteau <mpetiteau.pro@gmail.com>
 
-;; Homepage: https://github.com/smallwat3r/dotfiles/blob/master/emacs/.doom.d/themes/smallwat3r-theme.el
+;; Homepage: https://github.com/smallwat3r/dotfiles/tree/master/cross-platform/.doom.d/themes/smallwat3r-theme.el
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "24.1"))
 ;; Licence: GPL-3.0
