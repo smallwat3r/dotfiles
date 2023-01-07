@@ -20,3 +20,5 @@ keysym u = u U bracketright braceright NoSymbol NoSymbol
 keysym i = i I underscore   minus      NoSymbol NoSymbol
 keysym o = o O plus         equal      NoSymbol NoSymbol
 keysym p = p P backslash    bar        NoSymbol NoSymbol
+keysym q = q Q quotedbl     NoSymbol   NoSymbol NoSymbol
+keysym w = w W apostrophe   NoSymbol   NoSymbol NoSymbol
