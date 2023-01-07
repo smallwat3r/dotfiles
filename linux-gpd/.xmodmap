@@ -15,10 +15,10 @@ keysym l = l L Right NoSymbol lstroke  Lstroke
 !! Some special character keys are not handy to reach, especially via the US
 !! keyboard of the GPD pocket 3. Remap these using the mode switch key from
 !! our remap of caps lock.
-keysym y = y Y bracketleft  braceleft  NoSymbol NoSymbol
-keysym u = u U bracketright braceright NoSymbol NoSymbol
-keysym i = i I underscore   minus      NoSymbol NoSymbol
-keysym o = o O plus         equal      NoSymbol NoSymbol
-keysym p = p P backslash    bar        NoSymbol NoSymbol
-keysym q = q Q quotedbl     NoSymbol   NoSymbol NoSymbol
-keysym w = w W apostrophe   NoSymbol   NoSymbol NoSymbol
+keysym y = y Y bracketleft  bracketright NoSymbol NoSymbol
+keysym u = u U braceleft    braceright   NoSymbol NoSymbol
+keysym i = i I underscore   minus        NoSymbol NoSymbol
+keysym o = o O plus         equal        NoSymbol NoSymbol
+keysym p = p P backslash    bar          NoSymbol NoSymbol
+keysym q = q Q quotedbl     NoSymbol     NoSymbol NoSymbol
+keysym w = w W apostrophe   NoSymbol     NoSymbol NoSymbol
