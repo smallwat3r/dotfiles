@@ -2,5 +2,5 @@
 # Work office display setup
 
 displayplacer "id:41747A2F-6BE8-79AB-E1F7-04C437351C14 res:1440x900 color_depth:4 scaling:on origin:(0,0) degree:0" \
-    "id:6FF38F64-DA4E-C4BB-63FD-4EC968374EDE res:1920x1080 hz:60 color_depth:8 scaling:off origin:(1440,-1080) degree:0" \
-    "id:53B966FA-620F-4205-2888-7C3782AF2896 res:2048x1152 hz:60 color_depth:8 scaling:off origin:(-608,-1152) degree:0"
+    "id:08A3D301-4465-1F3E-78CC-C48D8623C587 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(1440,-1080) degree:0" \
+    "id:466E8CDB-69F3-65AE-E773-65C56BF55982 res:2048x1152 hz:60 color_depth:8 scaling:off origin:(-608,-1152) degree:0"
