@@ -5,9 +5,13 @@ email = mpetiteau.pro@gmail.com
 [github]
 user = smallwat3r
 
+[init]
+templatedir = "$HOME/.config/git/templates"
+
 [core]
 autocrlf = input
 editor = emacsclient
+hooksPath = "$HOME/.config/git/templates/hooks"
 
 [commit]
 gpgsign = true

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Copy last commit hash to clipboard on commit
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    git log -1 --format=format:%h | pbcopy
+else
+    git log -1 --format=format:%h | xclip -selection clipboard
+fi

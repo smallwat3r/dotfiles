@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Prevent from committing any line (or filename) containing the string NOCOMMIT.
+if git diff --cached | grep '^[+d].*NOCOMMIT'; then
+    echo
+    echo "Adding line containing NOCOMMIT"
+    exit 1
+fi
