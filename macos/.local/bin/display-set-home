@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Home office display setup
 
-displayplacer "id:41747A2F-6BE8-79AB-E1F7-04C437351C14 res:1440x900 color_depth:8 scaling:on origin:(0,0) degree:0" \
-    "id:C38CBF0F-F3A1-CC17-5B3F-2679DC9ACB9C res:1920x1080 hz:60 color_depth:8 scaling:off origin:(1230,-1080) degree:0" \
-    "id:9E7D1F05-B87C-B2F4-30CE-E6A440E8B1F9 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(-690,-1080) degree:0"
+displayplacer "id:000009D1-0000-78E8-0101-010100000000 res:1920x1080 hz:60 color_depth:4 scaling:off origin:(0,0) degree:0" \
+    "id:000009D1-0000-78E8-0101-014F00000000 res:1920x1080 hz:60 color_depth:4 scaling:off origin:(-1920,0) degree:0"

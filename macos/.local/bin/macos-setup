@@ -59,6 +59,12 @@ defaults write com.apple.finder ShowStatusBar           -bool true
 defaults write com.apple.finder ShowPathbar             -bool true
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
+# Disable animations when opening and closing windows.
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+
+# Accelerated playback when adjusting the window size.
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
 # Do not ask confirmation for changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
