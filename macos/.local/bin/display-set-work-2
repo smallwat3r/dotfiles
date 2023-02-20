@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Work office display setup 2
+
+displayplacer "id:466E8CDB-69F3-65AE-E773-65C56BF55982 res:2048x1152 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0" \
+    "id:08A3D301-4465-1F3E-78CC-C48D8623C587 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(2048,0) degree:0"

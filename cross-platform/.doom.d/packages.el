@@ -18,6 +18,9 @@
  solaire-mode
  ns-auto-titlebar)
 
+;; fix
+(unpin! compat)
+
 ;;
 ;;; Additional packages.
 
