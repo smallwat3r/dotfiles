@@ -18,7 +18,7 @@
  solaire-mode
  ns-auto-titlebar)
 
-;; fix
+;; Ensure use of the latest Emacs compatibility features.
 (unpin! compat)
 
 ;;
