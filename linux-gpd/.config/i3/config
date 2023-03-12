@@ -18,6 +18,9 @@ exec --no-startup-id ~/.local/bin/screen-resolution
 # load xmodmap config
 exec --no-startup-id xmodmap ~/.xmodmap
 
+# gpd pocket has a us layout keyboard
+exec --no-startup-id setxkbmap -layout us
+
 # allow screen rotation to work, this also applies the right touchscreen
 # coordinates.
 exec --no-startup-id ~/.local/bin/2in1screen
