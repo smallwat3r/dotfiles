@@ -24,7 +24,7 @@ if [ -f /usr/local/bin/keybase ] || [ -f /usr/bin/keybase ]; then
   # Import GPG key from keybase.
   gpg-keybase-import() {
     keybase pgp export | gpg --import -
-}
+  }
 
   # Import GPG secret from keybase.
   gpg-keybase-import-secret() {
