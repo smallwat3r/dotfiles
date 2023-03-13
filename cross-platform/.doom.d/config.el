@@ -74,7 +74,7 @@
 
 ;; Fonts
 (if IS-LINUX
-    (setq doom-font (font-spec :family "Misc Fixed" :size 20))
+    (setq doom-font (font-spec :family "Triplicate A Code" :size 18))
   (setq doom-font (font-spec :family "Triplicate A Code" :size 16)))
 
 (setq doom-variable-pitch-font (font-spec :family "Triplicate A"))
