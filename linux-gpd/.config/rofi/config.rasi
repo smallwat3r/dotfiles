@@ -1,6 +1,6 @@
 configuration {
   modi: "window,run,ssh,drun,filebrowser";
-  show-icons: true ;
+  show-icons: true;
   terminal: "st";
   font: "Monaco 12";
 

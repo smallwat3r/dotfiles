@@ -6,7 +6,9 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:Triplicate A Code 11
+# font -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso8859-1
+# font -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso8859-1
+font -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -14,9 +16,6 @@ exec --no-startup-id dex --autostart --environment i3
 
 # screen resolution
 exec --no-startup-id ~/.local/bin/screen-resolution
-
-# load xmodmap config
-exec --no-startup-id xmodmap ~/.xmodmap
 
 # gpd pocket has a us layout keyboard
 exec --no-startup-id setxkbmap -layout us
@@ -30,6 +29,9 @@ exec --no-startup-id redshift-gtk
 
 # key rate speed
 exec --no-startup-id xset r rate 150 50
+
+# load xmodmap config
+exec --no-startup-id xmodmap ~/.xmodmap
 
 # autostart applications
 exec --no-startup-id nm-applet
@@ -57,7 +59,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
