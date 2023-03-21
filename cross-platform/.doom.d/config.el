@@ -401,7 +401,9 @@
   ;; because it took too much memory. So I just disable it as a default.
   (setq lsp-enable-file-watchers nil)
   ;; Ignore asking to restart if server failed to boot.
-  (setq lsp-restart 'ignore))
+  (setq lsp-restart 'ignore)
+  ;; Iterate quickly (default is 10).
+  (setq lsp-response-timeout 5))
 
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
@@ -510,7 +512,8 @@
   web-mode-markup-indent-offset 2
   web-mode-css-indent-offset 2
   web-mode-script-padding 2
-  web-mode-style-padding 2)
+  web-mode-style-padding 2
+  +lsp-company-backends '(company-css company-web-html company-yasnippet company-files))
 
 ;; Disable formatters for html and web modes
 (setq-hook! '(html-mode-hook web-mode-hook)
@@ -566,6 +569,9 @@
 
 ;; TOML
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
+
+;; Lua
+(add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
 
 
 ;;
@@ -674,10 +680,11 @@
              lorem-ipsum-insert-sentences
              lorem-ipsum-insert-list)
   :init
-  (map! (:leader ((:prefix ("l" . "lorem")
-                   :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
-                   :desc "Insert sentences"  "s" #'lorem-ipsum-insert-sentences
-                   :desc "Insert list"       "l" #'lorem-ipsum-insert-list)))))
+  (map! (:leader
+         (:prefix "i" (:prefix ("l" . "lorem")
+                       :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
+                       :desc "Insert sentences"  "s" #'lorem-ipsum-insert-sentences
+                       :desc "Insert list"       "l" #'lorem-ipsum-insert-list)))))
 
 ;; Untappd
 ;; doc: https://github.com/smallwat3r/untappd.el
