@@ -695,8 +695,7 @@
 ;; Look up
 (setq +lookup-provider-url-alist
       (append +lookup-provider-url-alist
-              '(("Python Docs" "https://docs.python.org/3/search.html?q=%s")
-                ("Sourcegraph" "https://sourcegraph.com/search?q=context:global+%s&patternType=literal"))))
+              '(("Python Docs" "https://docs.python.org/3/search.html?q=%s"))))
 
 ;; Clipboard history, interact with Flycut.app
 ;; doc: https://github.com/redguardtoo/cliphist
