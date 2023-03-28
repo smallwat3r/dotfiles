@@ -169,13 +169,20 @@
 ;; Magit
 ;; doc: https://github.com/magit/magit
 (after! magit
-  (after! git-commit
-    (setq git-commit-summary-max-length 74))
   ;; These bindings are hard to work with as I'm running evil mode. I don't
   ;; want the 'h' or the 'l' key to be bound to anything as I'm expected those
   ;; keys to allow me to move the cursor to the left and right.
   (define-key magit-mode-map (kbd "l") nil)
-  (define-key magit-mode-map (kbd "h") nil))
+  (define-key magit-mode-map (kbd "h") nil)
+
+  (after! git-commit
+    (setq git-commit-summary-max-length 74))
+
+  ;; Remap keys to move commits up or down when using interactive rebase.
+  (after! git-rebase
+    (define-key git-rebase-mode-map "K" 'git-rebase-move-line-up)
+    (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)))
+
 
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
