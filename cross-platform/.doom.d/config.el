@@ -580,6 +580,9 @@
 ;; Lua
 (add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
 
+;; ssh config mode
+(add-to-list 'auto-mode-alist '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
+
 
 ;;
 ;;; Terminals

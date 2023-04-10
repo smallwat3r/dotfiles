@@ -56,6 +56,8 @@
 (package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
 ;; https://github.com/minad/org-modern/commits/main
 (package! org-modern :pin "067f9319d67b1170d46a394e039537bb9cb413e3")
+;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
+(package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 
 ;; Personal (I'm ok with not pinning those as I manage them)
 (package! simplicity-theme
