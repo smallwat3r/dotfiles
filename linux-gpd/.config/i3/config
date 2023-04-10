@@ -58,6 +58,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# center mouse when focusing on window
+mouse_warping output
+
 # start a terminal
 bindsym $mod+Return exec st
 
