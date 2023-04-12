@@ -18,8 +18,12 @@
     ("smallwat3r" . "matt@smallwat3r.com"))
   "Alist of my email addresses.")
 
+(defun my-get-email (name)
+  "Helper function to get email address by NAME."
+  (cdr (assoc name my-email-addresses-alist)))
+
 (setq user-full-name "Matthieu Petiteau"
-      user-mail-address (cdr (assoc "gmail" my-email-addresses-alist)))
+      user-mail-address (my-get-email "gmail"))
 
 (setq default-directory "~/")
 
@@ -679,7 +683,7 @@
   ;; Use a custom command to fetch for new emails with mbsync
   (setq +notmuch-sync-backend "mbsync -a && notmuch new")
 
-  (setq my-user-mail-address-2 (cdr (assoc "sws" my-email-addresses-alist)))
+  (setq my-user-mail-address-2 (my-get-email "sws"))
 
   ;; Set default tags on replies
   (setq notmuch-fcc-dirs
