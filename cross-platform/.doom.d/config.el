@@ -34,7 +34,8 @@
 
 (when IS-LINUX
   (defvar my-linux-distro
-    (my-shell-command-to-string-no-newline "lsb_release -sd 2>/dev/null")
+    (string-replace "\"" "" (my-shell-command-to-string-no-newline
+                             "lsb_release -sd 2>/dev/null"))
     "Current Linux distribution name."))
 
 
