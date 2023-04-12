@@ -6,12 +6,6 @@
 (defvar my-user-alias "smallwat3r"
   "User alias.")
 
-(defvar my-system-info
-  (substring
-   (shell-command-to-string "uname -sr 2>/dev/null")
-   0 -1)
-  "Current system name and release number.")
-
 (defvar my-email-addresses-alist
   '(("gmail". "mpetiteau.pro@gmail.com")
     ("sws" . "matthieu@smallwatersolutions.com")
@@ -29,6 +23,19 @@
 
 (defvar my-dotfiles-dir (concat default-directory "dotfiles")
   "Directory containing my dotfiles.")
+
+(defun my-shell-command-to-string-no-newline (command)
+  "Run a COMMAND using `shell-command-to-string' and strip newline."
+  (substring (shell-command-to-string command) 0 -1))
+
+(defvar my-system-info
+  (my-shell-command-to-string-no-newline "uname -sr 2>/dev/null")
+  "Current system name and release number.")
+
+(when IS-LINUX
+  (defvar my-linux-distro
+    (my-shell-command-to-string-no-newline "lsb_release -sd 2>/dev/null")
+    "Current Linux distribution name."))
 
 
 ;;
