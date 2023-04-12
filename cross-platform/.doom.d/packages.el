@@ -59,10 +59,15 @@
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 
-;; Personal (I'm ok with not pinning those as I manage them)
+;;
+;;; Personal (I'm ok with not pinning those as I manage them)
+
 (package! simplicity-theme
   :recipe (:host github :repo "smallwat3r/emacs-simplicity-theme"))
 (package! tubestatus
   :recipe (:host github :repo "smallwat3r/tubestatus.el"))
 (package! untappd
   :recipe (:host github :repo "smallwat3r/untappd.el"))
+
+;;
+;;; Experimental packages

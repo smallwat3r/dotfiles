@@ -1,6 +1,33 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;;
+;;; General
+
+(defvar my-user-alias "smallwat3r"
+  "User alias.")
+
+(defvar my-system-info
+  (substring
+   (shell-command-to-string "uname -sr 2>/dev/null")
+   0 -1)
+  "Current system name and release number.")
+
+(defvar my-email-addresses-alist
+  '(("gmail". "mpetiteau.pro@gmail.com")
+    ("sws" . "matthieu@smallwatersolutions.com")
+    ("smallwat3r" . "matt@smallwat3r.com"))
+  "Alist of my email addresses.")
+
+(setq user-full-name "Matthieu Petiteau"
+      user-mail-address (cdr (assoc "gmail" my-email-addresses-alist)))
+
+(setq default-directory "~/")
+
+(defvar my-dotfiles-dir (concat default-directory "dotfiles")
+  "Directory containing my dotfiles.")
+
+
+;;
 ;;; Frame
 
 (push '(width . 105) default-frame-alist)
@@ -26,45 +53,6 @@
         ns-use-native-fullscreen nil
         ns-use-fullscreen-animation nil
         ns-antialias-text t))
-
-
-;;
-;;; General
-
-(defvar my-user-alias "smallwat3r"
-  "User alias.")
-
-(defvar my-email-addresses-alist
-  '(("gmail". "mpetiteau.pro@gmail.com")
-    ("sws" . "matthieu@smallwatersolutions.com")
-    ("smallwat3r" . "matt@smallwat3r.com"))
-  "Alist of my email addresses.")
-
-(setq user-full-name "Matthieu Petiteau"
-      user-mail-address (cdr (assoc "gmail" my-email-addresses-alist)))
-
-(setq default-directory "~/")
-
-(defvar my-dotfiles-dir (concat default-directory "dotfiles")
-  "Directory containing my dotfiles.")
-
-;; Abbreviations
-(use-package! abbrev
-  :custom
-  (save-abbrevs nil)
-  (abbrev-file-name (expand-file-name "abbrev_defs.el" doom-user-dir))
-  :config
-  (if (file-exists-p abbrev-file-name)
-      (quietly-read-abbrev-file)))
-
-(setq-default abbrev-mode t)
-
-;; Custom File, used by Emacs to cache some data related to its config.
-(use-package! cus-edit
-  :custom (custom-file (expand-file-name ".custom.el" doom-user-dir))
-  :config
-  (if (file-exists-p custom-file)
-      (load custom-file t)))
 
 
 ;;
@@ -94,7 +82,7 @@
 (defun my-dashboard-message ()
   (insert (+doom-dashboard--center
            +doom-dashboard--width
-           (concat "MAIN BUFFER - " my-title-emacs-version))))
+           (concat "MAIN BUFFER - " my-title-emacs-version " - " my-system-info))))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
 ;; it very simple. It is ligther than the default scratch buffer in many cases. But
@@ -274,6 +262,25 @@
 ;; doc: https://github.com/bmag/imenu-list
 (use-package! imenu-list
   :commands (imenu-list-smart-toggle))
+
+;; Abbreviations
+(use-package! abbrev
+  :custom
+  (save-abbrevs nil)
+  (abbrev-file-name (expand-file-name "abbrev_defs.el" doom-user-dir))
+  :config
+  (if (file-exists-p abbrev-file-name)
+      (quietly-read-abbrev-file)))
+
+(setq-default abbrev-mode t)
+
+;; Custom File, used by Emacs to cache some data related to its config.
+(use-package! cus-edit
+  :custom (custom-file (expand-file-name ".custom.el" doom-user-dir))
+  :config
+  (if (file-exists-p custom-file)
+      (load custom-file t)))
+
 
 ;;
 ;;; Custom templates
@@ -781,7 +788,7 @@
 
 
 ;;
-;;; Testing...
+;;; Testing and experiments
 
 ;; I use the below commands when testing/debugging my Emacs config. I'm sure
 ;; there are better ways or tools to do most of this, but hey, it works for me!
