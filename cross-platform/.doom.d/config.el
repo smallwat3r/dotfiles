@@ -3,7 +3,7 @@
 ;;
 ;;; General
 
-(defvar my-user-alias "smallwat3r"
+(defconst my-user-alias "smallwat3r"
   "User alias.")
 
 (defvar my-email-addresses-alist
@@ -28,15 +28,26 @@
   "Run a COMMAND using `shell-command-to-string' and strip newline."
   (substring (shell-command-to-string command) 0 -1))
 
-(defvar my-system-info
+(defconst my-system-info
   (my-shell-command-to-string-no-newline "uname -sr 2>/dev/null")
   "Current system name and release number.")
 
-(when IS-LINUX
-  (defvar my-linux-distro
-    (string-replace "\"" "" (my-shell-command-to-string-no-newline
-                             "lsb_release -sd 2>/dev/null"))
-    "Current Linux distribution name."))
+(if IS-LINUX
+    (progn
+      (defconst my-linux-distro
+        (string-replace "\"" "" (my-shell-command-to-string-no-newline
+                                 "lsb_release -sd 2>/dev/null"))
+        "Current linux distribution name.")
+
+      (defconst my-hardware-vendor
+        (my-shell-command-to-string-no-newline
+         "hostnamectl | grep 'Hardware Vendor' | awk '{print $3}'")
+        "Hardware vendor name.")
+
+      (defconst IS-LINUX-GPD (string= my-hardware-vendor "GPD")
+        "Is it running on a GPD?"))
+
+  (defconst IS-LINUX-GPD nil))
 
 
 ;;
