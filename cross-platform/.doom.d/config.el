@@ -95,8 +95,11 @@
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
 
-(setq doom-font-increment 1
-      doom-big-font-increment 2)
+(setq doom-font-increment 1)
+
+(if IS-LINUX-GPD
+    (setq doom-big-font-increment 4)
+  (setq doom-big-font-increment 2))
 
 (setq-default line-spacing 2
               tab-width 8
