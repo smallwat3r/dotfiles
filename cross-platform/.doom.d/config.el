@@ -62,7 +62,7 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(inhibit-double-buffering . t) default-frame-alist)
 
-(when IS-LINUX
+(when IS-LINUX-GPD
   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
 (defvar my-title-emacs-version (concat "Emacs @ " emacs-version)
@@ -84,7 +84,9 @@
 (setq doom-theme 'smallwat3r)
 
 ;; Fonts
-(if IS-LINUX
+(if IS-LINUX-GPD
+    ;; Screen estate on the GPD is really small, hence fonts render quite
+    ;; small by default so we need to increase the font size.
     (setq doom-font (font-spec :family "Triplicate A Code" :size 18))
   (setq doom-font (font-spec :family "Triplicate A Code" :size 16)))
 
