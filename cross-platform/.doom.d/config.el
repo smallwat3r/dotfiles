@@ -24,48 +24,45 @@
 (defvar my-dotfiles-dir (concat default-directory "dotfiles")
   "Directory containing my dotfiles.")
 
+(defconst my-system-os
+  (cond ((executable-find "uname")
+         (format "%s" (cdr (doom-call-process "uname" "-sr")))))
+  "Operating system name and version.")
+
+(defconst my-system-distro
+  (string-replace "\"" "" (doom-system-distro-version))
+  "System distro name and version.")
+
 (defun my-shell-command-to-string-no-newline (command)
   "Run a COMMAND using `shell-command-to-string' and strip newline."
   (substring (shell-command-to-string command) 0 -1))
 
-(defconst my-system-info
-  (my-shell-command-to-string-no-newline "uname -sr 2>/dev/null")
-  "Current system name and release number.")
+(defconst my-hardware-vendor
+  (cond ((executable-find "hostnamectl")
+         (my-shell-command-to-string-no-newline
+          "hostnamectl | grep 'Hardware Vendor' | awk '{print $3}'")))
+  "Hardware vendor name.")
 
-(if IS-LINUX
-    (progn
-      (defconst my-linux-distro
-        (string-replace "\"" "" (my-shell-command-to-string-no-newline
-                                 "lsb_release -sd 2>/dev/null"))
-        "Current linux distribution name.")
-
-      (defconst my-hardware-vendor
-        (my-shell-command-to-string-no-newline
-         "hostnamectl | grep 'Hardware Vendor' | awk '{print $3}'")
-        "Hardware vendor name.")
-
-      (defconst IS-LINUX-GPD (string= my-hardware-vendor "GPD")
-        "Is it running on a GPD?"))
-
-  (defconst IS-LINUX-GPD nil))
+(defconst IS-GPD (string= my-hardware-vendor "GPD")
+  "Is it running on a GPD?")
 
 
 ;;
 ;;; Frame
 
-(push '(width . 105) default-frame-alist)
-(push '(height . 40) default-frame-alist)
-(push '(left-fringe . 2) default-frame-alist)
-(push '(right-fringe . 0) default-frame-alist)
-(push '(drag-internal-border . t) default-frame-alist)
-(push '(internal-border-width . 0) default-frame-alist)
-(push '(menu-bar-lines . 0) default-frame-alist)
-(push '(inhibit-double-buffering . t) default-frame-alist)
+(add-to-list 'default-frame-alist '(width . 105))
+(add-to-list 'default-frame-alist '(height . 40))
+(add-to-list 'default-frame-alist '(left-fringe . 2))
+(add-to-list 'default-frame-alist '(right-fringe . 0))
+(add-to-list 'default-frame-alist '(drag-internal-border . t))
+(add-to-list 'default-frame-alist '(internal-border-width . 0))
+(add-to-list 'default-frame-alist '(menu-bar-lines . 0))
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
-(when IS-LINUX-GPD
+(when IS-GPD
   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
-(defvar my-title-emacs-version (concat "Emacs @ " emacs-version)
+(defvar my-title-emacs-version (concat "Emacs " emacs-version)
   "Running Emacs version as a title.")
 
 (setq frame-title-format (concat my-title-emacs-version " - %b"))
@@ -84,7 +81,7 @@
 (setq doom-theme 'smallwat3r)
 
 ;; Fonts
-(if IS-LINUX-GPD
+(if IS-GPD
     ;; Screen estate on the GPD is really small, hence fonts render quite
     ;; small by default so we need to increase the font size.
     (setq doom-font (font-spec :family "Triplicate A Code" :size 18))
@@ -97,7 +94,7 @@
 
 (setq doom-font-increment 1)
 
-(if IS-LINUX-GPD
+(if IS-GPD
     (setq doom-big-font-increment 4)
   (setq doom-big-font-increment 2))
 
@@ -110,7 +107,8 @@
 (defun my-dashboard-message ()
   (insert (+doom-dashboard--center
            +doom-dashboard--width
-           (concat "MAIN BUFFER - " my-title-emacs-version " - " my-system-info))))
+           (concat "MAIN BUFFER - " my-title-emacs-version
+                   " - " my-system-distro " (" my-system-os ")"))))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
 ;; it very simple. It is ligther than the default scratch buffer in many cases. But
