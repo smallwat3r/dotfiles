@@ -118,7 +118,8 @@
 
 (setq display-line-numbers-type nil
       scroll-margin 7
-      confirm-kill-emacs nil)
+      ;; No confirmation can be annoying as I realised it often happens by mistake.
+      confirm-kill-emacs t)
 
 ;; Doom modeline
 ;; doc: https://github.com/seagle0128/doom-modeline
