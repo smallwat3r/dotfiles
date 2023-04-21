@@ -191,7 +191,9 @@
   (define-key magit-mode-map (kbd "h") nil)
 
   (after! git-commit
-    (setq git-commit-summary-max-length 74))
+    ;; Try to keep summary short for ease of readability as of the original Git
+    ;; convention. The rest can go into the body.
+    (setq git-commit-summary-max-length 50))
 
   ;; Remap keys to move commits up or down when using interactive rebase.
   (after! git-rebase
