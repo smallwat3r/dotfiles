@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Ssh into pi (needs to be properly set in .ssh/config) and check temperature.
+
+set -e
+
+if [[ -z $1 ]]; then
+  printf 'Please specify a ssh target.\n' >&2
+  exit 1
+fi
+
+ssh "${1}" 'vcgencmd measure_temp'
