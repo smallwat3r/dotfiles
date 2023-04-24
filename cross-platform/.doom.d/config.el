@@ -901,6 +901,9 @@
   "§" #'other-frame
   "1" #'my/where-am-i
 
+  (:prefix "w"
+   :desc "Window switch" "w" #'persp-window-switch)
+
   (:prefix "b"
    :desc "Kill buffer" "d" #'my/kill-buffer)
 
