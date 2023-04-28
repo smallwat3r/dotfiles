@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Home screenlayout using Displaylink
+# Home screenlayout using Displaylink.
+# Use 2 monitor screens and the laptop screen.
 set -e
 
 xrandr --rmmode "800x1280_60.00" || true

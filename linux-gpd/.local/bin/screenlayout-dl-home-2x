@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Home screenlayout using Displaylink.
+# Only use the two monitor screens.
+set -e
+
+xrandr \
+    --output DSI-1 --off \
+    --output HDMI-1 --off \
+    --output DP-1 --off \
+    --output DP-2 --off \
+    --output DP-3 --off \
+    --output DP-4 --off \
+    --output DVI-I-2-2 --mode 1920x1080 --pos 0x0 --rotate inverted \
+    --output DVI-I-1-1 --primary --mode 1920x1080 --pos 0x1080 --rotate normal
