@@ -87,6 +87,25 @@
     (setq doom-font (font-spec :family "Triplicate A Code" :size 18))
   (setq doom-font (font-spec :family "Triplicate A Code" :size 16)))
 
+(defun my/adapt-font-size (&optional frame)
+  "Adjust the FRAME font size depending on the screen resolution.
+It calculate the PPI (Pixel Per Inch), and set the FRAME height depending on
+the value.
+"
+  (let* ((attrs (frame-monitor-attributes frame))
+         (size (alist-get 'mm-size attrs))
+         (geometry (alist-get 'geometry attrs))
+         (ppi (/ (caddr geometry) (/ (car size) 25.4))))
+    (if (< ppi 100)
+        ;; Really small screens.
+        (set-face-attribute 'default frame :height 160)
+      (set-face-attribute 'default frame :height 130))))
+
+;; This is really useful when using Emacs with multiple monitors with different
+;; resolutions.
+(add-function :after after-focus-change-function #'my/adapt-font-size)
+(add-hook 'after-make-frame-functions #'my/adapt-font-size)
+
 (setq doom-variable-pitch-font (font-spec :family "Triplicate A"))
 
 ;; Enable proportional fonts for text-mode buffers.
