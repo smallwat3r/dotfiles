@@ -5,4 +5,4 @@ set -e
 xrandr --rmmode "800x1280_60.00" || true
 xrandr --newmode "800x1280_60.00"   85.25  800 856 936 1072  1280 1283 1293 1327 -hsync +vsync || true
 xrandr --addmode DSI-1 "800x1280_60.00"
-xrandr --output DSI-1 --crtc 0 --mode "800x1280_60.00"
+xrandr --output DSI-1 --mode "800x1280_60.00"
