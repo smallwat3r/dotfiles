@@ -32,7 +32,9 @@ defaults write com.apple.dock autohide-delay -float 0.0001
 defaults write com.apple.dock tilesize       -int   25
 
 # Blazing fast key repeat
-defaults write -g InitialKeyRepeat -int 8
+# defaults write -g InitialKeyRepeat -int 8
+# defaults write -g KeyRepeat        -int 1
+defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat        -int 2
 
 # Disable special characters when holding keys (this allows super fast keyrepeat)
@@ -58,7 +60,6 @@ defaults write NSGlobalDomain   AppleShowAllExtensions  -bool true
 defaults write com.apple.finder ShowStatusBar           -bool true
 defaults write com.apple.finder ShowPathbar             -bool true
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-
 # Disable animations when opening and closing windows.
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
