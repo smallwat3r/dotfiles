@@ -33,7 +33,7 @@ defaults write com.apple.dock tilesize       -int   25
 
 # Blazing fast key repeat
 defaults write -g InitialKeyRepeat -int 8
-defaults write -g KeyRepeat        -int 1
+defaults write -g KeyRepeat        -int 2
 
 # Disable special characters when holding keys (this allows super fast keyrepeat)
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
