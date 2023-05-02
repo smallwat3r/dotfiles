@@ -3,8 +3,7 @@
 Feel free to pick whatever you want from this repo, but note it has been mostly
 created for my personal use and its updated very frequently. Use at your own risks
 and please create back-ups of your current set-up if you intend to use the Makefile.
-Be aware these dotfiles are intended to be used on macOS, but most of it should
-work as well in other Unix/Linux environments. Dotfiles are managed by GNU Stow.
+Dotfiles are managed by GNU Stow.
 
 Clone this repo into your home directory.
 
@@ -14,7 +13,7 @@ Clone this repo into your home directory.
 
 *Makefile usage:*
 
-To install everything (macos only)
+To install everything (MacOS only)
 #+begin_src
 make install-mac
 #+end_src
@@ -31,7 +30,7 @@ make help
 
 ** Emacs
 
-Install Emacs, I'm using Emacs 28 with native compilation (=gccEmacs=) from the =emacs-plus= port
+(MacOS) Install Emacs, I'm using Emacs 28 with native compilation (=gccEmacs=) from the =emacs-plus= port
 #+begin_src shell
 brew tap d12frosted/emacs-plus
 brew install emacs-plus@28 --with-native-comp
