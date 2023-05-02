@@ -60,7 +60,7 @@ local function stopEmacsDaemon(input)
   end
 end
 
-hotkey.bind(mod_cmd, '§', function() confirmationDialog(stopEmacsDaemon) end)
+hotkey.bind(mod_cmd, '`', function() confirmationDialog(stopEmacsDaemon) end)
 
 -- ***
 -- Window management
