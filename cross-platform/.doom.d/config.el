@@ -885,8 +885,8 @@
   ";f"  #'+format/region)
 
  (:map evil-normal-state-map
-  "C-2"   #'my/scroll-up
-  "C-1"   #'my/scroll-down
+  "C-;"   #'my/scroll-up
+  "C-l"   #'my/scroll-down
   "S-C-h" #'my/enlarge-window-horizontally
   "S-C-l" #'my/shrink-window-horizontally
   "S-C-k" #'my/enlarge-window
