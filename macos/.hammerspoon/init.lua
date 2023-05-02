@@ -95,9 +95,7 @@ hotkey.bind(mod_cmd, 'h', grid.resizeWindowThinner)
 hotkey.bind(mod_alt, 'Tab', function() hs.hints.windowHints() end)
 
 -- ***
--- Make the combination of Ctrl + hjkl to emulate the arrow keys behaviour.
--- It emulates the vim bindings to go left, up, down or right. This is very
--- useful as it fits my workflow in Emacs when browsing up or down up menus.
+-- Make the combination of Alt + hjkl to emulate the arrow keys behaviour.
 -- ***
 
 local function pressFn(mods, key)
