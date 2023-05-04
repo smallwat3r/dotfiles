@@ -266,7 +266,6 @@
   ;; Remap it to a capital 'H' instead.
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
-
 ;; Conveniently resize windows
 ;; doc: https://github.com/roman/golden-ratio.el
 (use-package! golden-ratio
@@ -835,25 +834,27 @@
   (if (bound-and-true-p my-debug-mode)
       (my-echo-command-name-hook)))
 
-;; (defun my/adapt-font-size (&optional frame)
-;;   "Adjust the FRAME font size depending on the screen resolution.
-;; It calculate the PPI (Pixel Per Inch), and set the FRAME height depending on
-;; the value.
-;; "
-;;   (let* ((attrs (frame-monitor-attributes frame))
-;;          (size (alist-get 'mm-size attrs))
-;;          (geometry (alist-get 'geometry attrs))
-;;          (ppi (/ (caddr geometry) (/ (car size) 25.4))))
-;;     (if (< ppi 100)
-;;         ;; Really small screens.
-;;         (set-face-attribute 'default frame :height 160)
-;;       (set-face-attribute 'default frame :height 130))))
+(defun my/adapt-font-size (&optional frame)
+  "Adjust the FRAME font size depending on the screen resolution.
+It calculate the PPI (Pixel Per Inch), and set the FRAME height depending on
+the value.
+"
+  (let* ((attrs (frame-monitor-attributes frame))
+         (size (alist-get 'mm-size attrs))
+         (geometry (alist-get 'geometry attrs))
+         (ppi (/ (caddr geometry) (/ (car size) 25.4))))
+    (if (< ppi 100)
+        ;; Really small screens.
+        (set-face-attribute 'default frame :height 160)
+      (set-face-attribute 'default frame :height 130))))
 
-;; ;; This is really useful when using Emacs with multiple monitors with different
-;; ;; resolutions.
-;; (add-function :after after-focus-change-function #'my/adapt-font-size)
-;; (add-hook 'after-make-frame-functions #'my/adapt-font-size)
-
+;; This is really useful when using Emacs with multiple monitors with different
+;; resolutions.
+;; Only allow this when running on the GPD, which as a really small screen, so
+;; the difference will be huge if connected to external monitors.
+(when IS-GPD
+  (add-function :after after-focus-change-function #'my/adapt-font-size)
+  (add-hook 'after-make-frame-functions #'my/adapt-font-size))
 
 ;;
 ;;; Bindings
