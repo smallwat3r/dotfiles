@@ -266,6 +266,7 @@
   ;; Remap it to a capital 'H' instead.
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
+
 ;; Conveniently resize windows
 ;; doc: https://github.com/roman/golden-ratio.el
 (use-package! golden-ratio
