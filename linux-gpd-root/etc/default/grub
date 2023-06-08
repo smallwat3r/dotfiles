@@ -1,0 +1,15 @@
+GRUB_DEFAULT=saved
+GRUB_TIMEOUT=5
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_DISTRIBUTOR="Manjaro"
+GRUB_CMDLINE_LINUX_DEFAULT="video=efifb fbcon=rotate:1 apparmor=1 security=apparmor udev.log_priority=3 mem_sleep_default=s2idle"
+GRUB_CMDLINE_LINUX=""
+GRUB_SAVEDEFAULT=true
+GRUB_PRELOAD_MODULES="part_gpt part_msdos"
+GRUB_TERMINAL_INPUT=console
+GRUB_GFXMODE=auto
+GRUB_GFXPAYLOAD_LINUX=keep
+GRUB_DISABLE_RECOVERY=true
+GRUB_DISABLE_OS_PROBER=false
+GRUB_COLOR_NORMAL="light-gray/black"
+GRUB_COLOR_HIGHLIGHT="green/black"
