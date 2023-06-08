@@ -80,6 +80,19 @@
 
 (setq doom-theme 'smallwat3r)
 
+;; Be consistent across all themes with some major faces.
+(custom-set-faces!
+  ;; Keep programming faces clean and simple.
+  '((font-lock-function-name-face
+     font-lock-variable-name-face
+     font-lock-constant-face
+     font-lock-builtin-face
+     font-lock-type-face)
+    :foreground unspecified :weight normal :slant normal)
+
+  '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
+  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold))
+
 ;; Fonts
 (if IS-GPD
     ;; Screen estate on the GPD is really small, hence fonts render quite
