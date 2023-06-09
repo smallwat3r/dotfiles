@@ -2,7 +2,7 @@ configuration {
   modi: "window,run,ssh,drun,filebrowser";
   show-icons: true;
   terminal: "st";
-  font: "Triplicate A Code 14";
+  font: "Triplicate A Code 15";
 
   ssh-client: "ssh";
   ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";

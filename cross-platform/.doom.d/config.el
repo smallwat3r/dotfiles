@@ -33,14 +33,10 @@
   (string-replace "\"" "" (doom-system-distro-version))
   "System distro name and version.")
 
-(defun my-shell-command-to-string-no-newline (command)
-  "Run a COMMAND using `shell-command-to-string' and strip newline."
-  (substring (shell-command-to-string command) 0 -1))
-
 (defconst my-hardware-vendor
-  (cond ((executable-find "hostnamectl")
-         (my-shell-command-to-string-no-newline
-          "hostnamectl | grep 'Hardware Vendor' | awk '{print $3}'")))
+  (let ((board-vendor-file "/sys/devices/virtual/dmi/id/board_vendor"))
+    (cond ((file-exists-p board-vendor-file)
+           (format "%s" (cdr (doom-call-process "cat" board-vendor-file))))))
   "Hardware vendor name.")
 
 (defconst IS-GPD (string= my-hardware-vendor "GPD")
