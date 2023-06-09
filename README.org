@@ -5,6 +5,21 @@ created for my personal use and its updated very frequently. Use at your own ris
 and please create back-ups of your current set-up if you intend to use the Makefile.
 Dotfiles are managed by GNU Stow.
 
+Those dotfiles are maintained for different platforms because I'm using multiple machines
+with different OS.
+
+- Macbook 13
+- GPD Pocket 3, running Arch with i3
+
+Cross platform configurations can be found under ~cross-platform~, it includes things like
+zsh, emacs, ssh, bash scripts. Those "should be" platform agnostic.
+
+Macbook specific configurations can be found under ~macos~ and ~macos-root~.
+
+GPD Pocket 3 specific configurations can be found in ~linux-gpd~ and ~linux-gpd-root~. It
+includes various tweaks to make the GPD running correctly on Arch Linux (screen rotation and
+resolution, touchscreen support, X11 configs etc).
+
 Clone this repo into your home directory.
 
 #+begin_src shell
@@ -13,12 +28,7 @@ Clone this repo into your home directory.
 
 *Makefile usage:*
 
-To install everything (MacOS only)
-#+begin_src
-make install-mac
-#+end_src
-
-To symlink all dotfiles
+To symlink all dotfiles (will detect from the OS which directory to stow)
 #+begin_src
 make symlink
 #+end_src
@@ -30,11 +40,19 @@ make help
 
 ** Emacs
 
-(MacOS) Install Emacs, I'm using Emacs 28 with native compilation (=gccEmacs=) from the =emacs-plus= port
+Install Emacs, I'm using Emacs 28 with native compilation (=gccEmacs=)
+
+For macOS:
 #+begin_src shell
-brew tap d12frosted/emacs-plus
-brew install emacs-plus@28 --with-native-comp
+brew tap d12frosted/emacs-plus && brew install emacs-plus@28 --with-native-comp
 #+end_src
+
+For Arch Linux:
+#+begin_src shell
+sudo pacman -S emacs-nativecomp
+#+end_src
+
+Then,
 
 Install Doom in a custom =~/.emacs.doom= directory which allows me to use [[https://github.com/plexus/chemacs2][Chemacs2]]
 #+begin_src shell

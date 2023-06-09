@@ -16,12 +16,8 @@ help: ## Show this help menu and exit
 	@grep --no-filename -E '^[a-zA-Z_%-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
-.PHONY: install-mac
-install-mac: _macos npm pip symlink nvim brew ## * Install everything for macos and symlink
-	@echo '$(SUCCESS)*** -- Everything has been installed --$(SGR0)'
-
 .PHONY: symlink
-symlink: _localbin _maildir ## * Symlink all the dotfiles using stow
+symlink: _localbin _maildir ## Symlink all the dotfiles using stow
 # This instruction must be run first as this is linking the main stow configuration.
 	@stow _stow --verbose=1 --restow --target "$(HOME)"
 # Stow cross platform dotfiles.
@@ -41,8 +37,12 @@ endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 
+.PHONY: install-mac
+install-mac: _macos npm pip symlink nvim brew ## (macOS only) Install everything and symlink
+	@echo '$(SUCCESS)*** -- Everything has been installed --$(SGR0)'
+
 .PHONY: brew
-brew: homebrew xcode-cli  ## Install all packages from Brewfile
+brew: homebrew xcode-cli  ## (macOS only) Install all packages from Brewfile
 	@brew update
 	@brew bundle
 
@@ -73,7 +73,7 @@ pip: python ## Install pip packages
 		yapf
 
 .PHONY: python
-python: homebrew ## Install Python 3.9
+python: homebrew ## (macOS only) Install Python 3.9
 ifeq ($(shell brew ls --versions python@3.9),)
 	@echo '$(INFO)*** Installing python 3.9 ...$(SGR0)'
 	brew install python@3.9
@@ -81,21 +81,21 @@ ifeq ($(shell brew ls --versions python@3.9),)
 endif
 
 .PHONY: node
-node: homebrew ## Install Node
+node: homebrew ## (macOS only) Install Node
 ifeq ($(shell brew ls --versions node),)
 	@echo '$(INFO)*** Installing node ...$(SGR0)'
 	brew install node
 endif
 
 .PHONY: homebrew
-homebrew: _macos  ## Install Homebrew
+homebrew: _macos  ## (macOS only) Install Homebrew
 ifeq ($(shell command -v brew),)
 	@echo '$(INFO)*** Installing Homebrew ...$(SGR0)'
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
 endif
 
 .PHONY: nvim
-nvim: homebrew  ## Install and setup Neovim
+nvim: homebrew  ## (macOS only) Install and setup Neovim
 ifeq ($(shell brew ls --versions nvim),)
 	@echo '$(INFO)*** Installing neovim ...$(SGR0)'
 	brew install nvim
@@ -104,7 +104,7 @@ endif
 	@echo '$(SUCCESS)Neovim setup successfully!$(SGR0)'
 
 .PHONY: xcode-cli
-xcode-cli: _macos  ## Install macOS command line tools
+xcode-cli: _macos  ## (macOS only) Install macOS command line tools
 	@xcode-select --install >/dev/null 2>&1 && \
 		echo '$(INFO)*** Installing macOS command line tools...$(SGR0)' && \
 		echo '$(WARNING)...Please follow the instructions from the GUI...$(SGR0)' || \
