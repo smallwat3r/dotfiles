@@ -91,12 +91,9 @@
 
 ;; Fonts
 (if IS-GPD
-    ;; Screen estate on the GPD is really small, hence fonts render quite
-    ;; small by default so we need to increase the font size.
-    (setq doom-font (font-spec :family "Triplicate A Code" :size 18))
-  (setq doom-font (font-spec :family "Triplicate A Code" :size 16)))
-
-(setq doom-variable-pitch-font (font-spec :family "Triplicate A"))
+    (setq doom-font "UW Ttyp0:pixelsize=18")
+  (setq doom-font (font-spec :family "Triplicate A Code" :size 16))
+  (setq doom-variable-pitch-font (font-spec :family "Triplicate A")))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
@@ -862,7 +859,8 @@ the value.
 ;; resolutions.
 ;; Only allow this when running on the GPD, which as a really small screen, so
 ;; the difference will be huge if connected to external monitors.
-(when IS-GPD
+; (when IS-GPD
+(when nil
   (add-function :after after-focus-change-function #'my/adapt-font-size)
   (add-hook 'after-make-frame-functions #'my/adapt-font-size))
 
