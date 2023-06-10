@@ -14,7 +14,6 @@
        (vertico +icons)
 
        :ui
-       doom
        doom-dashboard
        (emoji +unicode)
        hl-todo

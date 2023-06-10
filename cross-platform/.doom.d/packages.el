@@ -2,7 +2,7 @@
 ;;; $DOOMDIR/packages.el
 
 ;;
-;;; Disabled packages
+;;; Disabled packages.
 
 ;; These are some of Doom's default packages, that I don't use.
 (disable-packages!
@@ -21,8 +21,9 @@
 ;; Ensure use of the latest Emacs compatibility features.
 (unpin! compat)
 
+
 ;;
-;;; Additional packages.
+;;; Misc packages.
 
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
 (package! applescript-mode :pin "5b7a9195ffc25ed58f2c2437dd9c742241734904")
@@ -59,8 +60,9 @@
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 
+
 ;;
-;;; Personal (I'm ok with not pinning those as I manage them)
+;;; Personal packages (I'm ok with not pinning those as I manage them).
 
 (package! simplicity-theme
   :recipe (:host github :repo "smallwat3r/emacs-simplicity-theme"))
@@ -68,6 +70,10 @@
   :recipe (:host github :repo "smallwat3r/tubestatus.el"))
 (package! untappd
   :recipe (:host github :repo "smallwat3r/untappd.el"))
+;; Fork of purcell/color-theme-sanityinc-tomorrow with personal customisation.
+(package! color-theme-sanityinc-tomorrow-colors
+  :recipe (:host github :repo "smallwat3r/color-theme-sanityinc-tomorrow"))
+
 
 ;;
-;;; Experimental packages
+;;; Experimental packages.

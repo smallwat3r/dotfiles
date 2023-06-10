@@ -75,7 +75,7 @@
 ;;; Editor
 
 (if IS-GPD
-    (setq doom-theme 'doom-solarized-dark-high-contrast)
+    (setq doom-theme 'sanityinc-tomorrow-bright)
   (setq doom-theme 'smallwat3r))
 
 ;; Be consistent across all themes with some major faces.
@@ -88,6 +88,10 @@
      font-lock-type-face)
     :foreground unspecified :weight normal :slant normal)
 
+  '(fringe :background unspecified)
+
+  '((makefile-targets nxml-element-local-name) :inherit font-lock-keyword-face)
+
   '(git-gutter-fr:added :background "green" :foreground "green")
   '(git-gutter-fr:deleted :background "red" :foreground "red")
   '(git-gutter-fr:modified :background "magenta" :foreground "magenta")
@@ -95,8 +99,6 @@
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold))
 
-(custom-theme-set-faces! 'doom-solarized-dark-high-contrast
-  '(vterm-color-black :background "DimGray"))
 
 ;; Fonts
 (if IS-GPD
@@ -436,6 +438,7 @@
                                    candidate
                                    selected)
      " "))
+
   (setq company-format-margin-function 'my/company-spaced-dark-icons-margin)
 
   ;; Make completion feel snappy.
