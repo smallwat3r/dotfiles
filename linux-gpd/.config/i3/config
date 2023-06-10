@@ -59,6 +59,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# always display icon on title
+for_window [all] title_window_icon yes
+
 # center mouse when focusing on window
 mouse_warping output
 
@@ -212,5 +215,5 @@ bar {
     position top
     tray_output primary
     status_command i3status --config ~/.config/i3/i3status.conf
-    separator_symbol " "
+    separator_symbol "‥"
 }
