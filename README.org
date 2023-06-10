@@ -6,10 +6,12 @@ and please create back-ups of your current set-up if you intend to use the Makef
 Dotfiles are managed by GNU Stow.
 
 Those dotfiles are maintained for different platforms because I'm using multiple machines
-with different OS.
+with different OSes.
 
 - Macbook 13
 - GPD Pocket 3, running Arch with i3
+
+Hence why the stow targets are divided into multiple different directories.
 
 Cross platform configurations can be found under ~cross-platform~, it includes things like
 zsh, emacs, ssh, bash scripts. Those "should be" platform agnostic.
@@ -29,12 +31,12 @@ Clone this repo into your home directory.
 *Makefile usage:*
 
 To symlink all dotfiles (will detect from the OS which directory to stow)
-#+begin_src
+#+begin_src shell
 make symlink
 #+end_src
 
 To discover other commands
-#+begin_src
+#+begin_src shell
 make help
 #+end_src
 
