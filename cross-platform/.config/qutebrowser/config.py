@@ -1,12 +1,16 @@
+import platform
+
 # Do not load configs set via the UI
 config.load_autoconfig(False)
 
-# Fonts
-c.fonts.default_family = "Triplicate A Code"
-c.fonts.default_size = "14pt"
-
-# Editor
-c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
+if platform.system() == "Linux":
+    c.fonts.default_family = "UW Ttyp0"
+    c.fonts.default_size = "14pt"
+    c.editor.command = ["emacs", "{}"]
+else:
+    c.fonts.default_family = "Triplicate A Code"
+    c.fonts.default_size = "14pt"
+    c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
 
 # Download location
 c.downloads.location.directory = "~/Downloads"
