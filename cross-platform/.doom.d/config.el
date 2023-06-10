@@ -661,6 +661,13 @@
 
 
 ;;
+;;; GPG
+
+(pinentry-start)
+(shell-command "gpg-connect-agent /bye")
+
+
+;;
 ;;; Org
 
 (defvar my-notes-directory "~/org"

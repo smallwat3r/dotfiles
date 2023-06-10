@@ -1,5 +1,9 @@
 export GPG_TTY=$(tty)
 
+if [ -f /usr/bin/gpgconf ]; then
+  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+fi
+
 if [ -f /usr/local/bin/gpg-connect-agent ] || [ -f /usr/bin/gpg-connect-agent ]; then
   # Clear the gpg authentication cache. Next time using GPG, it will ask for
   # the password.

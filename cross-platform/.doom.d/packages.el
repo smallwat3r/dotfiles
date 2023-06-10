@@ -59,6 +59,8 @@
 (package! org-modern :pin "067f9319d67b1170d46a394e039537bb9cb413e3")
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
+;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
+(package! pinentry :pin "0f42e75676cb01bd49c70ccc65bce98a882bffed")
 
 
 ;;
