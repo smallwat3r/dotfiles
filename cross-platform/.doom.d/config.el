@@ -91,7 +91,9 @@
 
 ;; Fonts
 (if IS-GPD
-    (setq doom-font "UW Ttyp0:pixelsize=18")
+    (progn
+      (setq doom-font "UW Ttyp0:pixelsize=18")
+      (setq doom-variable-pitch-font doom-font))
   (setq doom-font (font-spec :family "Triplicate A Code" :size 16))
   (setq doom-variable-pitch-font (font-spec :family "Triplicate A")))
 
