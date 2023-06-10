@@ -14,7 +14,7 @@ editor = emacsclient
 hooksPath = "$HOME/.config/git/templates/hooks"
 
 [commit]
-gpgsign = false
+gpgsign = true
 
 [merge]
 conflictstyle = diff3
