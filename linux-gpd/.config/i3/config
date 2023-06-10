@@ -36,7 +36,7 @@ exec_always --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # set wallpaper
-exec --no-startup-id feh --bg-center ~/.config/wallpaper/arch.png
+exec_always --no-startup-id feh --bg-center ~/.config/wallpaper/arch.png
 
 # autostart picom
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
