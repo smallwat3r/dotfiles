@@ -219,4 +219,18 @@ bar {
     tray_output primary
     status_command i3status --config ~/.config/i3/i3status.conf
     separator_symbol "‥"
+    colors {
+        separator #ffffff
+        background #3c3b37
+        statusline #ffffff
+        focused_workspace #526532 #526532 #ffffff #ffffff
+        active_workspace #aea79f #aea79f #3c3b37 #ffffff
+        inactive_workspace #3c3b37 #3c3b37 #aea79f #888888
+        urgent_workspace #FF0000 #FF0000 #ffffff #ffffff
+    }
 }
+
+client.focused #526532 #526532 #ffffff #a4cb64
+client.focused_inactive #aea79f #aea79f #3c3b37 #aea79f
+client.unfocused #3c3b37 #3c3b37 #aea79f #3c3b37
+client.urgent #FF0000 #FF0000 #ffffff #FF0000
