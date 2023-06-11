@@ -209,7 +209,7 @@ mode "$launcher" {
     bindsym Return mode "default"
 }
 
-set $launcher Launch: (e) emacs, (q) qutebrowser, (b) bitwarden
+set $launcher Launch: (e) emacs, (q) qutebrowser, (b) bitwarden-desktop
 bindsym $mod+o mode "$launcher"
 
 # Combinations to shutdown, reboot or screenlock.
