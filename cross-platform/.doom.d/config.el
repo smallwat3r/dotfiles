@@ -120,19 +120,15 @@
               tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq fancy-splash-image (concat doom-user-dir "/etc/emacs.svg"))
-
 (defun my-dashboard-message ()
-  (insert (+doom-dashboard--center
-           +doom-dashboard--width
-           (concat "MAIN BUFFER - " my-title-emacs-version
-                   " - " my-system-distro " (" my-system-os ")"))))
+  (insert (concat "MAIN BUFFER\n"
+                  my-title-emacs-version " - " my-system-distro " (" my-system-os ")")))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
 ;; it very simple. It is ligther than the default scratch buffer in many cases. But
 ;; it can also not be killed, hence remembers the working directory of the last open
 ;; buffer, `find-file' will work from the directory I expect.
-(setq +doom-dashboard-functions '(doom-dashboard-widget-banner my-dashboard-message))
+(setq +doom-dashboard-functions '(my-dashboard-message))
 
 (setq display-line-numbers-type nil
       scroll-margin 7
