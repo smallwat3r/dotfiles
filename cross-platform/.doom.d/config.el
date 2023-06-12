@@ -122,7 +122,8 @@
 
 (defun my-dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
-                  my-title-emacs-version " - " my-system-distro " (" my-system-os ")")))
+                  my-title-emacs-version " on " my-system-distro " (" my-system-os ")\n"
+                  "Built for: " system-configuration)))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
 ;; it very simple. It is ligther than the default scratch buffer in many cases. But
