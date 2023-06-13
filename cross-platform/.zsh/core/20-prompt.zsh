@@ -39,7 +39,7 @@ __tag() {
 }
 
 # Convenience function to define a tag (custom text) in the prompt by setting a value
-# for an `_PROMPT_TAG` variable. See __tag private function.
+# for a `_PROMPT_TAG` variable. See __tag private function.
 tag() {
   _PROMPT_TAG="${1}"
 }
