@@ -196,6 +196,25 @@
 (if (> emacs-major-version 28)
     (pixel-scroll-precision-mode))
 
+;; NOTE: this function has been adapted from `browse-url-chrome'. It seems to work as expected.
+(defun my-browse-url-qutebrowser (url &optional _new-window)
+  "Ask the Qutebrowser WWW browser to load URL.
+Default to the URL around or before point.
+The optional argument NEW-WINDOW is not used."
+  (interactive (browse-url-interactive-arg "URL: "))
+  (setq url (browse-url-encode-url url))
+  (let* ((process-environment (browse-url-process-environment)))
+    (apply #'start-process
+           (concat "qutebrowser" url) nil
+           (executable-find "qutebrowser")
+           (list url))))
+
+(function-put 'my-browse-url-qutebrowser 'browse-url-browser-kind 'external)
+
+;; Browse stuff in qutebrowser as default when using the GPD.
+(if IS-GPD
+    (setq browse-url-browser-function #'my-browse-url-qutebrowser))
+
 ;; Magit
 ;; doc: https://github.com/magit/magit
 (after! magit
