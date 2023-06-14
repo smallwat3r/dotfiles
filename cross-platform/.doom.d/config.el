@@ -153,7 +153,11 @@
         doom-modeline-height 1
         doom-modeline-bar-width 0
         ;; Prefer no icons on the modeline.
-        doom-modeline-icon nil))
+        doom-modeline-icon nil)
+
+  (custom-set-faces!
+    '((doom-modeline-buffer-file doom-modeline-project-dir doom-modeline-info)
+      :foreground unspecified :weight bold)))
 
 ;; Evil-mode
 (after! evil
