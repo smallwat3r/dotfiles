@@ -74,8 +74,12 @@ bindsym $mod+Return exec st
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'UW Ttyp0:pixelsize=18'
+# launch dmenu
+bindsym $mod+d exec --no-startup-id dmenu_run -i -l 7 -fn 'uw ttyp0:pixelsize=18'
+
+# start clipmenud and launch clipmenu
+exec --no-startup-id clipmenud &
+bindsym $mod+c exec --no-startup-id clipmenu -i -l 7 -fn 'uw ttyp0:pixelsize=18'
 
 # change focus
 bindsym $mod+h focus left
