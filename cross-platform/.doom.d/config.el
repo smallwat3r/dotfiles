@@ -99,12 +99,13 @@
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold))
 
-
 ;; Fonts
 (if IS-GPD
-    (setq doom-font "UW Ttyp0:pixelsize=18"
+    (setq my-default-font-size 18
+          doom-font (format "UW Ttyp0:pixelsize=%s" my-default-font-size)
           doom-variable-pitch-font doom-font)
-  (setq doom-font (font-spec :family "Triplicate A Code" :size 16)
+  (setq my-default-font-size 16
+        doom-font (font-spec :family "Triplicate A Code" :size my-default-font-size)
         doom-variable-pitch-font (font-spec :family "Triplicate A")))
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -148,18 +149,12 @@
 ;; doc: https://github.com/seagle0128/doom-modeline
 (after! doom-modeline
   (setq doom-modeline-buffer-file-name-style 'truncate-with-project
-        doom-modeline-vcs-max-length 20)
-
-  ;; Prefer no icons on the modeline.
-  (setq doom-modeline-icon nil)
-
-  ;; HACK: Make sure the modeline renders thin (default is too wide).
-  ;; https://github.com/seagle0128/doom-modeline/issues/187#issuecomment-507201556
-  (defun my-doom-modeline--font-height ()
-    "Calculate the actual char height of the mode-line."
-    (+ (frame-char-height) 2))
-
-  (advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height))
+        ;; Max length for the git branch name.
+        doom-modeline-vcs-max-length 20
+        ;; I think this is the thinner it can be?
+        doom-modeline-height my-default-font-size
+        ;; Prefer no icons on the modeline.
+        doom-modeline-icon nil))
 
 ;; Evil-mode
 (after! evil
@@ -941,6 +936,8 @@ the value.
  (:map evil-normal-state-map
   "C-;"   #'my/scroll-up
   "C-l"   #'my/scroll-down
+  "C-1"   #'my/scroll-up
+  "C-2"   #'my/scroll-down
   "S-C-h" #'my/enlarge-window-horizontally
   "S-C-l" #'my/shrink-window-horizontally
   "S-C-k" #'my/enlarge-window
