@@ -131,6 +131,14 @@
 ;; buffer, `find-file' will work from the directory I expect.
 (setq +doom-dashboard-functions '(my-dashboard-message))
 
+(defun +doom-dashboard-tweak (&optional _)
+  (with-current-buffer (get-buffer +doom-dashboard-name)
+    (setq-local line-spacing 0
+                ;; Do not display the cursor on the dashboard.
+                evil-normal-state-cursor (list nil))))
+
+(add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
+
 (setq display-line-numbers-type nil
       scroll-margin 7
       ;; No confirmation can be annoying as I realised it often happens by mistake.
