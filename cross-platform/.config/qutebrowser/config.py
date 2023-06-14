@@ -9,23 +9,19 @@ if platform.system() == "Linux":
 else:
     c.fonts.default_family = "Triplicate A Code"
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
+    c.content.user_stylesheets = ["~/.config/qutebrowser/css/mac.css"]
 
 c.fonts.default_size = "14pt"
 
-# Download location
 c.downloads.location.directory = "~/Downloads"
 
-# Stylesheets
-c.content.user_stylesheets = ["~/.config/qutebrowser/css/stylesheet.css"]
-
-# Allow javascript to access clipboard
 c.content.javascript.can_access_clipboard = True
-
-# Default encoding
 c.content.default_encoding = "utf-8"
-
-# Custom headers
 c.content.headers.custom = {}
+c.content.autoplay = False
+
+c.completion.height = 300  # 30%
+c.completion.delay = 0
 
 # Bindings
 config.bind("$", "fake-key <End>")
