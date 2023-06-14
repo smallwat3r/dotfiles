@@ -101,11 +101,9 @@
 
 ;; Fonts
 (if IS-GPD
-    (setq my-default-font-size 18
-          doom-font (format "UW Ttyp0:pixelsize=%s" my-default-font-size)
+    (setq doom-font "UW Ttyp0:pixelsize=18"
           doom-variable-pitch-font doom-font)
-  (setq my-default-font-size 16
-        doom-font (font-spec :family "Triplicate A Code" :size my-default-font-size)
+  (setq doom-font (font-spec :family "Triplicate A Code" :size 16)
         doom-variable-pitch-font (font-spec :family "Triplicate A")))
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -151,8 +149,9 @@
   (setq doom-modeline-buffer-file-name-style 'truncate-with-project
         ;; Max length for the git branch name.
         doom-modeline-vcs-max-length 20
-        ;; I think this is the thinner it can be?
-        doom-modeline-height my-default-font-size
+        ;; 1 ensures the modeline is never taller than the fonts.
+        doom-modeline-height 1
+        doom-modeline-bar-width 0
         ;; Prefer no icons on the modeline.
         doom-modeline-icon nil))
 
