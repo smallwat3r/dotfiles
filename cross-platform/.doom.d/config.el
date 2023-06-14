@@ -907,6 +907,7 @@ the value.
   (add-function :after after-focus-change-function #'my/adapt-font-size)
   (add-hook 'after-make-frame-functions #'my/adapt-font-size))
 
+
 ;;
 ;;; Bindings
 
