@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
-# Open in finder
+# Open in file manager
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  _program=open
+else
+  if [ -f /usr/bin/pcmanfm ]; then
+    _program=pcmanfm
+  else
+    printf 'Can'\''t find file manager, please install pcmanfm\n' >&2
+    exit 1
+  fi
+fi
 
 if [[ $# -eq 0 ]]; then
-  open .
+  "$_program" .
 else
-  open "$@"
+  "$_program" "$@"
 fi
