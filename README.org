@@ -9,7 +9,8 @@ Those dotfiles are maintained for different platforms because I'm using multiple
 with different OSes.
 
 - Macbook 13
-- GPD Pocket 3, running Arch with i3
+- Arch Linux with i3
+- GPD Pocket 3, running Arch with i3 (need some specific additional patches and configs)
 
 Hence why the stow targets are divided into multiple different directories.
 
@@ -18,9 +19,12 @@ zsh, emacs, ssh, bash scripts. Those "should be" platform agnostic.
 
 Macbook specific configurations can be found under ~macos~ and ~macos-root~.
 
-GPD Pocket 3 specific configurations can be found in ~linux-gpd~ and ~linux-gpd-root~. It
-includes various tweaks to make the GPD running correctly on Arch Linux (screen rotation and
-resolution, touchscreen support, X11 configs etc).
+Arch Linux specific configurations can be found under ~arch~ and ~arch-root~.
+
+GPD Pocket 3 specific configurations can be found in ~gpd-arch~ and ~gpd-arch-root~. It includes
+stowing the generic ~arch~ and ~arch-root~ configs, but also includes various tweaks to make the
+GPD running correctly on Arch Linux (screen rotation and resolution, touchscreen support, X11
+configs etc).
 
 Clone this repo into your home directory.
 
@@ -30,7 +34,7 @@ Clone this repo into your home directory.
 
 *Makefile usage:*
 
-To symlink all dotfiles (will detect from the OS which directory to stow)
+To symlink all dotfiles (will automatically detect the OS and system for which directories to stow)
 #+begin_src shell
 make symlink
 #+end_src

@@ -24,17 +24,21 @@ symlink: _requirements _localbin _maildir ## Symlink all the dotfiles using stow
 	@stow cross-platform --verbose=1 --restow --target "$(HOME)"
 # Stow macOS dotfiles
 ifeq ($(OS), Darwin)
+	@echo '$(INFO)** Stowing macOS dotfiles$(SGR0)'
 	@stow macos --verbose=1 --restow --target "$(HOME)"
 	@sudo stow macos-root --verbose=1 --restow --target '/'
 endif
 # Stow Linux Arch dotfiles
 ifeq ($(OS), Linux)
-# If Arch is running on a GPD pocket, we might need to apply some specific patches.
+	@echo '$(INFO)** Stowing Arch dotfiles$(SGR0)'
+	@stow arch --verbose=1 --restow --target "$(HOME)"
+	@sudo stow arch-root --verbose=1 --restow --target '/'
+# If Arch is running on a GPD pocket, we might need to apply some specific configs and patches.
 ifeq ($(IS_GPD), true)
-	@echo 'yes!'
+	@echo '$(INFO)** Stowing Arch GPD dotfiles$(SGR0)'
+	@stow gpd-arch --verbose=1 --restow --target "$(HOME)"
+	@sudo stow gpd-arch-root --verbose=1 --restow --target '/'
 endif
-	@stow linux-gpd --verbose=1 --restow --target "$(HOME)"
-	@sudo stow linux-gpd-root --verbose=1 --restow --target '/'
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
