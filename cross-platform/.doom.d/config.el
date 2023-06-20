@@ -55,9 +55,6 @@
 (add-to-list 'default-frame-alist '(menu-bar-lines . 0))
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
-(when IS-GPD
-  (add-hook 'window-setup-hook #'toggle-frame-maximized))
-
 (defvar my-title-emacs-version (concat "Emacs " emacs-version)
   "Running Emacs version as a title.")
 
