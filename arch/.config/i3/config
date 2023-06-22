@@ -5,7 +5,7 @@
 set $mod Mod4
 
 # set locker command
-set $Locker i3lock -c '#292929' && sleep 1
+set $Locker ~/.local/bin/blurlock && sleep 1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
