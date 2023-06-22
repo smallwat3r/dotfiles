@@ -13,7 +13,8 @@ disable=bad-continuation,
         missing-module-docstring,
         protected-access,
         too-few-public-methods,
-        too-many-arguments
+        too-many-arguments,
+        too-many-lines
 
 ignored-argument-names=arg|args|kw|kwargs
 
