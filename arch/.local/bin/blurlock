@@ -6,4 +6,4 @@
 scrot /tmp/lock.png
 convert /tmp/lock.png -blur 0x9 /tmp/lockblur.png
 rm /tmp/lock.png
-i3lock -i /tmp/lockblur.png
+i3lock -i /tmp/lockblur.png --nofork
