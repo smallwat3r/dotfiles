@@ -46,14 +46,18 @@
 ;;
 ;;; Frame
 
-(add-to-list 'default-frame-alist '(width . 105))
-(add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(left-fringe . 2))
-(add-to-list 'default-frame-alist '(right-fringe . 0))
-(add-to-list 'default-frame-alist '(drag-internal-border . t))
-(add-to-list 'default-frame-alist '(internal-border-width . 0))
-(add-to-list 'default-frame-alist '(menu-bar-lines . 0))
-(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+(setq default-frame-alist
+      (append (list
+               '(width . 105)
+               '(height . 40)
+               '(left-fringe . 2)
+               '(right-fringe . 0)
+               '(drag-internal-border . t)
+               '(internal-border-width . 0)
+               '(tool-bar-lines . 0)
+               '(menu-bar-lines . 0)
+               '(inhibit-double-buffering . t)
+               '(vertical-scroll-bars . nil))))
 
 (defvar my-title-emacs-version (concat "Emacs " emacs-version)
   "Running Emacs version as a title.")
@@ -137,6 +141,8 @@
 
 (setq display-line-numbers-type nil
       scroll-margin 7
+      ;; Makes underlines render a bit cleaner.
+      x-underline-at-descent-line t
       ;; No confirmation can be annoying as I realised it often happens by mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
@@ -678,6 +684,9 @@
 ;; Make sure to always display the modeline when using vterm. I feel like even
 ;; in a terminal, its still useful to see the modeline and its information.
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
+
+;; Terminal seems to be sporadically add a rogue % sign after commands, fix this.
+(setq-hook! 'term-mode-hook buffer-display-table (make-display-table))
 
 
 ;;
