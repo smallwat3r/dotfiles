@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Connect to the running emacs server.
+# Connect to the running emacs server and open a new frame.
 
 emacsclient -a '' -c $@
