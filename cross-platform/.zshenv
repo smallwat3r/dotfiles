@@ -30,7 +30,7 @@ else
   export TERMINAL='st'
 fi
 
-export EDITOR='emacsclient -c'
+export EDITOR="${HOME}/.local/bin/ec"
 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
