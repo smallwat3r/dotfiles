@@ -10,10 +10,10 @@ Those dotfiles are maintained for different platforms because I'm using multiple
 
 Hence why the stow targets are divided into multiple different directories.
 
-- Cross platform configurations can be found under ~cross-platform~, it includes things like zsh, emacs, ssh, bash scripts. Those "should be" platform agnostic.
-- Macbook specific configurations can be found under ~macos~ and ~macos-root~.
-- Arch Linux specific configurations can be found under ~arch~ and ~arch-root~.
-- GPD Pocket 3 (running on Arch) specific configurations can be found in ~gpd-arch~ and ~gpd-arch-root~. It includes stowing the generic ~arch~ and ~arch-root~ configs, but adds various tweaks to ensure the GPD behaves nicely on Arch Linux (screen rotation and resolution, touchscreen support, X11 configs etc).
+- Cross platform configurations can be found under ~cross-platform/~, it includes things like zsh, emacs, ssh, bash scripts. Those "should be" platform agnostic.
+- Macbook specific configurations can be found under ~macos/~ and ~macos-root/~.
+- Arch Linux specific configurations can be found under ~arch/~ and ~arch-root/~.
+- GPD Pocket 3 (running on Arch) specific configurations can be found in ~gpd-arch/~ and ~gpd-arch-root/~. It includes stowing the generic ~arch/~ and ~arch-root/~ configs, but adds various tweaks to ensure the GPD behaves nicely on Arch Linux (screen rotation and resolution, touchscreen support, X11 configs etc).
 
 Clone this repo into your home directory.
 
