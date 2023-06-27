@@ -10,7 +10,7 @@ templatedir = "$HOME/.config/git/templates"
 
 [core]
 autocrlf = input
-editor = emacsclient
+editor = emacsclient -c
 hooksPath = "$HOME/.config/git/templates/hooks"
 
 [commit]
