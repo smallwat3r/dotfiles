@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
-# Connect to the running emacs server and open a new frame.
+#
+# Connect to the running emacs server and open a file/directory.
+# Create a new frame if none already exists, else open in the current
+# frame.
 
-emacsclient -a '' -c $@
+emacsclient -n -e '(> (length (frame-list)) 1)' | grep -q t
+
+if [ "$?" = '1' ]; then
+    emacsclient -c -n -a '' "$@"
+else
+    emacsclient -n -a '' "$@"
+fi
