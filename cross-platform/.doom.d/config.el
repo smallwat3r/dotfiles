@@ -102,9 +102,11 @@
 
 ;; Fonts
 (if IS-GPD
-    (setq doom-font "UW Ttyp0:pixelsize=18"
+    (setq my-font-size 18
+          doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)
           doom-variable-pitch-font doom-font)
-  (setq doom-font (font-spec :family "Triplicate A Code" :size 16)
+  (setq my-font-size 16
+        doom-font (font-spec :family "Triplicate A Code" :size my-font-size)
         doom-variable-pitch-font (font-spec :family "Triplicate A")))
 
 ;; Enable proportional fonts for text-mode buffers.
