@@ -43,13 +43,11 @@
 ;; https://github.com/jschaf/emacs-lorem-ipsum/commits/master
 (package! lorem-ipsum :pin "da75c155da327c7a7aedb80f5cfe409984787049")
 ;; https://github.com/wolray/symbol-overlay/commits/master
-(package! symbol-overlay :pin "c439b73a5f9713bb3dce98986b589bb901e22130")
+(package! symbol-overlay :pin "7c7d369bb749d96346b40cf714884a39aaa743f4")
 ;; https://github.com/redguardtoo/cliphist/commits/master
 (package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
-;; https://github.com/roman/golden-ratio.el/commits/master
-(package! golden-ratio :pin "007911d8a431b72670f5fe5f0e5b4380c2777a31")
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "2fa2c897659909ba9804baba72a108578d007677")
+(package! lsp-pyright :pin "54a2acddfdd7c3d31cb804a042305a3c6e60cf81")
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
 (package! bitwarden :pin "02d6410003a42e7fbeb4aa109aba949eea553706"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))

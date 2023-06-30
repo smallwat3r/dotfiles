@@ -302,29 +302,15 @@
 (use-package! symbol-overlay
   :commands (symbol-overlay-put symbol-overlay-remove-all)
   :init
-  (map! (:leader (:prefix "c"
-                  :desc "Add overlay"     "h" #'symbol-overlay-put
-                  :desc "Remove overlays" "H" #'symbol-overlay-remove-all)))
+  (map! :leader
+        :prefix "c"
+        :desc "Add overlay"     "h" #'symbol-overlay-put
+        :desc "Remove overlays" "H" #'symbol-overlay-remove-all)
   :config
   ;; Deactivate binding for `symbol-overlay-map-help', as it conflicts with evil.
   ;; Remap it to a capital 'H' instead.
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
-
-;; Conveniently resize windows
-;; doc: https://github.com/roman/golden-ratio.el
-(use-package! golden-ratio
-  :bind (:map evil-window-map
-         ("g" . golden-ratio)
-         ("G" . golden-ratio-mode))
-  :config
-  (setq golden-ratio-extra-commands
-        (append golden-ratio-extra-commands
-                '(evil-window-left
-                  evil-window-right
-                  evil-window-up
-                  evil-window-down
-                  ace-window))))
 
 ;; Flycheck pop-up tooltips
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
@@ -421,7 +407,7 @@
 ;; Narrowing searchs in dired
 (use-package! dired-narrow
   :after dired
-  :config (map! (:map dired-mode-map :n "/" #'dired-narrow-fuzzy)))
+  :config (map! :map dired-mode-map :n "/" #'dired-narrow-fuzzy))
 
 ;; Toggle directories with TAB in dired
 (use-package! dired-subtree
