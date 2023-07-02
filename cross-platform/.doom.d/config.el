@@ -76,7 +76,7 @@
 ;;; Editor
 
 (if IS-GPD
-    (setq doom-theme 'sanityinc-tomorrow-bright)
+    (setq doom-theme 'smallwat3r-dark)
   (setq doom-theme 'smallwat3r))
 
 ;; Be consistent across all themes with some major faces.
