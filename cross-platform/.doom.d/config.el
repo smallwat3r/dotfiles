@@ -75,7 +75,28 @@
 ;;
 ;;; Editor
 
-(setq doom-theme 'smallwat3r-dark)
+(defvar my-light-theme 'smallwat3r
+  "My light theme.")
+
+(defvar my-dark-theme 'smallwat3r-dark
+  "My dark theme.")
+
+(defvar my-current-theme my-dark-theme
+  "Current theme tracker. Default to dark theme.")
+
+(defun my-theme-toggle ()
+  "Toggle between dark and light theme."
+  (interactive)
+  (let ((theme nil))
+    (if (eq my-light-theme my-current-theme)
+        (setq theme my-dark-theme)
+      (setq theme my-light-theme))
+    (setq my-current-theme theme)
+    (load-theme theme t)))
+
+(global-set-key (kbd "<f5>") 'my-theme-toggle)
+
+(setq doom-theme my-current-theme)
 
 ;; Be consistent across all themes with some major faces.
 (custom-set-faces!
