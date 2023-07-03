@@ -42,10 +42,10 @@
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
 
  `(font-lock-doc-face ((t (:foreground "turquoise3" :slant italic))))
- `(font-lock-comment-face ((t (:foreground "yellow4" :slant italic))))
- `(font-lock-comment-delimiter-face ((t (:foreground "yellow4"))))
+ `(font-lock-comment-face ((t (:foreground "yellow3" :slant italic))))
+ `(font-lock-comment-delimiter-face ((t (:foreground "yellow3"))))
  `(font-lock-keyword-face ((t (:foreground "orchid"))))
- `(font-lock-string-face ((t (:foreground "turquoise4"))))
+ `(font-lock-string-face ((t (:foreground "turquoise3"))))
 
  `(makefile-targets ((t (:inherit font-lock-keyword-face))))
  `(nxml-element-local-name ((t (:inherit font-lock-keyword-face))))
@@ -74,13 +74,13 @@
  `(git-commit-summary ((t (:weight bold))))
  `(magit-diff-context-highlight ((t (:background unspecified))))
 
- `(term-color-white ((t (:foreground "grey41"))))
+ `(term-color-white ((t (:foreground "grey90"))))
  `(term-color-black ((t (:background "grey59"))))
- `(term-color-yellow ((t (:foreground "yellow4"))))
- `(term-color-blue ((t (:foreground "Darkblue"))))
- `(term-color-red ((t (:foreground "DarkRed"))))
- `(term-color-cyan ((t (:foreground "DarkCyan"))))
- `(term-color-green ((t (:foreground "chartreuse4"))))
+ `(term-color-yellow ((t (:foreground "yellow3"))))
+ `(term-color-blue ((t (:foreground "cyan3"))))
+ `(term-color-red ((t (:foreground "VioletRed3"))))
+ `(term-color-cyan ((t (:foreground "cyan1"))))
+ `(term-color-green ((t (:foreground "pale green"))))
 
  `(diredfl-dir-name ((t (:background unspecified :underline t))))
 

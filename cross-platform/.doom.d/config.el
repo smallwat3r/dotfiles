@@ -75,9 +75,7 @@
 ;;
 ;;; Editor
 
-(if IS-GPD
-    (setq doom-theme 'smallwat3r-dark)
-  (setq doom-theme 'smallwat3r))
+(setq doom-theme 'smallwat3r-dark)
 
 ;; Be consistent across all themes with some major faces.
 (custom-set-faces!
