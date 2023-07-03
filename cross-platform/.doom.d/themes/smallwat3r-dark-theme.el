@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022 Matthieu Petiteau <mpetiteau.pro@gmail.com>
 
-;; Homepage: https://github.com/smallwat3r/dotfiles/tree/master/cross-platform/.doom.d/themes/smallwat3r-theme.el
+;; Homepage: https://github.com/smallwat3r/dotfiles/tree/master/cross-platform/.doom.d/themes/smallwat3r-dark-theme.el
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "24.1"))
 ;; Licence: GPL-3.0
@@ -29,7 +29,7 @@
 (deftheme smallwat3r-dark "A simple dark theme.")
 
 (defgroup smallwat3r-dark-theme nil
-  "Smallwat3r theme."
+  "Smallwat3r dark theme."
   :group 'faces
   :prefix "smallwat3r-dark-"
   :tag "Smallwat3r dark theme")
@@ -40,7 +40,6 @@
  `(default ((t (:background "black" :foreground "white"))))
 
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
-
  `(font-lock-doc-face ((t (:foreground "turquoise3" :slant italic))))
  `(font-lock-comment-face ((t (:foreground "yellow3" :slant italic))))
  `(font-lock-comment-delimiter-face ((t (:foreground "yellow3"))))
