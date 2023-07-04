@@ -70,9 +70,6 @@
   :recipe (:host github :repo "smallwat3r/tubestatus.el"))
 (package! untappd
   :recipe (:host github :repo "smallwat3r/untappd.el"))
-;; Fork of purcell/color-theme-sanityinc-tomorrow with personal customisation.
-(package! color-theme-sanityinc-tomorrow-colors
-  :recipe (:host github :repo "smallwat3r/color-theme-sanityinc-tomorrow"))
 
 
 ;;
