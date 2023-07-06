@@ -117,7 +117,9 @@
   '(git-gutter-fr:modified :background "magenta" :foreground "magenta")
 
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
-  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold))
+  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
+
+  '(error :foreground "firebrick2" :weight bold))
 
 ;; Fonts
 (if IS-GPD
@@ -182,7 +184,8 @@
   (custom-set-faces!
     '((doom-modeline-buffer-file doom-modeline-project-dir doom-modeline-info)
       :foreground unspecified :weight bold)
-    '(doom-modeline-highlight :foreground "magenta" :weight bold)))
+    '(doom-modeline-highlight :foreground "magenta" :weight bold)
+    '(doom-modeline-compilation :inherit warning :slant italic)))
 
 ;; Evil-mode
 (after! evil
