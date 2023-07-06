@@ -181,7 +181,8 @@
 
   (custom-set-faces!
     '((doom-modeline-buffer-file doom-modeline-project-dir doom-modeline-info)
-      :foreground unspecified :weight bold)))
+      :foreground unspecified :weight bold)
+    '(doom-modeline-highlight :foreground "magenta" :weight bold)))
 
 ;; Evil-mode
 (after! evil
