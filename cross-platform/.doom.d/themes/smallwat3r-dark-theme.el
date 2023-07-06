@@ -83,8 +83,8 @@
 
  `(diredfl-dir-name ((t (:background unspecified :underline t))))
 
- `(org-block-begin-line ((t (:inherit font-lock-comment-face :background "cornsilk3" :extend t))))
- `(org-block-end-line ((t (:inherit font-lock-comment-face :background "cornsilk3" :extend t))))
+ `(org-block-begin-line ((t (:inherit font-lock-comment-face :background "gray20" :extend t))))
+ `(org-block-end-line ((t (:inherit font-lock-comment-face :background "gray20" :extend t))))
  `(org-code ((t (:inherit fixed-pitch :background "gray10"))))
  `(org-block ((t (:inherit fixed-pitch :background "gray10" :extend t))))
  `(org-indent ((t (:inherit (org-hide fixed-pitch)))))
@@ -95,14 +95,14 @@
  `(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
  `(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
 
- `(outline-1 ((t (:foreground "#531d86"))))
- `(outline-2 ((t (:foreground "#121e73"))))
- `(outline-3 ((t (:foreground "#bb0ecf"))))
- `(outline-4 ((t (:foreground "#7752d4"))))
- `(outline-5 ((t (:foreground "#2a0f49"))))
- `(outline-6 ((t (:foreground "#e5641c"))))
- `(outline-7 ((t (:foreground "#630800"))))
- `(outline-8 ((t (:foreground "#421919"))))
+ `(outline-1 ((t (:foreground "purple"))))
+ `(outline-2 ((t (:foreground "VioletRed3"))))
+ `(outline-3 ((t (:foreground "turquoise3"))))
+ `(outline-4 ((t (:foreground "coral"))))
+ `(outline-5 ((t (:foreground "firebrick"))))
+ `(outline-6 ((t (:foreground "yellow green"))))
+ `(outline-7 ((t (:foreground "pale green"))))
+ `(outline-8 ((t (:foreground "medium slate blue"))))
 
  `(markdown-header-face-1 ((t (:inherit outline-1))))
  `(markdown-header-face-2 ((t (:inherit outline-2))))

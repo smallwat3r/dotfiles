@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# List files with conflicts
+
+git diff --name-only --diff-filter=U --relative
