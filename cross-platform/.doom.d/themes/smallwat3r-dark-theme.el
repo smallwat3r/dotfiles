@@ -76,10 +76,10 @@
  `(term-color-white ((t (:foreground "grey90" :background "grey90"))))
  `(term-color-black ((t (:foreground "grey59" :background "grey59"))))
  `(term-color-yellow ((t (:foreground "yellow3" :background "yellow3"))))
- `(term-color-blue ((t (:foreground "cyan3" :background "cyan3"))))
+ `(term-color-blue ((t (:foreground "SteelBlue2" :background "SteelBlue2"))))
  `(term-color-red ((t (:foreground "VioletRed3" :background "VioletRed3"))))
- `(term-color-cyan ((t (:foreground "cyan1" :background "cyan1"))))
- `(term-color-green ((t (:foreground "pale green" :background "pale green"))))
+ `(term-color-cyan ((t (:foreground "cyan4" :background "cyan4"))))
+ `(term-color-green ((t (:foreground "green3" :background "green3"))))
  `(term-color-magenta ((t (:foreground "magenta" :background "magenta"))))
 
  `(term-color-bright-white ((t (:inherit term-color-white))))
