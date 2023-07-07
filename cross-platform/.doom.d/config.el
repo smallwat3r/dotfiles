@@ -685,6 +685,10 @@
   (setq vterm-max-scrollback 6000
         vterm-timer-delay 0.01)
 
+  ;; Improve rendering of colors.
+  (setq vterm-term-environment-variable "eterm-color")
+  (add-hook! 'vterm-mode-hook #'eterm-256color-mode)
+
   (defun my/vterm-delete-word ()
     "Binding function to delete a word."
     (interactive)
@@ -697,7 +701,7 @@
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
 ;; Terminal seems to be sporadically add a rogue % sign after commands, fix this.
-(setq-hook! 'term-mode-hook buffer-display-table (make-display-table))
+(setq-hook! 'vterm-mode-hook buffer-display-table (make-display-table))
 
 
 ;;

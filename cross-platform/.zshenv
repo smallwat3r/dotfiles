@@ -35,7 +35,12 @@ export EDITOR="${HOME}/.local/bin/ec"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-export TERM=xterm-256color
+
+if [[ "${INSIDE_EMACS}" = 'vterm' ]]; then
+  export TERM=eterm-color
+else
+  export TERM=xterm-256color
+fi
 
 export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'

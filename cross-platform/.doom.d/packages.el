@@ -59,6 +59,8 @@
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
 (package! pinentry :pin "0f42e75676cb01bd49c70ccc65bce98a882bffed")
+;; https://github.com/dieggsy/eterm-256color/commits/master
+(package! eterm-256color :pin "c9cfccef03e730f7ab2b407aada3df15ace1fe32")
 
 
 ;;

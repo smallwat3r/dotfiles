@@ -82,6 +82,16 @@
  `(term-color-red ((t (:foreground "DarkRed"))))
  `(term-color-cyan ((t (:foreground "DarkCyan"))))
  `(term-color-green ((t (:foreground "chartreuse4"))))
+ `(term-color-magenta ((t (:foreground "magenta"))))
+
+ `(term-color-bright-white ((t (:foreground "grey41"))))
+ `(term-color-bright-black ((t (:background "grey59"))))
+ `(term-color-bright-yellow ((t (:foreground "yellow4"))))
+ `(term-color-bright-blue ((t (:foreground "Darkblue"))))
+ `(term-color-bright-red ((t (:foreground "DarkRed"))))
+ `(term-color-bright-cyan ((t (:foreground "DarkCyan"))))
+ `(term-color-bright-green ((t (:foreground "chartreuse4"))))
+ `(term-color-bright-magenta ((t (:foreground "magenta"))))
 
  `(diredfl-dir-name ((t (:background unspecified :underline t))))
 
