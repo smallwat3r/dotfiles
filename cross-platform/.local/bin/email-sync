@@ -3,9 +3,9 @@
 # Syncing emails with mbsync and notmuch
 #
 # Can be triggerd every minute by a cron job with:
-#   */1 * * * * /usr/local/bin/email-sync >/tmp/email-sync-cron-stdout.log 2>/tmp/emai-sync-cron-stderr.log
+#   */1 * * * * /usr/local/bin/email-sync >/tmp/email-sync-cron-stdout.log 2>/tmp/email-sync-cron-stderr.log
 
-/usr/bin/killall mbsync &>/dev/null  # kill current running instances of mbsync
-/usr/local/bin/mbsync -a
-/usr/local/bin/notmuch new
+killall mbsync &>/dev/null  # kill current running instances of mbsync
+mbsync -a
+notmuch new
 exit 0
