@@ -222,8 +222,10 @@
 ;; doc: https://github.com/domtronn/all-the-icons.el
 (after! all-the-icons
   ;; Keep icons small.
-  (setq all-the-icons-scale-factor 0
-        all-the-icons-default-adjust 0))
+  (if IS-MAC
+      (setq all-the-icons-scale-factor 0)
+    (setq all-the-icons-scale-factor 0.8))
+  (setq all-the-icons-default-adjust 0))
 
 ;; Scrolling
 (if (boundp 'mac-mouse-wheel-smooth-scroll)
