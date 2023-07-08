@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Apply screen resolution to fit the GPD pocket 3
+#
+# You can generate resolutions with:
+#
+# cvt 700 1180 60
+# >> "704x1180_60.00"   69.25  704 752 824 944  1180 1183 1193 1224 -hsync +vsync
+#
+# cvt 600 1080 60
+# >> "600x1080_60.00"   53.00  600 640 696 792  1080 1083 1093 1120 -hsync +vsync
+#
+set -e
+
+xrandr --rmmode "600x1080_60.00" || true
+xrandr --newmode "600x1080_60.00"   53.00  600 640 696 792  1080 1083 1093 1120 -hsync +vsync
+xrandr --addmode DSI-1 "600x1080_60.00"
+xrandr --output DSI-1 --mode "600x1080_60.00"
