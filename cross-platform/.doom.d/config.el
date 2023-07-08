@@ -119,6 +119,7 @@
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
 
+  '(warning :foreground "OrangeRed3" :weight bold)
   '(error :foreground "firebrick2" :weight bold))
 
 ;; Fonts

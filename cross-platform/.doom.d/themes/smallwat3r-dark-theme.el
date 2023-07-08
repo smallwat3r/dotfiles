@@ -60,7 +60,7 @@
 
  `(region ((t (:background "dark cyan" :extend nil))))
 
- `(highlight ((t (:background "DarkSlateGray4"))))
+ `(highlight ((t (:background "SteelBlue4"))))
  `(lazy-highlight ((t (:background "dark goldenrod" :foreground "black" :weight bold))))
 
  `(whitespace-tab ((t (:background "PaleTurquoise4"))))
