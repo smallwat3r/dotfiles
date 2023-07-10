@@ -66,6 +66,7 @@ cp = cherry-pick
 cl = clone
 l = log
 fl = log -u
+rf = reflog
 
 [credential]
 helper = store
