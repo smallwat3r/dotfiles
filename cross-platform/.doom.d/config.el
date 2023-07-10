@@ -355,6 +355,15 @@
 ;; doc: https://github.com/wolray/symbol-overlay
 (use-package! symbol-overlay
   :commands (symbol-overlay-put symbol-overlay-remove-all)
+  :custom-face
+  (symbol-overlay-face-1 ((t (:foreground "black" :background "orchid2" :weight bold))))
+  (symbol-overlay-face-2 ((t (:foreground "black" :background "DarkOrange1" :weight bold))))
+  (symbol-overlay-face-3 ((t (:foreground "black" :background "chartreuse2" :weight bold))))
+  (symbol-overlay-face-4 ((t (:foreground "black" :background "turquoise2" :weight bold))))
+  (symbol-overlay-face-5 ((t (:foreground "black" :background "tomato" :weight bold))))
+  (symbol-overlay-face-6 ((t (:foreground "black" :background "peach puff" :weight bold))))
+  (symbol-overlay-face-7 ((t (:foreground "black" :background "medium violet red" :weight bold))))
+  (symbol-overlay-face-8 ((t (:foreground "black" :background "dark violet" :weight bold))))
   :init
   (map! :leader
         :prefix "c"
