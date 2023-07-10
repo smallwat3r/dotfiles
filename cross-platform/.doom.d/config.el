@@ -201,7 +201,33 @@
   ;; General evil mode settings.
   (setq evil-vsplit-window-right t
         evil-split-window-below t
-        evil-want-fine-undo t))
+        evil-want-fine-undo t)
+
+  (map! :map evil-insert-state-map
+        "C-h" #'evil-backward-char
+        "C-l" #'evil-forward-char
+        "C-k" #'evil-previous-line
+        "C-j" #'evil-next-line
+
+        :map evil-visual-state-map
+        ";f"  #'+format/region
+
+        :map evil-normal-state-map
+        "C-;"   #'my/scroll-up
+        "C-l"   #'my/scroll-down
+        "C-1"   #'my/scroll-up
+        "C-2"   #'my/scroll-down
+        "S-C-h" #'my/enlarge-window-horizontally
+        "S-C-l" #'my/shrink-window-horizontally
+        "S-C-k" #'my/enlarge-window
+        "S-C-j" #'my/shrink-window
+        "M-SPC" #'cycle-spacing
+        "M-o"   #'delete-blank-lines
+        ";d"    #'my/save-and-close-buffer
+        ";w"    #'my/save-buffer
+        "C-k"   #'join-line
+        "B"     #'beginning-of-line-text
+        "E"     #'end-of-line))
 
 ;; Evil visual hints when yanking, pasting, deleting etc.
 ;; doc: https://github.com/edkolev/evil-goggles
@@ -338,7 +364,11 @@
   ;; Deactivate binding for `symbol-overlay-map-help', as it conflicts with evil.
   ;; Remap it to a capital 'H' instead.
   (define-key symbol-overlay-map (kbd "h") nil)
-  (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help))
+  (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help)
+  ;; Other overlay bindings I don't use which could conflict with evil operations.
+  (define-key symbol-overlay-map (kbd "w") nil)
+  (define-key symbol-overlay-map (kbd "t") nil)
+  (define-key symbol-overlay-map (kbd "i") nil))
 
 ;; Flycheck pop-up tooltips
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
@@ -583,7 +613,15 @@
     flycheck-pylintrc "~/.config/pylintrc"
     flycheck-python-mypy-config "~/.config/mypy/config"
     flycheck-python-mypy-executable "mypy"
-    flycheck-python-pyright-executable "pyright"))
+    flycheck-python-pyright-executable "pyright")
+
+  (map! (:map python-mode-map
+              (:leader
+               (:localleader
+                :desc "Open Python repl" "r" #'my/open-python-repl
+                (:prefix ("e" . "env")
+                 :desc "Deactivate venv" "d" #'my/deactivate-python-venv
+                 :desc "Activate venv"   "a" #'my/activate-closest-python-venv))))))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
@@ -695,7 +733,15 @@
   (defun my/vterm-delete-word ()
     "Binding function to delete a word."
     (interactive)
-    (vterm-send-key (kbd "C-w"))))
+    (vterm-send-key (kbd "C-w")))
+
+  (map!
+   (:map vterm-mode-map
+    :n "B"          #'vterm-beginning-of-line
+    :n "<return>"   #'evil-insert-resume
+    "<C-backspace>" #'my/vterm-delete-word
+    :in "C-k"       #'vterm-send-up
+    :in "C-j"       #'vterm-send-down)))
 
 (setq vterm-always-compile-module t)
 
@@ -896,7 +942,7 @@
 ;; included here, when they are specific to packages and cannot be bundled outside
 ;; of the package configuration.
 ;;
-;; It's important for these to be loaded in last so it makes sure these are not
+;; It's important for these to be loaded (almost) in last so it makes sure these are not
 ;; getting overriden.
 
 ;; Disable bindings, due to other conflicts (specially coming from Hammerspoon).
@@ -908,49 +954,6 @@
  ;; an English UK keyboard. Re-enable this behaviour.
  (:map key-translation-map
   "M-3" "#")
-
- (:map evil-insert-state-map
-  "C-h" #'evil-backward-char
-  "C-l" #'evil-forward-char
-  "C-k" #'evil-previous-line
-  "C-j" #'evil-next-line)
-
- (:map evil-visual-state-map
-  ";f"  #'+format/region)
-
- (:map evil-normal-state-map
-  "C-;"   #'my/scroll-up
-  "C-l"   #'my/scroll-down
-  "C-1"   #'my/scroll-up
-  "C-2"   #'my/scroll-down
-  "S-C-h" #'my/enlarge-window-horizontally
-  "S-C-l" #'my/shrink-window-horizontally
-  "S-C-k" #'my/enlarge-window
-  "S-C-j" #'my/shrink-window
-  "M-SPC" #'cycle-spacing
-  "M-o"   #'delete-blank-lines
-  ";d"    #'my/save-and-close-buffer
-  ";w"    #'my/save-buffer
-  "C-k"   #'join-line
-  "B"     #'beginning-of-line-text
-  "E"     #'end-of-line)
-
- (:after python
-  (:map python-mode-map
-   (:leader
-    (:localleader
-     :desc "Open Python repl" "r" #'my/open-python-repl
-     (:prefix ("e" . "env")
-      :desc "Deactivate venv" "d" #'my/deactivate-python-venv
-      :desc "Activate venv"   "a" #'my/activate-closest-python-venv)))))
-
- (:after vterm
-  (:map vterm-mode-map
-   :n "B"          #'vterm-beginning-of-line
-   :n "<return>"   #'evil-insert-resume
-   "<C-backspace>" #'my/vterm-delete-word
-   :in "C-k"       #'vterm-send-up
-   :in "C-j"       #'vterm-send-down))
 
  (:leader
   "§" #'other-frame
