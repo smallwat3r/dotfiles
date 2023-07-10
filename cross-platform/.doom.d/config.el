@@ -123,7 +123,7 @@
   '(error :foreground "firebrick2" :weight bold))
 
 ;; Fonts
-(if IS-GPD
+(if IS-LINUX
     (setq my-font-size 18
           doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)
           doom-variable-pitch-font doom-font)
@@ -249,8 +249,8 @@
 
 (function-put 'my-browse-url-qutebrowser 'browse-url-browser-kind 'external)
 
-;; Browse stuff in qutebrowser as default when using the GPD.
-(if (and IS-GPD (executable-find "qutebrowser"))
+;; Browse stuff in qutebrowser as default when using Linux.
+(if (and IS-LINUX (executable-find "qutebrowser"))
     (setq browse-url-browser-function #'my-browse-url-qutebrowser))
 
 ;; Magit
@@ -890,49 +890,6 @@
 
 
 ;;
-;;; Testing and experiments
-
-;; I use the below commands when testing/debugging my Emacs config. I'm sure
-;; there are better ways or tools to do most of this, but hey, it works for me!
-
-(defun my-echo-command-name-hook ()
-  "Echo live command names."
-  (unless (or (eq this-command 'self-insert-command)
-              (eq this-command 'next-line))
-    (message "%s" this-command)))
-
-(define-minor-mode my-debug-mode
-  "Custom debug mode.")
-
-(add-hook! 'post-command-hook
-  (if (bound-and-true-p my-debug-mode)
-      (my-echo-command-name-hook)))
-
-(defun my/adapt-font-size (&optional frame)
-  "Adjust the FRAME font size depending on the screen resolution.
-It calculate the PPI (Pixel Per Inch), and set the FRAME height depending on
-the value.
-"
-  (let* ((attrs (frame-monitor-attributes frame))
-         (size (alist-get 'mm-size attrs))
-         (geometry (alist-get 'geometry attrs))
-         (ppi (/ (caddr geometry) (/ (car size) 25.4))))
-    (if (< ppi 100)
-        ;; Really small screens.
-        (set-face-attribute 'default frame :height 160)
-      (set-face-attribute 'default frame :height 130))))
-
-;; This is really useful when using Emacs with multiple monitors with different
-;; resolutions.
-;; Only allow this when running on the GPD, which as a really small screen, so
-;; the difference will be huge if connected to external monitors.
-; (when IS-GPD
-(when nil
-  (add-function :after after-focus-change-function #'my/adapt-font-size)
-  (add-hook 'after-make-frame-functions #'my/adapt-font-size))
-
-
-;;
 ;;; Bindings
 
 ;; Bundle most of my custom bindings for using Doom Emacs. Some bindings are not
@@ -1032,3 +989,47 @@ the value.
 
   (:prefix "s"
    :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point)))
+
+
+;;
+;;; Testing and experiments
+
+;; I use the below commands when testing/debugging my Emacs config. I'm sure
+;; there are better ways or tools to do most of this, but hey, it works for me!
+
+(defun my-echo-command-name-hook ()
+  "Echo live command names."
+  (unless (or (eq this-command 'self-insert-command)
+              (eq this-command 'next-line))
+    (message "%s" this-command)))
+
+(define-minor-mode my-debug-mode
+  "Custom debug mode.")
+
+(add-hook! 'post-command-hook
+  (if (bound-and-true-p my-debug-mode)
+      (my-echo-command-name-hook)))
+
+(defun my/adapt-font-size (&optional frame)
+  "Adjust the FRAME font size depending on the screen resolution.
+It calculate the PPI (Pixel Per Inch), and set the FRAME height depending on
+the value.
+"
+  (let* ((attrs (frame-monitor-attributes frame))
+         (size (alist-get 'mm-size attrs))
+         (geometry (alist-get 'geometry attrs))
+         (ppi (/ (caddr geometry) (/ (car size) 25.4))))
+    (if (< ppi 100)
+        ;; Really small screens.
+        (set-face-attribute 'default frame :height 160)
+      (set-face-attribute 'default frame :height 130))))
+
+(define-minor-mode my-adapt-font-from-monitor-mode
+  "Weither to adapt the font size depending on the monitor resolution.
+This is really useful when using Emacs with external monitors with a very different
+resolution.
+")
+
+(if (bound-and-true-p my-adapt-font-from-monitor-mode)
+  (add-function :after after-focus-change-function #'my/adapt-font-size)
+  (add-hook 'after-make-frame-functions #'my/adapt-font-size))
