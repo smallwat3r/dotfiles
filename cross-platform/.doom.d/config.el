@@ -186,6 +186,7 @@
     '((doom-modeline-buffer-file doom-modeline-project-dir doom-modeline-info)
       :foreground unspecified :weight bold)
     '(doom-modeline-highlight :foreground "magenta" :weight bold)
+    '(doom-modeline-evil-insert-state :foreground "green4" :weight bold)
     '(doom-modeline-compilation :inherit warning :slant italic)))
 
 ;; Evil-mode
