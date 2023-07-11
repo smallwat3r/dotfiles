@@ -11,6 +11,7 @@ path=(
   /usr/local/sbin
   /usr/bin
   /bin
+  /sbin
   /usr/sbin
   "${HOME}"/.local/bin
 )
