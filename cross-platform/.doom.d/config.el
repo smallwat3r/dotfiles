@@ -474,7 +474,9 @@
 ;; Narrowing searchs in dired
 (use-package! dired-narrow
   :after dired
-  :config (map! :map dired-mode-map :n "/" #'dired-narrow-fuzzy))
+  :config
+  (map! :map dired-mode-map
+        :n "/" #'dired-narrow-fuzzy))
 
 ;; Toggle directories with TAB in dired
 (use-package! dired-subtree
@@ -607,7 +609,7 @@
   (map! :map flycheck-mode-map
         :leader
         :localleader
-        :desc "Flycheck list errors" "f"  #'flycheck-list-errors))
+        :desc "Flycheck list errors" "f" #'flycheck-list-errors))
 
 ;; Flycheck pop-up tooltips
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
