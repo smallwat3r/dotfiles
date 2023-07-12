@@ -1,0 +1,31 @@
+# E: pycodestyle
+# F: Pyflakes
+# B: Flake8-bugbear
+select = ["E", "F", "B"]
+
+cache-dir = "~/.cache/ruff"
+
+# Never enforce `E501` (line length violations).
+ignore = ["E501"]
+
+target-version = "py310"
+
+exclude = [
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".mypy_cache",
+    ".nox",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".env",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "build",
+    "dist",
+    "node_modules",
+    "env",
+    "venv",
+]

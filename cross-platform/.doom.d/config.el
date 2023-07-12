@@ -380,11 +380,6 @@
   (define-key symbol-overlay-map (kbd "t") nil)
   (define-key symbol-overlay-map (kbd "i") nil))
 
-;; Flycheck pop-up tooltips
-;; doc: https://github.com/flycheck/flycheck-popup-tip
-(after! flycheck-popup-tip
-  (setq flycheck-popup-tip-error-prefix "* "))
-
 ;; Imenu list
 ;; doc: https://github.com/bmag/imenu-list
 (use-package! imenu-list
@@ -577,6 +572,41 @@
 ;; if we need to use it.
 (remove-hook! (text-mode yaml-mode) #'spell-fu-mode)
 
+;; Flycheck
+;; doc: https://github.com/flycheck/flycheck
+(after! flycheck
+  ;; Add support for Ruff Python linter.
+  (defvar my-ruff-global-config "~/.config/ruff.toml"
+    "Path of global Ruff configuration file.")
+
+  (flycheck-define-checker my-python-ruff
+    "A Python syntax and style checker using the ruff utility."
+    :command ("ruff"
+              "check"
+              "--format=text"
+              (eval (format "--config=%s" my-ruff-global-config))
+              (eval (when buffer-file-name
+                      (concat "--stdin-filename=" buffer-file-name)))
+              "-")
+    :standard-input t
+    :error-filter (lambda (errors)
+                    (let ((errors (flycheck-sanitize-errors errors)))
+                      (seq-map #'flycheck-flake8-fix-error-level errors)))
+    :error-patterns
+    ((warning line-start
+              (file-name) ":" line ":" (optional column ":") " "
+              (id (one-or-more (any alpha)) (one-or-more digit)) " "
+              (message (one-or-more not-newline))
+              line-end))
+    :modes python-mode)
+
+  (add-to-list 'flycheck-checkers 'my-python-ruff))
+
+;; Flycheck pop-up tooltips
+;; doc: https://github.com/flycheck/flycheck-popup-tip
+(after! flycheck-popup-tip
+  (setq flycheck-popup-tip-error-prefix "* "))
+
 ;; LSP python
 (use-package! lsp-pyright
   :after lsp-mode
@@ -619,8 +649,7 @@
           dap-python-executable python-shell-interpreter))
 
   (setq-hook! 'python-mode-hook
-    flycheck-checker 'python-pylint
-    flycheck-pylintrc "~/.config/pylintrc"
+    flycheck-checker 'my-python-ruff
     flycheck-python-mypy-config "~/.config/mypy/config"
     flycheck-python-mypy-executable "mypy"
     flycheck-python-pyright-executable "pyright")
