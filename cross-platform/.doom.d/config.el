@@ -666,10 +666,8 @@
   (map! :map python-mode-map
         :leader
         :localleader
-        :desc "Open Python repl" "r" #'my/open-python-repl
-        :prefix ("e" . "env")
-        :desc "Deactivate venv" "d" #'my/deactivate-python-venv
-        :desc "Activate venv"   "a" #'my/activate-closest-python-venv))
+        :desc "Deactivate venv" "e d" #'my/deactivate-python-venv
+        :desc "Activate venv"   "e a" #'my/activate-closest-python-venv))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
