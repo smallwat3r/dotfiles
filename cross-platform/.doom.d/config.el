@@ -119,6 +119,7 @@
   '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
   '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
 
+  '(success :foreground "green4" :weight bold)
   '(warning :foreground "OrangeRed3" :weight bold)
   '(error :foreground "firebrick2" :weight bold))
 
@@ -355,16 +356,8 @@
 ;; Overlay keywords
 ;; doc: https://github.com/wolray/symbol-overlay
 (use-package! symbol-overlay
-  :commands (symbol-overlay-put symbol-overlay-remove-all)
-  :custom-face
-  (symbol-overlay-face-1 ((t (:foreground "black" :background "orchid2" :weight bold))))
-  (symbol-overlay-face-2 ((t (:foreground "black" :background "DarkOrange1" :weight bold))))
-  (symbol-overlay-face-3 ((t (:foreground "black" :background "chartreuse2" :weight bold))))
-  (symbol-overlay-face-4 ((t (:foreground "black" :background "turquoise2" :weight bold))))
-  (symbol-overlay-face-5 ((t (:foreground "black" :background "tomato" :weight bold))))
-  (symbol-overlay-face-6 ((t (:foreground "black" :background "peach puff" :weight bold))))
-  (symbol-overlay-face-7 ((t (:foreground "black" :background "medium violet red" :weight bold))))
-  (symbol-overlay-face-8 ((t (:foreground "black" :background "dark violet" :weight bold))))
+  :commands (symbol-overlay-put
+             symbol-overlay-remove-all)
   :init
   (map! :leader
         :prefix "c"
@@ -375,10 +368,21 @@
   ;; Remap it to a capital 'H' instead.
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help)
+
   ;; Other overlay bindings I don't use which could conflict with evil operations.
   (define-key symbol-overlay-map (kbd "w") nil)
   (define-key symbol-overlay-map (kbd "t") nil)
-  (define-key symbol-overlay-map (kbd "i") nil))
+  (define-key symbol-overlay-map (kbd "i") nil)
+
+  (custom-set-faces!
+    (symbol-overlay-face-1 :foreground "black" :background "orchid2" :weight bold)
+    (symbol-overlay-face-2 :foreground "black" :background "DarkOrange1" :weight bold)
+    (symbol-overlay-face-3 :foreground "black" :background "chartreuse2" :weight bold)
+    (symbol-overlay-face-4 :foreground "black" :background "turquoise2" :weight bold)
+    (symbol-overlay-face-5 :foreground "black" :background "tomato" :weight bold)
+    (symbol-overlay-face-6 :foreground "black" :background "peach puff" :weight bold)
+    (symbol-overlay-face-7 :foreground "black" :background "medium violet red" :weight bold)
+    (symbol-overlay-face-8 :foreground "black" :background "dark violet" :weight bold)))
 
 ;; Imenu list
 ;; doc: https://github.com/bmag/imenu-list
@@ -475,16 +479,14 @@
 ;; Toggle directories with TAB in dired
 (use-package! dired-subtree
   :after dired
-  :bind (:map dired-mode-map
-         ("<tab>" . dired-subtree-toggle)
-         ("<backtab>" . dired-subtree-cycle))
-  :custom-face
-  (dired-subtree-depth-1-face ((t (:background unspecified))))
-  (dired-subtree-depth-2-face ((t (:background unspecified))))
-  (dired-subtree-depth-3-face ((t (:background unspecified))))
-  (dired-subtree-depth-4-face ((t (:background unspecified))))
-  (dired-subtree-depth-5-face ((t (:background unspecified))))
-  (dired-subtree-depth-6-face ((t (:background unspecified)))))
+  :config
+  (map! :map dired-mode-map
+        "<tab>" #'dired-subtree-toggle
+        "<backtab>" #'dired-subtree-cycle)
+
+  (custom-set-faces!
+   `(,(cl-loop for i from 0 to 6 collect (intern (format "dired-subtree-depth-%d-face" i)))
+     :background unspecified)))
 
 ;; Treemacs
 ;; doc: https://github.com/Alexander-Miller/treemacs
@@ -600,7 +602,12 @@
               line-end))
     :modes python-mode)
 
-  (add-to-list 'flycheck-checkers 'my-python-ruff))
+  (add-to-list 'flycheck-checkers 'my-python-ruff)
+
+  (map! :map flycheck-mode-map
+        :leader
+        :localleader
+        :desc "Flycheck list errors" "f"  #'flycheck-list-errors))
 
 ;; Flycheck pop-up tooltips
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
@@ -654,13 +661,13 @@
     flycheck-python-mypy-executable "mypy"
     flycheck-python-pyright-executable "pyright")
 
-  (map! (:map python-mode-map
-              (:leader
-               (:localleader
-                :desc "Open Python repl" "r" #'my/open-python-repl
-                (:prefix ("e" . "env")
-                 :desc "Deactivate venv" "d" #'my/deactivate-python-venv
-                 :desc "Activate venv"   "a" #'my/activate-closest-python-venv))))))
+  (map! :map python-mode-map
+        :leader
+        :localleader
+        :desc "Open Python repl" "r" #'my/open-python-repl
+        :prefix ("e" . "env")
+        :desc "Deactivate venv" "d" #'my/deactivate-python-venv
+        :desc "Activate venv"   "a" #'my/activate-closest-python-venv))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
@@ -774,13 +781,12 @@
     (interactive)
     (vterm-send-key (kbd "C-w")))
 
-  (map!
-   (:map vterm-mode-map
-    :n "B"          #'vterm-beginning-of-line
-    :n "<return>"   #'evil-insert-resume
-    "<C-backspace>" #'my/vterm-delete-word
-    :in "C-k"       #'vterm-send-up
-    :in "C-j"       #'vterm-send-down)))
+  (map! :map vterm-mode-map
+        :n "B"          #'vterm-beginning-of-line
+        :n "<return>"   #'evil-insert-resume
+        "<C-backspace>" #'my/vterm-delete-word
+        :in "C-k"       #'vterm-send-up
+        :in "C-j"       #'vterm-send-down))
 
 (setq vterm-always-compile-module t)
 
@@ -884,11 +890,12 @@
              lorem-ipsum-insert-sentences
              lorem-ipsum-insert-list)
   :init
-  (map! (:leader
-         (:prefix "i" (:prefix ("l" . "lorem")
-                       :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
-                       :desc "Insert sentences"  "s" #'lorem-ipsum-insert-sentences
-                       :desc "Insert list"       "l" #'lorem-ipsum-insert-list)))))
+  (map! :leader
+        :prefix "i"
+        (:prefix ("l" . "lorem")
+         :desc "Insert paragraphs" "p" #'lorem-ipsum-insert-paragraphs
+         :desc "Insert sentences"  "s" #'lorem-ipsum-insert-sentences
+         :desc "Insert list"       "l" #'lorem-ipsum-insert-list)))
 
 ;; Untappd
 ;; doc: https://github.com/smallwat3r/untappd.el
@@ -906,9 +913,10 @@
 (use-package! cliphist
   :commands (cliphist-select-item cliphist-paste-item)
   :init
-  (map! (:leader ((:prefix ("C" . "clipboard")
-                   :desc "Select item" "s" #'cliphist-select-item
-                   :desc "Paste item"  "p" #'cliphist-paste-item)))))
+  (map! :leader
+        (:prefix ("C" . "clipboard")
+         :desc "Select item" "s" #'cliphist-select-item
+         :desc "Paste item"  "p" #'cliphist-paste-item)))
 
 ;; Bitwarden
 ;; doc: https://github.com/seanfarley/emacs-bitwarden
@@ -918,11 +926,12 @@
   (bitwarden-automatic-unlock (lambda ()
                                 (auth-source-pass-get 'secret "bitwarden/password")))
   :init
-  (map! (:leader (:prefix "P"
-                  :desc "Bitwarden login"    "l" #'bitwarden-login
-                  :desc "Bitwarden unlock"   "u" #'bitwarden-unlock
-                  :desc "Bitwarden lock"     "L" #'bitwarden-lock
-                  :desc "Bitwarden list all" "b" #'bitwarden-list-all))))
+  (map! :leader
+        (:prefix "P"
+         :desc "Bitwarden login"    "l" #'bitwarden-login
+         :desc "Bitwarden unlock"   "u" #'bitwarden-unlock
+         :desc "Bitwarden lock"     "L" #'bitwarden-lock
+         :desc "Bitwarden list all" "b" #'bitwarden-list-all)))
 
 ;; Elfeed, web feed reader (RSS)
 ;; doc: https://github.com/skeeto/elfeed
@@ -959,7 +968,7 @@
   ;; Add private Github RSS feed to list of feeds. This needs to fetch my Github RSS token,
   ;; so this is done separately.
   (setq my-github-rss-feed (format "https://github.com/smallwat3r.private.atom?token=%s"
-                              (auth-source-pass-get 'secret "github/rss/token")))
+                                   (auth-source-pass-get 'secret "github/rss/token")))
   (add-to-list 'elfeed-feeds (list my-github-rss-feed))
 
   ;; Rename some feeds titles.
@@ -992,7 +1001,7 @@
  ;; For some reason, Emacs wouldn't print # on ^3, even when configured with
  ;; an English UK keyboard. Re-enable this behaviour.
  (:map key-translation-map
-  "M-3" "#")
+       "M-3" "#")
 
  (:leader
   "§" #'other-frame
@@ -1073,5 +1082,5 @@ resolution.
 ")
 
 (if (bound-and-true-p my-adapt-font-from-monitor-mode)
-  (add-function :after after-focus-change-function #'my/adapt-font-size)
+    (add-function :after after-focus-change-function #'my/adapt-font-size)
   (add-hook 'after-make-frame-functions #'my/adapt-font-size))
