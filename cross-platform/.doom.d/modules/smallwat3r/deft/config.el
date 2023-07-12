@@ -6,7 +6,10 @@
 ;; doc: https://github.com/jrblevin/deft/
 (use-package! deft
   :commands deft
-  :init (map! (:leader (:prefix "n" :desc "Open deft" "d" #'deft)))
+  :init
+  (map! :leader
+        :prefix "n"
+        :desc "Open deft" "d" #'deft)
   :custom
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
@@ -18,14 +21,13 @@
       (case-fn . downcase)))
   (deft-use-filename-as-title t)
   :config
-  (map!
-   (:map deft-mode-map
-         (:leader
-          (:localleader
-           "RET" #'deft-new-file-named
-           "c"   #'deft-filter-clear
-           "d"   #'deft-delete-file
-           "f"   #'deft-find-file
-           "g"   #'deft-refresh
-           "n"   #'deft-new-file
-           "r"   #'deft-rename-file)))))
+  (map! :map deft-mode-map
+        :leader
+        :localleader
+        "RET" #'deft-new-file-named
+        "c"   #'deft-filter-clear
+        "d"   #'deft-delete-file
+        "f"   #'deft-find-file
+        "g"   #'deft-refresh
+        "n"   #'deft-new-file
+        "r"   #'deft-rename-file))
