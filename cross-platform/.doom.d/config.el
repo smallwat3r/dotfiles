@@ -801,8 +801,8 @@
 ;;
 ;;; GPG
 
-(pinentry-start)
-(shell-command "gpg-connect-agent /bye")
+(use-package! pinentry
+  :config (pinentry-start))
 
 
 ;;
