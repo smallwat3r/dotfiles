@@ -605,7 +605,7 @@
 ;; Flycheck pop-up tooltips
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
 (after! flycheck-popup-tip
-  (setq flycheck-popup-tip-error-prefix "* "))
+  (setq flycheck-popup-tip-error-prefix "(!) "))
 
 ;; LSP python
 (use-package! lsp-pyright
