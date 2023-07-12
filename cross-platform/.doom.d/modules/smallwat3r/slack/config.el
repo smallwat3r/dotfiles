@@ -15,22 +15,6 @@
   :custom
   (slack-buffer-emojify t)
   (slack-prefer-current-team t)
-  ;; :custom-face
-  ;; (slack-message-mention-keyword-face
-  ;;  ((t (:box (:line-width 2 :style released-button)
-  ;;       :background "LightCyan1"
-  ;;       :foreground "turquoise3"))))
-  ;; (slack-message-mention-face
-  ;;  ((t (:box (:line-width 2 :style released-button)
-  ;;       :background "LightCyan1"
-  ;;       :foreground "turquoise2"))))
-  ;; (slack-mrkdwn-list-face ((t (:foreground unspecified))))
-  ;; (slack-mrkdwn-code-face
-  ;;  ((t (:box (:line-width 2 :style released-button)
-  ;;       :background "lightgrey"
-  ;;       :foreground "DarkMagenta"))))
-  ;; (slack-mrkdwn-code-block-face
-  ;;  ((t (:background "lightgrey" :foreground "black" :extend t))))
   :config
   (slack-register-team
    :default t
