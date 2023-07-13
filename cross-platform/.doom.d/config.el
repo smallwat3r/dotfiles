@@ -392,14 +392,15 @@
 ;;      https://docs.projectile.mx/projectile/index.html
 (after! projectile
   (setq projectile-indexing-method 'alien
-        projectile-sort-order 'recentf
-        projectile-mode-line-function '(lambda () (format " P[%s]" (projectile-project-name))))
-
-  (setq projectile-globally-ignored-directories
-        '(".npm" ".poetry" "GoogleDrive" ".mypy_cache" "Library" ".git" "__pycache__"
-          "node_modules" ".idea" ".vscode" ".svn" ".tox" ".cache"))
-
-  (setq projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc"))
+        ;; Allow projectile to automatically find projects from any of these directories.
+        projectile-project-search-path '("~/dotfiles/" "~/code/")
+        ;; Stuff to ignore.
+        projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc")
+        projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups" "/Applications"
+                                      "/Volumes/GoogleDrive")
+        projectile-globally-ignored-directories '(".npm" ".poetry" "GoogleDrive" ".mypy_cache"
+                                                  "Library" ".git" "__pycache__" "node_modules"
+                                                  ".idea" ".vscode" ".svn" ".tox" ".cache"))
 
   ;; Make the projectile command use fd with some more sensitive defaults, as I noticed some
   ;; performance issues with the one used by Doom or projectile natively.
@@ -408,14 +409,7 @@
                                   projectile-globally-ignored-directories))))
     (setq projectile-generic-command
           (format "%s" (cons "fd . -0 -H -c never -t file -t symlink --strip-cwd-prefix"
-                             excludes))))
-
-  ;; Ignore all projects from within these directories.
-  (setq projectile-ignored-projects
-        '("~/" "/tmp" "~/Downloads" "~/backups" "/Applications" "/Volumes/GoogleDrive"))
-
-  ;; Allow projectile to automatically find projects from any of these directories.
-  (setq projectile-project-search-path '("~/dotfiles/" "~/projects/" "~/code/" "~/github/")))
+                             excludes)))))
 
 
 ;;
