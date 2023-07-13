@@ -3,11 +3,7 @@
 ;; Scratch buffers
 ;; doc: https://github.com/ieure/scratch-el
 (use-package! scratch
-  :commands (scratch)
-  :hook
-  (org-mode . my/scratch-buffer-org-mode)
-  (sh-mode . my/scratch-buffer-sh-mode)
-  (restclient-mode . my/scratch-buffer-restclient-mode)
+  :commands scratch
   :config
   (defun my/scratch--add-buffer-header (text)
     "Open scratch buffer with a TEXT header."
@@ -21,8 +17,14 @@
   (defun my/scratch-buffer-org-mode ()
     (my/scratch--add-buffer-header "#+TITLE: Scratch file"))
 
+  (add-hook! 'org-mode-hook #'my/scratch-buffer-org-mode)
+
   (defun my/scratch-buffer-sh-mode ()
     (my/scratch--add-buffer-header "#!/usr/bin/env bash"))
 
+  (add-hook! 'sh-mode-hook #'my/scratch-buffer-sh-mode)
+
   (defun my/scratch-buffer-restclient-mode ()
-    (my/scratch--add-buffer-header "#\n# restclient\n#")))
+    (my/scratch--add-buffer-header "#\n# restclient\n#"))
+
+  (add-hook! 'restclient-mode-hook #'my/scratch-buffer-restclient-mode))
