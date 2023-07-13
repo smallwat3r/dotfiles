@@ -693,13 +693,18 @@
 (setq-hook! 'go-mode-hook indent-tabs-mode t)
 
 ;; Web mode
-(setq-hook! 'web-mode-hook
-  tab-width 2
-  web-mode-markup-indent-offset 2
-  web-mode-css-indent-offset 2
-  web-mode-script-padding 2
-  web-mode-style-padding 2
-  +lsp-company-backends '(company-css company-web-html company-yasnippet company-files))
+(defun my-web-mode-configs ()
+  (setq-local tab-width 2
+              web-mode-markup-indent-offset 2
+              web-mode-css-indent-offset 2
+              web-mode-script-padding 2
+              web-mode-style-padding 2
+              +lsp-company-backends '(company-css
+                                      company-web-html
+                                      company-yasnippet
+                                      company-files)))
+
+(add-hook! 'web-mode-hook #'my-web-mode-configs)
 
 ;; Disable formatters for html and web modes
 (setq-hook! '(html-mode-hook web-mode-hook)
@@ -787,6 +792,14 @@
         "<C-backspace>" #'my/vterm-delete-word
         :in "C-k"       #'vterm-send-up
         :in "C-j"       #'vterm-send-down))
+
+(map! :leader
+      :prefix "o"
+      :desc "Terminal"               "1" #'my/terminal-here
+      :desc "Vterm at root"          "T" #'+vterm/here
+      :desc "Toggle vterm at root"   "t" #'+vterm/toggle
+      :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
+      :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer)
 
 (setq vterm-always-compile-module t)
 
@@ -914,9 +927,9 @@
   :commands (cliphist-select-item cliphist-paste-item)
   :init
   (map! :leader
-        (:prefix ("C" . "clipboard")
-         :desc "Select item" "s" #'cliphist-select-item
-         :desc "Paste item"  "p" #'cliphist-paste-item)))
+        :prefix ("C" . "clipboard")
+        :desc "Select item" "s" #'cliphist-select-item
+        :desc "Paste item"  "p" #'cliphist-paste-item))
 
 ;; Bitwarden
 ;; doc: https://github.com/seanfarley/emacs-bitwarden
@@ -927,11 +940,11 @@
                                 (auth-source-pass-get 'secret "bitwarden/password")))
   :init
   (map! :leader
-        (:prefix "P"
-         :desc "Bitwarden login"    "l" #'bitwarden-login
-         :desc "Bitwarden unlock"   "u" #'bitwarden-unlock
-         :desc "Bitwarden lock"     "L" #'bitwarden-lock
-         :desc "Bitwarden list all" "b" #'bitwarden-list-all)))
+        :prefix "P"
+        :desc "Bitwarden login"    "l" #'bitwarden-login
+        :desc "Bitwarden unlock"   "u" #'bitwarden-unlock
+        :desc "Bitwarden lock"     "L" #'bitwarden-lock
+        :desc "Bitwarden list all" "b" #'bitwarden-list-all))
 
 ;; Elfeed, web feed reader (RSS)
 ;; doc: https://github.com/skeeto/elfeed
@@ -1016,17 +1029,10 @@
   (:prefix "f"
    :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
 
-  (:prefix "o"
-   :desc "Terminal"               "1" #'my/terminal-here
-   :desc "Link at point"          "l" #'browse-url-at-point
-   :desc "Vterm at root"          "T" #'+vterm/here
-   :desc "Toggle vterm at root"   "t" #'+vterm/toggle
-   :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
-   :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer
-
-   (:prefix ("s" . "Scratch buffer")
-    :desc "Current mode" "o" #'scratch
-    :desc "Restclient"   "r" #'my/scratch-rest-mode))
+  ;; TODO: find a way to move these to modules/smallwat3r/scratch
+  (:prefix "o" (:prefix ("s" . "Scratch buffer")
+                :desc "Current mode" "o" #'scratch
+                :desc "Restclient"   "r" #'my/scratch-rest-mode))
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines
