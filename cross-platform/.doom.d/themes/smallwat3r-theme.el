@@ -39,6 +39,10 @@
 
  `(default ((t (:background "cornsilk2" :foreground "black"))))
 
+ `(success ((t (:foreground "green4" :weight bold))))
+ `(warning ((t (:foreground "OrangeRed3" :weight bold))))
+ `(error ((t (:foreground "firebrick2" :weight bold))))
+
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
 
  `(font-lock-doc-face ((t (:foreground "DarkRed" :slant italic))))

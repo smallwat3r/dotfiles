@@ -39,6 +39,10 @@
 
  `(default ((t (:background "black" :foreground "white"))))
 
+ `(success ((t (:foreground "green4" :weight bold))))
+ `(warning ((t (:foreground "OrangeRed3" :weight bold))))
+ `(error ((t (:foreground "firebrick2" :weight bold))))
+
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
  `(font-lock-doc-face ((t (:foreground "turquoise3" :slant italic))))
  `(font-lock-comment-face ((t (:foreground "yellow3" :slant italic))))

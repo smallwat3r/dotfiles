@@ -98,31 +98,6 @@
 
 (setq doom-theme my-current-theme)
 
-;; Be consistent across all themes with some major faces.
-(custom-set-faces!
-  ;; Keep programming faces clean and simple.
-  '((font-lock-function-name-face
-     font-lock-variable-name-face
-     font-lock-constant-face
-     font-lock-builtin-face
-     font-lock-type-face)
-    :foreground unspecified :weight normal :slant normal)
-
-  '(fringe :background unspecified)
-
-  '((makefile-targets nxml-element-local-name) :inherit font-lock-keyword-face)
-
-  '(git-gutter-fr:added :background "green" :foreground "green")
-  '(git-gutter-fr:deleted :background "red" :foreground "red")
-  '(git-gutter-fr:modified :background "magenta" :foreground "magenta")
-
-  '(show-paren-match :background "#c488ff" :foreground "black" :underline t :weight bold)
-  '(show-paren-mismatch :background "red4" :foreground "red" :weight bold)
-
-  '(success :foreground "green4" :weight bold)
-  '(warning :foreground "OrangeRed3" :weight bold)
-  '(error :foreground "firebrick2" :weight bold))
-
 ;; Fonts
 (if IS-LINUX
     (setq my-font-size 18
@@ -234,7 +209,7 @@
 ;; Evil visual hints when yanking, pasting, deleting etc.
 ;; doc: https://github.com/edkolev/evil-goggles
 (after! evil-goggles
-  (setq evil-goggles-duration 0.25)
+  (setq evil-goggles-duration 0.15)
   (evil-goggles-use-magit-faces))
 
 ;; Evil escape
@@ -880,6 +855,7 @@
           ("count" . "%-7s ")
           ("authors" . "%-15s ")
           ("tags" . "(%s) ")
+
           ("subject" . "%-72s")))
 
   ;; Use a custom command to fetch for new emails with mbsync
@@ -964,6 +940,7 @@
     "Face for a Python related Elfeed entry.")
 
   (defface my-emacs-elfeed-entry-face '((t :foreground "purple"))
+
     "Face for an Emacs related Elfeed entry.")
 
   ;; Distinguish faces depending on tags for Elfeed entries.
