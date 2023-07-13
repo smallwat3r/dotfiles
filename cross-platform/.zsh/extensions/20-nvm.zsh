@@ -1,3 +1,5 @@
+# Nvm config and helper functions
+
 export NVM_DIR="${HOME}/.nvm"
 
 # nvm is quite bulky to load on startup, this provides a way to lazy load it.

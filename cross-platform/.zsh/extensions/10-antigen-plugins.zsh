@@ -1,3 +1,7 @@
+# ZSH plugins
+# Plugins are managed by Antigen
+# curl -L git.io/antigen >/usr/local/share/antigen/antigen.zsh
+
 if [ -f /usr/local/share/antigen/antigen.zsh ]; then
   source '/usr/local/share/antigen/antigen.zsh'
 
