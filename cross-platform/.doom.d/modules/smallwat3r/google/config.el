@@ -18,7 +18,7 @@
                 :override (lambda () "Search TKK fix." (list 430675 2721866130))))
 
   (map! :leader
-        :prefix-map ("T" . "translate")
+        :prefix ("T" . "translate")
         :desc "Translate query"    "q" #'google-translate-query-translate
         :desc "Translate at point" "t" #'google-translate-at-point
         :desc "Translate buffer"   "b" #'google-translate-buffer))
@@ -29,7 +29,7 @@
   :commands (google-this google-this-word google-this-line)
   :init
   (map! :leader
-        :prefix-map ("G" . "google")
+        :prefix ("G" . "google")
         :desc "Query google"     "q" #'google-this
         :desc "Google this word" "w" #'google-this-word
         :desc "Google this line" "l" #'google-this-line))
