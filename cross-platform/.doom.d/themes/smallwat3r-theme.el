@@ -135,7 +135,14 @@
 
  `(git-gutter-fr:added ((t (:background "green" :foreground "green"))))
  `(git-gutter-fr:deleted ((t (:background "red" :foreground "red"))))
- `(git-gutter-fr:modified ((t (:background "magenta" :foreground "magenta")))))
+ `(git-gutter-fr:modified ((t (:background "magenta" :foreground "magenta"))))
+
+ `(doom-modeline-buffer-file ((t :foreground unspecified :weight bold)))
+ `(doom-modeline-project-dir ((t :foreground unspecified :weight bold)))
+ `(doom-modeline-info ((t :foreground unspecified :weight bold)))
+ `(doom-modeline-highlight ((t :foreground "magenta" :weight bold)))
+ `(doom-modeline-evil-insert-state ((t :foreground "green4" :weight bold)))
+ `(doom-modeline-compilation ((t :inherit warning :slant italic))))
 
 ;;;###autoload
 (when load-file-name
