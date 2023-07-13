@@ -1,3 +1,6 @@
+# Tmux helper functions
+# Dependencies: tmux
+
 if [ -f /usr/local/bin/tmux ] || [ -f /usr/bin/tmux ]; then
   # Kill all Tmux sessions.
   tksa() {

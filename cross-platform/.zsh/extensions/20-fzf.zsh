@@ -1,3 +1,6 @@
+# FZF configs and helper functions
+# Dependencies: fzf
+
 if [[ ! "${PATH}" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi

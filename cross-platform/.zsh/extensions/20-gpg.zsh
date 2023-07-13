@@ -1,3 +1,6 @@
+# GPG configs and helper functions
+# Dependencies: gpg, keybase
+
 export GPG_TTY=$(tty)
 
 if [ -f /usr/bin/gpgconf ]; then
