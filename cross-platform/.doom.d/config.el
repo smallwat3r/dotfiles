@@ -340,17 +340,7 @@
   ;; Other overlay bindings I don't use which could conflict with evil operations.
   (define-key symbol-overlay-map (kbd "w") nil)
   (define-key symbol-overlay-map (kbd "t") nil)
-  (define-key symbol-overlay-map (kbd "i") nil)
-
-  (custom-set-faces!
-    (symbol-overlay-face-1 :foreground "black" :background "orchid2" :weight bold)
-    (symbol-overlay-face-2 :foreground "black" :background "DarkOrange1" :weight bold)
-    (symbol-overlay-face-3 :foreground "black" :background "chartreuse2" :weight bold)
-    (symbol-overlay-face-4 :foreground "black" :background "turquoise2" :weight bold)
-    (symbol-overlay-face-5 :foreground "black" :background "tomato" :weight bold)
-    (symbol-overlay-face-6 :foreground "black" :background "peach puff" :weight bold)
-    (symbol-overlay-face-7 :foreground "black" :background "medium violet red" :weight bold)
-    (symbol-overlay-face-8 :foreground "black" :background "dark violet" :weight bold)))
+  (define-key symbol-overlay-map (kbd "i") nil))
 
 ;; Imenu list
 ;; doc: https://github.com/bmag/imenu-list

@@ -135,12 +135,21 @@
  `(git-gutter-fr:deleted ((t (:background "red" :foreground "red"))))
  `(git-gutter-fr:modified ((t (:background "magenta" :foreground "magenta"))))
 
- `(doom-modeline-buffer-file ((t :foreground unspecified :weight bold)))
- `(doom-modeline-project-dir ((t :foreground unspecified :weight bold)))
- `(doom-modeline-info ((t :foreground unspecified :weight bold)))
- `(doom-modeline-highlight ((t :foreground "magenta" :weight bold)))
- `(doom-modeline-evil-insert-state ((t :foreground "green4" :weight bold)))
- `(doom-modeline-compilation ((t :inherit warning :slant italic))))
+ `(doom-modeline-buffer-file ((t (:foreground unspecified :weight bold))))
+ `(doom-modeline-project-dir ((t (:foreground unspecified :weight bold))))
+ `(doom-modeline-info ((t (:foreground unspecified :weight bold))))
+ `(doom-modeline-highlight ((t (:foreground "magenta" :weight bold))))
+ `(doom-modeline-evil-insert-state ((t (:foreground "green4" :weight bold))))
+ `(doom-modeline-compilation ((t (:inherit warning :slant italic))))
+
+ `(symbol-overlay-face-1 ((t (:foreground "black" :background "orchid2" :weight bold))))
+ `(symbol-overlay-face-2 ((t (:foreground "black" :background "DarkOrange1" :weight bold))))
+ `(symbol-overlay-face-3 ((t (:foreground "black" :background "chartreuse2" :weight bold))))
+ `(symbol-overlay-face-4 ((t (:foreground "black" :background "turquoise2" :weight bold))))
+ `(symbol-overlay-face-5 ((t (:foreground "black" :background "tomato" :weight bold))))
+ `(symbol-overlay-face-6 ((t (:foreground "black" :background "peach puff" :weight bold))))
+ `(symbol-overlay-face-7 ((t (:foreground "black" :background "medium violet red" :weight bold))))
+ `(symbol-overlay-face-8 ((t (:foreground "black" :background "dark violet" :weight bold)))))
 
 ;;;###autoload
 (when load-file-name
