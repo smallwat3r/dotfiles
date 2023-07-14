@@ -683,13 +683,14 @@
 ;; doc: https://github.com/yoshiki/yaml-mode
 (use-package! yaml-mode
   :mode ("\\.\\(yaml\\|yml\\)\\'" . yaml-mode)
-  :hook (yaml-mode . my/remap-yaml-faces)
   :config
   (defun my/remap-yaml-faces ()
     (face-remap-add-relative
      'font-lock-variable-name-face :inherit font-lock-keyword-face)
     ;; The above seems to leave `buffer-face-mode' on, disable it.
-    (buffer-face-mode -1)))
+    (buffer-face-mode -1))
+
+  (add-hook! 'yaml-mode-hook #'my/remap-yaml-faces))
 
 ;; Logs
 ;; doc: https://github.com/doublep/logview
