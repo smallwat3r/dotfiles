@@ -664,7 +664,7 @@
 
 ;; SQL
 (use-package! sql
-  :mode (("\\.\\(m\\|my\\)?sql\\'" . sql-mode))
+  :mode ("\\.\\(m\\|my\\)?sql\\'" . sql-mode)
   :custom
   ;; I use this for local development only. Disable SSL mode to ease connectivity
   ;; using localhost.
