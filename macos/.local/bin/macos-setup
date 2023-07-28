@@ -6,91 +6,88 @@ if [ "$(uname -s)" != 'Darwin' ]; then
   exit 0
 fi
 
-# Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.568600'
+# set highlight color to yellow
+defaults write NSGlobalDomain AppleHighlightColor -string '0.988235 0.729411 0.011764'
 
-# Font smoothing
-# Max smoothing is 3, no smoothing is 0
+# font smoothing
+# max smoothing is 3, no smoothing is 0
 defaults -currentHost write -g AppleFontSmoothing -int 3
+# but ensure Emacs fonts are thiner
 defaults write org.gnu.Emacs AppleFontSmoothing -int 1
 
-# Add one pixel border (might need sudo)
-# defaults write com.apple.universalaccess increaseContrast -bool YES
+# always show the window proxy icons
+defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 
-# Dark UI by default
-defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
+# light UI by default
+defaults write NSGlobalDomain AppleInterfaceStyle -string 'Light'
 
-# Always show hidden files
-defaults write com.apple.finder AppleShowAllFiles YES
-
-# Mac termimal
-defaults write com.apple.Terminal AutoMarkPromptLines -bool   false
-defaults write com.apple.Terminal ShowLineMarks       -bool   false
-defaults write com.apple.Terminal AppleShowScrollBars -string 'Automatic'
+# always show hidden files
+defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Dock
 defaults write com.apple.dock show-recents   -bool  false
-defaults write com.apple.Dock autohide       -bool  true
+defaults write com.apple.Dock autohide       -bool  false
 defaults write com.apple.dock autohide-delay -float 0.0001
 defaults write com.apple.dock tilesize       -int   25
 
-# Blazing fast key repeat
+# blazing fast key repeat
 defaults write -g InitialKeyRepeat -int 9
 defaults write -g KeyRepeat        -int 1
 
-# Disable special characters when holding keys (this allows super fast keyrepeat)
+# disable special characters when holding keys (this allows super fast keyrepeat)
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Disable auto-correct, capitalisation and substitution
+# disable auto-correct, capitalisation and substitution
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled     -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
-# Disable the system alert sound
+# disable the system alert sound
 defaults write NSGlobalDomain com.apple.sound.beep.volume     -int 0
 defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
 
-# Remove shortcuts that are annoying while using tmux or switching with vim
+# remove shortcuts that are annoying while using tmux or switching with vim/emacs bindings
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Mission Control' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Application windows' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move left a space' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move right a space' nil
 
-# Finder settings
+# finder settings
 defaults write NSGlobalDomain   AppleShowAllExtensions  -bool true
 defaults write com.apple.finder ShowStatusBar           -bool true
 defaults write com.apple.finder ShowPathbar             -bool true
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-# Disable animations when opening and closing windows.
+
+# disable animations when opening and closing windows.
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
-# Accelerated playback when adjusting the window size.
+# accelerated playback when adjusting the window size.
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# Do not ask confirmation for changing a file extension
+# do not ask confirmation for changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-# Do not create .DS_Store files on network volumes
+# do not create .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-# Enforce finder list view
+# enforce finder list view
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
-# Do not send search queries to Apple when using Safari
+# do not send search queries to Apple when using Safari
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 
-# Visualize CPU usage in the Activity Monitor Dock icon
+# visualize CPU usage in the Activity Monitor Dock icon
 defaults write com.apple.ActivityMonitor IconType -int 5
 
-# Show all processes in Activity Monitor
+# show all processes in Activity Monitor
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
-# Sort Activity Monitor results by CPU usage
+# sort Activity Monitor results by CPU usage
 defaults write com.apple.ActivityMonitor SortColumn -string 'CPUUsage'
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
-# Restart dock
+# restart dock
 killall Dock
 
 echo 'All done.'
