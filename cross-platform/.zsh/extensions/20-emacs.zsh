@@ -27,7 +27,7 @@ if [[ "${INSIDE_EMACS}" = 'vterm' ]] \
 fi
 
 # Avoid using vim from inside Emacs due to conflicting bindings.
-if [[ "${INSIDE_EMACS}" = 'vterm' ]] || [[ "${INSIDE_EMACS}" = '28.1,eshell' ]]; then
+if [[ "${INSIDE_EMACS}" = 'vterm' ]] || [[ "${INSIDE_EMACS}" = '28.2,eshell' ]]; then
   alias \
     v="echo 'Do not open vim from Emacs'" \
     vi="echo 'Do not open vim from Emacs'" \
