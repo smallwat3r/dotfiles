@@ -66,7 +66,7 @@
 
 (when IS-MAC
   ;; Nextstep inferface settings. This is used by macOS (and GNUstep).
-  (setq ns-use-thin-smoothing nil
+  (setq ns-use-thin-smoothing t
         ns-use-native-fullscreen nil
         ns-use-fullscreen-animation nil
         ns-antialias-text t))
@@ -833,7 +833,6 @@
           ("count" . "%-7s ")
           ("authors" . "%-15s ")
           ("tags" . "(%s) ")
-
           ("subject" . "%-72s")))
 
   ;; Use a custom command to fetch for new emails with mbsync
@@ -918,7 +917,6 @@
     "Face for a Python related Elfeed entry.")
 
   (defface my-emacs-elfeed-entry-face '((t :foreground "purple"))
-
     "Face for an Emacs related Elfeed entry.")
 
   ;; Distinguish faces depending on tags for Elfeed entries.

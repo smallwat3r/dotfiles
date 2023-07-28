@@ -40,7 +40,7 @@ local function emacsEverywhere()
   hs.task.new('/bin/bash', nil, { '-l', '-c', 'emacsclient -a "" --eval "(emacs-everywhere)"' }):start()
 end
 
-hotkey.bind(mod_cmd, '.', function() emacsEverywhere() end)
+-- hotkey.bind(mod_cmd, '.', function() emacsEverywhere() end)
 
 -- Kill the running emacs daemon with confirmation
 local function confirmationDialog(actionFunc)
