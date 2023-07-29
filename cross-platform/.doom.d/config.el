@@ -998,7 +998,8 @@
    :desc "Open password-store buffer" "p" #'pass)
 
   (:prefix "s"
-   :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point)))
+   :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point
+   :desc "Repeat last search" "." #'vertico-repeat)))
 
 
 ;;
