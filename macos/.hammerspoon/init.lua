@@ -36,7 +36,7 @@ alert.defaultStyle = {
 -- Spawn a new emacs client
 local function newEmacsClient()
   alert.show("New Emacs client!")
-  task.new("/bin/bash", nil,
+  task.new("/bin/zsh", nil,
            { "-l", "-c", "emacsclient -a '' -c" }):start()
 end
 
@@ -45,7 +45,7 @@ hotkey.bind(mod_cmd, "e", function() newEmacsClient() end)
 -- Spawn an instance of emacs-everywhere
 local function emacsEverywhere()
   alert.show("Emacs everywhere!")
-  task.new("/bin/bash", nil,
+  task.new("/bin/zsh", nil,
            { "-l", "-c", 'emacsclient -a "" --eval "(emacs-everywhere)"' }):start()
 end
 
@@ -65,7 +65,7 @@ end
 
 local function stopEmacsDaemon(input)
   if input and input.id == "yes" then
-    task.new("/bin/bash", nil,
+    task.new("/bin/zsh", nil,
              { "-l", "-c", 'emacsclient -e "(kill-emacs)"' }):start()
     alert.show("Stopped Emacs daemon!")
   end
