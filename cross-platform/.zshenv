@@ -25,6 +25,11 @@ manpath=(
 
 export PATH
 
+if [ -d /opt/homebrew/bin ]; then
+  # this needs to leave here as modules from config depends on this
+  export PATH="${PATH:+${PATH}:}/opt/homebrew/bin"
+fi
+
 if [[ $(uname) == 'Darwin' ]]; then
   export TERMINAL='alacritty'
 else
