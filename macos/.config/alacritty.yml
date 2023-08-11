@@ -31,7 +31,6 @@ cursor:
   blink_interval: 450
 
 live_config_reload: true
-alt_send_esc: true
 
 bell:
   duration: 0

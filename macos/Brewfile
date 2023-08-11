@@ -46,21 +46,21 @@ brew "sketch"
 brew "synonym"
 brew "tubestatus"
 
-tap "teamookla/speedtest"
-brew "speedtest"
+# tap "teamookla/speedtest"
+# brew "speedtest"
 
-tap "heroku/brew"
-brew "heroku"
+# tap "heroku/brew"
+# brew "heroku"
 
-tap "homebrew/cask-fonts"
-brew "font-fantasque-sans-mono-noloopk"
+# tap "homebrew/cask-fonts"
+# brew "font-fantasque-sans-mono-noloopk"
 
-tap "johanhaleby/kubetail"
-brew "kubetail"
+# tap "johanhaleby/kubetail"
+# brew "kubetail"
 
 # Save screen display arrangement
-tap "jakehilborn/jakehilborn"
-brew "displayplacer"
+# tap "jakehilborn/jakehilborn"
+# brew "displayplacer"
 
 # Casks
 
@@ -74,12 +74,12 @@ cask "google-chrome"
 cask "gpg-suite"
 cask "hammerspoon"
 cask "keybase"
-cask "mucommander"
-cask "nordvpn"
-cask "signal"
 cask "slack"
-cask "tunnelblick"
-cask "flycut"
+# cask "mucommander"
+# cask "nordvpn"
+# cask "signal"
+# cask "tunnelblick"
+# cask "flycut"
 
-tap "homebrew/cask-versions"
-cask 'sequel-pro-nightly'
+# tap "homebrew/cask-versions"
+# cask 'sequel-pro-nightly'

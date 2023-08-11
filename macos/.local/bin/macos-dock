@@ -7,7 +7,6 @@ if [ "$(uname -s)" != "Darwin" ]; then
 fi
 
 dockutil --no-restart --remove all
-dockutil --no-restart --add "/Applications/muCommander.app"
 dockutil --no-restart --add "/Applications/Emacs.app"
 dockutil --no-restart --add "/Applications/Google Chrome.app"
 dockutil --no-restart --add "/Applications/Slack.app"

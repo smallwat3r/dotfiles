@@ -42,6 +42,10 @@
 (defconst IS-GPD (string= my-hardware-vendor "GPD")
   "Is it running on a GPD?")
 
+(when IS-MAC
+  ;; stuff installed via homebrew
+  (add-to-list 'exec-path "/opt/homebrew/bin"))
+
 
 ;;
 ;;; Frame
