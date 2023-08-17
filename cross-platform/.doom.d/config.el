@@ -397,7 +397,7 @@
 (after! projectile
   (setq projectile-indexing-method 'alien
         ;; Allow projectile to automatically find projects from any of these directories.
-        projectile-project-search-path '("~/dotfiles/" "~/code/")
+        projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/")
         ;; Stuff to ignore.
         projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc")
         projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups" "/Applications"
@@ -590,7 +590,9 @@
   (defvar my-default-python-line-length 100
     "Default python line length.")
 
-  (setq python-shell-interpreter "python3")
+  (setq python-shell-interpreter "python3.10"
+        lsp-ruff-lsp-python-path python-shell-interpreter)
+
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
   (setq python-shell-completion-native-enable nil)
 

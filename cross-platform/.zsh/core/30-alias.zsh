@@ -39,11 +39,6 @@ __define_git_aliases() {
 }
 __define_git_aliases
 
-# Python
-alias \
-  python="python3" \
-  pip="pip3"
-
 # Use Neovim over Vim
 alias \
   vim="nvim" \
