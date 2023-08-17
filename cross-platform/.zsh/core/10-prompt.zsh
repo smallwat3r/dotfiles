@@ -3,7 +3,7 @@
 # Display Python virtual environment name. This function is used in the Zsh prompt.
 __is_venv() {
   if [[ ${VIRTUAL_ENV} ]]; then
-    echo '%s' "(.${VIRTUAL_ENV##*/}) "
+    echo '%s' "venv(${VIRTUAL_ENV##*/}) "
   fi
 }
 
