@@ -1,6 +1,7 @@
 [user]
 name = Matthieu Petiteau
 email = mpetiteau.pro@gmail.com
+signingkey = C31DD53E
 
 [github]
 user = smallwat3r
@@ -91,3 +92,6 @@ new = green bold
 added = yellow
 changed = green
 untracked = cyan
+
+[includeIf "gitdir:~/work/"]
+path = ~/work/.gitconfig

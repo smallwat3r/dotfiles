@@ -7,7 +7,7 @@ if [ -f /usr/bin/gpgconf ]; then
   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 fi
 
-if [ -f /usr/local/bin/gpg-connect-agent ] || [ -f /usr/bin/gpg-connect-agent ]; then
+if [ -f /usr/local/bin/gpg-connect-agent ] || [ -f /usr/bin/gpg-connect-agent ] || [ -f /opt/homebrew/bin/gpg-connect-agent ]; then
   # Clear the gpg authentication cache. Next time using GPG, it will ask for
   # the password.
   clear-cache-gpg-password() {
@@ -23,7 +23,7 @@ if [ -f /usr/local/bin/gpg ] || [ -f /usr/bin/gpg ]; then
 
   # List all GPG keys.
   gpg-list-keys() {
-    gpg --list-secret-keys --keyid-format LONG
+    gpg --list-keys --keyid-format=short
   }
 fi
 
