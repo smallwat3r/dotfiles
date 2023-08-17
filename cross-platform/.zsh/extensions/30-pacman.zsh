@@ -1,7 +1,7 @@
 # Pacman helper functions for Arch
 
 if [[ "$OSTYPE" == 'linux-gnu' ]]; then
-  if [ -f /usr/bin/pacman ]; then
+  if (( $+commands[pacman] )); then
     # Search pacman package and install.
     pacman-install () {
       pacman -Slq | fzf --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S

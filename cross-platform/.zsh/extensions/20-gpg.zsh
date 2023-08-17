@@ -3,11 +3,12 @@
 
 export GPG_TTY=$(tty)
 
-if [ -f /usr/bin/gpgconf ]; then
-  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-fi
+# Enable SSH access using GPG key
+# if (( $+commands[gpgconf] )); then
+#   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# fi
 
-if [ -f /usr/local/bin/gpg-connect-agent ] || [ -f /usr/bin/gpg-connect-agent ] || [ -f /opt/homebrew/bin/gpg-connect-agent ]; then
+if (( $+commands[gpg-connect-agent] )); then
   # Clear the gpg authentication cache. Next time using GPG, it will ask for
   # the password.
   clear-cache-gpg-password() {
@@ -15,7 +16,7 @@ if [ -f /usr/local/bin/gpg-connect-agent ] || [ -f /usr/bin/gpg-connect-agent ] 
   }
 fi
 
-if [ -f /usr/local/bin/gpg ] || [ -f /usr/bin/gpg ]; then
+if (( $+commands[gpg] )); then
   # Display public key.
   gpg-pub-key() {
     gpg --armor --export mpetiteau.pro@gmail.com
@@ -27,7 +28,7 @@ if [ -f /usr/local/bin/gpg ] || [ -f /usr/bin/gpg ]; then
   }
 fi
 
-if [ -f /usr/local/bin/keybase ] || [ -f /usr/bin/keybase ]; then
+if (( $+commands[keybase] )); then
   # Import GPG key from keybase.
   gpg-keybase-import() {
     keybase pgp export | gpg --import -

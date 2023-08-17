@@ -78,17 +78,13 @@ fi
 # Tracked aliases
 hash -d \
   d="$HOME/dotfiles" \
-  c="$HOME/Code" \
-  g="$HOME/Github" \
+  dots="$HOME/dotfiles" \
+  c="$HOME/code" \
   dw="$HOME/Downloads" \
   de="$HOME/Desktop" \
   ssh="$HOME/.ssh" \
   zsh="$HOME/.zsh" \
-  tmux="$HOME/.config/tmux" \
-  nvim="$HOME/.config/nvim" \
-  doom="$HOME/.doom.d" \
   fonts="$HOME/Library/Fonts" \
-  dots="$HOME/dotfiles" \
   config="$HOME/.config" \
   etc="/etc" \
   opt="/opt"

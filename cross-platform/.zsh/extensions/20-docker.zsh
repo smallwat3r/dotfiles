@@ -1,7 +1,7 @@
 # Docker helper functions
 # Dependencies: docker
 
-if [ -f /usr/local/bin/docker ] || [ -f /usr/bin/docker ]; then
+if (( $+commands[docker] )); then
   # Shorter alternative to `docker ps`
   dps() {
     docker ps --format '{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}}' \

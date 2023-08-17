@@ -5,7 +5,7 @@ if [[ ! "${PATH}" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
 
-if [ -f /usr/local/bin/fzf ] || [ -f /usr/bin/fzf ]; then
+if (( $+commands[fzf] )); then
   # Ease access of history binding by remapping it.
   bindkey -r '^R'
   bindkey '^W' fzf-history-widget
