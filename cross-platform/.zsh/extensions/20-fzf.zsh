@@ -11,19 +11,34 @@ if (( $+commands[fzf] )); then
   bindkey '^W' fzf-history-widget
 fi
 
+# Loop over an array of possible config location, and source the file
+# if one exists.
+__load_fzf_config() {
+  local config_paths=("$@")
+  local config
+  for config ("${config_paths[@]}"); do
+    if [ -f "${config}" ]; then
+      source "${config}" && break
+    fi
+  done
+}
+
 # Fzf provides by default some completion configuration for Zsh.
-if [ -f /usr/local/opt/fzf/shell/completion.zsh ]; then
-  source '/usr/local/opt/fzf/shell/completion.zsh'
-elif [ -f /usr/share/fzf/completion.zsh ]; then
-  source '/usr/share/fzf/completion.zsh'
-fi
+__fzf_possible_completion_config_paths=(
+  '/usr/local/opt/fzf/shell/completion.zsh'
+  '/usr/share/fzf/completion.zsh'
+  '/opt/homebrew/opt/fzf/shell/completion.zsh'
+)
 
 # It also provides some default bindings.
-if [ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]; then
-  source '/usr/local/opt/fzf/shell/key-bindings.zsh'
-elif [ -f /usr/share/fzf/key-bindings.zsh ]; then
-  source '/usr/share/fzf/key-bindings.zsh'
-fi
+__fzf_possible_keybinding_config_paths=(
+  '/usr/local/opt/fzf/shell/key-bindings.zsh'
+  '/usr/share/fzf/key-bindings.zsh'
+  '/opt/homebrew/opt/fzf/shell/key-bindings.zsh'
+)
+
+__load_fzf_config ${__fzf_possible_completion_config_paths}
+__load_fzf_config ${__fzf_possible_keybinding_config_paths}
 
 export FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:184'
 export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
