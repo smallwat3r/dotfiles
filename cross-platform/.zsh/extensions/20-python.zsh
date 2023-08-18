@@ -1,3 +1,6 @@
+# Python related configuration
+
+# ensure to create all Poetry virtual env within the project
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 if [ -d "${HOME}/.poetry/bin" ]; then
