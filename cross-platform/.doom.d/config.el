@@ -988,10 +988,13 @@
   (:prefix "f"
    :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
 
-  ;; TODO: find a way to move these to modules/smallwat3r/scratch
-  (:prefix "o" (:prefix ("s" . "Scratch buffer")
-                :desc "Current mode" "o" #'scratch
-                :desc "Restclient"   "r" #'my/scratch-rest-mode))
+  (:prefix "o"
+   :desc "Browse URL at point" "l" #'browse-url-at-point
+
+   ;; TODO: find a way to move these to modules/smallwat3r/scratch
+   (:prefix ("s" . "Scratch buffer")
+    :desc "Current mode" "o" #'scratch
+    :desc "Restclient"   "r" #'my/scratch-rest-mode))
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines
