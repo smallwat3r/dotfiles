@@ -726,6 +726,13 @@
 ;; ssh config mode
 (add-to-list 'auto-mode-alist '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
 
+;; Sticky function headers
+;; doc: https://github.com/alphapapa/topsy.el
+(use-package! topsy
+  :hook
+  (prog-mode . topsy-mode)
+  (magit-section-mode . topsy-mode))
+
 
 ;;
 ;;; Terminals
