@@ -733,6 +733,17 @@
   (prog-mode . topsy-mode)
   (magit-section-mode . topsy-mode))
 
+;; CSV mode
+;; doc: https://elpa.gnu.org/packages/csv-mode.html
+(use-package! csv-mode
+  :config
+  (map! :map csv-mode-map
+        :leader
+        :localleader
+        :desc "CSV align fields" "a" #'csv-align-fields
+        :desc "CSV unalign fields" "A" #'csv-unalign-fields
+        :desc "CSV toggle sticky header" "h" #'csv-header-line))
+
 
 ;;
 ;;; Terminals
