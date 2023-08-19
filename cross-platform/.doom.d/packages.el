@@ -96,6 +96,10 @@
 ;; https://github.com/alphapapa/topsy.el/commits/master
 (package! topsy :pin "86d4234e4a0e9d2f5bf0f1114ea9893da48e77d1")
 
+;; Support for CSV
+;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
+(package! csv-mode :pin "db8a3e3aef31d35ce5bd1fd09127a3bbfdd0c340")
+
 
 ;;
 ;;; Personal packages (I'm ok with not pinning those as I manage them).
