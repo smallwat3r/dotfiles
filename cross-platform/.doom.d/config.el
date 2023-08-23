@@ -105,11 +105,11 @@
 ;; Fonts
 (if IS-LINUX
     (setq my-font-size 18
-          doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)
-          doom-variable-pitch-font doom-font)
+          doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size))
   (setq my-font-size 16
-        doom-font (font-spec :family "Triplicate B Code" :size my-font-size)
-        doom-variable-pitch-font (font-spec :family "Triplicate B")))
+        doom-font (font-spec :family "Triplicate B Code" :size my-font-size)))
+
+(setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
