@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Custom binary launcher
+
+if ! [ -x "$(command -v choose)" ]; then
+  echo 'You need to install "choose" using "brew install choose-gui"' >&2
+  exit 1
+fi
+
+target=$(compgen -c | choose -f 'Triplicate B Code' -s 24 -p 'Search bin...') || exit 0
+
+exec "${target}"

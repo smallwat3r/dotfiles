@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Custom google chrome history launcher
+
+if ! [ -x "$(command -v choose)" ]; then
+  echo 'You need to install "choose" using "brew install choose-gui"' >&2
+  exit 1
+fi
+
+cp ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/History || exit 0
+target=$(sqlite3 /tmp/History 'select url from urls order by last_visit_time desc;' |
+  choose -f 'Triplicate B Code' -s 24 -p 'Search chrome history...') || exit 0
+
+open -a '/Applications/Google Chrome.app' "${target}"

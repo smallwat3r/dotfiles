@@ -29,9 +29,8 @@ alert.defaultStyle = {
     padding = nil,
 }
 
--- ***
 -- Emacs stuff
--- ***
+-- ***************************************************************************
 
 -- Spawn a new emacs client
 local function newEmacsClient()
@@ -73,9 +72,8 @@ end
 
 hotkey.bind(mod_cmd, "`", function() confirmationDialog(stopEmacsDaemon) end)
 
--- ***
 -- Window management
--- ***
+-- ***************************************************************************
 
 window.animationDuration = 0
 
@@ -106,9 +104,8 @@ hotkey.bind(mod_alt, "h", grid.resizeWindowThinner)
 hints.style = "vimperator"
 hotkey.bind(mod_alt, "Tab", function() hints.windowHints() end)
 
--- ***
 -- Make the combination of Cmd + hjkl to emulate the arrow keys behaviour.
--- ***
+-- ***************************************************************************
 
 local function pressFn(mods, key)
   if key == nil then
@@ -129,3 +126,27 @@ remap(mod_cmd, "h", pressFn("left"))
 remap(mod_cmd, "j", pressFn("down"))
 remap(mod_cmd, "k", pressFn("up"))
 remap(mod_cmd, "l", pressFn("right"))
+
+-- Launcher
+-- ***************************************************************************
+
+-- app launcher
+local function chooseApp()
+  task.new("/bin/zsh", nil, { "-l", "-c", "choose-app" }):start()
+end
+
+hotkey.bind(mod_cmd, ".", function() chooseApp() end)
+
+-- bin launcher
+local function chooseBin()
+  task.new("/bin/zsh", nil, { "-l", "-c", "choose-bin" }):start()
+end
+
+hotkey.bind(mod_cmd, ",", function() chooseBin() end)
+
+-- google chrome history launcher
+local function chooseChromeHistory()
+  task.new("/bin/zsh", nil, { "-l", "-c", "choose-chrome-history" }):start()
+end
+
+hotkey.bind(mod_cmd, "/", function() chooseChromeHistory() end)
