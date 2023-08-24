@@ -6,8 +6,10 @@ if ! [ -x "$(command -v choose)" ]; then
   exit 1
 fi
 
+# the Chrome Sqlite file is locked, so work from a copy
 cp ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/History || exit 0
-target=$(sqlite3 /tmp/History 'select url from urls order by last_visit_time desc;' |
+
+target=$(sqlite3 /tmp/History 'select url from urls order by last_visit_time desc limit 5000;' |
   choose -f 'Triplicate B Code' -s 24 -p 'Search chrome history...') || exit 0
 
 open -a '/Applications/Google Chrome.app' "${target}"
