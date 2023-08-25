@@ -131,29 +131,41 @@ remap(mod_cmd, "l", pressFn("right"))
 -- ***************************************************************************
 
 -- app launcher
-local function chooseApp()
-  task.new("/bin/zsh", nil, { "-l", "-c", "choose-app" }):start()
+local function launcherApp()
+  task.new("/bin/zsh", nil, { "-l", "-c", [[
+INSIDE_HS=1
+alacritty -T 'App launcher' --config-file $HOME/.config/launcher.yml -e launcher-app
+]] }):start()
 end
 
-hotkey.bind(mod_cmd, "m", function() chooseApp() end)
+hotkey.bind(mod_cmd, "m", function() launcherApp() end)
 
 -- bin launcher
-local function chooseBin()
-  task.new("/bin/zsh", nil, { "-l", "-c", "choose-bin" }):start()
+local function launcherBin()
+  task.new("/bin/zsh", nil, { "-l", "-c", [[
+INSIDE_HS=1
+alacritty -T 'Bin launcher' --config-file $HOME/.config/launcher.yml -e launcher-bin
+]] }):start()
 end
 
-hotkey.bind(mod_cmd, ",", function() chooseBin() end)
+hotkey.bind(mod_cmd, ",", function() launcherBin() end)
 
 -- google chrome bookmarks launcher
-local function chooseChromeBookmarks()
-  task.new("/bin/zsh", nil, { "-l", "-c", "choose-chrome-bookmarks" }):start()
+local function launcherChromeBookmarks()
+  task.new("/bin/zsh", nil, { "-l", "-c", [[
+INSIDE_HS=1
+alacritty -T 'Bookmark launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-bookmarks
+]] }):start()
 end
 
-hotkey.bind(mod_cmd, ".", function() chooseChromeBookmarks() end)
+hotkey.bind(mod_cmd, ".", function() launcherChromeBookmarks() end)
 
 -- google chrome history launcher
-local function chooseChromeHistory()
-  task.new("/bin/zsh", nil, { "-l", "-c", "choose-chrome-history" }):start()
+local function launcherChromeHistory()
+  task.new("/bin/zsh", nil, { "-l", "-c", [[
+INSIDE_HS=1
+alacritty -T 'History launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-history
+]] }):start()
 end
 
-hotkey.bind(mod_cmd, "/", function() chooseChromeHistory() end)
+hotkey.bind(mod_cmd, "/", function() launcherChromeHistory() end)

@@ -50,7 +50,7 @@ PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f${vcs_info_msg_0_}%# '
 
 # When outside of emacs, activate tmux by default and use the individual pane
 # titles to display the main prompt information.
-if [[ ! "${INSIDE_EMACS}" ]]; then
+if [[ ! "${INSIDE_EMACS}" ]] || [[ ! "${INSIDE_HS}" ]]; then
   # Activate tmux
   if [ -t 0 ] && [[ -z "${TMUX}" ]] && [[ $- = *i* ]]; then
     exec tmux
