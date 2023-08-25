@@ -12,6 +12,6 @@ if ! [ -x "$(command -v ggrep)" ]; then
 fi
 
 urls="$(ggrep -Po '"url": \K.*' <~/Library/Application\ Support/Google/Chrome/Default/Bookmarks | sed 's/\"//g')"
-target=$(echo "${urls}" | choose -f 'Triplicate B Code' -s 24 -p 'Search chrome bookmarks...') || exit 0
+target=$(echo "${urls}" | choose -f 'Triplicate A Code' -s 24 -p 'Search chrome bookmarks...') || exit 0
 
 open -a '/Applications/Google Chrome.app' "${target}"

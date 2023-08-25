@@ -10,6 +10,6 @@ fi
 cp ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/History || exit 0
 
 target=$(sqlite3 /tmp/History 'select url from urls order by last_visit_time desc limit 5000;' |
-  choose -f 'Triplicate B Code' -s 24 -p 'Search chrome history...') || exit 0
+  choose -f 'Triplicate A Code' -s 24 -p 'Search chrome history...') || exit 0
 
 open -a '/Applications/Google Chrome.app' "${target}"

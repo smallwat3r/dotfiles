@@ -7,6 +7,6 @@ if ! [ -x "$(command -v choose)" ]; then
 fi
 
 target=$(find '/Applications' '/System/Applications' '/System/Library/CoreServices' -type d -name '*.app' -maxdepth 1 |
-  choose -f 'Triplicate B Code' -s 24 -p 'Search app...') || exit 0
+  choose -f 'Triplicate A Code' -s 24 -p 'Search app...') || exit 0
 
 open "${target}"
