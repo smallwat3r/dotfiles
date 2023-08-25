@@ -132,40 +132,60 @@ remap(mod_cmd, "l", pressFn("right"))
 
 -- app launcher
 local function launcherApp()
-  task.new("/bin/zsh", nil, { "-l", "-c", [[
-INSIDE_HS=1
-alacritty -T 'App launcher' --config-file $HOME/.config/launcher.yml -e launcher-app
-]] }):start()
+  local window = window.get('App launcher')
+  if window then
+    window:focus()
+  else
+    task.new("/bin/zsh", nil, { "-l", "-c", [[
+      INSIDE_HS=1
+      alacritty -T 'App launcher' --config-file $HOME/.config/launcher.yml -e launcher-app
+    ]] }):start()
+  end
 end
 
 hotkey.bind(mod_cmd, "m", function() launcherApp() end)
 
 -- bin launcher
 local function launcherBin()
-  task.new("/bin/zsh", nil, { "-l", "-c", [[
-INSIDE_HS=1
-alacritty -T 'Bin launcher' --config-file $HOME/.config/launcher.yml -e launcher-bin
-]] }):start()
+  local window = window.get('Bin launcher')
+  if window then
+    window:focus()
+  else
+    task.new("/bin/zsh", nil, { "-l", "-c", [[
+      INSIDE_HS=1
+      alacritty -T 'Bin launcher' --config-file $HOME/.config/launcher.yml -e launcher-bin
+    ]] }):start()
+  end
 end
 
 hotkey.bind(mod_cmd, ",", function() launcherBin() end)
 
 -- google chrome bookmarks launcher
 local function launcherChromeBookmarks()
-  task.new("/bin/zsh", nil, { "-l", "-c", [[
-INSIDE_HS=1
-alacritty -T 'Bookmark launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-bookmarks
-]] }):start()
+  local window = window.get('Bookmark launcher')
+  if window then
+    window:focus()
+  else
+    task.new("/bin/zsh", nil, { "-l", "-c", [[
+      INSIDE_HS=1
+      alacritty -T 'Bookmark launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-bookmarks
+    ]] }):start()
+  end
 end
 
 hotkey.bind(mod_cmd, ".", function() launcherChromeBookmarks() end)
 
 -- google chrome history launcher
 local function launcherChromeHistory()
-  task.new("/bin/zsh", nil, { "-l", "-c", [[
-INSIDE_HS=1
-alacritty -T 'History launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-history
-]] }):start()
+  local window = window.get('History launcher')
+  if window then
+    window:focus()
+  else
+    task.new("/bin/zsh", nil, { "-l", "-c", [[
+      INSIDE_HS=1
+      alacritty -T 'History launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-history
+    ]] }):start()
+  end
 end
 
 hotkey.bind(mod_cmd, "/", function() launcherChromeHistory() end)
