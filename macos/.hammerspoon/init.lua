@@ -189,3 +189,18 @@ local function launcherChromeHistory()
 end
 
 hotkey.bind(mod_cmd, "/", function() launcherChromeHistory() end)
+
+-- running app switcher
+local function appSwitcher()
+  local window = window.get('App switcher')
+  if window then
+    window:focus()
+  else
+    task.new("/bin/zsh", nil, { "-l", "-c", [[
+      INSIDE_HS=1
+      alacritty -T 'App switcher' --config-file $HOME/.config/launcher.yml -e launcher-running-app
+    ]] }):start()
+  end
+end
+
+hotkey.bind(mod_cmd, "space", function() appSwitcher() end)
