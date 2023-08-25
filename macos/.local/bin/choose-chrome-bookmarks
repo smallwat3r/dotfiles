@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Custom google chrome bookmark launcher
+
+if ! [ -x "$(command -v choose)" ]; then
+  echo 'You need to install "choose" using "brew install choose-gui"' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v ggrep)" ]; then
+  echo 'You need to install "ggrep" using "brew install grep"' >&2
+  exit 1
+fi
+
+urls="$(ggrep -Po '"url": \K.*' <~/Library/Application\ Support/Google/Chrome/Default/Bookmarks | sed 's/\"//g')"
+target=$(echo "${urls}" | choose -f 'Triplicate B Code' -s 24 -p 'Search chrome bookmarks...') || exit 0
+
+open -a '/Applications/Google Chrome.app' "${target}"

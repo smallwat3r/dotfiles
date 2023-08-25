@@ -127,7 +127,7 @@ remap(mod_cmd, "j", pressFn("down"))
 remap(mod_cmd, "k", pressFn("up"))
 remap(mod_cmd, "l", pressFn("right"))
 
--- Launcher
+-- Custom launcher
 -- ***************************************************************************
 
 -- app launcher
@@ -135,7 +135,7 @@ local function chooseApp()
   task.new("/bin/zsh", nil, { "-l", "-c", "choose-app" }):start()
 end
 
-hotkey.bind(mod_cmd, ".", function() chooseApp() end)
+hotkey.bind(mod_cmd, "m", function() chooseApp() end)
 
 -- bin launcher
 local function chooseBin()
@@ -143,6 +143,13 @@ local function chooseBin()
 end
 
 hotkey.bind(mod_cmd, ",", function() chooseBin() end)
+
+-- google chrome bookmarks launcher
+local function chooseChromeBookmarks()
+  task.new("/bin/zsh", nil, { "-l", "-c", "choose-chrome-bookmarks" }):start()
+end
+
+hotkey.bind(mod_cmd, ".", function() chooseChromeBookmarks() end)
 
 -- google chrome history launcher
 local function chooseChromeHistory()
