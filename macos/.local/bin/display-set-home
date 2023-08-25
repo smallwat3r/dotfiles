@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Home office display setup
-
-displayplacer "id:000009D1-0000-78E8-0101-010100000000 res:1920x1080 hz:60 color_depth:4 scaling:off origin:(0,0) degree:0" \
-    "id:000009D1-0000-78E8-0101-014F00000000 res:1920x1080 hz:60 color_depth:4 scaling:off origin:(-1920,0) degree:0"

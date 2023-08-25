@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Work office display setup
-
-displayplacer "id:41747A2F-6BE8-79AB-E1F7-04C437351C14 res:1440x900 color_depth:4 scaling:on origin:(0,0) degree:0" \
-    "id:08A3D301-4465-1F3E-78CC-C48D8623C587 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(926,-1080) degree:0" \
-    "id:466E8CDB-69F3-65AE-E773-65C56BF55982 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(-994,-1080) degree:0"
