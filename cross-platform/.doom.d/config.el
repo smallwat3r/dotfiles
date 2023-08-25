@@ -79,35 +79,21 @@
 ;;
 ;;; Editor
 
-(defvar my-light-theme 'smallwat3r
-  "My light theme.")
-
-(defvar my-dark-theme 'smallwat3r-dark
-  "My dark theme.")
-
-(defvar my-current-theme my-dark-theme
-  "Current theme tracker. Default to dark theme.")
-
-(defun my-theme-toggle ()
-  "Toggle between dark and light theme."
-  (interactive)
-  (let ((theme nil))
-    (if (eq my-light-theme my-current-theme)
-        (setq theme my-dark-theme)
-      (setq theme my-light-theme))
-    (setq my-current-theme theme)
-    (load-theme theme t)))
-
-(global-set-key (kbd "<f5>") 'my-theme-toggle)
-
-(setq doom-theme my-current-theme)
-
 ;; Fonts
-(if IS-LINUX
-    (setq my-font-size 18
-          doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size))
-  (setq my-font-size 16
-        doom-font (font-spec :family "Triplicate B Code" :size my-font-size)))
+
+(if IS-MAC
+    (progn
+      ;; this is useful when changing from light and dark theme to have fonts with
+      ;; different weigths, as often a thicker font renders better on a light background,
+      ;; and a thiner font renders best of a darker background.
+      (setq my-thinner-font "Triplicate B Code"
+            my-thicker-font "Triplicate A Code")
+      ;; macos defaults
+      (setq my-font-size 16
+            doom-font (font-spec :family my-thinner-font :size my-font-size)))
+  ;; on other OSes (personally on Linux), use a bitmap font
+  (setq my-font-size 18
+        doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)))
 
 (setq doom-variable-pitch-font doom-font)
 
@@ -123,6 +109,42 @@
 (setq-default line-spacing 2
               tab-width 8
               with-editor-emacsclient-executable "emacsclient")
+
+;; Theme
+(defvar my-light-theme 'smallwat3r
+  "My light theme.")
+
+(defvar my-dark-theme 'smallwat3r-dark
+  "My dark theme.")
+
+(defvar my-current-theme my-dark-theme
+  "Current theme tracker. Default to dark theme.")
+
+(defun my-theme-toggle ()
+  "Toggle between dark and light theme."
+  (interactive)
+  (let ((theme nil))
+    (if (eq my-light-theme my-current-theme)
+        ;; light
+        (progn
+          (setq theme my-dark-theme)
+          (when IS-MAC
+            ;; this is a dark theme, ensure to use a thinner font
+            (setq doom-font (font-spec :family my-thinner-font :size my-font-size))
+            (doom/reload-font)))
+      ;; dark
+      (progn
+        (setq theme my-light-theme)
+        (when IS-MAC
+          ;; this is a light theme, use a thicker font
+          (setq doom-font (font-spec :family my-thicker-font :size my-font-size))
+          (doom/reload-font))))
+    (setq my-current-theme theme)
+    (load-theme theme t)))
+
+(global-set-key (kbd "<f5>") 'my-theme-toggle)
+
+(setq doom-theme my-current-theme)
 
 (defun my-dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
