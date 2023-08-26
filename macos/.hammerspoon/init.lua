@@ -204,3 +204,18 @@ local function appSwitcher()
 end
 
 hotkey.bind(mod_cmd, "space", function() appSwitcher() end)
+
+-- running file search launcher
+local function launcherFileSearch()
+  local window = window.get('File launcher')
+  if window then
+    window:focus()
+  else
+    task.new("/bin/zsh", nil, { "-l", "-c", [[
+      INSIDE_HS=1
+      alacritty -T 'File launcher' --config-file $HOME/.config/launcher.yml -e launcher-file-search
+    ]] }):start()
+  end
+end
+
+hotkey.bind(mod_cmd, ";", function() launcherFileSearch() end)
