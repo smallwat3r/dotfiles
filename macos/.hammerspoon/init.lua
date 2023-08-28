@@ -127,95 +127,37 @@ remap(mod_cmd, "j", pressFn("down"))
 remap(mod_cmd, "k", pressFn("up"))
 remap(mod_cmd, "l", pressFn("right"))
 
--- Custom launcher
+-- Custom launchers
 -- ***************************************************************************
 
--- app launcher
-local function launcherApp()
-  local window = window.get('App launcher')
+-- check if a window with name already exists, and focus it, or run task
+local function launcherRunner(windowName, scriptLauncher)
+  local window = window.get(windowName)
   if window then
     window:focus()
   else
-    task.new("/bin/zsh", nil, { "-l", "-c", [[
-      INSIDE_HS=1
-      alacritty -T 'App launcher' --config-file $HOME/.config/launcher.yml -e launcher-app
-    ]] }):start()
+    local command = 'INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.yml -e %s'
+    task.new("/bin/zsh", nil, {"-l", "-c", string.format(command, windowName, scriptLauncher)}):start()
   end
 end
 
-hotkey.bind(mod_cmd, "m", function() launcherApp() end)
+-- open an application
+hotkey.bind(mod_cmd, "m", function() launcherRunner('App launcher', 'launcher-app') end)
 
--- bin launcher
-local function launcherBin()
-  local window = window.get('Bin launcher')
-  if window then
-    window:focus()
-  else
-    task.new("/bin/zsh", nil, { "-l", "-c", [[
-      INSIDE_HS=1
-      alacritty -T 'Bin launcher' --config-file $HOME/.config/launcher.yml -e launcher-bin
-    ]] }):start()
-  end
-end
+-- execute a binary
+hotkey.bind(mod_cmd, ",", function() launcherRunner('Bin launcher', 'launcher-bin') end)
 
-hotkey.bind(mod_cmd, ",", function() launcherBin() end)
+-- browse google chrome bookmarks
+hotkey.bind(mod_cmd, ".", function() launcherRunner('Bookmark launcher', 'launcher-chrome-bookmarks') end)
 
--- google chrome bookmarks launcher
-local function launcherChromeBookmarks()
-  local window = window.get('Bookmark launcher')
-  if window then
-    window:focus()
-  else
-    task.new("/bin/zsh", nil, { "-l", "-c", [[
-      INSIDE_HS=1
-      alacritty -T 'Bookmark launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-bookmarks
-    ]] }):start()
-  end
-end
+-- browse google chrome history
+hotkey.bind(mod_cmd, "/", function() launcherRunner('History launcher', 'launcher-chrome-history') end)
 
-hotkey.bind(mod_cmd, ".", function() launcherChromeBookmarks() end)
+-- switch to open application
+hotkey.bind(mod_cmd, "space", function() launcherRunner('App switcher', 'launcher-running-app') end)
 
--- google chrome history launcher
-local function launcherChromeHistory()
-  local window = window.get('History launcher')
-  if window then
-    window:focus()
-  else
-    task.new("/bin/zsh", nil, { "-l", "-c", [[
-      INSIDE_HS=1
-      alacritty -T 'History launcher' --config-file $HOME/.config/launcher.yml -e launcher-chrome-history
-    ]] }):start()
-  end
-end
+-- search files from home directory
+hotkey.bind(mod_cmd, ";", function() launcherRunner('File launcher', 'launcher-file-search') end)
 
-hotkey.bind(mod_cmd, "/", function() launcherChromeHistory() end)
-
--- running app switcher
-local function appSwitcher()
-  local window = window.get('App switcher')
-  if window then
-    window:focus()
-  else
-    task.new("/bin/zsh", nil, { "-l", "-c", [[
-      INSIDE_HS=1
-      alacritty -T 'App switcher' --config-file $HOME/.config/launcher.yml -e launcher-running-app
-    ]] }):start()
-  end
-end
-
-hotkey.bind(mod_cmd, "space", function() appSwitcher() end)
-
--- running file search launcher
-local function launcherFileSearch()
-  local window = window.get('File launcher')
-  if window then
-    window:focus()
-  else
-    task.new("/bin/zsh", nil, { "-l", "-c", [[
-      INSIDE_HS=1
-      alacritty -T 'File launcher' --config-file $HOME/.config/launcher.yml -e launcher-file-search
-    ]] }):start()
-  end
-end
-
-hotkey.bind(mod_cmd, ";", function() launcherFileSearch() end)
+-- perform a google search
+hotkey.bind(mod_cmd, "n", function() launcherRunner('Google search', 'chrome-search') end)

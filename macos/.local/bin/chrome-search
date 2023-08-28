@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Perform a google search
+
+read -r -p 'Google: ' search
+open -a '/Applications/Google Chrome.app' "https://google.com/search?q=${search}"
