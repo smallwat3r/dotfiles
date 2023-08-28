@@ -158,7 +158,7 @@ hotkey.bind(mod_cmd, ',', function() launcherRunner('Bin launcher', 'launcher-bi
 hotkey.bind(mod_cmd, '.', function() launcherRunner('Bookmark launcher', 'launcher-chrome-bookmarks', nil) end)
 
 -- browse google chrome history
-hotkey.bind(mod_cmd, '/', function() launcherRunner('History launcher', 'launcher-chrome-history', 'window.dimensions.columns=100') end)
+hotkey.bind(mod_cmd, '/', function() launcherRunner('History launcher', 'launcher-chrome-history') end)
 
 -- switch to open application
 hotkey.bind(mod_cmd, 'space', function() launcherRunner('App switcher', 'launcher-running-app', nil) end)
