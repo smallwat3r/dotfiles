@@ -125,14 +125,14 @@
   (interactive)
   (let ((theme nil))
     (if (eq my-light-theme my-current-theme)
-        ;; light
+        ;; current theme is light
         (progn
           (setq theme my-dark-theme)
           (when IS-MAC
             ;; this is a dark theme, ensure to use a thinner font
             (setq doom-font (font-spec :family my-thinner-font :size my-font-size))
             (doom/reload-font)))
-      ;; dark
+      ;; current theme is dark
       (progn
         (setq theme my-light-theme)
         (when IS-MAC
