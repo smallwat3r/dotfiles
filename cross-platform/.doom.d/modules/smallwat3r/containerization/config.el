@@ -12,8 +12,9 @@
 
 ;; Docker tramp
 ;; doc: https://github.com/emacs-pe/docker-tramp.el
-(use-package! docker-tramp
-  :after tramp)
+(when (< emacs-major-version 29)
+  (use-package! docker-tramp
+    :after tramp))
 
 ;; Kubernetes
 ;; doc: https://github.com/chrisbarrett/kubernetes-el

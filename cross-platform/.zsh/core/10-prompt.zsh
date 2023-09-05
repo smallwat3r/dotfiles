@@ -2,7 +2,7 @@
 
 # Display Python virtual environment name. This function is used in the Zsh prompt.
 __is_venv() {
-  if [[ ${VIRTUAL_ENV} ]]; then
+  if (( ${+VIRTUAL_ENV} )); then
     echo '%s' "venv(${VIRTUAL_ENV##*/}) "
   fi
 }
@@ -50,7 +50,7 @@ PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f${vcs_info_msg_0_}%# '
 
 # When outside of emacs, activate tmux by default and use the individual pane
 # titles to display the main prompt information.
-if [[ ! "${INSIDE_EMACS}" ]] || [[ ! "${INSIDE_HS}" ]]; then
+if ((! ${+INSIDE_EMACS} )) && ((! ${+INSIDE_HS})); then
   # Activate tmux
   if [ -t 0 ] && [[ -z "${TMUX}" ]] && [[ $- = *i* ]]; then
     exec tmux
