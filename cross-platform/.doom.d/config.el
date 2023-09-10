@@ -612,8 +612,6 @@
   (defvar my-default-python-line-length 88
     "Default python line length.")
 
-  (setq lsp-ruff-lsp-python-path python-shell-interpreter)
-
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
   (setq python-shell-completion-native-enable nil)
 
@@ -633,8 +631,7 @@
 
   ;; Debugger
   (after! dap-mode
-    (setq dap-python-debugger 'debugpy
-          dap-python-executable python-shell-interpreter))
+    (setq dap-python-debugger 'debugpy))
 
   (setq-hook! 'python-mode-hook
     flycheck-checker 'my-python-ruff
@@ -650,7 +647,10 @@
 ;; doc: https://github.com/wyuenho/emacs-pet/
 (use-package! pet
   :config
-  (add-hook 'python-mode-hook 'pet-mode -10))
+  (add-hook 'python-mode-hook 'pet-mode -10)
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (setq-local lsp-ruff-lsp-python-path python-shell-interpreter))))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)
