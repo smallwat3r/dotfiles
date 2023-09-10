@@ -609,11 +609,10 @@
 
 ;; Python
 (after! python
-  (defvar my-default-python-line-length 100
+  (defvar my-default-python-line-length 88
     "Default python line length.")
 
-  (setq python-shell-interpreter "python3.10"
-        lsp-ruff-lsp-python-path python-shell-interpreter)
+  (setq lsp-ruff-lsp-python-path python-shell-interpreter)
 
   ;; Disable annoying warnings about `python-shell-interpreter' readline support.
   (setq python-shell-completion-native-enable nil)
@@ -639,15 +638,19 @@
 
   (setq-hook! 'python-mode-hook
     flycheck-checker 'my-python-ruff
-    flycheck-python-mypy-config "~/.config/mypy/config"
-    flycheck-python-mypy-executable "mypy"
-    flycheck-python-pyright-executable "pyright")
+    flycheck-python-mypy-config "~/.config/mypy/config")
 
   (map! :map python-mode-map
         :leader
         :localleader
         :desc "Deactivate venv" "e d" #'my/deactivate-python-venv
         :desc "Activate venv"   "e a" #'my/activate-closest-python-venv))
+
+;; PET (P ython E xecutable T racker)
+;; doc: https://github.com/wyuenho/emacs-pet/
+(use-package! pet
+  :config
+  (add-hook 'python-mode-hook 'pet-mode -10))
 
 ;; Pytest
 (set-popup-rule! "^\\*pytest*" :size 0.3)

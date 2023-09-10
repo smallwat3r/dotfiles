@@ -100,6 +100,10 @@
 ;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
 (package! csv-mode :pin "db8a3e3aef31d35ce5bd1fd09127a3bbfdd0c340")
 
+;; PET (P ython E xecutable T racker)
+;; https://github.com/wyuenho/emacs-pet/commits/main
+(package! pet :pin "acd54c5b0171a82f88988b4fe2e6db112df5bf9a")
+
 
 ;;
 ;;; Personal packages (I'm ok with not pinning those as I manage them).
