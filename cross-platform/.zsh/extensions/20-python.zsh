@@ -7,12 +7,8 @@ if [ -d "${HOME}/.poetry/bin" ]; then
   export PATH="${HOME}/.poetry/bin:${PATH}"
 fi
 
-if [ -d "/Library/Frameworks/Python.framework/Versions/3.10/bin" ]; then
-  export PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
-fi
-
 # activate the nearest python venv
-activate_nearest_venv() {
+avenv() {
   local dir
   dir="$(pwd)"
   while [[ ! -f "${dir}/venv/bin/activate" && -n "${dir}" ]]; do
@@ -30,5 +26,5 @@ activate_nearest_venv() {
 
 # run python from the nearest venv
 vpython() {
-  activate_nearest_venv && python "$@"
+  avenv && python "$@"
 }
