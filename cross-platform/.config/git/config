@@ -95,3 +95,6 @@ untracked = cyan
 
 [includeIf "gitdir:~/work/"]
 path = ~/work/.gitconfig
+
+[gpg]
+program = gpg
