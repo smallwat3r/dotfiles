@@ -40,3 +40,14 @@
         (pyvenv-activate venv-path)
         (message "Activated venv `%s'" venv-path))
     (message "Couldn't find any available venv")))
+
+;;;###autoload
+(defun my/python-to-fstring ()
+    "Make string to fstring."
+    (interactive)
+    (when (nth 3 (syntax-ppss))
+        (let ((p (point)))
+             (goto-char (nth 8 (syntax-ppss)))
+             (insert "f")
+             (goto-char p)
+             (forward-char))))

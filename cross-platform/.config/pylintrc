@@ -20,4 +20,4 @@ ignored-argument-names=arg|args|kw|kwargs
 
 [FORMAT]
 
-max-line-length=110
+max-line-length=88

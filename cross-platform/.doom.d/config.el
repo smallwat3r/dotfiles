@@ -587,7 +587,8 @@
   (map! :map flycheck-mode-map
         :leader
         :localleader
-        :desc "Flycheck list errors" "f" #'flycheck-list-errors))
+        :desc "Change to f-string"   "f" #'my/python-to-fstring
+        :desc "Flycheck list errors" "l" #'flycheck-list-errors))
 
 ;; Flycheck pop-up tooltips
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
