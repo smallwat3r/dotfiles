@@ -206,7 +206,7 @@
         "C-j" #'evil-next-line
 
         :map evil-visual-state-map
-        ";f"  #'+format/region
+        ";f"  #'my/format-region
 
         :map evil-normal-state-map
         "C-;"   #'my/scroll-up
@@ -769,6 +769,22 @@
         :desc "CSV align fields" "a" #'csv-align-fields
         :desc "CSV unalign fields" "A" #'csv-unalign-fields
         :desc "CSV toggle sticky header" "h" #'csv-header-line))
+
+;; HACK: since some upstream changes, formatting a specific region seems broken, and
+;; calling `+format/region' raises: "with Symbol’s function definition is void:
+;; apheleia--get-formatters", ensure to autoload the required function.
+(use-package! apheleia-core
+  :commands (apheleia--get-formatters))
+
+;; HACK: re the above hack, for some reason it also seems to break the tree-sitter
+;; syntax highlighting, this function adds a wrapper to re-enable tree-sitter after
+;; calling `+format/region', in case the highlighting was broken.
+(defun my/format-region (beg end &optional arg)
+  (interactive "rP")
+  (+format/region beg end arg)
+  (ignore-errors
+    (tree-sitter--teardown)
+    (turn-on-tree-sitter-mode)))
 
 
 ;;
