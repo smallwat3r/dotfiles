@@ -95,6 +95,19 @@
   (setq my-font-size 18
         doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)))
 
+;; fix italic fonts on Linux which needs to be set to medium weight, instead of regular
+(when IS-LINUX
+  (custom-set-faces!
+    `(italic :weight medium :slant italic))
+
+  (custom-theme-set-faces! 'smallwat3r
+    `(font-lock-doc-face :foreground "DarkRed" :weight medium :slant italic)
+    `(font-lock-comment-face :foreground "yellow4" :weight medium :slant italic))
+
+  (custom-theme-set-faces! 'smallwat3r-dark
+    `(font-lock-doc-face :foreground "turquoise3" :weight medium :slant italic)
+    `(font-lock-comment-face :foreground "yellow3" :weight medium :slant italic)))
+
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
