@@ -44,11 +44,11 @@
 
 ;;;###autoload
 (defun my/where-am-i ()
-  "Show where I'm at."
+  "Echo where I'm at."
   (interactive)
-  (message (kill-new (if (buffer-file-name)
-                         (buffer-file-name)
-                       (buffer-name)))))
+  (message (if (buffer-file-name)
+               (buffer-file-name)
+             (concat "buffer-name=" (buffer-name)))))
 
 ;;;###autoload
 (defun my/terminal-here ()

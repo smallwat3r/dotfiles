@@ -16,7 +16,6 @@ c.fonts.default_size = "14pt"
 c.downloads.location.directory = "~/Downloads"
 c.tabs.position = "bottom"
 
-c.content.javascript.can_access_clipboard = True
 c.content.default_encoding = "utf-8"
 c.content.headers.custom = {}
 c.content.autoplay = False
