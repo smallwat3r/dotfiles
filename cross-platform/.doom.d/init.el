@@ -56,6 +56,7 @@
        pass
        pdf
        rgb
+       terraform
 
        :os
        (:if IS-MAC macos)
