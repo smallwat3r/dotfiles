@@ -199,14 +199,6 @@
 
 ;; Evil-mode
 (after! evil
-  ;; Change cursor color and shape based on evil mode.
-  (setq evil-emacs-state-cursor '("DarkTurquoise" box)
-        evil-normal-state-cursor '("DarkTurquoise" box)
-        evil-visual-state-cursor '("SlateGray2" box)
-        evil-insert-state-cursor '("SlateGray2" box)
-        evil-replace-state-cursor '("red" bar)
-        evil-operator-state-cursor '("red" hollow))
-
   ;; General evil mode settings.
   (setq evil-vsplit-window-right t
         evil-split-window-below t
