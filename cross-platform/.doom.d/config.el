@@ -81,15 +81,21 @@
 
 ;; Fonts
 
+;; this is useful when changing from light and dark theme to have fonts with
+;; different weigths, as often a thicker font renders better on a light background,
+;; and a thiner font renders best of a darker background.
+(defvar my-thinner-font nil
+  "Thinner font family to use.")
+
+(defvar my-thicker-font nil
+  "Thicker font family to use.")
+
 (if IS-MAC
+    ;; macos defaults
     (progn
-      ;; this is useful when changing from light and dark theme to have fonts with
-      ;; different weigths, as often a thicker font renders better on a light background,
-      ;; and a thiner font renders best of a darker background.
       (setq my-thinner-font "Triplicate B Code"
-            my-thicker-font "Triplicate A Code")
-      ;; macos defaults
-      (setq my-font-size 16
+            my-thicker-font "Triplicate A Code"
+            my-font-size 16
             doom-font (font-spec :family my-thinner-font :size my-font-size)))
   ;; on other OSes (personally on Linux), use a bitmap font
   (setq my-font-size 18
@@ -136,22 +142,16 @@
 (defun my-theme-toggle ()
   "Toggle between dark and light theme."
   (interactive)
-  (let ((theme nil))
+  (let* ((theme nil)
+         (font nil))
     (if (eq my-light-theme my-current-theme)
-        ;; current theme is light
-        (progn
-          (setq theme my-dark-theme)
-          (when IS-MAC
-            ;; this is a dark theme, ensure to use a thinner font
-            (setq doom-font (font-spec :family my-thinner-font :size my-font-size))
-            (doom/reload-font)))
-      ;; current theme is dark
-      (progn
-        (setq theme my-light-theme)
-        (when IS-MAC
-          ;; this is a light theme, use a thicker font
-          (setq doom-font (font-spec :family my-thicker-font :size my-font-size))
-          (doom/reload-font))))
+        (setq theme my-dark-theme
+              font my-thinner-font)
+      (setq theme my-light-theme
+            font my-thicker-font))
+    (when IS-MAC
+      (setq doom-font (font-spec :family font :size my-font-size))
+      (doom/reload-font))
     (setq my-current-theme theme)
     (load-theme theme t)))
 
