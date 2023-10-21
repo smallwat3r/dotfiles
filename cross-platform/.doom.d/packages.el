@@ -24,11 +24,11 @@
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "5b7a9195ffc25ed58f2c2437dd9c742241734904")
+(package! applescript-mode :pin "1e04ff20745fbf8aac9279aa4e144957c5e2b224")
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "a185254605d212881648ceaf6d1504d34413ef8c")
+(package! logview :pin "9140067afdc2f0d1eb493dc4dfdb53645289dd2b")
 
 ;; Nginx config files syntax highlighting
 ;; https://github.com/ajc/nginx-mode/commits/master
@@ -40,24 +40,24 @@
 
 ;; Support for YAML
 ;; https://github.com/yoshiki/yaml-mode/commits/master
-(package! yaml-mode :pin "3fcb36d6039bef57e2a0f6e24c51f623c0bf5fb7")
+(package! yaml-mode :pin "23395dfcf004c952850691b70e63f97f169596e8")
 
 ;; Dired utilities
 ;; https://github.com/Fuco1/dired-hacks/commits/master
-(package! dired-narrow :pin "7c0ef09d57a80068a11edc74c3568e5ead5cc15a")
-(package! dired-subtree :pin "7c0ef09d57a80068a11edc74c3568e5ead5cc15a")
+(package! dired-narrow :pin "874449d6fc98aee565e1715ec18acec3c1c2cafb")
+(package! dired-subtree :pin "874449d6fc98aee565e1715ec18acec3c1c2cafb")
 
 ;; Display keycast
-;; https://github.com/tarsius/keycast/commits/master
-(package! keycast :pin "30f2b446c013dda490f44dbf82d0ab34eb016726")
+;; https://github.com/tarsius/keycast/commits/main
+(package! keycast :pin "481a1620cac3118aff4b2db027acde7d3834b153")
 
 ;; Input random text
 ;; https://github.com/jschaf/emacs-lorem-ipsum/commits/master
-(package! lorem-ipsum :pin "da75c155da327c7a7aedb80f5cfe409984787049")
+(package! lorem-ipsum :pin "4e87a899868e908a7a9e1812831d76c8d072f885")
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
-(package! symbol-overlay :pin "7c7d369bb749d96346b40cf714884a39aaa743f4")
+(package! symbol-overlay :pin "a783d7b5d8dee5ba9f5e7c00a834fbd6d645081b")
 
 ;; Fetch the clipboard history
 ;; https://github.com/redguardtoo/cliphist/commits/master
@@ -65,11 +65,11 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "54a2acddfdd7c3d31cb804a042305a3c6e60cf81")
+(package! lsp-pyright :pin "2f2631ae242d5770dbe6cb924e44c1ee5671789d")
 
 ;; Bitwarden support
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
-(package! bitwarden :pin "02d6410003a42e7fbeb4aa109aba949eea553706"
+(package! bitwarden :pin "1120647d974e06af431523f5824eb2e868e8098b"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
 
 ;; Imenu list of buffers
@@ -98,11 +98,11 @@
 
 ;; Support for CSV
 ;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
-(package! csv-mode :pin "db8a3e3aef31d35ce5bd1fd09127a3bbfdd0c340")
+(package! csv-mode :pin "1f7cf5ed71a67be73c9ca9e672b35e897017ea73")
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "acd54c5b0171a82f88988b4fe2e6db112df5bf9a")
+(package! pet :pin "d431f4d4f262752f9e4498471b11b20eaa49b8cf")
 
 
 ;;

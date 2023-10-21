@@ -2,6 +2,6 @@
 ;;; smallwat3r/tree-sitter/packages.el
 
 ;; https://github.com/emacs-tree-sitter/elisp-tree-sitter/commits/master
-(package! tree-sitter :pin "fa5a072128da1235e237da827daf53f71a2cd562")
+(package! tree-sitter :pin "69fa82c76fc25b30fc0528291423002dd18a89e5")
 ;; https://github.com/emacs-tree-sitter/tree-sitter-langs/commits/master
-(package! tree-sitter-langs :pin "2e1d165c4684ab19b9f0a41f0c255ae2f3102ffe")
+(package! tree-sitter-langs :pin "fc1aeedb484584d1dd5df5759a43cd6da018bcb7")
