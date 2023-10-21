@@ -529,12 +529,6 @@
 
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
-  (setq-hook! 'sh-mode-hook
-    flycheck-checker 'sh-shellcheck
-    flycheck-shellcheck-excluded-warnings '("SC1091")
-    sh-basic-offset 2
-    indent-tabs-mode nil)
-
   ;; Formatter
   (set-formatter! 'shfmt
     '("shfmt"
@@ -542,6 +536,12 @@
       "-ci"    ; indent switch cases
       "-bn")   ; binary ops may start a line
     :modes '(sh-mode)))
+
+(setq-hook! 'sh-mode-hook
+  flycheck-checker 'sh-shellcheck
+  flycheck-shellcheck-excluded-warnings '("SC1091")
+  sh-basic-offset 2
+  indent-tabs-mode nil)
 
 ;; Disabled company auto completion on shell mode. I experienced some heavy
 ;; performance issues when it was enabled.
@@ -637,15 +637,15 @@
   (after! dap-mode
     (setq dap-python-debugger 'debugpy))
 
-  (setq-hook! 'python-mode-hook
-    flycheck-checker 'my-python-ruff
-    flycheck-python-mypy-config "~/.config/mypy/config")
-
   (map! :map python-mode-map
         :leader
         :localleader
         :desc "Deactivate venv" "e d" #'my/deactivate-python-venv
         :desc "Activate venv"   "e a" #'my/activate-closest-python-venv))
+
+(setq-hook! 'python-mode-hook
+  flycheck-checker 'my-python-ruff
+  flycheck-python-mypy-config "~/.config/mypy/config")
 
 ;; PET (P ython E xecutable T racker)
 ;; doc: https://github.com/wyuenho/emacs-pet/
@@ -661,14 +661,14 @@
 
 ;; Javascript
 (after! js2-mode
-  (setq-hook! 'js2-mode-hook js2-basic-offset 2)
-
   ;; Formatter
   (set-formatter! 'prettier
     '("prettier"
       "--print-width" "120"
       ("--stdin-filepath" "%s" buffer-file-name))
     :modes '(js2-mode)))
+
+(setq-hook! 'js2-mode-hook js2-basic-offset 2)
 
 ;; Json
 (setq-hook! 'json-mode-hook tab-width 2)
