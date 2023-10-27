@@ -68,8 +68,8 @@
 
 (setq frame-title-format (concat my-title-emacs-version " - %b"))
 
-(when IS-MAC
-  ;; Nextstep inferface settings. This is used by macOS (and GNUstep).
+(when (featurep 'ns)
+  ;; ns stands for NextStep, it's the interface used with OSX.
   (setq ns-use-thin-smoothing t
         ns-use-native-fullscreen nil
         ns-use-fullscreen-animation nil
