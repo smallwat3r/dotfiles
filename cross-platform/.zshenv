@@ -48,8 +48,6 @@ else
 fi
 
 export CLICOLOR=1
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='0;31'
 
 # Load private env configs
 if [[ -f "${HOME}/.zshenv.private" ]]; then

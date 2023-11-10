@@ -16,3 +16,6 @@ if [ -d '/opt/homebrew/bin' ]; then
     egrep='/opt/homebrew/bin/gegrep' \
     fgrep='/opt/homebrew/bin/fegrep'
 fi
+
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='0;31'

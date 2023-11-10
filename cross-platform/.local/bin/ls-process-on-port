@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Kill active process running on a specific port.
+# List processes listening on port.
 
 set -e
 
@@ -13,10 +13,4 @@ if [[ ! $1 =~ ^-?[0-9]+$ ]]; then
   exit 1
 fi
 
-pid=$(lsof -t -i:"$1") || {
-  printf 'No process found at this port.\n' >&2
-  exit 1
-}
-
-kill -9 "$pid"
-printf 'Process pid %s has been killed.\n' "$pid"
+lsof -n -i:"$1" | grep LISTEN
