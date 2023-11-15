@@ -125,7 +125,7 @@
     (setq doom-big-font-increment 4)
   (setq doom-big-font-increment 2))
 
-(setq-default line-spacing 2
+(setq-default line-spacing 3
               tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 

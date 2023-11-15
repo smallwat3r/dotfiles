@@ -76,10 +76,6 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 # enforce finder list view
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
-# do not send search queries to Apple when using Safari
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
 # visualize CPU usage in the Activity Monitor Dock icon
 defaults write com.apple.ActivityMonitor IconType -int 5
 
