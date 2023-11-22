@@ -92,10 +92,6 @@
 ;; https://github.com/dieggsy/eterm-256color/commits/master
 (package! eterm-256color :pin "c9cfccef03e730f7ab2b407aada3df15ace1fe32")
 
-;; Add sticky function headers
-;; https://github.com/alphapapa/topsy.el/commits/master
-(package! topsy :pin "86d4234e4a0e9d2f5bf0f1114ea9893da48e77d1")
-
 ;; Support for CSV
 ;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
 (package! csv-mode :pin "1f7cf5ed71a67be73c9ca9e672b35e897017ea73")

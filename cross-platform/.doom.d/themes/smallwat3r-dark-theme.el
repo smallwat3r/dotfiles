@@ -39,6 +39,9 @@
 
  `(default ((t (:background "black" :foreground "white"))))
 
+ `(lsp-headerline-breadcrumb-symbols-face ((t (:inherit font-lock-constant-face :weight normal))))
+ `(lsp-headerline-breadcrumb-path-face ((t (:inherit font-lock-constant-face :weight normal))))
+
  `(success ((t (:foreground "green4" :weight bold))))
  `(warning ((t (:foreground "OrangeRed3" :weight bold))))
  `(error ((t (:foreground "firebrick2" :weight bold))))

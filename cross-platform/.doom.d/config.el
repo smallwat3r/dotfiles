@@ -523,9 +523,13 @@
   ;; because it took too much memory. So I just disable it as a default.
   (setq lsp-enable-file-watchers nil)
   ;; Ignore asking to restart if server failed to boot.
-  (setq lsp-restart 'ignore)
+  (setq lsp-restart 'interactive)
   ;; Iterate quickly (default is 10).
-  (setq lsp-response-timeout 5))
+  (setq lsp-response-timeout 5)
+  ;; lsp-headerline
+  (setq lsp-headerline-breadcrumb-enable t
+        lsp-headerline-arrow "."
+        lsp-headerline-breadcrumb-segments '(symbols)))
 
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
@@ -754,13 +758,6 @@
 
 ;; ssh config mode
 (add-to-list 'auto-mode-alist '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
-
-;; Sticky function headers
-;; doc: https://github.com/alphapapa/topsy.el
-(use-package! topsy
-  :hook
-  (prog-mode . topsy-mode)
-  (magit-section-mode . topsy-mode))
 
 ;; CSV mode
 ;; doc: https://elpa.gnu.org/packages/csv-mode.html
