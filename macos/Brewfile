@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-brew "antigen"
 brew "aspell"
 brew "bash"
 brew "bitwarden-cli"
