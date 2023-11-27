@@ -27,7 +27,8 @@ export PATH
 
 if [ -d /opt/homebrew/bin ]; then
   # this needs to leave here as modules from config depends on this
-  export PATH="${PATH:+${PATH}:}/opt/homebrew/bin"
+  export PATH="/opt/homebrew/bin:$PATH"
+  export PATH="/opt/homebrew/sbin:$PATH"
 fi
 
 if [[ $(uname) == 'Darwin' ]]; then
