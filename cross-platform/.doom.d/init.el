@@ -56,7 +56,7 @@
        pass
        pdf
        rgb
-       terraform
+       (terraform +lsp)
 
        :os
        (:if IS-MAC macos)
