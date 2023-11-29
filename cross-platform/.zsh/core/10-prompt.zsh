@@ -38,7 +38,7 @@ __display_git_info() {
   local _git_branch="%F{yellow}$(__git_branch)%f"
   local _git_is_paused="$(__git_is_paused)"
 
-  echo " ${_git_is_paused}${_git_branch}${_git_root}"
+  echo " (${_git_is_paused}${_git_branch}${_git_root})"
 }
 
 # Disable showing any Python virtual environment information in the shell prompt.
