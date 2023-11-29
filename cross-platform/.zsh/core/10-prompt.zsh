@@ -7,32 +7,30 @@ __is_venv() {
   fi
 }
 
-# Return true if the current directory is the root of a git repository.
+# returns true if the current directory is the root of a git repository.
 __git_root() {
   if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]; then
     [[ $(git rev-parse --show-toplevel 2>/dev/null) == "${PWD}" ]] && echo true
   fi
 }
 
-# Show a `*` next to the branch name if the Git branch is dirty.
+# display a `*` next to the branch name if the Git branch is dirty.
 __git_dirty() {
   [[ $(git diff --shortstat 2>/dev/null | tail -n1) != "" ]] && echo "*"
 }
 
-# Red indicator that the current branch has been PAUSED with git-pause, need
-# to use git-resume to resume it.
+# indicates that the current branch has been PAUSED with git-pause, and that
+# it needs to be resumed using git-resume.
 __git_is_paused() {
   [[ $(git log -1 --format="%s" 2>/dev/null | grep '^PAUSED') ]] &&
     echo "%B%F{198}%K{52}[${(U)}PAUSED]%b%f%k "
 }
 
-# Display current git branch.
 __git_branch() {
   git branch --no-color 2>/dev/null \
     | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(__git_dirty)/"
 }
 
-# Display git information.
 __display_git_info() {
   [[ ! $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] && return
 
@@ -53,15 +51,6 @@ setopt PROMPT_SUBST
 
 # Enable colors.
 autoload -U colors && colors
-
-# Display Git information in the prompt. Keep it minimal.
-autoload -Uz vcs_info
-precmd_vcs_info() {
-  vcs_info
-}
-precmd_functions+=(
-  precmd_vcs_info
-)
 
 # Manually input custom text in the prompt. Fetch the value of the tag from the
 # `_PROMPT_TAG` variable and add custom colors and faces.
