@@ -100,6 +100,9 @@
 ;; https://github.com/wyuenho/emacs-pet/commits/main
 (package! pet :pin "d431f4d4f262752f9e4498471b11b20eaa49b8cf")
 
+;; Copy active region to the kill ring formatted as Github, Slack etc...
+;; doc: https://github.com/sshaw/copy-as-format/commits/master
+(package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
 
 ;;
 ;;; Personal packages (I'm ok with not pinning those as I manage them).

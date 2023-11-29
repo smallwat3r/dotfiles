@@ -394,6 +394,16 @@
   (if (file-exists-p custom-file)
       (load custom-file t)))
 
+;; Copy the active region and add it to the kill ring formatted for
+;; Github, Slack etc...
+(use-package! copy-as-format
+  :config
+  (global-set-key (kbd "C-c y s") 'copy-as-format-slack)
+  (global-set-key (kbd "C-c y g") 'copy-as-format-github)
+  (global-set-key (kbd "C-c y l") 'copy-as-format-gitlab)
+  (global-set-key (kbd "C-c y m") 'copy-as-format-markdown)
+  (global-set-key (kbd "C-c y o") 'copy-as-format-org-mode))
+
 
 ;;
 ;;; Custom templates

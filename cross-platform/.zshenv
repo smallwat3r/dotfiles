@@ -29,6 +29,7 @@ if [ -d /opt/homebrew ]; then
   # this needs to leave here as modules from config depends on this
   export PATH="/opt/homebrew/bin:$PATH"
   export PATH="/opt/homebrew/sbin:$PATH"
+  export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
 fi
 
 if [[ $(uname) == 'Darwin' ]]; then
