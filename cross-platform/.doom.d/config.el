@@ -497,20 +497,6 @@
 ;; Code completion
 ;; doc: https://www.emacswiki.org/emacs/CompanyMode
 (after! company
-  ;; This function gets used for `company-format-margin-function'. The default
-  ;; displayed the company icons without a space between the icons and the text.
-  ;; Which makes it a bit innelegant. This function adds a space between the two
-  ;; values.
-  (defun my/company-spaced-dark-icons-margin (candidate selected)
-    (concat
-     (company--render-icons-margin company-vscode-icons-mapping
-                                   (expand-file-name "vscode-dark" company-icons-root)
-                                   candidate
-                                   selected)
-     " "))
-
-  (setq company-format-margin-function 'my/company-spaced-dark-icons-margin)
-
   ;; Make completion feel snappy.
   (setq company-idle-delay 0
         company-minimum-prefix-length 1
