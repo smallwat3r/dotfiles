@@ -502,7 +502,39 @@
         company-minimum-prefix-length 1
         company-tooltip-limit 6)
 
-  (setq company-tooltip-align-annotations nil
+  (setq company-vscode-icons-mapping
+        '((array . "symbol-array.svg")
+          (boolean . "symbol-boolean.svg")
+          (class . "symbol-class.svg")
+          (color . "symbol-color.svg")
+          (constant . "symbol-constant.svg")
+          (constructor . "symbol-method.svg")
+          (enum-member . "symbol-enumerator-member.svg")
+          (enum . "symbol-enumerator.svg")
+          (event . "symbol-event.svg")
+          (field . "symbol-field.svg")
+          (file . "symbol-file.svg")
+          (folder . "folder.svg")
+          (interface . "symbol-interface.svg")
+          (keyword . "symbol-keyword.svg")
+          (method . "symbol-method.svg")
+          (function . "symbol-method.svg")
+          (module . "symbol-namespace.svg")
+          (numeric . "symbol-numeric.svg")
+          (operator . "symbol-operator.svg")
+          (property . "symbol-property.svg")
+          (reference . "references.svg")
+          (snippet . "symbol-misc.svg")
+          (string . "symbol-string.svg")
+          (struct . "symbol-structure.svg")
+          (text . "symbol-key.svg")
+          (type-parameter . "symbol-parameter.svg")
+          (unit . "symbol-ruler.svg")
+          (value . "symbol-enumerator.svg")
+          (variable . "symbol-variable.svg")
+          (t . "symbol-misc.svg")))
+
+  (setq company-tooltip-align-annotations t
         company-tooltip-offset-display 'lines))
 
 
