@@ -15,3 +15,4 @@ setopt HISTIGNORESPACE      # do not save in history commands that starts by a s
 unsetopt BEEP               # do no beep on errors
 unsetopt LIST_BEEP          # do not beep on anbiguous completion
 unsetopt COMPLETE_ALIASES   # do not prevent aliases from being substituted before completion is attempted
+unsetopt PROMPT_SP          # do not attempt to preserve partial lines
