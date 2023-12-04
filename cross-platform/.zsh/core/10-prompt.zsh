@@ -34,11 +34,11 @@ __git_branch() {
 __display_git_info() {
   [[ ! $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] && return
 
-  local _git_root="%F{yellow}$(__git_root | sed 's/true/~/')%f"
-  local _git_branch="%F{yellow}$(__git_branch)%f"
+  local _git_root="$(__git_root | sed 's/true/~/')"
+  local _git_branch="$(__git_branch)"
   local _git_is_paused="$(__git_is_paused)"
 
-  echo " (${_git_is_paused}${_git_branch}${_git_root})"
+  echo " (${_git_is_paused}${_git_branch}${_git_root}) "
 }
 
 # Disable showing any Python virtual environment information in the shell prompt.
@@ -68,7 +68,7 @@ tag() {
 
 # Prompt format definition. It will print out return codes in red in case the
 # command fails.
-PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f$(__display_git_info)%# '
+PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f%F{yellow}$(__display_git_info)%f%# '
 
 # When outside of emacs, activate tmux by default and use the individual pane
 # titles to display the main prompt information.
