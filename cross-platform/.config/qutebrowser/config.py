@@ -10,7 +10,8 @@ if platform.system() == "Linux":
 else:
     c.fonts.default_family = "Triplicate A Code"
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
-    c.content.user_stylesheets = ["~/.config/qutebrowser/css/mac.css"]
+
+c.content.user_stylesheets = ["~/.config/qutebrowser/css/monaco.css"]
 
 c.fonts.default_size = "14pt"
 c.downloads.location.directory = "~/Downloads"

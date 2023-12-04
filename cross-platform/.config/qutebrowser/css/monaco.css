@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'SFMono-Regular';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'Cousine';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'Menlo';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'Consolas';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'Cascadia Mono';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'Monospace';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'Gitlab Mono';
+    src: local('Monaco for Powerline');
+}
+@font-face {
+    font-family: 'Gitlab Mono';
+    src: local('Monaco for Powerline');
+    font-weight: 600;
+}
+.hljs-comment {
+    font-style: normal !important;
+}
+.c1 {
+    font-style: normal !important;
+}
