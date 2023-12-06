@@ -22,8 +22,10 @@ __git_dirty() {
 # indicates that the current branch has been PAUSED with git-pause, and that
 # it needs to be resumed using git-resume.
 __git_is_paused() {
+  [[ ! $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] && return
+
   [[ $(git log -1 --format="%s" 2>/dev/null | grep '^PAUSED') ]] &&
-    echo "%B%F{198}%K{52}[${(U)}PAUSED]%b%f%k "
+    echo " %B%F{198}%K{52}[${(U)}PAUSED]%b%f%k"
 }
 
 __git_branch() {
@@ -36,9 +38,8 @@ __display_git_info() {
 
   local _git_root="$(__git_root | sed 's/true/~/')"
   local _git_branch="$(__git_branch)"
-  local _git_is_paused="$(__git_is_paused)"
 
-  echo " (${_git_is_paused}${_git_branch}${_git_root}) "
+  echo " (${_git_branch}${_git_root}) "
 }
 
 # Disable showing any Python virtual environment information in the shell prompt.
@@ -68,7 +69,7 @@ tag() {
 
 # Prompt format definition. It will print out return codes in red in case the
 # command fails.
-PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f%F{yellow}$(__display_git_info)%f%# '
+PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f$(__git_is_paused)%F{yellow}$(__display_git_info)%f%# '
 
 # When outside of emacs, activate tmux by default and use the individual pane
 # titles to display the main prompt information.

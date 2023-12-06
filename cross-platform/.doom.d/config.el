@@ -801,7 +801,7 @@
 ;; HACK: since some upstream changes, formatting a specific region seems broken, and
 ;; calling `+format/region' raises: "with Symbol’s function definition is void:
 ;; apheleia--get-formatters", ensure to autoload the required function.
-(use-package! apheleia-core
+(use-package! apheleia
   :commands (apheleia--get-formatters))
 
 ;; HACK: re the above hack, for some reason it also seems to break the tree-sitter
