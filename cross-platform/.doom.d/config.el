@@ -172,9 +172,8 @@
 
 (defun +doom-dashboard-tweak (&optional _)
   (with-current-buffer (get-buffer +doom-dashboard-name)
-    (setq-local line-spacing 0
-                ;; Do not display the cursor on the dashboard.
-                evil-normal-state-cursor (list nil))))
+    ;; Do not display the cursor on the dashboard.
+    (setq-local evil-normal-state-cursor (list nil))))
 
 (add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
 
