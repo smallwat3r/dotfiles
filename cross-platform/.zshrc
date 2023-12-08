@@ -1,5 +1,9 @@
 # smallwat3r's ZSH config entrypoint
 
+if (( ${+DEBUG_ZSH_PERF} )); then
+  zmodload zsh/zprof
+fi
+
 ZSH_ROOT="${HOME}/.zsh"
 
 __source_config() {
@@ -35,4 +39,8 @@ autoload -U "${ZSH_ROOT}"/functions/*(:t)
 # Load private configs
 if [[ -f "${HOME}/.zshrc.private" ]]; then
   source "${HOME}/.zshrc.private"
+fi
+
+if (( ${+DEBUG_ZSH_PERF} )); then
+  zprof
 fi

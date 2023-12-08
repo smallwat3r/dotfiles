@@ -27,17 +27,10 @@ alias \
 # Examples:
 #   `git push` could be called from `gp`.
 #   `git checkout` could be called from `gco`.
-#
-__define_git_aliases() {
-  local aliases
-  aliases=(${^${${(0)"$(git config -z --get-regexp '^alias.')"}#alias.}/$'\n'/:alias for \'}\')
-  local al
-  for al in ${aliases%%:*}; do
-    alias g$al="git $al"
-  done
-  alias g="git"
-}
-__define_git_aliases
+for al in ${${${(0)"$(git config -z --get-regexp '^alias.')"}%%$'\n'*}\#alias.}; do
+  alias g$al="git $al"
+done
+alias g="git"
 
 # Use Neovim over Vim
 alias \
