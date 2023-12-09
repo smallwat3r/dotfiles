@@ -1,3 +1,6 @@
+# Manage any external tools / scripts.
+# For instance I find autosuggestions and highlighting quite useful.
+
 __load_plugins() {
   if [[ $(uname) == 'Darwin' ]]; then
     local plugins=(
