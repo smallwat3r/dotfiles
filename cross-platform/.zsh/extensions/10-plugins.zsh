@@ -1,18 +1,20 @@
-# macos
-if [ -f '/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh' ]; then
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-if [ -f '/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ]; then
- source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+__load_plugins() {
+  local plugins=(
+    # macos
+    '/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh'
+    '/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+    # linux
+    '/usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh'
+    '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh'
+    '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh'
+  )
 
-# linux
-if [ -f '/usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ' ]; then
-  source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-fi
-if [ -f '/usr/share/zsh/plugins/zsh-autosuggestions//zsh-autosuggestions.plugin.zsh' ]; then
-  source /usr/share/zsh/plugins/zsh-autosuggestions//zsh-autosuggestions.plugin.zsh
-fi
-if [ -f '/usr/share/zsh/plugins/zsh-syntax-highlighting//zsh-syntax-highlighting.plugin.zsh' ]; then
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting//zsh-syntax-highlighting.plugin.zsh
-fi
+  local plugin
+  for plugin ("${plugins[@]}"); do
+    if [ -f "${plugin}" ]; then
+      source "${plugin}"
+    fi
+  done
+}
+
+__load_plugins
