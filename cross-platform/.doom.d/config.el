@@ -99,7 +99,8 @@
             doom-font (font-spec :family my-thinner-font :size my-font-size)))
   ;; on other OSes (personally on Linux), use a bitmap font
   (setq my-font-size 18
-        doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)))
+        ;; doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)))
+        doom-font (format "Fantasque Sans Mono:pixelsize=%s" my-font-size)))
 
 ;; fix italic fonts on Linux which needs to be set to medium weight, instead of regular
 (when IS-LINUX

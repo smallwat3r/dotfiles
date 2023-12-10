@@ -4,16 +4,17 @@ import platform
 config.load_autoconfig(False)
 
 if platform.system() == "Linux":
-    c.fonts.default_family = "UW Ttyp0"
+    # c.fonts.default_family = "UW Ttyp0"
+    c.fonts.default_family = "Fantasque Sans Mono"
     c.editor.command = ["emacs", "{}"]
-    c.zoom.default = "90%"
+    c.fonts.default_size = "13pt"
 else:
     c.fonts.default_family = "Triplicate A Code"
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
+    c.fonts.default_size = "14pt"
 
 c.content.user_stylesheets = ["~/.config/qutebrowser/css/monaco.css"]
 
-c.fonts.default_size = "14pt"
 c.downloads.location.directory = "~/Downloads"
 c.tabs.position = "bottom"
 
