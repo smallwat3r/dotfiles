@@ -839,6 +839,14 @@
         :in "C-k"       #'vterm-send-up
         :in "C-j"       #'vterm-send-down))
 
+;; provides extra convenience functions for vterm
+;; doc: https://github.com/Sbozzolo/vterm-extra
+(use-package! vterm-extra
+  :after vterm
+  :bind (("s-t" . vterm-extra-dispatcher)
+         :map vterm-mode-map
+         (("C-c C-e" . vterm-extra-edit-command-in-new-buffer))))
+
 (map! :leader
       :prefix "o"
       :desc "Terminal"               "1" #'my/terminal-here

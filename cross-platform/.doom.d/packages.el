@@ -101,8 +101,14 @@
 (package! pet :pin "d431f4d4f262752f9e4498471b11b20eaa49b8cf")
 
 ;; Copy active region to the kill ring formatted as Github, Slack etc...
-;; doc: https://github.com/sshaw/copy-as-format/commits/master
+;; https://github.com/sshaw/copy-as-format/commits/master
 (package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
+
+;; Provides extra convenience functions for vterm
+;; https://github.com/Sbozzolo/vterm-extra/commits/master/
+(package! vterm-extra
+  :recipe (:host github :repo "Sbozzolo/vterm-extra")
+  :pin "2d4a34f03d0f0d863a319cd0496ed6cafe94c27e")
 
 ;;
 ;;; Personal packages (I'm ok with not pinning those as I manage them).
