@@ -9,7 +9,6 @@ __load_plugins() {
     )
   else
     local plugins=(
-      '/usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh'
       '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh'
       '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh'
     )
