@@ -40,6 +40,6 @@ __fzf_possible_keybinding_config_paths=(
 __load_fzf_config ${__fzf_possible_completion_config_paths}
 __load_fzf_config ${__fzf_possible_keybinding_config_paths}
 
-export FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:184,hl:50,hl+:50'
+export FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115'
 export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
