@@ -35,11 +35,11 @@ make help
 
 ** Emacs
 
-Install Emacs, I'm using Emacs 28 with native compilation (=gccEmacs=)
+Install Emacs, I'm using Emacs 29 with native compilation (=gccEmacs=)
 
 For macOS:
 #+begin_src shell
-brew tap d12frosted/emacs-plus && brew install emacs-plus@28 --with-native-comp
+brew tap d12frosted/emacs-plus && brew install emacs-plus@29 --with-native-comp
 #+end_src
 
 For Arch Linux:
