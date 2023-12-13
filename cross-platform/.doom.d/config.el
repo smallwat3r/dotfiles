@@ -600,7 +600,7 @@
     "A Python syntax and style checker using the ruff utility."
     :command ("ruff"
               "check"
-              "--format=text"
+              "--output-format=text"
               (eval (format "--config=%s" my-ruff-global-config))
               (eval (when buffer-file-name
                       (concat "--stdin-filename=" buffer-file-name)))
