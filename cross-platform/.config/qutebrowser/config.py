@@ -5,7 +5,7 @@ config.load_autoconfig(False)
 
 if platform.system() == "Linux":
     # c.fonts.default_family = "UW Ttyp0"
-    c.fonts.default_family = "Fantasque Sans Mono"
+    c.fonts.default_family = "Triplicate B Code"
     c.editor.command = ["emacs", "{}"]
     c.fonts.default_size = "13pt"
 else:

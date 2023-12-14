@@ -90,17 +90,14 @@
 (defvar my-thicker-font nil
   "Thicker font family to use.")
 
+(setq my-thinner-font "Triplicate B Code"
+      my-thicker-font "Triplicate A Code")
+
 (if IS-MAC
-    ;; macos defaults
-    (progn
-      (setq my-thinner-font "Triplicate B Code"
-            my-thicker-font "Triplicate A Code"
-            my-font-size 16
-            doom-font (font-spec :family my-thinner-font :size my-font-size)))
-  ;; on other OSes (personally on Linux), use a bitmap font
-  (setq my-font-size 18
-        ;; doom-font (format "UW Ttyp0:pixelsize=%s" my-font-size)))
-        doom-font (format "Fantasque Sans Mono:pixelsize=%s" my-font-size)))
+    (setq my-font-size 16)
+  (setq my-font-size 18))
+
+(setq doom-font (font-spec :family my-thinner-font :size my-font-size))
 
 ;; fix italic fonts on Linux which needs to be set to medium weight, instead of regular
 (when IS-LINUX
@@ -150,11 +147,10 @@
               font my-thinner-font)
       (setq theme my-light-theme
             font my-thicker-font))
-    (when IS-MAC
-      (setq doom-font (font-spec :family font :size my-font-size))
-      (doom/reload-font))
+    (setq doom-font (font-spec :family font :size my-font-size))
+    (doom/reload-font))
     (setq my-current-theme theme)
-    (load-theme theme t)))
+    (load-theme theme t))
 
 (global-set-key (kbd "<f5>") 'my-theme-toggle)
 
