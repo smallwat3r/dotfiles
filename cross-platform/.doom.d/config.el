@@ -228,7 +228,15 @@
         ";w"    #'my/save-buffer
         "C-k"   #'join-line
         "B"     #'beginning-of-line-text
-        "E"     #'end-of-line))
+        "E"     #'end-of-line)
+
+  ;; Change the cursor color depending on the evil mode
+  (setq evil-default-state-cursor '(box "gray83")
+        evil-normal-state-cursor '(box "gray83")
+        evil-insert-state-cursor '(box "green3")
+        evil-visual-state-cursor '(box "OrangeRed2")
+        evil-replace-state-cursor '(box "red4")
+        evil-operator-state-cursor '(box "red4")))
 
 ;; Evil visual hints when yanking, pasting, deleting etc.
 ;; doc: https://github.com/edkolev/evil-goggles
@@ -396,6 +404,7 @@
 
 ;; Copy the active region and add it to the kill ring formatted for
 ;; Github, Slack etc...
+;; doc: https://github.com/sshaw/copy-as-format
 (use-package! copy-as-format
   :config
   (global-set-key (kbd "C-c y s") 'copy-as-format-slack)
