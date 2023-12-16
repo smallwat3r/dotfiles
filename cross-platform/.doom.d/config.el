@@ -152,9 +152,9 @@
       (setq theme my-light-theme
             font my-thicker-font))
     (setq doom-font (font-spec :family font :size my-font-size))
-    (doom/reload-font))
+    (doom/reload-font)
     (setq my-current-theme theme)
-    (load-theme theme t))
+    (load-theme theme t)))
 
 (global-set-key (kbd "<f5>") 'my-theme-toggle)
 
