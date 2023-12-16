@@ -84,14 +84,11 @@
 ;; this is useful when changing from light and dark theme to have fonts with
 ;; different weigths, as often a thicker font renders better on a light background,
 ;; and a thiner font renders best of a darker background.
-(defvar my-thinner-font nil
+(defvar my-thinner-font "Triplicate B Code"
   "Thinner font family to use.")
 
-(defvar my-thicker-font nil
+(defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
-
-(setq my-thinner-font "Triplicate B Code"
-      my-thicker-font "Triplicate A Code")
 
 (if IS-MAC
     (setq my-font-size 16)
@@ -117,11 +114,8 @@
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
 
-(setq doom-font-increment 1)
-
-(if IS-GPD
-    (setq doom-big-font-increment 4)
-  (setq doom-big-font-increment 2))
+(setq doom-font-increment 1
+      doom-big-font-increment 2)
 
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
