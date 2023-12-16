@@ -129,7 +129,7 @@
 (if IS-GPD
     ;; screen estate is precious on GPD.
     (setq-default line-spacing 0)
-  (setq-default line-spacing 3)
+  (setq-default line-spacing 3))
 
 ;; Theme
 (defvar my-light-theme 'smallwat3r
