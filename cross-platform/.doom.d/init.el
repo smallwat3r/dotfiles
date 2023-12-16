@@ -19,7 +19,6 @@
        hl-todo
        modeline
        ophints
-       (popup +defaults)
        treemacs
        vc-gutter
        workspaces

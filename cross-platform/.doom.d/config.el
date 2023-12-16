@@ -691,9 +691,6 @@
             (lambda ()
               (setq-local lsp-ruff-lsp-python-path python-shell-interpreter))))
 
-;; Pytest
-(set-popup-rule! "^\\*pytest*" :size 0.3)
-
 ;; Javascript
 (after! js2-mode
   ;; Formatter
@@ -927,10 +924,6 @@
   (setq notmuch-show-log nil
         notmuch-hello-sections '(notmuch-hello-insert-saved-searches
                                  notmuch-hello-insert-alltags))
-
-  ;; By default, Doom's implementation of Notmuch makes it open in a pop-up
-  ;; buffer. But I prefer Notmuch to open in its own buffer window.
-  (set-popup-rule! "^\\*notmuch-hello" :ignore t)
 
   ;; Email list formats
   (setq notmuch-search-result-format
