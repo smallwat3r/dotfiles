@@ -11,15 +11,15 @@ fi
 avenv() {
   local dir
   dir="$(pwd)"
-  while [[ ! -f "${dir}/venv/bin/activate" && -n "${dir}" ]]; do
+  while [[ ! -f "${dir}/.venv/bin/activate" && -n "${dir}" ]]; do
     dir="${dir%/*}"
   done
-  if [[ -f "${dir}/venv/bin/activate" ]]; then
-    echo "Activating virtualenv from ${dir}/venv"
+  if [[ -f "${dir}/.venv/bin/activate" ]]; then
+    echo "Activating virtualenv from ${dir}/.venv"
     # shellcheck disable=SC1091
-    source "${dir}/venv/bin/activate"
+    source "${dir}/.venv/bin/activate"
   else
-    echo 'No venv found'
+    echo 'No .venv found'
     false
   fi
 }
