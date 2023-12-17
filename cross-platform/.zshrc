@@ -29,14 +29,14 @@ __main_load_zsh_config() {
   done
 }
 
-# Load config
+# load config
 __main_load_zsh_config
 
-# Load functions
+# load functions
 fpath=("${ZSH_ROOT}"/functions $fpath)
 autoload -U "${ZSH_ROOT}"/functions/*(:t)
 
-# Load private configs
+# load private configs
 if [[ -f "${HOME}/.zshrc.private" ]]; then
   source "${HOME}/.zshrc.private"
 fi
@@ -45,4 +45,5 @@ if (( ${+DEBUG_ZSH_PERF} )); then
   zprof
 fi
 
+# cleanup
 unset -f __main_load_zsh_config __source_config
