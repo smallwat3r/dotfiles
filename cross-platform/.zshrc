@@ -44,3 +44,5 @@ fi
 if (( ${+DEBUG_ZSH_PERF} )); then
   zprof
 fi
+
+unset -f __main_load_zsh_config __source_config
