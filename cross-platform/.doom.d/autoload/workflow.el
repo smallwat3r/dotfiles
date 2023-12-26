@@ -50,23 +50,28 @@
                (buffer-file-name)
              (concat "buffer-name=" (buffer-name)))))
 
+(defun alacritty-terminal-command ()
+  (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
+          (if (buffer-file-name)
+              (file-name-directory (buffer-file-name))
+            "$HOME")))
+
+(defun st-terminal-command ()
+  (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1 & disown"
+          (if (buffer-file-name)
+              (file-name-directory (buffer-file-name))
+            "$HOME")))
+
 ;;;###autoload
 (defun my/terminal-here ()
   "Open a terminal window in the current directory."
   (interactive "@")
+  ;; Prefer st (Suckless Terminal) in Linux, else default to alacritty.
   (shell-command
-   (if IS-MAC
-       ;; Use Alacritty on MacOS
-       (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
-               (if (buffer-file-name)
-                   (file-name-directory (buffer-file-name))
-                 "$HOME"))
-     ;; Prefer st (Suckless Terminal) in Linux
-     (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1 & disown"
-             (if (buffer-file-name)
-                 (file-name-directory (buffer-file-name))
-               "$HOME"))))
-  (message "Terminal is ready!"))
+   (if IS-LINUX
+       (st-terminal-command)
+     (alacritty-terminal-command))
+   (message "Terminal is ready!"))
 
 ;;;###autoload
 (defun my/vertico-search-project-symbol-at-point (&optional arg)
