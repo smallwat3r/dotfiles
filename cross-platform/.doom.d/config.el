@@ -219,7 +219,7 @@
         "M-SPC" #'cycle-spacing
         "M-o"   #'delete-blank-lines
         ";d"    #'my/save-and-close-buffer
-        ";w"    #'my/save-buffer
+        ";w"    #'save-buffer
         "C-k"   #'join-line
         "B"     #'beginning-of-line-text
         "E"     #'end-of-line)
@@ -300,7 +300,6 @@
   (after! git-rebase
     (define-key git-rebase-mode-map "K" 'git-rebase-move-line-up)
     (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)))
-
 
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
@@ -406,6 +405,10 @@
   (global-set-key (kbd "C-c y l") 'copy-as-format-gitlab)
   (global-set-key (kbd "C-c y m") 'copy-as-format-markdown)
   (global-set-key (kbd "C-c y o") 'copy-as-format-org-mode))
+
+;; add confirmation message after calling `save-buffer'
+(defadvice save-buffer (after my/save-buffer activate)
+  (message "Saved `%s'" (buffer-name)))
 
 
 ;;
