@@ -205,7 +205,7 @@
         "C-j" #'evil-next-line
 
         :map evil-visual-state-map
-        ";f"  #'my/format-region
+        ";f"  #'+format/region
 
         :map evil-normal-state-map
         "C-;"   #'my/scroll-up
@@ -805,15 +805,12 @@
   :commands (apheleia--get-formatters))
 
 ;; HACK: re the above hack, for some reason it also seems to break the tree-sitter
-;; syntax highlighting, this function adds a wrapper to re-enable tree-sitter after
-;; calling `+format/region', in case the highlighting was broken.
-(defun my/format-region (beg end &optional arg)
-  (interactive "rP")
-  (+format/region beg end arg)
+;; syntax highlighting, we add a wrapper to re-enable tree-sitter after calling
+;; `+format/region', in case the highlighting was broken.
+(defadvice +format/region (after my/format-region activate)
   (ignore-errors
     (tree-sitter--teardown)
     (turn-on-tree-sitter-mode)))
-
 
 ;;
 ;;; Terminals
