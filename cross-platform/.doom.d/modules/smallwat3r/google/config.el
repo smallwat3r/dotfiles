@@ -7,15 +7,8 @@
              google-translate-query-translate
              google-translate-buffer)
   :init
-  (set-popup-rule! "*Google Translate*" :size 0.4 :side 'bottom :select t :modeline t)
-
   (after! google-translate-backend
     (setq google-translate-backend-method 'curl))
-
-  ;; HACK: resolve ttk to be able to communicate with google translate.
-  (after! google-translate-tk
-    (advice-add #'google-translate--search-tkk
-                :override (lambda () "Search TKK fix." (list 430675 2721866130))))
 
   (map! :leader
         :prefix ("T" . "translate")
