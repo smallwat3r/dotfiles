@@ -70,8 +70,8 @@
   (shell-command
    (if IS-LINUX
        (st-terminal-command)
-     (alacritty-terminal-command))
-   (message "Terminal is ready!"))
+     (alacritty-terminal-command)))
+  (message "Terminal is ready!"))
 
 ;;;###autoload
 (defun my/vertico-search-project-symbol-at-point (&optional arg)
