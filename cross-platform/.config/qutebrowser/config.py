@@ -5,9 +5,9 @@ config.load_autoconfig(False)
 
 if platform.system() == "Linux":
     # c.fonts.default_family = "UW Ttyp0"
-    c.fonts.default_family = "Triplicate B Code"
+    c.fonts.default_family = "Monaco"
     c.editor.command = ["emacs", "{}"]
-    c.fonts.default_size = "13pt"
+    c.fonts.default_size = "10pt"
 else:
     c.fonts.default_family = "Triplicate A Code"
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]

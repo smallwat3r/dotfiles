@@ -90,9 +90,13 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
+(when IS-GPD
+    (setq my-thinner-font "Monaco"
+          my-thicker-font "Monaco"))
+
 (if IS-MAC
     (setq my-font-size 16)
-  (setq my-font-size 18))
+  (setq my-font-size 15))
 
 (setq doom-font (font-spec :family my-thinner-font :size my-font-size))
 
