@@ -99,20 +99,6 @@
   (setq my-font-size 15))
 
 (setq doom-font (font-spec :family my-thinner-font :size my-font-size))
-
-;; fix italic fonts on Linux which needs to be set to medium weight, instead of regular
-(when IS-LINUX
-  (custom-set-faces!
-    `(italic :weight medium :slant italic))
-
-  (custom-theme-set-faces! 'smallwat3r
-    `(font-lock-doc-face :foreground "DarkRed" :weight medium :slant italic)
-    `(font-lock-comment-face :foreground "yellow4" :weight medium :slant italic))
-
-  (custom-theme-set-faces! 'smallwat3r-dark
-    `(font-lock-doc-face :foreground "turquoise3" :weight medium :slant italic)
-    `(font-lock-comment-face :foreground "yellow3" :weight medium :slant italic)))
-
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -501,7 +487,11 @@
   (setq doom-themes-treemacs-enable-variable-pitch t
         doom-themes-treemacs-line-spacing 0
         doom-themes-treemacs-theme "doom-colors"
-        treemacs-width 50)
+        treemacs-width 50
+        ;; popups have been disabled so switching back and forth with the treemacs
+        ;; buffer using the evil bindings does not work. This restores the original
+        ;; behaviour.
+        treemacs-is-never-other-window nil)
   (treemacs-resize-icons 14))
 
 
