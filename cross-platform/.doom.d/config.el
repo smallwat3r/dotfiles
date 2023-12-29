@@ -7,8 +7,8 @@
   "User alias.")
 
 (defvar my-email-addresses-alist
-  '(("gmail". "mpetiteau.pro@gmail.com")
-    ("sws" . "matthieu@smallwatersolutions.com")
+  '(("gmail"      . "mpetiteau.pro@gmail.com")
+    ("sws"        . "matthieu@smallwatersolutions.com")
     ("smallwat3r" . "matt@smallwat3r.com"))
   "Alist of my email addresses.")
 
@@ -98,7 +98,7 @@
     (setq my-font-size 16)
   (setq my-font-size 15))
 
-(setq doom-font (font-spec :family my-thinner-font :size my-font-size))
+(setq doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
