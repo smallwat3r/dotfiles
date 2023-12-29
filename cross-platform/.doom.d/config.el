@@ -129,6 +129,10 @@
     (setq-default line-spacing 0)
   (setq-default line-spacing 3))
 
+(when (not (= line-spacing 0))
+  ;; images would not render correctly if `line-spacing' is not 0
+  (setq +rss-enable-sliced-images nil))
+
 ;; Theme
 (defvar my-light-theme 'smallwat3r
   "My light theme.")
@@ -229,11 +233,11 @@
         "E"     #'end-of-line)
 
   ;; Change the cursor color depending on the evil mode
-  (setq evil-default-state-cursor '(box "gray83")
-        evil-normal-state-cursor '(box "gray83")
-        evil-insert-state-cursor '(box "green3")
-        evil-visual-state-cursor '(box "OrangeRed2")
-        evil-replace-state-cursor '(box "red4")
+  (setq evil-default-state-cursor  '(box "gray83")
+        evil-normal-state-cursor   '(box "gray83")
+        evil-insert-state-cursor   '(box "green3")
+        evil-visual-state-cursor   '(box "OrangeRed2")
+        evil-replace-state-cursor  '(box "red4")
         evil-operator-state-cursor '(box "red4")))
 
 ;; Evil visual hints when yanking, pasting, deleting etc.
@@ -799,6 +803,7 @@
 ;; CSV mode
 ;; doc: https://elpa.gnu.org/packages/csv-mode.html
 (use-package! csv-mode
+  :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode)
   :config
   (map! :map csv-mode-map
         :leader
@@ -1045,10 +1050,6 @@
                           "https://github.com/doomemacs/doomemacs/commits/master.atom")))
       (setf (elfeed-feed-title github-feed) "Github feed")
       (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
-
-;; Turn this off as images wouldn't render correctly with `line-spacing' set
-;; greater than zero.
-(setq +rss-enable-sliced-images nil)
 
 
 ;;
