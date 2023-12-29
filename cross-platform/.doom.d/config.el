@@ -740,8 +740,8 @@
 (use-package! sql
   :mode ("\\.\\(m\\|my\\)?sql\\'" . sql-mode)
   :custom
-  ;; I use this for local development only. Disable SSL mode to ease connectivity
-  ;; using localhost.
+  ;; I use this for local development only. Disable SSL mode by default to ease
+  ;; connectivity using localhost.
   (sql-mysql-options '("--ssl-mode=DISABLED"))
   (sql-mysql-login-params '((user :default "root")
                             password
@@ -759,9 +759,11 @@
   :mode ("\\.\\(yaml\\|yml\\)\\'" . yaml-mode)
   :config
   (defun my/remap-yaml-faces ()
-    (face-remap-add-relative
-     'font-lock-variable-name-face :inherit font-lock-keyword-face)
-    ;; The above seems to leave `buffer-face-mode' on, disable it.
+    (face-remap-add-relative 'font-lock-variable-name-face
+                             :inherit font-lock-keyword-face))
+
+  ;; The above seems to leave `buffer-face-mode' on, disable it.
+  (defadvice my/remap-yaml-faces (after my/deactivate-buffer-faces activate)
     (buffer-face-mode -1))
 
   (add-hook! 'yaml-mode-hook #'my/remap-yaml-faces))
@@ -865,9 +867,6 @@
 ;; Make sure to always display the modeline when using vterm. I feel like even
 ;; in a terminal, its still useful to see the modeline and its information.
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
-
-;; Terminal seems to be sporadically add a rogue % sign after commands, fix this.
-(setq-hook! 'vterm-mode-hook buffer-display-table (make-display-table))
 
 
 ;;
@@ -1042,7 +1041,8 @@
   ;; Rename some feeds titles.
   (defadvice elfeed-search-update (before configure-elfeed-search-update activate)
     (let ((github-feed (elfeed-db-get-feed my-github-rss-feed))
-          (git-doom-feed (elfeed-db-get-feed "https://github.com/doomemacs/doomemacs/commits/master.atom")))
+          (git-doom-feed (elfeed-db-get-feed
+                          "https://github.com/doomemacs/doomemacs/commits/master.atom")))
       (setf (elfeed-feed-title github-feed) "Github feed")
       (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
 
