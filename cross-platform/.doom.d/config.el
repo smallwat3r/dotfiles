@@ -250,10 +250,10 @@
   (setq all-the-icons-default-adjust 0))
 
 ;; Scrolling
-(if (boundp 'mac-mouse-wheel-smooth-scroll)
-    (setq mac-mouse-wheel-smooth-scroll t))
-(if (> emacs-major-version 28)
-    (pixel-scroll-precision-mode))
+(when (boundp 'mac-mouse-wheel-smooth-scroll)
+  (setq mac-mouse-wheel-smooth-scroll t))
+(when (> emacs-major-version 28)
+  (pixel-scroll-precision-mode))
 
 (setq my-browse-url-qutebrowser-arguments nil)
 
@@ -272,8 +272,8 @@
 (function-put 'my-browse-url-qutebrowser 'browse-url-browser-kind 'external)
 
 ;; Browse stuff in qutebrowser as default when using Linux.
-(if (and IS-LINUX (executable-find "qutebrowser"))
-    (setq browse-url-browser-function #'my-browse-url-qutebrowser))
+(when (and IS-LINUX (executable-find "qutebrowser"))
+  (setq browse-url-browser-function #'my-browse-url-qutebrowser))
 
 ;; Magit
 ;; doc: https://github.com/magit/magit
@@ -376,8 +376,8 @@
   (save-abbrevs nil)
   (abbrev-file-name (expand-file-name "abbrev_defs.el" doom-user-dir))
   :config
-  (if (file-exists-p abbrev-file-name)
-      (quietly-read-abbrev-file)))
+  (when (file-exists-p abbrev-file-name)
+    (quietly-read-abbrev-file)))
 
 (setq-default abbrev-mode t)
 
@@ -385,8 +385,8 @@
 (use-package! cus-edit
   :custom (custom-file (expand-file-name ".custom.el" doom-user-dir))
   :config
-  (if (file-exists-p custom-file)
-      (load custom-file t)))
+  (when (file-exists-p custom-file)
+    (load custom-file t)))
 
 ;; Copy the active region and add it to the kill ring formatted for
 ;; Github, Slack etc...
@@ -1114,8 +1114,8 @@
   "Custom debug mode.")
 
 (add-hook! 'post-command-hook
-  (if (bound-and-true-p my-debug-mode)
-      (my-echo-command-name-hook)))
+  (when (bound-and-true-p my-debug-mode)
+    (my-echo-command-name-hook)))
 
 (defun my/adapt-font-size (&optional frame)
   "Adjust the FRAME font size depending on the screen resolution.
