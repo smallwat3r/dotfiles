@@ -25,8 +25,9 @@
   "Directory containing my dotfiles.")
 
 (defconst my-system-os
-  (cond ((executable-find "uname")
-         (format "%s" (cdr (doom-call-process "uname" "-sr")))))
+  (if (executable-find "uname")
+      (format "%s" (cdr (doom-call-process "uname" "-sr")))
+    "Unknown OS")
   "Operating system name and version.")
 
 (defconst my-system-distro
@@ -35,8 +36,9 @@
 
 (defconst my-hardware-vendor
   (let ((board-vendor-file "/sys/devices/virtual/dmi/id/board_vendor"))
-    (cond ((file-exists-p board-vendor-file)
-           (format "%s" (cdr (doom-call-process "cat" board-vendor-file))))))
+    (if (file-exists-p board-vendor-file)
+        (format "%s" (cdr (doom-call-process "cat" board-vendor-file)))
+      ""))
   "Hardware vendor name.")
 
 (defconst IS-GPD (string= my-hardware-vendor "GPD")
