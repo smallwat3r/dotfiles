@@ -676,7 +676,10 @@
         :leader
         :localleader
         :desc "Deactivate venv" "e d" #'my/deactivate-python-venv
-        :desc "Activate venv"   "e a" #'my/activate-closest-python-venv))
+        :desc "Activate venv"   "e a" #'my/activate-closest-python-venv)
+
+  (add-to-list '+lookup-provider-url-alist
+               '("Python Docs" "https://docs.python.org/3/search.html?q=%s")))
 
 (setq-hook! 'python-mode-hook
   flycheck-checker 'my-python-ruff
@@ -963,11 +966,6 @@
 (use-package! untappd
   :commands (untappd-feed)
   :custom (untappd-access-token (auth-source-pass-get 'secret "untappd/token")))
-
-;; Look up
-(setq +lookup-provider-url-alist
-      (append +lookup-provider-url-alist
-              '(("Python Docs" "https://docs.python.org/3/search.html?q=%s"))))
 
 ;; Clipboard history, interact with Flycut.app
 ;; doc: https://github.com/redguardtoo/cliphist
