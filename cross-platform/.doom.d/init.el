@@ -69,7 +69,7 @@
        lua
        markdown
        (org +journal +pandoc)
-       (python +lsp)
+       (python +lsp +poetry)
        rest
        (sh +lsp)
        (web +lsp)

@@ -437,9 +437,7 @@
                                                   ".idea" ".vscode" ".svn" ".tox" ".cache"))
   (setq projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups"))
   (when IS-MAC
-    (setq projectile-ignored-projects
-          (append projectile-ignored-projects
-                  '("/Applications" "/Volumes/GoogleDrive"))))
+    (pushnew! projectile-ignored-projects "/Applications" "/Volumes/GoogleDrive"))
 
   ;; Make the projectile command use fd with some more sensitive defaults, as I noticed some
   ;; performance issues with the one used by Doom or projectile natively.
@@ -477,6 +475,7 @@
         "<tab>" #'dired-subtree-toggle
         "<backtab>" #'dired-subtree-cycle)
 
+  ;; set a transparent background for all levels in dired subtree
   (custom-set-faces!
    `(,(cl-loop for i from 0 to 6 collect (intern (format "dired-subtree-depth-%d-face" i)))
      :background unspecified)))
