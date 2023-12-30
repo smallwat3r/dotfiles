@@ -132,8 +132,7 @@
 (defun my-theme-toggle ()
   "Toggle between dark and light theme."
   (interactive)
-  (let* ((theme nil)
-         (font nil))
+  (let* ((theme nil) (font nil))
     (if (eq my-light-theme my-current-theme)
         (setq theme my-dark-theme
               font my-thinner-font)
@@ -431,15 +430,16 @@
 ;;      https://docs.projectile.mx/projectile/index.html
 (after! projectile
   (setq projectile-indexing-method 'alien
-        ;; Allow projectile to automatically find projects from any of these directories.
         projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/")
-        ;; Stuff to ignore.
         projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc")
-        projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups" "/Applications"
-                                      "/Volumes/GoogleDrive")
         projectile-globally-ignored-directories '(".npm" ".poetry" "GoogleDrive" ".mypy_cache"
                                                   "Library" ".git" "__pycache__" "node_modules"
                                                   ".idea" ".vscode" ".svn" ".tox" ".cache"))
+  (setq projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups"))
+  (when IS-MAC
+    (setq projectile-ignored-projects
+          (append projectile-ignored-projects
+                  '("/Applications" "/Volumes/GoogleDrive"))))
 
   ;; Make the projectile command use fd with some more sensitive defaults, as I noticed some
   ;; performance issues with the one used by Doom or projectile natively.
