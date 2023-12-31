@@ -1055,12 +1055,12 @@
 (map! "M-k" nil
       "M-j" nil)
 
-(map!
- ;; For some reason, Emacs wouldn't print # on ^3, even when configured with
- ;; an English UK keyboard. Re-enable this behaviour.
- (:map key-translation-map
-       "M-3" "#")
+(when IS-MAC
+  ;; For some reason, Emacs wouldn't print # on ^3, even when configured with
+  ;; an English UK keyboard. Re-enable this behaviour.
+  (map! (:map key-translation-map "M-3" "#")))
 
+(map!
  (:leader
   "§" #'other-frame
   "1" #'my/where-am-i
@@ -1098,47 +1098,3 @@
    ;; Repeat the last Vertico search. Doom also allow this with <SPC '> but I find it
    ;; easier to remember memo-technically with <SPC s .>
    :desc "Repeat last search" "." #'vertico-repeat)))
-
-
-;;
-;;; Testing and experiments
-
-;; I use the below commands when testing/debugging my Emacs config. I'm sure
-;; there are better ways or tools to do most of this, but hey, it works for me!
-
-(defun my-echo-command-name-hook ()
-  "Echo live command names."
-  (unless (or (eq this-command 'self-insert-command)
-              (eq this-command 'next-line))
-    (message "%s" this-command)))
-
-(define-minor-mode my-debug-mode
-  "Custom debug mode.")
-
-(add-hook! 'post-command-hook
-  (when (bound-and-true-p my-debug-mode)
-    (my-echo-command-name-hook)))
-
-(defun my/adapt-font-size (&optional frame)
-  "Adjust the FRAME font size depending on the screen resolution.
-It calculate the PPI (Pixel Per Inch), and set the FRAME height depending on
-the value.
-"
-  (let* ((attrs (frame-monitor-attributes frame))
-         (size (alist-get 'mm-size attrs))
-         (geometry (alist-get 'geometry attrs))
-         (ppi (/ (caddr geometry) (/ (car size) 25.4))))
-    (if (< ppi 100)
-        ;; Really small screens.
-        (set-face-attribute 'default frame :height 160)
-      (set-face-attribute 'default frame :height 130))))
-
-(define-minor-mode my-adapt-font-from-monitor-mode
-  "Weither to adapt the font size depending on the monitor resolution.
-This is really useful when using Emacs with external monitors with a very different
-resolution.
-")
-
-(if (bound-and-true-p my-adapt-font-from-monitor-mode)
-    (add-function :after after-focus-change-function #'my/adapt-font-size)
-  (add-hook 'after-make-frame-functions #'my/adapt-font-size))
