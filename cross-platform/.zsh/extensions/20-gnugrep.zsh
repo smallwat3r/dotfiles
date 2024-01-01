@@ -7,10 +7,8 @@ if [ -d '/usr/local/opt/grep/libexec/gnubin' ]; then
     grep='/usr/local/opt/grep/libexec/gnubin/grep' \
     egrep='/usr/local/opt/grep/libexec/gnubin/egrep' \
     fgrep='/usr/local/opt/grep/libexec/gnubin/fgrep'
-fi
-
-# it's possible homebrew installs those elsewhere
-if [ -d '/opt/homebrew/bin' ]; then
+elif [ -d '/opt/homebrew/bin' ]; then
+  # it's possible homebrew installs those elsewhere
   alias \
     grep='/opt/homebrew/bin/ggrep' \
     egrep='/opt/homebrew/bin/gegrep' \
