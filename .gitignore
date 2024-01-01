@@ -15,7 +15,8 @@ cross-platform/.gnupg/*
 !cross-platform/.gnupg/gpg.conf
 cross-platform/.ssh/*
 !cross-platform/.ssh/config
-crossplatform/.config/qutebrowser/autoconfig.yml
+cross-platform/.config/qutebrowser/autoconfig.yml
+cross-platform/.config/qutebrowser/qsettings/*
 
 macos/Brewfile.lock.json
 macos/.hammerspoon/Spoons/*
