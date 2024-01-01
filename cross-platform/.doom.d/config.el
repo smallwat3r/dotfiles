@@ -1075,12 +1075,7 @@
    :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
 
   (:prefix "o"
-   :desc "Browse URL at point" "l" #'browse-url-at-point
-
-   ;; TODO: find a way to move these to modules/smallwat3r/scratch
-   (:prefix ("s" . "Scratch buffer")
-    :desc "Current mode" "o" #'scratch
-    :desc "Restclient"   "r" #'my/scratch-rest-mode))
+   :desc "Browse URL at point" "l" #'browse-url-at-point)
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines

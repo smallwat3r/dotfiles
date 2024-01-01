@@ -4,6 +4,12 @@
 ;; doc: https://github.com/ieure/scratch-el
 (use-package! scratch
   :commands scratch
+  :init
+  (map! :leader
+        :prefix-map ("o" . "open")
+        (:prefix ("s" . "Scratch buffer")
+         :desc "Current mode" "o" #'scratch
+         :desc "Restclient"   "r" #'my/scratch-rest-mode))
   :config
   (defun my/scratch--add-buffer-header (text)
     "Open scratch buffer with a TEXT header."
