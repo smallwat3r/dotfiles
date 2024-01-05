@@ -562,7 +562,12 @@
   ;; lsp-headerline
   (setq lsp-headerline-breadcrumb-enable t
         lsp-headerline-arrow "."
-        lsp-headerline-breadcrumb-segments '(symbols)))
+        lsp-headerline-breadcrumb-segments '(symbols))
+
+  (map! :map lsp-mode-map
+        :leader
+        :prefix "r"
+        :desc "Restart LSP workspace" "w" #'lsp-restart-workspace))
 
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
