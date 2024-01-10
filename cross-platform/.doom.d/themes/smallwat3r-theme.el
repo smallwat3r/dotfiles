@@ -137,9 +137,9 @@
  `(whitespace-space ((t (:inherit whitespace-newline))))
  `(whitespace-tabs ((t (:inherit whitespace-newline))))
 
- `(git-gutter-fr:added ((t (:background "green" :foreground "green"))))
- `(git-gutter-fr:deleted ((t (:background "red" :foreground "red"))))
- `(git-gutter-fr:modified ((t (:background "magenta" :foreground "magenta"))))
+ `(git-gutter-fr:added ((t (:background unspecified :foreground "green"))))
+ `(git-gutter-fr:deleted ((t (:background unspecified :foreground "red"))))
+ `(git-gutter-fr:modified ((t (:background unspecified :foreground "magenta"))))
 
  `(doom-modeline-buffer-file ((t (:foreground unspecified :weight bold))))
  `(doom-modeline-project-dir ((t (:foreground unspecified :weight bold))))

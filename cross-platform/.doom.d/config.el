@@ -56,8 +56,6 @@
       (append (list
                '(width . 105)
                '(height . 40)
-               '(left-fringe . 2)
-               '(right-fringe . 0)
                '(drag-internal-border . t)
                '(internal-border-width . 0)
                '(tool-bar-lines . 0)
