@@ -167,7 +167,7 @@
 
 (add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
 
-(setq display-line-numbers-type nil
+(setq display-line-numbers-type 'relative
       scroll-margin 7
       ;; Makes underlines render a bit cleaner.
       x-underline-at-descent-line t
@@ -412,6 +412,7 @@
   (after! doom-modeline
     (setq mode-line-right-align-edge 'right-fringe))
   (perfect-margin-mode t))
+
 
 ;;
 ;;; Custom templates
@@ -729,7 +730,7 @@
 (setq-hook! 'go-mode-hook indent-tabs-mode t)
 
 ;; Web mode
-(defun my-web-mode-configs ()
+(defun my/web-mode-configs ()
   (setq-local tab-width 2
               web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
@@ -740,7 +741,7 @@
                                       company-yasnippet
                                       company-files)))
 
-(add-hook! 'web-mode-hook #'my-web-mode-configs)
+(add-hook! 'web-mode-hook #'my/web-mode-configs)
 
 ;; Disable formatters for html and web modes
 (setq-hook! '(html-mode-hook web-mode-hook)

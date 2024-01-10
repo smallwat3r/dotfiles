@@ -77,6 +77,7 @@
  `(show-paren-mismatch ((t (:background "red4" :foreground "red" :weight bold))))
 
  `(fringe ((t (:background unspecified))))
+ `(line-number ((t :foreground "cornsilk3")))
 
  `(git-commit-summary ((t (:weight bold))))
  `(magit-section-highlight ((t (:background "#f6fecd"))))
