@@ -405,6 +405,13 @@
 (defadvice save-buffer (after my/save-buffer activate)
   (message "Saved `%s'" (buffer-name)))
 
+;; center windows automatically
+;; doc: https://github.com/mpwang/perfect-margin
+(use-package! perfect-margin
+  :config
+  (after! doom-modeline
+    (setq mode-line-right-align-edge 'right-fringe))
+  (perfect-margin-mode t))
 
 ;;
 ;;; Custom templates

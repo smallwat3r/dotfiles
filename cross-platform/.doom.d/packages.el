@@ -110,6 +110,10 @@
   :recipe (:host github :repo "Sbozzolo/vterm-extra")
   :pin "2d4a34f03d0f0d863a319cd0496ed6cafe94c27e")
 
+;; Automatically center windoes
+;; https://github.com/mpwang/perfect-margin/commits/master/
+(package! perfect-margin :pin "0d9d8905859d0cea5294936623913b7933cc0530")
+
 
 ;;
 ;;; Personal packages (I'm ok with not pinning those as I manage them).
