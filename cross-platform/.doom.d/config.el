@@ -54,8 +54,7 @@
 
 (setq default-frame-alist
       (append (list
-               '(width . 105)
-               '(height . 40)
+               '(fullscreen . maximized)
                '(drag-internal-border . t)
                '(internal-border-width . 0)
                '(tool-bar-lines . 0)
