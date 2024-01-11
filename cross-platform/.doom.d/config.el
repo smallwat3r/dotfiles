@@ -107,7 +107,8 @@
               with-editor-emacsclient-executable "emacsclient")
 
 (if IS-GPD
-    (setq-default line-spacing 2)
+    ;; screen estate is precious on the GPD
+    (setq-default line-spacing 0)
   (setq-default line-spacing 3))
 
 (when (not (= line-spacing 0))
