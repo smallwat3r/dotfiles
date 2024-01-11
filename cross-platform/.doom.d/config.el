@@ -90,13 +90,10 @@
   "Thicker font family to use.")
 
 (when IS-GPD
-    (setq my-thinner-font "Monaco"
-          my-thicker-font "Monaco"))
+    (setq my-thinner-font "Maple Mono NF"
+          my-thicker-font "Maple Mono NF"))
 
-(if IS-MAC
-    (setq my-font-size 16)
-  (setq my-font-size 15))
-
+(setq my-font-size 16)
 (setq doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
 (setq doom-variable-pitch-font doom-font)
 
@@ -110,8 +107,7 @@
               with-editor-emacsclient-executable "emacsclient")
 
 (if IS-GPD
-    ;; screen estate is precious on GPD.
-    (setq-default line-spacing 0)
+    (setq-default line-spacing 2)
   (setq-default line-spacing 3))
 
 (when (not (= line-spacing 0))
