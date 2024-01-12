@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# this script is triggered by a udev rule to tell xrandr to use HDMI-1
+# automatically whenever its connected.
 
 export DISPLAY=:0
 export XAUTHORITY=/home/smallwat3r/.Xauthority
