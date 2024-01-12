@@ -1,1 +1,5 @@
-KERNEL=="card1", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/smallwat3r/.Xauthority", RUN+="/usr/local/bin/hotplug-hdmi"
+KERNEL=="card1" \
+, SUBSYSTEM=="drm" \
+, ENV{DISPLAY}=":0" \
+, ENV{XAUTHORITY}="/home/smallwat3r/.Xauthority" \
+, RUN+="/usr/local/bin/hotplug-hdmi"
