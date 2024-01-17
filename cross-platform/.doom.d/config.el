@@ -89,12 +89,15 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
-(when IS-GPD
-    (setq my-thinner-font "Maple Mono NF"
-          my-thicker-font "Maple Mono NF"))
+(setq my-thinner-font "Maple Mono NF"
+        my-thicker-font "Maple Mono NF")
 
-(setq my-font-size 16)
-(setq doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
+(if IS-LINUX
+    (setq my-font-size 16
+          doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
+  (setq my-font-size 15
+        doom-font (font-spec :family my-thinner-font :size my-font-size)))
+
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -109,7 +112,7 @@
 (if IS-GPD
     ;; screen estate is precious on the GPD
     (setq-default line-spacing 0)
-  (setq-default line-spacing 3))
+  (setq-default line-spacing 1))
 
 (when (not (= line-spacing 0))
   ;; images would not render correctly if `line-spacing' is not 0

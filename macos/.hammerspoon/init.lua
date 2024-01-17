@@ -16,11 +16,11 @@ mod_ctrl_cmd = {'ctrl', 'cmd'}
 mod_ctrl_alt = {'ctrl', 'alt'}
 
 alert.defaultStyle = {
-    strokeWidth  = 5,
+    strokeWidth  = 1,
     strokeColor = { white = 1, alpha = 1 },
     fillColor = { white = 0, alpha = 1 },
     textColor = { white = 1, alpha = 1 },
-    textFont = 'Triplicate B',
+    textFont = 'Maple Mono NF',
     textSize = 16,
     radius = 0,
     atScreenEdge = 0,

@@ -1,13 +1,5 @@
 #!/usr/bin/env osascript
 
-tell application "Finder"
-  set os_version to version
-end tell
-
 tell application "System Events"
-  if os_version >= 10.15
-    set picture of every desktop to "/System/Library/Desktop Pictures/Solid Colors/Black.png"
-  else
-    set picture of every desktop to "/Library/Desktop Pictures/Solid Colors/Black.png"
-  end if
+  set picture of every desktop to "/Users/smallwat3r/.config/wallpaper/wallpaper.jpg"
 end tell

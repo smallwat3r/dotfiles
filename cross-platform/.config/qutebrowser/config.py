@@ -8,9 +8,9 @@ if platform.system() == "Linux":
     c.editor.command = ["emacs", "{}"]
     c.fonts.default_size = "11pt"
 else:
-    c.fonts.default_family = "Triplicate A Code"
+    c.fonts.default_family = "Maple Mono NF"
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
-    c.fonts.default_size = "14pt"
+    c.fonts.default_size = "12pt"
 
 c.content.user_stylesheets = ["~/.config/qutebrowser/css/monaco.css"]
 

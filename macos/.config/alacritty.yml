@@ -10,10 +10,10 @@ window:
 
 font:
   normal:
-    family: Triplicate B Code
-  size: 16
+    family: Maple Mono NF
+  size: 15
   offset:
-    x: 1
+    x: 0
     y: 0
   glyph_offset:
     x: 0
