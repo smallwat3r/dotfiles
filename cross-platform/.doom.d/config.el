@@ -839,6 +839,9 @@
   (setq vterm-max-scrollback 6000
         vterm-timer-delay 0.01)
 
+  ;; load bash when using ssh over trmap
+  (add-to-list 'vterm-tramp-shells '("ssh" "/bin/bash"))
+
   ;; Improve rendering of colors.
   (setq vterm-term-environment-variable "eterm-color")
   (add-hook! 'vterm-mode-hook #'eterm-256color-mode)
@@ -876,8 +879,6 @@
 ;; Make sure to always display the modeline when using vterm. I feel like even
 ;; in a terminal, its still useful to see the modeline and its information.
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
-
-(add-to-list 'vterm-tramp-shells '("ssh" "/bin/bash"))
 
 
 ;;
