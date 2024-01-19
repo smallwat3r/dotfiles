@@ -877,6 +877,8 @@
 ;; in a terminal, its still useful to see the modeline and its information.
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
+(add-to-list 'vterm-tramp-shells '("ssh" "/bin/bash"))
+
 
 ;;
 ;;; GPG
