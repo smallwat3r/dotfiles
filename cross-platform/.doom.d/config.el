@@ -90,7 +90,7 @@
   "Thicker font family to use.")
 
 (setq my-thinner-font "Maple Mono NF"
-        my-thicker-font "Maple Mono NF")
+      my-thicker-font "Maple Mono NF")
 
 (if IS-LINUX
     (setq my-font-size 16
