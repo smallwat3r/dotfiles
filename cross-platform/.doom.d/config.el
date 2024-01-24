@@ -92,12 +92,8 @@
 (setq my-thinner-font "Maple Mono NF"
       my-thicker-font "Maple Mono NF")
 
-(if IS-LINUX
-    (setq my-font-size 16
-          doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
-  (setq my-font-size 15
-        doom-font (font-spec :family my-thinner-font :size my-font-size)))
-
+(setq my-font-size 16)
+(setq doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -401,14 +397,6 @@
 ;; add confirmation message after calling `save-buffer'
 (defadvice save-buffer (after my/save-buffer activate)
   (message "Saved `%s'" (buffer-name)))
-
-;; center windows automatically
-;; doc: https://github.com/mpwang/perfect-margin
-(use-package! perfect-margin
-  :config
-  (after! doom-modeline
-    (setq mode-line-right-align-edge 'right-fringe))
-  (perfect-margin-mode t))
 
 
 ;;
