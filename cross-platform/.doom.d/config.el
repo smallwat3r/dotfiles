@@ -44,7 +44,7 @@
 (defconst IS-GPD (string= my-hardware-vendor "GPD")
   "Is it running on a GPD?")
 
-(when IS-MAC
+(when (featurep :system 'macos)
   ;; stuff installed via homebrew
   (add-to-list 'exec-path "/opt/homebrew/bin"))
 
@@ -239,7 +239,7 @@
 ;; doc: https://github.com/domtronn/all-the-icons.el
 (after! all-the-icons
   ;; Keep icons small.
-  (if IS-MAC
+  (if (featurep :system 'macos)
       (setq all-the-icons-scale-factor 0)
     (setq all-the-icons-scale-factor 0.8))
   (setq all-the-icons-default-adjust 0))
@@ -267,7 +267,7 @@
 (function-put 'my-browse-url-qutebrowser 'browse-url-browser-kind 'external)
 
 ;; Browse stuff in qutebrowser as default when using Linux.
-(when (and IS-LINUX (executable-find "qutebrowser"))
+(when (and (featurep :system 'linux) (executable-find "qutebrowser"))
   (setq browse-url-browser-function #'my-browse-url-qutebrowser))
 
 ;; Magit
@@ -431,7 +431,7 @@
                                                   "Library" ".git" "__pycache__" "node_modules"
                                                   ".idea" ".vscode" ".svn" ".tox" ".cache"))
   (setq projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups"))
-  (when IS-MAC
+  (when (featurep :system 'macos)
     (pushnew! projectile-ignored-projects "/Applications" "/Volumes/GoogleDrive"))
 
   ;; Make the projectile command use fd with some more sensitive defaults, as I noticed some
@@ -1056,7 +1056,7 @@
 (map! "M-k" nil
       "M-j" nil)
 
-(when IS-MAC
+(when (featurep :system 'macos)
   ;; For some reason, Emacs wouldn't print # on ^3, even when configured with
   ;; an English UK keyboard. Re-enable this behaviour.
   (map! (:map key-translation-map "M-3" "#")))

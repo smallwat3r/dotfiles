@@ -68,7 +68,7 @@
   (interactive "@")
   ;; Prefer st (Suckless Terminal) in Linux, else default to alacritty.
   (shell-command
-   (if IS-LINUX
+   (if (featurep :system 'linux)
        (st-terminal-command)
      (alacritty-terminal-command)))
   (message "Terminal is ready!"))
