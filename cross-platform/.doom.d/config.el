@@ -105,12 +105,11 @@
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(if IS-GPD
-    ;; screen estate is precious on the GPD
-    (setq-default line-spacing 0)
-  (setq-default line-spacing 1))
-;; ensure text is centered on its own line
-(setq default-text-properties '(line-spacing 0.25 line-height 1.25))
+(setq-default line-spacing 1)
+
+(when (not IS-GPD)
+  ;; ensure text is centered on its own line
+  (setq default-text-properties '(line-spacing 0.25 line-height 1.25)))
 
 (when (not (= line-spacing 0))
   ;; images would not render correctly if `line-spacing' is not 0

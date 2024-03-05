@@ -4,9 +4,9 @@ import platform
 config.load_autoconfig(False)
 
 if platform.system() == "Linux":
-    c.fonts.default_family = "Vulf Mono Code"
+    c.fonts.default_family = "Vulf Mono Code Light"
     c.editor.command = ["emacs", "{}"]
-    c.fonts.default_size = "11pt"
+    c.fonts.default_size = "10pt"
 else:
     c.fonts.default_family = "Vulf Mono Code"
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
