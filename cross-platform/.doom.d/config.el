@@ -551,10 +551,6 @@
   (setq lsp-restart 'interactive)
   ;; Iterate quickly (default is 10).
   (setq lsp-response-timeout 5)
-  ;; lsp-headerline
-  (setq lsp-headerline-breadcrumb-enable t
-        lsp-headerline-arrow "."
-        lsp-headerline-breadcrumb-segments '(symbols))
 
   (map! :map lsp-mode-map
         :leader
