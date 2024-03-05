@@ -89,10 +89,10 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
-(setq my-thinner-font "Maple Mono NF"
-      my-thicker-font "Maple Mono NF")
+(setq my-thinner-font "Vulf Mono Code"
+      my-thicker-font "Vulf Mono Code")
 
-(setq my-font-size 16)
+(setq my-font-size 15)
 (setq doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
 (setq doom-variable-pitch-font doom-font)
 
@@ -109,6 +109,8 @@
     ;; screen estate is precious on the GPD
     (setq-default line-spacing 0)
   (setq-default line-spacing 1))
+;; ensure text is centered on its own line
+(setq default-text-properties '(line-spacing 0.25 line-height 1.25))
 
 (when (not (= line-spacing 0))
   ;; images would not render correctly if `line-spacing' is not 0
@@ -167,17 +169,14 @@
       ;; No confirmation can be annoying as I realised it often happens by mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
-;; Doom modeline
-;; doc: https://github.com/seagle0128/doom-modeline
-(after! doom-modeline
-  (setq doom-modeline-buffer-file-name-style 'truncate-with-project
-        ;; Max length for the git branch name.
-        doom-modeline-vcs-max-length 20
-        ;; 1 ensures the modeline is never taller than the fonts.
-        doom-modeline-height 1
-        doom-modeline-bar-width 0
-        ;; Prefer no icons on the modeline.
-        doom-modeline-icon nil))
+;; modeline in minibuffer
+;; doc: https://github.com/manateelazycat/awesome-tray
+(use-package! awesome-tray
+  :config
+  (setq awesome-tray-active-modules
+        '("buffer-read-only" "location" "file-path" "mode-name"
+          "git" "anzu" "hostname"))
+  (awesome-tray-mode 1))
 
 ;; Evil-mode
 (after! evil

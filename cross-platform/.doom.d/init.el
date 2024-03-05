@@ -17,7 +17,6 @@
        doom-dashboard
        (emoji +unicode)
        hl-todo
-       modeline
        ophints
        treemacs
        vc-gutter

@@ -11,8 +11,8 @@ defaults write NSGlobalDomain AppleHighlightColor -string '1.0 0.988235 0.729411
 
 # font smoothing
 # max smoothing is 3, no smoothing is 0
-defaults -currentHost write -g AppleFontSmoothing -int 0
-# defaults write org.gnu.Emacs AppleFontSmoothing -int 0
+defaults -currentHost write -g AppleFontSmoothing -int 1
+defaults write org.gnu.Emacs AppleFontSmoothing -int 1
 
 # always show the window proxy icons
 defaults write -g NSToolbarTitleViewRolloverDelay -float 0

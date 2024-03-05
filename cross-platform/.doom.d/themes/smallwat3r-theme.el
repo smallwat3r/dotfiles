@@ -39,8 +39,8 @@
 
  `(default ((t (:background "cornsilk2" :foreground "black"))))
 
- `(lsp-headerline-breadcrumb-symbols-face ((t (:inherit font-lock-constant-face :weight normal))))
- `(lsp-headerline-breadcrumb-path-face ((t (:inherit font-lock-constant-face :weight normal))))
+ `(lsp-headerline-breadcrumb-symbols-face ((t (:inherit font-lock-constant-face))))
+ `(lsp-headerline-breadcrumb-path-face ((t (:inherit font-lock-constant-face))))
 
  `(success ((t (:foreground "green4" :weight bold))))
  `(warning ((t (:foreground "OrangeRed3" :weight bold))))
@@ -58,11 +58,11 @@
  `(nxml-element-local-name ((t (:inherit font-lock-keyword-face))))
 
  ;; Remove highlighting on some major programming faces. Keep it clean and simple.
- `(font-lock-function-name-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-variable-name-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-constant-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-builtin-face ((t (:foreground unspecified :weight normal))))
- `(font-lock-type-face ((t (:foreground unspecified :weight normal))))
+ `(font-lock-function-name-face ((t (:foreground unspecified))))
+ `(font-lock-variable-name-face ((t (:foreground unspecified))))
+ `(font-lock-constant-face ((t (:foreground unspecified))))
+ `(font-lock-builtin-face ((t (:foreground unspecified))))
+ `(font-lock-type-face ((t (:foreground unspecified))))
 
  `(font-lock-regexp-grouping-backslash ((t :foreground "chartreuse4" :weight bold)))
 
