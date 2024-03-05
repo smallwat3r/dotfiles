@@ -171,10 +171,12 @@
 ;; modeline in minibuffer
 ;; doc: https://github.com/manateelazycat/awesome-tray
 (use-package! awesome-tray
+  :custom
+  (awesome-tray-active-modules
+   '("buffer-read-only" "location" "file-path" "mode-name"
+     "git" "anzu" "hostname"))
+  (awesome-tray-essential-modules '("location" "file-path"))
   :config
-  (setq awesome-tray-active-modules
-        '("buffer-read-only" "location" "file-path" "mode-name"
-          "git" "anzu" "hostname"))
   (awesome-tray-mode 1))
 
 ;; Anzu
