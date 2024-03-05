@@ -2,4 +2,4 @@
 ;;; smallwat3r/everywhere/packages.el
 
 ;; https://github.com/tecosaur/emacs-everywhere/commits/master
-(package! emacs-everywhere :pin "44775589ad050134adf433885be0a94398055630")
+(package! emacs-everywhere :pin "fbeff19825336777dccaefedf3f376dd622cd294")

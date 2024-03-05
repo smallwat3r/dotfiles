@@ -24,7 +24,7 @@
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "1e04ff20745fbf8aac9279aa4e144957c5e2b224")
+(package! applescript-mode :pin "42a1d9a1b1ac02108dfbb498b900322ecf793f66")
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
@@ -40,7 +40,7 @@
 
 ;; Support for YAML
 ;; https://github.com/yoshiki/yaml-mode/commits/master
-(package! yaml-mode :pin "23395dfcf004c952850691b70e63f97f169596e8")
+(package! yaml-mode :pin "5b58248ab255dff6cfa4c4057a191bc4446ee5b6")
 
 ;; Dired utilities
 ;; https://github.com/Fuco1/dired-hacks/commits/master
@@ -49,7 +49,7 @@
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "481a1620cac3118aff4b2db027acde7d3834b153")
+(package! keycast :pin "ec90b16baa0e9e7eb43d8c38e6cf6dccf75a95de")
 
 ;; Input random text
 ;; https://github.com/jschaf/emacs-lorem-ipsum/commits/master
@@ -57,7 +57,7 @@
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
-(package! symbol-overlay :pin "a783d7b5d8dee5ba9f5e7c00a834fbd6d645081b")
+(package! symbol-overlay :pin "8dc9d1929943a5fc113d0881453e5d4f023befdb")
 
 ;; Fetch the clipboard history
 ;; https://github.com/redguardtoo/cliphist/commits/master
@@ -69,7 +69,7 @@
 
 ;; Bitwarden support
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
-(package! bitwarden :pin "1120647d974e06af431523f5824eb2e868e8098b"
+(package! bitwarden :pin "072b9e4584c58a31d187e1ed16cbe7fcf81e2792"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
 
 ;; Imenu list of buffers
@@ -78,7 +78,7 @@
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "067f9319d67b1170d46a394e039537bb9cb413e3")
+(package! org-modern :pin "2ab56bdf6dda272a0b7655fb45a2f3f7cd0feb81")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
@@ -86,7 +86,7 @@
 
 ;; GPG pinentry support
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
-(package! pinentry :pin "0f42e75676cb01bd49c70ccc65bce98a882bffed")
+(package! pinentry :pin "a6441224da04656370e993e2616185cc31afaff9")
 
 ;; Improved color palette in terminal
 ;; https://github.com/dieggsy/eterm-256color/commits/master
@@ -94,7 +94,7 @@
 
 ;; Support for CSV
 ;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
-(package! csv-mode :pin "1f7cf5ed71a67be73c9ca9e672b35e897017ea73")
+(package! csv-mode :pin "96ff6a153dfb6c91ef2853b01bb7a716387e6670")
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
