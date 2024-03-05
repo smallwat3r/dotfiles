@@ -177,6 +177,15 @@
           "git" "anzu" "hostname"))
   (awesome-tray-mode 1))
 
+;; Anzu
+;; doc: https://github.com/emacsorphanage/anzu
+(use-package! anzu
+  :after-call isearch-mode)
+
+(use-package! evil-anzu
+  :after-call evil-ex-start-search evil-ex-start-word-search evil-ex-search-activate-highlight
+  :config (global-anzu-mode +1))
+
 ;; Evil-mode
 (after! evil
   ;; General evil mode settings.
