@@ -801,6 +801,19 @@
         :desc "CSV unalign fields" "A" #'csv-unalign-fields
         :desc "CSV toggle sticky header" "h" #'csv-header-line))
 
+;; tree-sitter
+(after! tree-sitter-langs
+  ;; Deactivate faces on some specific programming nodes, as I find this makes
+  ;; the buffer too busy and difficult to read.
+  (add-function
+   :before-while tree-sitter-hl-face-mapping-function
+   (lambda (capture-name)
+     (not (member
+           capture-name
+           '("property" "operator" "method.call" "function.call"
+             "function.method.call" "function.special" "label"))))))
+
+
 ;; HACK: since some upstream changes, formatting a specific region seems broken, and
 ;; calling `+format/region' raises: "with Symbol’s function definition is void:
 ;; apheleia--get-formatters", ensure to autoload the required function.
@@ -814,6 +827,7 @@
   (ignore-errors
     (tree-sitter--teardown)
     (turn-on-tree-sitter-mode)))
+
 
 ;;
 ;;; Terminals

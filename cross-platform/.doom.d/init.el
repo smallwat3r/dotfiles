@@ -7,7 +7,6 @@
        google
        scratch
        slack
-       tree-sitter
 
        :completion
        company
@@ -56,6 +55,7 @@
        pdf
        rgb
        (terraform +lsp)
+       tree-sitter
 
        :os
        (:if IS-MAC macos)
@@ -63,16 +63,16 @@
 
        :lang
        emacs-lisp
-       (go +lsp)
-       (javascript +lsp)
-       json
-       lua
+       (go +lsp +tree-sitter)
+       (javascript +lsp +tree-sitter)
+       (json +tree-sitter)
+       (lua +tree-sitter)
        markdown
        (org +journal +pandoc)
-       (python +lsp)
+       (python +lsp +tree-sitter)
        rest
-       (sh +lsp)
-       (web +lsp)
+       (sh +lsp +tree-sitter)
+       (web +lsp +tree-sitter)
 
        :email
        notmuch
