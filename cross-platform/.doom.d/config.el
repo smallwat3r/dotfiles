@@ -161,7 +161,7 @@
 
 (add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
 
-(setq display-line-numbers-type 'relative
+(setq display-line-numbers-type nil
       scroll-margin 7
       ;; Makes underlines render a bit cleaner.
       x-underline-at-descent-line t
