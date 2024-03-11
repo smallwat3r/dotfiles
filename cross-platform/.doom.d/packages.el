@@ -110,18 +110,6 @@
   :recipe (:host github :repo "Sbozzolo/vterm-extra")
   :pin "2d4a34f03d0f0d863a319cd0496ed6cafe94c27e")
 
-;; Modeline in minibuffer
-;; https://github.com/manateelazycat/awesome-tray/commits/master/
-(package! awesome-tray
-          :recipe (:host github :repo "manateelazycat/awesome-tray")
-          :pin "ce0fbeaa594e30aafdcaf6ee391202e06dad98bf")
-
-;; Anzu
-;; https://github.com/emacsorphanage/anzu/commits/master/
-(package! anzu :pin "26fb50b429ee968eb944b0615dd0aed1dd66172c")
-;; https://github.com/emacsorphanage/evil-anzu/commits/master/
-(package! evil-anzu :pin "d1e98ee6976437164627542909a25c6946497899")
-
 
 ;;
 ;;; Personal packages (I'm ok with not pinning those as I manage them).

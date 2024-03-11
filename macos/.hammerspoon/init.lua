@@ -20,7 +20,7 @@ alert.defaultStyle = {
     strokeColor = { white = 1, alpha = 1 },
     fillColor = { white = 0, alpha = 1 },
     textColor = { white = 1, alpha = 1 },
-    textFont = 'Vulf Mono Code',
+    textFont = 'Source Code Pro',
     textSize = 16,
     radius = 0,
     atScreenEdge = 0,

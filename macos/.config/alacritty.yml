@@ -10,11 +10,11 @@ window:
 
 font:
   normal:
-    family: Vulf Mono Code
-  size: 15
+    family: Source Code Pro
+  size: 16
   offset:
-    x: 0
-    y: 6
+    x: 1
+    y: 0
   glyph_offset:
     x: 0
     y: 0

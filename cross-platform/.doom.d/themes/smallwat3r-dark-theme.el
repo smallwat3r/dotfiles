@@ -37,8 +37,7 @@
 (custom-theme-set-faces
  'smallwat3r-dark
 
- ;; `(default ((t (:background "black" :foreground "white"))))
- `(default ((t (:background "#08000a" :foreground "white"))))
+ `(default ((t (:background "black" :foreground "white"))))
 
  `(lsp-headerline-breadcrumb-symbols-face ((t (:inherit font-lock-constant-face))))
  `(lsp-headerline-breadcrumb-path-face ((t (:inherit font-lock-constant-face))))

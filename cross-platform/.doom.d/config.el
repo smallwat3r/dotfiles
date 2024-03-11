@@ -89,10 +89,10 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
-(setq my-thinner-font "Vulf Mono Code"
-      my-thicker-font "Vulf Mono Code")
+(setq my-thinner-font "Source Code Pro"
+      my-thicker-font "Source Code Pro")
 
-(setq my-font-size 15)
+(setq my-font-size 16)
 (setq doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
 (setq doom-variable-pitch-font doom-font)
 
@@ -105,11 +105,11 @@
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 0)
 
-(when (not IS-GPD)
-  ;; ensure text is centered on its own line
-  (setq default-text-properties '(line-spacing 0.25 line-height 1.25)))
+;; (when (not IS-GPD)
+;;   ;; ensure text is centered on its own line
+;;   (setq default-text-properties '(line-spacing 0.25 line-height 1.25)))
 
 (when (not (= line-spacing 0))
   ;; images would not render correctly if `line-spacing' is not 0
@@ -168,25 +168,17 @@
       ;; No confirmation can be annoying as I realised it often happens by mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
-;; modeline in minibuffer
-;; doc: https://github.com/manateelazycat/awesome-tray
-(use-package! awesome-tray
-  :custom
-  (awesome-tray-active-modules
-   '("buffer-read-only" "location" "file-path" "mode-name"
-     "git" "anzu" "hostname"))
-  (awesome-tray-essential-modules '("location" "file-path"))
-  :config
-  (awesome-tray-mode 1))
-
-;; Anzu
-;; doc: https://github.com/emacsorphanage/anzu
-(use-package! anzu
-  :after-call isearch-mode)
-
-(use-package! evil-anzu
-  :after-call evil-ex-start-search evil-ex-start-word-search evil-ex-search-activate-highlight
-  :config (global-anzu-mode +1))
+;; Doom modeline
+;; doc: https://github.com/seagle0128/doom-modeline
+(after! doom-modeline
+  (setq doom-modeline-buffer-file-name-style 'truncate-with-project
+        ;; Max length for the git branch name.
+        doom-modeline-vcs-max-length 20
+        ;; 1 ensures the modeline is never taller than the fonts.
+        doom-modeline-height 1
+        doom-modeline-bar-width 0
+        ;; Prefer no icons on the modeline.
+        doom-modeline-icon nil))
 
 ;; Evil-mode
 (after! evil
