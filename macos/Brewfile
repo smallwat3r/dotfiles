@@ -21,12 +21,11 @@ brew "make"
 brew "msmtp"
 brew "nmap"
 brew "notmuch"
-brew "nvm"
 brew "openssl"
 brew "pandoc"
 brew "pass"
 brew "pinentry-mac"
-brew "python@3.10"
+brew "python@3.12"
 brew "ripgrep"
 brew "shellcheck"
 brew "shfmt"
@@ -59,10 +58,6 @@ brew "tubestatus"
 # tap "johanhaleby/kubetail"
 # brew "kubetail"
 
-# Save screen display arrangement
-# tap "jakehilborn/jakehilborn"
-# brew "displayplacer"
-
 # Casks
 
 cask_args appdir: '/Applications'
@@ -75,13 +70,3 @@ cask "gpg-suite"
 cask "hammerspoon"
 cask "keybase"
 cask "slack"
-
-# cask "alfred"
-# cask "mucommander"
-# cask "nordvpn"
-# cask "signal"
-# cask "tunnelblick"
-# cask "flycut"
-
-# tap "homebrew/cask-versions"
-# cask 'sequel-pro-nightly'
