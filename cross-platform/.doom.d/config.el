@@ -236,6 +236,13 @@
   ;; behaviour.
   (setq evil-escape-excluded-major-modes '(treemacs-mode)))
 
+;; Evil snipe
+;; doc: https://github.com/hlissner/evil-snipe
+(after! evil-snipe
+  (map! :map evil-snipe-parent-transient-map
+        :g "j" #'evil-snipe-repeat
+        :g "k" #'evil-snipe-repeat-reverse))
+
 ;; Icons
 ;; doc: https://github.com/domtronn/all-the-icons.el
 (after! all-the-icons
@@ -1063,6 +1070,19 @@
                           "https://github.com/doomemacs/doomemacs/commits/master.atom")))
       (setf (elfeed-feed-title github-feed) "Github feed")
       (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
+
+(defun my/echo-command-name-hook ()
+  "Echo live command names."
+  (unless (or (eq this-command 'self-insert-command)
+              (eq this-command 'next-line))
+    (message "%s" this-command)))
+
+(define-minor-mode my-debug-mode
+  "Custom debug mode.")
+
+(add-hook! 'post-command-hook
+  (if (bound-and-true-p my-debug-mode)
+      (my/echo-command-name-hook)))
 
 
 ;;
