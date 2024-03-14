@@ -2,9 +2,9 @@
 ;;; $DOOMDIR/packages.el
 
 ;;
-;;; Disabled packages.
+;;; Disabled packages
 
-;; These are some of Doom's default packages, that I don't use.
+;; A list of Doom's default packages, that I don't use.
 (disable-packages!
  ;; Python packages
  anaconda-mode
@@ -18,9 +18,8 @@
  solaire-mode
  ns-auto-titlebar)
 
-
 ;;
-;;; Misc packages.
+;;; External packages
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
@@ -112,7 +111,7 @@
 
 
 ;;
-;;; Personal packages (I'm ok with not pinning those as I manage them).
+;;; Personal packages (not pinned as managed by myself)
 
 ;; Simple dark theme
 (package! simplicity-theme
@@ -125,7 +124,3 @@
 ;; Untappd feed
 (package! untappd
   :recipe (:host github :repo "smallwat3r/untappd.el"))
-
-
-;;
-;;; Experimental packages.
