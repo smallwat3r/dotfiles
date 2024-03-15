@@ -1071,6 +1071,7 @@
       (setf (elfeed-feed-title github-feed) "Github feed")
       (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
 
+;; debug mode
 (defun my/echo-command-name-hook ()
   "Echo live command names."
   (unless (or (eq this-command 'self-insert-command)

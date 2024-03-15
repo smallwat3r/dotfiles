@@ -7,6 +7,9 @@ if [ -d "${HOME}/.poetry/bin" ]; then
   export PATH="${HOME}/.poetry/bin:${PATH}"
 fi
 
+# YOLO
+export PIP_BREAK_SYSTEM_PACKAGES=1
+
 # activate the nearest python venv
 avenv() {
   local dir
