@@ -12,7 +12,7 @@ else:
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
     c.fonts.default_size = "12pt"
 
-c.content.user_stylesheets = ["~/.config/qutebrowser/css/monaco.css"]
+c.content.user_stylesheets = ["~/.config/qutebrowser/css/source-code-pro.css"]
 
 c.downloads.location.directory = "~/Downloads"
 c.tabs.position = "bottom"
