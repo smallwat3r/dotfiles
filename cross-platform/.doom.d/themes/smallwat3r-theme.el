@@ -155,7 +155,11 @@
  `(symbol-overlay-face-5 ((t (:foreground "black" :background "tomato" :weight bold))))
  `(symbol-overlay-face-6 ((t (:foreground "black" :background "peach puff" :weight bold))))
  `(symbol-overlay-face-7 ((t (:foreground "black" :background "medium violet red" :weight bold))))
- `(symbol-overlay-face-8 ((t (:foreground "black" :background "dark violet" :weight bold)))))
+ `(symbol-overlay-face-8 ((t (:foreground "black" :background "dark violet" :weight bold))))
+
+ `(corfu-default ((t (:inherit default))))
+ `(corfu-current ((t (:inherit highlight)))))
+
 
 ;;;###autoload
 (when load-file-name
