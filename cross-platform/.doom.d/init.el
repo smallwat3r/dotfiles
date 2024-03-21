@@ -9,7 +9,7 @@
        slack
 
        :completion
-       company
+       (corfu +orderless +icons +dabbrev)
        (vertico +icons)
 
        :ui

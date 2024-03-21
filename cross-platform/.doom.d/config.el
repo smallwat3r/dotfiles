@@ -501,47 +501,11 @@
 ;;; Completion frameworks
 
 ;; Code completion
-;; doc: https://www.emacswiki.org/emacs/CompanyMode
-(after! company
-  ;; Make completion feel snappy.
-  (setq company-idle-delay 0
-        company-minimum-prefix-length 1
-        company-tooltip-limit 6)
-
-  (setq company-vscode-icons-mapping
-        '((array . "symbol-array.svg")
-          (boolean . "symbol-boolean.svg")
-          (class . "symbol-class.svg")
-          (color . "symbol-color.svg")
-          (constant . "symbol-constant.svg")
-          (constructor . "symbol-method.svg")
-          (enum-member . "symbol-enumerator-member.svg")
-          (enum . "symbol-enumerator.svg")
-          (event . "symbol-event.svg")
-          (field . "symbol-field.svg")
-          (file . "symbol-file.svg")
-          (folder . "folder.svg")
-          (interface . "symbol-interface.svg")
-          (keyword . "symbol-keyword.svg")
-          (method . "symbol-method.svg")
-          (function . "symbol-method.svg")
-          (module . "symbol-namespace.svg")
-          (numeric . "symbol-numeric.svg")
-          (operator . "symbol-operator.svg")
-          (property . "symbol-property.svg")
-          (reference . "references.svg")
-          (snippet . "symbol-misc.svg")
-          (string . "symbol-string.svg")
-          (struct . "symbol-structure.svg")
-          (text . "symbol-key.svg")
-          (type-parameter . "symbol-parameter.svg")
-          (unit . "symbol-ruler.svg")
-          (value . "symbol-enumerator.svg")
-          (variable . "symbol-variable.svg")
-          (t . "symbol-misc.svg")))
-
-  (setq company-tooltip-align-annotations t
-        company-tooltip-offset-display 'lines))
+;; doc: https://github.com/minad/corfu
+(after! corfu
+  (setq corfu-count 7
+        corfu-preselect 'first
+        corfu-preview-current nil))
 
 ;; vertical interactive completion
 ;; doc: https://github.com/minad/vertico
@@ -593,10 +557,6 @@
   flycheck-shellcheck-excluded-warnings '("SC1091")
   sh-basic-offset 2
   indent-tabs-mode nil)
-
-;; Disabled company auto completion on shell mode. I experienced some heavy
-;; performance issues when it was enabled.
-(add-hook! 'shell-mode-hook (company-mode -1))
 
 ;; Check for spelling mistakes
 ;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
@@ -736,11 +696,7 @@
               web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
               web-mode-script-padding 2
-              web-mode-style-padding 2
-              +lsp-company-backends '(company-css
-                                      company-web-html
-                                      company-yasnippet
-                                      company-files)))
+              web-mode-style-padding 2)
 
 (add-hook! 'web-mode-hook #'my/web-mode-configs)
 
