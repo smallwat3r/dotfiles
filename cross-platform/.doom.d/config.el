@@ -143,6 +143,16 @@
 
 (setq doom-theme my-current-theme)
 
+;; Remove highlighting on some major programming faces. I think it makes the buffer
+;; too busy and difficult to read.
+(custom-set-faces!
+  '((font-lock-function-name-face
+     font-lock-variable-name-face
+     font-lock-constant-face
+     font-lock-builtin-face
+     font-lock-type-face)
+    :foreground unspecified :weight normal))
+
 (defun my-dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
                   my-title-emacs-version " on " my-system-distro " (" my-system-os ")\n"

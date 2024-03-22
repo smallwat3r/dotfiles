@@ -47,8 +47,8 @@
  `(error ((t (:foreground "firebrick2" :weight bold))))
 
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
- `(font-lock-doc-face ((t (:foreground "turquoise3" :slant italic))))
- `(font-lock-comment-face ((t (:foreground "yellow3" :slant italic))))
+ `(font-lock-doc-face ((t (:foreground "turquoise3"))))
+ `(font-lock-comment-face ((t (:foreground "yellow3"))))
  `(font-lock-comment-delimiter-face ((t (:foreground "yellow3"))))
  `(font-lock-keyword-face ((t (:foreground "orchid"))))
  `(font-lock-string-face ((t (:foreground "turquoise3"))))

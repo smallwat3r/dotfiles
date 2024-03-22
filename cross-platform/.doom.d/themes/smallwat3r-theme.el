@@ -48,8 +48,8 @@
 
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
 
- `(font-lock-doc-face ((t (:foreground "DarkRed" :slant italic))))
- `(font-lock-comment-face ((t (:foreground "yellow4" :slant italic))))
+ `(font-lock-doc-face ((t (:foreground "DarkRed"))))
+ `(font-lock-comment-face ((t (:foreground "yellow4"))))
  `(font-lock-comment-delimiter-face ((t (:foreground "yellow4"))))
  `(font-lock-keyword-face ((t (:foreground "Purple" :weight bold))))
  `(font-lock-string-face ((t (:foreground "turquoise4"))))
