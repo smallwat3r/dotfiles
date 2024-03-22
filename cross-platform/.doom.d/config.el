@@ -796,7 +796,11 @@
      (not (member
            capture-name
            '("property" "operator" "method.call" "function.call"
-             "function.method.call" "function.special" "label"))))))
+             "function.method.call" "function.special" "label")))))
+  ;; Fix rendering python docstring apostrophes.
+  (tree-sitter-hl-add-patterns 'python
+    [((string) @doc
+      (.match? @doc "^(\"\"\"|r\"\"\")"))]))
 
 
 ;; HACK: since some upstream changes, formatting a specific region seems broken, and
