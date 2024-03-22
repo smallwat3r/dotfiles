@@ -47,11 +47,11 @@
  `(error ((t (:foreground "firebrick2" :weight bold))))
 
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
- `(font-lock-doc-face ((t (:foreground "turquoise3"))))
+ `(font-lock-doc-face ((t (:foreground "PaleGoldenrod"))))
  `(font-lock-comment-face ((t (:foreground "yellow3"))))
  `(font-lock-comment-delimiter-face ((t (:foreground "yellow3"))))
  `(font-lock-keyword-face ((t (:foreground "orchid"))))
- `(font-lock-string-face ((t (:foreground "turquoise3"))))
+ `(font-lock-string-face ((t (:foreground "PaleGoldenrod"))))
 
  `(makefile-targets ((t (:inherit font-lock-keyword-face))))
  `(nxml-element-local-name ((t (:inherit font-lock-keyword-face))))
