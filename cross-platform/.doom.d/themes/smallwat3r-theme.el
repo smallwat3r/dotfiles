@@ -47,7 +47,6 @@
  `(error ((t (:foreground "firebrick2" :weight bold))))
 
  `(highlight-numbers-number ((t (:foreground "dark cyan"))))
-
  `(font-lock-doc-face ((t (:foreground "DarkRed"))))
  `(font-lock-comment-face ((t (:foreground "yellow4"))))
  `(font-lock-comment-delimiter-face ((t (:foreground "yellow4"))))
@@ -66,7 +65,9 @@
 
  `(font-lock-regexp-grouping-backslash ((t :foreground "chartreuse4" :weight bold)))
 
- `(region ((t (:background "wheat2" :extend nil))))
+ `(link ((t (:foreground "cyan4" :underline t))))
+
+ `(region ((t (:background "wheat2" :extend t))))
 
  `(highlight ((t (:background "DarkSlateGray1"))))
  `(lazy-highlight ((t (:background "gold2"))))

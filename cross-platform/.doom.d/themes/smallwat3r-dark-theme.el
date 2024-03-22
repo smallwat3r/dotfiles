@@ -65,7 +65,9 @@
 
  `(font-lock-regexp-grouping-backslash ((t :foreground "chartreuse4" :weight bold)))
 
- `(region ((t (:background "dark cyan" :extend nil))))
+ `(link ((t (:foreground "cyan4" :underline t))))
+
+ `(region ((t (:background "grey10" :extend t))))
 
  `(highlight ((t (:background "SteelBlue4"))))
  `(lazy-highlight ((t (:background "dark goldenrod" :foreground "black" :weight bold))))
