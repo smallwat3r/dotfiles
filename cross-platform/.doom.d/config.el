@@ -81,8 +81,8 @@
 ;; Fonts
 
 ;; this is useful when changing from light and dark theme to have fonts with
-;; different weigths, as often a thicker font renders better on a light background,
-;; and a thiner font renders best of a darker background.
+;; different weigths, as often a thicker font renders better on a light
+;; background, and a thiner font renders best of a darker background.
 (defvar my-thinner-font "Triplicate B Code"
   "Thinner font family to use.")
 
@@ -93,7 +93,9 @@
       my-thicker-font "Source Code Pro")
 
 (setq my-font-size 16)
-(setq doom-font (font-spec :family my-thinner-font :size my-font-size :hintstyle 3))
+(setq doom-font (font-spec :family my-thinner-font
+                           :size my-font-size
+                           :hintstyle 3))
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -143,8 +145,8 @@
 
 (setq doom-theme my-current-theme)
 
-;; Remove highlighting on some major programming faces. I think it makes the buffer
-;; too busy and difficult to read.
+;; Remove highlighting on some major programming faces. I think it makes
+;; the buffer too busy and difficult to read.
 (custom-set-faces!
   '((font-lock-function-name-face
      font-lock-variable-name-face
@@ -155,13 +157,14 @@
 
 (defun my-dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
-                  my-title-emacs-version " on " my-system-distro " (" my-system-os ")\n"
+                  my-title-emacs-version
+                  " on " my-system-distro " (" my-system-os ")\n"
                   "Built for: " system-configuration)))
 
-;; Dashboard displayed when starting Emacs. As a personal preference, I like to keep
-;; it very simple. It is ligther than the default scratch buffer in many cases. But
-;; it can also not be killed, hence remembers the working directory of the last open
-;; buffer, `find-file' will work from the directory I expect.
+;; Dashboard displayed when starting Emacs. As a personal preference, I like to
+;; keep it very simple. It is ligther than the default scratch buffer in many
+;; cases. But it can also not be killed, hence remembers the working directory
+;; of the last open buffer, `find-file' will work from the directory I expect.
 (setq +doom-dashboard-functions '(my-dashboard-message))
 
 (defun +doom-dashboard-tweak (&optional _)
@@ -175,7 +178,8 @@
       scroll-margin 7
       ;; Makes underlines render a bit cleaner.
       x-underline-at-descent-line t
-      ;; No confirmation can be annoying as I realised it often happens by mistake.
+      ;; No confirmation can be annoying as I realised it often happens by
+      ;; mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
 ;; Doom modeline
@@ -312,7 +316,8 @@
 (after! which-key
   (setq which-key-idle-delay 0.2)
   ;; Make evil commands less verbose, use small arrow symbols instead.
-  ;; Stolen from: https://tecosaur.github.io/emacs-config/config.html#which-key,code--2
+  ;; Stolen from:
+  ;; https://tecosaur.github.io/emacs-config/config.html#which-key,code--2
   (pushnew!
    which-key-replacement-alist
    '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
@@ -332,14 +337,15 @@
 (setq window-divider-default-right-width my-global-window-divider-width
       window-divider-default-bottom-width my-global-window-divider-width)
 
-;; Goto-address mode. This mode activates and highlights URLs and email addresses
-;; in the current buffer.
+;; Goto-address mode. This mode activates and highlights URLs and email
+;; addresses in the current buffer.
 (use-package! goto-addr
   :hook
   (prog-mode . goto-address-prog-mode)
   ((text-mode vterm-mode restclient-mode compilation-mode) . goto-address-mode)
   :custom
-  (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
+  (goto-address-mail-regexp
+   "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
   (goto-address-mail-face 'my-goto-address-mail-face)
   :init
   (defface my-goto-address-mail-face '((t :italic nil :underline t))
@@ -368,12 +374,13 @@
         :desc "Add overlay"     "h" #'symbol-overlay-put
         :desc "Remove overlays" "H" #'symbol-overlay-remove-all)
   :config
-  ;; Deactivate binding for `symbol-overlay-map-help', as it conflicts with evil.
-  ;; Remap it to a capital 'H' instead.
+  ;; Deactivate binding for `symbol-overlay-map-help', as it conflicts with
+  ;; evil. Remap it to a capital 'H' instead.
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help)
 
-  ;; Other overlay bindings I don't use which could conflict with evil operations.
+  ;; Other overlay bindings I don't use which could conflict with evil
+  ;; operations.
   (define-key symbol-overlay-map (kbd "w") nil)
   (define-key symbol-overlay-map (kbd "t") nil)
   (define-key symbol-overlay-map (kbd "i") nil))
@@ -445,21 +452,24 @@
   (setq projectile-indexing-method 'alien
         projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/")
         projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc")
-        projectile-globally-ignored-directories '(".npm" ".poetry" "GoogleDrive" ".mypy_cache"
-                                                  "Library" ".git" "__pycache__" "node_modules"
-                                                  ".idea" ".vscode" ".svn" ".tox" ".cache"))
+        projectile-globally-ignored-directories
+        '(".npm" ".poetry" "GoogleDrive" ".mypy_cache"
+          "Library" ".git" "__pycache__" "node_modules"
+          ".idea" ".vscode" ".svn" ".tox" ".cache"))
   (setq projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups"))
   (when (featurep :system 'macos)
-    (pushnew! projectile-ignored-projects "/Applications" "/Volumes/GoogleDrive"))
+    (pushnew! projectile-ignored-projects
+              "/Applications" "/Volumes/GoogleDrive"))
 
-  ;; Make the projectile command use fd with some more sensitive defaults, as I noticed some
-  ;; performance issues with the one used by Doom or projectile natively.
+  ;; Make the projectile command use fd with some more sensitive defaults, as I
+  ;; noticed some performance issues with the one used by Doom or projectile
+  ;; natively.
   (let ((excludes (mapcar (lambda (val) (format "-E '%s'" val))
                           (append projectile-globally-ignored-files
                                   projectile-globally-ignored-directories))))
     (setq projectile-generic-command
-          (format "%s" (cons "fd . -0 -H -c never -t file -t symlink --strip-cwd-prefix"
-                             excludes)))))
+          (cons "fd . -0 -H -c never -t file -t symlink --strip-cwd-prefix"
+                excludes))))
 
 
 ;;
@@ -490,8 +500,9 @@
 
   ;; set a transparent background for all levels in dired subtree
   (custom-set-faces!
-   `(,(cl-loop for i from 0 to 6 collect (intern (format "dired-subtree-depth-%d-face" i)))
-     :background unspecified)))
+    `(,(cl-loop for i from 0 to 6 collect
+                (intern (format"dired-subtree-depth-%d-face" i)))
+      :background unspecified)))
 
 ;; Treemacs
 ;; doc: https://github.com/Alexander-Miller/treemacs
@@ -500,9 +511,9 @@
         doom-themes-treemacs-line-spacing 0
         doom-themes-treemacs-theme "doom-colors"
         treemacs-width 50
-        ;; popups have been disabled so switching back and forth with the treemacs
-        ;; buffer using the evil bindings does not work. This restores the original
-        ;; behaviour.
+        ;; popups have been disabled so switching back and forth with the
+        ;; treemacs buffer using the evil bindings does not work. This restores
+        ;; the original behaviour.
         treemacs-is-never-other-window nil)
   (treemacs-resize-icons 14))
 
@@ -524,9 +535,10 @@
   (map! (:leader
          (:prefix "s"
           ;; Search a symbol at point using Vertico
-          :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point
-          ;; Repeat the last Vertico search. Doom also allow this with <SPC '> but I find it
-          ;; easier to remember memo-technically with <SPC s .>
+          :desc "Search project (at point)" "w"
+          #'my/vertico-search-project-symbol-at-point
+          ;; Repeat the last Vertico search. Doom also allow this with <SPC '>
+          ;; but I find it easier to remember memo-technically with <SPC s .>
           :desc "Repeat last search" "." #'vertico-repeat))))
 
 
@@ -637,13 +649,15 @@
   (defvar my-default-python-line-length 88
     "Default python line length.")
 
-  ;; Disable annoying warnings about `python-shell-interpreter' readline support.
+  ;; Disable annoying warnings about `python-shell-interpreter' readline
+  ;; support.
   (setq python-shell-completion-native-enable nil)
 
   ;; Isort
   (after! py-isort
     (setq py-isort-options '("--trailing-comma" "--use-parentheses"))
-    (add-to-list 'py-isort-options (format "-l %s" my-default-python-line-length)))
+    (add-to-list 'py-isort-options (format "-l %s"
+                                           my-default-python-line-length)))
 
   ;; Formatter
   (set-formatter! 'black
@@ -772,7 +786,8 @@
 (add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
 
 ;; ssh config mode
-(add-to-list 'auto-mode-alist '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
+(add-to-list 'auto-mode-alist
+             '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
 
 ;; CSV mode
 ;; doc: https://elpa.gnu.org/packages/csv-mode.html
@@ -803,15 +818,16 @@
       (.match? @doc "^(\"\"\"|r\"\"\")"))]))
 
 
-;; HACK: since some upstream changes, formatting a specific region seems broken, and
-;; calling `+format/region' raises: "with Symbol’s function definition is void:
-;; apheleia--get-formatters", ensure to autoload the required function.
+;; HACK: since some upstream changes, formatting a specific region seems
+;; broken, and calling `+format/region' raises: "with Symbol’s function
+;; definition is void: apheleia--get-formatters", ensure to autoload the
+;; required function.
 (use-package! apheleia
   :commands (apheleia--get-formatters))
 
-;; HACK: re the above hack, for some reason it also seems to break the tree-sitter
-;; syntax highlighting, we add a wrapper to re-enable tree-sitter after calling
-;; `+format/region', in case the highlighting was broken.
+;; HACK: re the above hack, for some reason it also seems to break the
+;; tree-sitter syntax highlighting, we add a wrapper to re-enable tree-sitter
+;; after calling `+format/region', in case the highlighting was broken.
 (defadvice +format/region (after my/format-region activate)
   (ignore-errors
     (tree-sitter--teardown)
@@ -985,8 +1001,8 @@
 (use-package! bitwarden
   :custom
   (bitwarden-user user-mail-address)
-  (bitwarden-automatic-unlock (lambda ()
-                                (auth-source-pass-get 'secret "bitwarden/password")))
+  (bitwarden-automatic-unlock
+   (lambda () (auth-source-pass-get 'secret "bitwarden/password")))
   :init
   (map! :leader
         :prefix "P"
@@ -1023,21 +1039,25 @@
   ;; Set up feeds.
   (setq elfeed-feeds
         '(("https://www.reddit.com/r/emacs.rss" reddit emacs)
-          ("https://github.com/doomemacs/doomemacs/commits/master.atom" emacs doom)
+          ("https://github.com/doomemacs/doomemacs/commits/master.atom"
+           emacs doom)
           ("https://realpython.com/atom.xml?format=xml" python)
           ("http://feeds.feedburner.com/PythonInsider" python)))
 
-  ;; Add private Github RSS feed to list of feeds. This needs to fetch my Github RSS token,
-  ;; so this is done separately.
-  (setq my-github-rss-feed (format "https://github.com/smallwat3r.private.atom?token=%s"
-                                   (auth-source-pass-get 'secret "github/rss/token")))
+  ;; Add private Github RSS feed to list of feeds. This needs to fetch my
+  ;; Github RSS token, so this is done separately.
+  (setq my-github-rss-feed
+        (format "https://github.com/smallwat3r.private.atom?token=%s"
+                (auth-source-pass-get 'secret "github/rss/token")))
   (add-to-list 'elfeed-feeds (list my-github-rss-feed))
 
   ;; Rename some feeds titles.
-  (defadvice elfeed-search-update (before configure-elfeed-search-update activate)
+  (defadvice elfeed-search-update
+      (before configure-elfeed-search-update activate)
     (let ((github-feed (elfeed-db-get-feed my-github-rss-feed))
-          (git-doom-feed (elfeed-db-get-feed
-                          "https://github.com/doomemacs/doomemacs/commits/master.atom")))
+          (git-doom-feed
+           (elfeed-db-get-feed
+            "https://github.com/doomemacs/doomemacs/commits/master.atom")))
       (setf (elfeed-feed-title github-feed) "Github feed")
       (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
 
@@ -1060,11 +1080,11 @@
 ;;; Bindings
 
 ;; Bundle most of my custom bindings for using Doom Emacs. Some bindings are not
-;; included here, when they are specific to packages and cannot be bundled outside
-;; of the package configuration.
+;; included here, when they are specific to packages and cannot be bundled
+;; outside of the package configuration.
 ;;
-;; It's important for these to be loaded (almost) in last so it makes sure these are not
-;; getting overriden.
+;; It's important for these to be loaded (almost) in last so it makes sure
+;; these are not getting overriden.
 
 ;; Disable bindings, due to other conflicts (specially coming from Hammerspoon).
 (map! "M-k" nil
