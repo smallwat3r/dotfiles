@@ -9,8 +9,8 @@
   (kill-this-buffer))
 
 ;;;###autoload
-(defun my/kill-buffer ()
-  "Kill current buffer."
+(defun my/kill-buffer (&optional buffer)
+  "Kill current buffer or BUFFER."
   (interactive)
   ;; On some specific major modes, when killing a buffer, disable prompt
   ;; confirmation of checking running for processes and modified buffers.
@@ -19,7 +19,9 @@
     (let ((proc (get-buffer-process (current-buffer))))
       (when (processp proc)
         (set-process-query-on-exit-flag proc nil))))
-  (kill-this-buffer))
+  (if buffer
+      (kill-buffer buffer)
+    (kill-this-buffer)))
 
 ;;;###autoload
 (defun my/vterm/toggle-current-buffer ()
@@ -32,3 +34,9 @@
   "Open a vterm buffer from the current directory."
   (interactive)
   (+vterm/here t))
+
+;;;###autoload
+(defun my/kill-all-buffers ()
+  "Kill all buffers."
+  (interactive)
+  (mapc 'my/kill-buffer (buffer-list)))
