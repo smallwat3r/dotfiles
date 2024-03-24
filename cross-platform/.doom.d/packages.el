@@ -39,12 +39,12 @@
 
 ;; Support for YAML
 ;; https://github.com/yoshiki/yaml-mode/commits/master
-(package! yaml-mode :pin "5b58248ab255dff6cfa4c4057a191bc4446ee5b6")
+(package! yaml-mode :pin "7b5ce294fb15c2c8926fa476d7218aa415550a2a")
 
 ;; Dired utilities
 ;; https://github.com/Fuco1/dired-hacks/commits/master
-(package! dired-narrow :pin "874449d6fc98aee565e1715ec18acec3c1c2cafb")
-(package! dired-subtree :pin "874449d6fc98aee565e1715ec18acec3c1c2cafb")
+(package! dired-narrow :pin "c3bf65aeacfc5ae04508ebcff7b0c9fb37ca4beb")
+(package! dired-subtree :pin "c3bf65aeacfc5ae04508ebcff7b0c9fb37ca4beb")
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
@@ -56,7 +56,7 @@
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
-(package! symbol-overlay :pin "8dc9d1929943a5fc113d0881453e5d4f023befdb")
+(package! symbol-overlay :pin "de215fff392c916ffab01950fcb6daf6fd18be4f")
 
 ;; Fetch the clipboard history
 ;; https://github.com/redguardtoo/cliphist/commits/master
@@ -77,7 +77,7 @@
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "2ab56bdf6dda272a0b7655fb45a2f3f7cd0feb81")
+(package! org-modern :pin "a2ff4c8e9cac412e8cb9c7faf618ac18146107ea")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
@@ -85,7 +85,7 @@
 
 ;; GPG pinentry support
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
-(package! pinentry :pin "a6441224da04656370e993e2616185cc31afaff9")
+(package! pinentry :pin "9230880ebe03da686e9915b200c405ca96fd710d")
 
 ;; Improved color palette in terminal
 ;; https://github.com/dieggsy/eterm-256color/commits/master
@@ -93,7 +93,7 @@
 
 ;; Support for CSV
 ;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
-(package! csv-mode :pin "96ff6a153dfb6c91ef2853b01bb7a716387e6670")
+(package! csv-mode :pin "81c1a9febd2adf79cfbdf939081ef7bf3a41ffd6")
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
