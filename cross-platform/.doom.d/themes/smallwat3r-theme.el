@@ -50,7 +50,7 @@
  `(font-lock-doc-face ((t (:foreground "DarkRed"))))
  `(font-lock-comment-face ((t (:foreground "yellow4"))))
  `(font-lock-comment-delimiter-face ((t (:foreground "yellow4"))))
- `(font-lock-keyword-face ((t (:foreground "Purple" :weight bold))))
+ `(font-lock-keyword-face ((t (:foreground "Purple"))))
  `(font-lock-string-face ((t (:foreground "turquoise4"))))
 
  `(makefile-targets ((t (:inherit font-lock-keyword-face))))
