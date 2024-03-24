@@ -6,7 +6,7 @@
   (interactive)
   (save-buffer)
   (message "Closed and saved `%s'" (buffer-name))
-  (kill-this-buffer))
+  (kill-buffer (current-buffer)))
 
 ;;;###autoload
 (defun my/kill-buffer (&optional buffer)
@@ -21,7 +21,7 @@
         (set-process-query-on-exit-flag proc nil))))
   (if buffer
       (kill-buffer buffer)
-    (kill-this-buffer)))
+    (kill-buffer (current-buffer))))
 
 ;;;###autoload
 (defun my/vterm/toggle-current-buffer ()

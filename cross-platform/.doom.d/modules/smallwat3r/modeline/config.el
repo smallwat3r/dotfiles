@@ -7,7 +7,10 @@
 
 ;; doc: https://github.com/emacsorphanage/evil-anzu
 (use-package! evil-anzu
-  :after-call evil-ex-start-search evil-ex-start-word-search evil-ex-search-activate-highlight
+  :after-call
+  evil-ex-start-search
+  evil-ex-start-word-search
+  evil-ex-search-activate-highlight
   :config (global-anzu-mode +1))
 
 (defun my/number-of-buffers ()
