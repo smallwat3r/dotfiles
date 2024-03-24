@@ -1095,7 +1095,8 @@
    :desc "Kill buffer"      "k" #'my/kill-buffer
    :desc "Kill all buffers" "K" #'my/kill-all-buffers
    :desc "Kill buffer"      "d" #'my/kill-buffer
-   :desc "Kill all buffers" "D" #'my/kill-all-buffers)
+   :desc "Kill all buffers" "D" #'my/kill-all-buffers
+   :desc "Kill buffers not current" "q" #'my/kill-all-buffers-except-current)
 
   (:prefix "f"
    :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)

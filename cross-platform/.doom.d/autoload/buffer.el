@@ -40,3 +40,9 @@
   "Kill all buffers."
   (interactive)
   (mapc 'my/kill-buffer (buffer-list)))
+
+;;;###autoload
+(defun my/kill-all-buffers-except-current ()
+  "Kill all buffers except the current one."
+  (interactive)
+  (mapc 'my/kill-buffer (delete (current-buffer) (buffer-list))))
