@@ -182,48 +182,6 @@
       ;; mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
-;; Doom light modeline settings
-(setq +modeline-height 1
-      +modeline-bar-width nil)
-
-;; remove icons from modeline project
-(def-modeline!
- 'project
- `((:propertize (" " (:eval (abbreviate-file-name default-directory)))
-    face bold))
- '("" mode-line-misc-info +modeline-modes))
-
-(defun my/modeline-checker-update (&optional status)
-  "Custom modeline checker update function to gets rid of icons."
-  (setq +modeline-checker
-        (pcase status
-          (`finished
-           (if flycheck-current-errors
-               (let-alist (flycheck-count-errors flycheck-current-errors)
-                 (let ((error (or .error 0))
-                       (warning (or .warning 0))
-                       (info (or .info 0)))
-                   (propertize (number-to-string (+ error warning info))
-                               'face (cond ((> error 0)   'error)
-                                           ((> warning 0) 'warning)
-                                           ('success))
-                               'help-echo
-                               (format "Errors: %d, Warnings: %d, Debug: %d"
-                                       error
-                                       warning
-                                       info))))
-             (propertize "ok" 'face 'success)))
-          (`running     (propertize "*" 'face 'warning
-                                    'help-echo "Running..."))
-          (`errored     (propertize "!" 'face 'error
-                                    'help-echo "Errored!"))
-          (`interrupted (propertize "!" 'face 'warning
-                                    'help-echo "Interrupted"))
-          (`suspicious  (propertize "!" 'face 'error
-                                    'help-echo "Suspicious")))))
-
-(advice-add '+modeline-checker-update :override #'my/modeline-checker-update)
-
 ;; Evil-mode
 (after! evil
   ;; General evil mode settings.

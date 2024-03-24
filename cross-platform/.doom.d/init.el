@@ -5,6 +5,7 @@
        deft
        everywhere
        google
+       modeline
        scratch
        slack
 
@@ -16,7 +17,6 @@
        doom-dashboard
        (emoji +unicode)
        hl-todo
-       (modeline +light)
        ophints
        treemacs
        vc-gutter
