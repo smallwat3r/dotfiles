@@ -216,8 +216,8 @@
         "E"     #'end-of-line)
 
   ;; Change the cursor color depending on the evil mode
-  (setq evil-default-state-cursor  '(box "gray83")
-        evil-normal-state-cursor   '(box "gray83")
+  (setq evil-default-state-cursor  '(box "cyan3")
+        evil-normal-state-cursor   '(box "cyan3")
         evil-insert-state-cursor   '(box "green3")
         evil-visual-state-cursor   '(box "OrangeRed2")
         evil-replace-state-cursor  '(box "red4")
