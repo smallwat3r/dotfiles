@@ -408,7 +408,7 @@
   (global-set-key (kbd "C-c y o") 'copy-as-format-org-mode))
 
 ;; add confirmation message after calling `save-buffer'
-(defadvice save-buffer (after my/save-buffer activate)
+(defadvice save-buffer (after my/save-buffer-confirmation activate)
   (message "Saved `%s'" (buffer-name)))
 
 
