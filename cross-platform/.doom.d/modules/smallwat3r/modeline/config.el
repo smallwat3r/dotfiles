@@ -27,12 +27,16 @@
              'mode-line-client
              'mode-line-modified
              'mode-line-remote
-             "%12b"
-             '(vc-mode vc-mode)
+             'mode-line-frame-identification
+             'mode-line-buffer-identification
              '(:eval (format "  b(%s)" (my/number-of-buffers)))
              " %p %l,%c  "
+             '(vc-mode vc-mode)
+             " "
              'mode-name
              " "
              'mode-line-misc-info
              'mode-line-end-spaces)))
-  (setq-default mode-line-format standard-mode-line-format))
+  (setq-default mode-line-format standard-mode-line-format)
+  (put 'mode-line-format 'standard-value
+       (list `(quote ,standard-mode-line-format))))
