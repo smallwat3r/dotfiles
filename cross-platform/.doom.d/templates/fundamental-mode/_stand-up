@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Stand Up
+# --
+Morning all!
+
+* Yesterday: $1
+* Today: $2
+* Blockers: $0
