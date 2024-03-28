@@ -26,7 +26,7 @@ manpath=(
 export PATH
 
 if [ -d /opt/homebrew ]; then
-  # this needs to leave here as modules from config depends on this
+  # this needs to live here as modules from config depends on this
   export PATH="/opt/homebrew/bin:$PATH"
   export PATH="/opt/homebrew/sbin:$PATH"
   export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
