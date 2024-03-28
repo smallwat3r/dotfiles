@@ -1,6 +1,5 @@
 ;;; smallwat3r/tools/config.el -*- lexical-binding: t; -*-
 
-
 ;; Imenu list
 ;; doc: https://github.com/bmag/imenu-list
 (use-package! imenu-list
