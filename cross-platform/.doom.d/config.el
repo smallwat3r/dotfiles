@@ -761,18 +761,6 @@
 (add-to-list 'auto-mode-alist
              '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
 
-;; CSV mode
-;; doc: https://elpa.gnu.org/packages/csv-mode.html
-(use-package! csv-mode
-  :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode)
-  :config
-  (map! :map csv-mode-map
-        :leader
-        :localleader
-        :desc "CSV align fields" "a" #'csv-align-fields
-        :desc "CSV unalign fields" "A" #'csv-unalign-fields
-        :desc "CSV toggle sticky header" "h" #'csv-header-line))
-
 ;; tree-sitter
 (after! tree-sitter-langs
   ;; Deactivate faces on some specific programming nodes, as I find this makes
