@@ -1,4 +1,4 @@
-;;; smallwat3r/containerization/config.el -*- lexical-binding: t; -*-
+;;; smallwat3r/docker/config.el -*- lexical-binding: t; -*-
 
 ;; Docker
 ;; doc: https://github.com/Silex/docker.el

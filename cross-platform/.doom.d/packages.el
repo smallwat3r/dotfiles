@@ -50,30 +50,13 @@
 ;; https://github.com/tarsius/keycast/commits/main
 (package! keycast :pin "ec90b16baa0e9e7eb43d8c38e6cf6dccf75a95de")
 
-;; Input random text
-;; https://github.com/jschaf/emacs-lorem-ipsum/commits/master
-(package! lorem-ipsum :pin "4e87a899868e908a7a9e1812831d76c8d072f885")
-
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
 (package! symbol-overlay :pin "de215fff392c916ffab01950fcb6daf6fd18be4f")
 
-;; Fetch the clipboard history
-;; https://github.com/redguardtoo/cliphist/commits/master
-(package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
-
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
 (package! lsp-pyright :pin "2f2631ae242d5770dbe6cb924e44c1ee5671789d")
-
-;; Bitwarden support
-;; https://github.com/seanfarley/emacs-bitwarden/commits/main
-(package! bitwarden :pin "072b9e4584c58a31d187e1ed16cbe7fcf81e2792"
-  :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
-
-;; Imenu list of buffers
-;; https://github.com/bmag/imenu-list/commits/master
-(package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
@@ -91,17 +74,9 @@
 ;; https://github.com/dieggsy/eterm-256color/commits/master
 (package! eterm-256color :pin "c9cfccef03e730f7ab2b407aada3df15ace1fe32")
 
-;; Support for CSV
-;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
-(package! csv-mode :pin "81c1a9febd2adf79cfbdf939081ef7bf3a41ffd6")
-
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
 (package! pet :pin "d431f4d4f262752f9e4498471b11b20eaa49b8cf")
-
-;; Copy active region to the kill ring formatted as Github, Slack etc...
-;; https://github.com/sshaw/copy-as-format/commits/master
-(package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/

@@ -1,5 +1,5 @@
 ;; -*- no-byte-compile: t; -*-
-;;; smallwat3r/containerization/packages.el
+;;; smallwat3r/docker/packages.el
 
 ;; https://github.com/Silex/docker.el/commits/master
 (package! docker :pin "d5255a65b7240d0038cc417f301b43df05a27922")

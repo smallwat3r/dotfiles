@@ -1,13 +1,15 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :smallwat3r
-       containerization
+       csv
        deft
+       docker
        everywhere
        google
        modeline
        scratch
        slack
+       tools
 
        :completion
        (corfu +orderless +icons +dabbrev)
