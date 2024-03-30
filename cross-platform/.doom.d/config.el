@@ -775,16 +775,20 @@
 
 ;; tree-sitter
 (after! tree-sitter-langs
-  ;; Deactivate faces on some specific programming nodes, as I find this makes
-  ;; the buffer too busy and difficult to read.
+  (defvar my-tree-sitter-nodes-ignore
+    '("property" "operator" "method.call" "function.call"
+      "function.method.call" "function.special" "label")
+    "List of tree-sitter nodes to ignore.")
+
+  ;; deactivate highliting on some specific programming nodes, as I find this
+  ;; makes the buffer too busy and difficult to read.
   (add-function
    :before-while tree-sitter-hl-face-mapping-function
    (lambda (capture-name)
-     (not (member
-           capture-name
-           '("property" "operator" "method.call" "function.call"
-             "function.method.call" "function.special" "label")))))
-  ;; Fix rendering python docstring apostrophes.
+     (not (member capture-name my-tree-sitter-nodes-ignore))))
+
+  ;; ensure Python docstring apostrophes are rendered in the same syntax as
+  ;; strings.
   (tree-sitter-hl-add-patterns 'python
     [((string) @doc
       (.match? @doc "^(\"\"\"|r\"\"\")"))]))
