@@ -41,6 +41,8 @@
       ""))
   "Hardware vendor name.")
 
+;; at least this works to check if its running on the GPD Pocket 3, not sure
+;; about the other GPD models...
 (defconst IS-GPD (string= my-hardware-vendor "GPD")
   "Is it running on a GPD?")
 
