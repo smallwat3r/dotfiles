@@ -595,7 +595,6 @@
   (map! :map flycheck-mode-map
         :leader
         :localleader
-        :desc "Change to f-string"   "f" #'my/python-to-fstring
         :desc "Flycheck list errors" "l" #'flycheck-list-errors))
 
 ;; Flycheck pop-up tooltips
@@ -644,9 +643,20 @@
   (after! dap-mode
     (setq dap-python-debugger 'debugpy))
 
+  (defun my/python-to-fstring ()
+    "Make string to fstring."
+    (interactive)
+    (when (nth 3 (syntax-ppss))
+      (let ((p (point)))
+        (goto-char (nth 8 (syntax-ppss)))
+        (insert "f")
+        (goto-char p)
+        (forward-char))))
+
   (map! :map python-mode-map
         :leader
         :localleader
+        :desc "To f-string"     "f"   #'my/python-to-fstring
         :desc "Deactivate venv" "e d" #'my/deactivate-python-venv
         :desc "Activate venv"   "e a" #'my/activate-closest-python-venv)
 
