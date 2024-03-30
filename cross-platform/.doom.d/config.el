@@ -229,7 +229,7 @@
 ;; doc: https://github.com/edkolev/evil-goggles
 (after! evil-goggles
   (setq evil-goggles-duration 0.15)
-  (evil-goggles-use-magit-faces))
+  (evil-goggles-use-diff-refine-faces))
 
 ;; Evil escape
 ;; doc: https://github.com/syl20bnr/evil-escape
