@@ -50,13 +50,13 @@
                (buffer-file-name)
              (concat "buffer-name=" (buffer-name)))))
 
-(defun alacritty-terminal-command ()
+(defun my--alacritty-terminal-command ()
   (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
           (if (buffer-file-name)
               (file-name-directory (buffer-file-name))
             "$HOME")))
 
-(defun st-terminal-command ()
+(defun my--st-terminal-command ()
   (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1 & disown"
           (if (buffer-file-name)
               (file-name-directory (buffer-file-name))
@@ -69,8 +69,8 @@
   ;; Prefer st (Suckless Terminal) in Linux, else default to alacritty.
   (shell-command
    (if (featurep :system 'linux)
-       (st-terminal-command)
-     (alacritty-terminal-command)))
+       (my--st-terminal-command)
+     (my--alacritty-terminal-command)))
   (message "Terminal is ready!"))
 
 ;;;###autoload

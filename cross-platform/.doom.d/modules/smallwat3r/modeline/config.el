@@ -13,7 +13,7 @@
   evil-ex-search-activate-highlight
   :config (global-anzu-mode +1))
 
-(defun my/number-of-buffers ()
+(defun my--number-of-buffers ()
   "Count the number of buffers."
   (cl-count-if
    (lambda (b)
@@ -29,7 +29,7 @@
              'mode-line-remote
              'mode-line-frame-identification
              'mode-line-buffer-identification
-             '(:eval (format "  b(%s)" (my/number-of-buffers)))
+             '(:eval (format "  b(%s)" (my--number-of-buffers)))
              " %p %l,%c  "
              '(vc-mode vc-mode)
              " "
