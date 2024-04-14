@@ -23,15 +23,15 @@
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "42a1d9a1b1ac02108dfbb498b900322ecf793f66")
+(package! applescript-mode :pin "e36e459f922b236e675970a365572840610248f4")
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "9140067afdc2f0d1eb493dc4dfdb53645289dd2b")
+(package! logview :pin "8eb158ef7af412b0336a10d0273a292adddd4eb0")
 
 ;; Nginx config files syntax highlighting
 ;; https://github.com/ajc/nginx-mode/commits/master
-(package! nginx-mode :pin "6e9d96f58eddd69f62f7fd443d9b9753e16e0e96")
+(package! nginx-mode :pin "c4ac5de975d65c84893a130a470af32a48b0b66c")
 
 ;; Vim script syntax highlighting
 ;; https://github.com/mcandre/vimrc-mode/commits/master
@@ -43,8 +43,8 @@
 
 ;; Dired utilities
 ;; https://github.com/Fuco1/dired-hacks/commits/master
-(package! dired-narrow :pin "c3bf65aeacfc5ae04508ebcff7b0c9fb37ca4beb")
-(package! dired-subtree :pin "c3bf65aeacfc5ae04508ebcff7b0c9fb37ca4beb")
+(package! dired-narrow :pin "a01c126c3b1068655509487c76971895f5459d09")
+(package! dired-subtree :pin "a01c126c3b1068655509487c76971895f5459d09")
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
@@ -56,11 +56,11 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "2f2631ae242d5770dbe6cb924e44c1ee5671789d")
+(package! lsp-pyright :pin "9c077e2ef58eacddfa24120bfc72255632a8a08b")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "a2ff4c8e9cac412e8cb9c7faf618ac18146107ea")
+(package! org-modern :pin "c97096b3f82c3bd84859f90a23273dfa2c6dfd7e")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master

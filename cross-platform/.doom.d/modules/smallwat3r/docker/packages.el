@@ -8,7 +8,7 @@
   ;; https://github.com/emacs-pe/docker-tramp.el/commits/master
   (package! docker-tramp :pin "19d0771db4e6b89e19c00af5806438e315779c15"))
 ;; https://github.com/spotify/dockerfile-mode/commits/master
-(package! dockerfile-mode :pin "afcd418d82a0162dd59c44a5e0c558bcb1d1d7ca")
+(package! dockerfile-mode :pin "39a012a27fcf6fb629c447d13b6974baf906714c")
 ;; https://github.com/kubernetes-el/kubernetes-el/commits/master
-(package! kubernetes :pin "423c216fdef06d32dde835bb91daff353f41b72e")
-(package! kubernetes-evil :pin "423c216fdef06d32dde835bb91daff353f41b72e")
+(package! kubernetes :pin "24de7a1621dc06234abf63db454d63a522aaa632")
+(package! kubernetes-evil :pin "24de7a1621dc06234abf63db454d63a522aaa632")
