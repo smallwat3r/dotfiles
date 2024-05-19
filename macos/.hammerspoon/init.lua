@@ -93,12 +93,22 @@ hotkey.bind(mod_ctrl_alt, 'j', grid.pushWindowDown)
 hotkey.bind(mod_ctrl_alt, 'k', grid.pushWindowUp)
 hotkey.bind(mod_ctrl_alt, 'h', grid.pushWindowLeft)
 hotkey.bind(mod_ctrl_alt, 'l', grid.pushWindowRight)
+-- Colemak
+hotkey.bind(mod_ctrl_alt, 'n', grid.pushWindowDown)
+hotkey.bind(mod_ctrl_alt, 'e', grid.pushWindowUp)
+hotkey.bind(mod_ctrl_alt, 'm', grid.pushWindowLeft)
+hotkey.bind(mod_ctrl_alt, 'i', grid.pushWindowRight)
 
 -- Resize window
 hotkey.bind(mod_alt, 'k', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'j', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'l', grid.resizeWindowWider)
 hotkey.bind(mod_alt, 'h', grid.resizeWindowThinner)
+-- Colemak
+hotkey.bind(mod_alt, 'e', grid.resizeWindowShorter)
+hotkey.bind(mod_alt, 'n', grid.resizeWindowTaller)
+hotkey.bind(mod_alt, 'i', grid.resizeWindowWider)
+hotkey.bind(mod_alt, 'm', grid.resizeWindowThinner)
 
 -- Show window hints
 hints.style = 'vimperator'
@@ -122,6 +132,8 @@ local function remap(mods, key, pressFn)
   hotkey.bind(mods, key, pressFn, nil, pressFn)
 end
 
+-- do not add Colemak equivalent for these as it already exist a
+-- layer for this on my dedicated Colemak keyboard.
 remap(mod_cmd, 'h', pressFn('left'))
 remap(mod_cmd, 'j', pressFn('down'))
 remap(mod_cmd, 'k', pressFn('up'))
