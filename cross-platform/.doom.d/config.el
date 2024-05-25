@@ -203,8 +203,6 @@
         :map evil-normal-state-map
         "C-;"   #'my/scroll-up
         "C-l"   #'my/scroll-down
-        "C-1"   #'my/scroll-up
-        "C-2"   #'my/scroll-down
         "S-C-h" #'my/enlarge-window-horizontally
         "S-C-l" #'my/shrink-window-horizontally
         "S-C-k" #'my/enlarge-window
