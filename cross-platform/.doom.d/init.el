@@ -55,7 +55,6 @@
        make
        pass
        pdf
-       rgb
        (terraform +lsp)
        tree-sitter
 

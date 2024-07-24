@@ -11,7 +11,7 @@
 
 ;; Bitwarden support
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
-(package! bitwarden :pin "072b9e4584c58a31d187e1ed16cbe7fcf81e2792"
+(package! bitwarden :pin "50c0078d356e0ac0bcaf26b40113700ba4123ec3"
   :recipe (:host github :repo "seanfarley/emacs-bitwarden"))
 
 ;; Copy active region to the kill ring formatted as Github, Slack etc...

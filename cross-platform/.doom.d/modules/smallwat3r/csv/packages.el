@@ -3,4 +3,4 @@
 
 ;; Support for CSV
 ;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
-(package! csv-mode :pin "81c1a9febd2adf79cfbdf939081ef7bf3a41ffd6")
+(package! csv-mode :pin "34ff8107a9d8bd2afc283b5e8ca3c2d1026ef90b")
