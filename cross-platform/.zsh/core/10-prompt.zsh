@@ -25,7 +25,7 @@ __git_is_paused() {
   [[ ! $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] && return
 
   [[ $(git log -1 --format="%s" 2>/dev/null | grep '^PAUSED') ]] &&
-    echo " %B%F{198}%K{52}[${(U)}PAUSED]%b%f%k"
+    echo ' %B%F{198}%K{52}[PAUSED]%b%f%k'
 }
 
 __git_branch() {
