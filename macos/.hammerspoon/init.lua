@@ -139,6 +139,9 @@ remap(mod_cmd, 'j', pressFn('down'))
 remap(mod_cmd, 'k', pressFn('up'))
 remap(mod_cmd, 'l', pressFn('right'))
 
+-- del by hitting Cmd + Backspace
+remap(mod_cmd, 'delete', pressFn('forwarddelete'))
+
 -- Custom launchers
 -- ***************************************************************************
 
@@ -180,13 +183,3 @@ hotkey.bind(mod_cmd, ';', function() launcherRunner('File launcher', 'launcher-f
 
 -- perform a google search
 hotkey.bind(mod_cmd, 'n', function() launcherRunner('Google search', 'chrome-search', 'window.dimensions.lines=3') end)
-
--- Spoons configs
--- https://github.com/dbalatero/VimMode.spoon
-
-local VimMode = hs.loadSpoon('VimMode')
-local vim = VimMode:new()
-
-vim
-  :disableForApp('Emacs')
-  :enterWithSequence('jk')
