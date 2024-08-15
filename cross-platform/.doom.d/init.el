@@ -72,6 +72,7 @@
        (org +journal +pandoc)
        (python +lsp +tree-sitter)
        rest
+       (rust +lsp +tree-sitter)
        (sh +lsp +tree-sitter)
        (web +lsp +tree-sitter)
 
