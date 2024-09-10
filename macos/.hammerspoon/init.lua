@@ -104,15 +104,16 @@ hotkey.bind(mod_alt, 'k', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'j', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'l', grid.resizeWindowWider)
 hotkey.bind(mod_alt, 'h', grid.resizeWindowThinner)
--- Colemak
-hotkey.bind(mod_alt, 'e', grid.resizeWindowShorter)
-hotkey.bind(mod_alt, 'n', grid.resizeWindowTaller)
-hotkey.bind(mod_alt, 'i', grid.resizeWindowWider)
-hotkey.bind(mod_alt, 'm', grid.resizeWindowThinner)
+-- Colemak (use bottom row so it does not clash with accent chars)
+hotkey.bind(mod_alt, 'k', grid.resizeWindowShorter)
+hotkey.bind(mod_alt, 'h', grid.resizeWindowTaller)
+hotkey.bind(mod_alt, ',', grid.resizeWindowWider)
+hotkey.bind(mod_alt, '.', grid.resizeWindowThinner)
 
--- Show window hints
-hints.style = 'vimperator'
-hotkey.bind(mod_alt, 'Tab', function() hints.windowHints() end)
+
+-- -- Show window hints
+-- hints.style = 'vimperator'
+-- hotkey.bind(mod_alt, 'Tab', function() hints.windowHints() end)
 
 -- Make the combination of Cmd + hjkl to emulate the arrow keys behaviour.
 -- ***************************************************************************
