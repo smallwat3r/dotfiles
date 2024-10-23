@@ -23,11 +23,11 @@
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "f7bbff161a6e5eb57f87b54064a8636c9d6acfb0")
+(package! applescript-mode :pin "f83997f4285679c4a62601ae9e8e075cb3fdc910")
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "272e5ccc13c3c058c73f9b89cd90b9832d976dc0")
+(package! logview :pin "8e020b9296b8e1adc810ebc9d36985f64d93dbc2")
 
 ;; Nginx config files syntax highlighting
 ;; https://github.com/ajc/nginx-mode/commits/master
@@ -39,7 +39,7 @@
 
 ;; Support for YAML
 ;; https://github.com/yoshiki/yaml-mode/commits/master
-(package! yaml-mode :pin "7b5ce294fb15c2c8926fa476d7218aa415550a2a")
+(package! yaml-mode :pin "d91f878729312a6beed77e6637c60497c5786efa")
 
 ;; Dired utilities
 ;; https://github.com/Fuco1/dired-hacks/commits/master
@@ -52,15 +52,15 @@
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
-(package! symbol-overlay :pin "de215fff392c916ffab01950fcb6daf6fd18be4f")
+(package! symbol-overlay :pin "6151f4279bd94b5960149596b202cdcb45cacec2")
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "0c0d72aedd18b16f48379b7d2f9ecb9c068713b0")
+(package! lsp-pyright :pin "327edcea22b27b8ea133aad678123f6d177e247e")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "f619912e55b409a8a3ecb807a8c2a35faa0e482d")
+(package! org-modern :pin "87df4997da28cb9335dc4f0224e9bcedb595e425")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
@@ -76,7 +76,7 @@
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "e5e3f9f0326ea1cc6edef017f0ee34cc42754b08")
+(package! pet :pin "75b371ac4638cb8c6d7190f21a9c3ff257798d61")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/
