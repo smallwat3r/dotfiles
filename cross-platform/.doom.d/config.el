@@ -214,6 +214,7 @@
         "C-k"   #'join-line
         "B"     #'beginning-of-line-text
         "E"     #'end-of-line
+        "M-<delete>" #'kill-word
         ;; colemak
         "C-e"   #'join-line
         "C-n"   #'electric-newline-and-maybe-indent
