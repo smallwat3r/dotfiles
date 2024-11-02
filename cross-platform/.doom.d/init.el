@@ -47,7 +47,6 @@
 
        :tools
        (debugger +lsp)
-       editorconfig
        (eval +overlay)
        (lookup +dictionary +docsets)
        lsp
@@ -56,7 +55,6 @@
        pass
        pdf
        (terraform +lsp)
-       tree-sitter
 
        :os
        (:if IS-MAC macos)
@@ -64,17 +62,17 @@
 
        :lang
        emacs-lisp
-       (go +lsp +tree-sitter)
-       (javascript +lsp +tree-sitter)
-       (json +tree-sitter)
-       (lua +tree-sitter)
+       (go +lsp)
+       (javascript +lsp)
+       (json)
+       (lua)
        markdown
        (org +journal +pandoc)
-       (python +lsp +tree-sitter)
+       (python +lsp)
        rest
-       (rust +lsp +tree-sitter)
-       (sh +lsp +tree-sitter)
-       (web +lsp +tree-sitter)
+       (rust +lsp)
+       (sh +lsp)
+       (web +lsp)
 
        :email
        notmuch

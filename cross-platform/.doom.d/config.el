@@ -91,8 +91,8 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
-(setq my-thinner-font "Source Code Pro"
-      my-thicker-font "Source Code Pro")
+(setq my-thinner-font "Hermit"
+      my-thicker-font "Hermit")
 
 (setq my-font-size 16)
 (setq doom-font (font-spec :family my-thinner-font
@@ -783,25 +783,25 @@
 (add-to-list 'auto-mode-alist
              '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
 
-;; tree-sitter
-(after! tree-sitter-langs
-  (defvar my-tree-sitter-nodes-ignore
-    '("property" "operator" "method.call" "function.call"
-      "function.method.call" "function.special" "label")
-    "List of tree-sitter nodes to ignore.")
+;; ;; tree-sitter
+;; (after! tree-sitter-langs
+;;   (defvar my-tree-sitter-nodes-ignore
+;;     '("property" "operator" "method.call" "function.call"
+;;       "function.method.call" "function.special" "label")
+;;     "List of tree-sitter nodes to ignore.")
 
-  ;; deactivate highliting on some specific programming nodes, as I find this
-  ;; makes the buffer too busy and difficult to read.
-  (add-function
-   :before-while tree-sitter-hl-face-mapping-function
-   (lambda (capture-name)
-     (not (member capture-name my-tree-sitter-nodes-ignore))))
+;;   ;; deactivate highliting on some specific programming nodes, as I find this
+;;   ;; makes the buffer too busy and difficult to read.
+;;   (add-function
+;;    :before-while tree-sitter-hl-face-mapping-function
+;;    (lambda (capture-name)
+;;      (not (member capture-name my-tree-sitter-nodes-ignore))))
 
-  ;; ensure Python docstring apostrophes are rendered in the same syntax as
-  ;; strings.
-  (tree-sitter-hl-add-patterns 'python
-    [((string) @doc
-      (.match? @doc "^(\"\"\"|r\"\"\")"))]))
+;;   ;; ensure Python docstring apostrophes are rendered in the same syntax as
+;;   ;; strings.
+;;   (tree-sitter-hl-add-patterns 'python
+;;     [((string) @doc
+;;       (.match? @doc "^(\"\"\"|r\"\"\")"))]))
 
 
 ;; HACK: since some upstream changes, formatting a specific region seems

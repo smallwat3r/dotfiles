@@ -7,12 +7,12 @@ if [ "$(uname -s)" != 'Darwin' ]; then
 fi
 
 # set highlight color to yellow
-defaults write NSGlobalDomain AppleHighlightColor -string '1.0 0.988235 0.729411'
+defaults write NSGlobalDomain AppleHighlightColor -string '0.752941 0.964706 0.678431'
 
 # font smoothing
 # max smoothing is 3, no smoothing is 0
 defaults -currentHost write -g AppleFontSmoothing -int 1
-defaults write org.gnu.Emacs AppleFontSmoothing -int 1
+defaults write org.gnu.Emacs AppleFontSmoothing -int 0
 
 # always show the window proxy icons
 defaults write -g NSToolbarTitleViewRolloverDelay -float 0
