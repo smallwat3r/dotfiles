@@ -19,7 +19,7 @@ alert.defaultStyle = {
     strokeColor = { white = 1, alpha = 1 },
     fillColor = { white = 0, alpha = 1 },
     textColor = { white = 1, alpha = 1 },
-    textFont = 'Hermit',
+    textFont = 'Hurmit Nerd Font Mono',
     textSize = 16,
     radius = 0,
     atScreenEdge = 0,

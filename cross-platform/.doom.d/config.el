@@ -91,8 +91,8 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
-(setq my-thinner-font "Hermit"
-      my-thicker-font "Hermit")
+(setq my-thinner-font "Hurmit Nerd Font Mono"
+      my-thicker-font "Hurmit Nerd Font Mono")
 
 (setq my-font-size 16)
 (setq doom-font (font-spec :family my-thinner-font
