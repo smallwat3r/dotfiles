@@ -12,7 +12,6 @@ local chooser = require 'hs.chooser'
 mod_alt = {'alt'}
 mod_cmd = {'cmd'}
 mod_ctrl = {'ctrl'}
-mod_ctrl_cmd = {'ctrl', 'cmd'}
 mod_ctrl_alt = {'ctrl', 'alt'}
 
 alert.defaultStyle = {
