@@ -10,7 +10,7 @@ window:
 
 font:
   normal:
-    family: Source Code Pro
+    family: Hermit
   size: 16
   offset:
     x: 1
