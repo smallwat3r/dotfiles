@@ -837,15 +837,14 @@
   (setq vterm-term-environment-variable "eterm-color")
   (add-hook! 'vterm-mode-hook #'eterm-256color-mode)
 
-  (defun my/vterm-delete-word ()
-    "Binding function to delete a word."
-    (interactive)
-    (vterm-send-key (kbd "C-w")))
-
   (map! :map vterm-mode-map
         :n "B"          #'vterm-beginning-of-line
         :n "<return>"   #'evil-insert-resume
-        "<C-backspace>" #'my/vterm-delete-word
+        [remap delete-forward-char] #'vterm-send-delete
+        "<backspace>"   #'vterm-send-backspace
+        "<delete>"      #'vterm-send-delete
+        "<M-backspace>" #'vterm-send-backspace
+        "<M-delete>"    #'vterm-send-delete
         :in "C-k"       #'vterm-send-up
         :in "C-j"       #'vterm-send-down))
 
