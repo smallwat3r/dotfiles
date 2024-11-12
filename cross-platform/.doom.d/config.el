@@ -310,7 +310,10 @@
   ;; Remap keys to move commits up or down when using interactive rebase.
   (after! git-rebase
     (define-key git-rebase-mode-map "K" 'git-rebase-move-line-up)
-    (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)))
+    (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)
+    ;; colemak support
+    (define-key git-rebase-mode-map "N" 'git-rebase-move-line-up)
+    (define-key git-rebase-mode-map "E" 'git-rebase-move-line-down)))
 
 ;; git-timemachine
 ;; doc: https://github.com/emacsmirror/git-timemachine
