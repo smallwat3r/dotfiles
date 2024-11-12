@@ -312,6 +312,14 @@
     (define-key git-rebase-mode-map "K" 'git-rebase-move-line-up)
     (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)))
 
+;; git-timemachine
+;; doc: https://github.com/emacsmirror/git-timemachine
+(after! git-timemachine
+  ;; add colemak support
+  (map! :map git-timemachine-mode-map
+        :n "C-e" #'git-timemachine-show-previous-revision
+        :n "C-n" #'git-timemachine-show-next-revision))
+
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
 (after! which-key
