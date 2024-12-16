@@ -27,7 +27,7 @@
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "8e020b9296b8e1adc810ebc9d36985f64d93dbc2")
+(package! logview :pin "de9694cfdc7006017781e7d32bb8bad38c7fda46")
 
 ;; Nginx config files syntax highlighting
 ;; https://github.com/ajc/nginx-mode/commits/master
@@ -56,7 +56,7 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "327edcea22b27b8ea133aad678123f6d177e247e")
+(package! lsp-pyright :pin "dd54b3ae7c22d34faaced7b1a89739063c552b1f")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
@@ -68,7 +68,7 @@
 
 ;; GPG pinentry support
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
-(package! pinentry :pin "d3d96378945bdd6881db46848aecdb4d0f8ff55b")
+(package! pinentry :pin "60c170dd08ad7bb48f1dcdde28922fafcd4e6290")
 
 ;; Improved color palette in terminal
 ;; https://github.com/dieggsy/eterm-256color/commits/master
@@ -76,7 +76,7 @@
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "75b371ac4638cb8c6d7190f21a9c3ff257798d61")
+(package! pet :pin "c2278f9bc1c3a5070021fe3251ed09b5a468d331")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/

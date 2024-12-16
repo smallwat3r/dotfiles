@@ -215,18 +215,25 @@
         "B"     #'beginning-of-line-text
         "E"     #'end-of-line
         "M-<delete>" #'kill-word
-        ;; colemak
         "C-e"   #'join-line
         "C-n"   #'electric-newline-and-maybe-indent
         "S-C-m" #'my/enlarge-window-horizontally
         "S-C-n" #'my/shrink-window-horizontally
         "S-C-e" #'my/enlarge-window
         "S-C-i" #'my/shrink-window
+        ;; colemak / canary layout
         :leader
         "wm" #'evil-window-left
         "wn" #'evil-window-down
         "we" #'evil-window-up
-        "wi" #'evil-window-right)
+        "wi" #'evil-window-right
+        ;; easier access using canary
+        "lm" #'evil-window-left
+        "ln" #'evil-window-down
+        "le" #'evil-window-up
+        "li" #'evil-window-right
+        "ls" #'evil-window-split
+        "lv" #'evil-window-vsplit)
 
   ;; Change the cursor color depending on the evil mode
   (setq evil-default-state-cursor  '(box "cyan3")

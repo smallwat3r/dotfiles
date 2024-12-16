@@ -2,7 +2,7 @@
 ;;; smallwat3r/docker/packages.el
 
 ;; https://github.com/Silex/docker.el/commits/master
-(package! docker :pin "6f8bba0d11a5143872dfc25afdabe16cae410d11")
+(package! docker :pin "ec2391a8e3404958cefee3dda23b2c89dcf807a2")
 ;; tramp-container (included with Emacs 29+) replaces docker-tramp
 (when (< emacs-major-version 29)
   ;; https://github.com/emacs-pe/docker-tramp.el/commits/master
