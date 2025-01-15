@@ -92,22 +92,22 @@ hotkey.bind(mod_ctrl_alt, 'j', grid.pushWindowDown)
 hotkey.bind(mod_ctrl_alt, 'k', grid.pushWindowUp)
 hotkey.bind(mod_ctrl_alt, 'h', grid.pushWindowLeft)
 hotkey.bind(mod_ctrl_alt, 'l', grid.pushWindowRight)
--- Colemak
+-- Graphite layout
 hotkey.bind(mod_ctrl_alt, 'n', grid.pushWindowDown)
-hotkey.bind(mod_ctrl_alt, 'e', grid.pushWindowUp)
-hotkey.bind(mod_ctrl_alt, 'm', grid.pushWindowLeft)
-hotkey.bind(mod_ctrl_alt, 'i', grid.pushWindowRight)
+hotkey.bind(mod_ctrl_alt, 'a', grid.pushWindowUp)
+hotkey.bind(mod_ctrl_alt, 'y', grid.pushWindowLeft)
+hotkey.bind(mod_ctrl_alt, 'e', grid.pushWindowRight)
 
 -- Resize window
 hotkey.bind(mod_alt, 'k', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'j', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'l', grid.resizeWindowWider)
 hotkey.bind(mod_alt, 'h', grid.resizeWindowThinner)
--- Colemak (use bottom row so it does not clash with accent chars)
-hotkey.bind(mod_alt, 'k', grid.resizeWindowShorter)
-hotkey.bind(mod_alt, 'h', grid.resizeWindowTaller)
-hotkey.bind(mod_alt, ',', grid.resizeWindowWider)
-hotkey.bind(mod_alt, '.', grid.resizeWindowThinner)
+-- Graphite (use bottom row so it does not clash with accent chars)
+hotkey.bind(mod_alt, 'a', grid.resizeWindowShorter)
+hotkey.bind(mod_alt, 'n', grid.resizeWindowTaller)
+hotkey.bind(mod_alt, 'y', grid.resizeWindowWider)
+hotkey.bind(mod_alt, 'e', grid.resizeWindowThinner)
 
 
 -- -- Show window hints

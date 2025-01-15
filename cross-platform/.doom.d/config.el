@@ -184,6 +184,14 @@
       ;; mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
+;; Smooth scrolling
+(use-package! ultra-scroll
+  :init
+  (setq scroll-conservatively 101 ; important!
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
+
 ;; Evil-mode
 (after! evil
   ;; General evil mode settings.
@@ -207,6 +215,13 @@
         "S-C-l" #'my/shrink-window-horizontally
         "S-C-k" #'my/enlarge-window
         "S-C-j" #'my/shrink-window
+
+        ;; graphite
+        "S-C-y" #'my/enlarge-window-horizontally
+        "S-C-n" #'my/shrink-window-horizontally
+        "S-C-a" #'my/enlarge-window
+        "S-C-e" #'my/shrink-window
+
         "M-SPC" #'cycle-spacing
         "M-o"   #'delete-blank-lines
         ";d"    #'my/save-and-close-buffer
@@ -217,21 +232,23 @@
         "M-<delete>" #'kill-word
         "C-e"   #'join-line
         "C-n"   #'electric-newline-and-maybe-indent
+        "C-a"   #'join-line  ; graphite
+        "C-n"   #'electric-newline-and-maybe-indent  ; graphite
         "S-C-m" #'my/enlarge-window-horizontally
         "S-C-n" #'my/shrink-window-horizontally
         "S-C-e" #'my/enlarge-window
         "S-C-i" #'my/shrink-window
-        ;; colemak / canary layout
         :leader
-        "wm" #'evil-window-left
+        ;; graphite layout
+        "wy" #'evil-window-left
         "wn" #'evil-window-down
-        "we" #'evil-window-up
-        "wi" #'evil-window-right
-        ;; easier access using canary
-        "lm" #'evil-window-left
+        "wa" #'evil-window-up
+        "we" #'evil-window-right
+        ;; easier access
+        "ly" #'evil-window-left
         "ln" #'evil-window-down
-        "le" #'evil-window-up
-        "li" #'evil-window-right
+        "la" #'evil-window-up
+        "le" #'evil-window-right
         "ls" #'evil-window-split
         "lv" #'evil-window-vsplit)
 
@@ -263,7 +280,10 @@
 (after! evil-snipe
   (map! :map evil-snipe-parent-transient-map
         :g "j" #'evil-snipe-repeat
-        :g "k" #'evil-snipe-repeat-reverse))
+        :g "k" #'evil-snipe-repeat-reverse
+        ;; graphite layout support
+        :g "h" #'evil-snipe-repeat
+        :g "a" #'evil-snipe-repeat-reverse))
 
 ;; Icons
 ;; doc: https://github.com/domtronn/all-the-icons.el
@@ -318,17 +338,17 @@
   (after! git-rebase
     (define-key git-rebase-mode-map "K" 'git-rebase-move-line-up)
     (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)
-    ;; colemak support
+    ;; graphite layout support
     (define-key git-rebase-mode-map "N" 'git-rebase-move-line-up)
-    (define-key git-rebase-mode-map "E" 'git-rebase-move-line-down)))
+    (define-key git-rebase-mode-map "A" 'git-rebase-move-line-down)))
 
 ;; git-timemachine
 ;; doc: https://github.com/emacsmirror/git-timemachine
 (after! git-timemachine
-  ;; add colemak support
+  ;; add graphite layout support
   (map! :map git-timemachine-mode-map
-        :n "C-e" #'git-timemachine-show-previous-revision
-        :n "C-n" #'git-timemachine-show-next-revision))
+        :n "C-n" #'git-timemachine-show-previous-revision
+        :n "C-a" #'git-timemachine-show-next-revision))
 
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key

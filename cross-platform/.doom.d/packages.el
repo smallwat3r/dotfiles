@@ -84,6 +84,11 @@
   :recipe (:host github :repo "Sbozzolo/vterm-extra")
   :pin "2d4a34f03d0f0d863a319cd0496ed6cafe94c27e")
 
+;; Very smooth scrolling
+;; https://github.com/jdtsmith/ultra-scroll/commits/main/
+(package! ultra-scroll
+  :recipe (:host github :repo "jdtsmith/ultra-scroll")
+  :pin "64140cbbcf9eafbee99304cbc9ea66b44f2a03fe")
 
 ;;
 ;;; Personal packages (not pinned as managed by myself)
