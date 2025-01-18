@@ -103,7 +103,7 @@ hotkey.bind(mod_alt, 'k', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'j', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'l', grid.resizeWindowWider)
 hotkey.bind(mod_alt, 'h', grid.resizeWindowThinner)
--- Graphite (use bottom row so it does not clash with accent chars)
+-- Graphite
 hotkey.bind(mod_alt, 'a', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'n', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'y', grid.resizeWindowWider)

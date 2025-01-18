@@ -6,11 +6,13 @@ __load_plugins() {
     local plugins=(
       '/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh'
       '/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+      '/opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh'
     )
   else
     local plugins=(
       '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh'
       '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh'
+      '/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh'
     )
   fi
   local plugin
