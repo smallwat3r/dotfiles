@@ -37,7 +37,7 @@
 (custom-theme-set-faces
  'smallwat3r
 
- `(default ((t (:background "cornsilk2" :foreground "black"))))
+ `(default ((t (:background "#F5E4C1" :foreground "black"))))
 
  `(lsp-headerline-breadcrumb-symbols-face ((t (:inherit font-lock-constant-face))))
  `(lsp-headerline-breadcrumb-path-face ((t (:inherit font-lock-constant-face))))
@@ -69,7 +69,7 @@
 
  `(region ((t (:background "wheat2" :extend t))))
 
- `(highlight ((t (:background "DarkSlateGray1"))))
+ `(highlight ((t (:background "burlywood1"))))
  `(lazy-highlight ((t (:background "gold2"))))
 
  `(whitespace-tab ((t (:background "PaleTurquoise1"))))

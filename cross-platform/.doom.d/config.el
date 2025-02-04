@@ -91,9 +91,6 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
-(setq my-thinner-font "Intel One Mono"
-      my-thicker-font "Intel One Mono")
-
 (setq my-font-size 16)
 (setq doom-font (font-spec :family my-thinner-font
                            :size my-font-size
@@ -109,7 +106,7 @@
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 3)
 
 ;; (when (not IS-GPD)
 ;;   ;; ensure text is centered on its own line
@@ -127,7 +124,7 @@
   "My dark theme.")
 
 (defvar my-current-theme my-dark-theme
-  "Current theme tracker. Default to dark theme.")
+  "Current theme tracker.")
 
 (defun my/theme-toggle ()
   "Toggle between dark and light theme."
@@ -1101,6 +1098,9 @@
 
   (:prefix "o"
    :desc "Browse URL at point" "l" #'browse-url-at-point)
+
+  (:prefix ("e" . "edit")
+   :desc "Yank from killring" "p" #'yank-from-kill-ring)
 
   (:prefix "t"
    :desc "Truncate lines" "t" #'toggle-truncate-lines
