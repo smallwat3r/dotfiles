@@ -107,11 +107,6 @@
               with-editor-emacsclient-executable "emacsclient")
 
 (setq-default line-spacing 3)
-
-;; (when (not IS-GPD)
-;;   ;; ensure text is centered on its own line
-;;   (setq default-text-properties '(line-spacing 0.25 line-height 1.25)))
-
 (when (not (= line-spacing 0))
   ;; images would not render correctly if `line-spacing' is not 0
   (setq +rss-enable-sliced-images nil))
@@ -873,15 +868,13 @@
   (add-hook! 'vterm-mode-hook #'eterm-256color-mode)
 
   (map! :map vterm-mode-map
-        :n "B"          #'vterm-beginning-of-line
-        :n "<return>"   #'evil-insert-resume
+        :n "B" #'vterm-beginning-of-line  ; beg of command
+        :n "<return>" #'evil-insert-resume
         [remap delete-forward-char] #'vterm-send-delete
-        "<backspace>"   #'vterm-send-backspace
-        "<delete>"      #'vterm-send-delete
-        "<M-backspace>" #'vterm-send-backspace
-        "<M-delete>"    #'vterm-send-delete
-        :in "C-k"       #'vterm-send-up
-        :in "C-j"       #'vterm-send-down))
+        :in "<M-backspace>" #'vterm-send-meta-backspace
+        :n "<M-backspace>"  #'vterm-send-meta-backspace
+        :in "C-k" #'vterm-send-up
+        :in "C-j" #'vterm-send-down))
 
 ;; provides extra convenience functions for vterm
 ;; doc: https://github.com/Sbozzolo/vterm-extra
