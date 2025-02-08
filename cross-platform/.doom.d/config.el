@@ -577,7 +577,7 @@
   (map! :map lsp-mode-map
         :leader
         :prefix "r"
-        :desc "Restart LSP workspace" "w" #'lsp-restart-workspace))
+        :desc "Restart LSP workspace" "w" #'lsp-workspace-restart))
 
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
