@@ -52,7 +52,7 @@ bb = branch -b
 c = commit -v --message
 ca = commit -v --amend --message
 co = checkout
-cob = "!f() { git checkout -b $@ || git checkout $@; }; f"
+cob = "!f() { git checkout -b $@ || (git checkout $@ && echo '!! Reusing existing branch'); }; f"
 com = "!f() { git checkout master || git checkout main; }; f"
 d = diff
 find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
