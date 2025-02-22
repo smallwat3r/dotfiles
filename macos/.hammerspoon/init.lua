@@ -173,7 +173,7 @@ hotkey.bind(mod_cmd, ',', function() launcherRunner('Bin launcher', 'launcher-bi
 hotkey.bind(mod_cmd, '.', function() launcherRunner('Bookmark launcher', 'launcher-chrome-bookmarks', nil) end)
 
 -- browse google chrome history
-hotkey.bind(mod_cmd, '/', function() launcherRunner('History launcher', 'launcher-chrome-history') end)
+hotkey.bind(mod_cmd, 'h', function() launcherRunner('History launcher', 'launcher-chrome-history') end)
 
 -- switch to open application
 hotkey.bind(mod_cmd, 'space', function() launcherRunner('App switcher', 'launcher-running-app', nil) end)
@@ -182,4 +182,4 @@ hotkey.bind(mod_cmd, 'space', function() launcherRunner('App switcher', 'launche
 hotkey.bind(mod_cmd, ';', function() launcherRunner('File launcher', 'launcher-file-search', nil) end)
 
 -- perform a google search
-hotkey.bind(mod_cmd, 'n', function() launcherRunner('Google search', 'chrome-search', 'window.dimensions.lines=3') end)
+hotkey.bind(mod_cmd, 'g', function() launcherRunner('Google search', 'chrome-search', 'window.dimensions.lines=3') end)

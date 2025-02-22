@@ -14,4 +14,4 @@ target=$(
       fzf
 ) || exit 0
 
-(cd "${HOME}" && open "${target}")
+(cd "${HOME}" && $EDITOR "${target}")
