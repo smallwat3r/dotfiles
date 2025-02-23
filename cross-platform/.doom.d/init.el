@@ -68,7 +68,7 @@
        (lua)
        markdown
        (org +journal +pandoc)
-       (python +lsp)
+       (python +lsp +pyright)
        rest
        (rust +lsp)
        (sh +lsp)

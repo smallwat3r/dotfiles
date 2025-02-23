@@ -608,33 +608,6 @@
 ;; Flycheck
 ;; doc: https://github.com/flycheck/flycheck
 (after! flycheck
-  ;; Add support for Ruff Python linter.
-  (defvar my-ruff-global-config "~/.config/ruff.toml"
-    "Path of global Ruff configuration file.")
-
-  (flycheck-define-checker my-python-ruff
-    "A Python syntax and style checker using the ruff utility."
-    :command ("ruff"
-              "check"
-              "--output-format=full"
-              (eval (format "--config=%s" my-ruff-global-config))
-              (eval (when buffer-file-name
-                      (concat "--stdin-filename=" buffer-file-name)))
-              "-")
-    :standard-input t
-    :error-filter (lambda (errors)
-                    (let ((errors (flycheck-sanitize-errors errors)))
-                      (seq-map #'flycheck-flake8-fix-error-level errors)))
-    :error-patterns
-    ((warning line-start
-              (file-name) ":" line ":" (optional column ":") " "
-              (id (one-or-more (any alpha)) (one-or-more digit)) " "
-              (message (one-or-more not-newline))
-              line-end))
-    :modes python-mode)
-
-  (add-to-list 'flycheck-checkers 'my-python-ruff)
-
   (map! :map flycheck-mode-map
         :leader
         :localleader
@@ -644,19 +617,6 @@
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
 (after! flycheck-popup-tip
   (setq flycheck-popup-tip-error-prefix "(!) "))
-
-;; LSP python
-(use-package! lsp-pyright
-  :after lsp-mode
-  :init
-  ;; Enforce lsp-pyright to use one session per project. This needs to be set-up
-  ;; before initialising lsp-pyright to work.
-  (setq lsp-pyright-multi-root nil)
-  :preface
-  (after! python
-    (setq lsp-pyright-python-executable-cmd python-shell-interpreter))
-  :config
-  (set-lsp-priority! 'pyright 1))
 
 ;; Python
 (after! python
@@ -705,10 +665,6 @@
 
   (add-to-list '+lookup-provider-url-alist
                '("Python Docs" "https://docs.python.org/3/search.html?q=%s")))
-
-(setq-hook! 'python-mode-hook
-  flycheck-checker 'my-python-ruff
-  flycheck-python-mypy-config "~/.config/mypy/config")
 
 ;; PET (P ython E xecutable T racker)
 ;; doc: https://github.com/wyuenho/emacs-pet/

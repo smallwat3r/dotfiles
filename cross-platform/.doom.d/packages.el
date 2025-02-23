@@ -15,8 +15,7 @@
  ;; UI packages
  elfeed-goodies
  lsp-ui
- solaire-mode
- ns-auto-titlebar)
+ solaire-mode)
 
 ;;
 ;;; External packages
