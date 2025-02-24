@@ -42,6 +42,8 @@
  `(lsp-headerline-breadcrumb-symbols-face ((t (:inherit font-lock-constant-face))))
  `(lsp-headerline-breadcrumb-path-face ((t (:inherit font-lock-constant-face))))
 
+ `(eglot-highlight-symbol-face ((t (:background "DeepSkyBlue4"))))
+
  `(success ((t (:foreground "green4" :weight bold))))
  `(warning ((t (:foreground "OrangeRed3" :weight bold))))
  `(error ((t (:foreground "firebrick2" :weight bold))))

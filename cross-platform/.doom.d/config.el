@@ -560,27 +560,16 @@
 ;;
 ;;; Programming
 
-;; Language Server Protocol
-;; doc: https://emacs-lsp.github.io/lsp-mode/
-(setq +lsp-prompt-to-install-server 'quiet
-      +format-with-lsp nil)
-
-(after! lsp-mode
-  ;; I had issues with file watchers enabled in the past as Emacs would freeze
-  ;; because it took too much memory. So I just disable it as a default.
-  (setq lsp-enable-file-watchers nil)
-  ;; Ignore asking to restart if server failed to boot.
-  (setq lsp-restart 'interactive)
-  ;; Iterate quickly (default is 10).
-  (setq lsp-response-timeout 5)
-
-  (map! :map lsp-mode-map
-        :leader
-        :prefix "r"
-        :desc "Restart LSP workspace" "w" #'lsp-workspace-restart))
-
 ;; remove intrusive hints from Eglot
 (add-hook! 'eglot-managed-mode-hook (eglot-inlay-hints-mode -1))
+
+;; make Eglot for LSP more perfomant
+(use-package! eglot-booster
+  :after eglot
+  :config
+  (eglot-booster-mode))
+
+(set-eglot-client! 'python-mode '("basedpyright-langserver" "--stdio"))
 
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
@@ -632,9 +621,6 @@
   (defvar my-default-python-line-length 88
     "Default python line length.")
 
-  ;; set lsp client
-  (set-eglot-client! 'python-mode '("basedpyright-langserver" "--stdio"))
-
   ;; Disable annoying warnings about `python-shell-interpreter' readline
   ;; support.
   (setq python-shell-completion-native-enable nil)
@@ -682,20 +668,7 @@
 ;; doc: https://github.com/wyuenho/emacs-pet/
 (use-package! pet
   :config
-  (add-hook 'python-mode-hook 'pet-mode -10)
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (setq-local lsp-ruff-lsp-python-path python-shell-interpreter))))
-
-(use-package! lsp-pyright
-  :init
-  (when (executable-find "basedpyright")
-    (setq lsp-pyright-langserver-command "basedpyright"))
-  ;; Enforce lsp-pyright to use one session per project. This needs to be set-up
-  ;; before initialising lsp-pyright to work.
-  (setq lsp-pyright-multi-root nil)
-  :config
-  (set-lsp-priority! 'pyright 1))
+  (add-hook 'python-mode-hook 'pet-mode -10))
 
 ;; Javascript
 (after! js2-mode

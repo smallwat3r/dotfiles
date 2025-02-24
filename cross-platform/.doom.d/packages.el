@@ -89,6 +89,12 @@
   :recipe (:host github :repo "jdtsmith/ultra-scroll")
   :pin "64140cbbcf9eafbee99304cbc9ea66b44f2a03fe")
 
+;; LSP booster
+;; https://github.com/jdtsmith/eglot-booster/commits/main/
+(package! emacs-lsp-booster
+  :recipe (:host github :repo "jdtsmith/eglot-booster")
+  :pin "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed")
+
 ;;
 ;;; Personal packages (not pinned as managed by myself)
 
