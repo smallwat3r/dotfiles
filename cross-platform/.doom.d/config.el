@@ -579,6 +579,9 @@
         :prefix "r"
         :desc "Restart LSP workspace" "w" #'lsp-workspace-restart))
 
+;; remove intrusive hints from Eglot
+(add-hook! 'eglot-managed-mode-hook (eglot-inlay-hints-mode -1))
+
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
   ;; Formatter
@@ -608,10 +611,16 @@
 ;; Flycheck
 ;; doc: https://github.com/flycheck/flycheck
 (after! flycheck
+  ;; disable outdated checkers
+  (setq flycheck-disabled-checkers '(python-flake8 python-pylint))
   (map! :map flycheck-mode-map
         :leader
         :localleader
         :desc "Flycheck list errors" "l" #'flycheck-list-errors))
+
+;; only activate flycheck on demand, too intrusive
+(remove-hook! 'eglot-managed-mode-hook #'flycheck-eglot-mode)
+(remove-hook! 'doom-first-buffer-hook #'global-flycheck-mode)
 
 ;; Flycheck pop-up tooltips
 ;; doc: https://github.com/flycheck/flycheck-popup-tip
@@ -622,6 +631,9 @@
 (after! python
   (defvar my-default-python-line-length 88
     "Default python line length.")
+
+  ;; set lsp client
+  (set-eglot-client! 'python-mode '("basedpyright-langserver" "--stdio"))
 
   ;; Disable annoying warnings about `python-shell-interpreter' readline
   ;; support.
@@ -674,6 +686,16 @@
   (add-hook 'python-mode-hook
             (lambda ()
               (setq-local lsp-ruff-lsp-python-path python-shell-interpreter))))
+
+(use-package! lsp-pyright
+  :init
+  (when (executable-find "basedpyright")
+    (setq lsp-pyright-langserver-command "basedpyright"))
+  ;; Enforce lsp-pyright to use one session per project. This needs to be set-up
+  ;; before initialising lsp-pyright to work.
+  (setq lsp-pyright-multi-root nil)
+  :config
+  (set-lsp-priority! 'pyright 1))
 
 ;; Javascript
 (after! js2-mode

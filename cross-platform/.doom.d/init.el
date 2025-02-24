@@ -49,7 +49,7 @@
        (debugger +lsp)
        (eval +overlay)
        (lookup +dictionary +docsets)
-       lsp
+       (lsp +eglot)
        (magit +forge)
        make
        pass
@@ -68,7 +68,7 @@
        (lua)
        markdown
        (org +journal +pandoc)
-       (python +lsp +pyright)
+       (python +lsp)
        rest
        (rust +lsp)
        (sh +lsp)
