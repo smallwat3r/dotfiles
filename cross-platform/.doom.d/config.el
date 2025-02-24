@@ -560,6 +560,13 @@
 ;;
 ;;; Programming
 
+;; LSP
+(after! eglot
+  (map! :map eglot-mode-map
+        :leader
+        :prefix "r"
+        :desc "Reconnect Eglot" "w" #'eglot-reconnect))
+
 ;; remove intrusive hints from Eglot
 (add-hook! 'eglot-managed-mode-hook (eglot-inlay-hints-mode -1))
 
