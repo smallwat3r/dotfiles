@@ -176,14 +176,6 @@
       ;; mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
-;; Smooth scrolling
-(use-package! ultra-scroll
-  :init
-  (setq scroll-conservatively 101 ; important!
-        scroll-margin 0)
-  :config
-  (ultra-scroll-mode 1))
-
 ;; Evil-mode
 (after! evil
   ;; General evil mode settings.
@@ -286,11 +278,13 @@
     (setq all-the-icons-scale-factor 0.8))
   (setq all-the-icons-default-adjust 0))
 
-;; Scrolling
-(when (boundp 'mac-mouse-wheel-smooth-scroll)
-  (setq mac-mouse-wheel-smooth-scroll t))
-(when (> emacs-major-version 28)
-  (pixel-scroll-precision-mode))
+;; Smooth scrolling
+(use-package! ultra-scroll
+  :init
+  (setq scroll-conservatively 101 ; important!
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
 
 (setq my-browse-url-qutebrowser-arguments nil)
 
