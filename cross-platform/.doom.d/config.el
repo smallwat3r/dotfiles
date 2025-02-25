@@ -262,11 +262,12 @@
 ;; Evil snipe
 ;; doc: https://github.com/hlissner/evil-snipe
 (after! evil-snipe
+  (setq evil-snipe-scope 'visible)
   (map! :map evil-snipe-parent-transient-map
         :g "j" #'evil-snipe-repeat
         :g "k" #'evil-snipe-repeat-reverse
         ;; graphite layout support
-        :g "h" #'evil-snipe-repeat
+        :g "n" #'evil-snipe-repeat
         :g "a" #'evil-snipe-repeat-reverse))
 
 ;; Icons
