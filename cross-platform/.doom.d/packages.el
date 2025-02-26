@@ -22,11 +22,11 @@
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "f83997f4285679c4a62601ae9e8e075cb3fdc910")
+(package! applescript-mode :pin "20258a89538c68a13e4c9e5b6e945c5548ba034b")
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "de9694cfdc7006017781e7d32bb8bad38c7fda46")
+(package! logview :pin "cac74558ed8f363f222d2e0d52eab5562436347a")
 
 ;; Nginx config files syntax highlighting
 ;; https://github.com/ajc/nginx-mode/commits/master
@@ -34,7 +34,7 @@
 
 ;; Vim script syntax highlighting
 ;; https://github.com/mcandre/vimrc-mode/commits/master
-(package! vimrc-mode :pin "13bc150a870d5d4a95f1111e4740e2b22813c30e")
+(package! vimrc-mode :pin "f594392a0834193a1fe1522d007e1c8ce5b68e43")
 
 ;; Support for YAML
 ;; https://github.com/yoshiki/yaml-mode/commits/master
@@ -47,7 +47,7 @@
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "c44618d2867fc2410e5061fef2a805e974198cf2")
+(package! keycast :pin "011cf538a2459b44f5c8664f3e43f1492f6558a8")
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
@@ -55,15 +55,15 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "dd54b3ae7c22d34faaced7b1a89739063c552b1f")
+(package! lsp-pyright :pin "bd800ef815b43723eba1e9757644a586111f2d63")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "87df4997da28cb9335dc4f0224e9bcedb595e425")
+(package! org-modern :pin "f59f1a4cabc7532b7c85a661161989cd5ad3a879")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
-(package! ssh-config-mode :pin "2d8e321c34a7535ae6dd0f6a1b0fd54e47aba612")
+(package! ssh-config-mode :pin "d0596f5fbeab3d2c3c30eb83527316403bc5b2f7")
 
 ;; GPG pinentry support
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
@@ -75,7 +75,7 @@
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "c2278f9bc1c3a5070021fe3251ed09b5a468d331")
+(package! pet :pin "d9aa6a4dd2d7ce52febeafc31ac84d861ac1e222")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/
@@ -87,7 +87,7 @@
 ;; https://github.com/jdtsmith/ultra-scroll/commits/main/
 (package! ultra-scroll
   :recipe (:host github :repo "jdtsmith/ultra-scroll")
-  :pin "64140cbbcf9eafbee99304cbc9ea66b44f2a03fe")
+  :pin "2c517bf9b61bf432f706ff8a585ba453c7476be2")
 
 ;; LSP booster
 ;; https://github.com/jdtsmith/eglot-booster/commits/main/
