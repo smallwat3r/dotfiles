@@ -214,7 +214,6 @@
         "B"     #'beginning-of-line-text
         "E"     #'end-of-line
         "M-<delete>" #'kill-word
-        "C-e"   #'join-line
         "C-n"   #'electric-newline-and-maybe-indent
         "C-a"   #'join-line  ; graphite
         "C-n"   #'electric-newline-and-maybe-indent  ; graphite
@@ -239,9 +238,9 @@
   ;; Change the cursor color depending on the evil mode
   (setq evil-default-state-cursor  '(box "cyan3")
         evil-normal-state-cursor   '(box "cyan3")
-        evil-insert-state-cursor   '(box "green3")
+        evil-insert-state-cursor   '(bar "green3")
         evil-visual-state-cursor   '(box "OrangeRed2")
-        evil-replace-state-cursor  '(box "red4")
+        evil-replace-state-cursor  '(hbar "red4")
         evil-operator-state-cursor '(box "red4")))
 
 ;; Evil visual hints when yanking, pasting, deleting etc.
