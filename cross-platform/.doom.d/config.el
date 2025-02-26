@@ -767,42 +767,6 @@
 (add-to-list 'auto-mode-alist
              '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
 
-;; ;; tree-sitter
-;; (after! tree-sitter-langs
-;;   (defvar my-tree-sitter-nodes-ignore
-;;     '("property" "operator" "method.call" "function.call"
-;;       "function.method.call" "function.special" "label")
-;;     "List of tree-sitter nodes to ignore.")
-
-;;   ;; deactivate highliting on some specific programming nodes, as I find this
-;;   ;; makes the buffer too busy and difficult to read.
-;;   (add-function
-;;    :before-while tree-sitter-hl-face-mapping-function
-;;    (lambda (capture-name)
-;;      (not (member capture-name my-tree-sitter-nodes-ignore))))
-
-;;   ;; ensure Python docstring apostrophes are rendered in the same syntax as
-;;   ;; strings.
-;;   (tree-sitter-hl-add-patterns 'python
-;;     [((string) @doc
-;;       (.match? @doc "^(\"\"\"|r\"\"\")"))]))
-
-
-;; HACK: since some upstream changes, formatting a specific region seems
-;; broken, and calling `+format/region' raises: "with Symbol’s function
-;; definition is void: apheleia--get-formatters", ensure to autoload the
-;; required function.
-(use-package! apheleia
-  :commands (apheleia--get-formatters))
-
-;; HACK: re the above hack, for some reason it also seems to break the
-;; tree-sitter syntax highlighting, we add a wrapper to re-enable tree-sitter
-;; after calling `+format/region', in case the highlighting was broken.
-(defadvice +format/region (after my/format-region activate)
-  (ignore-errors
-    (tree-sitter--teardown)
-    (turn-on-tree-sitter-mode)))
-
 
 ;;
 ;;; Terminals

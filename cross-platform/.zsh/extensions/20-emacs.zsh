@@ -7,6 +7,8 @@ else
 fi
 
 export EMACS_DOOM="${HOME}/.emacs.doom"
+export DOOMDIR="${EMACS_DOOM}"
+export EMACSDIR="${HOME}/.emacs.d"
 
 # lsp-mode can be compiled in 2 modes plist and hash-table based lsp-use-plists flag.
 # plists provide better performance in deserialization and also put less presure than
