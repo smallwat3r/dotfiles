@@ -536,7 +536,8 @@
 (after! corfu
   (setq corfu-count 7
         corfu-preselect 'first
-        corfu-preview-current nil))
+        corfu-preview-current nil
+        +corfu-want-minibuffer-completion nil))
 
 ;; vertical interactive completion
 ;; doc: https://github.com/minad/vertico
