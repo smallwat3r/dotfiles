@@ -240,8 +240,8 @@
         evil-normal-state-cursor   '(box "cyan3")
         evil-insert-state-cursor   '(bar "green3")
         evil-visual-state-cursor   '(box "OrangeRed2")
-        evil-replace-state-cursor  '(hbar "red4")
-        evil-operator-state-cursor '(box "red4")))
+        evil-replace-state-cursor  '(hbar "red2")
+        evil-operator-state-cursor '(box "red2")))
 
 ;; Evil visual hints when yanking, pasting, deleting etc.
 ;; doc: https://github.com/edkolev/evil-goggles
@@ -776,7 +776,7 @@
   (setq vterm-max-scrollback 6000
         vterm-timer-delay 0.01)
 
-  ;; load bash when using ssh over trmap
+  ;; load bash when using ssh over tramp
   (add-to-list 'vterm-tramp-shells '("ssh" "/bin/bash"))
 
   ;; Improve rendering of colors.
