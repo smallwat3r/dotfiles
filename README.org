@@ -49,15 +49,7 @@ sudo pacman -S emacs-nativecomp
 
 Then,
 
-Install Doom in a custom =~/.emacs.doom= directory which allows me to use [[https://github.com/plexus/chemacs2][Chemacs2]]
 #+begin_src shell
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.doom
-~/.emacs.doom/bin/doom install
-#+end_src
-
-Install Chemacs2 and move aside any existing config
-#+begin_src shell
-[ -f ~/.emacs ] && mv ~/.emacs ~/.emacs.bak
-[ -d ~/.emacs.d ] && mv ~/.emacs.d ~/.emacs.legacy
-git clone https://github.com/plexus/chemacs2.git ~/.emacs.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
 #+end_src
