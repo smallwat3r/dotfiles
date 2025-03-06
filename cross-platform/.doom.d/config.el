@@ -135,8 +135,6 @@
     (setq my-current-theme theme)
     (load-theme theme t)))
 
-(global-set-key (kbd "<f5>") 'my/theme-toggle)
-
 (setq doom-theme my-current-theme)
 
 ;; Remove highlighting on some major programming faces. I think it makes
@@ -1012,6 +1010,7 @@
    :desc "Yank from killring" "p" #'yank-from-kill-ring)
 
   (:prefix "t"
+   :desc "Theme toggle"   "T" #'my/theme-toggle
    :desc "Truncate lines" "t" #'toggle-truncate-lines
    :desc "Imenu"          "i" #'imenu-list-smart-toggle)
 
