@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# count number of characters in file, and sort by occurrence
+
+sed 's/\(.\)/\1\'$'\n/g' "$1" | sort | uniq -c | sort -nr
