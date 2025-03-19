@@ -208,6 +208,8 @@
         "M-o"   #'delete-blank-lines
         ";d"    #'my/save-and-close-buffer
         ";w"    #'save-buffer
+        ";s"    #'save-buffer
+        ";q"    #'my/kill-buffer
         "C-k"   #'join-line
         "B"     #'beginning-of-line-text
         "E"     #'end-of-line
