@@ -198,8 +198,8 @@
         "S-C-k" #'my/enlarge-window
         "S-C-j" #'my/shrink-window
 
-        ;; graphite
-        "S-C-y" #'my/enlarge-window-horizontally
+        ;; custom layout
+        "S-C-m" #'my/enlarge-window-horizontally
         "S-C-n" #'my/shrink-window-horizontally
         "S-C-a" #'my/enlarge-window
         "S-C-e" #'my/shrink-window
@@ -215,20 +215,20 @@
         "E"     #'end-of-line
         "M-<delete>" #'kill-word
         "C-n"   #'electric-newline-and-maybe-indent
-        "C-a"   #'join-line  ; graphite
-        "C-n"   #'electric-newline-and-maybe-indent  ; graphite
+        "C-a"   #'join-line  ; custom layout
+        "C-n"   #'electric-newline-and-maybe-indent  ; custom layout
         "S-C-m" #'my/enlarge-window-horizontally
         "S-C-n" #'my/shrink-window-horizontally
         "S-C-e" #'my/enlarge-window
         "S-C-i" #'my/shrink-window
         :leader
-        ;; graphite layout
-        "wy" #'evil-window-left
+        ;; custom layout
+        "wm" #'evil-window-left
         "wn" #'evil-window-down
         "wa" #'evil-window-up
         "we" #'evil-window-right
         ;; easier access
-        "ly" #'evil-window-left
+        "lm" #'evil-window-left
         "ln" #'evil-window-down
         "la" #'evil-window-up
         "le" #'evil-window-right
@@ -265,7 +265,7 @@
   (map! :map evil-snipe-parent-transient-map
         :g "j" #'evil-snipe-repeat
         :g "k" #'evil-snipe-repeat-reverse
-        ;; graphite layout support
+        ;; custom layout support
         :g "n" #'evil-snipe-repeat
         :g "a" #'evil-snipe-repeat-reverse))
 
@@ -324,14 +324,14 @@
   (after! git-rebase
     (define-key git-rebase-mode-map "K" 'git-rebase-move-line-up)
     (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)
-    ;; graphite layout support
+    ;; custom layout support
     (define-key git-rebase-mode-map "N" 'git-rebase-move-line-up)
     (define-key git-rebase-mode-map "A" 'git-rebase-move-line-down)))
 
 ;; git-timemachine
 ;; doc: https://github.com/emacsmirror/git-timemachine
 (after! git-timemachine
-  ;; add graphite layout support
+  ;; custom layout support
   (map! :map git-timemachine-mode-map
         :n "C-n" #'git-timemachine-show-previous-revision
         :n "C-a" #'git-timemachine-show-next-revision))
