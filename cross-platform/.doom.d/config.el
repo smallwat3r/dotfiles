@@ -199,7 +199,7 @@
         "S-C-j" #'my/shrink-window
 
         ;; custom layout
-        "S-C-m" #'my/enlarge-window-horizontally
+        "S-C-y" #'my/enlarge-window-horizontally
         "S-C-n" #'my/shrink-window-horizontally
         "S-C-a" #'my/enlarge-window
         "S-C-e" #'my/shrink-window
@@ -217,18 +217,18 @@
         "C-n"   #'electric-newline-and-maybe-indent
         "C-a"   #'join-line  ; custom layout
         "C-n"   #'electric-newline-and-maybe-indent  ; custom layout
-        "S-C-m" #'my/enlarge-window-horizontally
+        "S-C-y" #'my/enlarge-window-horizontally
         "S-C-n" #'my/shrink-window-horizontally
         "S-C-e" #'my/enlarge-window
         "S-C-i" #'my/shrink-window
         :leader
         ;; custom layout
-        "wm" #'evil-window-left
+        "wy" #'evil-window-left
         "wn" #'evil-window-down
         "wa" #'evil-window-up
         "we" #'evil-window-right
         ;; easier access
-        "lm" #'evil-window-left
+        "ly" #'evil-window-left
         "ln" #'evil-window-down
         "la" #'evil-window-up
         "le" #'evil-window-right
@@ -545,7 +545,7 @@
   (map! (:leader
          (:prefix "s"
           ;; Search a symbol at point using Vertico
-          :desc "Search project (at point)" "a" #'my/vertico-search-project-symbol-at-point
+          :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point
           ;; Repeat the last Vertico search. Doom also allow this with <SPC '>
           ;; but I find it easier to remember memo-technically with <SPC s .>
           :desc "Repeat last search" "." #'vertico-repeat))))
@@ -559,7 +559,7 @@
   (map! :map eglot-mode-map
         :leader
         :prefix "r"
-        :desc "Reconnect Eglot" "a" #'eglot-reconnect))
+        :desc "Reconnect Eglot" "w" #'eglot-reconnect))
 
 ;; remove intrusive hints from Eglot
 (add-hook! 'eglot-managed-mode-hook (eglot-inlay-hints-mode -1))
