@@ -7,7 +7,7 @@ if ! [ -x "$(command -v fzf)" ]; then
 fi
 
 target=$(
-  find '/Applications' '/System/Applications' '/System/Library/CoreServices' -type d -name '*.app' -maxdepth 1 |
+  find '/Applications' '/System/Applications' '/System/Library/CoreServices' "${HOME}/Applications" "${HOME}/Applications/Chrome Apps.localized" -type d -name '*.app' -maxdepth 1 |
     FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115' FZF_DEFAULT_COMMAND='rg --smart-case' fzf
 ) || exit 0
 
