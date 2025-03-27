@@ -70,6 +70,7 @@
  `(link ((t (:foreground "cyan4" :underline t))))
 
  `(region ((t (:background "wheat2" :extend t))))
+ `(magit-section-highlight ((t (:background "wheat2"))))
 
  `(highlight ((t (:background "burlywood1"))))
  `(lazy-highlight ((t (:background "gold2"))))
