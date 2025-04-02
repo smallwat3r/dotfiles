@@ -7,8 +7,6 @@
 ;; A list of Doom's default packages, that I don't use.
 (disable-packages!
  ;; Python packages
- anaconda-mode
- company-anaconda
  lsp-python-ms  ; prefer lsp-pyright
  pipenv         ; prefer poetry
  nose           ; prefer pytest
@@ -82,12 +80,6 @@
 (package! vterm-extra
   :recipe (:host github :repo "Sbozzolo/vterm-extra")
   :pin "2d4a34f03d0f0d863a319cd0496ed6cafe94c27e")
-
-;; Very smooth scrolling
-;; https://github.com/jdtsmith/ultra-scroll/commits/main/
-(package! ultra-scroll
-  :recipe (:host github :repo "jdtsmith/ultra-scroll")
-  :pin "2c517bf9b61bf432f706ff8a585ba453c7476be2")
 
 ;; LSP booster
 ;; https://github.com/jdtsmith/eglot-booster/commits/main/

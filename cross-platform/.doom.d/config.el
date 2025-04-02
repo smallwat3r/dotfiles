@@ -167,7 +167,7 @@
 (add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
 
 (setq display-line-numbers-type nil
-      scroll-margin 7
+      scroll-margin 0
       ;; Makes underlines render a bit cleaner.
       x-underline-at-descent-line t
       ;; No confirmation can be annoying as I realised it often happens by
@@ -277,14 +277,6 @@
       (setq all-the-icons-scale-factor 0)
     (setq all-the-icons-scale-factor 0.8))
   (setq all-the-icons-default-adjust 0))
-
-;; Smooth scrolling
-(use-package! ultra-scroll
-  :init
-  (setq scroll-conservatively 101 ; important!
-        scroll-margin 0)
-  :config
-  (ultra-scroll-mode 1))
 
 (setq my-browse-url-qutebrowser-arguments nil)
 

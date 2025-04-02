@@ -20,6 +20,7 @@
        (emoji +unicode)
        hl-todo
        ophints
+       smooth-scroll
        treemacs
        vc-gutter
        workspaces
