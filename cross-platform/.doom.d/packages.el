@@ -24,7 +24,7 @@
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "cac74558ed8f363f222d2e0d52eab5562436347a")
+(package! logview :pin "649d878f7e2aad0f938b2cf0a870f1968b4d5e30")
 
 ;; Nginx config files syntax highlighting
 ;; https://github.com/ajc/nginx-mode/commits/master
@@ -45,7 +45,7 @@
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "011cf538a2459b44f5c8664f3e43f1492f6558a8")
+(package! keycast :pin "df329db48c22a3905d540c4240ac65c7b45f51dd")
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
@@ -53,11 +53,11 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "bd800ef815b43723eba1e9757644a586111f2d63")
+(package! lsp-pyright :pin "b4cee81af46274303f2cb9b75de9fc8ddcba04d9")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "f59f1a4cabc7532b7c85a661161989cd5ad3a879")
+(package! org-modern :pin "3cc432dc99f262579d1cc464e7d6d5b9fe77083a")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
