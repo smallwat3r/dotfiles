@@ -92,7 +92,7 @@
   "Thicker font family to use.")
 
 (setq my-font-size 16)
-(setq doom-font (font-spec :family my-thinner-font
+(setq doom-font (font-spec :family my-thicker-font
                            :size my-font-size
                            :hintstyle 3))
 (setq doom-variable-pitch-font doom-font)
@@ -118,7 +118,7 @@
 (defvar my-dark-theme 'smallwat3r-dark
   "My dark theme.")
 
-(defvar my-current-theme my-dark-theme
+(defvar my-current-theme my-light-theme
   "Current theme tracker.")
 
 (defun my/theme-toggle ()
