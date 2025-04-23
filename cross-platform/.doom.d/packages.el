@@ -45,7 +45,7 @@
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "df329db48c22a3905d540c4240ac65c7b45f51dd")
+(package! keycast :pin "83216f97b3dd99dbb1d4dbc781e863f205b6d5d9")
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
@@ -65,7 +65,7 @@
 
 ;; GPG pinentry support
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
-(package! pinentry :pin "60c170dd08ad7bb48f1dcdde28922fafcd4e6290")
+(package! pinentry :pin "99480adc192f657d7d9f2eb3ed4e568df3de8613")
 
 ;; Improved color palette in terminal
 ;; https://github.com/dieggsy/eterm-256color/commits/master
@@ -73,7 +73,7 @@
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "d9aa6a4dd2d7ce52febeafc31ac84d861ac1e222")
+(package! pet :pin "e5c963b38d9eedf4b01bf4843c8c9261514c58bb")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/
