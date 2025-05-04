@@ -1,4 +1,4 @@
--- smallwat3r"s hammerspoon config
+-- smallwat3r's hammerspoon config
 
 local hotkey = require 'hs.hotkey'
 local grid = require 'hs.grid'
@@ -9,6 +9,7 @@ local task = require 'hs.task'
 local eventtap = require 'hs.eventtap'
 local chooser = require 'hs.chooser'
 
+mod_shift_alt = {'shift', 'alt'}
 mod_alt = {'alt'}
 mod_cmd = {'cmd'}
 mod_ctrl = {'ctrl'}
@@ -82,10 +83,10 @@ grid.GRIDHEIGHT = 4
 grid.GRIDWIDTH = 4
 
 -- Center window
-hotkey.bind(mod_cmd, '[', function() window.focusedWindow():centerOnScreen() end)
+hotkey.bind(mod_ctrl_alt, ']', function() window.focusedWindow():centerOnScreen() end)
 
 -- Fullscreen window
-hotkey.bind(mod_cmd, ']', function() window.focusedWindow():maximize(0) end)
+hotkey.bind(mod_alt, ']', function() window.focusedWindow():maximize(0) end)
 
 -- Move window
 hotkey.bind(mod_ctrl_alt, 'j', grid.pushWindowDown)
@@ -108,11 +109,6 @@ hotkey.bind(mod_alt, 'a', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'n', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'e', grid.resizeWindowWider)
 hotkey.bind(mod_alt, 'y', grid.resizeWindowThinner)
-
-
--- -- Show window hints
--- hints.style = 'vimperator'
--- hotkey.bind(mod_alt, 'Tab', function() hints.windowHints() end)
 
 -- Make the combination of Cmd + hjkl to emulate the arrow keys behaviour.
 -- ***************************************************************************

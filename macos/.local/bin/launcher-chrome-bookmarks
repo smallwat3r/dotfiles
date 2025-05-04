@@ -15,7 +15,8 @@ urls="$(ggrep -Po '"url": \K.*' <~/Library/Application\ Support/Google/Chrome/De
 
 target=$(
   echo "${urls}" |
-    FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115' FZF_DEFAULT_COMMAND='rg --smart-case' fzf
+    FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115' FZF_DEFAULT_COMMAND='rg --smart-case' \
+      fzf --preview 'echo {} | fold -s -w 50' --preview-window=right:70%
 ) || exit 0
 
 open -a '/Applications/Google Chrome.app' "${target}"

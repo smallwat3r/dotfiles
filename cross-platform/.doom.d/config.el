@@ -106,7 +106,7 @@
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq-default line-spacing 3)
+(setq-default line-spacing 1)
 (when (not (= line-spacing 0))
   ;; images would not render correctly if `line-spacing' is not 0
   (setq +rss-enable-sliced-images nil))
