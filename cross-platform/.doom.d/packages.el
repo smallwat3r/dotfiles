@@ -18,6 +18,10 @@
 ;;
 ;;; External packages
 
+;; HACK: temp fix
+;; https://github.com/doomemacs/doomemacs/issues/8394#issuecomment-2886896676
+(package! transient :pin "25b994a565ce8035330b0a3071ee430c0282349e") ; 0.8.8
+
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
 (package! applescript-mode :pin "67c68afc479581ecb6163371523435f244f5ec92")

@@ -51,14 +51,14 @@
              (concat "buffer-name=" (buffer-name)))))
 
 (defun my--alacritty-terminal-command ()
-  (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1 & disown"
+  (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1"
           (if (buffer-file-name)
               (file-name-directory (buffer-file-name))
             "$HOME")))
 
 (defun my--st-terminal-command ()
-  (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1 & disown"
-          (if (buffer-file-name)
+  (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1"
+        (if (buffer-file-name)
               (file-name-directory (buffer-file-name))
             "$HOME")))
 
