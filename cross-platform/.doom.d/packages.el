@@ -20,7 +20,7 @@
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "20258a89538c68a13e4c9e5b6e945c5548ba034b")
+(package! applescript-mode :pin "67c68afc479581ecb6163371523435f244f5ec92")
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
@@ -40,12 +40,12 @@
 
 ;; Dired utilities
 ;; https://github.com/Fuco1/dired-hacks/commits/master
-(package! dired-narrow :pin "e9e408e8571aee5574ca0a431ef15cac5a3585d4")
-(package! dired-subtree :pin "e9e408e8571aee5574ca0a431ef15cac5a3585d4")
+(package! dired-narrow :pin "de9336f4b47ef901799fe95315fa080fa6d77b48")
+(package! dired-subtree :pin "de9336f4b47ef901799fe95315fa080fa6d77b48")
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "83216f97b3dd99dbb1d4dbc781e863f205b6d5d9")
+(package! keycast :pin "7e5f0bc263022c3d6f7192076dd3834e56ef41d6")
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
@@ -53,11 +53,11 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "b4cee81af46274303f2cb9b75de9fc8ddcba04d9")
+(package! lsp-pyright :pin "73377169beff8fe22cc6d52d65099db88bf49679")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "3cc432dc99f262579d1cc464e7d6d5b9fe77083a")
+(package! org-modern :pin "6d375b9dfb8b0fb9df2c342889f94dcb653437dc")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
@@ -85,7 +85,7 @@
 ;; https://github.com/jdtsmith/eglot-booster/commits/main/
 (package! emacs-lsp-booster
   :recipe (:host github :repo "jdtsmith/eglot-booster")
-  :pin "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed")
+  :pin "1260d2f7dd18619b42359aa3e1ba6871aa52fd26")
 
 ;;
 ;;; Personal packages (not pinned as managed by myself)

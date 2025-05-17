@@ -1,0 +1,60 @@
+[[keyboard.bindings]]
+chars = "#"
+key = "Key3"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bj"
+key = "J"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bk"
+key = "K"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bh"
+key = "H"
+mods = "Alt"
+
+[general]
+live_config_reload = true
+
+[bell]
+duration = 0
+
+[colors.primary]
+background = "0x000000"
+foreground = "0xffffff"
+
+[cursor]
+blink_interval = 450
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[font]
+size = 16
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "Triplicate B Code"
+
+[font.offset]
+x = 1
+y = 0
+
+[window.dimensions]
+columns = 140
+lines = 40
+
+[window.padding]
+x = 0
+y = 0
+
+[keyboard]

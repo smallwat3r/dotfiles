@@ -149,10 +149,10 @@ local function launcherRunner(windowName, scriptLauncher, alacrittyOptions)
   else
     local command
     if alacrittyOptions then
-      command = string.format('INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.yml -o %s -e %s',
+      command = string.format('INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.toml -o %s -e %s',
                               windowName, alacrittyOptions, scriptLauncher)
     else
-      command = string.format('INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.yml -e %s',
+      command = string.format('INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.toml -e %s',
                               windowName, scriptLauncher)
     end
     task.new('/bin/zsh', nil, { '-l', '-c', command }):start()

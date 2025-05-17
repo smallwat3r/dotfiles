@@ -33,6 +33,7 @@ if [ -d /opt/homebrew ]; then
 fi
 
 if [[ $(uname) == 'Darwin' ]]; then
+  export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
   export TERMINAL='alacritty'
 else
   export TERMINAL='st'
