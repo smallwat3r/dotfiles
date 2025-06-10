@@ -67,10 +67,6 @@
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
 (package! pinentry :pin "99480adc192f657d7d9f2eb3ed4e568df3de8613")
 
-;; Improved color palette in terminal
-;; https://github.com/dieggsy/eterm-256color/commits/master
-(package! eterm-256color :pin "c9cfccef03e730f7ab2b407aada3df15ace1fe32")
-
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
 (package! pet :pin "e5c963b38d9eedf4b01bf4843c8c9261514c58bb")

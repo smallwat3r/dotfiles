@@ -44,12 +44,6 @@ export EDITOR="${HOME}/.local/bin/ec"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-if [[ "${INSIDE_EMACS}" = 'vterm' ]]; then
-  export TERM=eterm-256color
-else
-  export TERM=xterm-256color
-fi
-
 export CLICOLOR=1
 
 # Load private env configs

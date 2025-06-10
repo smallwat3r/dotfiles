@@ -769,10 +769,6 @@
   ;; load bash when using ssh over tramp
   (add-to-list 'vterm-tramp-shells '("ssh" "/bin/bash"))
 
-  ;; Improve rendering of colors.
-  (setq vterm-term-environment-variable "eterm-color")
-  (add-hook! 'vterm-mode-hook #'eterm-256color-mode)
-
   (map! :map vterm-mode-map
         :n "B" #'vterm-beginning-of-line  ; beg of command
         :n "<return>" #'evil-insert-resume
