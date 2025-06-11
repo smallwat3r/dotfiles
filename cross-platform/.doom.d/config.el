@@ -992,7 +992,8 @@
    :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
 
   (:prefix "o"
-   :desc "Browse URL at point" "l" #'browse-url-at-point)
+   :desc "Browse URL at point" "l" #'browse-url-at-point
+   :desc "Remote SSH conn"     "." #'my/open-remote-conn)
 
   (:prefix ("e" . "edit")
    :desc "Yank from killring" "p" #'yank-from-kill-ring)

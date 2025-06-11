@@ -78,3 +78,12 @@
   "Performs a live project search from the project root for the thing at point."
   (interactive)
   (+vertico/project-search arg (thing-at-point 'symbol)))
+
+
+;;;###autoload
+(defun my/open-remote-conn ()
+  "Open remote SSH connection with Tramp."
+  (interactive)
+  (let ((tramp-path "/ssh:")
+        (prompt "Pick target: "))
+    (find-file (read-file-name prompt tramp-path))))
