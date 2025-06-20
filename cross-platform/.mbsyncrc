@@ -4,11 +4,8 @@ IMAPAccount personal
     Port 993
     User mpetiteau.pro@gmail.com
     PassCmd "pass email/personal.gmail"
-    SSLType IMAPS
-    SSLVersions TLSv1.2
+    TLSType IMAPS
     AuthMechs LOGIN
-    # CertificateFile /usr/local/etc/openssl@1.1/cert.pem
-    # CertificateFile /etc/ssl/cert.pem
 
 IMAPStore personal-remote
     Account personal
@@ -61,11 +58,8 @@ IMAPAccount sws
     Port 993
     User matthieu@smallwatersolutions.com
     PassCmd "pass email/sws.gmail"
-    SSLType IMAPS
-    SSLVersions TLSv1.2
+    TLSType IMAPS
     AuthMechs LOGIN
-    # CertificateFile /usr/local/etc/openssl@1.1/cert.pem
-    # CertificateFile /etc/ssl/cert.pem
 
 IMAPStore sws-remote
     Account sws
