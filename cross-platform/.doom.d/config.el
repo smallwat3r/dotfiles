@@ -846,8 +846,11 @@
 ;;
 ;;; Mail
 
-(setq sendmail-program "/usr/local/bin/msmtp"
-      mail-user-agent 'message-user-agent
+(if (featurep :system 'macos)
+    (setq sendmail-program "/opt/homebrew/bin/msmtp")
+  (setq sendmail-program "/usr/local/bin/msmtp"))
+
+(setq mail-user-agent 'message-user-agent
       mail-specify-envelope-from t
       mail-envelope-from 'header
       message-sendmail-envelope-from 'header)
