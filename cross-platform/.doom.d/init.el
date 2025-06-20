@@ -43,7 +43,6 @@
        vterm
 
        :checkers
-       (spell +aspell)
        syntax
 
        :tools
@@ -51,7 +50,7 @@
        (eval +overlay)
        (lookup +dictionary +docsets)
        (lsp +eglot)
-       (magit +forge)
+       magit
        make
        pass
        pdf

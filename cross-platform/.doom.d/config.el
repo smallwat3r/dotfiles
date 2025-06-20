@@ -166,7 +166,7 @@
 
 (add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
 
-(setq display-line-numbers-type nil
+(setq display-line-numbers-type 'relative
       scroll-margin 0
       ;; Makes underlines render a bit cleaner.
       x-underline-at-descent-line t
@@ -549,7 +549,12 @@
   (map! :map eglot-mode-map
         :leader
         :prefix "r"
-        :desc "Reconnect Eglot" "w" #'eglot-reconnect))
+        :desc "Reconnect Eglot" "w" #'eglot-reconnect)
+
+  ;; harper provides grammar checking
+  (add-to-list 'eglot-workspace-configuration
+               `((:harper-ls (:linters (:SpellCheck :json-false
+                                        :SentenceCapitalization :json-false))))))
 
 ;; remove intrusive hints from Eglot
 (add-hook! 'eglot-managed-mode-hook (eglot-inlay-hints-mode -1))
@@ -561,6 +566,9 @@
   (eglot-booster-mode))
 
 (set-eglot-client! 'python-mode '("basedpyright-langserver" "--stdio"))
+(set-eglot-client! 'markdown-mode '("harper-ls" "--stdio"))
+(set-eglot-client! 'org-mode '("harper-ls" "--stdio"))
+(set-eglot-client! 'text-mode '("harper-ls" "--stdio"))
 
 ;; Shell scripts (bash, zsh...)
 (after! sh-mode
@@ -577,16 +585,6 @@
   flycheck-shellcheck-excluded-warnings '("SC1091")
   sh-basic-offset 2
   indent-tabs-mode nil)
-
-;; Check for spelling mistakes
-;; doc: https://gitlab.com/ideasman42/emacs-spell-fu
-(after! spell-fu
-  (setq spell-fu-idle-delay 0.5))
-
-;; spell-fu is by default enabled in some modes, but I find this quite
-;; annoying, so force it to be disabled, and we can explicitly enable it
-;; if we need to use it.
-(remove-hook! (text-mode yaml-mode) #'spell-fu-mode)
 
 ;; Flycheck
 ;; doc: https://github.com/flycheck/flycheck
