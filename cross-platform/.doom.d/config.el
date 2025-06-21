@@ -8,7 +8,6 @@
 
 (defvar my-email-addresses-alist
   '(("gmail"      . "mpetiteau.pro@gmail.com")
-    ("sws"        . "matthieu@smallwatersolutions.com")
     ("smallwat3r" . "matt@smallwat3r.com"))
   "Alist of my email addresses.")
 
@@ -872,7 +871,7 @@
   ;; Use a custom command to fetch for new emails with mbsync
   (setq +notmuch-sync-backend "mbsync -a && notmuch new")
 
-  (setq my-user-mail-address-2 (my--get-email "sws"))
+  (setq my-user-mail-address-2 (my--get-email "smallwat3r"))
 
   ;; Set default tags on replies
   (setq notmuch-fcc-dirs

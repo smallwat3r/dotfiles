@@ -22,8 +22,8 @@ passwordeval   "pass email/personal.gmail"
 account        sws
 host           smtp.gmail.com
 port           587
-from           Matthieu Petiteau
-user           matthieu@smallwatersolutions.com
+from           Matt Smallwater
+user           matt@smallwat3r.com
 passwordeval   "pass email/sws.gmail"
 
 # Default account

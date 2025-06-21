@@ -56,7 +56,7 @@ Group personal
 IMAPAccount sws
     Host imap.gmail.com
     Port 993
-    User matthieu@smallwatersolutions.com
+    User matt@smallwat3r.com
     PassCmd "pass email/sws.gmail"
     TLSType IMAPS
     AuthMechs LOGIN
