@@ -765,9 +765,6 @@
   (setq vterm-max-scrollback 6000
         vterm-timer-delay 0.01)
 
-  ;; load bash when using ssh over tramp
-  (add-to-list 'vterm-tramp-shells '("ssh" "/bin/bash"))
-
   (map! :map vterm-mode-map
         :n "B" #'vterm-beginning-of-line  ; beg of command
         :n "<return>" #'evil-insert-resume
@@ -776,6 +773,15 @@
         :n "<M-backspace>"  #'vterm-send-meta-backspace
         :in "C-k" #'vterm-send-up
         :in "C-j" #'vterm-send-down))
+
+(after! tramp
+  (tramp-set-completion-function
+   "ssh" '((tramp-parse-sconfig "~/.ssh/config")
+           (tramp-parse-sconfig "~/.ssh/work")
+           (tramp-parse-sconfig "~/.ssh/private")
+           (tramp-parse-sconfig "/etc/ssh_config")
+           (tramp-parse-shosts "/etc/hosts")
+           (tramp-parse-shosts "~/.ssh/known_hosts"))))
 
 ;; provides extra convenience functions for vterm
 ;; doc: https://github.com/Sbozzolo/vterm-extra
