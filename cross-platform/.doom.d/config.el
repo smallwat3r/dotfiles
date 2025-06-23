@@ -306,6 +306,9 @@
   (define-key magit-mode-map (kbd "l") nil)
   (define-key magit-mode-map (kbd "h") nil)
 
+  ;; do not show line numbers in the commit buffer
+  (setq-hook! 'git-commit-mode-hook display-line-numbers nil)
+
   (after! git-commit
     (setq git-commit-summary-max-length 75))
 
@@ -316,6 +319,7 @@
     ;; custom layout support
     (define-key git-rebase-mode-map "N" 'git-rebase-move-line-up)
     (define-key git-rebase-mode-map "A" 'git-rebase-move-line-down)))
+
 
 ;; git-timemachine
 ;; doc: https://github.com/emacsmirror/git-timemachine
