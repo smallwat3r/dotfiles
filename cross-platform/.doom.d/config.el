@@ -774,6 +774,7 @@
         :in "C-k" #'vterm-send-up
         :in "C-j" #'vterm-send-down))
 
+;; remote file access
 (after! tramp
   (tramp-set-completion-function
    "ssh" '((tramp-parse-sconfig "~/.ssh/config")
