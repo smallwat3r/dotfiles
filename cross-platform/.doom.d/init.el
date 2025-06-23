@@ -43,6 +43,7 @@
        vterm
 
        :checkers
+       (spell +aspell)
        syntax
 
        :tools

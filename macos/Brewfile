@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
+brew "aspell"
 brew "bash"
-brew "basedpyright"  # python static checking
+brew "basedpyright"
 brew "bitwarden-cli"
 brew "cmake"
 brew "coreutils"
@@ -13,7 +14,6 @@ brew "fzf"
 brew "git"
 brew "gnupg"
 brew "go"
-brew "harper"  # spell checking
 brew "htop"
 brew "isync"
 brew "jq"
@@ -31,6 +31,7 @@ brew "ripgrep"
 brew "shellcheck"
 brew "shfmt"
 brew "stow"
+brew "swaks"
 brew "tmux"
 brew "wget"
 brew "yarn"
