@@ -813,7 +813,8 @@
       ;; a local Emacs buffer using "e" in Vterm (e.g. "e .bashrc").
       (vterm-send-string
        (format "e() { printf \"\\033]51;Efind-file %s:%s\\007\" \"$(pwd)/$1\"; } \n"
-               tramp-base-path "%s")))))
+               tramp-base-path "%s")))
+    (vterm-send-string "clear\n")))
 
 (add-hook! 'vterm-mode-hook #'my/vterm-buffer-hooks-on-tramp)
 
