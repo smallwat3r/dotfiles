@@ -788,6 +788,35 @@
            (tramp-parse-shosts "/etc/hosts")
            (tramp-parse-shosts "~/.ssh/known_hosts"))))
 
+(defun my/vterm-tramp-base-path ()
+  "Returns the base tramp path of a Tramp buffer."
+  (let* ((vec (or (car (tramp-list-connections))
+                  (when (tramp-tramp-file-p default-directory)
+                    (tramp-dissect-file-name default-directory))))
+         (method (and vec (tramp-file-name-method vec)))
+         (user   (and vec (tramp-file-name-user vec)))
+         (host   (and vec (tramp-file-name-host vec))))
+    (when (and method host)
+      (format "/%s:%s%s"
+              method
+              (if (and user (not (string-empty-p user))) (concat user "@") "")
+              host))))
+
+(defun my/vterm-buffer-hooks-on-tramp ()
+  "Useful hooks to run when using Vterm with Tramp."
+  (when (and (eq major-mode 'vterm-mode)
+             default-directory
+             (file-remote-p default-directory))
+    (let ((tramp-base-path (my/vterm-tramp-base-path)))
+      (rename-buffer (format "*vterm@%s*" tramp-base-path) t)
+      ;; auto push to remote shell a function that allows to edit remote files in
+      ;; a local Emacs buffer with the "e" alias.
+      (vterm-send-string
+       (format "e() { printf \"\\033]51;Efind-file %s:%s\\007\" \"$(pwd)/$1\"; } \n"
+               tramp-base-path "%s")))))
+
+(add-hook! 'vterm-mode-hook #'my/vterm-buffer-hooks-on-tramp)
+
 ;; provides extra convenience functions for vterm
 ;; doc: https://github.com/Sbozzolo/vterm-extra
 (use-package! vterm-extra
