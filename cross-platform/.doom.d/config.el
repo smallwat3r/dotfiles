@@ -781,13 +781,13 @@
              (file-remote-p default-directory))
     (let ((tramp-base-path (my/vterm-tramp-base-path)))
       (rename-buffer (format "*vterm@%s*" tramp-base-path) t)
-      ;; inject to the remote shell a function that can edit remote files in
-      ;; a local Emacs buffer using "e" in Vterm (e.g. "e .bashrc").
       (vterm-send-string
        (format "e() { printf \"\\033]51;Efind-file %s:%s\\007\" \"$(pwd)/$1\"; } \n"
                tramp-base-path "%s")))
     (vterm-send-string "clear\n")))
 
+;; inject to the remote shell a function that can edit remote files in
+;; a local Emacs buffer using "e" in Vterm (e.g. "e .bashrc").
 (add-hook! 'vterm-mode-hook #'my/vterm-buffer-hooks-on-tramp)
 
 ;; provides extra convenience functions for vterm
