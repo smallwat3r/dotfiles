@@ -52,6 +52,9 @@ alias mkdir="mkdir -pv"
 alias diskspace="df -P -kHl"
 alias dots="cd $HOME/dotfiles"
 alias fonts="open $HOME/Library/Fonts"
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+fi
 
 # Global aliases
 alias \
