@@ -248,15 +248,6 @@
   (setq evil-goggles-duration 0.15)
   (evil-goggles-use-diff-refine-faces))
 
-;; Evil escape
-;; doc: https://github.com/syl20bnr/evil-escape
-(after! evil-escape
-  ;; Do not activate evil-escape through the 'jk' escape sequence in the
-  ;; following modes. It might be because 'j' and 'k' allow scrolling up or
-  ;; down even in insert-mode, or it is just breaking the expected mode
-  ;; behaviour.
-  (setq evil-escape-excluded-major-modes '(treemacs-mode)))
-
 ;; Evil snipe
 ;; doc: https://github.com/hlissner/evil-snipe
 (after! evil-snipe
@@ -320,7 +311,6 @@
     (define-key git-rebase-mode-map "N" 'git-rebase-move-line-up)
     (define-key git-rebase-mode-map "A" 'git-rebase-move-line-down)))
 
-
 ;; git-timemachine
 ;; doc: https://github.com/emacsmirror/git-timemachine
 (after! git-timemachine
@@ -332,14 +322,7 @@
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
 (after! which-key
-  (setq which-key-idle-delay 0.2)
-  ;; Make evil commands less verbose, use small arrow symbols instead.
-  ;; Stolen from:
-  ;; https://tecosaur.github.io/emacs-config/config.html#which-key,code--2
-  (pushnew!
-   which-key-replacement-alist
-   '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
-   '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))))
+  (setq which-key-idle-delay 0.2))
 
 ;; Disable globally hightlighting the current line the cursor is on.
 (remove-hook! 'doom-first-buffer-hook #'global-hl-line-mode)
@@ -460,18 +443,7 @@
           ".idea" ".vscode" ".svn" ".tox" ".cache"))
   (setq projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups"))
   (when (featurep :system 'macos)
-    (pushnew! projectile-ignored-projects
-              "/Applications" "/Volumes/GoogleDrive"))
-
-  ;; Make the projectile command use fd with some more sensitive defaults, as I
-  ;; noticed some performance issues with the one used by Doom or projectile
-  ;; natively.
-  (let ((excludes (mapcar (lambda (val) (format "-E '%s'" val))
-                          (append projectile-globally-ignored-files
-                                  projectile-globally-ignored-directories))))
-    (setq projectile-generic-command
-          (cons "fd . -0 -H -c never -t file -t symlink --strip-cwd-prefix"
-                excludes))))
+    (pushnew! projectile-ignored-projects "/Applications" "/Volumes/GoogleDrive")))
 
 
 ;;

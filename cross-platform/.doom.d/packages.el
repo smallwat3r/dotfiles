@@ -7,13 +7,18 @@
 ;; A list of Doom's default packages, that I don't use.
 (disable-packages!
  ;; Python packages
- lsp-python-ms  ; prefer lsp-pyright
+ lsp-python-ms  ; prefer lsp basedpyright
  pipenv         ; prefer poetry
  nose           ; prefer pytest
  ;; UI packages
  elfeed-goodies
  lsp-ui
- solaire-mode)
+ solaire-mode
+ ;; others
+ ;; disabled as escape sequences are configured physically on the
+ ;; keyboard I'm using, and with it disable, we are not affecting
+ ;; typing delays.
+ evil-escape)
 
 ;;
 ;;; External packages
