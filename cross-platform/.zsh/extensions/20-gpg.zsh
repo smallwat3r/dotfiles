@@ -11,20 +11,26 @@ export GPG_TTY=$(tty)
 if (( $+commands[gpg-connect-agent] )); then
   # Clear the gpg authentication cache. Next time using GPG, it will ask for
   # the password.
-  clear-cache-gpg-password() {
+  gpg-clear-cache() {
     gpg-connect-agent reloadagent /bye
   }
 fi
 
 if (( $+commands[gpg] )); then
   # Display public key.
-  gpg-pub-key() {
+  gpg-pubkey() {
     gpg --armor --export mpetiteau.pro@gmail.com
   }
 
   # List all GPG keys.
   gpg-list-keys() {
     gpg --list-keys --keyid-format=short
+  }
+
+  # encrypt dummy content to force the password prompt to appear
+  # in order to unlock the session
+  gpg-unlock () {
+    echo 'foo' | gpg --clearsign >/dev/null && echo 'OK'
   }
 fi
 
