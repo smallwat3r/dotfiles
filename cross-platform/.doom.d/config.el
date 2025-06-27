@@ -435,13 +435,12 @@
 ;;      https://docs.projectile.mx/projectile/index.html
 (after! projectile
   (setq projectile-indexing-method 'alien
-        projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/")
-        projectile-globally-ignored-files '(".DS_Store" "TAGS" "*.pyc")
-        projectile-globally-ignored-directories
-        '(".npm" ".poetry" "GoogleDrive" ".mypy_cache"
-          "Library" ".git" "__pycache__" "node_modules"
-          ".idea" ".vscode" ".svn" ".tox" ".cache"))
-  (setq projectile-ignored-projects '("~/" "/tmp" "~/Downloads" "~/backups"))
+        projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/"))
+  (pushnew! projectile-globally-ignored-directories
+            ".npm" ".poetry" "GoogleDrive" ".mypy_cache"
+            "Library" ".git" "__pycache__" "node_modules"
+            ".idea" ".vscode" ".svn" ".tox" ".cache")
+  (pushnew! projectile-ignored-projects "/tmp" "~/Downloads" "~/backups")
   (when (featurep :system 'macos)
     (pushnew! projectile-ignored-projects "/Applications" "/Volumes/GoogleDrive")))
 
