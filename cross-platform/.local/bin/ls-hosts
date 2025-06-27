@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# print out hosts connected to the network
+
+DEFAULT_SUBNET='192.168.1.0/24'
+SUBNET="${1:-$DEFAULT_SUBNET}"
+
+echo "Scanning subnet: $SUBNET"
+echo -e 'IP Address\t\tHostname\t\tMAC Address\t\tVendor'
+echo '----------------------------------------------------------------------------'
+
+sudo nmap -sn $SUBNET | awk '
+/Nmap scan report for/ {
+    ip = $NF;
+    sub(/\(/, "", ip); sub(/\)/, "", ip);
+    if (NF > 5) hostname = $5; else hostname = "N/A";
+}
+/MAC Address:/ {
+    mac = $3;
+    vendor = substr($0, index($0,$4));
+    printf "%-16s\t%-16s\t%-18s\t%s\n", ip, hostname, mac, vendor;
+}'
