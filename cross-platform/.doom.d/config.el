@@ -146,6 +146,20 @@
      font-lock-type-face)
     :foreground unspecified :weight normal))
 
+;; highlight numbers
+;; doc: https://github.com/Fanael/highlight-numbers
+(use-package! highlight-numbers
+  :hook ((prog-mode conf-mode) . highlight-numbers-mode)
+  :config
+  (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
+
+;; rainbow parenthesis in some major modes
+;; doc: https://github.com/Fanael/rainbow-delimiters
+(use-package! rainbow-parenthesis
+  :hook ((c-mode-common emacs-lisp-mode lisp-mode typescript-mode typescript-tsx-mode)
+         . rainbow-delimiters-mode)
+  :custom (rainbow-parenthesis-max-face-count 4))
+
 (defun my--dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
                   my-title-emacs-version

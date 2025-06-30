@@ -88,6 +88,14 @@
   :recipe (:host github :repo "jdtsmith/eglot-booster")
   :pin "1260d2f7dd18619b42359aa3e1ba6871aa52fd26")
 
+;; rainbow delimiters
+;; https://github.com/Fanael/rainbow-delimiters/commits/master/
+(package! rainbow-delimiters :pin "f40ece58df8b2f0fb6c8576b527755a552a5e763")
+
+;; highlight numbers
+;; https://github.com/Fanael/highlight-numbers/commits/master/
+(package! highlight-numbers :pin "8b4744c7f46c72b1d3d599d4fb75ef8183dee307")
+
 ;;
 ;;; Personal packages (not pinned as managed by myself)
 
