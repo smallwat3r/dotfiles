@@ -11,12 +11,12 @@
     ("smallwat3r" . "matt@smallwat3r.com"))
   "Alist of my email addresses.")
 
-(defun my--get-email (name)
+(defun my/get-email (name)
   "Helper function to get email address by NAME."
   (cdr (assoc name my-email-addresses-alist)))
 
 (setq user-full-name "Matthieu Petiteau"
-      user-mail-address (my--get-email "gmail"))
+      user-mail-address (my/get-email "gmail"))
 
 (setq default-directory "~/")
 
@@ -160,7 +160,7 @@
          . rainbow-delimiters-mode)
   :custom (rainbow-parenthesis-max-face-count 4))
 
-(defun my--dashboard-message ()
+(defun my/dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
                   my-title-emacs-version
                   " on " my-system-distro " (" my-system-os ")\n"
@@ -170,7 +170,7 @@
 ;; keep it very simple. It is ligther than the default scratch buffer in many
 ;; cases. But it can also not be killed, hence remembers the working directory
 ;; of the last open buffer, `find-file' will work from the directory I expect.
-(setq +doom-dashboard-functions '(my--dashboard-message))
+(setq +doom-dashboard-functions '(my/dashboard-message))
 
 (defun +doom-dashboard-tweak (&optional _)
   (with-current-buffer (get-buffer +doom-dashboard-name)
@@ -670,14 +670,14 @@
 (setq-hook! 'go-mode-hook indent-tabs-mode t)
 
 ;; Web mode
-(defun my--web-mode-configs ()
+(defun my/web-mode-configs ()
   (setq-local tab-width 2
               web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
               web-mode-script-padding 2
               web-mode-style-padding 2))
 
-(add-hook! 'web-mode-hook #'my--web-mode-configs)
+(add-hook! 'web-mode-hook #'my/web-mode-configs)
 
 ;; Disable formatters for html and web modes
 (setq-hook! '(html-mode-hook web-mode-hook)
@@ -899,7 +899,7 @@
   ;; Use a custom command to fetch for new emails with mbsync
   (setq +notmuch-sync-backend "mbsync -a && notmuch new")
 
-  (setq my-user-mail-address-2 (my--get-email "smallwat3r"))
+  (setq my-user-mail-address-2 (my/get-email "smallwat3r"))
 
   ;; Set default tags on replies
   (setq notmuch-fcc-dirs
@@ -968,7 +968,7 @@
       (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
 
 ;; debug mode
-(defun my--echo-command-name-hook ()
+(defun my/echo-command-name-hook ()
   "Echo live command names."
   (unless (or (eq this-command 'self-insert-command)
               (eq this-command 'next-line))
@@ -979,7 +979,7 @@
 
 (add-hook! 'post-command-hook
   (if (bound-and-true-p my-debug-mode)
-      (my--echo-command-name-hook)))
+      (my/echo-command-name-hook)))
 
 
 ;;
