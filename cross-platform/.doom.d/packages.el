@@ -50,7 +50,7 @@
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "7e5f0bc263022c3d6f7192076dd3834e56ef41d6")
+(package! keycast :pin "6570b73c4d726d18d6ee48a46494b6ff35aacea6")
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
@@ -62,7 +62,7 @@
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "6d375b9dfb8b0fb9df2c342889f94dcb653437dc")
+(package! org-modern :pin "1723689710715da9134e62ae7e6d41891031813c")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
@@ -74,7 +74,7 @@
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "e5c963b38d9eedf4b01bf4843c8c9261514c58bb")
+(package! pet :pin "1abf16ebe1f4280fc2f875b4e99d8c26756d0f36")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/
