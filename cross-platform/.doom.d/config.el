@@ -92,8 +92,7 @@
 
 (setq my-font-size 16)
 (setq doom-font (font-spec :family my-thicker-font
-                           :size my-font-size
-                           :hintstyle 3))
+                           :size my-font-size))
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -687,14 +686,19 @@
 (use-package! sql
   :mode ("\\.\\(m\\|my\\)?sql\\'" . sql-mode)
   :custom
-  ;; I use this for local development only. Disable SSL mode by default to ease
-  ;; connectivity using localhost.
+  ;; mostly used for local development only so disable SSL mode
+  ;; by default to ease connectivity from localhost
   (sql-mysql-options '("--ssl-mode=DISABLED"))
   (sql-mysql-login-params '((user :default "root")
                             password
                             database
                             (server :default "127.0.0.1")
-                            (port :default 3306))))
+                            (port :default 3306)))
+  (sql-postgres-login-params '((user :default "postgres")
+                               password
+                               database
+                               (server :default "127.0.0.1")
+                               (port :default 5432))))
 
 ;; Makefile
 (use-package! makefile-mode
