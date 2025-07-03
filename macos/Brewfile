@@ -35,6 +35,7 @@ brew "swaks"
 brew "tmux"
 brew "wget"
 brew "yarn"
+brew "ykman"  # yubikey
 brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
