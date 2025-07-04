@@ -32,6 +32,16 @@ if (( $+commands[gpg] )); then
   gpg-unlock () {
     echo 'foo' | gpg --clearsign >/dev/null && echo 'OK'
   }
+
+  # copy the GPG SSH key to the clipboard
+  gpg-ssh-key() {
+    if [[ "$OSTYPE" =~ ^darwin ]]; then
+      gpg --export-ssh-key "$USER" | pbcopy
+    else
+      gpg --export-ssh-key "$USER" | xclip -selection clipboard
+    fi
+    echo 'Key copied to clipboard!'
+  }
 fi
 
 if (( $+commands[keybase] )); then
