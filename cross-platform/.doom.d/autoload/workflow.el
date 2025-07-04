@@ -66,7 +66,7 @@
 (defun my/terminal-here ()
   "Open a terminal window in the current directory."
   (interactive "@")
-  ;; Prefer st (Suckless Terminal) in Linux, else default to alacritty.
+  ;; prefer st (Suckless Terminal) in Linux, else default to alacritty.
   (shell-command
    (if (featurep :system 'linux)
        (my/st-terminal-command)

@@ -110,10 +110,10 @@
   (setq +rss-enable-sliced-images nil))
 
 ;; Theme
-(defvar my-light-theme 'smallwat3r
+(defvar my-light-theme 'creamy
   "My light theme.")
 
-(defvar my-dark-theme 'smallwat3r-dark
+(defvar my-dark-theme 'creamy-dark
   "My dark theme.")
 
 (defvar my-current-theme my-light-theme

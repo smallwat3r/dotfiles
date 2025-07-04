@@ -99,6 +99,9 @@
 ;;
 ;;; Personal packages (not pinned as managed by myself)
 
+(package! creamy-theme
+  :recipe (:host github :repo "smallwat3r/emacs-creamy-theme"))
+
 ;; Simple dark theme
 (package! simplicity-theme
   :recipe (:host github :repo "smallwat3r/emacs-simplicity-theme"))
