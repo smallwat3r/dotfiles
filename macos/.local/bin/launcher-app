@@ -8,7 +8,9 @@ fi
 
 target=$(
   find '/Applications' \
+    '/Applications/Utilities' \
     '/System/Applications' \
+    '/System/Applications/Utilities' \
     '/System/Library/CoreServices' \
     "${HOME}/Applications" \
     "${HOME}/Applications/Chrome Apps.localized" \
