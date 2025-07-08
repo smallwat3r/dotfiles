@@ -8,6 +8,13 @@ __load_plugins() {
       '/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
       '/opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh'
     )
+  elif [[ $(grep 'DEFAULT_HOSTNAME' /etc/os-release) == *fedora* ]]; then
+    local plugins=(
+      '/usr/share/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh'
+      '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh'
+      # TODO: no dnf package seems to exists for this plugin...
+      # '/usr/share/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh'
+    )
   else
     local plugins=(
       '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh'
