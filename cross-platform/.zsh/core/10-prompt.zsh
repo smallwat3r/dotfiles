@@ -80,20 +80,6 @@ if ((! ${+INSIDE_EMACS} )) && ((! ${+INSIDE_HS})); then
   fi
 
   # Return the current activate pane number
-  __pane_number() {
-    tmux list-panes | grep "active" | cut -d ':' -f 1
-  }
-
-  # Wrapper around the `ssh` command. It will print out the ssh instance in the
-  # active tmux pane number.
-  ssh() {
-    [[ -z "${TMUX}" ]] \
-      || tmux select-pane \
-        -t "$(__pane_number)" \
-        -T "#[fg=red,bold]$(echo "$*" | cut -d . -f 1)#[fg=default]"
-    command ssh "${@}"
-  }
-
   # Shrink the current directory path.
   # Example: ~/foo/bar/hello.py would become ~/f/b/hello.py
   __shrink_path() {
@@ -110,14 +96,5 @@ if ((! ${+INSIDE_EMACS} )) && ((! ${+INSIDE_HS})); then
       "/"      ) printf '/' ;;
       *        ) printf '%s%s' "$(__shrink_path)" "${PWD##*/}" ;;
     esac
-  }
-
-  # Run whenever the Zsh prompt is reloaded. Update the information in the
-  # active Tmux pane session title.
-  precmd() {
-    [[ -z "${TMUX}" ]] \
-      || tmux select-pane \
-        -t "$(__pane_number)" \
-        -T "$(__path)$(__display_git_info)"
   }
 fi
