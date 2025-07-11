@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-import os
 import sys
+from pathlib import Path
+from contextlib import suppress
 
-BOARD_VENDOR = "/sys/devices/virtual/dmi/id/board_vendor"
-
-if not os.path.exists(BOARD_VENDOR):
-    sys.exit(1)
-
-with open(BOARD_VENDOR, encoding="utf-8") as file:
-    if file.read().rstrip("\n") != "GPD":
-        sys.exit(1)
+vendor_file = Path("/sys/devices/virtual/dmi/id/board_vendor")
+with suppress(FileNotFoundError):
+    if vendor_file.read_text().rstrip("\n") == "GPD":
+        print("Yes")
+        sys.exit(0)
+print("No")
+sys.exit(1)

@@ -12,11 +12,11 @@ alias \
 
 # List files
 alias \
-  l="ls -pFf" \
-  ll="ls -lah" \
-  ls.="ls -pF -d .*" \
-  ls="ls -pF" \
-  sl="ls -pF" \
+  l="ls -pFf --color" \
+  ll="ls -lah --color" \
+  ls.="ls -pF -d .* --color" \
+  ls="ls -pF --color" \
+  sl="ls -pF --color" \
   lss="ls -l *(@)"
 
 # Define git aliases from git config.
