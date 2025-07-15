@@ -110,7 +110,7 @@
   (setq +rss-enable-sliced-images nil))
 
 ;; Theme
-(defvar my-light-theme 'creamy
+(defvar my-light-theme 'creamy-light
   "My light theme.")
 
 (defvar my-dark-theme 'creamy-dark
