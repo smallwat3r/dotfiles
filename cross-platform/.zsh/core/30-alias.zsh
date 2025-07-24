@@ -52,35 +52,38 @@ alias mkdir="mkdir -pv"
 alias diskspace="df -P -kHl"
 alias dots="cd $HOME/dotfiles"
 alias fonts="open $HOME/Library/Fonts"
+
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 fi
 
-# Global aliases
-alias \
-  -g G="| grep" \
-  -g L="| less" \
-  -g NE="2> /dev/null" \
-  -g H="| head" \
-  -g T="| tail" \
-  -g S="| sort"
+if [ -n "$ZSH_VERSION" ]; then
+  # Global aliases
+  alias \
+    -g G="| grep" \
+    -g L="| less" \
+    -g NE="2> /dev/null" \
+    -g H="| head" \
+    -g T="| tail" \
+    -g S="| sort"
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  alias -g C="| pbcopy"
-else
-  alias -g C="| xclip -selection clipboard"
+  if [[ "$OSTYPE" =~ ^darwin ]]; then
+    alias -g C="| pbcopy"
+  else
+    alias -g C="| xclip -selection clipboard"
+  fi
+
+  # Tracked aliases
+  hash -d \
+    d="$HOME/dotfiles" \
+    dots="$HOME/dotfiles" \
+    c="$HOME/code" \
+    dw="$HOME/Downloads" \
+    de="$HOME/Desktop" \
+    ssh="$HOME/.ssh" \
+    zsh="$HOME/.zsh" \
+    fonts="$HOME/Library/Fonts" \
+    config="$HOME/.config" \
+    etc="/etc" \
+    opt="/opt"
 fi
-
-# Tracked aliases
-hash -d \
-  d="$HOME/dotfiles" \
-  dots="$HOME/dotfiles" \
-  c="$HOME/code" \
-  dw="$HOME/Downloads" \
-  de="$HOME/Desktop" \
-  ssh="$HOME/.ssh" \
-  zsh="$HOME/.zsh" \
-  fonts="$HOME/Library/Fonts" \
-  config="$HOME/.config" \
-  etc="/etc" \
-  opt="/opt"

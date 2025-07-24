@@ -90,7 +90,15 @@
 (defvar my-thicker-font "Triplicate A Code"
   "Thicker font family to use.")
 
-(setq my-font-size 16)
+(defun my/get-font-size-based-on-os ()
+  "Return a font size depending on the OS name."
+  (let ((os (downcase (or (doom-system-distro-version) ""))))
+    (cond
+     ((string-match-p "ubuntu" os) 22)
+     ((string-match-p "fedora" os) 18)
+     (t 16))))
+
+(setq my-font-size (my/get-font-size-based-on-os))
 (setq doom-font (font-spec :family my-thicker-font
                            :size my-font-size))
 (setq doom-variable-pitch-font doom-font)
