@@ -6,6 +6,7 @@
 *.private
 *.pem
 *.pub
+*.asc
 
 cross-platform/.doom.d/custom.el
 cross-platform/.doom.d/.custom.el
