@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+   echo 'macos'
+   exit 0
+elif command -v dnf >/dev/null 2>&1; then
+   echo 'fedora'
+   exit 0
+elif command -v apt >/dev/null 2>&1; then
+   echo 'ubuntu'
+   exit 0
+elif command -v pacman >/dev/null 2>&1; then
+   echo 'arch'
+   exit 0
+else
+   echo 'unknown'
+   exit 1
+fi

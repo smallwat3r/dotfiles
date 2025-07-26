@@ -49,6 +49,8 @@
   ;; stuff installed via homebrew
   (add-to-list 'exec-path "/opt/homebrew/bin"))
 
+;; ensure cargo binaries are included
+(add-to-list 'exec-path "~/.cargo/bin")
 
 ;;
 ;;; Frame
