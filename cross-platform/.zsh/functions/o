@@ -6,8 +6,10 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 else
   if [ -f /usr/bin/pcmanfm ]; then
     _program=pcmanfm
+  elif [ -f /usr/bin/nautilus ]; then
+    _program=nautilus
   else
-    printf 'Can'\''t find file manager, please install pcmanfm\n' >&2
+    printf 'Can'\''t find a file manager\n' >&2
     exit 1
   fi
 fi
