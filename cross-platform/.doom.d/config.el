@@ -497,7 +497,7 @@
   ;; set a transparent background for all levels in dired subtree
   (custom-set-faces!
     `(,(cl-loop for i from 0 to 6 collect
-                (intern (format"dired-subtree-depth-%d-face" i)))
+                (intern (format "dired-subtree-depth-%d-face" i)))
       :background unspecified)))
 
 ;; Treemacs
