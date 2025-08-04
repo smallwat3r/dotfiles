@@ -751,6 +751,9 @@
 ;; TOML
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
 
+;; ROS launch files
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+
 ;; Lua
 (add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
 
