@@ -40,18 +40,18 @@ make help
 
 I'm using Emacs 30.x with [Doom Emacs](https://github.com/doomemacs/doomemacs)
 
+Most of my config should be cross platform and can be found in [cross-platform/.doom.d](./cross-platform/.doom.d).
+
 Install Emacs
 
 - Mac OS:
     #+begin_src shell
     brew tap d12frosted/emacs-plus && brew install emacs-plus@30
     #+end_src
-
 - Arch:
     #+begin_src shell
     sudo pacman -S emacs-nativecomp
     #+end_src
-
 - Fedora:
     #+begin_src shell
     sudo dnf install emacs
