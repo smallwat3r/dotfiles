@@ -38,24 +38,26 @@ make help
 
 ** Emacs
 
-Install Emacs, I'm using Emacs 30.x
+I'm using Emacs 30.x with [Doom Emacs](https://github.com/doomemacs/doomemacs)
 
-For macOS:
-#+begin_src shell
-brew tap d12frosted/emacs-plus && brew install emacs-plus@30
-#+end_src
+Install Emacs
 
-For Arch Linux:
-#+begin_src shell
-sudo pacman -S emacs-nativecomp
-#+end_src
+- Mac OS:
+    #+begin_src shell
+    brew tap d12frosted/emacs-plus && brew install emacs-plus@30
+    #+end_src
 
-For Fedora:
-#+begin_src shell
-sudo dnf install emacs
-#+end_src
+- Arch:
+    #+begin_src shell
+    sudo pacman -S emacs-nativecomp
+    #+end_src
 
-Then,
+- Fedora:
+    #+begin_src shell
+    sudo dnf install emacs
+    #+end_src
+
+Then install Doom Emacs
 
 #+begin_src shell
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
