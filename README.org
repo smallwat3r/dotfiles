@@ -38,7 +38,9 @@ make help
 
 ** Emacs
 
-I'm using Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]]. Most of my config should be cross platform and can be found in this repo at: [[cross-platform/.doom.d]].
+I'm using Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+
+Most of my config should be cross platform and can be found in this repo at: [[cross-platform/.doom.d]].
 
 Install Emacs:
 - Mac OS:
