@@ -6,35 +6,27 @@ fi
 
 ZSH_ROOT="${HOME}/.zsh"
 
-__source_config() {
-  if [ -d "${1}" ]; then
-    local cf
-    for cf ("${1}"/*.zsh(N)); do
-      source "${cf}"
-    done
-  else
-    printf 'Could not find configs in %s\n' "${1}"
-  fi
-}
-
-__main_load_zsh_config() {
-  local zsh_configs=(
-    core
-    extensions
-  )
-
-  local config
-  for config ("${zsh_configs[@]}"); do
-    __source_config "${ZSH_ROOT}/${config}"
+if [ -d "${ZSH_ROOT}" ]; then
+  # load configs from core and extensions directories
+  for dir in "core" "extensions"; do
+    local config_path="${ZSH_ROOT}/${dir}"
+    if [ -d "${config_path}" ]; then
+      for file in "${config_path}"/*.zsh(N); do
+        source "${file}"
+      done
+    else
+      printf 'Could not find configs in %s\n' "${config_path}"
+    fi
   done
-}
+  unset dir config_path file
 
-# load config
-__main_load_zsh_config
+  # load functions
+  fpath=("${ZSH_ROOT}"/functions $fpath)
+  autoload -U "${ZSH_ROOT}"/functions/*(:t)
+else
+  printf "ZSH_ROOT not found at %s\n" "${ZSH_ROOT}"
+fi
 
-# load functions
-fpath=("${ZSH_ROOT}"/functions $fpath)
-autoload -U "${ZSH_ROOT}"/functions/*(:t)
 
 # load private configs
 if [[ -f "${HOME}/.zshrc.private" ]]; then
@@ -44,6 +36,3 @@ fi
 if (( ${+DEBUG_ZSH_PERF} )); then
   zprof
 fi
-
-# cleanup
-unset -f __main_load_zsh_config __source_config

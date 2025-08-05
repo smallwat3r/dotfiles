@@ -164,10 +164,10 @@
 
 ;; rainbow parenthesis in some major modes
 ;; doc: https://github.com/Fanael/rainbow-delimiters
-(use-package! rainbow-parenthesis
+(use-package! rainbow-delimiters
   :hook ((c-mode-common emacs-lisp-mode lisp-mode typescript-mode typescript-tsx-mode)
          . rainbow-delimiters-mode)
-  :custom (rainbow-parenthesis-max-face-count 4))
+  :custom (rainbow-delimiters-max-face-count 4))
 
 (defun my/dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
@@ -213,47 +213,47 @@
         ";f"  #'+format/region
 
         :map evil-normal-state-map
+        ;; Window scrolling
         "C-;"   #'my/scroll-up
         "C-l"   #'my/scroll-down
+
+        ;; Window resizing
         "S-C-h" #'my/enlarge-window-horizontally
+        "S-C-y" #'my/enlarge-window-horizontally  ; custom layout
         "S-C-l" #'my/shrink-window-horizontally
+        "S-C-n" #'my/shrink-window-horizontally  ; custom layout
         "S-C-k" #'my/enlarge-window
+        "S-C-a" #'my/enlarge-window  ; custom layout
+        "S-C-e" #'my/enlarge-window
         "S-C-j" #'my/shrink-window
+        "S-C-i" #'my/shrink-window  ; custom layout
 
-        ;; custom layout
-        "S-C-y" #'my/enlarge-window-horizontally
-        "S-C-n" #'my/shrink-window-horizontally
-        "S-C-a" #'my/enlarge-window
-        "S-C-e" #'my/shrink-window
-
+        ;; Misc editing
         "M-SPC" #'cycle-spacing
         "M-o"   #'delete-blank-lines
-        ";d"    #'my/save-and-close-buffer
-        ";w"    #'save-buffer
-        ";s"    #'save-buffer
-        ";q"    #'my/kill-buffer
         "C-k"   #'join-line
+        "C-a"   #'join-line  ; custom layout
         "B"     #'beginning-of-line-text
         "E"     #'end-of-line
         "M-<delete>" #'kill-word
         "C-n"   #'electric-newline-and-maybe-indent
-        "C-a"   #'join-line  ; custom layout
-        "C-n"   #'electric-newline-and-maybe-indent  ; custom layout
-        "S-C-y" #'my/enlarge-window-horizontally
-        "S-C-n" #'my/shrink-window-horizontally
-        "S-C-e" #'my/enlarge-window
-        "S-C-i" #'my/shrink-window
+
+        ;; Buffer management
+        ";d"    #'my/save-and-close-buffer
+        ";w"    #'save-buffer
+        ";s"    #'save-buffer
+        ";q"    #'my/kill-buffer
+
         :leader
-        ;; custom layout
+        ;; Window management
         "wy" #'evil-window-left
+        "ly" #'evil-window-left  ; custom layout
         "wn" #'evil-window-down
+        "ln" #'evil-window-down  ; custom layout
         "wa" #'evil-window-up
+        "la" #'evil-window-up    ; custom layout
         "we" #'evil-window-right
-        ;; easier access
-        "ly" #'evil-window-left
-        "ln" #'evil-window-down
-        "la" #'evil-window-up
-        "le" #'evil-window-right
+        "le" #'evil-window-right ; custom layout
         "ls" #'evil-window-split
         "lv" #'evil-window-vsplit)
 
@@ -278,9 +278,9 @@
   (map! :map evil-snipe-parent-transient-map
         :g "j" #'evil-snipe-repeat
         :g "k" #'evil-snipe-repeat-reverse
-        ;; custom layout support
-        :g "n" #'evil-snipe-repeat
-        :g "a" #'evil-snipe-repeat-reverse))
+        :g "n" #'evil-snipe-repeat         ; custom layout
+        :g "a" #'evil-snipe-repeat-reverse ; custom layout
+        ))
 
 ;; Icons
 ;; doc: https://github.com/domtronn/all-the-icons.el
@@ -328,11 +328,12 @@
 
   ;; Remap keys to move commits up or down when using interactive rebase.
   (after! git-rebase
-    (define-key git-rebase-mode-map "K" 'git-rebase-move-line-up)
-    (define-key git-rebase-mode-map "J" 'git-rebase-move-line-down)
-    ;; custom layout support
-    (define-key git-rebase-mode-map "N" 'git-rebase-move-line-up)
-    (define-key git-rebase-mode-map "A" 'git-rebase-move-line-down)))
+    (map! :map git-rebase-mode-map
+          "K" #'git-rebase-move-line-up
+          "J" #'git-rebase-move-line-down
+          "N" #'git-rebase-move-line-up   ; custom layout
+          "A" #'git-rebase-move-line-down ; custom layout
+          )))
 
 ;; git-timemachine
 ;; doc: https://github.com/emacsmirror/git-timemachine
@@ -428,8 +429,9 @@
     (load custom-file t)))
 
 ;; add confirmation message after calling `save-buffer'
-(defadvice save-buffer (after my/save-buffer-confirmation activate)
+(defun my/post-save-hook ()
   (message "Saved `%s'" (buffer-name)))
+(add-hook 'after-save-hook #'my/post-save-hook)
 
 
 ;;
@@ -724,8 +726,7 @@
                              :inherit font-lock-keyword-face))
 
   ;; The above seems to leave `buffer-face-mode' on, disable it.
-  (defadvice my/remap-yaml-faces (after my/deactivate-buffer-faces activate)
-    (buffer-face-mode -1))
+  (advice-add #'my/remap-yaml-faces :after (lambda (&rest _) (buffer-face-mode -1)))
 
   (add-hook! 'yaml-mode-hook #'my/remap-yaml-faces))
 
@@ -974,15 +975,13 @@
                 (auth-source-pass-get 'secret "github/rss/token")))
   (add-to-list 'elfeed-feeds (list my-github-rss-feed))
 
-  ;; Rename some feeds titles.
-  (defadvice elfeed-search-update
-      (before configure-elfeed-search-update activate)
-    (let ((github-feed (elfeed-db-get-feed my-github-rss-feed))
-          (git-doom-feed
-           (elfeed-db-get-feed
-            "https://github.com/doomemacs/doomemacs/commits/master.atom")))
-      (setf (elfeed-feed-title github-feed) "Github feed")
-      (setf (elfeed-feed-title git-doom-feed) "Doom Emacs commits"))))
+  (defun my/configure-elfeed-search-update (&rest _)
+    "Rename some elfeed feeds."
+    (when-let ((feed (elfeed-db-get-feed my-github-rss-feed)))
+      (setf (elfeed-feed-title feed) "Github feed"))
+    (when-let ((feed (elfeed-db-get-feed "https://github.com/doomemacs/doomemacs/commits/master.atom")))
+      (setf (elfeed-feed-title feed) "Doom Emacs commits")))
+  (advice-add 'elfeed-search-update :before #'my/configure-elfeed-search-update))
 
 ;; debug mode
 (defun my/echo-command-name-hook ()
@@ -992,11 +991,13 @@
     (message "%s" this-command)))
 
 (define-minor-mode my-debug-mode
-  "Custom debug mode.")
-
-(add-hook! 'post-command-hook
-  (if (bound-and-true-p my-debug-mode)
-      (my/echo-command-name-hook)))
+  "A minor mode to echo executed commands."
+  :init-value nil
+  :lighter " Debug"
+  :global t
+  (if my-debug-mode
+      (add-hook 'post-command-hook #'my/echo-command-name-hook)
+    (remove-hook 'post-command-hook #'my/echo-command-name-hook)))
 
 
 ;;
