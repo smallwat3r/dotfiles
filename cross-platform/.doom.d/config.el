@@ -428,11 +428,15 @@
   (when (file-exists-p custom-file)
     (load custom-file t)))
 
-;; add confirmation message after calling `save-buffer'
 (defun my/post-save-hook ()
-  (message "Saved `%s'" (buffer-name)))
+  "Show a confirmation message after saving."
+  (when buffer-file-name
+    (message "Saved: %s" (abbreviate-file-name buffer-file-name))))
 (add-hook 'after-save-hook #'my/post-save-hook)
 
+;; add a confirmation message after calling `save-buffer'
+(defadvice save-buffer (after my/save-buffer-confirmation activate)
+  (message "Saved `%s'" (buffer-name)))
 
 ;;
 ;;; Custom templates
@@ -461,6 +465,13 @@
 (after! projectile
   (setq projectile-indexing-method 'alien
         projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/"))
+
+  (when (featurep :system 'linux)
+    (dolist (file (directory-files "~/" t))
+      (when (and (file-directory-p file)
+                 (string-suffix-p "_ws" file))
+        (add-to-list 'projectile-project-search-path file))))
+
   (pushnew! projectile-globally-ignored-directories
             ".npm" ".poetry" "GoogleDrive" ".mypy_cache"
             "Library" ".git" "__pycache__" "node_modules"

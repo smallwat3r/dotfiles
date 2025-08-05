@@ -32,6 +32,10 @@ if [ -d /opt/homebrew ]; then
   export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
 fi
 
+if [ -d "$HOME/.npm-global/bin" ]; then
+  export PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
 if [[ $(uname) == 'Darwin' ]]; then
   export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
   export TERMINAL='alacritty'
