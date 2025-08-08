@@ -5,7 +5,7 @@ Feel free to pick whatever you want from this repo, but note it has been mostly 
 Those dotfiles are maintained for different platforms because I'm using multiple machines with different OSes.
 
 - Mac OS
-- Arch Linux with i3
+- Arch with i3
   - GPD Pocket 3, running Arch with i3 (need some specific additional patches and configs)
 - Fedora
 - Ubuntu
@@ -24,7 +24,7 @@ Clone this repo into your home directory.
 (cd $HOME && git clone https://github.com/smallwat3r/dotfiles.git)
 #+end_src
 
-*Makefile usage:*
+** Makefile
 
 To symlink all dotfiles (will automatically detect the OS and system for which directories to stow)
 #+begin_src shell
@@ -42,21 +42,24 @@ I'm using Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
 
 Most of my config should be cross platform and can be found in this repo at: [[cross-platform/.doom.d]].
 
-Install Emacs:
-- Mac OS:
-    #+begin_src shell
-    brew tap d12frosted/emacs-plus && brew install emacs-plus@30
-    #+end_src
-- Arch:
-    #+begin_src shell
-    sudo pacman -S emacs-nativecomp
-    #+end_src
-- Fedora:
-    #+begin_src shell
-    sudo dnf install emacs
-    #+end_src
+*** Install Emacs:
+**** Mac OS
+#+begin_src shell
+brew tap d12frosted/emacs-plus && brew install emacs-plus@30
+#+end_src
 
-Then install Doom Emacs:
+**** Arch
+#+begin_src shell
+sudo pacman -S emacs-nativecomp
+#+end_src
+
+**** Fedora
+#+begin_src shell
+sudo dnf install emacs
+#+end_src
+
+
+*** Install Doom :
 #+begin_src shell
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
