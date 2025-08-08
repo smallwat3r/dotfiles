@@ -42,7 +42,7 @@ I'm using Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
 
 Most of my config should be cross platform and can be found in this repo at: [[cross-platform/.doom.d]].
 
-*** Install Emacs:
+*** Install Emacs
 **** Mac OS
 #+begin_src shell
 brew tap d12frosted/emacs-plus && brew install emacs-plus@30
@@ -59,7 +59,7 @@ sudo dnf install emacs
 #+end_src
 
 
-*** Install Doom :
+*** Install Doom
 #+begin_src shell
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
