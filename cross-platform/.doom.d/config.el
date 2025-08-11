@@ -97,7 +97,7 @@
   (let ((os (downcase (or (doom-system-distro-version) ""))))
     (cond
      ((string-match-p "ubuntu" os) 22)
-     ((string-match-p "fedora" os) 18)
+     ((string-match-p "fedora" os) 17)
      (t 16))))
 
 (setq my-font-size (my/get-font-size-based-on-os))
