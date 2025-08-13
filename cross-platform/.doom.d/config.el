@@ -179,7 +179,7 @@
 
 (dolist (f '(line-number-minor-tick line-number-major-tick))
   (when (facep f)
-    (set-face-attribute f nil :foreground "gold" :background nil :weight 'bold)))
+    (set-face-attribute f nil :foreground "yellow4" :background nil :weight 'bold)))
 
 (set-face-attribute 'line-number-current-line nil
                     :foreground "orange" :background nil :weight 'bold)
