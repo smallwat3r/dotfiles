@@ -169,16 +169,31 @@
          . rainbow-delimiters-mode)
   :custom (rainbow-delimiters-max-face-count 4))
 
+;; tick every 5 lines as a line number indicator, when using relative
+;; line numbers, this is a very useful visual helper.
+(with-eval-after-load 'display-line-numbers
+  (when (boundp 'display-line-numbers-minor-tick)
+    (setq display-line-numbers-minor-tick 5))
+  (when (boundp 'display-line-numbers-major-tick)
+    (setq display-line-numbers-major-tick 10)))
+
+(dolist (f '(line-number-minor-tick line-number-major-tick))
+  (when (facep f)
+    (set-face-attribute f nil :foreground "gold" :background nil :weight 'bold)))
+
+(set-face-attribute 'line-number-current-line nil
+                    :foreground "orange" :background nil :weight 'bold)
+
+;; Dashboard displayed when starting Emacs. As a personal preference, I like to
+;; keep it very simple. It is ligther than the default scratch buffer in many
+;; cases. But it can also not be killed, hence remembers the working directory
+;; of the last open buffer, `find-file' will work from the directory I expect.
 (defun my/dashboard-message ()
   (insert (concat "MAIN BUFFER\n"
                   my-title-emacs-version
                   " on " my-system-distro " (" my-system-os ")\n"
                   "Built for: " system-configuration)))
 
-;; Dashboard displayed when starting Emacs. As a personal preference, I like to
-;; keep it very simple. It is ligther than the default scratch buffer in many
-;; cases. But it can also not be killed, hence remembers the working directory
-;; of the last open buffer, `find-file' will work from the directory I expect.
 (setq +doom-dashboard-functions '(my/dashboard-message))
 
 (defun +doom-dashboard-tweak (&optional _)
