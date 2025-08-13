@@ -50,15 +50,19 @@
                (buffer-file-name)
              (concat "buffer-name=" (buffer-name)))))
 
-(defun my/alacritty-terminal-command ()
+(defun my/terminal-here--alacritty-terminal-command ()
+  (unless (executable-find "alacritty")
+    (error "Executable 'alacritty' not found in PATH"))
   (format "INSIDE_EMACS=alacritty alacritty --working-directory %S >/dev/null 2>&1"
           (if (buffer-file-name)
               (file-name-directory (buffer-file-name))
             "$HOME")))
 
-(defun my/st-terminal-command ()
+(defun my/terminal-here--st-terminal-command ()
+  (unless (executable-find "st")
+    (error "Executable 'st' not found in PATH"))
   (format "sh -c 'cd %S' ; INSIDE_EMACS=st st >/dev/null 2>&1"
-        (if (buffer-file-name)
+          (if (buffer-file-name)
               (file-name-directory (buffer-file-name))
             "$HOME")))
 
@@ -69,8 +73,8 @@
   ;; prefer st (Suckless Terminal) in Linux, else default to alacritty.
   (shell-command
    (if (featurep :system 'linux)
-       (my/st-terminal-command)
-     (my/alacritty-terminal-command)))
+       (my/terminal-here--st-terminal-command)
+     (my/terminal-here--alacritty-terminal-command)))
   (message "Terminal is ready!"))
 
 ;;;###autoload
