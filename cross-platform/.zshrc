@@ -27,7 +27,6 @@ else
   printf "ZSH_ROOT not found at %s\n" "${ZSH_ROOT}"
 fi
 
-
 # load private configs
 if [[ -f "${HOME}/.zshrc.private" ]]; then
   source "${HOME}/.zshrc.private"
