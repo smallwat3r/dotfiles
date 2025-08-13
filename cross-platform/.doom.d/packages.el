@@ -25,7 +25,7 @@
 
 ;; Support for Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "67c68afc479581ecb6163371523435f244f5ec92")
+(package! applescript-mode :pin "3dbbb8b48e519a5208ce237db577056c7a5a5943")
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
@@ -58,11 +58,11 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "73377169beff8fe22cc6d52d65099db88bf49679")
+(package! lsp-pyright :pin "f8ec1a1f53fcafee5790d2d2c4a5e9773fd55bd2")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "1723689710715da9134e62ae7e6d41891031813c")
+(package! org-modern :pin "04cbbb639c16cab821cf3db5bf6f1def50115a8d")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
@@ -74,7 +74,7 @@
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "1abf16ebe1f4280fc2f875b4e99d8c26756d0f36")
+(package! pet :pin "7187c09d7a12aec3f52dc812187366505dbd0f6c")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/
@@ -86,7 +86,7 @@
 ;; https://github.com/jdtsmith/eglot-booster/commits/main/
 (package! emacs-lsp-booster
   :recipe (:host github :repo "jdtsmith/eglot-booster")
-  :pin "1260d2f7dd18619b42359aa3e1ba6871aa52fd26")
+  :pin "cab7803c4f0adc7fff9da6680f90110674bb7a22")
 
 ;; rainbow delimiters
 ;; https://github.com/Fanael/rainbow-delimiters/commits/master/
