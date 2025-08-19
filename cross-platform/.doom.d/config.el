@@ -155,6 +155,21 @@
      font-lock-type-face)
     :foreground unspecified :weight normal))
 
+;; colorize line numbers every 5th lines as a visual indicator, this is
+;; specially useful when using relative line numbers.
+(after! display-line-numbers
+  (setq display-line-numbers-type 'relative
+        display-line-numbers-minor-tick 5
+        display-line-numbers-major-tick 5))
+(custom-set-faces!
+  ;; base line numbers: no gray background
+  '(line-number :background unspecified :foreground "gray50")
+  ;; multiples of 5 (minor/major tick)
+  '(line-number-minor-tick :inherit line-number :foreground "tan" :weight bold)
+  '(line-number-major-tick :inherit line-number-minor-tick)
+  ;; current line number: distinct color
+  '(line-number-current-line :inherit line-number :foreground "rosy brown" :weight bold))
+
 ;; highlight numbers
 ;; doc: https://github.com/Fanael/highlight-numbers
 (use-package! highlight-numbers
@@ -168,21 +183,6 @@
   :hook ((c-mode-common emacs-lisp-mode lisp-mode typescript-mode typescript-tsx-mode)
          . rainbow-delimiters-mode)
   :custom (rainbow-delimiters-max-face-count 4))
-
-;; tick every 5 lines as a line number indicator, when using relative
-;; line numbers, this is a very useful visual helper.
-(with-eval-after-load 'display-line-numbers
-  (when (boundp 'display-line-numbers-minor-tick)
-    (setq display-line-numbers-minor-tick 5))
-  (when (boundp 'display-line-numbers-major-tick)
-    (setq display-line-numbers-major-tick 10)))
-
-(dolist (f '(line-number-minor-tick line-number-major-tick))
-  (when (facep f)
-    (set-face-attribute f nil :foreground "tan" :background nil :weight 'bold)))
-
-(set-face-attribute 'line-number-current-line nil
-                    :foreground "rosy brown" :background nil :weight 'bold)
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to
 ;; keep it very simple. It is ligther than the default scratch buffer in many
@@ -203,8 +203,7 @@
 
 (add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
 
-(setq display-line-numbers-type 'relative
-      scroll-margin 0
+(setq scroll-margin 0
       ;; Makes underlines render a bit cleaner.
       x-underline-at-descent-line t
       ;; No confirmation can be annoying as I realised it often happens by
