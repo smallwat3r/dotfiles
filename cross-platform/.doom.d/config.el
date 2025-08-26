@@ -578,12 +578,6 @@
 ;; remove intrusive hints from Eglot
 (add-hook! 'eglot-managed-mode-hook (eglot-inlay-hints-mode -1))
 
-;; make Eglot for LSP more perfomant
-(use-package! eglot-booster
-  :after eglot
-  :config
-  (eglot-booster-mode))
-
 (set-eglot-client! 'python-mode '("basedpyright-langserver" "--stdio"))
 
 ;; Shell scripts (bash, zsh...)

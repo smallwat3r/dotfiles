@@ -82,12 +82,6 @@
   :recipe (:host github :repo "Sbozzolo/vterm-extra")
   :pin "2d4a34f03d0f0d863a319cd0496ed6cafe94c27e")
 
-;; LSP booster
-;; https://github.com/jdtsmith/eglot-booster/commits/main/
-(package! emacs-lsp-booster
-  :recipe (:host github :repo "jdtsmith/eglot-booster")
-  :pin "cab7803c4f0adc7fff9da6680f90110674bb7a22")
-
 ;; rainbow delimiters
 ;; https://github.com/Fanael/rainbow-delimiters/commits/master/
 (package! rainbow-delimiters :pin "f40ece58df8b2f0fb6c8576b527755a552a5e763")
