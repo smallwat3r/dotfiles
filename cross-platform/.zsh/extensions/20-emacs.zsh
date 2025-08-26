@@ -1,7 +1,7 @@
 # Emacs configs and helper functions
 
 if [[ $(uname) == 'Darwin' ]]; then
-  export EMACS='/usr/local/bin/emacs'
+  export EMACS='/opt/homebrew/bin/emacs'
 else
   export EMACS='/usr/bin/emacs'
 fi
