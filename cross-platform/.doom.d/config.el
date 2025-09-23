@@ -40,8 +40,7 @@
       ""))
   "Hardware vendor name.")
 
-;; at least this works to check if its running on a GPD Pocket 3, not sure
-;; about the other GPD models...
+;; works on GPD 3 and 4, not tested on other versions
 (defconst IS-GPD (string= my-hardware-vendor "GPD")
   "Is it running on a GPD?")
 
@@ -165,10 +164,10 @@
   ;; base line numbers: no gray background
   '(line-number :background unspecified :foreground "gray50")
   ;; multiples of 5 (minor/major tick)
-  '(line-number-minor-tick :inherit line-number :foreground "tan" :weight bold)
+  '(line-number-minor-tick :inherit line-number :foreground "orange" :weight bold)
   '(line-number-major-tick :inherit line-number-minor-tick)
   ;; current line number: distinct color
-  '(line-number-current-line :inherit line-number :foreground "rosy brown" :weight bold))
+  '(line-number-current-line :inherit line-number :foreground "orange red" :weight bold))
 
 ;; highlight numbers
 ;; doc: https://github.com/Fanael/highlight-numbers
