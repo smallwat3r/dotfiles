@@ -36,6 +36,7 @@
        :emacs
        (dired +icons)
        electric
+       tramp
        undo
        vc
 
