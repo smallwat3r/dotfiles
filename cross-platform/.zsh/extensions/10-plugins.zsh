@@ -12,8 +12,9 @@ __load_plugins() {
     local plugins=(
       '/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh'
       '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
-      # TODO: no dnf package seems to exists for this plugin...
-      # '/usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh'
+      # dnf config-manager addrepo --from-repofile=https://download.opensuse.org/repositories/shells:zsh-users:zsh-history-substring-search/Fedora_Rawhide/shells:zsh-users:zsh-history-substring-search.repo
+      # dnf install zsh-history-substring-search
+      '/usr/share/zsh-history-substring-search/zsh-history-substring-search.zsh'
     )
   else
     local plugins=(
