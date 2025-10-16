@@ -52,12 +52,12 @@ endif
 
 .PHONY: _maildir
 _maildir:
-	@mkdir -p ~/Maildir/personal || exit 0
-	@mkdir -p ~/Maildir/sws || exit 0
+	@mkdir -p ~/Maildir/personal || true
+	@mkdir -p ~/Maildir/sws || true
 
 .PHONY: _localbin
 _localbin:
-	@mkdir -p ~/.local/bin || exit 0
+	@mkdir -p ~/.local/bin || true
 
 .PHONY: _requirements
 _requirements:
