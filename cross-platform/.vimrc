@@ -253,12 +253,6 @@ nmap <leader>l  :BLines<cr>
 nmap <leader>w; :exe ":Rg     " . expand('<cword>')<cr>
 nmap <leader>wl :exe ":BLines " . expand('<cword>')<cr>
 
-" Completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#enable_typeinfo = 0
-
 call plug#end()
 
 "}}}1 Plugins
