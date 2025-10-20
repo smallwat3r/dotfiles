@@ -50,6 +50,7 @@
        :tools
        (debugger +lsp)
        (eval +overlay)
+       llm
        (lookup +dictionary +docsets)
        (lsp +eglot +booster)
        magit
