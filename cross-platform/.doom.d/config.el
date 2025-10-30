@@ -82,15 +82,6 @@
 
 ;; Fonts
 
-;; this is useful when changing from light and dark theme to have fonts with
-;; different weigths, as often a thicker font renders better on a light
-;; background, and a thiner font renders best of a darker background.
-(defvar my-thinner-font "Triplicate B Code"
-  "Thinner font family to use.")
-
-(defvar my-thicker-font "Triplicate A Code"
-  "Thicker font family to use.")
-
 (defun my/get-font-size-based-on-os ()
   "Return a font size depending on the OS name."
   (let ((os (downcase (or (doom-system-distro-version) ""))))
@@ -100,7 +91,7 @@
      (t 16))))
 
 (setq my-font-size (my/get-font-size-based-on-os))
-(setq doom-font (font-spec :family my-thicker-font
+(setq doom-font (font-spec :family "Triplicate A Code"
                            :size my-font-size))
 (setq doom-variable-pitch-font doom-font)
 
@@ -119,30 +110,7 @@
   (setq +rss-enable-sliced-images nil))
 
 ;; Theme
-(defvar my-light-theme 'creamy-light
-  "My light theme.")
-
-(defvar my-dark-theme 'creamy-dark
-  "My dark theme.")
-
-(defvar my-current-theme my-light-theme
-  "Current theme tracker.")
-
-(defun my/theme-toggle ()
-  "Toggle between dark and light theme."
-  (interactive)
-  (let* ((theme nil) (font nil))
-    (if (eq my-light-theme my-current-theme)
-        (setq theme my-dark-theme
-              font my-thinner-font)
-      (setq theme my-light-theme
-            font my-thicker-font))
-    (setq doom-font (font-spec :family font :size my-font-size))
-    (doom/reload-font)
-    (setq my-current-theme theme)
-    (load-theme theme t)))
-
-(setq doom-theme my-current-theme)
+(setq doom-theme 'creamy)
 
 ;; Remove highlighting on some major programming faces. I think it makes
 ;; the buffer too busy and difficult to read.
