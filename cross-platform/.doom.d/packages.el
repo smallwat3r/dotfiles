@@ -29,7 +29,7 @@
 
 ;; Add syntax highlighting to log files
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "649d878f7e2aad0f938b2cf0a870f1968b4d5e30")
+(package! logview :pin "faac12ff45ef796d4ebc9587be6abcd7c32db0aa")
 
 ;; Nginx config files syntax highlighting
 ;; https://github.com/ajc/nginx-mode/commits/master
@@ -50,7 +50,7 @@
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "6570b73c4d726d18d6ee48a46494b6ff35aacea6")
+(package! keycast :pin "090ade99c1c03830d45cc763e5733a1ca001c4e5")
 
 ;; Ability to add overlay over symbols in code
 ;; https://github.com/wolray/symbol-overlay/commits/master
@@ -58,11 +58,11 @@
 
 ;; Lsp for Pyright
 ;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "f8ec1a1f53fcafee5790d2d2c4a5e9773fd55bd2")
+(package! lsp-pyright :pin "3756ff971797ae04fc43ca29c66ba4d854eff038")
 
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
-(package! org-modern :pin "04cbbb639c16cab821cf3db5bf6f1def50115a8d")
+(package! org-modern :pin "8829e48aabd289f970d39875f40915526f3423f2")
 
 ;; SSH config file syntax highlighting
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
@@ -74,7 +74,7 @@
 
 ;; PET (P ython E xecutable T racker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "7187c09d7a12aec3f52dc812187366505dbd0f6c")
+(package! pet :pin "1f7450237549ad9850543fbc78d12f9fd375324d")
 
 ;; Provides extra convenience functions for vterm
 ;; https://github.com/Sbozzolo/vterm-extra/commits/master/
@@ -93,10 +93,9 @@
 ;;
 ;;; Personal packages (not pinned as managed by myself)
 
+;; themes
 (package! creamy-theme
   :recipe (:host github :repo "smallwat3r/emacs-creamy-theme"))
-
-;; Simple dark theme
 (package! simplicity-theme
   :recipe (:host github :repo "smallwat3r/emacs-simplicity-theme"))
 
