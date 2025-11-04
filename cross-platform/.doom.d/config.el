@@ -896,7 +896,7 @@
 
 (if (featurep :system 'macos)
     (setq sendmail-program "/opt/homebrew/bin/msmtp")
-  (setq sendmail-program "/usr/local/bin/msmtp"))
+  (setq sendmail-program "/usr/bin/msmtp"))
 
 (setq mail-user-agent 'message-user-agent
       mail-specify-envelope-from t
