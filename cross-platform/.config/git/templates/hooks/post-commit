@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
-
 # Copy last commit hash to clipboard on commit
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-    git log -1 --format=format:%h | pbcopy
+
+hash="$(git log -1 --format=%h)"
+
+if [[ "$OSTYPE" == darwin* ]]; then
+    printf "%s" "$hash" | pbcopy
+elif command -v wl-copy >/dev/null 2>&1; then
+    printf "%s" "$hash" | wl-copy
+elif command -v xclip >/dev/null 2>&1 && [[ -n "$DISPLAY" ]]; then
+    printf "%s" "$hash" | xclip -selection clipboard
 else
-    git log -1 --format=format:%h | xclip -selection clipboard
+    echo "$hash"
 fi
