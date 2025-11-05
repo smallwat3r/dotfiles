@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-
 # Prevent from committing any line (or filename) containing the string NOCOMMIT.
-if git diff --cached -- . ':(exclude)**/git/templates/hooks/pre-commit' | grep '^[+d].*NOCOMMIT'; then
-    echo
-    echo 'Adding line containing NOCOMMIT'
+
+# if this hook file is staged, skip validation so we can commit it
+if git diff --cached --name-only | grep -q "^.*pre-commit$"; then
+    exit 0
+fi
+
+# block staged lines containing NOCOMMIT
+if git diff --cached | grep -q '^[+].*NOCOMMIT'; then
+    echo "Commit blocked: found 'NOCOMMIT' in staged changes."
     exit 1
 fi
