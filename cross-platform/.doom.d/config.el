@@ -177,6 +177,16 @@
       ;; mistake.
       confirm-kill-emacs 'yes-or-no-p)
 
+;; smart parens pairs
+;; doc: https://github.com/Fuco1/smartparens
+(after! smartparens-config
+  ;; add backtick pairing on general markdown modes
+  (dolist (mode '(markdown-mode gfm-mode markdown-ts-mode))
+    (sp-local-pair mode "`" "`" :actions '(insert wrap navigate)))
+  ;; re-define quote pairs to disable autoskip
+  (dolist (p '(("\"" . "\"") ("'" . "'")))
+    (sp-pair (car p) (cdr p) :actions '(insert wrap navigate))))
+
 ;; Evil-mode
 (after! evil
   ;; General evil mode settings.
