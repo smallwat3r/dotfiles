@@ -782,9 +782,36 @@
         :n "<return>" #'evil-insert-resume
         [remap delete-forward-char] #'vterm-send-delete
         :in "<M-backspace>" #'vterm-send-meta-backspace
-        :n "<M-backspace>"  #'vterm-send-meta-backspace
+        :n "<M-backspace>" #'vterm-send-meta-backspace
         :in "C-k" #'vterm-send-up
-        :in "C-j" #'vterm-send-down))
+        :in "C-j" #'vterm-send-down
+        :n "dd" (cmd! (vterm-send-C-c))
+        "C-;" #'my/vterm-zsh-history-pick)
+
+  (defun my/zsh-history-candidates (&optional limit)
+    "Return recent unique zsh history lines (most recent first)."
+    (let* ((histfile (expand-file-name (or (getenv "HISTFILE") "~/.zsh_history")))
+           (limit (or limit 10000))  ; hard limit
+           (cmd (format
+                 "H=%s; [ -r \"$H\" ] || exit 0; \
+tac -- \"$H\" \
+| awk -F';' '{sub(/^: [0-9]+:[0-9]+;/,\"\"); if(length($0) && !seen[$0]++){print $0}}' \
+| head -n %d"
+                 (shell-quote-argument histfile) limit)))
+      (split-string (shell-command-to-string cmd) "\n" t)))
+
+  (defun my/vterm-zsh-history-pick ()
+    "Prompt from zsh history and insert into vterm."
+    (interactive)
+    (let* ((initial (or (thing-at-point 'symbol t) ""))
+           (choice  (completing-read "zsh history: "
+                                     (my/zsh-history-candidates)
+                                     nil nil initial)))
+      (when (and (fboundp 'vterm-send-meta-backspace)
+                 (thing-at-point 'symbol))
+        (vterm-send-meta-backspace))
+      (vterm-send-string choice)))
+  )
 
 ;; remote file access
 (after! tramp

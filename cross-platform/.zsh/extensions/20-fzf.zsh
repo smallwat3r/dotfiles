@@ -32,6 +32,7 @@ __fzf_possible_completion_config_paths=(
 
 # It also provides some default bindings.
 __fzf_possible_keybinding_config_paths=(
+  '/usr/share/fzf/shell/key-bindings.zsh'
   '/usr/local/opt/fzf/shell/key-bindings.zsh'
   '/usr/share/fzf/key-bindings.zsh'
   '/opt/homebrew/opt/fzf/shell/key-bindings.zsh'
