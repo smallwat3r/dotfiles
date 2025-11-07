@@ -792,10 +792,12 @@
     "Return recent unique zsh history lines (most recent first)."
     (let* ((histfile (expand-file-name (or (getenv "HISTFILE") "~/.zsh_history")))
            (limit (or limit 10000))  ; hard limit
+           ;; Linux: tac, fallback for macOS: tail -r
+           ;; strip zsh timestamps, dedup keeping first (latest) occurrence
            (cmd (format
                  "H=%s; [ -r \"$H\" ] || exit 0; \
-tac -- \"$H\" \
-| awk -F';' '{sub(/^: [0-9]+:[0-9]+;/,\"\"); if(length($0) && !seen[$0]++){print $0}}' \
+(tac -- \"$H\" 2>/dev/null || tail -r -- \"$H\") \
+| awk -F';' '{sub(/^: [0-9]+:[0-9]+;/, \"\"); if (length($0) && !seen[$0]++) print}' \
 | head -n %d"
                  (shell-quote-argument histfile) limit)))
       (split-string (shell-command-to-string cmd) "\n" t)))
