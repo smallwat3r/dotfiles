@@ -802,17 +802,23 @@
                  (shell-quote-argument histfile) limit)))
       (split-string (shell-command-to-string cmd) "\n" t)))
 
-  (defun my/vterm-zsh-history-pick ()
-    "Prompt from zsh history and insert into vterm."
-    (interactive)
-    (let* ((initial (or (thing-at-point 'symbol t) ""))
-           (choice  (completing-read "zsh history: "
-                                     (my/zsh-history-candidates)
-                                     nil nil initial)))
+(defun my/vterm-zsh-history-pick ()
+  "Prompt from zsh history and insert into vterm (recency preserved)."
+  (interactive)
+  (let* ((history (my/zsh-history-candidates))
+         ;; tell Emacs to keep given order
+         (collection (lambda (string pred action)
+                       (if (eq action 'metadata)
+                           '(metadata
+                             (display-sort-function . identity)
+                             (cycle-sort-function . identity))
+                         (complete-with-action action history string pred))))
+         (initial (or (thing-at-point 'symbol t) "")))
+    (let ((choice (completing-read "zsh history: " collection nil nil initial)))
       (when (and (fboundp 'vterm-send-meta-backspace)
                  (thing-at-point 'symbol))
         (vterm-send-meta-backspace))
-      (vterm-send-string choice)))
+      (vterm-send-string choice))))
   )
 
 ;; remote file access
