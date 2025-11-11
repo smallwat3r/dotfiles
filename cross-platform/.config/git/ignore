@@ -17,6 +17,11 @@ flycheck_*.*
 *_flymake.*
 .dir-locals.el
 
+# Emacs backup and auto-save files
+*~
+\#*\#
+.#*
+
 # Sensitive
 *.gpg
 *.kbx
