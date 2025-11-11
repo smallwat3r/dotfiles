@@ -1,15 +1,20 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
+import platform
+import shutil
+import sys
 
-[[ "$OSTYPE" == darwin* ]] && echo macos && exit 0
+if platform.system() == "Darwin":
+    print("macos")
+    sys.exit(0)
 
-for id in fedora:dnf ubuntu:apt arch:pacman; do
-  distro=${id%%:*}
-  pkg=${id##*:}
-  if command -v "$pkg" &>/dev/null; then
-    echo "$distro"
-    exit 0
-  fi
-done
+for distro, cmd in (
+    ("fedora", "dnf"),
+    ("ubuntu", "apt"),
+    ("arch", "pacman"),
+):
+    if shutil.which(cmd):
+        print(distro)
+        sys.exit(0)
 
-echo unknown
-exit 1
+print("unknown")
+sys.exit(1)
