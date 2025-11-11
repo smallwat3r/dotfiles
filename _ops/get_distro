@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-   echo 'macos'
-   exit 0
-elif command -v dnf >/dev/null 2>&1; then
-   echo 'fedora'
-   exit 0
-elif command -v apt >/dev/null 2>&1; then
-   echo 'ubuntu'
-   exit 0
-elif command -v pacman >/dev/null 2>&1; then
-   echo 'arch'
-   exit 0
-else
-   echo 'unknown'
-   exit 1
-fi
+[[ "$OSTYPE" == darwin* ]] && echo macos && exit 0
+
+for id in fedora:dnf ubuntu:apt arch:pacman; do
+  distro=${id%%:*}
+  pkg=${id##*:}
+  if command -v "$pkg" &>/dev/null; then
+    echo "$distro"
+    exit 0
+  fi
+done
+
+echo unknown
+exit 1
