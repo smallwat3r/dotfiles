@@ -4,15 +4,15 @@ import platform
 config.load_autoconfig(False)
 
 if platform.system() == "Linux":
-    c.fonts.default_family = "Source Code Pro Light"
+    c.fonts.default_family = "MonacoB"
     c.editor.command = ["emacs", "{}"]
-    c.fonts.default_size = "11pt"
+    c.fonts.default_size = "10pt"
 else:
-    c.fonts.default_family = "Source Code Pro"
+    c.fonts.default_family = "Monaco"
     c.editor.command = ["/usr/bin/emacsclient", "-c", "{}"]
     c.fonts.default_size = "12pt"
 
-c.content.user_stylesheets = ["~/.config/qutebrowser/css/source-code-pro.css"]
+c.content.user_stylesheets = ["~/.config/qutebrowser/css/monaco.css"]
 
 c.downloads.location.directory = "~/Downloads"
 c.tabs.position = "bottom"

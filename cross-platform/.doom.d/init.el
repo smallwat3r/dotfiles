@@ -53,7 +53,7 @@
        llm
        (lookup +dictionary +docsets)
        (lsp +eglot +booster)
-       magit
+       (magit +forge)
        make
        pass
        pdf

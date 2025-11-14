@@ -90,9 +90,12 @@
      ((string-match-p "fedora" os) 17)
      (t 16))))
 
-(setq my-font-size (my/get-font-size-based-on-os))
-(setq doom-font (font-spec :family "Triplicate A Code"
-                           :size my-font-size))
+(if IS-GPD
+    (setq doom-font (font-spec :family "MonacoB" :size 13))
+  (setq my-font-size (my/get-font-size-based-on-os)
+        doom-font (font-spec :family "Triplicate A Code"
+                             :size my-font-size)))
+
 (setq doom-variable-pitch-font doom-font)
 
 ;; Enable proportional fonts for text-mode buffers.
@@ -104,30 +107,24 @@
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 2)
 (when (not (= line-spacing 0))
   ;; images would not render correctly if `line-spacing' is not 0
   (setq +rss-enable-sliced-images nil))
 
 ;; Theme
 (setq doom-theme 'creamy)
+(custom-theme-set-faces! 'creamy
+  '(font-lock-function-name-face :foreground "MidnightBlue")
+  '(font-lock-comment-face :foreground "yellow4" :weight bold))
 
-;; Remove highlighting on some major programming faces. I think it makes
-;; the buffer too busy and difficult to read.
-(custom-set-faces!
-  '((font-lock-function-name-face
-     font-lock-variable-name-face
-     font-lock-constant-face
-     font-lock-builtin-face
-     font-lock-type-face)
-    :foreground unspecified :weight normal))
-
-;; colorize line numbers every 5th lines as a visual indicator, this is
-;; specially useful when using relative line numbers.
 (after! display-line-numbers
-  (setq display-line-numbers-type 'relative
+  (setq display-line-numbers-type nil  ; none by default
+        ;; colorize line numbers every 5th lines as a visual indicator, this is
+        ;; specially useful when using relative line numbers.
         display-line-numbers-minor-tick 5
         display-line-numbers-major-tick 5))
+
 (custom-set-faces!
   ;; base line numbers: no gray background
   '(line-number :background unspecified :foreground "gray50")

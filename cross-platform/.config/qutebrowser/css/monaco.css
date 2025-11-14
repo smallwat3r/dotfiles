@@ -1,38 +1,38 @@
 @font-face {
     font-family: 'SFMono-Regular';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'Cousine';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'Menlo';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'Consolas';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'Cascadia Mono';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'JetBrains Mono';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'Monospace';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'Gitlab Mono';
-    src: local('Monaco');
+    src: local('MonacoB');
 }
 @font-face {
     font-family: 'Gitlab Mono';
-    src: local('Monaco');
+    src: local('MonacoB');
     font-weight: 600;
 }
 .hljs-comment {
