@@ -188,6 +188,7 @@
 ;; doc: https://github.com/jrblevin/deft/
 (after! deft
   (setq deft-recursive t
+        deft-directory my-notes-directory
         deft-use-filter-string-for-filename t
         deft-extensions '("org" "md" "txt")
         deft-file-naming-rules
@@ -477,13 +478,14 @@
   (setq projectile-indexing-method 'alien
         projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/"))
 
+  ;; ROS workspaces
   (when (featurep :system 'linux)
-    (dolist (file (directory-files "~/" t))
-      (when (and (file-directory-p file)
-                 ;; ROS workspaces
-                 (or (string-suffix-p "_ws" name)
-                     (string-prefix-p "ws_" name)))
-        (add-to-list 'projectile-project-search-path file))))
+    (dolist (file (directory-files "~/" t "^[^.].*"))
+      (when (file-directory-p file)
+        (let* ((name (file-name-nondirectory (directory-file-name file))))
+          (when (or (string-suffix-p "_ws" name)
+                    (string-prefix-p "ws_" name))
+            (add-to-list 'projectile-project-search-path file))))))
 
   (pushnew! projectile-globally-ignored-directories
             ".npm" ".poetry" "GoogleDrive" ".mypy_cache"
@@ -935,11 +937,6 @@
 ;; doc: https://github.com/minad/org-modern
 (use-package! org-modern
   :hook (org-mode . org-modern-mode))
-
-;; Deft
-;; doc: https://github.com/jrblevin/deft
-(after! deft
-  (setq deft-directory my-notes-directory))
 
 ;; Journal
 ;; doc: https://github.com/bastibe/org-journal
