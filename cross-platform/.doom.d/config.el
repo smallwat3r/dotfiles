@@ -1050,6 +1050,14 @@
   (let ((fmt (if datetime "%Y-%m-%d %H:%M" "%Y-%m-%d")))
     (insert (format-time-string fmt))))
 
+(defun my/insert-email-gmail ()
+  (interactive)
+  (insert (my/get-email "gmail")))
+
+(defun my/insert-email-smallwat3r ()
+  (interactive)
+  (insert (my/get-email "smallwat3r")))
+
 ;; debug mode
 (defun my/echo-command-name-hook ()
   "Echo live command names."
@@ -1105,8 +1113,10 @@
    :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
 
   (:prefix "i"
-   :desc "Insert date" "d" #'my/insert-timestamp
-   :desc "Insert date+time" "t" (lambda () (interactive) (my/insert-timestamp t)))
+   :desc "Insert date"        "d" #'my/insert-timestamp
+   :desc "Insert date+time"   "t" (lambda () (interactive) (my/insert-timestamp t))
+   :desc "Email (gmail)"      "g" #'my/insert-email-gmail
+   :desc "Email (smallwat3r)" "E" #'my/insert-email-smallwat3r)
 
   (:prefix "o"
    :desc "Browse URL at point" "l" #'browse-url-at-point
