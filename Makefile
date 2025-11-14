@@ -19,7 +19,7 @@ help: ## Show this help menu and exit
 .PHONY: symlink
 symlink: _requirements _localbin _maildir ## Symlink all the dotfiles using stow
 # this needs to be overwritten every time
-	@rm ~/.gnupg/gpg-agent.conf
+	@rm ~/.gnupg/gpg-agent.conf || true
 # this instruction must be run first as this is linking the main stow configuration.
 	@stow _stow --verbose=1 --restow --target "$(HOME)"
 # stow cross platform dotfiles.
