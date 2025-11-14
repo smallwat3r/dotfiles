@@ -1043,6 +1043,13 @@
       (setf (elfeed-feed-title feed) "Doom Emacs commits")))
   (advice-add 'elfeed-search-update :before #'my/configure-elfeed-search-update))
 
+;; utils
+(defun my/insert-timestamp (&optional datetime)
+  "Insert current date or date+time."
+  (interactive "P")
+  (let ((fmt (if datetime "%Y-%m-%d %H:%M" "%Y-%m-%d")))
+    (insert (format-time-string fmt))))
+
 ;; debug mode
 (defun my/echo-command-name-hook ()
   "Echo live command names."
@@ -1096,6 +1103,10 @@
 
   (:prefix "f"
    :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
+
+  (:prefix "i"
+   :desc "Insert date" "d" #'my/insert-timestamp
+   :desc "Insert date+time" "t" (lambda () (interactive) (my/insert-timestamp t)))
 
   (:prefix "o"
    :desc "Browse URL at point" "l" #'browse-url-at-point
