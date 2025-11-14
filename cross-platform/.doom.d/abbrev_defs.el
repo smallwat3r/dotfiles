@@ -17,16 +17,3 @@
     ("bsp" "#+begin_src python " nil 0)
     ("bse" "#+begin_src emacs-lisp" nil 0)
     ("es" "#+end_src" nil 0)))
-
-(define-abbrev-table 'global-abbrev-table
-  '(("isnt" "isn't" nil 0)
-    ("accross" "across" nil 0)
-    ("bellow" "below" nil 0)
-    ("altough" "although" nil 0)
-    ("widht" "width" nil 0)
-    ("thougth" "thought" nil 0)
-    ("lenght" "length" nil 0)
-    ("strenght" "strength" nil 0)
-    ("weigth" "weight" nil 0)
-    ("wether" "whether" nil 0)
-    ("recieve" "receive" nil 0)))

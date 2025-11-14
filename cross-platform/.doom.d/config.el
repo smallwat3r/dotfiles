@@ -184,6 +184,18 @@
   (dolist (p '(("\"" . "\"") ("'" . "'")))
     (sp-pair (car p) (cdr p) :actions '(insert wrap navigate))))
 
+;; quick note editing within Emacs
+;; doc: https://github.com/jrblevin/deft/
+(after! deft
+  (setq deft-recursive t
+        deft-use-filter-string-for-filename t
+        deft-extensions '("org" "md" "txt")
+        deft-file-naming-rules
+        '((noslash . "-")
+          (nospace . "-")
+          (case-fn . downcase))
+        deft-use-filename-as-title t))
+
 ;; Evil-mode
 (after! evil
   ;; General evil mode settings.

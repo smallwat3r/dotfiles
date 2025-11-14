@@ -2,7 +2,6 @@
 
 (doom! :smallwat3r
        csv
-       deft
        docker
        everywhere
        google
@@ -16,6 +15,7 @@
        (vertico +icons)
 
        :ui
+       deft
        doom-dashboard
        (emoji +unicode)
        hl-todo
