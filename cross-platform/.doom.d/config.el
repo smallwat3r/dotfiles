@@ -480,7 +480,9 @@
   (when (featurep :system 'linux)
     (dolist (file (directory-files "~/" t))
       (when (and (file-directory-p file)
-                 (string-suffix-p "_ws" file))
+                 ;; ROS workspaces
+                 (or (string-suffix-p "_ws" name)
+                     (string-prefix-p "ws_" name)))
         (add-to-list 'projectile-project-search-path file))))
 
   (pushnew! projectile-globally-ignored-directories
