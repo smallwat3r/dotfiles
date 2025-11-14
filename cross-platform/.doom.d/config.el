@@ -204,12 +204,14 @@
         ;; Window scrolling
         "C-;"   #'my/scroll-up
         "C-l"   #'my/scroll-down
+        "["     #'my/scroll-up
+        "]"     #'my/scroll-down
 
         ;; Window resizing
         "S-C-h" #'my/enlarge-window-horizontally
         "S-C-y" #'my/enlarge-window-horizontally  ; custom layout
         "S-C-l" #'my/shrink-window-horizontally
-        "S-C-n" #'my/shrink-window-horizontally  ; custom layout
+        "S-C-i" #'my/shrink-window-horizontally  ; custom layout
         "S-C-k" #'my/enlarge-window
         "S-C-a" #'my/enlarge-window  ; custom layout
         "S-C-e" #'my/enlarge-window

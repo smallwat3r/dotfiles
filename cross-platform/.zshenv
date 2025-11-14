@@ -39,6 +39,8 @@ fi
 if [[ $(uname) == 'Darwin' ]]; then
   export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
   export TERMINAL='alacritty'
+elif [[ -f /etc/os-release ]] && grep -qi '^ID=fedora' /etc/os-release; then
+  export TERMINAL='foot'
 else
   export TERMINAL='st'
 fi
