@@ -1023,8 +1023,7 @@
   ;; Set up feeds.
   (setq elfeed-feeds
         '(("https://www.reddit.com/r/emacs.rss" reddit emacs)
-          ("https://github.com/doomemacs/doomemacs/commits/master.atom"
-           emacs doom)
+          ("https://github.com/doomemacs/doomemacs/commits/master.atom" emacs doom)
           ("https://realpython.com/atom.xml?format=xml" python)
           ("http://feeds.feedburner.com/PythonInsider" python)))
 
