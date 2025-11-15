@@ -1,14 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; smallwat3r/tools/packages.el
 
-;; Input random text
-;; https://github.com/jschaf/emacs-lorem-ipsum/commits/master
-(package! lorem-ipsum :pin "4e87a899868e908a7a9e1812831d76c8d072f885")
-
-;; Fetch the clipboard history
-;; https://github.com/redguardtoo/cliphist/commits/master
-(package! cliphist :pin "d02b97a2aa0da13711d9a6f845649115de8ac11b")
-
 ;; Bitwarden support
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main
 (package! bitwarden :pin "50c0078d356e0ac0bcaf26b40113700ba4123ec3"

@@ -3,10 +3,8 @@
 (doom! :smallwat3r
        csv
        docker
-       everywhere
        google
        modeline
-       scratch
        slack
        tools
 

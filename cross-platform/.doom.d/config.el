@@ -1126,7 +1126,6 @@
    :desc "Yank from killring" "p" #'yank-from-kill-ring)
 
   (:prefix "t"
-   :desc "Theme toggle"   "T" #'my/theme-toggle
    :desc "Truncate lines" "t" #'toggle-truncate-lines
    :desc "Imenu"          "i" #'imenu-list-smart-toggle)
 
