@@ -35,18 +35,6 @@ ifeq ($(DISTRO), fedora)
 	@echo '$(INFO)** Stowing Fedora dotfiles$(SGR0)'
 	@stow fedora --verbose=1 --restow --target "$(HOME)"
 endif
-# stow Linux Arch dotfiles
-ifeq ($(DISTRO), arch)
-	@echo '$(INFO)** Stowing Arch dotfiles$(SGR0)'
-	@stow arch --verbose=1 --restow --target "$(HOME)"
-	@sudo stow arch-root --verbose=1 --restow --target '/'
-# if Arch is running on a GPD pocket, we need to apply some specific configs and patches
-ifeq ($(IS_GPD), true)
-	@echo '$(INFO)** Stowing Arch GPD dotfiles$(SGR0)'
-	@stow gpd-arch --verbose=1 --restow --target "$(HOME)"
-	@sudo stow gpd-arch-root --verbose=1 --restow --target '/'
-endif
-endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 

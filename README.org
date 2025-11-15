@@ -1,24 +1,21 @@
-* smallwat3r's dotfiles
+* smallwat3r’s dotfiles
 
-Feel free to pick whatever you want from this repo, but note it has been mostly created for my personal use and its updated very frequently. Use at your own risks and please create back-ups of your current set-up if you intend to use the Makefile. Dotfiles are managed by GNU Stow.
+This repository contains my personal dotfiles. You are welcome to reuse any part of it, but note that it is tailored to my own workflow and updated frequently. Use at your own risk, and make sure to back up your existing setup before using the provided Makefile.
+Dotfiles are managed with GNU Stow.
 
-Those dotfiles are maintained for different platforms because I'm using multiple machines with different OSes.
+These configurations support multiple platforms because I use several machines with different operating systems:
 
-- Mac OS
-- Arch with i3
-  - GPD Pocket 3, running Arch with i3 (need some specific additional patches and configs)
+- macOS
 - Fedora
-- Ubuntu
 
-Hence why the stow targets are divided into multiple different directories.
+As a result, the Stow targets are split across multiple directories.
 
-- *Cross platform* configurations can be found under ~cross-platform/~, it includes things like zsh, emacs, ssh, binaries etc. All its content "should be" platform agnostic.
-- *Macbook* specific configurations can be found under ~macos/~ and ~macos-root/~.
-- *Arch* specific configurations can be found under ~arch/~ and ~arch-root/~.
-  - *GPD Pocket 3* (running on Arch) specific configurations can be found in ~gpd-arch/~ and ~gpd-arch-root/~. It includes stowing the generic ~arch/~ and ~arch-root/~ configs, but adds various tweaks to ensure the GPD behaves nicely on Arch Linux (screen rotation and resolution, touchscreen support, X11 configs etc).
-- *Fedora* specific configurations can be found under ~fedora/~.
+- *Cross-platform* configurations are located under ~cross-platform/~.
+  This includes items such as zsh, Emacs, SSH, and binaries. Everything here *should* be platform-agnostic.
+- *macOS*-specific configurations are under ~macos/~ and ~macos-root/~.
+- *Fedora*-specific configurations are under ~fedora/~.
 
-Clone this repo into your home directory.
+Clone this repository into your home directory:
 
 #+begin_src shell
 (cd $HOME && git clone https://github.com/smallwat3r/dotfiles.git)
@@ -26,31 +23,28 @@ Clone this repo into your home directory.
 
 ** Makefile
 
-To symlink all dotfiles (will automatically detect the OS and system for which directories to stow)
+To symlink all dotfiles (the Makefile automatically detects the OS and selects the appropriate Stow targets):
+
 #+begin_src shell
 make symlink
 #+end_src
 
-To discover other commands
+To list available commands:
+
 #+begin_src shell
 make help
 #+end_src
 
 ** Emacs
 
-I'm using Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+I use Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+Most of my configuration is cross-platform and stored under [[cross-platform/.doom.d]] in this repository.
 
-Most of my config should be cross platform and can be found in this repo at: [[cross-platform/.doom.d]].
+*** Installing Emacs
 
-*** Install Emacs
-**** Mac OS
+**** macOS
 #+begin_src shell
 brew tap d12frosted/emacs-plus && brew install emacs-plus@30
-#+end_src
-
-**** Arch
-#+begin_src shell
-sudo pacman -S emacs-nativecomp
 #+end_src
 
 **** Fedora
@@ -58,8 +52,8 @@ sudo pacman -S emacs-nativecomp
 sudo dnf install emacs
 #+end_src
 
+*** Installing Doom Emacs
 
-*** Install Doom
 #+begin_src shell
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install

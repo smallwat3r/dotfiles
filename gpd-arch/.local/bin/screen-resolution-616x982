@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-xrandr --rmmode "616x982_60.00" || true
-xrandr --newmode "616x982_60.00"   49.25  616 656 712 808  982 985 995 1019 -hsync +vsync || true
-xrandr --addmode DSI-1 "616x982_60.00" || true
-xrandr --output DSI-1 --mode "616x982_60.00"

@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# Take a screenshot of the current desktop, blur it, and
-# use it as screen locker.
-# requirements: scrot, imagemagick, i3lock
-
-scrot /tmp/lock.png
-convert /tmp/lock.png -blur 0x9 /tmp/lockblur.png
-rm /tmp/lock.png
-i3lock -i /tmp/lockblur.png --nofork

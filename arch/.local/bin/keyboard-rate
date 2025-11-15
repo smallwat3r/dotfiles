@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Increase keyboard rate
-
-xset r rate 150 50

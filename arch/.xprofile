@@ -1,5 +1,0 @@
-# xprofile allows to load stuff before the window manager is started
-# the below configurations are required for i3 and dmenu to work as
-# expected, we can't rely on zshenv.
-export TERMINAL=st
-export PATH="$PATH:${HOME}/.local/bin"
