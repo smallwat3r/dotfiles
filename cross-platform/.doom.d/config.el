@@ -874,6 +874,12 @@
       (tramp-parse-shosts "/etc/hosts")
       (tramp-parse-shosts "~/.ssh/known_hosts")))))
 
+(map!
+ (:leader
+  (:prefix "o"
+   :desc "Tramp SSH conn" "." #'my/open-remote-conn
+   :desc "Term SSH conn"  "s" #'my/ssh-external)))
+
 (defun my/vterm-tramp-base-path ()
   "Returns the base tramp path of a Tramp buffer."
   (let* ((vec (or (car (tramp-list-connections))
@@ -1108,7 +1114,7 @@
 
 
 ;;
-;;; Bindings
+;;; Other general bindings
 
 (when (featurep :system 'macos)
   ;; disable bindings clashing with Hammerspoon
@@ -1143,7 +1149,6 @@
 
   (:prefix "o"
    :desc "Browse URL at point" "l" #'browse-url-at-point
-   :desc "Remote SSH conn"     "." #'my/open-remote-conn
    :desc "ChatGPT"             "c" #'my/chatgpt-open-prompt)
 
   (:prefix ("e" . "edit")
