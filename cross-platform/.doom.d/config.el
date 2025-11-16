@@ -1097,20 +1097,11 @@
 ;;
 ;;; Bindings
 
-;; Bundle most of my custom bindings for using Doom Emacs. Some bindings are not
-;; included here, when they are specific to packages and cannot be bundled
-;; outside of the package configuration.
-;;
-;; It's important for these to be loaded (almost) in last so it makes sure
-;; these are not getting overriden.
-
-;; Disable bindings, due to other conflicts (specially coming from Hammerspoon).
-(map! "M-k" nil
-      "M-j" nil)
-
 (when (featurep :system 'macos)
-  ;; For some reason, Emacs wouldn't print # on ^3, even when configured with
-  ;; an English UK keyboard. Re-enable this behaviour.
+  ;; disable bindings clashing with Hammerspoon
+  (map! "M-k" nil
+        "M-j" nil)
+  ;; fix for macOS UK keyboards
   (map! (:map key-translation-map "M-3" "#")))
 
 (map!
