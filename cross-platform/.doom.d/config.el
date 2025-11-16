@@ -83,18 +83,40 @@
 ;; Fonts
 
 (defun my/get-font-size-based-on-os ()
-  "Return a font size depending on the OS name."
+  "Return a font size depending on the device or OS."
   (let ((os (downcase (or (doom-system-distro-version) ""))))
     (cond
+     (IS-GPD 13)
      ((string-match-p "ubuntu" os) 22)
      ((string-match-p "fedora" os) 17)
      (t 16))))
 
-(if IS-GPD
-    (setq doom-font (font-spec :family "MonacoB" :size 13))
-  (setq my-font-size (my/get-font-size-based-on-os)
-        doom-font (font-spec :family "Triplicate A Code"
-                             :size my-font-size)))
+(defun my/font-available-p (font)
+  "Return non-nil if FONT is available on this system."
+  (if (find-font (font-spec :name font)) t nil))
+
+(defun my/safe-font (fonts &rest spec)
+  "Return a font-spec using the first available font in FONTS."
+  (let ((available
+         (seq-find (lambda (f)
+                     (if (my/font-available-p f) t
+                       (message "Warning: font not found: %s" f) nil))
+                   fonts)))
+    (when available
+      (apply #'font-spec :family available spec))))
+
+;; pick font based on OS, with support for fallback
+(let ((size (my/get-font-size-based-on-os)))
+  (setq doom-font
+        (cond
+         (IS-GPD
+          (my/safe-font '("MonacoB" "Monospace") :size size))
+         ((eq system-type 'gnu/linux)
+          (my/safe-font '("Triplicate A Code" "MonacoB" "Monospace") :size size))
+         ((eq system-type 'darwin)
+          (my/safe-font '("Triplicate A Code" "Monaco") :size size))
+         (t
+          (my/safe-font '("Triplicate A Code") :size size)))))
 
 (setq doom-variable-pitch-font doom-font)
 
