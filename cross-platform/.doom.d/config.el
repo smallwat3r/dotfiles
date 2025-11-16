@@ -682,7 +682,7 @@
   (map! :map python-mode-map
         :leader
         :localleader
-        :desc "Toggle f-string"     "f"   #'my/python-toggle-fstring
+        :desc "Toggle f-string" "f"   #'my/python-toggle-fstring
         :desc "Deactivate venv" "e d" #'my/deactivate-python-venv
         :desc "Activate venv"   "e a" #'my/activate-closest-python-venv)
 
