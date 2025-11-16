@@ -65,8 +65,8 @@
        emacs-lisp
        (go +lsp)
        (javascript +lsp)
-       (json)
-       (lua)
+       json
+       lua
        markdown
        (org +journal +pandoc)
        (python +lsp)
@@ -74,6 +74,7 @@
        (rust +lsp)
        (sh +lsp)
        (web +lsp)
+       yaml
 
        :email
        notmuch

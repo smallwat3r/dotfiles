@@ -47,4 +47,4 @@
          (choice (completing-read "Kill process: " (mapcar #'car items) nil t))
          (pid (cdr (assoc choice items))))
     (signal-process pid 'kill)
-    (message "Killed %s" choice)))
+    (message "Killed: %s" choice)))

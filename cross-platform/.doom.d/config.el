@@ -748,20 +748,6 @@
 (use-package! makefile-mode
   :mode ("Makefile.*" . makefile-mode))
 
-;; Yaml mode
-;; doc: https://github.com/yoshiki/yaml-mode
-(use-package! yaml-mode
-  :mode ("\\.\\(yaml\\|yml\\)\\'" . yaml-mode)
-  :config
-  (defun my/remap-yaml-faces ()
-    (face-remap-add-relative 'font-lock-variable-name-face
-                             :inherit font-lock-keyword-face))
-
-  ;; The above seems to leave `buffer-face-mode' on, disable it.
-  (advice-add #'my/remap-yaml-faces :after (lambda (&rest _) (buffer-face-mode -1)))
-
-  (add-hook! 'yaml-mode-hook #'my/remap-yaml-faces))
-
 ;; Logs
 ;; doc: https://github.com/doublep/logview
 (use-package! logview

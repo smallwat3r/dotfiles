@@ -39,10 +39,6 @@
 ;; https://github.com/mcandre/vimrc-mode/commits/master
 (package! vimrc-mode :pin "f594392a0834193a1fe1522d007e1c8ce5b68e43")
 
-;; Support for YAML
-;; https://github.com/yoshiki/yaml-mode/commits/master
-(package! yaml-mode :pin "d91f878729312a6beed77e6637c60497c5786efa")
-
 ;; Dired utilities
 ;; https://github.com/Fuco1/dired-hacks/commits/master
 (package! dired-narrow :pin "de9336f4b47ef901799fe95315fa080fa6d77b48")
