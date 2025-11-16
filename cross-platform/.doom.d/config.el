@@ -638,8 +638,7 @@
   ;; Isort
   (after! py-isort
     (setq py-isort-options '("--trailing-comma" "--use-parentheses"))
-    (add-to-list 'py-isort-options (format "-l %s"
-                                           my-default-python-line-length)))
+    (add-to-list 'py-isort-options (format "-l %s" my-default-python-line-length)))
 
   ;; Formatter
   (set-formatter! 'black

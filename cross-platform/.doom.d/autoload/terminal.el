@@ -36,3 +36,15 @@
   (interactive "@")
   (shell-command (my/terminal-here--command))
   (message "Terminal is ready!"))
+
+;;;###autoload
+(defun my/vterm/toggle-current-buffer ()
+  "Toggles a vterm buffer from the current directory."
+  (interactive)
+  (+vterm/toggle t))
+
+;;;###autoload
+(defun my/vterm/here-current-buffer ()
+  "Open a vterm buffer from the current directory."
+  (interactive)
+  (+vterm/here t))
