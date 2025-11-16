@@ -24,18 +24,6 @@
     (kill-buffer (current-buffer))))
 
 ;;;###autoload
-(defun my/vterm/toggle-current-buffer ()
-  "Toggles a vterm buffer from the current directory."
-  (interactive)
-  (+vterm/toggle t))
-
-;;;###autoload
-(defun my/vterm/here-current-buffer ()
-  "Open a vterm buffer from the current directory."
-  (interactive)
-  (+vterm/here t))
-
-;;;###autoload
 (defun my/kill-all-buffers ()
   "Kill all buffers."
   (interactive)
