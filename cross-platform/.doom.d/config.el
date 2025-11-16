@@ -1001,7 +1001,6 @@
 ;;
 ;;; Misc
 
-
 ;; Untappd
 ;; doc: https://github.com/smallwat3r/untappd.el
 (use-package! untappd

@@ -5,23 +5,24 @@
   "Save, close current buffer and display a confirmation message."
   (interactive)
   (save-buffer)
-  (message "Closed and saved `%s'" (buffer-name))
+  (message "Closed and saved: %s" (buffer-name))
   (kill-buffer (current-buffer)))
 
 ;;;###autoload
 (defun my/kill-buffer (&optional buffer)
-  "Kill current buffer or BUFFER."
-  (interactive)
-  ;; On some specific major modes, when killing a buffer, disable prompt
-  ;; confirmation of checking running for processes and modified buffers.
-  (when (derived-mode-p 'vterm-mode 'term-mode 'eshell-mode)
-    (set-buffer-modified-p nil)
-    (let ((proc (get-buffer-process (current-buffer))))
-      (when (processp proc)
-        (set-process-query-on-exit-flag proc nil))))
-  (if buffer
-      (kill-buffer buffer)
-    (kill-buffer (current-buffer))))
+  "Kill current buffer or BUFFER without prompts for term/vterm/eshell."
+  (interactive
+   (list (when current-prefix-arg
+           (read-buffer "Kill buffer: " (current-buffer) t))))
+  (let* ((buf (or buffer (current-buffer)))
+         (bufname (buffer-name buf)))
+    (with-current-buffer buf
+      (when (derived-mode-p 'vterm-mode 'term-mode 'eshell-mode)
+        (set-buffer-modified-p nil)
+        (when-let ((proc (get-buffer-process buf)))
+          (set-process-query-on-exit-flag proc nil))))
+    (kill-buffer buf)
+    (message "Killed buffer: %s" bufname)))
 
 ;;;###autoload
 (defun my/kill-all-buffers ()
