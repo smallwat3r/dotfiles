@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 # Copy public key to clipboard
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  more "${HOME}/.ssh/id_rsa.pub" | pbcopy
-else
-  more "${HOME}/.ssh/id_rsa.pub" | xclip -selection clipboard
-fi
+copy_pubkey() {
+    local key="$HOME/.ssh/id_rsa.pub"
 
-printf 'Public key copied to clipboard.\n'
+    if [[ "$OSTYPE" == darwin* ]]; then
+        pbcopy < "$key"
+    elif command -v wl-copy >/dev/null 2>&1; then
+        wl-copy < "$key"
+    elif command -v xclip >/dev/null 2>&1; then
+        xclip -selection clipboard < "$key"
+    else
+        echo 'No clipboard backend found' >&2
+        return 1
+    fi
+    echo 'Public key copied to clipboard.'
+}
+
+copy_pubkey

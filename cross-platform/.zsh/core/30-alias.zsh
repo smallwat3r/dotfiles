@@ -69,6 +69,8 @@ if [ -n "$ZSH_VERSION" ]; then
 
   if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias -g C="| pbcopy"
+  elif command -v wl-copy >/dev/null 2>&1; then
+    alias -g C="| wl-copy"
   else
     alias -g C="| xclip -selection clipboard"
   fi

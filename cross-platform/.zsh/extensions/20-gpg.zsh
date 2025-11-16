@@ -35,10 +35,14 @@ if (( $+commands[gpg] )); then
 
   # copy the GPG SSH key to the clipboard
   gpg-ssh-key() {
+    local key
+    key="$(gpg --export-ssh-key "$USER")"
     if [[ "$OSTYPE" =~ ^darwin ]]; then
-      gpg --export-ssh-key "$USER" | pbcopy
+      printf "%s" "$key" | pbcopy
+    elif command -v wl-copy >/dev/null 2>&1; then
+      printf "%s" "$key" | wl-copy
     else
-      gpg --export-ssh-key "$USER" | xclip -selection clipboard
+      printf "%s" "$key" | xclip -selection clipboard
     fi
     echo 'Key copied to clipboard!'
   }
