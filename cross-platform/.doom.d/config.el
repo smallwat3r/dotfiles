@@ -1030,14 +1030,13 @@
 ;; Elfeed, web feed reader (RSS)
 ;; doc: https://github.com/skeeto/elfeed
 (after! elfeed
-  ;; Fetch feeds from a month ago.
   (setq elfeed-search-filter "@1-month-ago")
 
-  ;; Hook on new entries.
   (add-hook 'elfeed-new-entry-hook
             (elfeed-make-tagger :feed-url "github.com/smallwat3r.private"
                                 :add '(github perso)))
 
+  ;; Faces for tagged entries.
   (defface my-github-elfeed-entry-face '((t :foreground "cyan4"))
     "Face for a Github related Elfeed entry.")
 
@@ -1047,12 +1046,14 @@
   (defface my-emacs-elfeed-entry-face '((t :foreground "purple"))
     "Face for an Emacs related Elfeed entry.")
 
-  ;; Distinguish faces depending on tags for Elfeed entries.
-  (push '(github my-github-elfeed-entry-face) elfeed-search-face-alist)
-  (push '(python my-python-elfeed-entry-face) elfeed-search-face-alist)
-  (push '(emacs my-emacs-elfeed-entry-face) elfeed-search-face-alist)
+  ;; distinguish faces depending on tags for Elfeed entries.
+  (cl-pushnew '(github my-github-elfeed-entry-face)
+              elfeed-search-face-alist :test #'equal)
+  (cl-pushnew '(python my-python-elfeed-entry-face)
+              elfeed-search-face-alist :test #'equal)
+  (cl-pushnew '(emacs my-emacs-elfeed-entry-face)
+              elfeed-search-face-alist :test #'equal)
 
-  ;; Set up feeds.
   (setq elfeed-feeds
         '(("https://www.reddit.com/r/emacs.rss" reddit emacs)
           ("https://github.com/doomemacs/doomemacs/commits/master.atom" emacs doom)
@@ -1061,16 +1062,20 @@
 
   ;; Add private Github RSS feed to list of feeds. This needs to fetch my
   ;; Github RSS token, so this is done separately.
-  (setq my-github-rss-feed
-        (format "https://github.com/smallwat3r.private.atom?token=%s"
-                (auth-source-pass-get 'secret "github/rss/token")))
-  (add-to-list 'elfeed-feeds (list my-github-rss-feed))
+  (let ((token (auth-source-pass-get "secret" "github/rss/token")))
+    (when token
+      (setq my-github-rss-feed
+            (format "https://github.com/smallwat3r.private.atom?token=%s" token))
+      (add-to-list 'elfeed-feeds (list my-github-rss-feed))))
 
   (defun my/configure-elfeed-search-update (&rest _)
     "Rename some elfeed feeds."
-    (when-let ((feed (elfeed-db-get-feed my-github-rss-feed)))
-      (setf (elfeed-feed-title feed) "Github feed"))
-    (when-let ((feed (elfeed-db-get-feed "https://github.com/doomemacs/doomemacs/commits/master.atom")))
+    (when (and (boundp 'my-github-rss-feed)
+               my-github-rss-feed)
+      (when-let ((feed (elfeed-db-get-feed my-github-rss-feed)))
+        (setf (elfeed-feed-title feed) "Github feed")))
+    (when-let ((feed (elfeed-db-get-feed
+                      "https://github.com/doomemacs/doomemacs/commits/master.atom")))
       (setf (elfeed-feed-title feed) "Doom Emacs commits")))
   (advice-add 'elfeed-search-update :before #'my/configure-elfeed-search-update))
 
