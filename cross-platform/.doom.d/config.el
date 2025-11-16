@@ -605,7 +605,7 @@
 ;; spell-fu is by default enabled in some modes, but I find this quite
 ;; annoying, so force it to be disabled, and we can explicitly enable it
 ;; if we need to use it.
-(remove-hook! (text-mode yaml-mode) #'spell-fu-mode)
+(remove-hook! (text-mode) #'spell-fu-mode)
 
 ;; Flycheck
 ;; doc: https://github.com/flycheck/flycheck
@@ -705,6 +705,15 @@
 
 ;; Json
 (setq-hook! 'json-mode-hook tab-width 2)
+
+;; Yaml, invert colors when using creamy, as most
+;; of the colors are deactivated by default.
+(add-hook! 'yaml-mode-hook
+  (when (eq doom-theme 'creamy)
+    (face-remap-add-relative
+     'font-lock-variable-name-face
+     '(:inherit font-lock-keyword-face))
+    (buffer-face-mode -1)))
 
 ;; Restclient
 (setq-hook! 'restclient-mode-hook tab-width 4)
