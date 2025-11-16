@@ -401,21 +401,15 @@
 ;; Overlay keywords
 ;; doc: https://github.com/wolray/symbol-overlay
 (use-package! symbol-overlay
-  :commands (symbol-overlay-put
-             symbol-overlay-remove-all)
+  :commands (symbol-overlay-put symbol-overlay-remove-all)
   :init
   (map! :leader
         :prefix "c"
         :desc "Add overlay"     "h" #'symbol-overlay-put
         :desc "Remove overlays" "H" #'symbol-overlay-remove-all)
   :config
-  ;; Deactivate binding for `symbol-overlay-map-help', as it conflicts with
-  ;; evil. Remap it to a capital 'H' instead.
+  ;; deactivare bindings I do not use that conflict with other commands
   (define-key symbol-overlay-map (kbd "h") nil)
-  (define-key symbol-overlay-map (kbd "H") #'symbol-overlay-map-help)
-
-  ;; Other overlay bindings I don't use which could conflict with evil
-  ;; operations.
   (define-key symbol-overlay-map (kbd "w") nil)
   (define-key symbol-overlay-map (kbd "t") nil)
   (define-key symbol-overlay-map (kbd "i") nil))
