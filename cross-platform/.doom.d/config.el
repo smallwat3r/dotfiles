@@ -310,9 +310,9 @@
 
 (function-put 'my/browse-url-qutebrowser 'browse-url-browser-kind 'external)
 
-;; Browse stuff in qutebrowser as default when using Linux.
-(when (and (featurep :system 'linux) (executable-find "qutebrowser"))
-  (setq browse-url-browser-function #'my/browse-url-qutebrowser))
+;; ;; Browse stuff in qutebrowser as default when using Linux.
+;; (when (and (featurep :system 'linux) (executable-find "qutebrowser"))
+;;   (setq browse-url-browser-function #'my/browse-url-qutebrowser))
 
 ;; Magit
 ;; doc: https://github.com/magit/magit
@@ -831,23 +831,23 @@
                  (shell-quote-argument histfile) limit)))
       (split-string (shell-command-to-string cmd) "\n" t)))
 
-(defun my/vterm-zsh-history-pick ()
-  "Prompt from zsh history and insert into vterm (recency preserved)."
-  (interactive)
-  (let* ((history (my/zsh-history-candidates))
-         ;; tell Emacs to keep given order
-         (collection (lambda (string pred action)
-                       (if (eq action 'metadata)
-                           '(metadata
-                             (display-sort-function . identity)
-                             (cycle-sort-function . identity))
-                         (complete-with-action action history string pred))))
-         (initial (or (thing-at-point 'symbol t) "")))
-    (let ((choice (completing-read "zsh history: " collection nil nil initial)))
-      (when (and (fboundp 'vterm-send-meta-backspace)
-                 (thing-at-point 'symbol))
-        (vterm-send-meta-backspace))
-      (vterm-send-string choice))))
+  (defun my/vterm-zsh-history-pick ()
+    "Prompt from zsh history and insert into vterm (recency preserved)."
+    (interactive)
+    (let* ((history (my/zsh-history-candidates))
+           ;; tell Emacs to keep given order
+           (collection (lambda (string pred action)
+                         (if (eq action 'metadata)
+                             '(metadata
+                               (display-sort-function . identity)
+                               (cycle-sort-function . identity))
+                           (complete-with-action action history string pred))))
+           (initial (or (thing-at-point 'symbol t) "")))
+      (let ((choice (completing-read "zsh history: " collection nil nil initial)))
+        (when (and (fboundp 'vterm-send-meta-backspace)
+                   (thing-at-point 'symbol))
+          (vterm-send-meta-backspace))
+        (vterm-send-string choice))))
   )
 
 ;; remote file access
@@ -908,8 +908,7 @@
 
 (setq vterm-always-compile-module t)
 
-;; Make sure to always display the modeline when using vterm. I feel like even
-;; in a terminal, its still useful to see the modeline and its information.
+;; always display the modeline in vterm
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
 ;; LLMs
@@ -1071,6 +1070,13 @@
   (interactive)
   (insert (my/get-email "smallwat3r")))
 
+(defun my/chatgpt-open-prompt (question)
+  "Prompt for a QUESTION, open ChatGPT with it as the prompt."
+  (interactive "sAsk ChatGPT: ")
+  (let* ((encoded (url-hexify-string question))
+         (url (concat "https://chatgpt.com/?prompt=" encoded)))
+    (browse-url url)))
+
 ;; debug mode
 (defun my/echo-command-name-hook ()
   "Echo live command names."
@@ -1133,7 +1139,8 @@
 
   (:prefix "o"
    :desc "Browse URL at point" "l" #'browse-url-at-point
-   :desc "Remote SSH conn"     "." #'my/open-remote-conn)
+   :desc "Remote SSH conn"     "." #'my/open-remote-conn
+   :desc "ChatGPT"             "c" #'my/chatgpt-open-prompt)
 
   (:prefix ("e" . "edit")
    :desc "Yank from killring" "p" #'yank-from-kill-ring)
