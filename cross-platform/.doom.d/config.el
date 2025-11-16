@@ -573,11 +573,11 @@
   (setq vertico-count 15)
   (map! (:leader
          (:prefix "s"
-          ;; Search a symbol at point using Vertico
+          ;; search a symbol at point using Vertico
           :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point
-          ;; Repeat the last Vertico search. Doom also allow this with <SPC '>
-          ;; but I find it easier to remember memo-technically with <SPC s .>
-          :desc "Repeat last search" "." #'vertico-repeat))))
+          :desc "Search project" "a" #'+vertico/project-search  ; alias to SPC s p
+          :desc "Repeat last search" "." #'vertico-repeat ; alias to SPC '
+          ))))
 
 
 ;;
