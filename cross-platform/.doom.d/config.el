@@ -374,20 +374,18 @@
 (setq window-divider-default-right-width my-global-window-divider-width
       window-divider-default-bottom-width my-global-window-divider-width)
 
-;; Goto-address mode. This mode activates and highlights URLs and email
-;; addresses in the current buffer.
+;; highlight URLs and emails in current buffer
 (use-package! goto-addr
+  :init
+  (defface my-goto-address-mail-face '((t :italic nil :underline t))
+    "Face for email address."
+    :group 'basic-faces)
   :hook
   (prog-mode . goto-address-prog-mode)
   ((text-mode vterm-mode restclient-mode compilation-mode) . goto-address-mode)
   :custom
-  (goto-address-mail-regexp
-   "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
-  (goto-address-mail-face 'my-goto-address-mail-face)
-  :init
-  (defface my-goto-address-mail-face '((t :italic nil :underline t))
-    "Face for email address."
-    :group 'basic-faces))
+  (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
+  (goto-address-mail-face 'my-goto-address-mail-face))
 
 ;; todos
 ;; doc: https://github.com/tarsius/hl-todo
