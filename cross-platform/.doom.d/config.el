@@ -654,20 +654,35 @@
   (after! dap-mode
     (setq dap-python-debugger 'debugpy))
 
-  (defun my/python-to-fstring ()
-    "Make string to fstring."
+  (defun my/python-toggle-fstring ()
+    "Toggle f-string prefix on the current Python string literal."
     (interactive)
-    (when (nth 3 (syntax-ppss))
-      (let ((p (point)))
-        (goto-char (nth 8 (syntax-ppss)))
-        (insert "f")
-        (goto-char p)
-        (forward-char))))
+    (let* ((ppss (syntax-ppss))
+           (in-string (nth 3 ppss))
+           (string-start (nth 8 ppss))) ; position of opening quote
+      (when in-string
+        (save-excursion
+          (goto-char string-start)
+          (cond
+           ;; immediate prefix char is f/F, remove it: f"..." -> "..."
+           ((memq (char-before string-start) '(?f ?F))
+            (delete-char -1))
+           ;; combined prefix like rf"/fr" where the f is just before that
+           ;; e.g. rf"..." or rf'...' or rf"""..."""
+           ((and (> string-start 1)
+                 (memq (char-before (1- string-start)) '(?f ?F))
+                 (memq (char-before string-start) '(?r ?R ?b ?B ?u ?U)))
+            (goto-char (1- string-start))
+            (delete-char -1))
+           ;; no f-prefix, add it
+           (t
+            (goto-char string-start)
+            (insert "f")))))))
 
   (map! :map python-mode-map
         :leader
         :localleader
-        :desc "To f-string"     "f"   #'my/python-to-fstring
+        :desc "Toggle f-string"     "f"   #'my/python-toggle-fstring
         :desc "Deactivate venv" "e d" #'my/deactivate-python-venv
         :desc "Activate venv"   "e a" #'my/activate-closest-python-venv)
 
@@ -900,7 +915,7 @@
 
 ;; LLMs
 (setq gptel-directives
-'((default   . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
+      '((default   . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
         (assistant . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
         (writing   . "You are a large language model and a writing assistant. Respond concisely.")))
 (after! gptel
