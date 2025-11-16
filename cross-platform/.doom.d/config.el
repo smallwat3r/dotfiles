@@ -1058,26 +1058,35 @@
           ("https://realpython.com/atom.xml?format=xml" python)
           ("http://feeds.feedburner.com/PythonInsider" python)))
 
-  ;; Add private Github RSS feed to list of feeds. This needs to fetch my
-  ;; Github RSS token, so this is done separately.
+  ;; add private Github RSS feed, using token from pass.
   (let ((token (auth-source-pass-get "secret" "github/rss/token")))
     (when token
       (setq my-github-rss-feed
             (format "https://github.com/smallwat3r.private.atom?token=%s" token))
       (add-to-list 'elfeed-feeds (list my-github-rss-feed))))
 
-  (defun my/configure-elfeed-search-update (&rest _)
-    "Rename some elfeed feeds via metadata."
-    (when (and (boundp 'my-github-rss-feed)
-               my-github-rss-feed)
-      (when-let ((feed (elfeed-db-get-feed my-github-rss-feed)))
-        ;; use metadata to override the displayed title.
-        (setf (elfeed-meta feed :title) "Github feed")))
-    (when-let ((feed (elfeed-db-get-feed
-                      "https://github.com/doomemacs/doomemacs/commits/master.atom")))
-      (setf (elfeed-meta feed :title) "Doom Emacs commits")))
+  (defconst my-elfeed-doom-feed-url
+    "https://github.com/doomemacs/doomemacs/commits/master.atom")
 
-  (advice-add 'elfeed-search-update :before #'my/configure-elfeed-search-update))
+  ;; Custom print function: same as default, but with nicer feed titles.
+  (defun my/elfeed-search-print-entry (entry)
+    "Print ENTRY to the Elfeed search buffer with custom feed titles."
+    (let* ((orig-feed-title (symbol-function 'elfeed-feed-title)))
+      (cl-letf (((symbol-function 'elfeed-feed-title)
+                 (lambda (feed)
+                   (let ((url (elfeed-feed-url feed)))
+                     (cond
+                      ((and (boundp 'my-github-rss-feed)
+                            my-github-rss-feed
+                            (string= url my-github-rss-feed))
+                       "Github feed")
+                      ((string= url my-elfeed-doom-feed-url)
+                       "Doom Emacs commits")
+                      (t
+                       (funcall orig-feed-title feed)))))))
+        (elfeed-search-print-entry--default entry)))
+
+  (setq elfeed-search-print-entry-function #'my/elfeed-search-print-entry)))
 
 ;; utils
 (defun my/insert-timestamp (&optional datetime)
