@@ -15,10 +15,17 @@
   :custom
   (slack-buffer-emojify t)
   (slack-prefer-current-team t)
+  :custom-face
+  (slack-mrkdwn-code-block-face
+   ((t (:inherit default :foreground "DarkSlateGrey"))))
+  (slack-preview-face
+   ((t (:inherit default :foreground "DarkSlateGrey"))))
+  (slack-mrkdwn-code-face
+   ((t (:inherit default :foreground "DarkBlue"))))
   :config
   (slack-register-team
    :default t
    :name "Work"
-   :token (+pass-get-secret "slack/work/token")
+   :token  (+pass-get-secret "slack/work/token")
    :cookie (+pass-get-secret "slack/work/cookie")
    :full-and-display-names t))
