@@ -28,10 +28,12 @@
 (defun my/kill-all-buffers ()
   "Kill all buffers."
   (interactive)
-  (mapc 'my/kill-buffer (buffer-list)))
+  (mapc 'my/kill-buffer (buffer-list))
+  (message "Killed all buffers"))
 
 ;;;###autoload
 (defun my/kill-all-buffers-except-current ()
   "Kill all buffers except the current one."
   (interactive)
-  (mapc 'my/kill-buffer (delete (current-buffer) (buffer-list))))
+  (mapc 'my/kill-buffer (delete (current-buffer) (buffer-list)))
+  (message "Killed all buffers except: %s" (current-buffer)))
