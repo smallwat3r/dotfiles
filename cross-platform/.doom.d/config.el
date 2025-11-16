@@ -7,8 +7,8 @@
   "User alias.")
 
 (defvar my-email-addresses-alist
-  '(("gmail"      . "mpetiteau.pro@gmail.com")
-    ("smallwat3r" . "matt@smallwat3r.com"))
+  `(("gmail" . "mpetiteau.pro@gmail.com")
+    (,my-user-alias . "matt@smallwat3r.com"))
   "Alist of my email addresses.")
 
 (defun my/get-email (name)
@@ -975,7 +975,7 @@
   ;; Use a custom command to fetch for new emails with mbsync
   (setq +notmuch-sync-backend "mbsync -a && notmuch new")
 
-  (setq my-user-mail-address-2 (my/get-email "smallwat3r"))
+  (setq my-user-mail-address-2 (my/get-email my-user-alias))
 
   ;; Set default tags on replies
   (setq notmuch-fcc-dirs
@@ -1052,7 +1052,7 @@
 
 (defun my/insert-email-smallwat3r ()
   (interactive)
-  (insert (my/get-email "smallwat3r")))
+  (insert (my/get-email my-user-alias)))
 
 (defun my/chatgpt-open-prompt (question)
   "Prompt for a QUESTION, open ChatGPT with it as the prompt."
