@@ -22,19 +22,16 @@
          (dir  (my/terminal-here--default-directory)))
     (unless (executable-find term)
       (error "Executable '%s' not found in PATH" term))
-    (if (string= term "alacritty")
-        ;; Alacritty has a native working-directory flag
-        (format "INSIDE_EMACS=%s %s --working-directory %S >/dev/null 2>&1"
-                term term dir)
-      ;; foot / st (and similar) just run inside a shell
-      (format "sh -lc 'cd %s && INSIDE_EMACS=%s %s' >/dev/null 2>&1"
-              (shell-quote-argument dir) term term))))
+    (format "sh -lc 'cd %s && INSIDE_EMACS=%s %s' >/dev/null 2>&1"
+            (shell-quote-argument dir) term term)))
 
 ;;;###autoload
 (defun my/terminal-here ()
   "Open a terminal window in the current directory."
   (interactive "@")
-  (shell-command (my/terminal-here--command))
+  (start-process-shell-command
+   "terminal-here" nil
+   (my/terminal-here--command))
   (message "Terminal is ready!"))
 
 ;;;###autoload
@@ -48,3 +45,46 @@
   "Open a vterm buffer from the current directory."
   (interactive)
   (+vterm/here t))
+
+(defun my/ssh-config-hosts ()
+  "Return a list of SSH host aliases from ~/.ssh/config."
+  (let* ((file (expand-file-name "~/.ssh/config"))
+         (hosts '()))
+    (when (file-readable-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (goto-char (point-min))
+        (while (re-search-forward
+                ;; Match: Host foo bar baz
+                "^[Hh]ost[ \t]+\\(.+\\)$" nil t)
+          (let ((raw (match-string 1)))
+            ;; Split on whitespace
+            (dolist (h (split-string raw "[ \t]+" t))
+              ;; Ignore wildcards (* ?)
+              (unless (string-match-p "[*?]" h)
+                (push h hosts)))))))
+    (delete-dups hosts)))
+
+(defun my/terminal-ssh--command (host)
+  "Build the shell command to launch the chosen terminal and SSH to HOST."
+  (let* ((term (my/terminal-here--pick-terminal))
+         (extra-flags (if (string= term "foot") "-t xterm-256color" ""))
+         (ssh-cmd (format "ssh %s" (shell-quote-argument host))))
+    (unless (executable-find term)
+      (error "Executable '%s' not found in PATH" term))
+    (format "INSIDE_EMACS=1 %s %s -e sh -lc %s"
+            term
+            extra-flags
+            (shell-quote-argument ssh-cmd))))
+
+;;;###autoload
+(defun my/ssh-external (host)
+  "Open an external terminal and SSH to HOST."
+  (interactive
+   (list (completing-read "SSH target: "
+                          (my/ssh-config-hosts)
+                          nil nil)))
+  (let ((cmd (my/terminal-ssh--command host)))
+    (message "my/ssh-external running: %s" cmd)
+    (start-process-shell-command
+     "my-ssh-external" nil cmd)))

@@ -46,10 +46,9 @@ else
 fi
 
 export EDITOR="${HOME}/.local/bin/ec"
-
+export TERM=xterm-256color
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-
 export CLICOLOR=1
 
 # Load private env configs
