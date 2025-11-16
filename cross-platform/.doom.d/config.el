@@ -1036,7 +1036,6 @@
             (elfeed-make-tagger :feed-url "github.com/smallwat3r.private"
                                 :add '(github perso)))
 
-  ;; Faces for tagged entries.
   (defface my-github-elfeed-entry-face '((t :foreground "cyan4"))
     "Face for a Github related Elfeed entry.")
 
@@ -1046,7 +1045,6 @@
   (defface my-emacs-elfeed-entry-face '((t :foreground "purple"))
     "Face for an Emacs related Elfeed entry.")
 
-  ;; distinguish faces depending on tags for Elfeed entries.
   (cl-pushnew '(github my-github-elfeed-entry-face)
               elfeed-search-face-alist :test #'equal)
   (cl-pushnew '(python my-python-elfeed-entry-face)
@@ -1069,14 +1067,16 @@
       (add-to-list 'elfeed-feeds (list my-github-rss-feed))))
 
   (defun my/configure-elfeed-search-update (&rest _)
-    "Rename some elfeed feeds."
+    "Rename some elfeed feeds via metadata."
     (when (and (boundp 'my-github-rss-feed)
                my-github-rss-feed)
       (when-let ((feed (elfeed-db-get-feed my-github-rss-feed)))
-        (setf (elfeed-feed-title feed) "Github feed")))
+        ;; use metadata to override the displayed title.
+        (setf (elfeed-meta feed :title) "Github feed")))
     (when-let ((feed (elfeed-db-get-feed
                       "https://github.com/doomemacs/doomemacs/commits/master.atom")))
-      (setf (elfeed-feed-title feed) "Doom Emacs commits")))
+      (setf (elfeed-meta feed :title) "Doom Emacs commits")))
+
   (advice-add 'elfeed-search-update :before #'my/configure-elfeed-search-update))
 
 ;; utils
