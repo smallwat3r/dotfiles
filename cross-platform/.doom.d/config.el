@@ -799,10 +799,6 @@
 ;; Lua
 (add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
 
-;; ssh config mode
-(add-to-list 'auto-mode-alist
-             '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
-
 
 ;;
 ;;; Terminals
@@ -857,15 +853,26 @@
         (vterm-send-string choice))))
   )
 
+(defvar my-ssh-config-files
+  '("~/.ssh/config"
+    "~/.ssh/work"
+    "~/.ssh/private")
+  "List of user SSH config files used for TRAMP and ssh helpers.")
+
+(add-to-list 'auto-mode-alist
+             '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
+
 ;; remote file access
 (after! tramp
   (tramp-set-completion-function
-   "ssh" '((tramp-parse-sconfig "~/.ssh/config")
-           (tramp-parse-sconfig "~/.ssh/work")
-           (tramp-parse-sconfig "~/.ssh/private")
-           (tramp-parse-sconfig "/etc/ssh_config")
-           (tramp-parse-shosts "/etc/hosts")
-           (tramp-parse-shosts "~/.ssh/known_hosts"))))
+   "ssh"
+   (append
+    (mapcar (lambda (f)
+              (list 'tramp-parse-sconfig (expand-file-name f)))
+            my-ssh-config-files)
+    '((tramp-parse-sconfig "/etc/ssh_config")
+      (tramp-parse-shosts "/etc/hosts")
+      (tramp-parse-shosts "~/.ssh/known_hosts")))))
 
 (defun my/vterm-tramp-base-path ()
   "Returns the base tramp path of a Tramp buffer."

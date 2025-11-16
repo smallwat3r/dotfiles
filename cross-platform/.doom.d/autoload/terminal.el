@@ -47,22 +47,19 @@
   (+vterm/here t))
 
 (defun my/ssh-config-hosts ()
-  "Return a list of SSH host aliases from ~/.ssh/config."
-  (let* ((file (expand-file-name "~/.ssh/config"))
-         (hosts '()))
-    (when (file-readable-p file)
-      (with-temp-buffer
-        (insert-file-contents file)
-        (goto-char (point-min))
-        (while (re-search-forward
-                ;; Match: Host foo bar baz
-                "^[Hh]ost[ \t]+\\(.+\\)$" nil t)
-          (let ((raw (match-string 1)))
-            ;; Split on whitespace
-            (dolist (h (split-string raw "[ \t]+" t))
-              ;; Ignore wildcards (* ?)
-              (unless (string-match-p "[*?]" h)
-                (push h hosts)))))))
+  "Return a list of SSH host aliases from the files in `my-ssh-config-files`."
+  (let ((hosts '()))
+    (dolist (file my-ssh-config-files)
+      (setq file (expand-file-name file))
+      (when (file-readable-p file)
+        (with-temp-buffer
+          (insert-file-contents file)
+          (goto-char (point-min))
+          (while (re-search-forward "^[Hh]ost[ \t]+\\(.+\\)$" nil t)
+            (let ((raw (match-string 1)))
+              (dolist (h (split-string raw "[ \t]+" t))
+                (unless (string-match-p "[*?]" h) ; skip wildcards
+                  (push h hosts))))))))
     (delete-dups hosts)))
 
 (defun my/terminal-ssh--command (host)
