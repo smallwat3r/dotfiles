@@ -1,13 +1,23 @@
 # smallwat3r's ZSH config entrypoint
 
 # enable/disable profiling by setting DEBUG_ZSH_PERF in env
-#   export DEBUG_ZSH_PERF=1
 if (( ${+DEBUG_ZSH_PERF} )); then
   zmodload zsh/zprof
 fi
 
-# allow override, otherwise default to ~/.zsh
 : "${ZSH_ROOT:=$HOME/.zsh}"
+
+if [[ $(uname) == 'Darwin' ]]; then
+  path=(/Applications/Alacritty.app/Contents/MacOS $path)
+  export TERMINAL='alacritty'
+elif [[ -f /etc/os-release ]] && grep -qi '^ID=fedora' /etc/os-release; then
+  export TERMINAL='foot'
+else
+  export TERMINAL='st'
+fi
+
+: "${TERM:=xterm-256color}"
+export TERM
 
 load_zsh_dir() {
   local dir=$1

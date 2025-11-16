@@ -1,10 +1,10 @@
-# .zshenv
+# ~/.zshenv
 
-if [[ -z "${XDG_CONFIG_HOME}" ]]; then
-  export XDG_CONFIG_HOME="${HOME}/.config"
-fi
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+export XDG_CONFIG_HOME
 
-typeset -U PATH path cdpath manpath
+# use unique arrays for paths
+typeset -U path cdpath manpath
 
 path=(
   /usr/local/bin
@@ -13,45 +13,33 @@ path=(
   /bin
   /sbin
   /usr/sbin
-  "${HOME}"/.local/bin
+  "$HOME/.local/bin"
 )
 
-cdpath=("${HOME}")
+cdpath=(
+  "$HOME"
+)
 
 manpath=(
   /usr/local/share/man
   /usr/share/man
+  $manpath
 )
 
-export PATH
+# homebrew
+/opt/homebrew/bin(/N) && path=(/opt/homebrew/bin $path)
+"/opt/homebrew/sbin"(/N) && path=(/opt/homebrew/sbin $path)
+"/opt/homebrew/opt/sphinx-doc/bin"(/N) && path=(/opt/homebrew/opt/sphinx-doc/bin $path)
 
-if [ -d /opt/homebrew ]; then
-  # this needs to live here as modules from config depends on this
-  export PATH="/opt/homebrew/bin:$PATH"
-  export PATH="/opt/homebrew/sbin:$PATH"
-  export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
-fi
+# user npm global bin dir
+[[ -d "$HOME/.npm-global/bin" ]] && path=("$HOME/.npm-global/bin" $path)
 
-if [ -d "$HOME/.npm-global/bin" ]; then
-  export PATH="$HOME/.npm-global/bin:$PATH"
-fi
+export PATH  # syncs with $path
 
-if [[ $(uname) == 'Darwin' ]]; then
-  export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
-  export TERMINAL='alacritty'
-elif [[ -f /etc/os-release ]] && grep -qi '^ID=fedora' /etc/os-release; then
-  export TERMINAL='foot'
-else
-  export TERMINAL='st'
-fi
-
-export EDITOR="${HOME}/.local/bin/ec"
-export TERM=xterm-256color
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
+export EDITOR="$HOME/.local/bin/ec"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
 export CLICOLOR=1
 
-# Load private env configs
-if [[ -f "${HOME}/.zshenv.private" ]]; then
-  source "${HOME}/.zshenv.private"
-fi
+# private environment overrides
+[[ -f "$HOME/.zshenv.private" ]] && source "$HOME/.zshenv.private"
