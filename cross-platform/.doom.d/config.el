@@ -440,7 +440,7 @@
 
 ;; add a confirmation message after calling `save-buffer'
 (defadvice save-buffer (after my/save-buffer-confirmation activate)
-  (message "Saved `%s'" (buffer-name)))
+  (message "Saved: %s" (buffer-name)))
 
 ;;
 ;;; Custom templates
