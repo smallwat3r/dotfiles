@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Command Launcher.
+#   1. Uses `compgen -c` to list all executable commands in the user's PATH.
+#   2. Lets the user fuzzy-pick a command using `fzf` with custom colors.
+#   3. Launches the selected command inside foot (Linux) or alacritty (Macos).
+
+set -euo pipefail
+
+if ! command -v fzf >/dev/null 2>&1; then
+  echo 'You need to install fzf' >&2
+  exit 1
+fi
+
+target="$(
+  compgen -c | sort -u | \
+    fzf --reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115
+)" || exit 0
+[ -n "$target" ] || exit 0
+
+os="$(uname -s)"
+case "$os" in
+  Darwin)
+    if ! command -v alacritty >/dev/null 2>&1; then
+      echo 'You need to install alacritty' >&2
+      exit 1
+    fi
+    exec alacritty -T "launcher" --config-file "$HOME/.config/launcher.toml" -e "$target"
+    ;;
+  Linux)
+    if ! command -v foot >/dev/null 2>&1; then
+      echo 'You need to install foot' >&2
+      exit 1
+    fi
+    exec foot -w 600x300 -T "launcher" -e "$target"
+    ;;
+  *) echo "Unsupported OS: $os" >&2; exit 1;;
+esac
