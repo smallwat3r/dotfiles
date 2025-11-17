@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # Time zsh loading time
 
 for _ in {1..10}; do

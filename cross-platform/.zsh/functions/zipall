@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # Zip all files from current directory into their own zipfile
 
 for file in $(echo *(^/)); do
