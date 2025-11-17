@@ -1,7 +1,5 @@
-if [ -d "${HOME}"/.cargo/bin ]; then
-  export PATH="${PATH:+${PATH}:}${HOME}/.cargo/bin"
+if (( ${path[(Ie)$HOME/.cargo/bin]} == 0 )); then
+  path+=("$HOME/.cargo/bin")
 fi
 
-if [ -f "${HOME}"/.cargo/env ]; then
-  source "${HOME}/.cargo/env"
-fi
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"

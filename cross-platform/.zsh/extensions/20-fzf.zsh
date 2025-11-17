@@ -1,25 +1,22 @@
 # FZF configs and helper functions
 # Dependencies: fzf
 
-if [[ ! "${PATH}" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+# Make sure fzf's bin is on PATH (Homebrew /usr/local layout)
+if (( ${path[(Ie)/usr/local/opt/fzf/bin]} == 0 )); then
+  path+=("/usr/local/opt/fzf/bin")
 fi
 
 if (( $+commands[fzf] )); then
-  # Ease access of history binding by remapping it.
+  # ease access of history binding by remapping it.
   bindkey -r '^R'
   bindkey '^W' fzf-history-widget
 fi
 
-# Loop over an array of possible config location, and source the file
-# if one exists.
+# Loop over an array of possible config locations, and source the first that exists.
 __load_fzf_config() {
-  local config_paths=("$@")
   local config
-  for config ("${config_paths[@]}"); do
-    if [ -f "${config}" ]; then
-      source "${config}" && break
-    fi
+  for config in "$@"; do
+    [[ -f $config ]] && source "$config" && break
   done
 }
 
@@ -30,7 +27,7 @@ __fzf_possible_completion_config_paths=(
   '/opt/homebrew/opt/fzf/shell/completion.zsh'
 )
 
-# It also provides some default bindings.
+# it also provides some default bindings
 __fzf_possible_keybinding_config_paths=(
   '/usr/share/fzf/shell/key-bindings.zsh'
   '/usr/local/opt/fzf/shell/key-bindings.zsh'
@@ -38,9 +35,11 @@ __fzf_possible_keybinding_config_paths=(
   '/opt/homebrew/opt/fzf/shell/key-bindings.zsh'
 )
 
-__load_fzf_config ${__fzf_possible_completion_config_paths}
-__load_fzf_config ${__fzf_possible_keybinding_config_paths}
+__load_fzf_config "${__fzf_possible_completion_config_paths[@]}"
+__load_fzf_config "${__fzf_possible_keybinding_config_paths[@]}"
 
 export FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115'
-export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+if (( $+commands[rg] )); then
+  export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi

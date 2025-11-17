@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 # Open in file manager
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  _program=open
+if [[ "$OSTYPE" == darwin* ]]; then
+  program="open"
+elif command -v xdg-open >/dev/null 2>&1; then
+  program="xdg-open"
 else
-  if [ -f /usr/bin/xdg-open ]; then
-    _program=xdg-open
-  else
-    printf 'Can'\''t find a file manager\n' >&2
-    exit 1
-  fi
+  printf "Can't find an appropriate file opener\n" >&2
+  exit 127
 fi
 
+# if no arguments, open current directory
 if [[ $# -eq 0 ]]; then
-  "$_program" .
+  "$program" .
 else
-  "$_program" "$@"
+  "$program" "$@"
 fi

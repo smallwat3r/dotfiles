@@ -1,16 +1,13 @@
-# Ensure gnu-grep is being used instead of system's /usr/bin/grep
+# Prefer GNU grep over BSD grep when available
 
-if [ -d '/usr/local/opt/grep/libexec/gnubin' ]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/grep/libexec/gnubin"
-
-  alias \
-    grep='/usr/local/opt/grep/libexec/gnubin/grep' \
-    egrep='/usr/local/opt/grep/libexec/gnubin/egrep' \
-    fgrep='/usr/local/opt/grep/libexec/gnubin/fgrep'
-elif [ -d '/opt/homebrew/bin' ]; then
-  # it's possible homebrew installs those elsewhere
-  alias \
-    grep='/opt/homebrew/bin/ggrep' \
-    egrep='/opt/homebrew/bin/gegrep' \
-    fgrep='/opt/homebrew/bin/fegrep'
+if [[ -d /usr/local/opt/grep/libexec/gnubin ]]; then
+  # Intel macOS Homebrew path
+  if (( ${path[(Ie)/usr/local/opt/grep/libexec/gnubin]} == 0 )); then
+    path=("/usr/local/opt/grep/libexec/gnubin" $path)
+  fi
+elif [[ -d /opt/homebrew/opt/grep/libexec/gnubin ]]; then
+  # Apple Silicon macOS Homebrew path
+  if (( ${path[(Ie)/opt/homebrew/opt/grep/libexec/gnubin]} == 0 )); then
+    path=("/opt/homebrew/opt/grep/libexec/gnubin" $path)
+  fi
 fi

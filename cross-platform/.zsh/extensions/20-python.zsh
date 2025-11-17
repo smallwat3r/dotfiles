@@ -1,33 +1,34 @@
 # Python related configuration
 
-# ensure to create all Poetry virtual env within the project
+# Ensure Poetry virtualenvs are created in the project directory
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
-if [ -d "${HOME}/.poetry/bin" ]; then
-  export PATH="${HOME}/.poetry/bin:${PATH}"
+# Add Poetry's bin dir to PATH
+if [[ -d "$HOME/.poetry/bin" ]]; then
+  if (( ${path[(Ie)$HOME/.poetry/bin]} == 0 )); then
+    path=("$HOME/.poetry/bin" $path)
+  fi
 fi
 
 # YOLO
 export PIP_BREAK_SYSTEM_PACKAGES=1
 
-# activate the nearest python venv
+# Activate the nearest python venv (.venv) up the directory tree
 avenv() {
-  local dir
-  dir="$(pwd)"
-  while [[ ! -f "${dir}/.venv/bin/activate" && -n "${dir}" ]]; do
-    dir="${dir%/*}"
+  local dir=$PWD
+  while [[ ! -f "$dir/.venv/bin/activate" && "$dir" != "/" ]]; do
+    dir=${dir%/*}
   done
-  if [[ -f "${dir}/.venv/bin/activate" ]]; then
-    echo "Activating virtualenv from ${dir}/.venv"
-    # shellcheck disable=SC1091
-    source "${dir}/.venv/bin/activate"
+  if [[ -f "$dir/.venv/bin/activate" ]]; then
+    echo "Activating virtualenv from $dir/.venv"
+    source "$dir/.venv/bin/activate"
   else
     echo 'No .venv found'
-    false
+    return 1
   fi
 }
 
-# run python from the nearest venv
+# Run python from the nearest venv
 vpython() {
   avenv && python "$@"
 }

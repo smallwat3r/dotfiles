@@ -2,14 +2,14 @@
 # Dependencies: tmux
 
 if (( $+commands[tmux] )); then
-  # Kill all Tmux sessions.
+  # Kill all Tmux sessions except the current one.
   tksa() {
     tmux kill-session -a
   }
 
   # Kill current Tmux session.
   tks() {
-    tmux kill-session -t
+    tmux kill-session
   }
 
   # List all Tmux sessions.
@@ -19,11 +19,11 @@ if (( $+commands[tmux] )); then
 
   # Split current Tmux window horizontally.
   sp() {
-    tmux splitw -v
+    tmux split-window -v
   }
 
   # Split current Tmux window vertically.
   vs() {
-    tmux splitw -h
+    tmux split-window -h
   }
 fi

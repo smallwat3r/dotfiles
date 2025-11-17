@@ -1,5 +1,7 @@
-export GOPATH="${HOME}/go"
+GOPATH="$HOME/go"
 
-if [[ ! "${PATH}" == "*/${GOPATH}/bin*" ]]; then
-  export PATH="${PATH:+${PATH}:}${GOPATH}/bin"
+if (( ${path[(Ie)$GOPATH/bin]} == 0 )); then
+  path+=("$GOPATH/bin")
 fi
+
+export GOPATH PATH
