@@ -5,7 +5,7 @@ alias e="$EDITOR"
 
 # Handy to allow ignoring prompt characters when copying commands from
 # documentation. Also acts as an alias to make a command not appear in
-# the history when using HISTIGNORESPACE.
+# the history when using HIST_IGNORE_SPACE (HIST_IGNORE_SPACE in zsh).
 alias \
   \$=" " \
   %=" "
@@ -21,16 +21,27 @@ alias \
 
 # Define git aliases from git config.
 #
-# For all aliases set up in git config, define another alias such as all git
+# For all aliases set up in git config, define another alias such that all git
 # commands can be called using `g` directly with its alias concatenated.
 #
 # Examples:
-#   `git push` could be called from `gp`.
-#   `git checkout` could be called from `gco`.
-for al in ${${${(0)"$(git config -z --get-regexp '^alias.')"}%%$'\n'*}\#alias.}; do
-  alias g$al="git $al"
-done
-alias g="git"
+#   `git push` could be called as `gp`.
+#   `git checkout` could be called as `gco`.
+if command -v git >/dev/null 2>&1; then
+  # git config --get-regexp '^alias\.' outputs lines like:
+  #   alias.co checkout
+  #   alias.br branch
+  #
+  # We read them into an array, split by lines.
+  git_alias_lines=("${(@f)$(git config --get-regexp '^alias\.' 2>/dev/null)}")
+  for line in $git_alias_lines; do
+    key=${line%% *}       # "alias.co"
+    name=${key#alias.}    # "co"
+    alias "g${name}=git ${name}"
+  done
+  unset git_alias_lines line key name
+  alias g="git"
+fi
 
 # Use Neovim over Vim
 alias \
@@ -51,9 +62,10 @@ alias rg="rg \
 alias mkdir="mkdir -pv"
 alias diskspace="df -P -kHl"
 alias dots="cd $HOME/dotfiles"
-alias fonts="open $HOME/Library/Fonts"
 
+# macOS-only helpers
 if [[ "$OSTYPE" =~ ^darwin ]]; then
+  alias fonts="open $HOME/Library/Fonts"
   alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 fi
 
@@ -75,7 +87,7 @@ if [ -n "$ZSH_VERSION" ]; then
     alias -g C="| xclip -selection clipboard"
   fi
 
-  # Tracked aliases
+  # Tracked aliases (named directories)
   hash -d \
     d="$HOME/dotfiles" \
     dots="$HOME/dotfiles" \
