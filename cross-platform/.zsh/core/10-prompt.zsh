@@ -15,22 +15,31 @@ __is_venv() {
 __git_prompt_segment() {
   local git_status first_line branch rest dirty top root paused
 
-  # One status call to rule them all
   git_status=$(git status --porcelain=v1 -b 2>/dev/null) || return
 
-  # First line looks like: "## main" or "## main...origin/main [ahead 1]"
+  # first line looks like: "## master" or "## master...origin/master [ahead 1]"
   first_line=${git_status%%$'\n'*}
   first_line=${first_line#\#\# }
 
-  # Extract branch name before "..." or space
+  # extract branch name before "..." or space
   branch=${first_line%%...*}
   branch=${branch%% *}
 
-  # Dirty if there is more than one line in porcelain output
-  rest=${git_status#*$'\n'}
-  [[ -n $rest ]] && dirty='*' || dirty=''
+  # everything after the first line (may include newlines).
+  if [[ $git_status == *$'\n'* ]]; then
+    rest=${git_status#*$'\n'}
+  else
+    rest=''
+  fi
 
-  # Repo root marker (~) if we're at the top-level dir
+  # dirty only if there's ANY non-whitespace character in the rest
+  if [[ $rest == *[![:space:]]* ]]; then
+    dirty='*'
+  else
+    dirty=''
+  fi
+
+  # repo root marker (~) if we're at the top-level dir
   top=$(git rev-parse --show-toplevel 2>/dev/null) || top=''
   if [[ -n $top && $top == ${PWD:A} ]]; then
     root='~'
@@ -45,7 +54,7 @@ __git_prompt_segment() {
     paused=''
   fi
 
-  # Emit paused badge + yellow git info (branch[*]~)
+  # emit paused badge + yellow git info (branch[*]~)
   # % codes are prompt escapes and will be interpreted because PROMPT_SUBST is set.
   printf '%s%%F{yellow} (%s%s%s)%%f ' "$paused" "$branch" "$dirty" "$root"
 }
