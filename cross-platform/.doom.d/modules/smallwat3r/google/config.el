@@ -22,6 +22,8 @@
   :commands (google-this google-this-word google-this-line)
   :init
   (map! :leader
+        :prefix "o"
+        :desc "Query google"     "g" #'google-this
         :prefix ("G" . "google")
         :desc "Query google"     "q" #'google-this
         :desc "Google this word" "w" #'google-this-word
