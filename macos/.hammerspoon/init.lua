@@ -163,14 +163,7 @@ end
 hotkey.bind(mod_cmd, 'm', function() launcherRunner('App launcher', 'launcher-app', nil) end)
 
 -- execute a binary
-hotkey.bind(mod_cmd, ',', function()
-  local window = window.get('Bin launcher')
-  if window then
-    window:focus()
-  else
-    task.new('/bin/zsh', nil, { '-l', '-c', 'INSIDE_HS=1 launcher-bin' }):start()
-  end
-end)
+hotkey.bind(mod_cmd, ',', function() launcherRunner('Bin launcher', 'launcher-bin', nil) end)
 
 -- browse google chrome bookmarks
 hotkey.bind(mod_cmd, '.', function() launcherRunner('Bookmark launcher', 'launcher-chrome-bookmarks', nil) end)
