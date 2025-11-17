@@ -13,3 +13,5 @@ target="$(
 )" || exit 0
 
 [ -n "$target" ] || exit 0
+
+exec "$target"
