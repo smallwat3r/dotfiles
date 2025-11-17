@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
-# List processes listening on port.
+# List processes listening on a given port.
 
-set -e
-
-if [[ -z $1 ]]; then
-  printf 'Please specify a port.\n' >&2
+if [[ $# -ne 1 ]]; then
+  printf 'Usage: %s <port>\n' "$0" >&2
   exit 1
 fi
 
-if [[ ! $1 =~ ^-?[0-9]+$ ]]; then
-  printf 'Port number needs to be an integer.\n' >&2
+port=$1
+
+# validate integer
+if ! [[ $port =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
+  printf 'Error: port must be an integer between 1 and 65535.\n' >&2
   exit 1
 fi
 
-lsof -n -i:"$1" | grep LISTEN
+if ! lsof -nP -iTCP:"$port" -sTCP:LISTEN 2>/dev/null; then
+  printf 'No process is listening on port %s\n' "$port"
+fi

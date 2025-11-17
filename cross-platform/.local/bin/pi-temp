@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-# Ssh into pi (needs to be properly set in .ssh/config) and check temperature.
+# SSH into a Pi (configured via ~/.ssh/config) and show its temperature.
 
-set -e
-
-if [[ -z $1 ]]; then
-  printf 'Please specify a ssh target.\n' >&2
+if [[ $# -ne 1 ]]; then
+  printf 'Usage: %s <ssh-target>\n' "$0" >&2
   exit 1
 fi
 
-ssh "${1}" 'vcgencmd measure_temp'
+target=$1
+
+# Run vcgencmd on the remote host
+if ! ssh "$target" 'vcgencmd measure_temp'; then
+  printf 'Error: failed to run vcgencmd on "%s"\n' "$target" >&2
+  exit 1
+fi

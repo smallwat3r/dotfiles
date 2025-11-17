@@ -5,7 +5,14 @@
 # Can be triggerd every minute by a cron job with:
 #   */1 * * * * /usr/local/bin/email-sync >/tmp/email-sync-cron-stdout.log 2>/tmp/email-sync-cron-stderr.log
 
-killall mbsync &>/dev/null  # kill current running instances of mbsync
-mbsync -a
+# kill any running mbsync processes quietly
+pkill -x mbsync 2>/dev/null
+
+# run full sync, exit early on failure
+if ! mbsync -a; then
+  echo "mbsync failed" >&2
+  exit 1
+fi
+
+# update notmuch db
 notmuch new
-exit 0
