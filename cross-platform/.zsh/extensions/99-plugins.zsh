@@ -42,10 +42,10 @@ __load_plugins() {
   done
 }
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets regexp)
+
 __load_plugins
 
-# modify 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[default]=none
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
 ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=green
@@ -67,3 +67,6 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
 ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[assign]=none
+
+ZSH_HIGHLIGHT_REGEXP+=('^rm .*' fg=90,bold)
+ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' fg=164,bold)
