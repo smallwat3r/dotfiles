@@ -8,6 +8,5 @@
 __rationalise-dot() {
   [[ $LBUFFER = *.. ]] && LBUFFER+=/.. || LBUFFER+=.
 }
-
 zle -N __rationalise-dot
 bindkey "." __rationalise-dot
