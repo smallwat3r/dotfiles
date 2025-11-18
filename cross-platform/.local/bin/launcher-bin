@@ -2,6 +2,10 @@
 # Custom command launcher
 set -euo pipefail
 
+# ignore SIGHUP so children survive when terminal exits (this is
+# launched from a term as a command launcher)
+trap "" HUP
+
 if ! command -v fzf >/dev/null 2>&1; then
   echo 'You need to install fzf' >&2
   exit 1
@@ -23,7 +27,10 @@ target="$(
 [ -n "$target" ] || exit 0
 
 if command -v flatpak >/dev/null 2>&1 && flatpak info "$target" >/dev/null 2>&1; then
-  exec flatpak run "$target"
+  flatpak run "$target" &
 else
-  exec "$target"
+  "$target" &
 fi
+
+# ensure terminal launcher exits as well if script is done
+exit 0
