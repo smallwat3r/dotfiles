@@ -7,11 +7,23 @@ if ! command -v fzf >/dev/null 2>&1; then
   exit 1
 fi
 
+cmds="$(compgen -c | sort -u)"
+
+# if Linux, also include Flatpak apps
+if [[ "$(uname -s)" == "Linux" ]] && command -v flatpak >/dev/null 2>&1; then
+  flatpaks="$(flatpak list --app --columns=application | sort -u)"
+  cmds="$cmds"$'\n'"$flatpaks"
+fi
+
 target="$(
-  compgen -c | sort -u | \
+  printf '%s\n' "$cmds" | \
     fzf --reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115
 )" || exit 0
 
 [ -n "$target" ] || exit 0
 
-exec "$target"
+if command -v flatpak >/dev/null 2>&1 && flatpak info "$target" >/dev/null 2>&1; then
+  exec flatpak run "$target"
+else
+  exec "$target"
+fi
