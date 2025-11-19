@@ -44,8 +44,7 @@ load_zsh_dir() {
 }
 
 load_zsh_functions() {
-  local root=$1 fn_dir=$root/functions
-
+  local fn_dir=${1}/functions
   [[ -d $fn_dir ]] || return 0
 
   fpath=("$fn_dir" $fpath)

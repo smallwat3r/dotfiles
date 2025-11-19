@@ -36,7 +36,7 @@ manpath=(
 
 export PATH  # syncs with $path
 
-export EDITOR="$HOME/.local/bin/ec"
+export EDITOR="ec"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export CLICOLOR=1
