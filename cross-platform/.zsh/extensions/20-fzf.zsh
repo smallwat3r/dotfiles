@@ -12,33 +12,60 @@ if (( $+commands[fzf] )); then
   bindkey '^W' fzf-history-widget
 fi
 
-# Loop over an array of possible config locations, and source the first that exists.
-__load_fzf_config() {
-  local config
-  for config in "$@"; do
-    [[ -f $config ]] && source "$config" && break
+__fzf_source_first() {
+  local f
+  for f in "$@"; do
+    [[ -r $f ]] && source "$f" && return 0
   done
 }
 
-# Fzf provides by default some completion configuration for Zsh.
-__fzf_possible_completion_config_paths=(
-  '/usr/local/opt/fzf/shell/completion.zsh'
-  '/usr/share/fzf/completion.zsh'
-  '/opt/homebrew/opt/fzf/shell/completion.zsh'
-)
+__load_fzf_config() {
+  local -a completion_paths keybinding_paths
 
-# it also provides some default bindings
-__fzf_possible_keybinding_config_paths=(
-  '/usr/share/fzf/shell/key-bindings.zsh'
-  '/usr/local/opt/fzf/shell/key-bindings.zsh'
-  '/usr/share/fzf/key-bindings.zsh'
-  '/opt/homebrew/opt/fzf/shell/key-bindings.zsh'
-)
+  case $(uname -s) in
+    Darwin)
+      completion_paths=(
+        /opt/homebrew/opt/fzf/shell/completion.zsh
+        /usr/local/opt/fzf/shell/completion.zsh
+      )
+      keybinding_paths=(
+        /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+        /usr/local/opt/fzf/shell/key-bindings.zsh
+      )
+      ;;
+    Linux)
+      completion_paths=(
+        /usr/share/fzf/completion.zsh
+        /usr/share/fzf/shell/completion.zsh
+      )
+      keybinding_paths=(
+        /usr/share/fzf/key-bindings.zsh
+        /usr/share/fzf/shell/key-bindings.zsh
+      )
+      ;;
+    *)
+      completion_paths=( "$HOME/.fzf.zsh" )
+      keybinding_paths=()
+      ;;
+  esac
 
-__load_fzf_config "${__fzf_possible_completion_config_paths[@]}"
-__load_fzf_config "${__fzf_possible_keybinding_config_paths[@]}"
+  __fzf_source_first "${completion_paths[@]}"
+  __fzf_source_first "${keybinding_paths[@]}"
+}
 
-export FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115'
+__load_fzf_config
+
+export FZF_DEFAULT_OPTS='
+  --reverse
+  --color=bg:-1,bg+:-1
+  --color=fg:-1,fg+:-1
+  --color=hl:33,hl+:33
+  --color=info:30
+  --color=prompt:30
+  --color=pointer:32
+  --color=marker:32
+  --color=spinner:32
+'
 if (( $+commands[rg] )); then
   export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
