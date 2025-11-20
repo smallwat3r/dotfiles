@@ -7,6 +7,7 @@ headerbar separator {
 }
 
 headerbar {
+    font-family: "MonacoB", monospace;
     min-height: 20px;
     padding-left: 2px;
     padding-right: 2px;
