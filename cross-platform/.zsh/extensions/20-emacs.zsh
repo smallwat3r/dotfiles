@@ -31,15 +31,6 @@ if [[ $INSIDE_EMACS == 'vterm' ]] \
   source "$EMACS_VTERM_PATH/etc/emacs-vterm-zsh.sh"
 fi
 
-# Avoid using vim from inside Emacs due to conflicting bindings.
-if [[ $INSIDE_EMACS == 'vterm' ]] || [[ $INSIDE_EMACS == '28.2,eshell' ]]; then
-  alias \
-    v="echo 'Do not open vim from Emacs'" \
-    vi="echo 'Do not open vim from Emacs'" \
-    vim="echo 'Do not open vim from Emacs'" \
-    nvim="echo 'Do not open vim from Emacs'"
-fi
-
 # Projectile builds a cache that sometimes needs to be cleared for Emacs to see
 # new files and directories. This clears the cache for all projectile projects.
 clear-cache-emacs-projectile() {
