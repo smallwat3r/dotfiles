@@ -13,22 +13,22 @@ fi
 # YOLO
 export PIP_BREAK_SYSTEM_PACKAGES=1
 
-# Activate the nearest python venv (.venv) up the directory tree
 avenv() {
   local dir=$PWD
-  while [[ ! -f "$dir/.venv/bin/activate" && "$dir" != "/" ]]; do
-    dir=${dir%/*}
+  while :; do
+    if [[ -f "$dir/.venv/bin/activate" ]]; then
+      echo "Activating virtualenv from $dir/.venv"
+      # shellcheck source=/dev/null
+      source "$dir/.venv/bin/activate"
+      return 0
+    fi
+    [[ "$dir" == / ]] && break
+    dir=$(dirname "$dir")
   done
-  if [[ -f "$dir/.venv/bin/activate" ]]; then
-    echo "Activating virtualenv from $dir/.venv"
-    source "$dir/.venv/bin/activate"
-  else
-    echo 'No .venv found'
-    return 1
-  fi
+  echo "No .venv found" >&2
+  return 1
 }
 
-# Run python from the nearest venv
 vpython() {
   avenv && python "$@"
 }
