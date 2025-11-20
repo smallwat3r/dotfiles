@@ -13,6 +13,7 @@ fi
 # YOLO
 export PIP_BREAK_SYSTEM_PACKAGES=1
 
+# Activate the nearest python venv (.venv) up the directory tree
 avenv() {
   local dir=$PWD
   while :; do
@@ -29,6 +30,24 @@ avenv() {
   return 1
 }
 
+# Only walk the tree if we're not already inside a venv
+_avenv_ensure() {
+  if [[ -z "$VIRTUAL_ENV" ]]; then
+    avenv || return 1
+  fi
+}
+
+# Run python from the (nearest) activated venv
 vpython() {
-  avenv && python "$@"
+  _avenv_ensure && python "$@"
+}
+
+# Run pip from the (nearest) activated venv
+vpip() {
+  _avenv_ensure && pip "$@"
+}
+
+# Run pytest from the (nearest) activated venv
+vpytest() {
+  _avenv_ensure && pytest "$@"
 }
