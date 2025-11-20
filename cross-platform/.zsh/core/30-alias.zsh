@@ -19,29 +19,23 @@ alias \
   sl="ls -pF --color" \
   lss="ls -l *(@)"
 
-# Define git aliases from git config.
-#
-# For all aliases set up in git config, define another alias such that all git
-# commands can be called using `g` directly with its alias concatenated.
-#
-# Examples:
-#   `git push` could be called as `gp`.
-#   `git checkout` could be called as `gco`.
-if command -v git >/dev/null 2>&1; then
-  # git config --get-regexp '^alias\.' outputs lines like:
-  #   alias.co checkout
-  #   alias.br branch
-  #
-  # We read them into an array, split by lines.
+# create short `g<alias>` versions of all git aliases.
+() {
+  command -v git >/dev/null 2>&1 || return
+
+  local line key name
+  local git_alias_lines
+
   git_alias_lines=("${(@f)$(git config --get-regexp '^alias\.' 2>/dev/null)}")
+
   for line in $git_alias_lines; do
     key=${line%% *}       # "alias.co"
     name=${key#alias.}    # "co"
     alias "g${name}=git ${name}"
   done
-  unset git_alias_lines line key name
+
   alias g="git"
-fi
+}
 
 # Use Neovim over Vim
 alias \
