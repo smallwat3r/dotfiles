@@ -26,7 +26,7 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 # ctrl + backspace to delete whole word
-if [[ "$(uname -s)" == "Darwin" ]]; then
+if [[ "$OSTYPE" == darwin* ]]; then
   bindkey "^?" backward-kill-word
 else
   bindkey "^H" backward-kill-word

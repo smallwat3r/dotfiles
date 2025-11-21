@@ -22,8 +22,8 @@ __fzf_source_first() {
 __load_fzf_config() {
   local -a completion_paths keybinding_paths
 
-  case $(uname -s) in
-    Darwin)
+  case $OSTYPE in
+    darwin*)
       completion_paths=(
         /opt/homebrew/opt/fzf/shell/completion.zsh
         /usr/local/opt/fzf/shell/completion.zsh
@@ -33,7 +33,7 @@ __load_fzf_config() {
         /usr/local/opt/fzf/shell/key-bindings.zsh
       )
       ;;
-    Linux)
+    linux*)
       completion_paths=(
         /usr/share/fzf/completion.zsh
         /usr/share/fzf/shell/completion.zsh

@@ -1,7 +1,7 @@
 # Emacs configs and helper functions
 
 # Prefer a Homebrew Emacs on macOS, otherwise fall back to /usr/bin/emacs
-if [[ $(uname) == Darwin ]]; then
+if [[ $OSTYPE == darwin* ]]; then
   if [[ -x /opt/homebrew/bin/emacs ]]; then
     export EMACS='/opt/homebrew/bin/emacs'
   else

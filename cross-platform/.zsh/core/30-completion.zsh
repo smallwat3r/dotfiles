@@ -1,6 +1,19 @@
 # ZSH completion configuration
 
-autoload -U compinit && compinit
+autoload -Uz compinit
+
+() {
+  # use a cache dir
+  local _zcompdump_base=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+  local _zcompdump=$_zcompdump_base/.zcompdump
+  mkdir -p "$_zcompdump_base" >/dev/null 2>&1
+  if [[ ! -f $_zcompdump ]]; then
+    compinit -d "$_zcompdump"
+  else
+    # -C: skip re-checking functions, trust dump file
+    compinit -C -d "$_zcompdump"
+  fi
+}
 
 setopt COMPLETE_IN_WORD  # complete from both end of a word
 setopt AUTO_MENU         # use menu completion after the second consecutive request for completion

@@ -5,9 +5,9 @@ __load_plugins() {
 
   # plugin directory roots to probe per OS
   local -a basedirs
-  case "$(uname -s)" in
-    Darwin) basedirs=(/opt/homebrew/share) ;;
-    Linux) basedirs=(/usr/share /usr/share/zsh) ;;
+  case $OSTYPE in
+    darwin*) basedirs=(/opt/homebrew/share) ;;
+    linux*) basedirs=(/usr/share /usr/share/zsh) ;;
     *) basedirs=() ;;
   esac
 

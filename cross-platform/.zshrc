@@ -9,12 +9,12 @@ setopt extended_glob
 
 : "${ZSH_ROOT:=$HOME/.zsh}"
 
-case $(uname -s) in
-  Darwin)
+case $OSTYPE in
+  darwin*)
     path=(/Applications/Alacritty.app/Contents/MacOS $path)
     : "${TERMINAL:=alacritty}"
     ;;
-  Linux)
+  linux*)
     if [[ -r /etc/os-release ]]; then
       . /etc/os-release
       case $ID in

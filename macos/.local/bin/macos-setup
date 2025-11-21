@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # macOS preferences
 
-if [ "$(uname -s)" != 'Darwin' ]; then
+if [[ "$OSTYPE" != darwin* ]]; then
   printf 'This script must be ran from a Darwin system.\n'
   exit 0
 fi

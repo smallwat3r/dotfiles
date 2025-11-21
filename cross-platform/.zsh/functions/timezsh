@@ -1,6 +1,19 @@
 #!/usr/bin/env zsh
-# Time zsh loading time
 
-for _ in {1..10}; do
-  time ${1-$SHELL} -i -c exit
+runs=${1:-10}
+total_ms=0
+
+for i in {1..$runs}; do
+  start=$(date +%s.%N)
+  zsh -i -c exit >/dev/null 2>&1
+  end=$(date +%s.%N)
+
+  # compute delta in ms
+  delta_ms=$(printf "%.0f" "$(echo "($end - $start) * 1000" | bc -l)")
+  total_ms=$(( total_ms + delta_ms ))
+
+  printf "run %2d: %3d ms\n" "$i" "$delta_ms"
 done
+
+avg=$(( total_ms / runs ))
+printf "\nAverage: %d ms\n" "$avg"

@@ -14,7 +14,7 @@ fi
 cmds="$(compgen -c | sort -u)"
 
 # if Linux, also include Flatpak apps
-if [[ "$(uname -s)" == "Linux" ]] && command -v flatpak >/dev/null 2>&1; then
+if [[ $OSTYPE == linux* ]] && command -v flatpak >/dev/null 2>&1; then
   flatpaks="$(flatpak list --app --columns=application | sort -u)"
   cmds="$cmds"$'\n'"$flatpaks"
 fi
