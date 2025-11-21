@@ -31,16 +31,24 @@ esac
 : "${TERM:=xterm-256color}"
 export TERM TERMINAL
 
-load_zsh_dir() {
-  local dir=$1
-
-  if [[ -d $dir ]]; then
-    for file in $dir/*.zsh(N); do
-      source "$file"
-    done
-  else
-    printf 'Could not find configs in %s\n' "$dir" >&2
+# compile a .zsh file to .zwc if needed
+_zsh_compile_if_needed() {
+  local src=$1 dst="${1}.zwc"
+  [[ -n $src && -r $src ]] || return 1
+  if [[ ! -f $dst || $src -nt $dst ]]; then
+    # compile silently
+    zcompile "$src" 2>/dev/null
   fi
+}
+
+load_zsh_dir() {
+  local dir=$1 file
+  [[ -d $dir && -r $dir ]] || return 0
+  for file in "$dir"/*.zsh(N); do
+    [[ -r $file ]] || continue
+    _zsh_compile_if_needed "$file"
+    source "$file"
+  done
 }
 
 load_zsh_functions() {

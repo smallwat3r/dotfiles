@@ -37,31 +37,42 @@ __load_plugins() {
   done
 }
 
+__set_zsh_highlight_styles() {
+  ZSH_HIGHLIGHT_STYLES[default]=none
+  ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
+  ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=green
+  ZSH_HIGHLIGHT_STYLES[alias]=none
+  ZSH_HIGHLIGHT_STYLES[builtin]=none
+  ZSH_HIGHLIGHT_STYLES[function]=none
+  ZSH_HIGHLIGHT_STYLES[command]=none
+  ZSH_HIGHLIGHT_STYLES[precommand]=none
+  ZSH_HIGHLIGHT_STYLES[commandseparator]=none
+  ZSH_HIGHLIGHT_STYLES[hashed-command]=none
+  ZSH_HIGHLIGHT_STYLES[path]=none
+  ZSH_HIGHLIGHT_STYLES[globbing]=none
+  ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue
+  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
+  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
+  ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
+  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
+  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
+  ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
+  ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
+  ZSH_HIGHLIGHT_STYLES[assign]=none
+  ZSH_HIGHLIGHT_REGEXP+=('^rm .*' fg=90,bold)
+  ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' fg=164,bold)
+}
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets regexp)
 
-__load_plugins
+autoload -Uz add-zsh-hook
 
-ZSH_HIGHLIGHT_STYLES[default]=none
-ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
-ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=green
-ZSH_HIGHLIGHT_STYLES[alias]=none
-ZSH_HIGHLIGHT_STYLES[builtin]=none
-ZSH_HIGHLIGHT_STYLES[function]=none
-ZSH_HIGHLIGHT_STYLES[command]=none
-ZSH_HIGHLIGHT_STYLES[precommand]=none
-ZSH_HIGHLIGHT_STYLES[commandseparator]=none
-ZSH_HIGHLIGHT_STYLES[hashed-command]=none
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[globbing]=none
-ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
-ZSH_HIGHLIGHT_STYLES[assign]=none
+_deferred_plugins_loaded=0
+_load_plugins_deferred() {
+  (( _deferred_plugins_loaded )) && return
+  _deferred_plugins_loaded=1
+  __load_plugins
+  __set_zsh_highlight_styles
+}
 
-ZSH_HIGHLIGHT_REGEXP+=('^rm .*' fg=90,bold)
-ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' fg=164,bold)
+add-zsh-hook precmd _load_plugins_deferred
