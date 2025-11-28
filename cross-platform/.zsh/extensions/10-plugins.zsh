@@ -64,15 +64,6 @@ __set_zsh_highlight_styles() {
 }
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets regexp)
-
-autoload -Uz add-zsh-hook
-
-_deferred_plugins_loaded=0
-_load_plugins_deferred() {
-  (( _deferred_plugins_loaded )) && return
-  _deferred_plugins_loaded=1
-  __load_plugins
-  __set_zsh_highlight_styles
-}
-
-add-zsh-hook precmd _load_plugins_deferred
+__load_plugins
+__set_zsh_highlight_styles
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
