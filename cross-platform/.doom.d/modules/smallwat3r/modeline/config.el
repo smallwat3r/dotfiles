@@ -40,3 +40,7 @@
   (setq-default mode-line-format standard-mode-line-format)
   (put 'mode-line-format 'standard-value
        (list `(quote ,standard-mode-line-format))))
+
+(custom-set-faces!
+  ;; make the active modeline stand out more
+  '(mode-line :background "#ffb86c" :foreground "#1a1a1a" :weight bold))
