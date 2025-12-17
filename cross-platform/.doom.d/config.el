@@ -23,6 +23,9 @@
 (defvar my-dotfiles-dir (concat default-directory "dotfiles")
   "Directory containing my dotfiles.")
 
+(defvar my-notes-directory "~/org"
+  "Where I'm storing my notes.")
+
 (defconst my-system-os
   (if (executable-find "uname")
       (format "%s" (cdr (doom-call-process "uname" "-sr")))
@@ -951,9 +954,6 @@
 
 ;;
 ;;; Org
-
-(defvar my-notes-directory "~/org"
-  "Where I'm storing my notes.")
 
 ;; Org mode
 ;; doc: https://orgmode.org/manual/
