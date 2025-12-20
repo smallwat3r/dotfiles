@@ -252,9 +252,8 @@
         "S-C-i" #'my/shrink-window-horizontally  ; custom layout
         "S-C-k" #'my/enlarge-window
         "S-C-a" #'my/enlarge-window  ; custom layout
-        "S-C-e" #'my/enlarge-window
         "S-C-j" #'my/shrink-window
-        "S-C-i" #'my/shrink-window  ; custom layout
+        "S-C-n" #'my/shrink-window  ; custom layout
 
         ;; Misc editing
         "M-SPC" #'cycle-spacing
@@ -703,6 +702,9 @@
   (add-to-list '+lookup-provider-url-alist
                '("Python Docs" "https://docs.python.org/3/search.html?q=%s")))
 
+(after! lsp-pyright
+  (setq lsp-pyright-langserver-command "basedpyright"))
+
 ;; PET (P ython E xecutable T racker)
 ;; doc: https://github.com/wyuenho/emacs-pet/
 (use-package! pet
@@ -1095,13 +1097,12 @@
   (let ((fmt (if datetime "%Y-%m-%d %H:%M" "%Y-%m-%d")))
     (insert (format-time-string fmt))))
 
-(defun my/insert-email-gmail ()
+(defun my/insert-email ()
+  "Insert an email address from `my-email-addresses-alist'."
   (interactive)
-  (insert (my/get-email "gmail")))
-
-(defun my/insert-email-smallwat3r ()
-  (interactive)
-  (insert (my/get-email my-user-alias)))
+  (let* ((keys (mapcar #'car my-email-addresses-alist))
+         (choice (completing-read "Email: " keys nil t)))
+    (insert (my/get-email choice))))
 
 (defun my/chatgpt-open-prompt ()
   "Open a popup buffer for a ChatGPT prompt."
@@ -1178,8 +1179,7 @@
   (:prefix "i"
    :desc "Insert date"        "d" #'my/insert-timestamp
    :desc "Insert date+time"   "t" (lambda () (interactive) (my/insert-timestamp t))
-   :desc "Email (gmail)"      "g" #'my/insert-email-gmail
-   :desc "Email (smallwat3r)" "E" #'my/insert-email-smallwat3r)
+   :desc "Insert email"       "E" #'my/insert-email)
 
   (:prefix "o"
    :desc "Browse URL at point" "l" #'browse-url-at-point
