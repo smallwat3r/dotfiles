@@ -2,78 +2,60 @@
 
 local hotkey = require 'hs.hotkey'
 local grid = require 'hs.grid'
-local hints = require 'hs.hints'
 local window = require 'hs.window'
 local alert = require 'hs.alert'
 local task = require 'hs.task'
 local eventtap = require 'hs.eventtap'
 local chooser = require 'hs.chooser'
 
-mod_shift_alt = {'shift', 'alt'}
-mod_alt = {'alt'}
-mod_cmd = {'cmd'}
-mod_ctrl = {'ctrl'}
-mod_ctrl_alt = {'ctrl', 'alt'}
+local mod_shift_alt = {'shift', 'alt'}
+local mod_alt = {'alt'}
+local mod_cmd = {'cmd'}
+local mod_ctrl = {'ctrl'}
+local mod_ctrl_alt = {'ctrl', 'alt'}
 
 alert.defaultStyle = {
-    strokeWidth  = 1,
-    strokeColor = { white = 1, alpha = 1 },
-    fillColor = { white = 0, alpha = 1 },
-    textColor = { white = 1, alpha = 1 },
-    textFont = 'Triplicate B Code',
-    textSize = 16,
-    radius = 0,
-    atScreenEdge = 0,
-    fadeInDuration = 0,
-    fadeOutDuration = 0,
-    padding = nil,
+  strokeWidth = 1,
+  strokeColor = { white = 1, alpha = 1 },
+  fillColor = { white = 0, alpha = 1 },
+  textColor = { white = 1, alpha = 1 },
+  textFont = 'Triplicate B Code',
+  textSize = 16,
+  radius = 0,
+  atScreenEdge = 0,
+  fadeInDuration = 0,
+  fadeOutDuration = 0,
+  padding = nil,
 }
 
--- Emacs stuff
--- ***************************************************************************
+-- Emacs
 
--- Spawn a new emacs client
 local function newEmacsClient()
   alert.show('New Emacs client!')
-  task.new('/bin/zsh', nil,
-           { '-l', '-c', 'emacsclient -a "" -c' }):start()
-end
-
-hotkey.bind(mod_cmd, 'e', function() newEmacsClient() end)
-
--- Spawn an instance of emacs-everywhere
-local function emacsEverywhere()
-  alert.show('Emacs everywhere!')
-  task.new('/bin/zsh', nil,
-           { '-l', '-c', 'emacsclient -a "" --eval "(emacs-everywhere)"' }):start()
-end
-
--- TODO: remap this, as I keep hitting it by mistake, also should I keep using this?
--- hotkey.bind(mod_cmd, ".", function() emacsEverywhere() end)
-
--- Kill the running emacs daemon with confirmation
-local function confirmationDialog(actionFunc)
-  test = chooser.new(actionFunc)
-  test:rows(2)
-  test:choices({
-    {['text'] = 'Yes', ['id'] = 'yes', ['subText'] = 'Kill the running Emacs daemon'},
-    {['text'] = 'No', ['id'] = 'no', ['subText'] = 'Leave the Emacs daemon running'}
-  })
-  test:show()
+  task.new('/bin/zsh', nil, { '-l', '-c', 'emacsclient -a "" -c' }):start()
 end
 
 local function stopEmacsDaemon(input)
   if input and input.id == 'yes' then
-    task.new('/bin/zsh', nil,
-             { '-l', '-c', 'emacsclient -e "(kill-emacs)"' }):start()
+    task.new('/bin/zsh', nil, { '-l', '-c', 'emacsclient -e "(kill-emacs)"' }):start()
     alert.show('Stopped Emacs daemon!')
   end
 end
 
-hotkey.bind(mod_cmd, '`', function() confirmationDialog(stopEmacsDaemon) end)
+local function confirmKillEmacs()
+  local dialog = chooser.new(stopEmacsDaemon)
+  dialog:rows(2)
+  dialog:choices({
+    { text = 'Yes', id = 'yes', subText = 'Kill the running Emacs daemon' },
+    { text = 'No', id = 'no', subText = 'Leave the Emacs daemon running' }
+  })
+  dialog:show()
+end
+
+hotkey.bind(mod_cmd, 'e', newEmacsClient)
+hotkey.bind(mod_cmd, '`', confirmKillEmacs)
 
 -- Window management
--- ***************************************************************************
 
 window.animationDuration = 0
 
@@ -82,97 +64,73 @@ grid.MARGINY = 2
 grid.GRIDHEIGHT = 4
 grid.GRIDWIDTH = 4
 
--- Center window
 hotkey.bind(mod_ctrl_alt, ']', function() window.focusedWindow():centerOnScreen() end)
-
--- Fullscreen window
 hotkey.bind(mod_alt, ']', function() window.focusedWindow():maximize(0) end)
 
--- Move window
+-- Move window (hjkl + custom layout)
 hotkey.bind(mod_ctrl_alt, 'j', grid.pushWindowDown)
 hotkey.bind(mod_ctrl_alt, 'k', grid.pushWindowUp)
 hotkey.bind(mod_ctrl_alt, 'h', grid.pushWindowLeft)
 hotkey.bind(mod_ctrl_alt, 'l', grid.pushWindowRight)
--- custom layout
 hotkey.bind(mod_ctrl_alt, 'n', grid.pushWindowDown)
 hotkey.bind(mod_ctrl_alt, 'a', grid.pushWindowUp)
 hotkey.bind(mod_ctrl_alt, 'y', grid.pushWindowLeft)
 hotkey.bind(mod_ctrl_alt, 'e', grid.pushWindowRight)
 
--- Resize window
+-- Resize window (hjkl + custom layout)
 hotkey.bind(mod_alt, 'k', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'j', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'l', grid.resizeWindowWider)
 hotkey.bind(mod_alt, 'h', grid.resizeWindowThinner)
--- custom layout
 hotkey.bind(mod_alt, 'a', grid.resizeWindowShorter)
 hotkey.bind(mod_alt, 'n', grid.resizeWindowTaller)
 hotkey.bind(mod_alt, 'e', grid.resizeWindowWider)
 hotkey.bind(mod_alt, 'y', grid.resizeWindowThinner)
 
--- Make the combination of Cmd + hjkl to emulate the arrow keys behaviour.
--- ***************************************************************************
+-- Key remapping (Cmd + hjkl -> arrow keys)
 
 local function pressFn(mods, key)
   if key == nil then
     key = mods
     mods = {}
   end
-
-  return function()
-    eventtap.keyStroke(mods, key, 1000)
-  end
+  return function() eventtap.keyStroke(mods, key, 1000) end
 end
 
-local function remap(mods, key, pressFn)
-  hotkey.bind(mods, key, pressFn, nil, pressFn)
+local function remap(mods, key, fn)
+  hotkey.bind(mods, key, fn, nil, fn)
 end
 
--- do not add custom layout equivalent for these as it already exists a
--- layer for this on my it.
 remap(mod_cmd, 'h', pressFn('left'))
 remap(mod_cmd, 'j', pressFn('down'))
 remap(mod_cmd, 'k', pressFn('up'))
 remap(mod_cmd, 'l', pressFn('right'))
-
--- del by hitting Cmd + Backspace
 remap(mod_cmd, 'delete', pressFn('forwarddelete'))
 
 -- Custom launchers
--- ***************************************************************************
 
--- check if a window with name already exists, and focus it, or run task
 local function launcherRunner(windowName, scriptLauncher, alacrittyOptions)
-  local window = window.get(windowName)
-  if window then
-    window:focus()
-  else
-    local command
-    if alacrittyOptions then
-      command = string.format('INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.toml -o %s -e %s',
-                              windowName, alacrittyOptions, scriptLauncher)
-    else
-      command = string.format('INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.toml -e %s',
-                              windowName, scriptLauncher)
-    end
-    task.new('/bin/zsh', nil, { '-l', '-c', command }):start()
+  local win = window.get(windowName)
+  if win then
+    win:focus()
+    return
   end
+  local command
+  if alacrittyOptions then
+    command = string.format(
+      'INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.toml -o %s -e %s',
+      windowName, alacrittyOptions, scriptLauncher)
+  else
+    command = string.format(
+      'INSIDE_HS=1 alacritty -T "%s" --config-file $HOME/.config/launcher.toml -e %s',
+      windowName, scriptLauncher)
+  end
+  task.new('/bin/zsh', nil, { '-l', '-c', command }):start()
 end
 
--- open an application
-hotkey.bind(mod_cmd, 'm', function() launcherRunner('App launcher', 'launcher-app', nil) end)
-
--- execute a binary
-hotkey.bind(mod_cmd, ',', function() launcherRunner('Bin launcher', 'launcher-bin', nil) end)
-
--- browse browser history
+hotkey.bind(mod_cmd, 'm', function() launcherRunner('App launcher', 'launcher-app') end)
+hotkey.bind(mod_cmd, ',', function() launcherRunner('Bin launcher', 'launcher-bin') end)
 hotkey.bind(mod_cmd, 'h', function() launcherRunner('History launcher', 'launcher-browser-history') end)
-
--- switch to open application
-hotkey.bind(mod_cmd, 'space', function() launcherRunner('App switcher', 'launcher-running-app', nil) end)
-
--- search files from home directory
-hotkey.bind(mod_cmd, ';', function() launcherRunner('File launcher', 'launcher-file-search', nil) end)
-
--- perform a google search
+hotkey.bind(mod_cmd, 'space', function() launcherRunner('App switcher', 'launcher-running-app') end)
+hotkey.bind(mod_cmd, ';', function() launcherRunner('File launcher', 'launcher-file-search') end)
 hotkey.bind(mod_cmd, 'g', function() launcherRunner('Google search', 'chrome-search', 'window.dimensions.lines=3') end)
