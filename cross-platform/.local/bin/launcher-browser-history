@@ -31,7 +31,7 @@ case "$(uname -s)" in
     do
       [[ -f "$path" ]] && HISTORY="$path" && break
     done
-    open_cmd() { xdg-open "$1"; }
+    open_cmd() { setsid xdg-open "$1" >/dev/null 2>&1; }
     ;;
   *)
     die "Unsupported OS"
@@ -52,10 +52,10 @@ target=$(
   } | FZF_DEFAULT_OPTS="$FZF_OPTS" fzf --wrap --tiebreak=index
 ) || exit 0
 
-# Extract URL (after tab for bookmarks, or strip date prefix for history)
+# Extract URL
 if [[ "$target" == *$'\t'* ]]; then
   target="${target##*$'\t'}"
 else
-  target="${target#🕐 [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] }"
+  target="${target#* * }"
 fi
 open_cmd "$target"

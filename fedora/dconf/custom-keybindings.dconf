@@ -1,14 +1,14 @@
 [custom0]
 binding='<Super>i'
-command="foot -T 'launcher' -w 600x300 -e launcher-bin"
+command="foot -T 'CLI launcher' -w 600x300 -e launcher-bin"
 name='cli-launcher'
 
 [custom1]
 binding='<Super>e'
-command="foot -T 'launcher' -w 800x400 -e bw-picker"
+command="foot -T 'Bitwarden launcher' -w 800x400 -e bw-picker"
 name='bitwarden-launcher'
 
 [custom2]
 binding='<Super>u'
-command="foot -T 'launcher' -w 1000x400 -e launcher-browser-history"
+command="foot -T 'Browser history launcher' -w 1000x800 -e launcher-browser-history"
 name='browser-history-launcher'
