@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+#
+# bw-picker - Bitwarden credential picker using rbw and fzf
+#
+# Interactively select a credential from your Bitwarden vault and copy
+# a field (password, username, or TOTP) to the clipboard. The clipboard
+# is automatically cleared after the first paste for security.
+#
+# Dependencies:
+#   - rbw: Unofficial Bitwarden CLI (https://github.com/doy/rbw)
+#   - fzf: Fuzzy finder
+#   - wl-copy, xclip, or pbcopy: Clipboard utility
+#
+# Usage:
+#   bw-picker
+#
+#   1. Select an item from the vault (logins show username, notes are labeled)
+#   2. If multiple fields available, select which one to copy
+#   3. Field is copied to clipboard and cleared after first paste
+#
+set -euo pipefail
+
+has() { command -v "$1" >/dev/null 2>&1; }
+
+die() { echo "$1" >&2; exit 1; }
+
+for cmd in rbw fzf; do
+  has "$cmd" || die "You need to install $cmd"
+done
+
+if has wl-copy; then
+  clip() { wl-copy --paste-once; }
+elif has xclip; then
+  clip() { xclip -selection clipboard -loops 1; }
+elif has pbcopy; then
+  clip() { pbcopy; (sleep 45 && pbcopy < /dev/null) & }
+else
+  die "No clipboard tool found (wl-copy, xclip, pbcopy)"
+fi
+
+fzf_pick() {
+  fzf --reverse --prompt="$1" \
+    --color=bg:-1,bg+:-1,fg:-1,fg+:-1 \
+    --color=hl:33,hl+:33,info:30,prompt:30 \
+    --color=pointer:32,marker:32,spinner:32
+}
+
+rbw unlocked 2>/dev/null || rbw unlock
+
+mapfile -t items < <(rbw list --fields name,user)
+(( ${#items[@]} )) || die "No items found in vault"
+
+names=()
+display=()
+for item in "${items[@]}"; do
+  IFS=$'\t' read -r name user <<< "$item"
+  names+=("$name")
+  [[ -n $user ]] && display+=("[login] $name ($user)") \
+                 || display+=("[note]  $name")
+done
+
+selection="$(printf '%s\n' "${display[@]}" | fzf_pick "rbw> ")" || exit 0
+[[ -z $selection ]] && exit 0
+
+target=""
+for i in "${!display[@]}"; do
+  [[ "${display[$i]}" == "$selection" ]] && { target="${names[$i]}"; break; }
+done
+[[ -z $target ]] && die "Item not found"
+
+declare -A fields
+val="$(rbw get "$target" 2>/dev/null || true)"
+[[ -n $val ]] && fields[password]="$val"
+val="$(rbw get --field username "$target" 2>/dev/null || true)"
+[[ -n $val ]] && fields[username]="$val"
+val="$(rbw code "$target" 2>/dev/null || true)"
+[[ -n $val ]] && fields[totp]="$val"
+
+(( ${#fields[@]} )) || die "No fields available for this item"
+
+if (( ${#fields[@]} == 1 )); then
+  selected="${!fields[@]}"
+else
+  selected="$(printf '%s\n' "${!fields[@]}" | fzf_pick "field> ")" || exit 0
+  [[ -z $selected ]] && exit 0
+fi
+
+printf '%s' "${fields[$selected]}" | clip
