@@ -43,7 +43,7 @@ esac
 BOOKMARKS="${HISTORY%History}Bookmarks"
 
 JQ_FILTER='.. | select(.type? == "url") | "🔖 [\(.name)]\t\(.url)"'
-SQL_QUERY='SELECT url FROM urls ORDER BY last_visit_time DESC LIMIT 100000'
+SQL_QUERY="SELECT '🕐 ' || date(last_visit_time/1000000 - 11644473600, 'unixepoch') || ' ' || url FROM urls ORDER BY last_visit_time DESC LIMIT 100000"
 
 target=$(
   {
@@ -52,6 +52,10 @@ target=$(
   } | FZF_DEFAULT_OPTS="$FZF_OPTS" fzf --wrap --tiebreak=index
 ) || exit 0
 
-# Extract URL (after tab for bookmarks, or whole line for history)
-[[ "$target" == *$'\t'* ]] && target="${target##*$'\t'}"
+# Extract URL (after tab for bookmarks, or strip date prefix for history)
+if [[ "$target" == *$'\t'* ]]; then
+  target="${target##*$'\t'}"
+else
+  target="${target#🕐 [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] }"
+fi
 open_cmd "$target"
