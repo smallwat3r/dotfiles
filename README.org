@@ -16,16 +16,18 @@ Clone into your home directory:
 git clone https://github.com/smallwat3r/dotfiles.git ~/dotfiles
 #+end_src
 
-Symlink all dotfiles (the Makefile detects the OS and selects the appropriate targets):
+Stow all dotfiles (the Makefile detects the OS and selects the appropriate targets):
 
 #+begin_src shell
-cd ~/dotfiles && make symlink
+cd ~/dotfiles && make stow
 #+end_src
 
-List available commands:
+Other available commands:
 
 #+begin_src shell
-make help
+make unstow   # remove all symlinks
+make dry-run  # preview changes without modifying the filesystem
+make help     # list available commands
 #+end_src
 
 ** Structure
@@ -35,8 +37,7 @@ These configurations support multiple platforms:
 | Directory        | Description                                          |
 |------------------+------------------------------------------------------|
 | ~cross-platform~ | Platform-agnostic configs (zsh, Emacs, SSH ...)      |
-| ~macos~          | macOS-specific configs                               |
-| ~macos-root~     | macOS system-level configs (requires sudo)           |
+| ~macos~          | macOS-specific configs (~_root/~ for system-level)   |
 | ~fedora~         | Fedora-specific configs                              |
 
 ** Emacs
