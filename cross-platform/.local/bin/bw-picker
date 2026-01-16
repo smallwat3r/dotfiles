@@ -20,14 +20,16 @@
 #
 set -euo pipefail
 
-has() { command -v "$1" >/dev/null 2>&1; }
-
 die() { echo "$1" >&2; exit 1; }
 
-for cmd in rbw fzf; do
-  has "$cmd" || die "You need to install $cmd"
-done
+has() { command -v "$1" >/dev/null 2>&1; }
 
+require() { has "$1" || die "$1 is required"; }
+
+require rbw
+require fzf
+
+# Clipboard with auto-clear after paste
 if has wl-copy; then
   clip() { wl-copy --paste-once; }
 elif has xclip; then
@@ -45,38 +47,40 @@ fzf_pick() {
     --color=pointer:32,marker:32,spinner:32
 }
 
+rbw_get() {
+  rbw get ${2:+--field "$2"} "$1" 2>/dev/null || true
+}
+
+# Ensure vault is unlocked
 rbw unlocked 2>/dev/null || rbw unlock
 
+# Select item
 mapfile -t items < <(rbw list --fields name,user)
 (( ${#items[@]} )) || die "No items found in vault"
 
-names=()
-display=()
-for item in "${items[@]}"; do
-  IFS=$'\t' read -r name user <<< "$item"
-  names+=("$name")
-  [[ -n $user ]] && display+=("[login] $name ($user)") \
-                 || display+=("[note]  $name")
-done
+target="$(
+  for i in "${!items[@]}"; do
+    IFS=$'\t' read -r name user <<< "${items[$i]}"
+    [[ -n $user ]] && printf '%d\t[login] %s (%s)\n' "$i" "$name" "$user" \
+                   || printf '%d\t[note]  %s\n' "$i" "$name"
+  done | fzf_pick "rbw> " | cut -f1
+)" || exit 0
 
-selection="$(printf '%s\n' "${display[@]}" | fzf_pick "rbw> ")" || exit 0
-[[ -z $selection ]] && exit 0
+[[ -z $target ]] && exit 0
+IFS=$'\t' read -r name _ <<< "${items[$target]}"
 
-target=""
-for i in "${!display[@]}"; do
-  [[ "${display[$i]}" == "$selection" ]] && { target="${names[$i]}"; break; }
-done
-[[ -z $target ]] && die "Item not found"
-
+# Select field
 declare -A fields
-val="$(rbw get "$target" 2>/dev/null || true)"
-[[ -n $val ]] && fields[password]="$val"
-val="$(rbw get --field username "$target" 2>/dev/null || true)"
-[[ -n $val ]] && fields[username]="$val"
-val="$(rbw code "$target" 2>/dev/null || true)"
-[[ -n $val ]] && fields[totp]="$val"
+for f in password username totp; do
+  case $f in
+    password) val="$(rbw_get "$name")" ;;
+    username) val="$(rbw_get "$name" username)" ;;
+    totp)     val="$(rbw code "$name" 2>/dev/null || true)" ;;
+  esac
+  [[ -n $val ]] && fields[$f]="$val"
+done
 
-(( ${#fields[@]} )) || die "No fields available for this item"
+(( ${#fields[@]} )) || die "No fields available"
 
 if (( ${#fields[@]} == 1 )); then
   selected="${!fields[@]}"
