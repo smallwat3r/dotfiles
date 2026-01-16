@@ -1,5 +1,0 @@
-#!/usr/bin/env osascript
-
-tell application "System Events"
-  set picture of every desktop to "/Users/smallwat3r/.config/wallpaper/wallpaper.jpg"
-end tell
