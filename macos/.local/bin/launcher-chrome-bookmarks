@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
-# Custom google chrome bookmark launcher
+# Open Chrome bookmarks using fzf.
+# Requires: fzf, ggrep (brew install grep)
+set -euo pipefail
 
-if ! [ -x "$(command -v fzf)" ]; then
-  echo 'You need to install fzf' >&2
-  exit 1
-fi
+command -v fzf >/dev/null || { echo "fzf required" >&2; exit 1; }
+command -v ggrep >/dev/null || { echo "ggrep required (brew install grep)" >&2; exit 1; }
 
-if ! [ -x "$(command -v ggrep)" ]; then
-  echo 'You need to install "ggrep" using "brew install grep"' >&2
-  exit 1
-fi
+FZF_OPTS="--reverse --color=bg:-1,bg+:-1,fg+:186,hl:115,hl+:115"
+BOOKMARKS="$HOME/Library/Application Support/Google/Chrome/Default/Bookmarks"
 
-urls="$(ggrep -Po '"url": \K.*' <~/Library/Application\ Support/Google/Chrome/Default/Bookmarks | sed 's/\"//g')"
+urls=$(ggrep -Po '"url": \K.*' < "$BOOKMARKS" | tr -d '"')
 
-target=$(
-  echo "${urls}" |
-    FZF_DEFAULT_OPTS='--reverse --color bg:-1,bg+:-1,fg+:186,hl:115,hl+:115' FZF_DEFAULT_COMMAND='rg --smart-case' fzf
-) || exit 0
+target=$(echo "$urls" | FZF_DEFAULT_OPTS="$FZF_OPTS" fzf) || exit 0
 
-open -a '/Applications/Google Chrome.app' "${target}"
+open -a "/Applications/Google Chrome.app" "$target"

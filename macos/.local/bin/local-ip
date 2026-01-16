@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# Show local IP (except 127.0.0.1)
-# If multiple (ie. connected via VPN) the IPs will be appended
-
+# Show local IP addresses (excluding loopback).
+# Multiple IPs are space-separated (e.g., when connected to VPN).
 ifconfig |
   grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |
   grep -Eo '([0-9]*\.){3}[0-9]*' |
   grep -v '127.0.0.1' |
-  tr '\r\n' ' ' |
+  tr '\n' ' ' |
   xargs

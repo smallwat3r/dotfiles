@@ -1,21 +1,13 @@
 #!/usr/bin/env bash
+# Print a shortened version of the current working directory.
+# Each parent directory is abbreviated to its first character.
+# Example: /home/user/projects/myapp -> ~/p/myapp
+# Useful for shell prompts.
 
-shortened_path() {
-  printf '%s\n' ~+ \
-    | sed -e "s;$HOME;~;" \
-          -e 's;\(/.\)[^/]*;\1;g' \
-          -e 's/.$//'
-}
+if [[ $PWD == "$HOME" ]]; then
+  echo "~"
+  exit
+fi
 
-current_dir() {
-  printf '%s' "${PWD##*/}"
-}
-
-case $PWD in
-  "$HOME")
-    printf '~\n'
-    ;;
-  *)
-    printf '%s%s\n' "$(shortened_path)" "$(current_dir)"
-    ;;
-esac
+shortened=$(printf '%s\n' ~+ | sed -e "s;$HOME;~;" -e 's;\(/.\)[^/]*;\1;g' -e 's/.$//')
+echo "${shortened}${PWD##*/}"

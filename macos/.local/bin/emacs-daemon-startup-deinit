@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-# De-initialise emacs daemon to boot on start up
-
-launchctl unload -w ~/Library/LaunchAgents/gnu.emacs.daemon.plist
+# Disable Emacs daemon from starting automatically at login.
+exec launchctl unload -w ~/Library/LaunchAgents/gnu.emacs.daemon.plist

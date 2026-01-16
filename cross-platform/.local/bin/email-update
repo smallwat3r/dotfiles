@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Sync emails and append to Notmuch database.
-# Mbsync: https://linux.die.net/man/1/mbsync
-# Notmuch: https://notmuchmail.org/
-
-mbsync -a && notmuch new
+# Quick email sync with mbsync and notmuch.
+# See: https://linux.die.net/man/1/mbsync
+# See: https://notmuchmail.org/
+exec mbsync -a && notmuch new

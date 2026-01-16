@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# Print our Python current virtual environment.
-# This is useful to use in a custom shell or terminal environment.
+# Print the active Python virtual environment name if inside one.
+# Output format: "(.venv-name) " - useful for shell prompts.
 
-if [[ $VIRTUAL_ENV ]]; then
-  printf '%s' "(.${VIRTUAL_ENV##*/}) "
-fi
+[[ -n $VIRTUAL_ENV ]] && printf '(.%s) ' "${VIRTUAL_ENV##*/}"

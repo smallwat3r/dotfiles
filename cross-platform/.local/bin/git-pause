@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
-
-# https://github.com/ConradIrwin/git-aliae/blob/master/bin/git-pause
-#
-# A simple script that commits everything you're currently doing with a predefined
-# message.
-#
-# This is useful for fast-context-switching, and because the commit is stored on the tip
-# of the current branch it will show up in git-log, you won't lose track of it.
-#
-# see-also: git-resume
-
-git commit --no-verify -a -m 'PAUSED: Use "git resume" to continue working.'
+# Commit all current changes with a PAUSED marker for later resumption.
+# Useful for quick context switching between branches.
+# See also: git-resume
+# Source: https://github.com/ConradIrwin/git-aliae
+exec git commit --no-verify -a -m 'PAUSED: Use "git resume" to continue working.'

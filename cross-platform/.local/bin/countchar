@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
-# count number of characters in file, and sort by occurrence
+# Count character occurrences in a file, sorted by frequency.
+# Usage: countchar <file>
+set -euo pipefail
 
-sed 's/\(.\)/\1\'$'\n/g' "$1" | sort | uniq -c | sort -nr
+if [[ $# -ne 1 ]]; then
+  echo "Usage: ${0##*/} <file>" >&2
+  exit 1
+fi
+
+[[ -f $1 ]] || { echo "File not found: $1" >&2; exit 1; }
+
+sed 's/\(.\)/\1\n/g' "$1" | sort | uniq -c | sort -nr

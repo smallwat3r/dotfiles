@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-#
-# Connect to the running emacs server and open a file/directory.
-# Create a new frame if none already exists, else open in the current
-# frame.
-
+# Open file(s) in emacsclient.
+# Creates a new frame if none exists, otherwise reuses the current frame.
+# Usage: ec [file...]
 set -euo pipefail
 
-if emacsclient -n -e '(> (length (frame-list)) 1)' | grep -q t; then
+if emacsclient -n -e '(> (length (frame-list)) 1)' 2>/dev/null | grep -q t; then
   emacsclient -n -a '' "$@"
 else
   emacsclient -n -c -a '' "$@"

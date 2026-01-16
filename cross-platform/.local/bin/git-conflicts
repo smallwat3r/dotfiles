@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# List files with conflicts
-
-git diff --name-only --diff-filter=U --relative
+# List files with merge conflicts in the current git repository.
+# Usage: git conflicts
+exec git diff --name-only --diff-filter=U --relative

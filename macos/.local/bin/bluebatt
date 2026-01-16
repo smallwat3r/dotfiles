@@ -1,44 +1,27 @@
 #!/usr/bin/env bash
-# List battery levels of external bluetooth devices currently connected
-# to macbook.
-# TODO: this script seems to work ok for Magic Mouse and Magic Keyboard
-#       but fails to return results for Airpods.
+# Show battery levels of connected Bluetooth devices.
+# Works with Magic Mouse, Magic Keyboard, etc.
+# Usage: bluebatt [filter]
+# Note: May not work with AirPods.
 
-_bluebatt() {
-  local _devices
-  local _data
-  local _c # counter
-  local _d # for loop
-  local _content
+data=$(ioreg -r -k BatteryPercent | grep -E '("BatteryPercent"|"Product")')
 
-  _devices=$(ioreg -r -k BatteryPercent)
-  _data=$(grep -E '("BatteryPercent"|"Product")' <<<"$_devices")
-  _c=0
-  _content=""
+output=""
+name=""
 
-  IFS=$'\n'
-  for _d in $_data; do
-    local _line
-    _line=$(echo "$_d" | xargs | sed 's/^.*= //')
+while IFS= read -r line; do
+  value=$(echo "$line" | xargs | sed 's/^.*= //')
+  if [[ $line == *"Product"* ]]; then
+    [[ -n $output ]] && output+=$'\n'
+    name=$value
+    output+="$name"
+  else
+    output+=": ${value}%"
+  fi
+done <<< "$data"
 
-    if ((_c == 1)); then
-      _content="$_content: $_line%%"
-    else
-      if [[ -z $_content ]]; then
-        _content="$_line"
-      else
-        _content="$_content\n$_line"
-      fi
-    fi
-    ((_c++))
-    ((_c == 2)) && _c=0
-  done
-
-  printf "$_content\n"
-}
-
-if [[ -z $1 ]]; then
-  _bluebatt
+if [[ -n $1 ]]; then
+  echo "$output" | grep -i "$1"
 else
-  _bluebatt | grep --color=never --ignore-case "$1"
+  echo "$output"
 fi

@@ -1,6 +1,8 @@
 #!/bin/sh
+# Wrapper for pinentry-curses that works on both macOS (Homebrew) and Linux.
+# Used by GPG agent for passphrase entry.
 if [ -x /opt/homebrew/bin/pinentry-curses ]; then
-    exec /opt/homebrew/bin/pinentry-curses "$@"
+  exec /opt/homebrew/bin/pinentry-curses "$@"
 else
-    exec /usr/bin/pinentry-curses "$@"
+  exec /usr/bin/pinentry-curses "$@"
 fi

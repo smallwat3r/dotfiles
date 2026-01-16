@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# Automatically set macOS dock
+# Configure the macOS Dock with preferred applications.
+# Requires: dockutil
+set -euo pipefail
 
-if [ "$OSTYPE" != darwin* ]; then
-  printf 'This script must be ran from a Darwin system.\n'
-  exit 0
-fi
+[[ $OSTYPE == darwin* ]] || { echo "macOS only" >&2; exit 1; }
 
 dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/Emacs.app"

@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
-# print out hosts connected to the network
+# Scan a network subnet and list connected hosts with their details.
+# Requires: nmap (with sudo privileges)
+# Usage: ls-hosts [subnet]
+# Default subnet: 192.168.1.0/24
+set -euo pipefail
 
-DEFAULT_SUBNET='192.168.1.0/24'
-SUBNET="${1:-$DEFAULT_SUBNET}"
+subnet="${1:-192.168.1.0/24}"
 
-echo "Scanning subnet: $SUBNET"
-echo -e 'IP Address\t\tHostname\t\tMAC Address\t\tVendor'
-echo '----------------------------------------------------------------------------'
+echo "Scanning subnet: $subnet"
+printf '%-16s\t%-16s\t%-18s\t%s\n' "IP Address" "Hostname" "MAC Address" "Vendor"
+echo "----------------------------------------------------------------------------"
 
-sudo nmap -sn $SUBNET | awk '
+sudo nmap -sn "$subnet" | awk '
 /Nmap scan report for/ {
-    ip = $NF;
-    sub(/\(/, "", ip); sub(/\)/, "", ip);
-    if (NF > 5) hostname = $5; else hostname = "N/A";
+  ip = $NF
+  gsub(/[()]/, "", ip)
+  hostname = (NF > 5) ? $5 : "N/A"
 }
 /MAC Address:/ {
-    mac = $3;
-    vendor = substr($0, index($0,$4));
-    printf "%-16s\t%-16s\t%-18s\t%s\n", ip, hostname, mac, vendor;
+  mac = $3
+  vendor = substr($0, index($0, $4))
+  printf "%-16s\t%-16s\t%-18s\t%s\n", ip, hostname, mac, vendor
 }'

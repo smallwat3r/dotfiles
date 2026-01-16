@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-# Perform a google search
+# Perform a Google search in Chrome.
+# Usage: chrome-search
+set -euo pipefail
 
-echo ''
-read -r -p 'Google: ' search
-open -a '/Applications/Google Chrome.app' "https://google.com/search?q=${search}"
+read -rp "Google: " query
+[[ -z $query ]] && exit 0
+
+open -a "/Applications/Google Chrome.app" "https://google.com/search?q=${query}"

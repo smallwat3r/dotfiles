@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-# List processes listening on a given port.
+# List processes listening on a given TCP port.
+# Usage: ls-process-on-port <port>
+set -euo pipefail
 
 if [[ $# -ne 1 ]]; then
-  printf 'Usage: %s <port>\n' "$0" >&2
+  echo "Usage: ${0##*/} <port>" >&2
   exit 1
 fi
 
 port=$1
 
-# validate integer
 if ! [[ $port =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
-  printf 'Error: port must be an integer between 1 and 65535.\n' >&2
+  echo "Error: port must be an integer between 1 and 65535." >&2
   exit 1
 fi
 
-if ! lsof -nP -iTCP:"$port" -sTCP:LISTEN 2>/dev/null; then
-  printf 'No process is listening on port %s\n' "$port"
-fi
+lsof -nP -iTCP:"$port" -sTCP:LISTEN 2>/dev/null ||
+  echo "No process listening on port $port"

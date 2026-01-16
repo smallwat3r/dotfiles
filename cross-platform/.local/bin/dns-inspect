@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
-# Spit out information for a given domain name server (DNS)
+# Inspect DNS records and connectivity for a given domain.
+# Performs a DNS lookup and ping test.
+# Usage: dns-inspect <domain>
+set -euo pipefail
 
-if [[ -z "$1" ]]; then
-  printf 'Please specify a host.\n'
+if [[ $# -ne 1 ]]; then
+  echo "Usage: ${0##*/} <domain>" >&2
   exit 1
 fi
 
-printf '\n*** Doing the dig ***\n'
-dig @"$(dig @8.8.8.8 "$1" ns +short | head -n1)" "$1" ANY +noall +answer
+domain=$1
 
-printf '\n*** Doing the ping ***\n'
-ping -c3 "$1"
+echo "=== DNS Records ==="
+ns=$(dig @8.8.8.8 "$domain" ns +short | head -n1)
+dig @"$ns" "$domain" ANY +noall +answer
+
+echo ""
+echo "=== Ping Test ==="
+ping -c3 "$domain"

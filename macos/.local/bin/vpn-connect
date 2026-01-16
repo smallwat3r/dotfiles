@@ -1,19 +1,25 @@
 #!/usr/bin/env osascript
--- Connect to VPN using Tunnelblick
--- Required parameter: VPN configuration name
+-- Connect to a VPN using Tunnelblick.
+-- Usage: vpn-connect <config-name>
 
 on run argv
-  if (count of argv) is 0 then return "Please enter a vpn configuration name."
+  if (count of argv) is 0 then
+    return "Usage: vpn-connect <config-name>"
+  end if
+
+  set configName to item 1 of argv
+
   tell application "Tunnelblick"
     try
-      connect (item 1 of argv)
-      get state of first configuration where name = (item 1 of argv)
-      repeat until result = "CONNECTED"
+      connect configName
+      repeat
+        set currentState to state of first configuration where name = configName
+        if currentState = "CONNECTED" then exit repeat
         delay 1
-        get state of first configuration where name = (item 1 of argv)
       end repeat
+      return "Connected to " & configName
     on error
-      return "An error occured, are you sure this vpn name exists?"
+      return "Error: VPN config '" & configName & "' not found"
     end try
   end tell
 end run

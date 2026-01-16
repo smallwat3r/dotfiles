@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
-#
-# Syncing emails with mbsync and notmuch
-#
-# Can be triggerd every minute by a cron job with:
-#   */1 * * * * /usr/local/bin/email-sync >/tmp/email-sync-cron-stdout.log 2>/tmp/email-sync-cron-stderr.log
+# Sync emails with mbsync and update notmuch database.
+# Can be triggered by cron:
+#   */1 * * * * email-sync >/tmp/email-sync.log 2>&1
+set -eo pipefail
 
-# kill any running mbsync processes quietly
-pkill -x mbsync 2>/dev/null
+pkill -x mbsync 2>/dev/null || true
 
-# run full sync, exit early on failure
-if ! mbsync -a; then
-  echo "mbsync failed" >&2
-  exit 1
-fi
+mbsync -a || { echo "mbsync failed" >&2; exit 1; }
 
-# update notmuch db
 notmuch new

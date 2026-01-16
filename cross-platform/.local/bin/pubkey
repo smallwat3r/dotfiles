@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
-# Copy public key to clipboard
+# Copy your SSH public key to the clipboard.
+# Supports macOS (pbcopy), Wayland (wl-copy), and X11 (xclip).
+set -euo pipefail
 
-copy_pubkey() {
-    local key="$HOME/.ssh/id_rsa.pub"
+key="$HOME/.ssh/id_rsa.pub"
 
-    if [[ "$OSTYPE" == darwin* ]]; then
-        pbcopy < "$key"
-    elif command -v wl-copy >/dev/null 2>&1; then
-        wl-copy < "$key"
-    elif command -v xclip >/dev/null 2>&1; then
-        xclip -selection clipboard < "$key"
-    else
-        echo 'No clipboard backend found' >&2
-        return 1
-    fi
-    echo 'Public key copied to clipboard.'
-}
+[[ -f $key ]] || { echo "Public key not found: $key" >&2; exit 1; }
 
-copy_pubkey
+if [[ $OSTYPE == darwin* ]]; then
+  pbcopy < "$key"
+elif command -v wl-copy >/dev/null 2>&1; then
+  wl-copy < "$key"
+elif command -v xclip >/dev/null 2>&1; then
+  xclip -selection clipboard < "$key"
+else
+  echo "No clipboard backend found" >&2
+  exit 1
+fi
+
+echo "Public key copied to clipboard."

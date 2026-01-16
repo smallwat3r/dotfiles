@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Initialise emacs daemon to boot on start up
-
-launchctl load -w ~/Library/LaunchAgents/gnu.emacs.daemon.plist
+# Enable Emacs daemon to start automatically at login.
+# Requires: ~/Library/LaunchAgents/gnu.emacs.daemon.plist
+exec launchctl load -w ~/Library/LaunchAgents/gnu.emacs.daemon.plist

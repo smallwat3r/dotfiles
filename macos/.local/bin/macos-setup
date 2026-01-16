@@ -1,91 +1,70 @@
 #!/usr/bin/env bash
-# macOS preferences
+# Configure macOS system preferences.
+# Run once after a fresh install or to reset preferences.
+set -euo pipefail
 
-if [[ "$OSTYPE" != darwin* ]]; then
-  printf 'This script must be ran from a Darwin system.\n'
-  exit 0
-fi
+[[ $OSTYPE == darwin* ]] || { echo "macOS only" >&2; exit 1; }
 
-# set highlight color to yellow
+# Appearance
 defaults write NSGlobalDomain AppleHighlightColor -string '0.752941 0.964706 0.678431'
+defaults write NSGlobalDomain AppleInterfaceStyle -string 'Light'
 
-# font smoothing
-# max smoothing is 3, no smoothing is 0
+# Font smoothing (0=none, 3=max)
 defaults -currentHost write -g AppleFontSmoothing -int 1
 defaults write org.gnu.Emacs AppleFontSmoothing -int 1
 
-# always show the window proxy icons
+# Always show window proxy icons
 defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 
-# light UI by default
-defaults write NSGlobalDomain AppleInterfaceStyle -string 'Light'
-
-# always show hidden files
+# Finder
 defaults write com.apple.finder AppleShowAllFiles -bool true
-
-# display the app switcher on all screens
-defaults write com.apple.Dock appswitcher-all-displays -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Dock
-defaults write com.apple.dock show-recents   -bool  false
-defaults write com.apple.dock autohide       -bool  true
+defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0.0001
-defaults write com.apple.dock tilesize       -int   25
+defaults write com.apple.dock tilesize -int 25
+defaults write com.apple.Dock appswitcher-all-displays -bool true
 
-# blazing fast key repeat
+# Keyboard
 defaults write -g InitialKeyRepeat -int 9
-defaults write -g KeyRepeat        -int 1
-
-# disable special characters when holding keys (this allows super fast keyrepeat)
+defaults write -g KeyRepeat -int 1
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# disable auto-correct, capitalisation and substitution
+# Disable auto-correct and substitution
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled     -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
-# disable the system alert sound
-defaults write NSGlobalDomain com.apple.sound.beep.volume     -int 0
+# Disable system sounds
+defaults write NSGlobalDomain com.apple.sound.beep.volume -int 0
 defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
 
-# remove shortcuts that are annoying while using tmux or switching with vim/emacs bindings
+# Disable conflicting keyboard shortcuts
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Mission Control' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Application windows' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move left a space' nil
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add 'Move right a space' nil
 
-# finder settings
-defaults write NSGlobalDomain   AppleShowAllExtensions  -bool true
-defaults write com.apple.finder ShowStatusBar           -bool true
-defaults write com.apple.finder ShowPathbar             -bool true
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-
-# disable animations when opening and closing windows.
+# Animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-
-# accelerated playback when adjusting the window size.
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# do not ask confirmation for changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-# do not create .DS_Store files on network volumes
+# Misc
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-# enforce finder list view
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
-
-# visualize CPU usage in the Activity Monitor Dock icon
+# Activity Monitor
 defaults write com.apple.ActivityMonitor IconType -int 5
-
-# show all processes in Activity Monitor
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
-
-# sort Activity Monitor results by CPU usage
 defaults write com.apple.ActivityMonitor SortColumn -string 'CPUUsage'
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
-# restart dock
 killall Dock
 
-echo 'All done.'
+echo "Done. Some changes require logout/restart."

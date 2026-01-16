@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
-# Start emacs as a daemon.
-# We can then access emacs using `emacsclient`.
-
-emacs --daemon
+# Start the Emacs daemon for use with emacsclient.
+exec emacs --daemon

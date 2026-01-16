@@ -1,15 +1,20 @@
 #!/usr/bin/env osascript
--- Disconnect from VPN using Tunnelblick
--- Required parameter: VPN configuration name
+-- Disconnect from a VPN using Tunnelblick.
+-- Usage: vpn-disconnect <config-name>
 
 on run argv
-  if (count of argv) is 0 then return "Please enter a vpn configuration name."
+  if (count of argv) is 0 then
+    return "Usage: vpn-disconnect <config-name>"
+  end if
+
+  set configName to item 1 of argv
+
   tell application "Tunnelblick"
     try
-      disconnect (item 1 of argv)
-      get state of first configuration where name = (item 1 of argv)
+      disconnect configName
+      return "Disconnected from " & configName
     on error
-      return "An error occured, are you sure this vpn name exists?"
+      return "Error: VPN config '" & configName & "' not found"
     end try
   end tell
 end run
