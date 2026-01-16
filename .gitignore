@@ -7,6 +7,10 @@
 *.pem
 *.pub
 *.asc
+*.key
+id_rsa*
+known_hosts
+known_hosts.*
 
 cross-platform/.doom.d/custom.el
 cross-platform/.doom.d/.custom.el
