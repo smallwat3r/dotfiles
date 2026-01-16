@@ -96,7 +96,7 @@
 
 (defun my/font-available-p (font)
   "Return non-nil if FONT is available on this system."
-  (if (find-font (font-spec :name font)) t nil))
+  (and (find-font (font-spec :name font)) t))
 
 (defun my/safe-font (fonts &rest spec)
   "Return a font-spec using the first available font in FONTS."
@@ -133,7 +133,7 @@
               with-editor-emacsclient-executable "emacsclient")
 
 (setq-default line-spacing 2)
-(when (not (= line-spacing 0))
+(unless (zerop line-spacing)
   ;; images would not render correctly if `line-spacing' is not 0
   (setq +rss-enable-sliced-images nil))
 
@@ -1025,8 +1025,8 @@
 
   ;; Set default tags on replies
   (setq notmuch-fcc-dirs
-        '((user-mail-address . "personal/sent -inbox +sent -unread")
-          (my-user-mail-address-2 . "sws/sent -inbox +sent -unread"))))
+        `((,user-mail-address . "personal/sent -inbox +sent -unread")
+          (,my-user-mail-address-2 . "sws/sent -inbox +sent -unread"))))
 
 
 ;;

@@ -34,7 +34,7 @@ These configurations support multiple platforms:
 
 | Directory        | Description                                          |
 |------------------+------------------------------------------------------|
-| ~cross-platform~ | Platform-agnostic configs (zsh, Emacs, SSH, vim ...) |
+| ~cross-platform~ | Platform-agnostic configs (zsh, Emacs, SSH ...)      |
 | ~macos~          | macOS-specific configs                               |
 | ~macos-root~     | macOS system-level configs (requires sudo)           |
 | ~fedora~         | Fedora-specific configs                              |
