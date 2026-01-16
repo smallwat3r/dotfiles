@@ -12,18 +12,22 @@ id_rsa*
 known_hosts
 known_hosts.*
 
-cross-platform/.doom.d/custom.el
-cross-platform/.doom.d/.custom.el
-cross-platform/.config/nvim/*
-!cross-platform/.config/nvim/init.vim
-cross-platform/.gnupg/*
-!cross-platform/.gnupg/gpg.conf
-cross-platform/.ssh/*
-!cross-platform/.ssh/config
-cross-platform/.config/qutebrowser/autoconfig.yml
-cross-platform/.config/qutebrowser/qsettings/*
+**/.gnupg/*
+!**/.gnupg/gpg.conf
+!**/.gnupg/gpg-agent.conf
 
-macos/Brewfile.lock.json
-macos/.hammerspoon/Spoons/*
-macos/.gnupg/*
-!macos/.gnupg/gpg-agent.conf
+**/.ssh/*
+!**/.ssh/config
+
+**/.config/nvim/*
+!**/.config/nvim/init.vim
+
+**/.config/qutebrowser/autoconfig.yml
+**/.config/qutebrowser/qsettings/*
+
+**/.doom.d/custom.el
+**/.doom.d/.custom.el
+
+**/.hammerspoon/Spoons/*
+
+**/Brewfile.lock.json
