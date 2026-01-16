@@ -1,0 +1,9 @@
+[custom0]
+binding='<Super>i'
+command="foot -T 'launcher' -w 600x300 -e launcher-bin"
+name='cli-launcher'
+
+[custom1]
+binding='<Super>e'
+command="foot -T 'launcher' -w 800x400 -e bw-picker"
+name='bitwarden-launcher'
