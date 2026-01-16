@@ -91,7 +91,7 @@
   "Return a font size depending on the device or OS."
   (let ((os (downcase (or (doom-system-distro-version) ""))))
     (cond
-     (IS-GPD 13)
+     (IS-GPD 16)
      ((string-match-p "ubuntu" os) 22)
      ((string-match-p "fedora" os) 17)
      (t 16))))
@@ -115,7 +115,7 @@
   (setq doom-font
         (cond
          (IS-GPD
-          (my/safe-font '("MonacoB" "Monospace") :size size))
+          (my/safe-font '("Courier Prime Code" "Monospace") :size size))
          ((eq system-type 'gnu/linux)
           (my/safe-font '("Triplicate A Code" "MonacoB" "Monospace") :size size))
          ((eq system-type 'darwin)
@@ -134,7 +134,7 @@
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 0)
 (unless (zerop line-spacing)
   ;; images would not render correctly if `line-spacing' is not 0
   (setq +rss-enable-sliced-images nil))
@@ -142,8 +142,7 @@
 ;; Theme
 (setq doom-theme 'creamy)
 (custom-theme-set-faces! 'creamy
-  '(font-lock-function-name-face :foreground "MidnightBlue")
-  '(font-lock-comment-face :foreground "yellow4" :weight bold))
+  '(font-lock-function-name-face :foreground "MidnightBlue"))
 
 (after! display-line-numbers
   (setq display-line-numbers-type nil  ; none by default
