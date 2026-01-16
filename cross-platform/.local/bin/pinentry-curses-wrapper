@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -x /opt/homebrew/bin/pinentry-curses ]; then
+    exec /opt/homebrew/bin/pinentry-curses "$@"
+else
+    exec /usr/bin/pinentry-curses "$@"
+fi
