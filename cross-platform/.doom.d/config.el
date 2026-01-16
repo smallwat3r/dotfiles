@@ -877,7 +877,16 @@
             my-ssh-config-files)
     '((tramp-parse-sconfig "/etc/ssh_config")
       (tramp-parse-shosts "/etc/hosts")
-      (tramp-parse-shosts "~/.ssh/known_hosts")))))
+      (tramp-parse-shosts "~/.ssh/known_hosts"))))
+  ;; reuse SSH ControlMaster connections (requires ControlMaster in ~/.ssh/config)
+  (setq tramp-use-ssh-controlmaster-options nil)
+  ;; cache remote file properties longer
+  (setq remote-file-name-inhibit-cache nil)
+  ;; disable version control checks on remote files
+  (setq vc-ignore-dir-regexp
+        (format "\\(%s\\)\\|\\(%s\\)"
+                vc-ignore-dir-regexp
+                tramp-file-name-regexp)))
 
 (map!
  (:leader
@@ -907,8 +916,8 @@
     (let ((tramp-base-path (my/vterm-tramp-base-path)))
       (rename-buffer (format "*vterm@%s*" tramp-base-path) t)
       (vterm-send-string
-       (format "e() { printf \"\\033]51;Efind-file %s:%s\\007\" \"$(pwd)/$1\"; } \n"
-               tramp-base-path "%s")))
+       (format "e() { local f=\"$1\"; [[ \"$f\" != /* ]] && f=\"$PWD/$f\"; printf '\\033]51;Efind-file %s:%%s\\007' \"$f\"; }\n"
+               tramp-base-path)))
     (vterm-send-string "clear\n")))
 
 ;; inject to the remote shell a function that can edit remote files in

@@ -1,53 +1,59 @@
-* smallwat3r’s dotfiles
+* smallwat3r's dotfiles
 
-This repository contains my personal dotfiles. You are welcome to reuse any part of it, but note that it is tailored to my own workflow and updated frequently. Use at your own risk, and make sure to back up your existing setup before using the provided Makefile.
-Dotfiles are managed with GNU Stow.
+Personal dotfiles managed with [[https://www.gnu.org/software/stow/][GNU Stow]].
 
-These configurations support multiple platforms because I use several machines with different operating systems:
+Feel free to reuse any part of this repository, but note that it is tailored to my own workflow and updated frequently. Back up your existing setup before using the provided Makefile.
 
-- macOS
-- Fedora
+** Requirements
 
-As a result, the Stow targets are split across multiple directories.
+- [[https://www.gnu.org/software/stow/][GNU Stow]]
 
-- *Cross-platform* configurations are located under ~cross-platform/~.
-  This includes items such as zsh, Emacs, SSH, and binaries. Everything here *should* be platform-agnostic.
-- *macOS*-specific configurations are under ~macos/~ and ~macos-root/~.
-- *Fedora*-specific configurations are under ~fedora/~.
+** Installation
 
-Clone this repository into your home directory:
+Clone into your home directory:
 
 #+begin_src shell
-(cd $HOME && git clone https://github.com/smallwat3r/dotfiles.git)
+git clone https://github.com/smallwat3r/dotfiles.git ~/dotfiles
 #+end_src
 
-** Makefile
-
-To symlink all dotfiles (the Makefile automatically detects the OS and selects the appropriate Stow targets):
+Symlink all dotfiles (the Makefile detects the OS and selects the appropriate targets):
 
 #+begin_src shell
-make symlink
+cd ~/dotfiles && make symlink
 #+end_src
 
-To list available commands:
+List available commands:
 
 #+begin_src shell
 make help
 #+end_src
 
+** Structure
+
+These configurations support multiple platforms:
+
+| Directory        | Description                                          |
+|------------------+------------------------------------------------------|
+| ~cross-platform~ | Platform-agnostic configs (zsh, Emacs, SSH, vim ...) |
+| ~macos~          | macOS-specific configs                               |
+| ~macos-root~     | macOS system-level configs (requires sudo)           |
+| ~fedora~         | Fedora-specific configs                              |
+
 ** Emacs
 
 I use Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
-Most of my configuration is cross-platform and stored under [[cross-platform/.doom.d]] in this repository.
+Configuration is stored in [[file:cross-platform/.doom.d][cross-platform/.doom.d]].
 
 *** Installing Emacs
 
 **** macOS
+
 #+begin_src shell
 brew tap d12frosted/emacs-plus && brew install emacs-plus@30
 #+end_src
 
 **** Fedora
+
 #+begin_src shell
 sudo dnf install emacs
 #+end_src
@@ -55,6 +61,6 @@ sudo dnf install emacs
 *** Installing Doom Emacs
 
 #+begin_src shell
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 #+end_src
