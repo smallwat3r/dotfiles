@@ -165,11 +165,8 @@ hotkey.bind(mod_cmd, 'm', function() launcherRunner('App launcher', 'launcher-ap
 -- execute a binary
 hotkey.bind(mod_cmd, ',', function() launcherRunner('Bin launcher', 'launcher-bin', nil) end)
 
--- browse google chrome bookmarks
-hotkey.bind(mod_cmd, '.', function() launcherRunner('Bookmark launcher', 'launcher-chrome-bookmarks', nil) end)
-
--- browse google chrome history
-hotkey.bind(mod_cmd, 'h', function() launcherRunner('History launcher', 'launcher-chrome-history') end)
+-- browse browser history
+hotkey.bind(mod_cmd, 'h', function() launcherRunner('History launcher', 'launcher-browser-history') end)
 
 -- switch to open application
 hotkey.bind(mod_cmd, 'space', function() launcherRunner('App switcher', 'launcher-running-app', nil) end)

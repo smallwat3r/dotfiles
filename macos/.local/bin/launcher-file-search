@@ -13,7 +13,7 @@ cd "$HOME" || exit 1
 target=$(
   FZF_DEFAULT_OPTS="$FZF_OPTS" \
   FZF_DEFAULT_COMMAND="rg --files --hidden $EXCLUDES" \
-  fzf --preview 'echo {} | fold -s -w 50' --preview-window=right:70%
+  fzf --wrap
 ) || exit 0
 
 ${EDITOR:-vim} "$target"

@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Browse Chrome/Chromium bookmarks and history using fzf.
+# Requires: fzf, sqlite3, jq
+set -euo pipefail
+
+die() { echo "$1" >&2; exit 1; }
+
+has() { command -v "$1" >/dev/null 2>&1; }
+
+require() { has "$1" || die "$1 is required"; }
+
+require fzf
+require sqlite3
+require jq
+
+FZF_OPTS="--reverse --color=bg:-1,bg+:-1,fg+:186,hl:115,hl+:115"
+
+case "$(uname -s)" in
+  Darwin)
+    HISTORY="$HOME/Library/Application Support/Google/Chrome/Default/History"
+    open_cmd() { open -a "/Applications/Google Chrome.app" "$1"; }
+    ;;
+  Linux)
+    HISTORY=""
+    for path in \
+      "$HOME/.config/chromium/Default/History" \
+      "$HOME/.config/google-chrome/Default/History" \
+      "$HOME/.var/app/org.chromium.Chromium/config/chromium/Default/History" \
+      "$HOME/.var/app/com.google.Chrome/config/google-chrome/Default/History" \
+      "$HOME/snap/chromium/common/chromium/Default/History"
+    do
+      [[ -f "$path" ]] && HISTORY="$path" && break
+    done
+    open_cmd() { xdg-open "$1"; }
+    ;;
+  *)
+    die "Unsupported OS"
+    ;;
+esac
+
+[[ -f "$HISTORY" ]] || die "History file not found"
+
+BOOKMARKS="${HISTORY%History}Bookmarks"
+
+JQ_FILTER='.. | select(.type? == "url") | "🔖 [\(.name)]\t\(.url)"'
+SQL_QUERY='SELECT url FROM urls ORDER BY last_visit_time DESC LIMIT 100000'
+
+target=$(
+  {
+    [[ -f "$BOOKMARKS" ]] && jq -r "$JQ_FILTER" "$BOOKMARKS" || true
+    sqlite3 "file:$HISTORY?immutable=1" "$SQL_QUERY"
+  } | FZF_DEFAULT_OPTS="$FZF_OPTS" fzf --wrap --tiebreak=index
+) || exit 0
+
+# Extract URL (after tab for bookmarks, or whole line for history)
+[[ "$target" == *$'\t'* ]] && target="${target##*$'\t'}"
+open_cmd "$target"
