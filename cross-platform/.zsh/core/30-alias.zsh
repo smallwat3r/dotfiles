@@ -63,9 +63,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 fi
 
-if [ -n "$ZSH_VERSION" ]; then
-  # Global aliases
-  alias \
+# Global aliases
+alias \
     -g G="| grep" \
     -g L="| less" \
     -g NE="2> /dev/null" \
@@ -79,19 +78,18 @@ if [ -n "$ZSH_VERSION" ]; then
     alias -g C="| wl-copy"
   else
     alias -g C="| xclip -selection clipboard"
-  fi
-
-  # Tracked aliases (named directories)
-  hash -d \
-    d="$HOME/dotfiles" \
-    dots="$HOME/dotfiles" \
-    c="$HOME/code" \
-    dw="$HOME/Downloads" \
-    de="$HOME/Desktop" \
-    ssh="$HOME/.ssh" \
-    zsh="$HOME/.zsh" \
-    fonts="$HOME/Library/Fonts" \
-    config="$HOME/.config" \
-    etc="/etc" \
-    opt="/opt"
 fi
+
+# Tracked aliases (named directories)
+hash -d \
+  d="$HOME/dotfiles" \
+  dots="$HOME/dotfiles" \
+  c="$HOME/code" \
+  dw="$HOME/Downloads" \
+  de="$HOME/Desktop" \
+  ssh="$HOME/.ssh" \
+  zsh="$HOME/.zsh" \
+  fonts="$HOME/Library/Fonts" \
+  config="$HOME/.config" \
+  etc="/etc" \
+  opt="/opt"

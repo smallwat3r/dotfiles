@@ -48,7 +48,9 @@ __git_prompt_segment() {
   fi
 
   # PAUSED badge if last commit subject starts with "PAUSED"
-  if git log -1 --format="%s" 2>/dev/null | grep -q '^PAUSED'; then
+  local subject
+  subject=$(git log -1 --format="%s" 2>/dev/null)
+  if [[ $subject == PAUSED* ]]; then
     paused=' %B%F{198}%K{52}[PAUSED]%b%f%k'
   else
     paused=''

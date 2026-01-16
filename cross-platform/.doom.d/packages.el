@@ -52,10 +52,6 @@
 ;; https://github.com/wolray/symbol-overlay/commits/master
 (package! symbol-overlay :pin "6151f4279bd94b5960149596b202cdcb45cacec2")
 
-;; Lsp for Pyright
-;; https://github.com/emacs-lsp/lsp-pyright/commits/master
-(package! lsp-pyright :pin "3756ff971797ae04fc43ca29c66ba4d854eff038")
-
 ;; Make org mode more beautiful
 ;; https://github.com/minad/org-modern/commits/main
 (package! org-modern :pin "8829e48aabd289f970d39875f40915526f3423f2")

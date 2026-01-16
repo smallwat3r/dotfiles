@@ -13,13 +13,23 @@
   evil-ex-search-activate-highlight
   :config (global-anzu-mode +1))
 
+(defvar my/buffer-count-cache 0
+  "Cached count of user-visible buffers.")
+
+(defun my/update-buffer-count ()
+  "Update the cached buffer count."
+  (setq my/buffer-count-cache
+        (cl-count-if
+         (lambda (b)
+           (or (buffer-file-name b)
+               (not (string-match "^ " (buffer-name b)))))
+         (buffer-list))))
+
+(add-hook 'buffer-list-update-hook #'my/update-buffer-count)
+
 (defun my/number-of-buffers ()
-  "Count the number of buffers."
-  (cl-count-if
-   (lambda (b)
-     (or (buffer-file-name b)
-         (not (string-match "^ " (buffer-name b)))))
-   (buffer-list)))
+  "Return the cached count of buffers."
+  my/buffer-count-cache)
 
 (let ((standard-mode-line-format
        (list "%e"

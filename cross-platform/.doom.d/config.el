@@ -39,7 +39,9 @@
 (defconst my-hardware-vendor
   (let ((board-vendor-file "/sys/devices/virtual/dmi/id/board_vendor"))
     (if (file-exists-p board-vendor-file)
-        (format "%s" (cdr (doom-call-process "cat" board-vendor-file)))
+        (string-trim (with-temp-buffer
+                       (insert-file-contents board-vendor-file)
+                       (buffer-string)))
       ""))
   "Hardware vendor name.")
 
@@ -469,7 +471,7 @@
 ;;
 ;;; Custom templates
 
-(setq +file-templates-dir "~/.doom.d/templates"
+(setq +file-templates-dir (expand-file-name "templates" doom-user-dir)
       +file-templates-default-trigger "_template")
 
 ;; Allow some file templates to be used only in specific modes.
@@ -701,9 +703,6 @@
 
   (add-to-list '+lookup-provider-url-alist
                '("Python Docs" "https://docs.python.org/3/search.html?q=%s")))
-
-(after! lsp-pyright
-  (setq lsp-pyright-langserver-command "basedpyright"))
 
 ;; PET (P ython E xecutable T racker)
 ;; doc: https://github.com/wyuenho/emacs-pet/
@@ -1070,7 +1069,7 @@
           ("http://feeds.feedburner.com/PythonInsider" python)))
 
   ;; add private Github RSS feed, using token from pass.
-  (let ((token (auth-source-pass-get "secret" "github/rss/token")))
+  (let ((token (auth-source-pass-get 'secret "github/rss/token")))
     (when token
       (setq my-github-rss-feed
             (format "https://github.com/smallwat3r.private.atom?token=%s" token))

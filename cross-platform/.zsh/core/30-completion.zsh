@@ -47,6 +47,6 @@ zstyle ':completion:*:options' auto-description '%d'
 zstyle ':completion:*' group-name ''
 
 # expand aliases with C-a
-zle -C alias-expension complete-word _generic
-bindkey '^a' alias-expension
-zstyle ':completion:alias-expension:*' completer _expand_alias
+zle -C alias-expansion complete-word _generic
+bindkey '^a' alias-expansion
+zstyle ':completion:alias-expansion:*' completer _expand_alias

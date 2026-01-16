@@ -2,7 +2,7 @@
 # Dependencies: fzf
 
 # Make sure fzf's bin is on PATH (Homebrew /usr/local layout)
-if (( ${path[(Ie)/usr/local/opt/fzf/bin]} == 0 )); then
+if [[ -d /usr/local/opt/fzf/bin ]] && (( ${path[(Ie)/usr/local/opt/fzf/bin]} == 0 )); then
   path+=("/usr/local/opt/fzf/bin")
 fi
 

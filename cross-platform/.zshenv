@@ -28,8 +28,8 @@ manpath=(
 
 # homebrew
 /opt/homebrew/bin(/N) && path=(/opt/homebrew/bin $path)
-"/opt/homebrew/sbin"(/N) && path=(/opt/homebrew/sbin $path)
-"/opt/homebrew/opt/sphinx-doc/bin"(/N) && path=(/opt/homebrew/opt/sphinx-doc/bin $path)
+/opt/homebrew/sbin(/N) && path=(/opt/homebrew/sbin $path)
+/opt/homebrew/opt/sphinx-doc/bin(/N) && path=(/opt/homebrew/opt/sphinx-doc/bin $path)
 
 # user npm global bin dir
 [[ -d "$HOME/.npm-global/bin" ]] && path=("$HOME/.npm-global/bin" $path)

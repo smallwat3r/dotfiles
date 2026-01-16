@@ -18,7 +18,7 @@ setopt HIST_REDUCE_BLANKS   # get rid of superfluous blank lines
 setopt HIST_VERIFY          # perform history expansion and reload the line into the editing buffer
 setopt HISTIGNORESPACE      # do not save in history commands that starts by a space
 export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=999999999
+export HISTSIZE=1000000
 export SAVEHIST="${HISTSIZE}"
 
 # ensure keys are mapped correctly
@@ -43,7 +43,6 @@ zle -N __exit_zsh
 bindkey '^D' __exit_zsh
 
 # up and down to go through history
-autoload -U history-search
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
@@ -79,12 +78,12 @@ __toggle_quotes() {
   local suffix=${BUFFER[end+1,-1]}
 
   if [[ $word == \"*\" && $word == *\" ]]; then
-    # already quoted —> remove
+    # already quoted -> remove
     local inner=${word[2,-2]}
     BUFFER="${prefix}${inner}${suffix}"
     CURSOR=$(( ${#prefix} + ${#inner} ))
   else
-    # unquoted —> add quotes
+    # unquoted -> add quotes
     BUFFER="${prefix}\"${word}\"${suffix}"
     CURSOR=$(( ${#prefix} + ${#word} + 2 ))
   fi
