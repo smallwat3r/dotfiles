@@ -25,9 +25,10 @@ cd ~/dotfiles && make stow
 Other available commands:
 
 #+begin_src shell
-make unstow   # remove all symlinks
-make dry-run  # preview changes without modifying the filesystem
-make help     # list available commands
+make unstow     # remove all symlinks
+make dry-run    # preview changes without modifying the filesystem
+make dconf-load # load dconf settings (Fedora only)
+make help       # list available commands
 #+end_src
 
 ** Structure
@@ -38,7 +39,7 @@ These configurations support multiple platforms:
 |------------------+------------------------------------------------------|
 | ~cross-platform~ | Platform-agnostic configs (zsh, Emacs, SSH ...)      |
 | ~macos~          | macOS-specific configs (~_root/~ for system-level)   |
-| ~fedora~         | Fedora-specific configs                              |
+| ~fedora~         | Fedora-specific configs (includes dconf settings)    |
 
 ** Emacs
 
