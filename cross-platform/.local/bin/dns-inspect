@@ -4,6 +4,8 @@
 # Usage: dns-inspect <domain>
 set -euo pipefail
 
+TIMEOUT=5
+
 if [[ $# -ne 1 ]]; then
   echo "Usage: ${0##*/} <domain>" >&2
   exit 1
@@ -12,9 +14,17 @@ fi
 domain=$1
 
 echo "=== DNS Records ==="
-ns=$(dig @8.8.8.8 "$domain" ns +short | head -n1)
-dig @"$ns" "$domain" ANY +noall +answer
+ns=$(dig @8.8.8.8 "$domain" ns +short +time="$TIMEOUT" | head -n1)
+if [[ -n $ns ]]; then
+  dig @"$ns" "$domain" ANY +noall +answer +time="$TIMEOUT"
+else
+  echo "No nameserver found"
+fi
 
 echo ""
 echo "=== Ping Test ==="
-ping -c3 "$domain"
+if [[ $OSTYPE == darwin* ]]; then
+  ping -c3 -W $((TIMEOUT * 1000)) "$domain"
+else
+  ping -c3 -W "$TIMEOUT" "$domain"
+fi
