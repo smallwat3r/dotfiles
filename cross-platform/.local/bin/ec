@@ -4,8 +4,16 @@
 # Usage: ec [file...]
 set -euo pipefail
 
+# Start daemon if not running and wait for it to be ready
+if ! emacsclient -e '(progn)' &>/dev/null; then
+  emacs --daemon &>/dev/null
+  while ! emacsclient -e '(progn)' &>/dev/null; do
+    sleep 0.1
+  done
+fi
+
 if emacsclient -n -e '(> (length (frame-list)) 1)' 2>/dev/null | grep -q t; then
-  emacsclient -n -a '' "$@"
+  emacsclient -n "$@"
 else
-  emacsclient -n -c -a '' "$@"
+  emacsclient -n -c "$@"
 fi
