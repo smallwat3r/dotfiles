@@ -13,56 +13,82 @@
 #
 set -euo pipefail
 
+# Helpers
+
 die() { echo "$1" >&2; exit 1; }
 
 has() { command -v "$1" >/dev/null 2>&1; }
 
 require() { has "$1" || die "$1 is required"; }
 
+# Dependencies
+
 require fzf
 require ssh
+
+# Config
 
 SSH_CONFIG="${SSH_CONFIG:-$HOME/.ssh/config}"
 [[ -f "$SSH_CONFIG" ]] || die "SSH config not found: $SSH_CONFIG"
 
 case "$(uname -s)" in
-  Darwin) fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last" ;;
-  *)      fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last" ;;
+  Darwin)
+    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
+    ;;
+  *)
+    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
+    ;;
 esac
 
+fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
+
+# Functions
+
 fzf_pick() {
-  fzf --reverse --wrap --tiebreak=index --bind="$fzf_bind" \
+  fzf --reverse --wrap --tiebreak=index \
     --delimiter=$'\t' --with-nth=2.. \
-    --color=bg:-1,bg+:-1,fg:-1,fg+:-1 \
-    --color=hl:33,hl+:33,info:30,prompt:30 \
-    --color=pointer:32,marker:32,spinner:32
+    --bind="$fzf_bind" --color="$fzf_colors"
 }
 
-# Parse SSH config for hosts (excluding wildcards)
-list_hosts() {
+get_hosts() {
   awk '
     /^[Hh]ost / {
       for (i = 2; i <= NF; i++) {
         if ($i !~ /[*?]/) print $i
       }
     }
-  ' "$SSH_CONFIG" | sort -u | while read -r host; do
-    # Get hostname if different from alias
-    hostname=$(awk -v h="$host" '
-      BEGIN { IGNORECASE=1; found=0 }
-      /^Host / { found=0; for(i=2;i<=NF;i++) if($i==h) found=1 }
-      found && /^[[:space:]]*Hostname/ { print $2; exit }
-    ' "$SSH_CONFIG")
+  ' "$SSH_CONFIG" | sort -u
+}
+
+get_hostname() {
+  local host="$1"
+
+  awk -v h="$host" '
+    BEGIN { IGNORECASE = 1; found = 0 }
+    /^Host / { found = 0; for (i = 2; i <= NF; i++) if ($i == h) found = 1 }
+    found && /^[[:space:]]*Hostname/ { print $2; exit }
+  ' "$SSH_CONFIG"
+}
+
+list_hosts() {
+  local host hostname
+
+  while read -r host; do
+    hostname="$(get_hostname "$host")"
+
     if [[ -n "$hostname" && "$hostname" != "$host" ]]; then
       printf '%s\t%s (%s)\n' "$host" "$host" "$hostname"
     else
       printf '%s\t%s\n' "$host" "$host"
     fi
-  done
+  done < <(get_hosts)
 }
+
+# Main
 
 selected="$(list_hosts | fzf_pick)" || exit 0
 [[ -z "$selected" ]] && exit 0
 
 host="${selected%%$'\t'*}"
+
 exec ssh "$host"

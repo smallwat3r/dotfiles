@@ -5,7 +5,7 @@ name='cli-launcher'
 
 [custom1]
 binding='<Super>e'
-command="foot -T 'Bitwarden launcher' -w 800x400 -e bw-picker"
+command="foot -T 'Bitwarden launcher' -w 800x400 -e launcher-bitwarden"
 name='bitwarden-launcher'
 
 [custom2]

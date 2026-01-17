@@ -15,21 +15,28 @@
 #
 set -euo pipefail
 
+# Helpers
+
 die() { echo "$1" >&2; exit 1; }
 
 has() { command -v "$1" >/dev/null 2>&1; }
 
 require() { has "$1" || die "$1 is required"; }
 
+# Dependencies
+
 require fzf
 require sqlite3
 require jq
 
+# Config
+
 case "$(uname -s)" in
   Darwin)
     HISTORY="$HOME/Library/Application Support/Google/Chrome/Default/History"
-    open_cmd() { open -a "/Applications/Google Chrome.app" "$1"; }
     fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
+
+    open_url() { open -a "/Applications/Google Chrome.app" "$1"; }
     ;;
   Linux)
     HISTORY=""
@@ -42,8 +49,9 @@ case "$(uname -s)" in
     do
       [[ -f "$path" ]] && HISTORY="$path" && break
     done
-    open_cmd() { setsid xdg-open "$1" >/dev/null 2>&1; }
     fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
+
+    open_url() { setsid xdg-open "$1" >/dev/null 2>&1; }
     ;;
   *)
     die "Unsupported OS"
@@ -54,27 +62,39 @@ esac
 
 BOOKMARKS="${HISTORY%History}Bookmarks"
 
+fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
+
+# Functions
+
 fzf_pick() {
-  fzf --reverse --wrap --tiebreak=index --bind="$fzf_bind" \
-    --color=bg:-1,bg+:-1,fg:-1,fg+:-1 \
-    --color=hl:33,hl+:33,info:30,prompt:30 \
-    --color=pointer:32,marker:32,spinner:32
+  fzf --reverse --wrap --tiebreak=index --bind="$fzf_bind" --color="$fzf_colors"
 }
 
-JQ_FILTER='.. | select(.type? == "url") | "🔖 [\(.name)]\t\(.url)"'
-SQL_QUERY="SELECT '🕐 ' || date(last_visit_time/1000000 - 11644473600, 'unixepoch') || ' ' || url FROM urls ORDER BY last_visit_time DESC LIMIT 100000"
+list_entries() {
+  local jq_filter='.. | select(.type? == "url") | "🔖 [\(.name)]\t\(.url)"'
+  local sql_query="
+    SELECT '🕐 ' || date(last_visit_time/1000000 - 11644473600, 'unixepoch') || ' ' || url
+    FROM urls
+    ORDER BY last_visit_time DESC
+    LIMIT 100000
+  "
 
-target=$(
-  {
-    [[ -f "$BOOKMARKS" ]] && jq -r "$JQ_FILTER" "$BOOKMARKS" || true
-    sqlite3 "file:$HISTORY?immutable=1" "$SQL_QUERY"
-  } | fzf_pick
-) || exit 0
+  [[ -f "$BOOKMARKS" ]] && jq -r "$jq_filter" "$BOOKMARKS" || true
+  sqlite3 "file:$HISTORY?immutable=1" "$sql_query"
+}
 
-# Extract URL
-if [[ "$target" == *$'\t'* ]]; then
-  target="${target##*$'\t'}"
-else
-  target="${target#* * }"
-fi
-open_cmd "$target"
+extract_url() {
+  local target="$1"
+
+  if [[ "$target" == *$'\t'* ]]; then
+    printf '%s' "${target##*$'\t'}"
+  else
+    printf '%s' "${target#* * }"
+  fi
+}
+
+# Main
+
+target="$(list_entries | fzf_pick)" || exit 0
+
+open_url "$(extract_url "$target")"

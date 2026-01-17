@@ -1,12 +1,51 @@
 #!/usr/bin/env bash
-# Custom command launcher
+#
+# launcher-bin - Custom command launcher
+#
+# Interactively select and run a command from PATH or installed
+# Flatpak applications.
+#
+# Dependencies:
+#   - fzf: Fuzzy finder
+#   - flatpak: (optional) For Flatpak app support
+#
+# Usage:
+#   launcher-bin
+#
 set -euo pipefail
 
-FOOT_WINDOW_SIZE="80x24"
+# Helpers
+
+die() { echo "$1" >&2; exit 1; }
 
 has() { command -v "$1" >/dev/null 2>&1; }
 
 is_flatpak() { has flatpak && flatpak info "$1" >/dev/null 2>&1; }
+
+# Dependencies
+
+has fzf || die "fzf is required"
+
+# Config
+
+FOOT_WINDOW_SIZE="80x24"
+
+case "$(uname -s)" in
+  Darwin)
+    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
+    ;;
+  *)
+    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
+    ;;
+esac
+
+fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
+
+# Functions
+
+fzf_pick() {
+  fzf --reverse --bind="$fzf_bind" --color="$fzf_colors"
+}
 
 run() {
   if is_flatpak "$1"; then
@@ -18,30 +57,18 @@ run() {
   fi
 }
 
-# ignore SIGHUP so children survive when terminal exits
+list_commands() {
+  compgen -c | sort -u
+
+  if [[ $OSTYPE == linux* ]] && has flatpak; then
+    flatpak list --app --columns=application | sort -u
+  fi
+}
+
+# Main
+
 trap "" HUP
 
-has fzf || { echo 'You need to install fzf' >&2; exit 1; }
-
-case "$(uname -s)" in
-  Darwin) fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last" ;;
-  *)      fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last" ;;
-esac
-
-cmds="$(compgen -c | sort -u)"
-
-if [[ $OSTYPE == linux* ]] && has flatpak; then
-  cmds+=$'\n'"$(flatpak list --app --columns=application | sort -u)"
-fi
-
-target="$(
-  printf '%s\n' "$cmds" |
-  fzf \
-    --reverse \
-    --bind="$fzf_bind" \
-    --color=bg:-1,bg+:-1,fg:-1,fg+:-1 \
-    --color=hl:33,hl+:33,info:30,prompt:30 \
-    --color=pointer:32,marker:32,spinner:32
-)" || exit 0
+target="$(list_commands | fzf_pick)" || exit 0
 
 [[ -n $target ]] && run "$target"
