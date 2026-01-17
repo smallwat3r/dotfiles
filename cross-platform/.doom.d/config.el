@@ -111,19 +111,36 @@
       (apply #'font-spec :family available spec))))
 
 ;; pick font based on OS, with support for fallback
-(let ((size (my/get-font-size-based-on-os)))
-  (setq doom-font
-        (cond
-         (IS-GPD
-          (my/safe-font '("Courier Prime Code" "Monospace") :size size))
-         ((eq system-type 'gnu/linux)
-          (my/safe-font '("Triplicate A Code" "MonacoB" "Monospace") :size size))
-         ((eq system-type 'darwin)
-          (my/safe-font '("Triplicate A Code" "Monaco") :size size))
-         (t
-          (my/safe-font '("Triplicate A Code") :size size)))))
+(defvar my--fonts-configured nil
+  "Non-nil if fonts have been successfully configured.")
 
-(setq doom-variable-pitch-font doom-font)
+(defun my/configure-fonts (&optional frame)
+  "Configure doom-font when a graphical display is available."
+  (let ((frame (or frame (selected-frame))))
+    (when (and (not my--fonts-configured)
+               (display-graphic-p frame)
+               (frame-focus-state frame))
+      (let ((size (my/get-font-size-based-on-os)))
+        (setq doom-font
+              (cond
+               (IS-GPD
+                (my/safe-font '("Courier Prime Code" "Monospace") :size size))
+               ((eq system-type 'gnu/linux)
+                (my/safe-font '("Triplicate A Code" "MonacoB" "Monospace") :size size))
+               ((eq system-type 'darwin)
+                (my/safe-font '("Triplicate A Code" "Monaco") :size size))
+               (t
+                (my/safe-font '("Triplicate A Code") :size size))))
+        (setq doom-variable-pitch-font doom-font)
+        (when doom-font
+          (doom/reload-font))
+        (setq my--fonts-configured t)
+        (remove-hook 'focus-in-hook #'my/configure-fonts)))))
+
+;; Run now if graphical, defer to focus-in if daemon
+(if (daemonp)
+    (add-hook 'focus-in-hook #'my/configure-fonts)
+  (my/configure-fonts))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
