@@ -28,7 +28,6 @@ has fzf || die "fzf is required"
 
 # Config
 
-FOOT_WINDOW_SIZE="80x24"
 HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bin-history"
 HISTORY_MAX_LINES=1000
 
@@ -64,8 +63,6 @@ run() {
   trim_history
   if is_flatpak "$1"; then
     flatpak run "$1" &
-  elif [[ $1 == foot ]]; then
-    foot --window-size-chars="$FOOT_WINDOW_SIZE" &
   else
     "$1" &
   fi
