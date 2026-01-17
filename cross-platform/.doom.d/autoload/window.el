@@ -1,4 +1,4 @@
-;;; $DOOMDIR/autoload/move.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/autoload/window.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
 (defun my/scroll-up ()

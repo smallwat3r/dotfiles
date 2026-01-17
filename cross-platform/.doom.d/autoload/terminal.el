@@ -119,3 +119,11 @@ Sets INSIDE_EMACS so the remote shell knows it was launched from Emacs."
                  (thing-at-point 'symbol))
         (vterm-send-meta-backspace))
       (vterm-send-string choice))))
+
+;;;###autoload
+(defun my/open-remote-conn ()
+  "Open remote SSH connection with Tramp."
+  (interactive)
+  (let ((tramp-path "/ssh:")
+        (prompt "Pick target: "))
+    (find-file (read-file-name prompt tramp-path))))
