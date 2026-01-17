@@ -1,5 +1,20 @@
 # ZSH prompt
 
+# Run a command with a timeout to prevent hanging on slow filesystems.
+# Falls back to running without timeout if neither timeout nor gtimeout is available.
+__with_timeout() {
+  local timeout_cmd
+  if command -v timeout &>/dev/null; then
+    timeout_cmd="timeout"
+  elif command -v gtimeout &>/dev/null; then
+    timeout_cmd="gtimeout"
+  else
+    "$@"
+    return
+  fi
+  $timeout_cmd 0.5s "$@"
+}
+
 # Display Python virtual environment name. This function is used in the Zsh prompt.
 __is_venv() {
   if (( ${+VIRTUAL_ENV} )); then
@@ -15,7 +30,7 @@ __is_venv() {
 __git_prompt_segment() {
   local git_status first_line branch rest dirty top root paused
 
-  git_status=$(git status --porcelain=v1 -b 2>/dev/null) || return
+  git_status=$(__with_timeout git status --porcelain=v1 -b 2>/dev/null) || return
 
   # first line looks like: "## master" or "## master...origin/master [ahead 1]"
   first_line=${git_status%%$'\n'*}
@@ -40,7 +55,7 @@ __git_prompt_segment() {
   fi
 
   # repo root marker (~) if we're at the top-level dir
-  top=$(git rev-parse --show-toplevel 2>/dev/null) || top=''
+  top=$(__with_timeout git rev-parse --show-toplevel 2>/dev/null) || top=''
   if [[ -n $top && $top == ${PWD:A} ]]; then
     root='~'
   else
@@ -49,7 +64,7 @@ __git_prompt_segment() {
 
   # PAUSED badge if last commit subject starts with "PAUSED"
   local subject
-  subject=$(git log -1 --format="%s" 2>/dev/null)
+  subject=$(__with_timeout git log -1 --format="%s" 2>/dev/null)
   if [[ $subject == PAUSED* ]]; then
     paused=' %B%F{198}%K{52}[PAUSED]%b%f%k'
   else

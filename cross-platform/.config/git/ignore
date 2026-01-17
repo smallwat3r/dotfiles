@@ -6,6 +6,7 @@
 *.pid
 *.rdb
 *.elc
+*.zwc
 *~
 .*.sw?
 .DS_Store
