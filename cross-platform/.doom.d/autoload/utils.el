@@ -8,7 +8,7 @@
 
 ;;;###autoload
 (defun my/where-am-i ()
-  "Echo where I'm at."
+  "Display the current buffer's file path or buffer name."
   (interactive)
   (message (if (buffer-file-name)
                (buffer-file-name)

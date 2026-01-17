@@ -153,7 +153,8 @@
 
 (setq-default line-spacing 0)
 (unless (zerop line-spacing)
-  ;; images would not render correctly if `line-spacing' is not 0
+  ;; Sliced images break with non-zero line-spacing because Emacs adds extra
+  ;; pixels between each image slice, causing visible gaps.
   (setq +rss-enable-sliced-images nil))
 
 ;; Theme
@@ -243,6 +244,9 @@
 ;; Evil-mode
 (after! evil
   ;; General evil mode settings.
+  ;; Note: "custom layout" comments indicate alternative bindings for the
+  ;; Smallcat keyboard (26 keys), where y/n/a/e/i replace the standard
+  ;; h/j/k/l vim keys.
   (setq evil-vsplit-window-right t
         evil-split-window-below t
         evil-want-fine-undo t)
@@ -865,19 +869,22 @@
               host))))
 
 (defun my/vterm-buffer-hooks-on-tramp ()
-  "Useful hooks to run when using Vterm with Tramp."
+  "Set up vterm for remote Tramp connections.
+Renames the buffer to include the remote host, and injects an `e'
+shell function that opens remote files in a local Emacs buffer
+via vterm's OSC 51 escape sequence (e.g., `e .bashrc')."
   (when (and (eq major-mode 'vterm-mode)
              default-directory
              (file-remote-p default-directory))
     (let ((tramp-base-path (my/vterm-tramp-base-path)))
       (rename-buffer (format "*vterm@%s*" tramp-base-path) t)
+      ;; Inject `e' function: converts relative paths to absolute, then uses
+      ;; OSC 51 (a terminal escape sequence for shell-to-Emacs communication)
+      ;; to tell vterm to run find-file with the full Tramp path.
       (vterm-send-string
        (format "e() { local f=\"$1\"; [[ \"$f\" != /* ]] && f=\"$PWD/$f\"; printf '\\033]51;Efind-file %s:%%s\\007' \"$f\"; }\n"
                tramp-base-path)))
     (vterm-send-string "clear\n")))
-
-;; inject to the remote shell a function that can edit remote files in
-;; a local Emacs buffer using "e" in Vterm (e.g. "e .bashrc").
 (add-hook! 'vterm-mode-hook #'my/vterm-buffer-hooks-on-tramp)
 
 ;; provides extra convenience functions for vterm

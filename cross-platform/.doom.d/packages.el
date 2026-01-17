@@ -15,9 +15,8 @@
  lsp-ui
  solaire-mode
  ;; others
- ;; disabled as escape sequences are configured physically on the
- ;; keyboard I'm using, and with it disable, we are not affecting
- ;; typing delays.
+ ;; Disabled because my keyboard has a dedicated Escape key, and
+ ;; evil-escape adds input latency while waiting for key sequences.
  evil-escape)
 
 ;;
