@@ -324,8 +324,7 @@
         :g "j" #'evil-snipe-repeat
         :g "k" #'evil-snipe-repeat-reverse
         :g "n" #'evil-snipe-repeat         ; custom layout
-        :g "a" #'evil-snipe-repeat-reverse ; custom layout
-        ))
+        :g "a" #'evil-snipe-repeat-reverse))
 
 ;; Icons
 ;; doc: https://github.com/domtronn/all-the-icons.el
@@ -352,10 +351,6 @@
 
 (function-put 'my/browse-url-qutebrowser 'browse-url-browser-kind 'external)
 
-;; ;; Browse stuff in qutebrowser as default when using Linux.
-;; (when (and (featurep :system 'linux) (executable-find "qutebrowser"))
-;;   (setq browse-url-browser-function #'my/browse-url-qutebrowser))
-
 ;; Magit
 ;; doc: https://github.com/magit/magit
 (after! magit
@@ -377,8 +372,7 @@
           "K" #'git-rebase-move-line-up
           "J" #'git-rebase-move-line-down
           "N" #'git-rebase-move-line-up   ; custom layout
-          "A" #'git-rebase-move-line-down ; custom layout
-          )))
+          "A" #'git-rebase-move-line-down)))
 
 ;; all Git SSH commands from Emacs should use this
 (setenv "GIT_SSH_COMMAND" "ssh -4 \
@@ -479,10 +473,6 @@
   (when buffer-file-name
     (message "Saved: %s" (abbreviate-file-name buffer-file-name))))
 (add-hook 'after-save-hook #'my/post-save-hook)
-
-;; add a confirmation message after calling `save-buffer'
-(defadvice save-buffer (after my/save-buffer-confirmation activate)
-  (message "Saved: %s" (buffer-name)))
 
 ;;
 ;;; Custom templates
@@ -870,8 +860,7 @@
         (when (and (fboundp 'vterm-send-meta-backspace)
                    (thing-at-point 'symbol))
           (vterm-send-meta-backspace))
-        (vterm-send-string choice))))
-  )
+        (vterm-send-string choice)))))
 
 (defvar my-ssh-config-files
   '("~/.ssh/config"
