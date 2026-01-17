@@ -73,7 +73,7 @@ fl = log -u
 rf = reflog
 
 [credential]
-helper = git-credential-pass
+helper = !git-credential-pass
 
 [color]
 branch = auto
