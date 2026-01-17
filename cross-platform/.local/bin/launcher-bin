@@ -23,6 +23,11 @@ trap "" HUP
 
 has fzf || { echo 'You need to install fzf' >&2; exit 1; }
 
+case "$(uname -s)" in
+  Darwin) fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last" ;;
+  *)      fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last" ;;
+esac
+
 cmds="$(compgen -c | sort -u)"
 
 if [[ $OSTYPE == linux* ]] && has flatpak; then
@@ -33,6 +38,7 @@ target="$(
   printf '%s\n' "$cmds" |
   fzf \
     --reverse \
+    --bind="$fzf_bind" \
     --color=bg:-1,bg+:-1,fg:-1,fg+:-1 \
     --color=hl:33,hl+:33,info:30,prompt:30 \
     --color=pointer:32,marker:32,spinner:32
