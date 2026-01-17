@@ -63,7 +63,8 @@
     (delete-dups hosts)))
 
 (defun my/terminal-ssh--command (host)
-  "Build the shell command to launch the chosen terminal and SSH to HOST."
+  "Build shell command to open an external terminal and SSH to HOST.
+Sets INSIDE_EMACS so the remote shell knows it was launched from Emacs."
   (let* ((term (my/terminal-here--pick-terminal))
          (extra-flags (if (string= term "foot") "-t xterm-256color" ""))
          (ssh-cmd (format "ssh %s" (shell-quote-argument host))))

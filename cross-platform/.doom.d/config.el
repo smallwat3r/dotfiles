@@ -855,7 +855,7 @@
    :desc "Term SSH conn"  "s" #'my/ssh-external)))
 
 (defun my/vterm-tramp-base-path ()
-  "Returns the base tramp path of a Tramp buffer."
+  "Return the Tramp prefix (e.g., /ssh:user@host) without the directory."
   (let* ((vec (or (car (tramp-list-connections))
                   (when (tramp-tramp-file-p default-directory)
                     (tramp-dissect-file-name default-directory))))
