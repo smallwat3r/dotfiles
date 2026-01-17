@@ -48,7 +48,7 @@
        :tools
        (debugger +lsp)
        (eval +overlay)
-       llm
+       ; llm
        (lookup +dictionary +docsets)
        (lsp +eglot +booster)
        (magit +forge)

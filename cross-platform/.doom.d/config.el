@@ -901,16 +901,6 @@
 ;; always display the modeline in vterm
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
-;; LLMs
-(setq gptel-directives
-      '((default   . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
-        (assistant . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
-        (writing   . "You are a large language model and a writing assistant. Respond concisely.")))
-(after! gptel
-  (setq gptel-model "gemini-2.5-pro"
-        gptel-backend (gptel-make-gemini "Gemini"
-                        :key (auth-source-pass-get 'secret "gemini/key")
-                        :stream t)))
 
 ;;
 ;;; GPG
