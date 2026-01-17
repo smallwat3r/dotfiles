@@ -12,3 +12,8 @@ name='bitwarden-launcher'
 binding='<Super>u'
 command="foot -T 'Browser history launcher' -w 1000x800 -e launcher-browser-history"
 name='browser-history-launcher'
+
+[custom3]
+binding='<Super>o'
+command="foot -T 'Clipboard launcher' -w 800x500 -e launcher-clipboard-history"
+name='clipboard-launcher'

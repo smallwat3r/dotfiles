@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+#
+# launcher-clipboard-history - Browse and select from clipboard history
+#
+# Interactively select an entry from your clipboard history and copy
+# it back to the clipboard.
+#
+# Dependencies:
+#   - fzf: Fuzzy finder
+#   - gpaste-client (GNOME), cliphist (wlroots), or greenclip (X11)
+#
+# Usage:
+#   launcher-clipboard-history
+#
+set -euo pipefail
+
+die() { echo "$1" >&2; exit 1; }
+
+has() { command -v "$1" >/dev/null 2>&1; }
+
+require() { has "$1" || die "$1 is required"; }
+
+require fzf
+
+# Detect clipboard history backend
+if has gpaste-client; then
+  list_history() {
+    gpaste-client --oneline | while IFS=: read -r uuid content; do
+      printf '%s\t%s\n' "$uuid" "${content# }"
+    done
+  }
+  select_item() {
+    gpaste-client select "${1%%$'\t'*}"
+  }
+elif has cliphist && has wl-copy; then
+  list_history() { cliphist list; }
+  select_item() { printf '%s' "$1" | cliphist decode | wl-copy; }
+elif has greenclip && has xclip; then
+  list_history() { greenclip print; }
+  select_item() { printf '%s' "$1" | xclip -selection clipboard; }
+else
+  die "No supported clipboard history tool found (gpaste-client, cliphist, or greenclip)"
+fi
+
+case "$(uname -s)" in
+  Darwin) fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last" ;;
+  *)      fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last" ;;
+esac
+
+fzf_pick() {
+  fzf --reverse --wrap --tiebreak=index --bind="$fzf_bind" \
+    --delimiter=$'\t' --with-nth=2.. \
+    --color=bg:-1,bg+:-1,fg:-1,fg+:-1 \
+    --color=hl:33,hl+:33,info:30,prompt:30 \
+    --color=pointer:32,marker:32,spinner:32
+}
+
+selected="$(list_history | fzf_pick)" || exit 0
+[[ -z "$selected" ]] && exit 0
+
+select_item "$selected"

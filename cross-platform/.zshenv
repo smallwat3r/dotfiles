@@ -14,6 +14,7 @@ path=(
   /sbin
   /usr/sbin
   "$HOME/.local/bin"
+  "$HOME/go/bin"
 )
 
 cdpath=(
