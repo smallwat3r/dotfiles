@@ -2,8 +2,11 @@
 
 (doom! :smallwat3r
        csv
+       dired
        docker
+       filetypes
        google
+       highlighting
        modeline
        slack
        tools

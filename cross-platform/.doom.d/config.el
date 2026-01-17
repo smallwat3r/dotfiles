@@ -178,20 +178,6 @@
   ;; current line number: distinct color
   '(line-number-current-line :inherit line-number :foreground "orange red" :weight bold))
 
-;; highlight numbers
-;; doc: https://github.com/Fanael/highlight-numbers
-(use-package! highlight-numbers
-  :hook ((prog-mode conf-mode) . highlight-numbers-mode)
-  :config
-  (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
-
-;; rainbow parenthesis in some major modes
-;; doc: https://github.com/Fanael/rainbow-delimiters
-(use-package! rainbow-delimiters
-  :hook ((c-mode-common emacs-lisp-mode lisp-mode typescript-mode typescript-tsx-mode)
-         . rainbow-delimiters-mode)
-  :custom (rainbow-delimiters-max-face-count 4))
-
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to
 ;; keep it very simple. It is lighter than the default scratch buffer in many
 ;; cases. But it can also not be killed, hence remembers the working directory
@@ -422,22 +408,6 @@
   (setq +zen-window-divider-size my-global-window-divider-width
         +zen-text-scale 0))
 
-;; Overlay keywords
-;; doc: https://github.com/wolray/symbol-overlay
-(use-package! symbol-overlay
-  :commands (symbol-overlay-put symbol-overlay-remove-all)
-  :init
-  (map! :leader
-        :prefix "c"
-        :desc "Add overlay"     "h" #'symbol-overlay-put
-        :desc "Remove overlays" "H" #'symbol-overlay-remove-all)
-  :config
-  ;; deactivate bindings I do not use that conflict with other commands
-  (define-key symbol-overlay-map (kbd "h") nil)
-  (define-key symbol-overlay-map (kbd "w") nil)
-  (define-key symbol-overlay-map (kbd "t") nil)
-  (define-key symbol-overlay-map (kbd "i") nil))
-
 ;; Abbreviations
 (use-package! abbrev
   :custom
@@ -518,27 +488,6 @@
   (setq delete-by-moving-to-trash t
         dired-listing-switches "-lat")  ; sort by date
   (add-hook! 'dired-mode-hook 'dired-hide-details-mode))
-
-;; Narrowing searchs in dired
-(use-package! dired-narrow
-  :after dired
-  :config
-  (map! :map dired-mode-map
-        :n "/" #'dired-narrow-fuzzy))
-
-;; Toggle directories with TAB in dired
-(use-package! dired-subtree
-  :after dired
-  :config
-  (map! :map dired-mode-map
-        "<tab>" #'dired-subtree-toggle
-        "<backtab>" #'dired-subtree-cycle)
-
-  ;; set a transparent background for all levels in dired subtree
-  (custom-set-faces!
-    `(,(cl-loop for i from 0 to 6 collect
-                (intern (format "dired-subtree-depth-%d-face" i)))
-      :background unspecified)))
 
 ;; Treemacs
 ;; doc: https://github.com/Alexander-Miller/treemacs
@@ -698,12 +647,6 @@
   (add-to-list '+lookup-provider-url-alist
                '("Python Docs" "https://docs.python.org/3/search.html?q=%s")))
 
-;; PET (P ython E xecutable T racker)
-;; doc: https://github.com/wyuenho/emacs-pet/
-(use-package! pet
-  :config
-  (add-hook 'python-mode-hook 'pet-mode -10))
-
 ;; Javascript
 (after! js2-mode
   ;; Formatter
@@ -768,25 +711,6 @@
 ;; Makefile
 (use-package! makefile-mode
   :mode ("Makefile.*" . makefile-mode))
-
-;; Logs
-;; doc: https://github.com/doublep/logview
-(use-package! logview
-  :mode ("\\.log.*" . logview-mode))
-
-;; Applescript
-;; doc: https://github.com/emacsorphanage/applescript-mode
-(use-package! applescript-mode
-  :mode (("\\.scpt\\'" . applescript-mode)
-         ("\\.applescript\\'" . applescript-mode))
-  :interpreter ("osascript" . applescript-mode))
-
-;; Nginx
-;; doc: https://github.com/ajc/nginx-mode
-(use-package! nginx-mode
-  :mode (("/nginx/conf.d/.*" . nginx-mode)
-         ("/nginx/.*\\.conf\\'" . nginx-mode)
-         ("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
 
 ;; TOML
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
@@ -907,13 +831,6 @@ via vterm's OSC 51 escape sequence (e.g., `e .bashrc')."
 
 ;; always display the modeline in vterm
 (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
-
-
-;;
-;;; GPG
-
-(use-package! pinentry
-  :config (pinentry-start))
 
 
 ;;

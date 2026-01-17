@@ -13,3 +13,11 @@
 ;; Imenu list of buffers
 ;; https://github.com/bmag/imenu-list/commits/master
 (package! imenu-list :pin "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
+
+;; GPG pinentry support
+;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
+(package! pinentry :pin "99480adc192f657d7d9f2eb3ed4e568df3de8613")
+
+;; PET (Python Executable Tracker)
+;; https://github.com/wyuenho/emacs-pet/commits/main
+(package! pet :pin "1f7450237549ad9850543fbc78d12f9fd375324d")

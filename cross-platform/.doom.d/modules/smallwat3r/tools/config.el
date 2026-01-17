@@ -30,3 +30,13 @@
   (global-set-key (kbd "C-c y l") 'copy-as-format-gitlab)
   (global-set-key (kbd "C-c y m") 'copy-as-format-markdown)
   (global-set-key (kbd "C-c y o") 'copy-as-format-org-mode))
+
+;; GPG pinentry
+(use-package! pinentry
+  :config (pinentry-start))
+
+;; PET (Python Executable Tracker)
+;; doc: https://github.com/wyuenho/emacs-pet/
+(use-package! pet
+  :config
+  (add-hook 'python-mode-hook 'pet-mode -10))
