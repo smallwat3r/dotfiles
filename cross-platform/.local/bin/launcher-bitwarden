@@ -66,7 +66,8 @@ fzf_pick() {
 }
 
 rbw_get() {
-  rbw get ${2:+--field "$2"} "$1" 2>/dev/null || true
+  local name="$1" user="$2" field="${3-}"
+  rbw get ${field:+--field "$field"} "$name" ${user:+"$user"} 2>/dev/null || true
 }
 
 list_items() {
@@ -82,17 +83,17 @@ list_items() {
 }
 
 get_fields() {
-  local name="$1"
+  local name="$1" user="$2"
   local val
 
   for f in password username totp; do
     case $f in
-      password) val="$(rbw_get "$name")" ;;
-      username) val="$(rbw_get "$name" username)" ;;
-      totp)     val="$(rbw code "$name" 2>/dev/null || true)" ;;
+      password) val="$(rbw_get "$name" "$user")" ;;
+      username) val="$(rbw_get "$name" "$user" username)" ;;
+      totp)     val="$(rbw code "$name" ${user:+"$user"} 2>/dev/null || true)" ;;
     esac
 
-    [[ -n $val ]] && fields[$f]="$val"
+    [[ -n $val ]] && fields[$f]="$val" || true
   done
 }
 
@@ -106,10 +107,10 @@ mapfile -t items < <(rbw list --fields name,user)
 target="$(list_items | fzf_pick "rbw> " | cut -f1)" || exit 0
 [[ -z $target ]] && exit 0
 
-IFS=$'\t' read -r name _ <<< "${items[$target]}"
+IFS=$'\t' read -r name user <<< "${items[$target]}"
 
 declare -A fields
-get_fields "$name"
+get_fields "$name" "$user"
 (( ${#fields[@]} )) || die "No fields available"
 
 if (( ${#fields[@]} == 1 )); then
