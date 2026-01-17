@@ -4,6 +4,7 @@
 set -euo pipefail
 
 [[ $OSTYPE == darwin* ]] || { echo "macOS only" >&2; exit 1; }
+command -v dockutil &>/dev/null || { echo "dockutil required: brew install dockutil" >&2; exit 1; }
 
 dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/Emacs.app"
