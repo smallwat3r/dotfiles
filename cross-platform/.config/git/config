@@ -7,12 +7,12 @@ signingkey = 9964D38A
 user = smallwat3r
 
 [init]
-templatedir = "$HOME/.config/git/templates"
+templatedir = ~/.config/git/templates
 
 [core]
 autocrlf = input
 editor = "emacsclient -c"
-hooksPath = "$HOME/.config/git/templates/hooks"
+hooksPath = ~/.config/git/templates/hooks
 
 [commit]
 gpgsign = true
