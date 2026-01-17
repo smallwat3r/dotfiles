@@ -1,12 +1,10 @@
 #!/bin/sh
-# Wrapper for pinentry-curses that works on both macOS (Homebrew) and Linux.
-# Used by GPG agent for passphrase entry.
-if command -v pinentry-curses >/dev/null 2>&1; then
-  exec pinentry-curses "$@"
-elif [ -x /opt/homebrew/bin/pinentry-curses ]; then
-  exec /opt/homebrew/bin/pinentry-curses "$@"
-elif [ -x /usr/local/bin/pinentry-curses ]; then
-  exec /usr/local/bin/pinentry-curses "$@"
-else
-  exec /usr/bin/pinentry-curses "$@"
-fi
+# Pinentry wrapper - uses GUI when available, falls back to curses.
+
+for prog in pinentry-gnome3 pinentry-gtk-2 pinentry-qt pinentry-mac; do
+  if [ -n "$DISPLAY$WAYLAND_DISPLAY" ] && command -v $prog >/dev/null 2>&1; then
+    exec $prog "$@"
+  fi
+done
+
+exec pinentry-curses "$@"

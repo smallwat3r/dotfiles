@@ -33,7 +33,9 @@
 
 ;; GPG pinentry
 (use-package! pinentry
-  :config (pinentry-start))
+  :config
+  (setq epg-pinentry-mode 'loopback)
+  (pinentry-start))
 
 ;; PET (Python Executable Tracker)
 ;; doc: https://github.com/wyuenho/emacs-pet/
