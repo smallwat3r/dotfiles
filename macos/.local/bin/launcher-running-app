@@ -5,10 +5,8 @@ set -euo pipefail
 
 command -v fzf >/dev/null || { echo "fzf required" >&2; exit 1; }
 
-FZF_OPTS="--reverse --color=bg:-1,bg+:-1,fg+:186,hl:115,hl+:115"
-
 apps=$(osascript -e 'tell application "Finder" to get name of every process whose visible is true' | tr ',' '\n' | sed 's/^ //')
 
-target=$(echo "$apps" | FZF_DEFAULT_OPTS="$FZF_OPTS" fzf) || exit 0
+target=$(echo "$apps" | fzf --color=fg+:186,hl:115,hl+:115 --bind=alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last) || exit 0
 
 osascript -e "tell application \"$target\" to activate"

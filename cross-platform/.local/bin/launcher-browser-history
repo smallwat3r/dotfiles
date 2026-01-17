@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
-# Browse Chrome/Chromium bookmarks and history using fzf.
-# Requires: fzf, sqlite3, jq
+#
+# launcher-browser-history - Browse Chrome/Chromium bookmarks and history
+#
+# Interactively select a URL from your browser bookmarks or history
+# and open it in Chrome/Chromium.
+#
+# Dependencies:
+#   - fzf: Fuzzy finder
+#   - sqlite3: For reading history database
+#   - jq: For parsing bookmarks JSON
+#
+# Usage:
+#   launcher-browser-history
+#
 set -euo pipefail
 
 die() { echo "$1" >&2; exit 1; }
@@ -13,12 +25,11 @@ require fzf
 require sqlite3
 require jq
 
-FZF_OPTS="--reverse --color=bg:-1,bg+:-1,fg+:186,hl:115,hl+:115"
-
 case "$(uname -s)" in
   Darwin)
     HISTORY="$HOME/Library/Application Support/Google/Chrome/Default/History"
     open_cmd() { open -a "/Applications/Google Chrome.app" "$1"; }
+    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
     ;;
   Linux)
     HISTORY=""
@@ -32,6 +43,7 @@ case "$(uname -s)" in
       [[ -f "$path" ]] && HISTORY="$path" && break
     done
     open_cmd() { setsid xdg-open "$1" >/dev/null 2>&1; }
+    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
     ;;
   *)
     die "Unsupported OS"
@@ -42,6 +54,13 @@ esac
 
 BOOKMARKS="${HISTORY%History}Bookmarks"
 
+fzf_pick() {
+  fzf --reverse --wrap --tiebreak=index --bind="$fzf_bind" \
+    --color=bg:-1,bg+:-1,fg:-1,fg+:-1 \
+    --color=hl:33,hl+:33,info:30,prompt:30 \
+    --color=pointer:32,marker:32,spinner:32
+}
+
 JQ_FILTER='.. | select(.type? == "url") | "🔖 [\(.name)]\t\(.url)"'
 SQL_QUERY="SELECT '🕐 ' || date(last_visit_time/1000000 - 11644473600, 'unixepoch') || ' ' || url FROM urls ORDER BY last_visit_time DESC LIMIT 100000"
 
@@ -49,7 +68,7 @@ target=$(
   {
     [[ -f "$BOOKMARKS" ]] && jq -r "$JQ_FILTER" "$BOOKMARKS" || true
     sqlite3 "file:$HISTORY?immutable=1" "$SQL_QUERY"
-  } | FZF_DEFAULT_OPTS="$FZF_OPTS" fzf --wrap --tiebreak=index
+  } | fzf_pick
 ) || exit 0
 
 # Extract URL

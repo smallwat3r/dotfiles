@@ -55,7 +55,16 @@ __load_fzf_config() {
 
 __load_fzf_config
 
-export FZF_DEFAULT_OPTS='
+case $OSTYPE in
+  darwin*)
+    __fzf_word_binds="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
+    ;;
+  *)
+    __fzf_word_binds="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
+    ;;
+esac
+
+export FZF_DEFAULT_OPTS="
   --reverse
   --color=bg:-1,bg+:-1
   --color=fg:-1,fg+:-1
@@ -65,7 +74,9 @@ export FZF_DEFAULT_OPTS='
   --color=pointer:32
   --color=marker:32
   --color=spinner:32
-'
+  --bind=$__fzf_word_binds
+"
+unset __fzf_word_binds
 if (( $+commands[rg] )); then
   export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
