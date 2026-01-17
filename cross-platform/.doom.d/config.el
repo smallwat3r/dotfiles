@@ -75,7 +75,7 @@
 (setq frame-title-format (concat my-title-emacs-version " - %b"))
 
 (when (featurep 'ns)
-  ;; ns stands for NextStep, it's the interface used with OSX.
+  ;; ns stands for NeXTSTEP, the interface used on macOS.
   (setq ns-use-thin-smoothing t
         ns-use-native-fullscreen nil
         ns-use-fullscreen-animation nil
@@ -192,7 +192,7 @@
   :custom (rainbow-delimiters-max-face-count 4))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to
-;; keep it very simple. It is ligther than the default scratch buffer in many
+;; keep it very simple. It is lighter than the default scratch buffer in many
 ;; cases. But it can also not be killed, hence remembers the working directory
 ;; of the last open buffer, `find-file' will work from the directory I expect.
 (defun my/dashboard-message ()
@@ -380,7 +380,7 @@
 (after! which-key
   (setq which-key-idle-delay 0.2))
 
-;; Disable globally hightlighting the current line the cursor is on.
+;; Disable globally highlighting the current line the cursor is on.
 (remove-hook! 'doom-first-buffer-hook #'global-hl-line-mode)
 
 ;; When hl-line is available, do not override the color of rainbow-mode.
@@ -428,7 +428,7 @@
         :desc "Add overlay"     "h" #'symbol-overlay-put
         :desc "Remove overlays" "H" #'symbol-overlay-remove-all)
   :config
-  ;; deactivare bindings I do not use that conflict with other commands
+  ;; deactivate bindings I do not use that conflict with other commands
   (define-key symbol-overlay-map (kbd "h") nil)
   (define-key symbol-overlay-map (kbd "w") nil)
   (define-key symbol-overlay-map (kbd "t") nil)
