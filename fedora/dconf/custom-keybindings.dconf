@@ -17,3 +17,8 @@ name='browser-history-launcher'
 binding='<Super>o'
 command="foot -T 'Clipboard launcher' -w 800x500 -e launcher-clipboard-history"
 name='clipboard-launcher'
+
+[custom4]
+binding='<Super>w'
+command="foot -T 'SSH launcher' -w 800x500 -e launcher-ssh"
+name='ssh-launcher'
