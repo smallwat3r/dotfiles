@@ -48,3 +48,47 @@
          (pid (cdr (assoc choice items))))
     (signal-process pid 'kill)
     (message "Killed: %s" choice)))
+
+;;;###autoload
+(defun my/insert-timestamp (&optional datetime)
+  "Insert current date or date+time."
+  (interactive "P")
+  (let ((fmt (if datetime "%Y-%m-%d %H:%M" "%Y-%m-%d")))
+    (insert (format-time-string fmt))))
+
+;;;###autoload
+(defun my/insert-email ()
+  "Insert an email address from `my-email-addresses-alist'."
+  (interactive)
+  (let* ((keys (mapcar #'car my-email-addresses-alist))
+         (choice (completing-read "Email: " keys nil t)))
+    (insert (my/get-email choice))))
+
+;;;###autoload
+(defun my/chatgpt-open-prompt ()
+  "Open a popup buffer for a ChatGPT prompt."
+  (interactive)
+  (let* ((buf (get-buffer-create "*ChatGPT Prompt*"))
+         (win (display-buffer
+               buf
+               '((display-buffer-in-side-window)
+                 (side . bottom)
+                 (window-height . 0.25)))))
+    (select-window win)
+    (with-current-buffer buf
+      (erase-buffer)
+      (my-chatgpt-prompt-mode))))
+
+;;;###autoload
+(define-derived-mode my-chatgpt-prompt-mode text-mode "ChatGPT-Prompt"
+  "Mode for composing ChatGPT prompts."
+  (local-set-key (kbd "C-c C-c")
+                 (lambda ()
+                   (interactive)
+                   (let* ((question (buffer-substring-no-properties
+                                     (point-min) (point-max)))
+                          (encoded (url-hexify-string question))
+                          (url (concat "https://chatgpt.com/?prompt=" encoded)))
+                     (browse-url url)
+                     (quit-window t))))
+  (local-set-key (kbd "C-c C-k") #'quit-window))

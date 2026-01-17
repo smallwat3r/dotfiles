@@ -85,3 +85,36 @@
     (message "my/ssh-external running: %s" cmd)
     (start-process-shell-command
      "my-ssh-external" nil cmd)))
+
+(defun my/zsh-history-candidates (&optional limit)
+  "Return recent unique zsh history lines (most recent first)."
+  (let* ((histfile (expand-file-name (or (getenv "HISTFILE") "~/.zsh_history")))
+         (limit (or limit 10000))  ; hard limit
+         ;; Linux: tac, fallback for macOS: tail -r
+         ;; strip zsh timestamps, dedup keeping first (latest) occurrence
+         (cmd (format
+               "H=%s; [ -r \"$H\" ] || exit 0; \
+(tac -- \"$H\" 2>/dev/null || tail -r -- \"$H\") \
+| awk -F';' '{sub(/^: [0-9]+:[0-9]+;/, \"\"); if (length($0) && !seen[$0]++) print}' \
+| head -n %d"
+               (shell-quote-argument histfile) limit)))
+    (split-string (shell-command-to-string cmd) "\n" t)))
+
+;;;###autoload
+(defun my/vterm-zsh-history-pick ()
+  "Prompt from zsh history and insert into vterm (recency preserved)."
+  (interactive)
+  (let* ((history (my/zsh-history-candidates))
+         ;; tell Emacs to keep given order
+         (collection (lambda (string pred action)
+                       (if (eq action 'metadata)
+                           '(metadata
+                             (display-sort-function . identity)
+                             (cycle-sort-function . identity))
+                         (complete-with-action action history string pred))))
+         (initial (or (thing-at-point 'symbol t) "")))
+    (let ((choice (completing-read "zsh history: " collection nil nil initial)))
+      (when (and (fboundp 'vterm-send-meta-backspace)
+                 (thing-at-point 'symbol))
+        (vterm-send-meta-backspace))
+      (vterm-send-string choice))))

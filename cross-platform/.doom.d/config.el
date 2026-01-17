@@ -335,22 +335,6 @@
     (setq all-the-icons-scale-factor 0.8))
   (setq all-the-icons-default-adjust 0))
 
-(setq my-browse-url-qutebrowser-arguments nil)
-
-(defun my/browse-url-qutebrowser (url &optional _new-window)
-  "Adapted to Qutebrowser from `browse-url-chrome'"
-  (interactive (browse-url-interactive-arg "URL: "))
-  (setq url (browse-url-encode-url url))
-  (let* ((process-environment (browse-url-process-environment)))
-    (apply #'start-process
-           (concat "qutebrowser" url) nil
-           (executable-find "qutebrowser")
-           (append
-            my-browse-url-qutebrowser-arguments
-            (list url)))))
-
-(function-put 'my/browse-url-qutebrowser 'browse-url-browser-kind 'external)
-
 ;; Magit
 ;; doc: https://github.com/magit/magit
 (after! magit
@@ -828,39 +812,7 @@
         :in "C-k" #'vterm-send-up
         :in "C-j" #'vterm-send-down
         :n "dd" (cmd! (vterm-send-C-c))
-        "C-;" #'my/vterm-zsh-history-pick)
-
-  (defun my/zsh-history-candidates (&optional limit)
-    "Return recent unique zsh history lines (most recent first)."
-    (let* ((histfile (expand-file-name (or (getenv "HISTFILE") "~/.zsh_history")))
-           (limit (or limit 10000))  ; hard limit
-           ;; Linux: tac, fallback for macOS: tail -r
-           ;; strip zsh timestamps, dedup keeping first (latest) occurrence
-           (cmd (format
-                 "H=%s; [ -r \"$H\" ] || exit 0; \
-(tac -- \"$H\" 2>/dev/null || tail -r -- \"$H\") \
-| awk -F';' '{sub(/^: [0-9]+:[0-9]+;/, \"\"); if (length($0) && !seen[$0]++) print}' \
-| head -n %d"
-                 (shell-quote-argument histfile) limit)))
-      (split-string (shell-command-to-string cmd) "\n" t)))
-
-  (defun my/vterm-zsh-history-pick ()
-    "Prompt from zsh history and insert into vterm (recency preserved)."
-    (interactive)
-    (let* ((history (my/zsh-history-candidates))
-           ;; tell Emacs to keep given order
-           (collection (lambda (string pred action)
-                         (if (eq action 'metadata)
-                             '(metadata
-                               (display-sort-function . identity)
-                               (cycle-sort-function . identity))
-                           (complete-with-action action history string pred))))
-           (initial (or (thing-at-point 'symbol t) "")))
-      (let ((choice (completing-read "zsh history: " collection nil nil initial)))
-        (when (and (fboundp 'vterm-send-meta-backspace)
-                   (thing-at-point 'symbol))
-          (vterm-send-meta-backspace))
-        (vterm-send-string choice)))))
+        "C-;" #'my/vterm-zsh-history-pick))
 
 (defvar my-ssh-config-files
   '("~/.ssh/config"
@@ -1102,47 +1054,6 @@
         (elfeed-search-print-entry--default entry)))
 
   (setq elfeed-search-print-entry-function #'my/elfeed-search-print-entry)))
-
-;; utils
-(defun my/insert-timestamp (&optional datetime)
-  "Insert current date or date+time."
-  (interactive "P")
-  (let ((fmt (if datetime "%Y-%m-%d %H:%M" "%Y-%m-%d")))
-    (insert (format-time-string fmt))))
-
-(defun my/insert-email ()
-  "Insert an email address from `my-email-addresses-alist'."
-  (interactive)
-  (let* ((keys (mapcar #'car my-email-addresses-alist))
-         (choice (completing-read "Email: " keys nil t)))
-    (insert (my/get-email choice))))
-
-(defun my/chatgpt-open-prompt ()
-  "Open a popup buffer for a ChatGPT prompt."
-  (interactive)
-  (let* ((buf (get-buffer-create "*ChatGPT Prompt*"))
-         (win (display-buffer
-               buf
-               '((display-buffer-in-side-window)
-                 (side . bottom)
-                 (window-height . 0.25)))))
-    (select-window win)
-    (with-current-buffer buf
-      (erase-buffer)
-      (my-chatgpt-prompt-mode))))
-
-(define-derived-mode my-chatgpt-prompt-mode text-mode "ChatGPT-Prompt"
-  "Mode for composing ChatGPT prompts."
-  (local-set-key (kbd "C-c C-c")
-                 (lambda ()
-                   (interactive)
-                   (let* ((question (buffer-substring-no-properties
-                                     (point-min) (point-max)))
-                          (encoded (url-hexify-string question))
-                          (url (concat "https://chatgpt.com/?prompt=" encoded)))
-                     (browse-url url)
-                     (quit-window t))))
-  (local-set-key (kbd "C-c C-k") #'quit-window))
 
 ;; debug mode
 (defun my/echo-command-name-hook ()
