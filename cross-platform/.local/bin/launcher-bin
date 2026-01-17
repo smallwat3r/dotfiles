@@ -3,7 +3,7 @@
 # launcher-bin - Custom command launcher
 #
 # Interactively select and run a command from PATH or installed
-# Flatpak applications.
+# Flatpak applications. Commands are sorted by usage frequency.
 #
 # Dependencies:
 #   - fzf: Fuzzy finder
@@ -29,6 +29,8 @@ has fzf || die "fzf is required"
 # Config
 
 FOOT_WINDOW_SIZE="80x24"
+HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bin-history"
+HISTORY_MAX_LINES=1000
 
 case "$(uname -s)" in
   Darwin)
@@ -47,7 +49,19 @@ fzf_pick() {
   fzf --reverse --bind="$fzf_bind" --color="$fzf_colors"
 }
 
+trim_history() {
+  [[ -f $HISTORY_FILE ]] || return 0
+  local lines
+  lines=$(wc -l < "$HISTORY_FILE")
+  if (( lines > HISTORY_MAX_LINES )); then
+    local tmp="${HISTORY_FILE}.tmp"
+    tail -n "$HISTORY_MAX_LINES" "$HISTORY_FILE" > "$tmp" && mv "$tmp" "$HISTORY_FILE"
+  fi
+}
+
 run() {
+  echo "$1" >> "$HISTORY_FILE"
+  trim_history
   if is_flatpak "$1"; then
     flatpak run "$1" &
   elif [[ $1 == foot ]]; then
@@ -65,10 +79,21 @@ list_commands() {
   fi
 }
 
+sort_by_frequency() {
+  if [[ -f $HISTORY_FILE ]]; then
+    sort | uniq | awk -v hist="$HISTORY_FILE" '
+      BEGIN { while ((getline line < hist) > 0) freq[line]++ }
+      { print freq[$0]+0, $0 }
+    ' | sort -rn | cut -d' ' -f2-
+  else
+    sort
+  fi
+}
+
 # Main
 
 trap "" HUP
 
-target="$(list_commands | fzf_pick)" || exit 0
+target="$(list_commands | sort_by_frequency | fzf_pick)" || exit 0
 
 [[ -n $target ]] && run "$target"
