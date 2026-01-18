@@ -1,5 +1,17 @@
 ;;; smallwat3r/highlighting/config.el -*- lexical-binding: t; -*-
 
+;; Disable globally highlighting the current line the cursor is on.
+(remove-hook! 'doom-first-buffer-hook #'global-hl-line-mode)
+
+;; When hl-line is available, do not override the color of rainbow-mode.
+(add-hook! 'rainbow-mode-hook
+  (hl-line-mode (if rainbow-mode -1 +1)))
+
+;; todos
+;; doc: https://github.com/tarsius/hl-todo
+(after! hl-todo
+  (add-to-list 'hl-todo-keyword-faces '("HACK" . "VioletRed1")))
+
 ;; Highlight numbers
 ;; doc: https://github.com/Fanael/highlight-numbers
 (use-package! highlight-numbers
@@ -34,7 +46,8 @@
 ;; Colorize every 5th line number as a visual indicator, useful when using
 ;; relative line numbers to quickly estimate jump distances.
 (after! display-line-numbers
-  (setq display-line-numbers-minor-tick 5
+  (setq display-line-numbers-type nil
+        display-line-numbers-minor-tick 5
         display-line-numbers-major-tick 5))
 
 (custom-set-faces!

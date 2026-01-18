@@ -162,8 +162,6 @@
 (custom-theme-set-faces! 'creamy
   '(font-lock-function-name-face :foreground "MidnightBlue"))
 
-(after! display-line-numbers
-  (setq display-line-numbers-type nil))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to
 ;; keep it very simple. It is lighter than the default scratch buffer in many
@@ -214,94 +212,6 @@
           (case-fn . downcase))
         deft-use-filename-as-title t))
 
-;; Evil-mode
-(after! evil
-  ;; General evil mode settings.
-  ;; Note: "custom layout" comments indicate alternative bindings for the
-  ;; Smallcat keyboard (26 keys), where y/n/a/e/i replace the standard
-  ;; h/j/k/l vim keys.
-  (setq evil-vsplit-window-right t
-        evil-split-window-below t
-        evil-want-fine-undo t)
-
-  (map! :map evil-insert-state-map
-        "C-h" #'evil-backward-char
-        "C-l" #'evil-forward-char
-        "C-k" #'evil-previous-line
-        "C-j" #'evil-next-line
-
-        :map evil-visual-state-map
-        ";f"  #'+format/region
-
-        :map evil-normal-state-map
-        ;; Window scrolling
-        "C-;"   #'my/scroll-up
-        "C-l"   #'my/scroll-down
-        "["     #'my/scroll-up
-        "]"     #'my/scroll-down
-
-        ;; Window resizing
-        "S-C-h" #'my/enlarge-window-horizontally
-        "S-C-y" #'my/enlarge-window-horizontally  ; custom layout
-        "S-C-l" #'my/shrink-window-horizontally
-        "S-C-i" #'my/shrink-window-horizontally  ; custom layout
-        "S-C-k" #'my/enlarge-window
-        "S-C-a" #'my/enlarge-window  ; custom layout
-        "S-C-j" #'my/shrink-window
-        "S-C-n" #'my/shrink-window  ; custom layout
-
-        ;; Misc editing
-        "M-SPC" #'cycle-spacing
-        "M-o"   #'delete-blank-lines
-        "C-k"   #'join-line
-        "C-a"   #'join-line  ; custom layout
-        "B"     #'beginning-of-line-text
-        "E"     #'end-of-line
-        "M-<delete>" #'kill-word
-        "C-n"   #'electric-newline-and-maybe-indent
-
-        ;; Buffer management
-        ";d"    #'my/save-and-close-buffer
-        ";w"    #'save-buffer
-        ";s"    #'save-buffer
-        ";q"    #'my/kill-buffer
-
-        :leader
-        ;; Window management
-        "wy" #'evil-window-left
-        "ly" #'evil-window-left  ; custom layout
-        "wn" #'evil-window-down
-        "ln" #'evil-window-down  ; custom layout
-        "wa" #'evil-window-up
-        "la" #'evil-window-up    ; custom layout
-        "we" #'evil-window-right
-        "le" #'evil-window-right ; custom layout
-        "ls" #'evil-window-split
-        "lv" #'evil-window-vsplit)
-
-  ;; Change the cursor color depending on the evil mode
-  (setq evil-default-state-cursor  '(box "cyan3")
-        evil-normal-state-cursor   '(box "cyan3")
-        evil-insert-state-cursor   '(bar "green3")
-        evil-visual-state-cursor   '(box "OrangeRed2")
-        evil-replace-state-cursor  '(hbar "red2")
-        evil-operator-state-cursor '(box "red2")))
-
-;; Evil visual hints when yanking, pasting, deleting etc.
-;; doc: https://github.com/edkolev/evil-goggles
-(after! evil-goggles
-  (setq evil-goggles-duration 0.15)
-  (evil-goggles-use-diff-refine-faces))
-
-;; Evil snipe
-;; doc: https://github.com/hlissner/evil-snipe
-(after! evil-snipe
-  (setq evil-snipe-scope 'visible)
-  (map! :map evil-snipe-parent-transient-map
-        :g "j" #'evil-snipe-repeat
-        :g "k" #'evil-snipe-repeat-reverse
-        :g "n" #'evil-snipe-repeat         ; custom layout
-        :g "a" #'evil-snipe-repeat-reverse))
 
 ;; Icons
 ;; doc: https://github.com/domtronn/all-the-icons.el
@@ -312,57 +222,12 @@
     (setq all-the-icons-scale-factor 0.8))
   (setq all-the-icons-default-adjust 0))
 
-;; Magit
-;; doc: https://github.com/magit/magit
-(after! magit
-  ;; These bindings are hard to work with when using evil mode. I don't
-  ;; want the 'h' or the 'l' key to be bound to anything as I'm expected those
-  ;; keys to allow me to move the cursor to the left and right.
-  (define-key magit-mode-map (kbd "l") nil)
-  (define-key magit-mode-map (kbd "h") nil)
-
-  ;; do not show line numbers in the commit buffer
-  (setq-hook! 'git-commit-mode-hook display-line-numbers nil)
-
-  (after! git-commit
-    (setq git-commit-summary-max-length 75))
-
-  ;; Remap keys to move commits up or down when using interactive rebase.
-  (after! git-rebase
-    (map! :map git-rebase-mode-map
-          "K" #'git-rebase-move-line-up
-          "J" #'git-rebase-move-line-down
-          "N" #'git-rebase-move-line-up   ; custom layout
-          "A" #'git-rebase-move-line-down)))
-
-;; all Git SSH commands from Emacs should use this
-(setenv "GIT_SSH_COMMAND" "ssh -4 \
-  -o ConnectTimeout=10 \
-  -o ServerAliveInterval=20 \
-  -o ServerAliveCountMax=3 \
-  -o TCPKeepAlive=yes \
-  -o GSSAPIAuthentication=no \
-  -o ControlMaster=no")
-
-;; git-timemachine
-;; doc: https://github.com/emacsmirror/git-timemachine
-(after! git-timemachine
-  ;; custom layout support
-  (map! :map git-timemachine-mode-map
-        :n "C-n" #'git-timemachine-show-previous-revision
-        :n "C-a" #'git-timemachine-show-next-revision))
 
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
 (after! which-key
   (setq which-key-idle-delay 0.2))
 
-;; Disable globally highlighting the current line the cursor is on.
-(remove-hook! 'doom-first-buffer-hook #'global-hl-line-mode)
-
-;; When hl-line is available, do not override the color of rainbow-mode.
-(add-hook! 'rainbow-mode-hook
-  (hl-line-mode (if rainbow-mode -1 +1)))
 
 (defvar my-global-window-divider-width 2
   "Default global width size (in pixels) of a window divider.")
@@ -384,10 +249,6 @@
   (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
   (goto-address-mail-face 'my-goto-address-mail-face))
 
-;; todos
-;; doc: https://github.com/tarsius/hl-todo
-(after! hl-todo
-  (add-to-list 'hl-todo-keyword-faces '("HACK" . "VioletRed1")))
 
 ;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
@@ -574,65 +435,6 @@
 (after! flycheck-popup-tip
   (setq flycheck-popup-tip-error-prefix "(!) "))
 
-;; Python
-(after! python
-  (defvar my-default-python-line-length 88
-    "Default python line length.")
-
-  ;; Disable annoying warnings about `python-shell-interpreter' readline
-  ;; support.
-  (setq python-shell-completion-native-enable nil)
-
-  ;; Isort
-  (after! py-isort
-    (setq py-isort-options '("--trailing-comma" "--use-parentheses"))
-    (add-to-list 'py-isort-options (format "-l %s" my-default-python-line-length)))
-
-  ;; Formatter
-  (set-formatter! 'black
-    '("black"
-      "--quiet"
-      "--line-length" (format "%s" my-default-python-line-length)
-      "--target-version" "py310"
-      "-")  ; apply in file changes
-    :modes '(python-mode))
-
-  ;; Debugger
-  (after! dap-mode
-    (setq dap-python-debugger 'debugpy))
-
-  (defun my/python-toggle-fstring ()
-    "Toggle f-string prefix on the current Python string literal."
-    (interactive)
-    (let* ((ppss (syntax-ppss))
-           (in-string (nth 3 ppss))
-           (string-start (nth 8 ppss))) ; position of opening quote
-      (when in-string
-        (save-excursion
-          (goto-char string-start)
-          (cond
-           ;; immediate prefix char is f/F, remove it: f"..." -> "..."
-           ((memq (char-before string-start) '(?f ?F))
-            (delete-char -1))
-           ;; combined prefix like rf"/fr" where the f is just before that
-           ;; e.g. rf"..." or rf'...' or rf"""..."""
-           ((and (> string-start 1)
-                 (memq (char-before (1- string-start)) '(?f ?F))
-                 (memq (char-before string-start) '(?r ?R ?b ?B ?u ?U)))
-            (goto-char (1- string-start))
-            (delete-char -1))
-           ;; no f-prefix, add it
-           (t
-            (goto-char string-start)
-            (insert "f")))))))
-
-  (map! :map python-mode-map
-        :leader
-        :localleader
-        :desc "Toggle f-string" "f" #'my/python-toggle-fstring)
-
-  (add-to-list '+lookup-provider-url-alist
-               '("Python Docs" "https://docs.python.org/3/search.html?q=%s")))
 
 ;; Javascript
 (after! js2-mode
@@ -677,214 +479,6 @@
 (setq-hook! '(html-mode-hook web-mode-hook)
   +format-with :none)
 
-;; SQL
-(use-package! sql
-  :mode ("\\.\\(m\\|my\\)?sql\\'" . sql-mode)
-  :custom
-  ;; mostly used for local development only so disable SSL mode
-  ;; by default to ease connectivity from localhost
-  (sql-mysql-options '("--ssl-mode=DISABLED"))
-  (sql-mysql-login-params '((user :default "root")
-                            password
-                            database
-                            (server :default "127.0.0.1")
-                            (port :default 3306)))
-  (sql-postgres-login-params '((user :default "postgres")
-                               password
-                               database
-                               (server :default "127.0.0.1")
-                               (port :default 5432))))
-
-;; Makefile
-(use-package! makefile-mode
-  :mode ("Makefile.*" . makefile-mode))
-
-;; TOML
-(add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
-
-;; ROS launch files
-(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
-
-;; Lua
-(add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
-
-
-;;
-;;; Terminals
-
-;; vterm
-;; doc: https://github.com/akermu/emacs-libvterm
-(after! vterm
-  (setq vterm-max-scrollback 6000
-        vterm-timer-delay 0.01)
-
-  (map! :map vterm-mode-map
-        :n "B" #'vterm-beginning-of-line  ; beg of command
-        :n "<return>" #'evil-insert-resume
-        [remap delete-forward-char] #'vterm-send-delete
-        :in "<M-backspace>" #'vterm-send-meta-backspace
-        :n "<M-backspace>" #'vterm-send-meta-backspace
-        :in "C-k" #'vterm-send-up
-        :in "C-j" #'vterm-send-down
-        :n "dd" (cmd! (vterm-send-C-c))
-        "C-;" #'my/vterm-zsh-history-pick))
-
-(defvar my-ssh-config-files
-  '("~/.ssh/config"
-    "~/.ssh/work"
-    "~/.ssh/private")
-  "List of user SSH config files used for TRAMP and ssh helpers.")
-
-(add-to-list 'auto-mode-alist
-             '("/\\.ssh/\\(?:work\\|private\\)\\'" . ssh-config-mode))
-
-;; remote file access
-(after! tramp
-  (tramp-set-completion-function
-   "ssh"
-   (append
-    (mapcar (lambda (f)
-              (list 'tramp-parse-sconfig (expand-file-name f)))
-            my-ssh-config-files)
-    '((tramp-parse-sconfig "/etc/ssh_config")
-      (tramp-parse-shosts "/etc/hosts")
-      (tramp-parse-shosts "~/.ssh/known_hosts"))))
-  ;; reuse SSH ControlMaster connections (requires ControlMaster in ~/.ssh/config)
-  (setq tramp-use-ssh-controlmaster-options nil)
-  ;; cache remote file properties longer
-  (setq remote-file-name-inhibit-cache nil)
-  ;; disable version control checks on remote files
-  (setq vc-ignore-dir-regexp
-        (format "\\(%s\\)\\|\\(%s\\)"
-                vc-ignore-dir-regexp
-                tramp-file-name-regexp)))
-
-(map!
- (:leader
-  (:prefix "o"
-   :desc "Tramp SSH conn" "." #'my/open-remote-conn
-   :desc "Term SSH conn"  "s" #'my/ssh-external)))
-
-(defun my/vterm-tramp-base-path ()
-  "Return the Tramp prefix (e.g., /ssh:user@host) without the directory."
-  (let* ((vec (or (car (tramp-list-connections))
-                  (when (tramp-tramp-file-p default-directory)
-                    (tramp-dissect-file-name default-directory))))
-         (method (and vec (tramp-file-name-method vec)))
-         (user   (and vec (tramp-file-name-user vec)))
-         (host   (and vec (tramp-file-name-host vec))))
-    (when (and method host)
-      (format "/%s:%s%s"
-              method
-              (if (and user (not (string-empty-p user))) (concat user "@") "")
-              host))))
-
-(defun my/vterm-buffer-hooks-on-tramp ()
-  "Set up vterm for remote Tramp connections.
-Renames the buffer to include the remote host, and injects an `e'
-shell function that opens remote files in a local Emacs buffer
-via vterm's OSC 51 escape sequence (e.g., `e .bashrc')."
-  (when (and (eq major-mode 'vterm-mode)
-             default-directory
-             (file-remote-p default-directory))
-    (let ((tramp-base-path (my/vterm-tramp-base-path)))
-      (rename-buffer (format "*vterm@%s*" tramp-base-path) t)
-      ;; Inject `e' function: converts relative paths to absolute, then uses
-      ;; OSC 51 (a terminal escape sequence for shell-to-Emacs communication)
-      ;; to tell vterm to run find-file with the full Tramp path.
-      (vterm-send-string
-       (format "e() { local f=\"$1\"; [[ \"$f\" != /* ]] && f=\"$PWD/$f\"; printf '\\033]51;Efind-file %s:%%s\\007' \"$f\"; }\n"
-               tramp-base-path)))
-    (vterm-send-string "clear\n")))
-(add-hook! 'vterm-mode-hook #'my/vterm-buffer-hooks-on-tramp)
-
-;; provides extra convenience functions for vterm
-;; doc: https://github.com/Sbozzolo/vterm-extra
-(use-package! vterm-extra
-  :after vterm
-  :bind (("s-t" . vterm-extra-dispatcher)
-         :map vterm-mode-map
-         (("C-c C-e" . vterm-extra-edit-command-in-new-buffer))))
-
-(map! :leader
-      :prefix "o"
-      :desc "Terminal"               "1" #'my/terminal-here
-      :desc "Vterm at root"          "T" #'+vterm/here
-      :desc "Toggle vterm at root"   "t" #'+vterm/toggle
-      :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
-      :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer)
-
-(setq vterm-always-compile-module t)
-
-;; always display the modeline in vterm
-(remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
-
-
-;;
-;;; Org
-
-;; Org mode
-;; doc: https://orgmode.org/manual/
-(after! org
-  (setq org-directory my-notes-directory
-        org-hide-emphasis-markers nil
-        org-pretty-entities t
-        org-ellipsis "…")
-
-  ;; Do not wrap lines when converting to markdown.
-  (setq org-pandoc-options-for-markdown '((wrap . "none"))))
-
-;; Org modern
-;; doc: https://github.com/minad/org-modern
-(use-package! org-modern
-  :hook (org-mode . org-modern-mode))
-
-;; Journal
-;; doc: https://github.com/bastibe/org-journal
-(after! org-journal
-  (setq org-journal-dir (expand-file-name "journal/" my-notes-directory)
-        org-journal-date-format "%A, %d %B %Y"
-        org-journal-file-format "journal-%Y%m%d.org"))
-
-
-;;
-;;; Mail
-
-(if (featurep :system 'macos)
-    (setq sendmail-program "/opt/homebrew/bin/msmtp")
-  (setq sendmail-program "/usr/bin/msmtp"))
-
-(setq mail-user-agent 'message-user-agent
-      mail-specify-envelope-from t
-      mail-envelope-from 'header
-      message-sendmail-envelope-from 'header)
-
-;; Email client
-;; doc: https://notmuchmail.org/emacstips/
-(after! notmuch
-  ;; Main buffer sections information.
-  (setq notmuch-show-log nil
-        notmuch-hello-sections '(notmuch-hello-insert-saved-searches
-                                 notmuch-hello-insert-alltags))
-
-  ;; Email list formats
-  (setq notmuch-search-result-format
-        '(("date" . "%12s ")
-          ("count" . "%-7s ")
-          ("authors" . "%-15s ")
-          ("tags" . "(%s) ")
-          ("subject" . "%-72s")))
-
-  ;; Use a custom command to fetch for new emails with mbsync
-  (setq +notmuch-sync-backend "mbsync -a && notmuch new")
-
-  (setq my-user-mail-address-2 (my/get-email my-user-alias))
-
-  ;; Set default tags on replies
-  (setq notmuch-fcc-dirs
-        `((,user-mail-address . "personal/sent -inbox +sent -unread")
-          (,my-user-mail-address-2 . "sws/sent -inbox +sent -unread"))))
-
 
 ;;
 ;;; Misc
@@ -895,66 +489,6 @@ via vterm's OSC 51 escape sequence (e.g., `e .bashrc')."
   :commands (untappd-feed)
   :custom (untappd-access-token (auth-source-pass-get 'secret "untappd/token")))
 
-;; Elfeed, web feed reader (RSS)
-;; doc: https://github.com/skeeto/elfeed
-(after! elfeed
-  (setq elfeed-search-filter "@1-month-ago")
-
-  (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :feed-url "github.com/smallwat3r.private"
-                                :add '(github perso)))
-
-  (defface my-github-elfeed-entry-face '((t :foreground "cyan4"))
-    "Face for a Github related Elfeed entry.")
-
-  (defface my-python-elfeed-entry-face '((t :foreground "IndianRed4"))
-    "Face for a Python related Elfeed entry.")
-
-  (defface my-emacs-elfeed-entry-face '((t :foreground "purple"))
-    "Face for an Emacs related Elfeed entry.")
-
-  (cl-pushnew '(github my-github-elfeed-entry-face)
-              elfeed-search-face-alist :test #'equal)
-  (cl-pushnew '(python my-python-elfeed-entry-face)
-              elfeed-search-face-alist :test #'equal)
-  (cl-pushnew '(emacs my-emacs-elfeed-entry-face)
-              elfeed-search-face-alist :test #'equal)
-
-  (setq elfeed-feeds
-        '(("https://www.reddit.com/r/emacs.rss" reddit emacs)
-          ("https://github.com/doomemacs/doomemacs/commits/master.atom" emacs doom)
-          ("https://realpython.com/atom.xml?format=xml" python)
-          ("http://feeds.feedburner.com/PythonInsider" python)))
-
-  ;; add private Github RSS feed, using token from pass.
-  (let ((token (auth-source-pass-get 'secret "github/rss/token")))
-    (when token
-      (setq my-github-rss-feed
-            (format "https://github.com/smallwat3r.private.atom?token=%s" token))
-      (add-to-list 'elfeed-feeds (list my-github-rss-feed))))
-
-  (defconst my-elfeed-doom-feed-url
-    "https://github.com/doomemacs/doomemacs/commits/master.atom")
-
-  ;; Custom print function: same as default, but with nicer feed titles.
-  (defun my/elfeed-search-print-entry (entry)
-    "Print ENTRY to the Elfeed search buffer with custom feed titles."
-    (let* ((orig-feed-title (symbol-function 'elfeed-feed-title)))
-      (cl-letf (((symbol-function 'elfeed-feed-title)
-                 (lambda (feed)
-                   (let ((url (elfeed-feed-url feed)))
-                     (cond
-                      ((and (boundp 'my-github-rss-feed)
-                            my-github-rss-feed
-                            (string= url my-github-rss-feed))
-                       "Github feed")
-                      ((string= url my-elfeed-doom-feed-url)
-                       "Doom Emacs commits")
-                      (t
-                       (funcall orig-feed-title feed)))))))
-        (elfeed-search-print-entry--default entry)))
-
-  (setq elfeed-search-print-entry-function #'my/elfeed-search-print-entry)))
 
 ;; debug mode
 (defun my/echo-command-name-hook ()

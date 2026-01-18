@@ -3,6 +3,7 @@
 ;; Imenu list
 ;; doc: https://github.com/bmag/imenu-list
 (use-package! imenu-list
+  :defer t
   :commands (imenu-list-smart-toggle))
 
 ;; Bitwarden

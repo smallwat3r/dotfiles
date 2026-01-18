@@ -18,3 +18,34 @@
   :mode (("/nginx/conf.d/.*" . nginx-mode)
          ("/nginx/.*\\.conf\\'" . nginx-mode)
          ("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
+
+;; SQL
+(use-package! sql
+  :mode ("\\.\\(m\\|my\\)?sql\\'" . sql-mode)
+  :custom
+  ;; mostly used for local development only so disable SSL mode
+  ;; by default to ease connectivity from localhost
+  (sql-mysql-options '("--ssl-mode=DISABLED"))
+  (sql-mysql-login-params '((user :default "root")
+                            password
+                            database
+                            (server :default "127.0.0.1")
+                            (port :default 3306)))
+  (sql-postgres-login-params '((user :default "postgres")
+                               password
+                               database
+                               (server :default "127.0.0.1")
+                               (port :default 5432))))
+
+;; Makefile
+(use-package! makefile-mode
+  :mode ("Makefile.*" . makefile-mode))
+
+;; TOML
+(add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
+
+;; ROS launch files
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+
+;; Lua
+(add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))

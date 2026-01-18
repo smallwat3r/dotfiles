@@ -4,12 +4,19 @@
        csv
        dired
        docker
+       elfeed-ext
+       evil-ext
        filetypes
+       git-ext
        google
        highlighting
+       mail-ext
        modeline
+       org-ext
+       python-ext
        slack
        tools
+       vterm-ext
 
        :completion
        (corfu +orderless +icons +dabbrev)
