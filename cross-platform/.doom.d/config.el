@@ -365,14 +365,7 @@
 ;; vertical interactive completion
 ;; doc: https://github.com/minad/vertico
 (after! vertico
-  (setq vertico-count 15)
-  (map! (:leader
-         (:prefix "s"
-          ;; search a symbol at point using Vertico
-          :desc "Search project (at point)" "w" #'my/vertico-search-project-symbol-at-point
-          :desc "Search project" "a" #'+vertico/project-search  ; alias to SPC s p
-          :desc "Repeat last search" "." #'vertico-repeat ; alias to SPC '
-          ))))
+  (setq vertico-count 15))
 
 
 ;;
@@ -508,51 +501,6 @@
 
 
 ;;
-;;; Other general bindings
+;;; Keybindings
 
-(when (featurep :system 'macos)
-  ;; disable bindings clashing with Hammerspoon
-  (map! "M-k" nil
-        "M-j" nil)
-  ;; fix for macOS UK keyboards
-  (map! (:map key-translation-map "M-3" "#")))
-
-(map!
- (:leader
-  "§" #'other-frame
-  "1" #'my/where-am-i
-
-  (:prefix "w"
-   :desc "Window switch" "w" #'persp-window-switch)
-
-  (:prefix "b"
-   :desc "Kill buffer"      "k" #'my/kill-buffer
-   :desc "Kill all buffers" "K" #'my/kill-all-buffers
-   :desc "Kill buffer"      "d" #'my/kill-buffer
-   :desc "Kill all buffers" "D" #'my/kill-all-buffers
-   :desc "Kill buffers not current" "q" #'my/kill-all-buffers-except-current)
-
-  (:prefix "f"
-   :desc "Find file in dotfiles" "." #'my/find-file-in-dotfiles)
-
-  (:prefix "i"
-   :desc "Insert date"        "d" #'my/insert-timestamp
-   :desc "Insert date+time"   "t" (lambda () (interactive) (my/insert-timestamp t))
-   :desc "Insert email"       "E" #'my/insert-email)
-
-  (:prefix "o"
-   :desc "Browse URL at point" "l" #'browse-url-at-point
-   :desc "ChatGPT"             "c" #'my/chatgpt-open-prompt)
-
-  (:prefix ("e" . "edit")
-   :desc "Yank from killring" "p" #'yank-from-kill-ring)
-
-  (:prefix "t"
-   :desc "Truncate lines" "t" #'toggle-truncate-lines
-   :desc "Imenu"          "i" #'imenu-list-smart-toggle)
-
-  (:prefix "p"
-   :desc "Run Makefile target" "m" #'+make/run)
-
-  (:prefix ("P" . "password")
-   :desc "Open password-store buffer" "p" #'pass)))
+(load! "keybindings")

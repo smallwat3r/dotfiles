@@ -8,23 +8,9 @@
              google-translate-buffer)
   :init
   (after! google-translate-backend
-    (setq google-translate-backend-method 'curl))
-
-  (map! :leader
-        :prefix ("T" . "translate")
-        :desc "Translate query"    "q" #'google-translate-query-translate
-        :desc "Translate at point" "t" #'google-translate-at-point
-        :desc "Translate buffer"   "b" #'google-translate-buffer))
+    (setq google-translate-backend-method 'curl)))
 
 ;; google-this
 ;; doc: https://github.com/Malabarba/emacs-google-this
 (use-package! google-this
-  :commands (google-this google-this-word google-this-line)
-  :init
-  (map! :leader
-        :prefix "o"
-        :desc "Query google"     "g" #'google-this
-        :prefix ("G" . "google")
-        :desc "Query google"     "q" #'google-this
-        :desc "Google this word" "w" #'google-this-word
-        :desc "Google this line" "l" #'google-this-line))
+  :commands (google-this google-this-word google-this-line))

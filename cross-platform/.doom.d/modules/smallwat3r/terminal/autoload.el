@@ -1,4 +1,4 @@
-;;; smallwat3r/vterm-ext/autoload.el -*- lexical-binding: t; -*-
+;;; smallwat3r/terminal/autoload.el -*- lexical-binding: t; -*-
 
 (defun my/terminal-here--default-directory ()
   "Directory where the terminal should start."

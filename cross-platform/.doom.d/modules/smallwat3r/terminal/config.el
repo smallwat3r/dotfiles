@@ -1,4 +1,4 @@
-;;; smallwat3r/vterm-ext/config.el -*- lexical-binding: t; -*-
+;;; smallwat3r/terminal/config.el -*- lexical-binding: t; -*-
 
 (defvar my-ssh-config-files
   '("~/.ssh/config"
@@ -14,6 +14,8 @@
 (after! vterm
   (setq vterm-max-scrollback 6000
         vterm-timer-delay 0.01)
+  ;; always display the modeline in vterm
+  (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
   (map! :map vterm-mode-map
         :n "B" #'vterm-beginning-of-line  ; beg of command
@@ -27,9 +29,6 @@
         "C-;" #'my/vterm-zsh-history-pick))
 
 (setq vterm-always-compile-module t)
-
-;; always display the modeline in vterm
-(remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
 
 ;; remote file access
 (after! tramp
@@ -94,13 +93,3 @@ printf '\\033]51;Efind-file %s:%%s\\007' \"$f\"; }\n"
   :bind (("s-t" . vterm-extra-dispatcher)
          :map vterm-mode-map
          (("C-c C-e" . vterm-extra-edit-command-in-new-buffer))))
-
-(map! :leader
-      :prefix "o"
-      :desc "Terminal"               "1" #'my/terminal-here
-      :desc "Vterm at root"          "T" #'+vterm/here
-      :desc "Toggle vterm at root"   "t" #'+vterm/toggle
-      :desc "Vterm at buffer"        "V" #'my/vterm/here-current-buffer
-      :desc "Toggle vterm at buffer" "v" #'my/vterm/toggle-current-buffer
-      :desc "Tramp SSH conn"         "." #'my/open-remote-conn
-      :desc "Term SSH conn"          "s" #'my/ssh-external)

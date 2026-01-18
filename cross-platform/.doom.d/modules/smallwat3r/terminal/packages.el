@@ -1,4 +1,4 @@
-;;; smallwat3r/vterm-ext/packages.el -*- lexical-binding: t; -*-
+;;; smallwat3r/terminal/packages.el -*- lexical-binding: t; -*-
 
 (package! vterm-extra
   :recipe (:host github :repo "Sbozzolo/vterm-extra")

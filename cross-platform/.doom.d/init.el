@@ -16,7 +16,7 @@
        python-ext
        slack
        tools
-       vterm-ext
+       terminal
 
        :completion
        (corfu +orderless +icons +dabbrev)
