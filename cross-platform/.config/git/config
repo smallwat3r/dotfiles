@@ -1,106 +1,131 @@
+# Identity
+
 [user]
-name = Matthieu Petiteau
-email = mpetiteau.pro@gmail.com
-signingkey = 9964D38A
+	name = Matthieu Petiteau
+	email = mpetiteau.pro@gmail.com
+	signingkey = 9964D38A
 
 [github]
-user = smallwat3r
+	user = smallwat3r
+
+# Core
 
 [init]
-templatedir = ~/.config/git/templates
+	defaultBranch = main
+	templatedir = ~/.config/git/templates
 
 [core]
-autocrlf = input
-editor = "emacsclient -c"
-hooksPath = ~/.config/git/templates/hooks
-
-[commit]
-gpgsign = true
-
-[merge]
-conflictstyle = diff3
-
-[pull]
-rebase = true
-
-[push]
-default = simple
-
-[branch]
-sort = -committerdate
-
-[url "https://github.com/"]
-insteadOf = gh:
-
-[url "https://gist.github.com/"]
-insteadOf = gist:
-
-[url "https://aur.archlinux.org/"]
-insteadOf = aur:
-
-[url "https://gitlab.com/"]
-insteadOf = gl:
-
-[format]
-pretty = format:%Cred%h%Creset - %Cgreen%an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset
-date = relative
-
-[alias]
-a = add
-b = branch
-bb = branch -b
-c = commit -v --message
-ca = commit -v --amend --message
-co = checkout
-cob = "!f() { git checkout -b $@ || (git checkout $@ && echo '!! Reusing existing branch'); }; f"
-com = "!f() { git checkout master || git checkout main; }; f"
-d = diff
-find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
-init-empty = "!f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
-last-commit-msg = log -1 --format=%s
-p = push
-pu = pull
-rhh = reset --hard HEAD
-rhr = "!f() { git reset --hard origin/$(git branch --show-current); }; f"
-s = status
-ss = status --short
-ours = "!f() { git co --ours $@ && git add $@; }; f"
-theirs = "!f() { git co --theirs $@ && git add $@; }; f"
-cp = cherry-pick
-cl = clone
-l = log
-fl = log -u
-rf = reflog
+	autocrlf = input
+	editor = "emacsclient -c"
+	hooksPath = ~/.config/git/templates/hooks
 
 [credential]
-helper = !git-credential-pass
-
-[color]
-branch = auto
-diff = auto
-status = auto
-
-[color "branch"]
-current = yellow reverse
-local = yellow
-remote = green
-
-[color "diff"]
-meta = yellow bold
-frag = magenta bold
-old = red bold
-new = green bold
-
-[color "status"]
-added = yellow
-changed = green
-untracked = cyan
-
-[includeIf "gitdir:~/work/"]
-path = ~/work/.gitconfig
-
-[gpg]
-program = gpg
+	helper = !git-credential-pass
 
 [http]
-postBuffer = 157286400
+	postBuffer = 157286400
+
+# Signing
+
+[commit]
+	gpgsign = true
+
+[tag]
+	gpgsign = true
+
+# Workflow
+
+[fetch]
+	prune = true
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
+[merge]
+	conflictstyle = diff3
+
+[branch]
+	sort = -committerdate
+
+[diff]
+	algorithm = histogram
+
+[rerere]
+	enabled = true
+
+# URL shortcuts
+
+[url "https://github.com/"]
+	insteadOf = gh:
+
+[url "https://gist.github.com/"]
+	insteadOf = gist:
+
+[url "https://gitlab.com/"]
+	insteadOf = gl:
+
+[url "https://aur.archlinux.org/"]
+	insteadOf = aur:
+
+# Output
+
+[format]
+	pretty = format:%Cred%h%Creset - %Cgreen%an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset
+	date = relative
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+# Aliases
+
+[alias]
+	a = add
+	b = branch
+	c = commit -v --message
+	ca = commit -v --amend --message
+	cl = clone
+	co = checkout
+	cob = "!f() { git checkout -b $@ || (git checkout $@ && echo '!! Reusing existing branch'); }; f"
+	com = "!f() { git checkout master || git checkout main; }; f"
+	cp = cherry-pick
+	d = diff
+	find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+	fl = log -u
+	init-empty = "!f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
+	l = log
+	last-commit-msg = log -1 --format=%s
+	ours = "!f() { git co --ours $@ && git add $@; }; f"
+	p = push
+	pu = pull
+	rf = reflog
+	rhh = reset --hard HEAD
+	rhr = "!f() { git reset --hard origin/$(git branch --show-current); }; f"
+	s = status
+	ss = status --short
+	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+
+# Conditional includes
+
+[includeIf "gitdir:~/work/"]
+	path = ~/work/.gitconfig
