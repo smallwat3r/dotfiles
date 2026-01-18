@@ -163,20 +163,7 @@
   '(font-lock-function-name-face :foreground "MidnightBlue"))
 
 (after! display-line-numbers
-  (setq display-line-numbers-type nil  ; none by default
-        ;; colorize line numbers every 5th lines as a visual indicator, this is
-        ;; specially useful when using relative line numbers.
-        display-line-numbers-minor-tick 5
-        display-line-numbers-major-tick 5))
-
-(custom-set-faces!
-  ;; base line numbers: no gray background
-  '(line-number :background unspecified :foreground "gray50")
-  ;; multiples of 5 (minor/major tick)
-  '(line-number-minor-tick :inherit line-number :foreground "orange" :weight bold)
-  '(line-number-major-tick :inherit line-number-minor-tick)
-  ;; current line number: distinct color
-  '(line-number-current-line :inherit line-number :foreground "orange red" :weight bold))
+  (setq display-line-numbers-type nil))
 
 ;; Dashboard displayed when starting Emacs. As a personal preference, I like to
 ;; keep it very simple. It is lighter than the default scratch buffer in many

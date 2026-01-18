@@ -29,3 +29,19 @@
   (define-key symbol-overlay-map (kbd "w") nil)
   (define-key symbol-overlay-map (kbd "t") nil)
   (define-key symbol-overlay-map (kbd "i") nil))
+
+;; Line numbers colorization and tick indicators
+;; Colorize every 5th line number as a visual indicator, useful when using
+;; relative line numbers to quickly estimate jump distances.
+(after! display-line-numbers
+  (setq display-line-numbers-minor-tick 5
+        display-line-numbers-major-tick 5))
+
+(custom-set-faces!
+  ;; base: no background, subtle gray
+  '(line-number :background unspecified :foreground "gray50")
+  ;; every 5th line: orange and bold
+  '(line-number-minor-tick :inherit line-number :foreground "orange" :weight bold)
+  '(line-number-major-tick :inherit line-number-minor-tick)
+  ;; current line: distinct orange red
+  '(line-number-current-line :inherit line-number :foreground "orange red" :weight bold))
