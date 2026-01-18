@@ -91,7 +91,7 @@
   "Return a font size depending on the device or OS."
   (let ((os (downcase (or (doom-system-distro-version) ""))))
     (cond
-     (IS-GPD 16)
+     (IS-GPD 13)
      ((string-match-p "ubuntu" os) 22)
      ((string-match-p "fedora" os) 17)
      (t 16))))
@@ -124,7 +124,7 @@
         (setq doom-font
               (cond
                (IS-GPD
-                (my/safe-font '("Courier Prime Code" "Monospace") :size size))
+                (my/safe-font '("MonacoB" "Monospace") :size size))
                ((eq system-type 'gnu/linux)
                 (my/safe-font '("Triplicate A Code" "MonacoB" "Monospace") :size size))
                ((eq system-type 'darwin)
@@ -151,7 +151,7 @@
 (setq-default tab-width 8
               with-editor-emacsclient-executable "emacsclient")
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 2)
 (unless (zerop line-spacing)
   ;; Sliced images break with non-zero line-spacing because Emacs adds extra
   ;; pixels between each image slice, causing visible gaps.
