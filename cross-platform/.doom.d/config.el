@@ -118,8 +118,7 @@
   "Configure doom-font when a graphical display is available."
   (let ((frame (or frame (selected-frame))))
     (when (and (not my--fonts-configured)
-               (display-graphic-p frame)
-               (frame-focus-state frame))
+               (display-graphic-p frame))
       (let ((size (my/get-font-size-based-on-os)))
         (setq doom-font
               (cond
@@ -135,12 +134,13 @@
         (when doom-font
           (doom/reload-font))
         (setq my--fonts-configured t)
-        (remove-hook 'focus-in-hook #'my/configure-fonts)))))
+        (remove-hook 'focus-in-hook #'my/configure-fonts)
+        (remove-hook 'window-setup-hook #'my/configure-fonts)))))
 
-;; Run now if graphical, defer to focus-in if daemon
+;; Defer font configuration until the frame is ready
 (if (daemonp)
     (add-hook 'focus-in-hook #'my/configure-fonts)
-  (my/configure-fonts))
+  (add-hook 'window-setup-hook #'my/configure-fonts))
 
 ;; Enable proportional fonts for text-mode buffers.
 (add-hook! 'text-mode-hook 'variable-pitch-mode)
