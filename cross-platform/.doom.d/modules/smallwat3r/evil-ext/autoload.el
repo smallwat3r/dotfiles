@@ -1,4 +1,4 @@
-;;; $DOOMDIR/autoload/buffer.el -*- lexical-binding: t; -*-
+;;; smallwat3r/evil-ext/autoload.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
 (defun my/save-and-close-buffer ()

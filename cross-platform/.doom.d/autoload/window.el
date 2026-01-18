@@ -4,13 +4,13 @@
 (defun my/scroll-up ()
   "Scroll up by 3 lines."
   (interactive)
-  (evil-scroll-line-up 3))
+  (scroll-down 3))
 
 ;;;###autoload
 (defun my/scroll-down ()
   "Scroll down by 3 lines."
   (interactive)
-  (evil-scroll-line-down 3))
+  (scroll-up 3))
 
 ;;;###autoload
 (defun my/enlarge-window-horizontally ()
