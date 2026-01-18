@@ -69,21 +69,20 @@ run() {
 }
 
 list_commands() {
-  compgen -c | sort -u
-
+  compgen -c
   if [[ $OSTYPE == linux* ]] && has flatpak; then
-    flatpak list --app --columns=application | sort -u
+    flatpak list --app --columns=application
   fi
 }
 
 sort_by_frequency() {
   if [[ -f $HISTORY_FILE ]]; then
-    sort | uniq | awk -v hist="$HISTORY_FILE" '
+    awk -v hist="$HISTORY_FILE" '
       BEGIN { while ((getline line < hist) > 0) freq[line]++ }
-      { print freq[$0]+0, $0 }
+      !seen[$0]++ { print freq[$0]+0, $0 }
     ' | sort -rn | cut -d' ' -f2-
   else
-    sort
+    sort -u
   fi
 }
 

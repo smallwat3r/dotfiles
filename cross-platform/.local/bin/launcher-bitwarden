@@ -9,6 +9,7 @@
 # Dependencies:
 #   - rbw: Unofficial Bitwarden CLI (https://github.com/doy/rbw)
 #   - fzf: Fuzzy finder
+#   - jq: JSON processor
 #   - wl-copy, xclip, or pbcopy: Clipboard utility
 #
 # Usage:
@@ -32,6 +33,7 @@ require() { has "$1" || die "$1 is required"; }
 
 require rbw
 require fzf
+require jq
 
 # Config
 
@@ -65,11 +67,6 @@ fzf_pick() {
   fzf --reverse --wrap --prompt="$1" --bind="$fzf_bind" --color="$fzf_colors"
 }
 
-rbw_get() {
-  local name="$1" user="$2" field="${3-}"
-  rbw get ${field:+--field "$field"} "$name" ${user:+"$user"} 2>/dev/null || true
-}
-
 list_items() {
   for i in "${!items[@]}"; do
     IFS=$'\t' read -r name user <<< "${items[$i]}"
@@ -84,17 +81,18 @@ list_items() {
 
 get_fields() {
   local name="$1" user="$2"
-  local val
+  local raw pw un totp notes
 
-  for f in password username totp; do
-    case $f in
-      password) val="$(rbw_get "$name" "$user")" ;;
-      username) val="$(rbw_get "$name" "$user" username)" ;;
-      totp)     val="$(rbw code "$name" ${user:+"$user"} 2>/dev/null || true)" ;;
-    esac
+  raw="$(rbw get --raw "$name" ${user:+"$user"} 2>/dev/null)" || return
+  pw="$(jq -r '.data.password // empty' <<< "$raw" 2>/dev/null)" || true
+  un="$(jq -r '.data.username // empty' <<< "$raw" 2>/dev/null)" || true
+  notes="$(jq -r '.notes // empty' <<< "$raw" 2>/dev/null)" || true
+  totp="$(rbw code "$name" ${user:+"$user"} 2>/dev/null || true)"
 
-    [[ -n $val ]] && fields[$f]="$val" || true
-  done
+  [[ -n $pw ]] && fields[password]="$pw" || true
+  [[ -n $un ]] && fields[username]="$un" || true
+  [[ -n $notes ]] && fields[notes]="$notes" || true
+  [[ -n $totp ]] && fields[totp]="$totp" || true
 }
 
 # Main

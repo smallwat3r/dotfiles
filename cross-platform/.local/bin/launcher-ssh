@@ -50,38 +50,24 @@ fzf_pick() {
     --bind="$fzf_bind" --color="$fzf_colors"
 }
 
-get_hosts() {
+list_hosts() {
   awk '
+    BEGIN { IGNORECASE = 1 }
     /^[Hh]ost / {
-      for (i = 2; i <= NF; i++) {
-        if ($i !~ /[*?]/) print $i
+      for (i = 2; i <= NF; i++)
+        if ($i !~ /[*?]/) { hosts[++n] = $i; current = $i }
+    }
+    /^[[:space:]]*[Hh]ost[Nn]ame/ { hostnames[current] = $2 }
+    END {
+      for (i = 1; i <= n; i++) {
+        h = hosts[i]; hn = hostnames[h]
+        if (hn && hn != h)
+          printf "%s\t%s (%s)\n", h, h, hn
+        else
+          printf "%s\t%s\n", h, h
       }
     }
-  ' "$SSH_CONFIG" | sort -u
-}
-
-get_hostname() {
-  local host="$1"
-
-  awk -v h="$host" '
-    BEGIN { IGNORECASE = 1; found = 0 }
-    /^Host / { found = 0; for (i = 2; i <= NF; i++) if ($i == h) found = 1 }
-    found && /^[[:space:]]*Hostname/ { print $2; exit }
   ' "$SSH_CONFIG"
-}
-
-list_hosts() {
-  local host hostname
-
-  while read -r host; do
-    hostname="$(get_hostname "$host")"
-
-    if [[ -n "$hostname" && "$hostname" != "$host" ]]; then
-      printf '%s\t%s (%s)\n' "$host" "$host" "$hostname"
-    else
-      printf '%s\t%s\n' "$host" "$host"
-    fi
-  done < <(get_hosts)
 }
 
 # Main
