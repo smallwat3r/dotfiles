@@ -35,16 +35,16 @@ make help       # list available commands
 
 These configurations support multiple platforms:
 
-| Directory        | Description                                          |
-|------------------+------------------------------------------------------|
-| ~cross-platform~ | Platform-agnostic configs (zsh, Emacs, SSH ...)      |
-| ~macos~          | macOS-specific configs (~_root/~ for system-level)   |
-| ~fedora~         | Fedora-specific configs (includes dconf settings)    |
+| Directory | Description                                        |
+|-----------+----------------------------------------------------|
+| ~base~    | Shared configs, always applied (zsh, Emacs, SSH)   |
+| ~macos~   | macOS-specific overrides (~_root/~ for system)     |
+| ~fedora~  | Fedora-specific overrides (includes dconf)         |
 
 ** Emacs
 
 I use Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
-Configuration is stored in [[file:cross-platform/.doom.d][cross-platform/.doom.d]].
+Configuration is stored in [[file:base/.doom.d][base/.doom.d]].
 
 *** Installing Emacs
 
