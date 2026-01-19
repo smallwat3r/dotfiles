@@ -9,7 +9,6 @@
 #   - mako: notification daemon
 #   - swaylock: screen locker
 #   - swayidle: idle management
-#   - wob: overlay bar for volume/brightness
 #   - grim/slurp: screenshots
 #   - wpctl: volume control (wireplumber)
 #   - brightnessctl: brightness control

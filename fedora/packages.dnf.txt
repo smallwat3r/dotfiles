@@ -1,0 +1,57 @@
+aspell                                   Spell checker
+balena-etcher                            balenaEtcher is a powerful OS image flasher built with web technologies to ensure flashing an SDCard or USB drive is a pleasant and safe experience. It protects you from accidentally writing to your hard-drives, ensures every byte of data was written correctly and much more.
+chromium                                 A WebKit (Blink) powered web browser that Google doesn't want you to use
+clamav                                   End-user tools for the Clam Antivirus scanner
+clamd                                    The Clam AntiVirus Daemon
+clang                                    A C language family front-end for LLVM
+clang-tools-extra                        Extra tools for clang
+cmake                                    Cross-platform make system
+docker-ce                                The open-source application container engine
+emacs                                    GNU Emacs text editor
+fontforge                                Outline and bitmap font editor
+freetype-devel                           FreeType development libraries and header files
+fuzzel                                   Application launcher for wlroots based Wayland compositors
+fzf                                      A command-line fuzzy finder written in Go
+gdal                                     GIS file format library
+gnome-tweaks                             Customize advanced GNOME 3 options
+golang                                   The Go Programming Language
+google-authenticator                     One-time pass-code support using open standards
+gparted                                  Gnome Partition Editor
+gpaste                                   Clipboard management system
+gtk4-devel                               Development files for GTK
+input-remapper                           An easy to use tool to change the behaviour of your input devices
+kanshi                                   Dynamic display configuration for Wayland
+kicad                                    EDA software suite for creation of schematic diagrams and PCBs
+kicad-packages3d                         3D Models for KiCad
+libtool                                  The GNU Portable Library Tool
+libusb1-devel                            Development files for libusb1
+mako                                     Lightweight Wayland notification daemon
+meson                                    High productivity build system
+msmtp                                    SMTP client
+notmuch                                  System for indexing, searching, and tagging email
+nwg-look                                 GTK3 settings editor adapted to work in the wlroots environment
+openscad                                 The Programmers Solid 3D CAD Modeller
+protobuf-compiler                        Protocol Buffers compiler
+prusa-slicer                             3D printing slicer optimized for Prusa printers
+python3.13                               Version 3.13 of the Python interpreter
+python3-pip                              A tool for installing and managing Python3 packages
+qflipper                                 Desktop application for updating Flipper Zero firmware via PC
+radeontop                                AMD Radeon video cards monitoring utility
+rbw                                      Unofficial Bitwarden CLI
+shfmt                                    Shell formatter
+sqlite                                   Library that implements an embeddable SQL database engine
+stow                                     Manage the installation of software packages from source
+sway                                     i3-compatible window manager for Wayland
+tailscale                                The easiest, most secure, cross platform way to use WireGuard + oauth2 + 2FA/SSO
+terraform                                Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned.
+tigervnc                                 A TigerVNC remote display system
+uv                                       An extremely fast Python package installer and resolver, written in Rust
+waybar                                   Highly customizable Wayland bar for Sway and Wlroots based compositors
+wdisplays                                GUI display configurator for wlroots compositors
+wev                                      A tool for debugging events on a sway Wayland window
+xclip                                    Command line clipboard grabber
+xorriso                                  ISO-9660 and Rock Ridge image manipulation tool
+yubikey-manager                          Python library and command line tool for configuring a YubiKey
+zsh                                      Powerful interactive shell
+zsh-autosuggestions                      Fish-like autosuggestions for zsh
+zsh-syntax-highlighting                  Fish shell like syntax highlighting for Zsh
