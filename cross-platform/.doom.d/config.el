@@ -476,13 +476,6 @@
 ;;
 ;;; Misc
 
-;; Untappd
-;; doc: https://github.com/smallwat3r/untappd.el
-(use-package! untappd
-  :commands (untappd-feed)
-  :custom (untappd-access-token (auth-source-pass-get 'secret "untappd/token")))
-
-
 ;; debug mode
 (defun my/echo-command-name-hook ()
   "Echo live command names."

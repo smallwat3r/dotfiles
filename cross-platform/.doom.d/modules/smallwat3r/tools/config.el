@@ -38,8 +38,13 @@
   (setq epg-pinentry-mode 'loopback)
   (pinentry-start))
 
-;; PET (Python Executable Tracker)
-;; doc: https://github.com/wyuenho/emacs-pet/
-(use-package! pet
-  :config
-  (add-hook 'python-mode-hook 'pet-mode -10))
+;; Display London TfL tube status
+;; doc: https://github.com/smallwat3r/tubestatus.el
+(use-package! tubestatus
+  :commands (tubestatus))
+
+;; Untappd feed
+;; doc: https://github.com/smallwat3r/untappd.el
+(use-package! untappd
+  :commands (untappd-feed)
+  :custom (untappd-access-token (auth-source-pass-get 'secret "untappd/token")))

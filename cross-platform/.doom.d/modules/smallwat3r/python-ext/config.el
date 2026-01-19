@@ -60,3 +60,11 @@
   (after! lookup
     (add-to-list '+lookup-provider-url-alist
                  '("Python Docs" "https://docs.python.org/3/search.html?q=%s"))))
+
+;; PET (Python Executable Tracker)
+;; Automatically finds and uses the correct Python executable for the project
+;; (e.g. from virtualenv, poetry, pyenv).
+;; doc: https://github.com/wyuenho/emacs-pet/
+(use-package! pet
+  :config
+  (add-hook 'python-mode-hook 'pet-mode -10))
