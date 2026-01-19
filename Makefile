@@ -1,6 +1,9 @@
 SHELL := /bin/bash
 
-DISTRO := $(shell ./_helpers/get_distro)
+DISTRO := $(shell \
+    if [[ "$$(uname)" == "Darwin" ]]; then echo macos; \
+    elif [[ -f /etc/os-release ]]; then . /etc/os-release && echo $$ID; \
+    else echo unknown; fi)
 
 SUCCESS := $(shell tput setaf 40)
 INFO    := $(shell tput setaf 111)
