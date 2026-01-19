@@ -20,6 +20,7 @@
          ("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
 
 ;; SQL
+;; doc: https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#SQL-Mode
 (use-package! sql
   :mode ("\\.\\(m\\|my\\)?sql\\'" . sql-mode)
   :custom

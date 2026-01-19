@@ -1,6 +1,9 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
+;;
+;;; Disabled packages
+
 ;; A list of Doom's default packages, that I don't use.
 (disable-packages!
  ;; Python packages
@@ -16,6 +19,10 @@
  ;; evil-escape adds input latency while waiting for key sequences.
  evil-escape)
 
+;;
+;;; Personal packages (not pinned as managed by myself)
+
+;; Custom themes
 (package! creamy-theme
   :recipe (:host github :repo "smallwat3r/emacs-creamy-theme"))
 

@@ -31,6 +31,13 @@
   "Return the cached count of buffers."
   my/buffer-count-cache)
 
+;; Custom mode-line format. Displays:
+;; - buffer status (modified, client, remote)
+;; - buffer name
+;; - buffer count (total open buffers)
+;; - position in file (percentage, line, column)
+;; - version control info
+;; - major mode name
 (let ((standard-mode-line-format
        (list "%e"
              'mode-line-front-space

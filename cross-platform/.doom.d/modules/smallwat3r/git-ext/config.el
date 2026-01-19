@@ -23,7 +23,13 @@
           "N" #'git-rebase-move-line-up   ; custom layout
           "A" #'git-rebase-move-line-down)))
 
-;; all Git SSH commands from Emacs should use this
+;; Custom SSH options for Git commands from Emacs to improve reliability:
+;; -4: force IPv4 (avoids IPv6 connectivity issues)
+;; ConnectTimeout: fail quickly if host is unreachable
+;; ServerAliveInterval/CountMax: detect dropped connections
+;; TCPKeepAlive: prevent firewall from closing idle connections
+;; GSSAPIAuthentication=no: skip Kerberos (faster for non-Kerberos hosts)
+;; ControlMaster=no: avoid conflicts with user's ControlMaster settings
 (setenv "GIT_SSH_COMMAND" "ssh -4 \
   -o ConnectTimeout=10 \
   -o ServerAliveInterval=20 \
