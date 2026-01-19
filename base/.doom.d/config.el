@@ -274,11 +274,8 @@
   (when (file-exists-p custom-file)
     (load custom-file t)))
 
-(defun my/post-save-hook ()
-  "Show a confirmation message after saving."
-  (when buffer-file-name
-    (message "Saved: %s" (abbreviate-file-name buffer-file-name))))
-(add-hook 'after-save-hook #'my/post-save-hook)
+;; Show default "Wrote file" message on save.
+(setq save-silently nil)
 
 ;;
 ;;; Custom templates
