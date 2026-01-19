@@ -1,97 +1,147 @@
 # Sway configuration
 # vim: ft=swayconfig
 #
-# Note: Using arrow keys for movement instead of hjkl because I use a custom
-# keyboard with its own mappings.
+# Dependencies:
+#   - foot: terminal emulator
+#   - fuzzel: application launcher
+#   - waybar: status bar
+#   - kanshi: dynamic output configuration
+#   - mako: notification daemon
+#   - swaylock: screen locker
+#   - swayidle: idle management
+#   - wob: overlay bar for volume/brightness
+#   - grim/slurp: screenshots
+#   - wpctl: volume control (wireplumber)
+#   - brightnessctl: brightness control
 
 # Variables
+
 set $mod Mod4
 set $term foot
 set $menu fuzzel
 
 # Appearance
+
+font pango:monacoB 10
+
 default_border pixel 3
 default_floating_border pixel 3
 gaps inner 0
 gaps outer 0
+
+# Default to stacking layout
 workspace_layout stacking
 
-font pango:monacoB 10
-floating_modifier $mod normal
-
-# Colors (black and white)
-# class                 border  bg      text    indicator child_border
+# Window colors
+#                       border  bg      text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 client.focused_inactive #333333 #000000 #888888 #333333   #333333
 client.unfocused        #000000 #000000 #666666 #000000   #000000
 client.urgent           #ffffff #000000 #ffffff #ffffff   #ffffff
 
-# Output configuration
+# Black background on all outputs
 output * bg #000000 solid_color
-exec_always pkill kanshi; kanshi -c ~/.config/kanshi/config.gpd
 
-# Input configuration
+# Input
+
+# Caps Lock as Ctrl
 input type:keyboard {
     xkb_options ctrl:nocaps
 }
 
+# Touchpad settings
 input type:touchpad {
     tap enabled
     natural_scroll enabled
     dwt enabled
 }
 
-# Overlay bar (wob)
+# Hold Super to drag/resize floating windows (left/right click)
+floating_modifier $mod normal
+
+# Autostart
+
+# Dynamic output configuration
+exec_always pkill kanshi; kanshi -c ~/.config/kanshi/config.gpd
+
+# Notification daemon
+exec_always pkill mako; mako
+
+# Status bar
+exec_always pkill waybar; waybar
+
+# Overlay bar for volume/brightness feedback
 set $wob_sock $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $wob_sock && mkfifo $wob_sock && tail -f $wob_sock | wob \
     -a bottom -M 50 -H 30 -W 400 -b 2 -p 2 \
     --background-color '#000000ff' --bar-color '#ffffffff' --border-color '#ffffffff'
 
-# Idle configuration
+# Idle and lock
+# - Lock after 5 minutes
+# - Turn off display after 10 minutes
+# - Lock before sleep
 exec swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
     timeout 600 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -f -c 000000'
 
-# Window tiling (GNOME-style: Ctrl+Shift+Super+arrows)
-bindsym Ctrl+Shift+$mod+Left exec swaymsg resize set width 50 ppt, move position 0 0
-bindsym Ctrl+Shift+$mod+Right exec swaymsg resize set width 50 ppt, move position 50 ppt 0
-bindsym Ctrl+Shift+$mod+Up fullscreen toggle
-bindsym Ctrl+Shift+$mod+Down floating toggle
+# Window rules
 
-# Basic key bindings
+for_window [title="^launcher$"] floating enable, border pixel 1
+for_window [title="^floating$"] floating enable, border pixel 1
+
+# Key bindings - General
+
+# Launch terminal
 bindsym $mod+Return exec $term
-bindsym $mod+q kill
-bindsym $mod+d exec $menu
-bindsym $mod+Shift+c reload
-bindsym $mod+l exec swaylock -f -c 000000
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' \
-    -B 'Yes' 'swaymsg exit'
 
-# Custom launchers (matching your GNOME keybindings)
+# Launch application menu
+bindsym $mod+d exec $menu
+
+# Close focused window
+bindsym $mod+q kill
+
+# Lock screen
+bindsym $mod+l exec swaylock -f -c 000000
+
+# Reload configuration
+bindsym $mod+Shift+c reload
+
+# Exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+
+# Key bindings - Custom launchers
+
 bindsym $mod+i exec $term --title=launcher -w 600x300 ~/.local/bin/launcher-bin
 bindsym $mod+e exec $term --title=launcher -w 800x400 ~/.local/bin/launcher-bitwarden
 bindsym $mod+u exec $term --title=launcher -w 1000x800 ~/.local/bin/launcher-browser-history
 bindsym $mod+o exec $term --title=launcher -w 800x500 ~/.local/bin/launcher-clipboard-history
 bindsym $mod+w exec $term --title=launcher -w 800x500 ~/.local/bin/launcher-ssh
 
-for_window [title="^launcher$"] floating enable, border pixel 1
-for_window [title="^floating$"] floating enable, border pixel 1
+# Key bindings - Navigation
 
-# Focus movement
+# Focus (Ctrl+Shift+Super + y/n/a/e)
 bindsym Ctrl+Shift+$mod+y focus left
 bindsym Ctrl+Shift+$mod+n focus down
 bindsym Ctrl+Shift+$mod+a focus up
 bindsym Ctrl+Shift+$mod+e focus right
 
-# Move focused window
+# Move window (Ctrl+Super + y/n/a/e)
 bindsym Ctrl+$mod+y move left
 bindsym Ctrl+$mod+n move down
 bindsym Ctrl+$mod+a move up
 bindsym Ctrl+$mod+e move right
 
-# Workspaces
+# Toggle focus between floating/tiled
+bindsym $mod+space focus mode_toggle
+
+# Focus parent container
+bindsym $mod+a focus parent
+
+# Key bindings - Workspaces
+
+# Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -103,7 +153,7 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
-# Move focused container to workspace
+# Move container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -115,23 +165,39 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-# Layout
+# Key bindings - Layout
+
+# Float, resize to 80%, and center window
 bindsym $mod+c floating toggle, resize set width 80 ppt height 80 ppt, move position center
+
+# Split orientation
 bindsym $mod+b splith
 bindsym $mod+v splitv
+
+# Layout modes
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+p layout toggle split
-bindsym $mod+f fullscreen
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
-bindsym $mod+a focus parent
 
-# Scratchpad
+# Fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle floating
+bindsym $mod+Shift+space floating toggle
+
+# GNOME-style tiling (Ctrl+Shift+Super + arrows)
+bindsym Ctrl+Shift+$mod+Left exec swaymsg resize set width 50 ppt, move position 0 0
+bindsym Ctrl+Shift+$mod+Right exec swaymsg resize set width 50 ppt, move position 50 ppt 0
+bindsym Ctrl+Shift+$mod+Up fullscreen toggle
+bindsym Ctrl+Shift+$mod+Down floating toggle
+
+# Key bindings - Scratchpad
+
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
-# Resize mode
+# Key bindings - Resize mode
+
 mode "resize" {
     bindsym Left resize shrink width 25px
     bindsym Down resize grow height 25px
@@ -141,9 +207,11 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
-# Media keys
+# Key bindings - Media
+
 set $vol_up wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && \
     wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}' > $wob_sock
 set $vol_down wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && \
@@ -159,15 +227,17 @@ bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym XF86MonBrightnessUp exec $bright_up
 bindsym XF86MonBrightnessDown exec $bright_down
 
-# Screenshot
+# Key bindings - Screenshots
+
 set $screenshot_dir ~/Pictures/Screenshots
-bindsym Print exec mkdir -p $screenshot_dir && f=$screenshot_dir/$(date +%Y%m%d-%H%M%S).png && grim -g "$(slurp)" $f && notify-send "Screenshot saved" "$f"
-bindsym Shift+Print exec mkdir -p $screenshot_dir && f=$screenshot_dir/$(date +%Y%m%d-%H%M%S).png && grim $f && notify-send "Screenshot saved" "$f"
+set $screenshot_cmd mkdir -p $screenshot_dir && f=$screenshot_dir/$(date +%Y%m%d-%H%M%S).png
 
-# Notifications
-exec_always pkill mako; mako
+# Region selection
+bindsym Print exec $screenshot_cmd && grim -g "$(slurp)" $f && notify-send "Screenshot" "$f"
 
-# Status bar
-exec_always pkill waybar; waybar
+# Full screen
+bindsym Shift+Print exec $screenshot_cmd && grim $f && notify-send "Screenshot" "$f"
+
+# Includes
 
 include /etc/sway/config.d/*
