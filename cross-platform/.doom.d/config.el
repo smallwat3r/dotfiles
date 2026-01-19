@@ -306,21 +306,22 @@
 ;;      https://docs.projectile.mx/projectile/index.html
 (after! projectile
   (setq projectile-indexing-method 'alien
-        projectile-project-search-path '("~/dotfiles/" "~/code/" "~/work/"))
+        projectile-project-search-path '("~/dotfiles" "~/code" "~/work"))
 
-  ;; ROS workspaces
+  ;; ROS (Robot Operating System) workspaces follow a naming convention of
+  ;; `*_ws` or `ws_*` (e.g. `catkin_ws`, `ws_ros2`). Automatically add any
+  ;; matching directories in home to the project search path.
   (when (featurep :system 'linux)
     (dolist (file (directory-files "~/" t "^[^.].*"))
       (when (file-directory-p file)
-        (let* ((name (file-name-nondirectory (directory-file-name file))))
+        (let ((name (file-name-nondirectory (directory-file-name file))))
           (when (or (string-suffix-p "_ws" name)
                     (string-prefix-p "ws_" name))
-            (add-to-list 'projectile-project-search-path file))))))
+            (add-to-list 'projectile-project-search-path file)))))))
 
   (pushnew! projectile-globally-ignored-directories
             ".npm" ".poetry" "GoogleDrive" ".mypy_cache"
-            "Library" ".git" "__pycache__" "node_modules"
-            ".idea" ".vscode" ".svn" ".tox" ".cache")
+            "Library" "__pycache__")
   (pushnew! projectile-ignored-projects "/tmp" "~/Downloads" "~/backups")
   (when (featurep :system 'macos)
     (pushnew! projectile-ignored-projects "/Applications" "/Volumes/GoogleDrive")))

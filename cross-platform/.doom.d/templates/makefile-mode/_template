@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: Makefile template
+# --
+.PHONY: help install test lint format clean
+
+help:  ## Show this help
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \\
+		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
+
+install:  ## Install dependencies
+	$0
+
+test:  ## Run tests
+
+
+lint:  ## Run linter
+
+
+format:  ## Format code
+
+
+clean:  ## Clean build artifacts
+	rm -rf build/ dist/ *.egg-info/ __pycache__/ .pytest_cache/ .mypy_cache/
