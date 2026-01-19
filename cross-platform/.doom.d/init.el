@@ -10,6 +10,7 @@
 
 (doom! :smallwat3r
        csv
+       debug
        dired
        docker
        elfeed-ext

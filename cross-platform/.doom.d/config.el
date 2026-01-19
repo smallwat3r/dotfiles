@@ -474,26 +474,6 @@
 
 
 ;;
-;;; Misc
-
-;; debug mode
-(defun my/echo-command-name-hook ()
-  "Echo live command names."
-  (unless (or (eq this-command 'self-insert-command)
-              (eq this-command 'next-line))
-    (message "%s" this-command)))
-
-(define-minor-mode my-debug-mode
-  "A minor mode to echo executed commands."
-  :init-value nil
-  :lighter " Debug"
-  :global t
-  (if my-debug-mode
-      (add-hook 'post-command-hook #'my/echo-command-name-hook)
-    (remove-hook 'post-command-hook #'my/echo-command-name-hook)))
-
-
-;;
 ;;; Keybindings
 
 (load! "keybindings")

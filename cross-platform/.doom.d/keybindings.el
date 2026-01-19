@@ -108,3 +108,10 @@
    :leader
    (:prefix ("P" . "password")
     :desc "Open password-store buffer" "p" #'pass)))
+
+;; Debug (:smallwat3r debug)
+(when (modulep! :smallwat3r debug)
+  (map!
+   :leader
+   (:prefix "t"
+    :desc "Debug mode" "D" #'my-debug-mode)))
