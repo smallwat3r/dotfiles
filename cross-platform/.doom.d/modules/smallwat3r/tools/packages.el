@@ -21,3 +21,11 @@
 ;; GPG pinentry support
 ;; http://git.savannah.gnu.org/gitweb/?p=emacs/elpa.git;a=shortlog;h=refs/heads/externals/pinentry
 (package! pinentry :pin "99480adc192f657d7d9f2eb3ed4e568df3de8613")
+
+;; Display London TfL tube status
+(package! tubestatus
+  :recipe (:host github :repo "smallwat3r/tubestatus.el"))
+
+;; Untappd feed
+(package! untappd
+  :recipe (:host github :repo "smallwat3r/untappd.el"))
