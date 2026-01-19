@@ -135,9 +135,20 @@
 (when (modulep! :smallwat3r claude)
   (map!
    :leader
-   (:prefix ("A" . "AI")
-    :desc "Claude chat" "c" #'my/claude-chat
-    :desc "Send region to Claude" "r" #'my/claude-send-region)))
+   (:prefix ("r" . "AI")
+    :desc "Claude chat"                 "c" #'my/claude-chat
+    :desc "Claude chat at root"         "C" #'my/claude-chat-project-root
+    :desc "New Claude chat"             "n" #'my/claude-new-chat
+    :desc "New Claude chat at root"     "N" #'my/claude-new-chat-project-root
+    :desc "New named chat"              "a" #'my/claude-new-chat-named
+    :desc "New named chat at root"      "A" #'my/claude-new-chat-named-project-root
+    :desc "Rename chat"                 "R" #'my/claude-rename-chat
+    :desc "Switch Claude chat"          "s" #'my/claude-switch-chat
+    :desc "Toggle Claude"               "t" #'my/claude-toggle
+    :desc "Send region"                 "r" #'my/claude-send-region
+    :desc "Send buffer"                 "b" #'my/claude-send-buffer
+    :desc "Send region with context"    "x" #'my/claude-send-region-with-context
+    :desc "Send region with prompt"     "p" #'my/claude-send-region-with-prompt)))
 
 ;; Evil (:smallwat3r evil-ext)
 (when (modulep! :smallwat3r evil-ext)

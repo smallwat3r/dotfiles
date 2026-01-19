@@ -13,7 +13,7 @@
 ;; doc: https://github.com/akermu/emacs-libvterm
 (after! vterm
   (setq vterm-max-scrollback 6000
-        vterm-timer-delay 0.01)
+        vterm-timer-delay 0.03)
   ;; always display the modeline in vterm
   (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode))
 
