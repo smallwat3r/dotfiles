@@ -86,7 +86,19 @@
     :desc "Vterm at buffer"         "V" #'my/vterm/here-current-buffer
     :desc "Toggle vterm at buffer"  "v" #'my/vterm/toggle-current-buffer
     :desc "Tramp SSH conn"          "." #'my/open-remote-conn
-    :desc "Term SSH conn"           "s" #'my/ssh-external)))
+    :desc "Term SSH conn"           "s" #'my/ssh-external))
+  (map! :map vterm-mode-map
+        :n "B" #'vterm-beginning-of-line
+        :n "<return>" #'evil-insert-resume
+        [remap delete-forward-char] #'vterm-send-delete
+        :in "<M-backspace>" #'vterm-send-meta-backspace
+        :n "<M-backspace>" #'vterm-send-meta-backspace
+        :in "C-k" #'vterm-send-up
+        :in "C-j" #'vterm-send-down
+        "C-;" #'my/vterm-zsh-history-pick)
+  (add-hook! 'vterm-mode-hook
+    (defun my/vterm-dd-binding ()
+      (evil-local-set-key 'normal "dd" (cmd! (vterm-send-C-c))))))
 
 ;; Google (:smallwat3r google)
 (when (modulep! :smallwat3r google)

@@ -15,18 +15,7 @@
   (setq vterm-max-scrollback 6000
         vterm-timer-delay 0.01)
   ;; always display the modeline in vterm
-  (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode)
-
-  (map! :map vterm-mode-map
-        :n "B" #'vterm-beginning-of-line  ; beg of command
-        :n "<return>" #'evil-insert-resume
-        [remap delete-forward-char] #'vterm-send-delete
-        :in "<M-backspace>" #'vterm-send-meta-backspace
-        :n "<M-backspace>" #'vterm-send-meta-backspace
-        :in "C-k" #'vterm-send-up
-        :in "C-j" #'vterm-send-down
-        :n "dd" (cmd! (vterm-send-C-c))
-        "C-;" #'my/vterm-zsh-history-pick))
+  (remove-hook! 'vterm-mode-hook #'hide-mode-line-mode))
 
 (setq vterm-always-compile-module t)
 
