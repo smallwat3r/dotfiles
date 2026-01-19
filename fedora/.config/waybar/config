@@ -30,21 +30,21 @@
 
     "cpu": {
         "interval": 5,
-        "format": "cpu {usage}% ·",
+        "format": "C{usage}% ·",
         "on-click": "foot --title=floating htop"
     },
 
     "memory": {
         "interval": 5,
-        "format": "mem {percentage}% ·",
+        "format": "M{percentage}% ·",
         "on-click": "foot --title=floating htop"
     },
 
     "bluetooth": {
-        "format": "bt ·",
-        "format-connected": "bt {device_alias} ·",
-        "format-disabled": "bt off ·",
-        "format-off": "bt off ·",
+        "format": "B ·",
+        "format-connected": "B:{device_alias} ·",
+        "format-disabled": "B- ·",
+        "format-off": "B- ·",
         "on-click": "blueman-manager",
         "tooltip-format": "{controller_alias}\n{status}"
     },
@@ -55,16 +55,16 @@
     },
 
     "network": {
-        "format-wifi": "wifi {essid} ·",
-        "format-ethernet": "eth {ipaddr} ·",
-        "format-disconnected": "net off ·",
+        "format-wifi": "W:{essid} ·",
+        "format-ethernet": "E:{ipaddr} ·",
+        "format-disconnected": "W- ·",
         "on-click": "nm-connection-editor",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
 
     "wireplumber": {
-        "format": "vol {volume}% ·",
-        "format-muted": "vol muted ·",
+        "format": "V{volume}% ·",
+        "format-muted": "V- ·",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
@@ -74,7 +74,7 @@
     "custom/power-profile": {
         "interval": 5,
         "exec": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) echo ECO;; balanced) echo BAL;; throughput-performance) echo PERF;; *) echo $p;; esac",
-        "format": "pwr {} ·",
+        "format": "{} ·",
         "on-click": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) tuned-adm profile balanced;; balanced) tuned-adm profile throughput-performance;; *) tuned-adm profile powersave;; esac",
         "tooltip": true,
         "tooltip-format": "Power profile: {}"
@@ -86,9 +86,9 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "bat {capacity}% ·",
-        "format-charging": "bat {capacity}% + ·",
-        "format-plugged": "bat {capacity}% + ·",
+        "format": "{capacity}% ·",
+        "format-charging": "{capacity}%+ ·",
+        "format-plugged": "{capacity}%+ ·",
         "on-click": "gnome-power-statistics || true"
     },
 
