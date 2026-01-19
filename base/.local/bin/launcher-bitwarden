@@ -52,9 +52,11 @@ fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,
 
 clip() {
   if has wl-copy; then
-    wl-copy --paste-once
+    wl-copy
+    (sleep 45 && wl-copy --clear) &
   elif has xclip; then
-    xclip -selection clipboard -loops 1
+    xclip -selection clipboard
+    (sleep 45 && xclip -selection clipboard < /dev/null) &
   elif has pbcopy; then
     pbcopy
     (sleep 45 && pbcopy < /dev/null) &

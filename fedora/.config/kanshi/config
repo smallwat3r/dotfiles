@@ -1,0 +1,40 @@
+profile laptop {
+    output eDP-1 enable scale 2.5
+}
+
+profile home-desk {
+    output DP-2 position 0,0 scale 1.5 transform 180
+    output HDMI-A-1 position 0,1440 scale 1.5
+    output eDP-1 position 764,2880 scale 2.5
+}
+
+profile home-desk-dp1 {
+    output DP-1 position 0,0 scale 1.5 transform 180
+    output HDMI-A-1 position 0,1440 scale 1.5
+    output eDP-1 position 764,2880 scale 2.5
+}
+
+profile hp-monitor {
+    output HDMI-A-1 position 0,0 scale 1.25
+    output eDP-1 position 505,1152 scale 2.5
+}
+
+profile lg-tv {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1
+    output eDP-1 position 774,1080 scale 2.5
+}
+
+profile dell-monitor {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1
+    output eDP-1 position 429,1080 scale 2.5
+}
+
+profile viewsonic {
+    output HDMI-A-1 mode 1920x1080 position 1024,0 scale 1.25
+    output eDP-1 position 0,224 scale 2.5
+}
+
+profile samsung-tv {
+    output HDMI-A-1 position 0,0 scale 1.333
+    output eDP-1 position 0,0 scale 1.333
+}

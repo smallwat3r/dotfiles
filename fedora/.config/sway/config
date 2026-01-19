@@ -1,0 +1,167 @@
+# Sway configuration
+# vim: ft=swayconfig
+#
+# Note: Using arrow keys for movement instead of hjkl because I use a custom
+# keyboard with its own mappings.
+
+# Variables
+set $mod Mod4
+set $term foot
+set $menu fuzzel
+
+# Appearance
+default_border pixel 3
+default_floating_border pixel 3
+gaps inner 0
+gaps outer 0
+
+font pango:monacoB 10
+floating_modifier $mod normal
+
+# Colors (black and white)
+# class                 border  bg      text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #000000 #888888 #333333   #333333
+client.unfocused        #000000 #000000 #666666 #000000   #000000
+client.urgent           #ffffff #000000 #ffffff #ffffff   #ffffff
+
+# Output configuration
+output * bg #000000 solid_color
+exec_always pkill kanshi; kanshi
+
+# Input configuration
+input type:keyboard {
+    xkb_options ctrl:nocaps
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
+
+# Overlay bar (wob)
+set $wob_sock $XDG_RUNTIME_DIR/wob.sock
+exec rm -f $wob_sock && mkfifo $wob_sock && tail -f $wob_sock | wob \
+    -a bottom -M 50 -H 30 -W 400 -b 2 -p 2 \
+    --background-color '#000000ff' --bar-color '#ffffffff' --border-color '#ffffffff'
+
+# Idle configuration
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 000000'
+
+# Window tiling (GNOME-style: Ctrl+Shift+Super+arrows)
+bindsym Ctrl+Shift+$mod+Left exec swaymsg resize set width 50 ppt, move position 0 0
+bindsym Ctrl+Shift+$mod+Right exec swaymsg resize set width 50 ppt, move position 50 ppt 0
+bindsym Ctrl+Shift+$mod+Up fullscreen toggle
+bindsym Ctrl+Shift+$mod+Down floating toggle
+
+# Basic key bindings
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+bindsym $mod+Shift+c reload
+bindsym $mod+l exec swaylock -f -c 000000
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' \
+    -B 'Yes' 'swaymsg exit'
+
+# Custom launchers (matching your GNOME keybindings)
+bindsym $mod+i exec $term --title=launcher -w 600x300 ~/.local/bin/launcher-bin
+bindsym $mod+e exec $term --title=launcher -w 800x400 ~/.local/bin/launcher-bitwarden
+bindsym $mod+u exec $term --title=launcher -w 1000x800 ~/.local/bin/launcher-browser-history
+bindsym $mod+o exec $term --title=launcher -w 800x500 ~/.local/bin/launcher-clipboard-history
+bindsym $mod+w exec $term --title=launcher -w 800x500 ~/.local/bin/launcher-ssh
+
+for_window [title="^launcher$"] floating enable, border pixel 1
+for_window [title="^floating$"] floating enable, border pixel 1
+
+# Focus movement
+bindsym Ctrl+Shift+$mod+y focus left
+bindsym Ctrl+Shift+$mod+n focus down
+bindsym Ctrl+Shift+$mod+a focus up
+bindsym Ctrl+Shift+$mod+e focus right
+
+# Move focused window
+bindsym Ctrl+$mod+y move left
+bindsym Ctrl+$mod+n move down
+bindsym Ctrl+$mod+a move up
+bindsym Ctrl+$mod+e move right
+
+# Workspaces
+bindsym $mod+F1 workspace number 1
+bindsym $mod+F2 workspace number 2
+bindsym $mod+F3 workspace number 3
+bindsym $mod+F4 workspace number 4
+bindsym $mod+F5 workspace number 5
+bindsym $mod+F6 workspace number 6
+bindsym $mod+F7 workspace number 7
+bindsym $mod+F8 workspace number 8
+bindsym $mod+F9 workspace number 9
+bindsym $mod+F10 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+F1 move container to workspace number 1
+bindsym $mod+Shift+F2 move container to workspace number 2
+bindsym $mod+Shift+F3 move container to workspace number 3
+bindsym $mod+Shift+F4 move container to workspace number 4
+bindsym $mod+Shift+F5 move container to workspace number 5
+bindsym $mod+Shift+F6 move container to workspace number 6
+bindsym $mod+Shift+F7 move container to workspace number 7
+bindsym $mod+Shift+F8 move container to workspace number 8
+bindsym $mod+Shift+F9 move container to workspace number 9
+bindsym $mod+Shift+F10 move container to workspace number 10
+
+# Layout
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+p layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Resize mode
+mode "resize" {
+    bindsym Left resize shrink width 25px
+    bindsym Down resize grow height 25px
+    bindsym Up resize shrink height 25px
+    bindsym Right resize grow width 25px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Media keys
+set $vol_up wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && \
+    wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}' > $wob_sock
+set $vol_down wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && \
+    wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}' > $wob_sock
+set $vol_mute wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+set $bright_up brightnessctl set 5%+ && brightnessctl -m | cut -d, -f4 | tr -d '%' > $wob_sock
+set $bright_down brightnessctl set 5%- && brightnessctl -m | cut -d, -f4 | tr -d '%' > $wob_sock
+
+bindsym XF86AudioRaiseVolume exec $vol_up
+bindsym XF86AudioLowerVolume exec $vol_down
+bindsym XF86AudioMute exec $vol_mute
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec $bright_up
+bindsym XF86MonBrightnessDown exec $bright_down
+
+# Screenshot
+bindsym Print exec grim - | wl-copy
+bindsym Shift+Print exec grim -g "$(slurp)" - | wl-copy
+
+# Status bar
+exec_always pkill waybar; waybar
+
+include /etc/sway/config.d/*

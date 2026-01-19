@@ -1,0 +1,54 @@
+* {
+    font-family: monacoB, monospace;
+    font-size: 10pt;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #666666;
+    border: none;
+    border-radius: 0;
+}
+
+#workspaces button:hover {
+    background-color: #333333;
+}
+
+#workspaces button.focused {
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    color: #ffffff;
+}
+
+#mode {
+    padding: 0 8px;
+}
+
+#cpu,
+#memory,
+#tray,
+#bluetooth,
+#network,
+#wireplumber,
+#battery,
+#clock {
+    padding: 0 4px;
+}
+
+#wireplumber.muted,
+#bluetooth.disabled,
+#bluetooth.off,
+#network.disconnected {
+    color: #666666;
+}

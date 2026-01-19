@@ -12,6 +12,7 @@
 # Usage:
 #   launcher-bin
 #
+PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 set -euo pipefail
 
 # Helpers

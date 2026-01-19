@@ -1,0 +1,90 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 0,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": [],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "tray",
+        "bluetooth",
+        "network",
+        "wireplumber",
+        "battery",
+        "clock"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+
+    "sway/mode": {
+        "format": "{}"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "cpu {usage}%",
+        "on-click": "foot --title=floating htop"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "mem {percentage}%",
+        "on-click": "foot --title=floating htop"
+    },
+
+    "bluetooth": {
+        "format": "bt",
+        "format-connected": "bt {device_alias}",
+        "format-disabled": "bt off",
+        "format-off": "bt off",
+        "on-click": "blueman-manager",
+        "tooltip-format": "{controller_alias}\n{status}"
+    },
+
+    "tray": {
+        "spacing": 8
+    },
+
+    "network": {
+        "format-wifi": "wifi {essid}",
+        "format-ethernet": "eth {ipaddr}",
+        "format-disconnected": "net off",
+        "on-click": "nm-connection-editor",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "wireplumber": {
+        "format": "vol {volume}%",
+        "format-muted": "vol muted",
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "bat {capacity}%",
+        "format-charging": "bat {capacity}% +",
+        "format-plugged": "bat {capacity}% +",
+        "on-click": "gnome-power-statistics || true"
+    },
+
+    "clock": {
+        "interval": 60,
+        "format": "{:%Y-%m-%d %H:%M}",
+        "on-click": "gnome-calendar || true",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    }
+}
