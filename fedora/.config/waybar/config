@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 18,
+    "height": 16,
     "spacing": 0,
 
     "modules-left": ["sway/workspaces", "sway/mode"],
@@ -49,7 +49,8 @@
     },
 
     "tray": {
-        "spacing": 8
+        "icon-size": 14,
+        "spacing": 4
     },
 
     "network": {

@@ -1,6 +1,6 @@
 * {
     font-family: monacoB, monospace;
-    font-size: 9pt;
+    font-size: 10pt;
     min-height: 0;
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 6px;
     background-color: transparent;
     color: #666666;
     border: none;
@@ -32,7 +32,7 @@ window#waybar {
 }
 
 #mode {
-    padding: 0 8px;
+    padding: 0 6px;
 }
 
 #cpu,
