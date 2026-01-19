@@ -59,11 +59,17 @@
 
 (defun my-claude--ensure-session ()
   "Ensure a Claude session exists, prompting for selection if multiple exist."
-  (unless (my-claude--active-session-p)
-    (let ((buf (my-claude--select-buffer "Send to Claude session: ")))
-      (if buf
-          (setq my-claude--current-buffer buf)
-        (user-error "No active Claude session. Run `my/claude-chat' first")))))
+  (let ((buffers (my-claude--buffer-list)))
+    (cond
+     ((null buffers)
+      (user-error "No active Claude session. Run `my/claude-chat' first"))
+     ((= (length buffers) 1)
+      (setq my-claude--current-buffer (car buffers)))
+     (t
+      (setq my-claude--current-buffer
+            (get-buffer
+             (completing-read "Send to Claude session: "
+                              (mapcar #'buffer-name buffers) nil t)))))))
 
 (defun my-claude--next-buffer-number ()
   "Find the lowest available buffer number."
@@ -106,6 +112,7 @@ If NAME is provided, use it as the buffer name."
 (defun my-claude--send (text)
   "Send TEXT to the current Claude session and switch to it."
   (my-claude--ensure-session)
+  (discard-input)
   (with-current-buffer my-claude--current-buffer
     (vterm-send-string text))
   (pop-to-buffer my-claude--current-buffer))

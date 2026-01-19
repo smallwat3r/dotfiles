@@ -47,8 +47,7 @@
 
  ;; Open
  (:prefix "o"
-  :desc "Browse URL at point" "l" #'browse-url-at-point
-  :desc "ChatGPT"             "c" #'my/chatgpt-open-prompt)
+  :desc "Browse URL at point" "l" #'browse-url-at-point)
 
  ;; Search
  (:prefix "s"
