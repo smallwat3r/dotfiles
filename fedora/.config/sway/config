@@ -27,7 +27,7 @@ client.urgent           #ffffff #000000 #ffffff #ffffff   #ffffff
 
 # Output configuration
 output * bg #000000 solid_color
-exec_always pkill kanshi; kanshi
+exec_always pkill kanshi; kanshi -c ~/.config/kanshi/config.gpd
 
 # Input configuration
 input type:keyboard {
