@@ -1,4 +1,6 @@
 ;;; $DOOMDIR/autoload/search.el -*- lexical-binding: t; -*-
+;;
+;; File and project search helpers.
 
 ;;;###autoload
 (defun my/find-file-in-dotfiles ()

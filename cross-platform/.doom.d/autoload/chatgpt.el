@@ -1,8 +1,11 @@
 ;;; $DOOMDIR/autoload/chatgpt.el -*- lexical-binding: t; -*-
+;;
+;; ChatGPT integration via browser.
 
 ;;;###autoload
 (defun my/chatgpt-open-prompt ()
-  "Open a popup buffer for a ChatGPT prompt."
+  "Open a popup buffer to compose a ChatGPT prompt.
+Write your prompt, then press C-c C-c to open in browser, or C-c C-k to cancel."
   (interactive)
   (let* ((buf (get-buffer-create "*ChatGPT Prompt*"))
          (win (display-buffer
@@ -17,7 +20,10 @@
 
 ;;;###autoload
 (define-derived-mode my-chatgpt-prompt-mode text-mode "ChatGPT-Prompt"
-  "Mode for composing ChatGPT prompts."
+  "Mode for composing ChatGPT prompts.
+Keybindings:
+  C-c C-c  Send prompt to ChatGPT in browser
+  C-c C-k  Cancel and close the prompt buffer"
   (local-set-key (kbd "C-c C-c")
                  (lambda ()
                    (interactive)

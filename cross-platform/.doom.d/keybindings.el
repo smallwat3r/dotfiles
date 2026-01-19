@@ -71,6 +71,9 @@
 
 ;;
 ;;; Module-specific bindings
+;;
+;; Keybindings that depend on personal modules being enabled.
+;; Each section is guarded by `modulep!' to only load when the module is active.
 
 ;; Terminal (:smallwat3r terminal)
 (when (modulep! :smallwat3r terminal)

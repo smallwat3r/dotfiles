@@ -1,4 +1,6 @@
 ;;; $DOOMDIR/autoload/insert.el -*- lexical-binding: t; -*-
+;;
+;; Functions for inserting text (timestamps, emails, etc.).
 
 ;;;###autoload
 (defun my/insert-timestamp (&optional datetime)

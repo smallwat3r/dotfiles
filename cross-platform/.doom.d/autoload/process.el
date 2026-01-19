@@ -1,4 +1,6 @@
 ;;; $DOOMDIR/autoload/process.el -*- lexical-binding: t; -*-
+;;
+;; System process management utilities.
 
 ;;;###autoload
 (defun my/fuzzy-kill-process ()
