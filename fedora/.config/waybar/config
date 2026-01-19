@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 16,
+    "height": 14,
     "spacing": 0,
 
     "modules-left": ["sway/workspaces", "sway/mode"],
@@ -13,6 +13,7 @@
         "bluetooth",
         "network",
         "wireplumber",
+        "custom/power-profile",
         "battery",
         "clock"
     ],
@@ -29,21 +30,21 @@
 
     "cpu": {
         "interval": 5,
-        "format": "cpu {usage}%",
+        "format": "cpu {usage}% ·",
         "on-click": "foot --title=floating htop"
     },
 
     "memory": {
         "interval": 5,
-        "format": "mem {percentage}%",
+        "format": "mem {percentage}% ·",
         "on-click": "foot --title=floating htop"
     },
 
     "bluetooth": {
-        "format": "bt",
-        "format-connected": "bt {device_alias}",
-        "format-disabled": "bt off",
-        "format-off": "bt off",
+        "format": "bt ·",
+        "format-connected": "bt {device_alias} ·",
+        "format-disabled": "bt off ·",
+        "format-off": "bt off ·",
         "on-click": "blueman-manager",
         "tooltip-format": "{controller_alias}\n{status}"
     },
@@ -54,20 +55,29 @@
     },
 
     "network": {
-        "format-wifi": "wifi {essid}",
-        "format-ethernet": "eth {ipaddr}",
-        "format-disconnected": "net off",
+        "format-wifi": "wifi {essid} ·",
+        "format-ethernet": "eth {ipaddr} ·",
+        "format-disconnected": "net off ·",
         "on-click": "nm-connection-editor",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
 
     "wireplumber": {
-        "format": "vol {volume}%",
-        "format-muted": "vol muted",
+        "format": "vol {volume}% ·",
+        "format-muted": "vol muted ·",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    "custom/power-profile": {
+        "interval": 5,
+        "exec": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) echo ECO;; balanced) echo BAL;; throughput-performance) echo PERF;; *) echo $p;; esac",
+        "format": "pwr {} ·",
+        "on-click": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) tuned-adm profile balanced;; balanced) tuned-adm profile throughput-performance;; *) tuned-adm profile powersave;; esac",
+        "tooltip": true,
+        "tooltip-format": "Power profile: {}"
     },
 
     "battery": {
@@ -76,15 +86,15 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "bat {capacity}%",
-        "format-charging": "bat {capacity}% +",
-        "format-plugged": "bat {capacity}% +",
+        "format": "bat {capacity}% ·",
+        "format-charging": "bat {capacity}% + ·",
+        "format-plugged": "bat {capacity}% + ·",
         "on-click": "gnome-power-statistics || true"
     },
 
     "clock": {
         "interval": 60,
-        "format": "{:%Y-%m-%d %H:%M}",
+        "format": "{:%a %d %b %H:%M}",
         "on-click": "gnome-calendar || true",
         "tooltip-format": "<tt>{calendar}</tt>"
     }

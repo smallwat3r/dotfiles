@@ -14,7 +14,7 @@ fi
 
 has_frame=$(emacsclient -e '(> (length (frame-list)) 1)' 2>/dev/null || true)
 if [[ "$has_frame" == "t" ]]; then
-  emacsclient -n "$@"
+  setsid emacsclient -n "$@"
 else
-  emacsclient -n -c "$@"
+  setsid emacsclient -n -c "$@"
 fi

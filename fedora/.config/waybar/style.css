@@ -41,6 +41,7 @@ window#waybar {
 #bluetooth,
 #network,
 #wireplumber,
+#custom-power-profile,
 #battery,
 #clock {
     padding: 0 4px;
