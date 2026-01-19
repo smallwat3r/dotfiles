@@ -10,7 +10,7 @@ name='bitwarden-launcher'
 
 [custom2]
 binding='<Super>u'
-command="foot -T 'Browser history launcher' -w 1000x800 -e launcher-browser-history"
+command="foot -T 'Browser history launcher' -w 800x500 -e launcher-browser-history"
 name='browser-history-launcher'
 
 [custom3]
