@@ -20,5 +20,8 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+^/Makefile
+^/_ops
+^/static
 
 \.DS_Store
