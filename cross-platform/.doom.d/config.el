@@ -317,7 +317,7 @@
         (let ((name (file-name-nondirectory (directory-file-name file))))
           (when (or (string-suffix-p "_ws" name)
                     (string-prefix-p "ws_" name))
-            (add-to-list 'projectile-project-search-path file)))))))
+            (add-to-list 'projectile-project-search-path file))))))
 
   (pushnew! projectile-globally-ignored-directories
             ".npm" ".poetry" "GoogleDrive" ".mypy_cache"
