@@ -21,7 +21,7 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 ^/Makefile
-^/_scripts
+^/_helpers
 ^/static
 
 \.DS_Store

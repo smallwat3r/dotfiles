@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-DISTRO := $(shell ./_scripts/get_distro)
+DISTRO := $(shell ./_helpers/get_distro)
 
 SUCCESS := $(shell tput setaf 40)
 INFO    := $(shell tput setaf 111)
