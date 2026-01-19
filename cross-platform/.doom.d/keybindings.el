@@ -130,3 +130,11 @@
    :leader
    (:prefix "t"
     :desc "Debug mode" "D" #'my-debug-mode)))
+
+;; Claude (:smallwat3r claude)
+(when (modulep! :smallwat3r claude)
+  (map!
+   :leader
+   (:prefix ("A" . "AI")
+    :desc "Claude chat" "c" #'my/claude-chat
+    :desc "Send region to Claude" "r" #'my/claude-send-region)))

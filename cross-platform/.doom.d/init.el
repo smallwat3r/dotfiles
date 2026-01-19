@@ -9,6 +9,7 @@
 ;;; Personal modules
 
 (doom! :smallwat3r
+       claude
        csv
        debug
        dired
