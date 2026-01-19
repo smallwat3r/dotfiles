@@ -1,4 +1,12 @@
 ;;; init.el -*- lexical-binding: t; -*-
+;;
+;; Doom Emacs module configuration.
+;; Modules are loaded in order: personal modules first, then Doom's built-in
+;; modules. Each module can have packages.el (dependencies) and config.el
+;; (configuration).
+
+;;
+;;; Personal modules
 
 (doom! :smallwat3r
        csv
@@ -17,6 +25,9 @@
        slack
        tools
        terminal
+
+       ;;
+       ;;; Doom modules
 
        :completion
        (corfu +orderless +icons +dabbrev)

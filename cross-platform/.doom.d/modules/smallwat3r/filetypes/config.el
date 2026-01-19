@@ -39,14 +39,18 @@
                                (port :default 5432))))
 
 ;; Makefile
+;; doc: https://www.gnu.org/software/emacs/manual/html_node/emacs/Makefile-Editing.html
 (use-package! makefile-mode
   :mode ("Makefile.*" . makefile-mode))
 
-;; TOML
+;;
+;;; Additional file type associations
+
+;; Poetry lock files are TOML
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode))
 
-;; ROS launch files
+;; ROS (Robot Operating System) launch files are XML
 (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
 
-;; Lua
+;; Conky config files are Lua
 (add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
