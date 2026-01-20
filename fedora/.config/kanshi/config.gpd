@@ -3,9 +3,9 @@ profile laptop {
 }
 
 profile home-desk {
-    output DP-2 position 0,0 scale 1.5 transform 180
-    output HDMI-A-1 position 0,1440 scale 1.5
-    output eDP-1 position 764,2880 scale 2.5
+    output DP-2 position 0,0 scale 1.75 transform 180
+    output HDMI-A-1 position 0,1234 scale 1.75
+    output eDP-1 position 764,2468 scale 2.5
 }
 
 profile home-desk-dp1 {
@@ -37,4 +37,36 @@ profile viewsonic {
 profile samsung-tv {
     output HDMI-A-1 position 0,0 scale 1.333
     output eDP-1 position 0,0 scale 1.333
+}
+
+# Lid closed profiles (no eDP-1)
+
+profile home-desk-lid-closed {
+    output DP-2 position 0,0 scale 1.75 transform 180
+    output HDMI-A-1 position 0,1234 scale 1.75
+}
+
+profile home-desk-dp1-lid-closed {
+    output DP-1 position 0,0 scale 1.5 transform 180
+    output HDMI-A-1 position 0,1440 scale 1.5
+}
+
+profile hp-monitor-lid-closed {
+    output HDMI-A-1 position 0,0 scale 1.25
+}
+
+profile lg-tv-lid-closed {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1
+}
+
+profile dell-monitor-lid-closed {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1
+}
+
+profile viewsonic-lid-closed {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1.25
+}
+
+profile samsung-tv-lid-closed {
+    output HDMI-A-1 position 0,0 scale 1.333
 }

@@ -31,3 +31,6 @@ known_hosts.*
 **/.hammerspoon/Spoons/*
 
 **/Brewfile.lock.json
+
+**/.config/sway/outputs
+**/.config/sway/workspaces
