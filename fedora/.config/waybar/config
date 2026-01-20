@@ -89,7 +89,7 @@
         "format": "{capacity}% ·",
         "format-charging": "{capacity}%+ ·",
         "format-plugged": "{capacity}%+ ·",
-        "on-click": "gnome-power-statistics || foot --title=floating sh -c 'upower -d | less'"
+        "on-click": "gnome-power-statistics || true"
     },
 
     "clock": {
