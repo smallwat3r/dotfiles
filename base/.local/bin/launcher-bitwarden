@@ -19,6 +19,9 @@
 #   2. If multiple fields available, select which one to copy
 #   3. Field is copied to clipboard and cleared after first paste
 #
+# Note: If cliphist is installed, copied content is automatically removed
+# from clipboard history to prevent sensitive data from being stored.
+#
 set -euo pipefail
 
 # Helpers
@@ -51,14 +54,21 @@ fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,
 # Functions
 
 clip() {
+  local content
+  content=$(cat)
+
   if has wl-copy; then
-    wl-copy
+    printf '%s' "$content" | wl-copy
+    if has cliphist; then
+      sleep 0.1
+      cliphist delete-query "$content" >/dev/null 2>&1 || true
+    fi
     (sleep 45 && wl-copy --clear) &
   elif has xclip; then
-    xclip -selection clipboard
+    printf '%s' "$content" | xclip -selection clipboard
     (sleep 45 && xclip -selection clipboard < /dev/null) &
   elif has pbcopy; then
-    pbcopy
+    printf '%s' "$content" | pbcopy
     (sleep 45 && pbcopy < /dev/null) &
   else
     die "No clipboard tool found (wl-copy, xclip, pbcopy)"
