@@ -13,6 +13,9 @@
 #   - wpctl: volume control (wireplumber)
 #   - brightnessctl: brightness control
 
+# Disable XWayland (no X11 apps needed)
+xwayland disable
+
 # Variables
 set $mod Mod4
 set $term foot

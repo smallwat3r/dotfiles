@@ -89,7 +89,10 @@ hash -d \
   de="$HOME/Desktop" \
   ssh="$HOME/.ssh" \
   zsh="$HOME/.zsh" \
-  fonts="$HOME/Library/Fonts" \
   config="$HOME/.config" \
   etc="/etc" \
   opt="/opt"
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  hash -d fonts="$HOME/Library/Fonts"
+fi

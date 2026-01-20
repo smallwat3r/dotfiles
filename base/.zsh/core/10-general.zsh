@@ -13,7 +13,7 @@ setopt LIST_PACKED          # make the completion list occupying less lines
 # history configs
 setopt APPEND_HISTORY       # keep history of commands
 setopt EXTENDED_HISTORY     # add timestamp and duration to the history
-setopt INC_APPEND_HISTORY   # add commands as soon as they are entered
+setopt SHARE_HISTORY        # share history across all sessions in real-time
 setopt HIST_REDUCE_BLANKS   # get rid of superfluous blank lines
 setopt HIST_VERIFY          # perform history expansion and reload the line into the editing buffer
 setopt HISTIGNORESPACE      # do not save in history commands that starts by a space

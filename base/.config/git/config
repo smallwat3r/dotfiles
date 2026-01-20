@@ -37,6 +37,13 @@
 
 [fetch]
 	prune = true
+	fsckobjects = true
+
+[transfer]
+	fsckobjects = true
+
+[receive]
+	fsckobjects = true
 
 [pull]
 	rebase = true
@@ -44,8 +51,11 @@
 [rebase]
 	autoStash = true
 
+[push]
+	autoSetupRemote = true
+
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 
 [branch]
 	sort = -committerdate
