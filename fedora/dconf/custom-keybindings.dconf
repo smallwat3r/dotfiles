@@ -22,3 +22,8 @@ name='clipboard-launcher'
 binding='<Super>w'
 command="foot -T 'SSH launcher' -w 800x500 -e launcher-ssh"
 name='ssh-launcher'
+
+[custom5]
+binding='<Super>period'
+command="foot -T 'File search launcher' -w 800x500 -e launcher-file-search"
+name='file-search-launcher'
