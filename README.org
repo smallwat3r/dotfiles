@@ -39,7 +39,7 @@ These configurations support multiple platforms:
 |-----------+----------------------------------------------------|
 | ~base~    | Shared configs, always applied (zsh, Emacs, SSH)   |
 | ~macos~   | macOS-specific overrides (~_root/~ for system)     |
-| ~fedora~  | Fedora-specific overrides (includes dconf)         |
+| ~fedora~  | Fedora-specific overrides (Sway and GNOME)         |
 
 ** Emacs
 
