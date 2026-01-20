@@ -45,7 +45,7 @@ alias \
 # Ripgrep
 alias rg="rg \
   --max-columns 120 \
-  --glob '!git/*' \
+  --glob '!.git/*' \
   --glob '!__pycache__/*' \
   --smart-case \
   --colors 'line:fg:cyan' \
