@@ -1,0 +1,21 @@
+# Mako notification daemon config
+
+# Positioning and layout
+anchor=top-right
+margin=10
+padding=10
+width=300
+max-visible=3
+
+# Auto-hide notifications after 5 seconds (5000ms)
+default-timeout=5000
+
+# Click to focus the app that sent the notification
+on-button-left=invoke-default-action
+
+# Group notifications from the same app
+group-by=app-name
+
+# Show icons
+icons=1
+max-icon-size=48
