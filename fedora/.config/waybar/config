@@ -72,8 +72,8 @@
     },
 
     "custom/power-profile": {
-        "interval": 5,
         "exec": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) echo ECO;; balanced) echo BAL;; throughput-performance) echo PERF;; *) echo $p;; esac",
+        "exec-on-event": true,
         "format": "{} ·",
         "on-click": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) tuned-adm profile balanced;; balanced) tuned-adm profile throughput-performance;; *) tuned-adm profile powersave;; esac",
         "tooltip": true,
@@ -89,7 +89,7 @@
         "format": "{capacity}% ·",
         "format-charging": "{capacity}%+ ·",
         "format-plugged": "{capacity}%+ ·",
-        "on-click": "gnome-power-statistics || true"
+        "on-click": "gnome-power-statistics || foot --title=floating sh -c 'upower -d | less'"
     },
 
     "clock": {
