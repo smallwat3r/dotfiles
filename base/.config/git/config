@@ -1,3 +1,5 @@
+# smallwat3r's git config
+
 # Identity
 
 [user]
@@ -15,61 +17,62 @@
 	templatedir = ~/.config/git/templates
 
 [core]
-	autocrlf = input
+	autocrlf = input                    # Convert CRLF to LF on commit (keep LF on checkout)
 	editor = "emacsclient -c"
 	hooksPath = ~/.config/git/templates/hooks
 
 [credential]
-	helper = !git-credential-pass
+	helper = !git-credential-pass       # Use pass password manager for credentials
 
 [http]
-	postBuffer = 157286400
+	postBuffer = 157286400              # 150MB buffer for large pushes
 
 # Signing
 
 [commit]
-	gpgsign = true
+	gpgsign = true                      # Sign all commits with GPG
 
 [tag]
-	gpgsign = true
+	gpgsign = true                      # Sign all tags with GPG
 
 # Workflow
 
 [fetch]
-	prune = true
-	fsckobjects = true
+	prune = true                        # Remove deleted remote branches on fetch
+	fsckobjects = true                  # Validate objects on fetch
 
 [transfer]
-	fsckobjects = true
+	fsckobjects = true                  # Validate objects on transfer
 
 [receive]
-	fsckobjects = true
+	fsckobjects = true                  # Validate objects on receive
 
 [pull]
-	rebase = true
+	rebase = true                       # Rebase instead of merge on pull
 
 [rebase]
-	autoStash = true
+	autoStash = true                    # Stash changes before rebase, apply after
 
 [push]
-	autoSetupRemote = true
+	autoSetupRemote = true              # Auto set upstream on first push
 
 [merge]
-	conflictstyle = zdiff3
+	conflictstyle = zdiff3              # Show base, ours, theirs in conflicts
 
 [branch]
-	sort = -committerdate
+	sort = -committerdate               # Sort branches by most recent commit
 
 [diff]
-	algorithm = histogram
+	algorithm = histogram               # Better diff algorithm for clearer output
 
 [rerere]
-	enabled = true
+	enabled = true                      # Remember conflict resolutions
 
 [maintenance]
-	auto = true
+	auto = true                         # Automatic gc, commit-graph, prefetch
 
 # URL shortcuts
+# Usage: git clone gh:user/repo
 
 [url "https://github.com/"]
 	insteadOf = gh:
@@ -86,7 +89,7 @@
 # Output
 
 [column]
-	ui = auto
+	ui = auto                           # Columnar output for branch, status, etc.
 
 [format]
 	pretty = format:%Cred%h%Creset - %Cgreen%an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset
@@ -127,7 +130,7 @@
 	cp = cherry-pick
 	d = diff
 	find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
-	fl = log -u
+	fl = log -u                         # Show full diff for each commit
 	init-empty = "!f() { git init && git commit --allow-empty --allow-empty-message --message ''; }; f"
 	l = log
 	last-commit-msg = log -1 --format=%s
@@ -135,7 +138,7 @@
 	p = push
 	pu = pull
 	rf = reflog
-	rhh = reset --hard HEAD
+	rhh = reset --hard HEAD             # Reset to HEAD, discard all changes
 	rhr = "!f() { git reset --hard origin/$(git branch --show-current); }; f"
 	s = status
 	ss = status --short
@@ -144,4 +147,4 @@
 # Conditional includes
 
 [includeIf "gitdir:~/work/"]
-	path = ~/work/.gitconfig
+	path = ~/work/.gitconfig            # Work-specific overrides
