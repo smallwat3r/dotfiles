@@ -49,6 +49,7 @@ uv                                       An extremely fast Python package instal
 waybar                                   Highly customizable Wayland bar for Sway and Wlroots based compositors
 wdisplays                                GUI display configurator for wlroots compositors
 wev                                      A tool for debugging events on a sway Wayland window
+wlsunset                                 Day/night gamma adjustments for Wayland compositors
 xclip                                    Command line clipboard grabber
 xorriso                                  ISO-9660 and Rock Ridge image manipulation tool
 yubikey-manager                          Python library and command line tool for configuring a YubiKey
