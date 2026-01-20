@@ -3,6 +3,7 @@ balena-etcher                            balenaEtcher is a powerful OS image fla
 chromium                                 A WebKit (Blink) powered web browser that Google doesn't want you to use
 clamav                                   End-user tools for the Clam Antivirus scanner
 clamd                                    The Clam AntiVirus Daemon
+cliphist                                 Clipboard history for Wayland
 clang                                    A C language family front-end for LLVM
 clang-tools-extra                        Extra tools for clang
 cmake                                    Cross-platform make system
@@ -49,6 +50,7 @@ uv                                       An extremely fast Python package instal
 waybar                                   Highly customizable Wayland bar for Sway and Wlroots based compositors
 wdisplays                                GUI display configurator for wlroots compositors
 wev                                      A tool for debugging events on a sway Wayland window
+wl-clipboard                             Wayland clipboard utilities (wl-copy, wl-paste)
 wlsunset                                 Day/night gamma adjustments for Wayland compositors
 xclip                                    Command line clipboard grabber
 xorriso                                  ISO-9660 and Rock Ridge image manipulation tool

@@ -28,7 +28,18 @@ require fzf
 
 # Config
 
-if has gpaste-client; then
+# On wlroots compositors (Sway, Hyprland, etc.), prefer cliphist over gpaste
+is_wlroots() {
+  [[ -n "${SWAYSOCK:-}" ]] || [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]
+}
+
+if is_wlroots && has cliphist && has wl-copy; then
+  list_history() { cliphist list; }
+
+  select_item() {
+    printf '%s' "$1" | cliphist decode | wl-copy
+  }
+elif has gpaste-client && ! is_wlroots; then
   list_history() {
     gpaste-client --oneline | while IFS=: read -r uuid content; do
       printf '%s\t%s\n' "$uuid" "${content# }"
