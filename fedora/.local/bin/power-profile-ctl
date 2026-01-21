@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Control tuned power profiles.
+# Usage: power-profile-ctl [status|cycle]
+
+get_profile() {
+    tuned-adm active 2>/dev/null | sed 's/Current active profile: //'
+}
+
+case "$1" in
+    status)
+        case "$(get_profile)" in
+            powersave) echo ECO ;;
+            balanced) echo BAL ;;
+            throughput-performance) echo PERF ;;
+            *) get_profile ;;
+        esac
+        ;;
+    cycle)
+        case "$(get_profile)" in
+            powersave) tuned-adm profile balanced ;;
+            balanced) tuned-adm profile throughput-performance ;;
+            *) tuned-adm profile powersave ;;
+        esac
+        ;;
+    *)
+        echo "Usage: power-profile-ctl [status|cycle]" >&2
+        exit 1
+        ;;
+esac
