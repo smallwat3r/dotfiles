@@ -8,15 +8,23 @@
     "modules-center": [],
     "modules-right": [
         "cpu",
+        "custom/sep",
         "memory",
+        "custom/sep",
         "tray",
         "custom/sep",
         "custom/mako",
+        "custom/sep",
         "bluetooth",
+        "custom/sep",
         "network",
+        "custom/sep",
         "wireplumber",
+        "custom/sep",
         "custom/power-profile",
+        "custom/sep",
         "battery",
+        "custom/sep",
         "clock",
         "custom/recording"
     ],
@@ -33,21 +41,21 @@
 
     "cpu": {
         "interval": 5,
-        "format": "C{usage}% ·",
+        "format": "C{usage}%",
         "on-click": "foot --title=floating htop"
     },
 
     "memory": {
         "interval": 5,
-        "format": "M{percentage}% ·",
+        "format": "M{percentage}%",
         "on-click": "foot --title=floating htop"
     },
 
     "bluetooth": {
-        "format": "B ·",
-        "format-connected": "B:{device_alias} ·",
-        "format-disabled": "<span color='#666666'>B-</span> ·",
-        "format-off": "<span color='#666666'>B-</span> ·",
+        "format": "B",
+        "format-connected": "B:{device_alias}",
+        "format-disabled": "B-",
+        "format-off": "B-",
         "on-click": "blueman-manager",
         "tooltip-format": "{controller_alias}\n{status}"
     },
@@ -58,7 +66,7 @@
     },
 
     "custom/sep": {
-        "format": "· "
+        "format": "·"
     },
 
     "custom/recording": {
@@ -71,16 +79,16 @@
     },
 
     "network": {
-        "format-wifi": "W:{essid} ·",
-        "format-ethernet": "E:{ipaddr} ·",
-        "format-disconnected": "<span color='#666666'>W-</span> ·",
+        "format-wifi": "W:{essid}",
+        "format-ethernet": "E:{ipaddr}",
+        "format-disconnected": "W-",
         "on-click": "nm-connection-editor",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
 
     "wireplumber": {
-        "format": "V{volume}% ·",
-        "format-muted": "<span color='#666666'>V-</span> ·",
+        "format": "V{volume}%",
+        "format-muted": "V-",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
@@ -91,7 +99,7 @@
         "exec": "mako-ctl status",
         "exec-on-event": true,
         "interval": 5,
-        "format": "{} ·",
+        "format": "{}",
         "on-click": "mako-ctl toggle-dnd",
         "on-click-right": "mako-ctl dismiss-all",
         "tooltip": true,
@@ -102,7 +110,7 @@
         "exec": "power-profile-ctl status",
         "exec-on-event": true,
         "interval": 5,
-        "format": "{} ·",
+        "format": "{}",
         "on-click": "power-profile-ctl cycle",
         "tooltip": true,
         "tooltip-format": "Power profile: {}"
@@ -114,9 +122,9 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% ·",
-        "format-charging": "{capacity}%+ ·",
-        "format-plugged": "{capacity}%+ ·",
+        "format": "{capacity}%",
+        "format-charging": "{capacity}%+",
+        "format-plugged": "{capacity}%+",
         "on-click": "gnome-power-statistics || true"
     },
 

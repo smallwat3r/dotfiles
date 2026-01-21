@@ -41,12 +41,23 @@ window#waybar {
 #bluetooth,
 #network,
 #wireplumber,
+#custom-mako,
 #custom-power-profile,
 #battery,
 #clock {
     padding: 0 4px;
 }
 
+#custom-sep {
+    padding: 0 2px;
+}
+
+#wireplumber.muted,
+#bluetooth.disabled,
+#bluetooth.off,
+#network.disconnected {
+    color: #666666;
+}
 
 #custom-recording {
     color: #ff5555;
