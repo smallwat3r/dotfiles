@@ -47,12 +47,6 @@ window#waybar {
     padding: 0 4px;
 }
 
-#wireplumber.muted,
-#bluetooth.disabled,
-#bluetooth.off,
-#network.disconnected {
-    color: #666666;
-}
 
 #custom-recording {
     color: #ff5555;

@@ -46,8 +46,8 @@
     "bluetooth": {
         "format": "B ·",
         "format-connected": "B:{device_alias} ·",
-        "format-disabled": "B- ·",
-        "format-off": "B- ·",
+        "format-disabled": "<span color='#666666'>B-</span> ·",
+        "format-off": "<span color='#666666'>B-</span> ·",
         "on-click": "blueman-manager",
         "tooltip-format": "{controller_alias}\n{status}"
     },
@@ -73,14 +73,14 @@
     "network": {
         "format-wifi": "W:{essid} ·",
         "format-ethernet": "E:{ipaddr} ·",
-        "format-disconnected": "W- ·",
+        "format-disconnected": "<span color='#666666'>W-</span> ·",
         "on-click": "nm-connection-editor",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
 
     "wireplumber": {
         "format": "V{volume}% ·",
-        "format-muted": "V- ·",
+        "format-muted": "<span color='#666666'>V-</span> ·",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
