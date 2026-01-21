@@ -1,0 +1,7 @@
+ignore-empty-password
+daemonize
+color=1a1a2e
+font=monacoB
+
+indicator-caps-lock
+show-failed-attempts
