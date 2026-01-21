@@ -73,7 +73,7 @@
 
     "custom/power-profile": {
         "exec": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) echo ECO;; balanced) echo BAL;; throughput-performance) echo PERF;; *) echo $p;; esac",
-        "interval": 5,
+        "exec-on-event": true,
         "format": "{} ·",
         "on-click": "p=$(tuned-adm active 2>/dev/null | sed 's/Current active profile: //'); case $p in powersave) tuned-adm profile balanced;; balanced) tuned-adm profile throughput-performance;; *) tuned-adm profile powersave;; esac",
         "tooltip": true,
