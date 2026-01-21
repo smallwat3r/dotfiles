@@ -13,7 +13,8 @@
   (setq-hook! 'git-commit-mode-hook display-line-numbers nil)
 
   (after! git-commit
-    (setq git-commit-summary-max-length 75))
+    (setq git-commit-summary-max-length 75)
+    (add-hook 'git-commit-post-finish-hook #'kill-buffer))
 
   ;; Remap keys to move commits up or down when using interactive rebase.
   (after! git-rebase
