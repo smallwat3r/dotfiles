@@ -1,0 +1,24 @@
+[general]
+modes=tile,bisect,click
+# Preferred keys for bisect via custom layout
+home_row_keys=naertswigyc
+
+[mode_tile]
+label_font_family=monacoB
+label_font_size=10 50% 100
+label_color=#ffffffff
+# By order of priority from my custom layout
+label_symbols=naertsifouchygwldpkm,.v;jqxz
+unselectable_bg_color=#00000044
+selectable_bg_color=#00000066
+selectable_border_color=#ffffffff
+
+[mode_bisect]
+label_font_family=monacoB
+label_font_size=10
+label_color=#ffffffff
+unselectable_bg_color=#00000044
+even_area_bg_color=#00000044
+odd_area_bg_color=#00000055
+pointer_color=#2e9ef4
+pointer_size=30

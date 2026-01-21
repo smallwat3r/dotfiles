@@ -17,6 +17,8 @@
 #   - wpctl: volume control (wireplumber)
 #   - brightnessctl: brightness control
 #   - udiskie: automount removable media
+#   - wl-kbptr: keyboard-driven pointer control
+#   - fcitx5: input method framework
 
 # Variables
 set $mod Mod4

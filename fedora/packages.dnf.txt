@@ -12,6 +12,8 @@ emacs                                    GNU Emacs text editor
 fontforge                                Outline and bitmap font editor
 freetype-devel                           FreeType development libraries and header files
 fuzzel                                   Application launcher for wlroots based Wayland compositors
+fcitx5                                   Input method framework
+fcitx5-gtk                               GTK input method module for fcitx5
 fzf                                      A command-line fuzzy finder written in Go
 gdal                                     GIS file format library
 gnome-tweaks                             Customize advanced GNOME 3 options
