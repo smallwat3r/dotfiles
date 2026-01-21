@@ -14,7 +14,13 @@
 
   (after! git-commit
     (setq git-commit-summary-max-length 75)
-    (add-hook 'git-commit-post-finish-hook #'kill-buffer))
+    ;; Kill all COMMIT_EDITMSG buffers after committing. We iterate through
+    ;; all buffers to handle duplicates (COMMIT_EDITMSG<2>, etc.) that may
+    ;; exist when working with multiple repositories.
+    (add-hook! 'git-commit-post-finish-hook
+      (dolist (buf (buffer-list))
+        (when (string-prefix-p "COMMIT_EDITMSG" (buffer-name buf))
+          (kill-buffer buf)))))
 
   ;; Remap keys to move commits up or down when using interactive rebase.
   (after! git-rebase
