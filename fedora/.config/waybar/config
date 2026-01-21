@@ -7,7 +7,6 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": [],
     "modules-right": [
-        "custom/recording",
         "cpu",
         "memory",
         "tray",
@@ -18,7 +17,8 @@
         "wireplumber",
         "custom/power-profile",
         "battery",
-        "clock"
+        "clock",
+        "custom/recording"
     ],
 
     "sway/workspaces": {

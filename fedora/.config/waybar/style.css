@@ -56,5 +56,6 @@ window#waybar {
 
 #custom-recording {
     color: #ff5555;
+    font-weight: bold;
     padding: 0 4px;
 }
