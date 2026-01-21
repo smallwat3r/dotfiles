@@ -1,0 +1,10 @@
+# Auto-switch tuned power profile based on AC power state
+# On AC connect: switch to throughput-performance
+# On AC disconnect: switch to powersave
+# Manual profile changes via tuned-adm persist until next power event
+
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", \
+    RUN+="/usr/sbin/tuned-adm profile throughput-performance"
+
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", \
+    RUN+="/usr/sbin/tuned-adm profile powersave"

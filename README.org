@@ -39,7 +39,10 @@ These configurations support multiple platforms:
 |-----------+----------------------------------------------------|
 | ~base~    | Shared configs, always applied (zsh, Emacs, SSH)   |
 | ~macos~   | macOS-specific overrides (~_root/~ for system)     |
-| ~fedora~  | Fedora-specific overrides (Sway and GNOME)         |
+| ~fedora~  | Fedora-specific overrides (~_root/~ for system)    |
+
+Platform directories may contain a ~_root/~ subdirectory for system-level configs
+(e.g. udev rules, launchd plists). These are stowed to ~/~ with sudo.
 
 ** Emacs
 

@@ -25,11 +25,12 @@ stow: _requirements _dirs ## Stow all the dotfiles
 ifeq ($(DISTRO),macos)
 	@echo '$(INFO)** Stowing macOS dotfiles$(SGR0)'
 	@stow macos --ignore='_root' $(STOW_OPTS) "$(HOME)"
-	@sudo stow macos/_root $(STOW_OPTS) '/'
+	@sudo stow -d macos _root $(STOW_OPTS) '/'
 endif
 ifeq ($(DISTRO),fedora)
 	@echo '$(INFO)** Stowing Fedora dotfiles$(SGR0)'
-	@stow fedora $(STOW_OPTS) "$(HOME)"
+	@stow fedora --ignore='_root' $(STOW_OPTS) "$(HOME)"
+	@sudo stow -d fedora _root $(STOW_OPTS) '/'
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
@@ -39,11 +40,12 @@ unstow: _requirements ## Remove all symlinks
 ifeq ($(DISTRO),macos)
 	@echo '$(INFO)** Unstowing macOS dotfiles$(SGR0)'
 	@stow -D macos --ignore='_root' $(STOW_OPTS) "$(HOME)"
-	@sudo stow -D macos/_root $(STOW_OPTS) '/'
+	@sudo stow -D -d macos _root $(STOW_OPTS) '/'
 endif
 ifeq ($(DISTRO),fedora)
 	@echo '$(INFO)** Unstowing Fedora dotfiles$(SGR0)'
-	@stow -D fedora $(STOW_OPTS) "$(HOME)"
+	@stow -D fedora --ignore='_root' $(STOW_OPTS) "$(HOME)"
+	@sudo stow -D -d fedora _root $(STOW_OPTS) '/'
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully removed all symlinks$(SGR0)'
@@ -53,10 +55,11 @@ dry-run: _requirements ## Show what would be linked (no changes made)
 	@stow -n -v2 --restow --target "$(HOME)" base 2>&1 || true
 ifeq ($(DISTRO),macos)
 	@stow -n -v2 --restow --ignore='_root' --target "$(HOME)" macos 2>&1 || true
-	@stow -n -v2 --restow --target '/' macos/_root 2>&1 || true
+	@stow -n -v2 --restow -d macos --target '/' _root 2>&1 || true
 endif
 ifeq ($(DISTRO),fedora)
-	@stow -n -v2 --restow --target "$(HOME)" fedora 2>&1 || true
+	@stow -n -v2 --restow --ignore='_root' --target "$(HOME)" fedora 2>&1 || true
+	@stow -n -v2 --restow -d fedora --target '/' _root 2>&1 || true
 endif
 
 DCONF_KEYS_PATH := /org/gnome/settings-daemon/plugins/media-keys
