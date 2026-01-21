@@ -57,6 +57,15 @@
 (add-to-list 'exec-path "~/.cargo/bin")
 
 ;;
+;;; Server
+
+(setq server-window 'pop-to-buffer-same-window  ; reuse existing frame
+      server-raise-frame t                      ; raise frame when opening files
+      server-kill-new-buffers nil)              ; keep buffers after client disconnects
+
+(add-hook! 'server-switch-hook #'raise-frame)
+
+;;
 ;;; Frame
 
 (setq default-frame-alist
@@ -180,7 +189,7 @@
     ;; Do not display the cursor on the dashboard.
     (setq-local evil-normal-state-cursor (list nil))))
 
-(add-hook '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
+(add-hook! '+doom-dashboard-mode-hook #'+doom-dashboard-tweak)
 
 (setq scroll-margin 0
       ;; Makes underlines render a bit cleaner.

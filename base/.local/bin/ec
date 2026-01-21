@@ -12,9 +12,4 @@ if ! emacsclient -e '(progn)' &>/dev/null; then
   done
 fi
 
-has_frame=$(emacsclient -e '(> (length (frame-list)) 1)' 2>/dev/null || true)
-if [[ "$has_frame" == "t" ]]; then
-  setsid emacsclient -n "$@"
-else
-  setsid emacsclient -n -c "$@"
-fi
+emacsclient -n -c "$@"

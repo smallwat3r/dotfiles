@@ -22,11 +22,9 @@ fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,
 
 cd "$HOME" || exit 1
 
-trap "" HUP
-
 target=$(
   FZF_DEFAULT_COMMAND="rg --files --hidden $EXCLUDES" \
   fzf --reverse --wrap --bind="$fzf_bind" --color="$fzf_colors"
 ) || exit 0
 
-[[ -n $target ]] && ${EDITOR:-vim} "$HOME/$target" &
+[[ -n $target ]] && setsid -f ec "$HOME/$target"

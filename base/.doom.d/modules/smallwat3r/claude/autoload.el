@@ -15,8 +15,11 @@
   :type 'string
   :group 'my-claude)
 
-(defvar my-claude--current-buffer nil
-  "The current active Claude buffer.")
+(defvar my-claude--current-buffers (make-hash-table :test 'equal)
+  "Hash table mapping project roots to their current Claude buffer.")
+
+(defvar-local my-claude--project-root nil
+  "The project root this Claude buffer belongs to.")
 
 (defcustom my-claude-prompt-prefixes
   '("Explain this code"
@@ -35,19 +38,32 @@
       (and (fboundp 'projectile-project-root) (projectile-project-root))
       default-directory))
 
-(defun my-claude--buffer-list ()
-  "Return list of active Claude buffers."
-  (cl-remove-if-not
-   (lambda (buf)
-     (and (string-prefix-p my-claude-buffer-prefix (buffer-name buf))
-          (get-buffer-process buf)))
-   (buffer-list)))
+(defun my-claude--buffer-list (&optional all-projects)
+  "Return list of active Claude buffers for the current project.
+If ALL-PROJECTS is non-nil, return buffers from all projects."
+  (let ((project (my-claude--project-root)))
+    (cl-remove-if-not
+     (lambda (buf)
+       (and (string-prefix-p my-claude-buffer-prefix (buffer-name buf))
+            (get-buffer-process buf)
+            (or all-projects
+                (equal project (buffer-local-value 'my-claude--project-root buf)))))
+     (buffer-list))))
+
+(defun my-claude--get-current-buffer ()
+  "Get the current Claude buffer for the current project."
+  (gethash (my-claude--project-root) my-claude--current-buffers))
+
+(defun my-claude--set-current-buffer (buf)
+  "Set BUF as the current Claude buffer for the current project."
+  (puthash (my-claude--project-root) buf my-claude--current-buffers))
 
 (defun my-claude--active-session-p ()
-  "Return non-nil if there is an active Claude session."
-  (and my-claude--current-buffer
-       (buffer-live-p my-claude--current-buffer)
-       (get-buffer-process my-claude--current-buffer)))
+  "Return non-nil if there is an active Claude session for the current project."
+  (let ((buf (my-claude--get-current-buffer)))
+    (and buf
+         (buffer-live-p buf)
+         (get-buffer-process buf))))
 
 (defun my-claude--select-buffer (prompt)
   "Select a Claude buffer with PROMPT, returning the buffer or nil if none exist."
@@ -58,18 +74,19 @@
      (t (get-buffer (completing-read prompt (mapcar #'buffer-name buffers) nil t))))))
 
 (defun my-claude--ensure-session ()
-  "Ensure a Claude session exists, prompting for selection if multiple exist."
+  "Ensure a Claude session exists for the current project.
+Prompts for selection if multiple exist."
   (let ((buffers (my-claude--buffer-list)))
     (cond
      ((null buffers)
-      (user-error "No active Claude session. Run `my/claude-chat' first"))
+      (user-error "No active Claude session for this project. Run `my/claude-chat' first"))
      ((= (length buffers) 1)
-      (setq my-claude--current-buffer (car buffers)))
+      (my-claude--set-current-buffer (car buffers)))
      (t
-      (setq my-claude--current-buffer
-            (get-buffer
-             (completing-read "Send to Claude session: "
-                              (mapcar #'buffer-name buffers) nil t)))))))
+      (my-claude--set-current-buffer
+       (get-buffer
+        (completing-read "Send to Claude session: "
+                         (mapcar #'buffer-name buffers) nil t)))))))
 
 (defun my-claude--next-buffer-number ()
   "Find the lowest available buffer number."
@@ -101,21 +118,26 @@ If NAME is provided, use it as the buffer name."
     (error "Claude CLI not found. Install it and run `claude login`"))
   (require 'vterm)
   (if (and (not new-session) (my-claude--active-session-p))
-      (pop-to-buffer my-claude--current-buffer)
-    (let* ((buf-name (my-claude--generate-buffer-name name))
+      (pop-to-buffer (my-claude--get-current-buffer))
+    (let* ((project-root (my-claude--project-root))
+           (buf-name (my-claude--generate-buffer-name name))
            (default-directory dir)
            (vterm-buffer-name buf-name)
            (vterm-shell my-claude-cli-program))
       (vterm)
-      (setq my-claude--current-buffer (get-buffer buf-name)))))
+      (let ((buf (get-buffer buf-name)))
+        (with-current-buffer buf
+          (setq my-claude--project-root project-root))
+        (my-claude--set-current-buffer buf)))))
 
 (defun my-claude--send (text)
   "Send TEXT to the current Claude session and switch to it."
   (my-claude--ensure-session)
-  (discard-input)
-  (with-current-buffer my-claude--current-buffer
-    (vterm-send-string text))
-  (pop-to-buffer my-claude--current-buffer))
+  (let ((buf (my-claude--get-current-buffer)))
+    (discard-input)
+    (with-current-buffer buf
+      (vterm-send-string text))
+    (pop-to-buffer buf)))
 
 ;;;###autoload
 (defun my/claude-chat ()
@@ -158,37 +180,38 @@ If NAME is provided, use it as the buffer name."
   "Rename the current Claude chat session."
   (interactive "sNew session name: ")
   (my-claude--ensure-session)
-  (with-current-buffer my-claude--current-buffer
+  (with-current-buffer (my-claude--get-current-buffer)
     (rename-buffer (my-claude--generate-buffer-name name) t)))
 
 ;;;###autoload
 (defun my/claude-switch-chat ()
-  "Switch between active Claude chat buffers."
+  "Switch between active Claude chat buffers for the current project."
   (interactive)
   (let ((buf (my-claude--select-buffer "Switch to Claude chat: ")))
     (unless buf
-      (user-error "No active Claude sessions"))
-    (setq my-claude--current-buffer buf)
+      (user-error "No active Claude sessions for this project"))
+    (my-claude--set-current-buffer buf)
     (pop-to-buffer buf)))
 
 ;;;###autoload
 (defun my/claude-toggle ()
-  "Toggle Claude buffer visibility."
+  "Toggle Claude buffer visibility for the current project."
   (interactive)
-  (when-let ((win (and my-claude--current-buffer
-                       (buffer-live-p my-claude--current-buffer)
-                       (get-buffer-window my-claude--current-buffer))))
-    (delete-window win)
-    (cl-return-from my/claude-toggle))
-  (when (my-claude--active-session-p)
-    (pop-to-buffer my-claude--current-buffer)
-    (cl-return-from my/claude-toggle))
-  (let ((buf (my-claude--select-buffer "Open Claude chat: ")))
-    (if buf
-        (progn
-          (setq my-claude--current-buffer buf)
-          (pop-to-buffer buf))
-      (my/claude-chat))))
+  (let ((current-buf (my-claude--get-current-buffer)))
+    (when-let ((win (and current-buf
+                         (buffer-live-p current-buf)
+                         (get-buffer-window current-buf))))
+      (delete-window win)
+      (cl-return-from my/claude-toggle))
+    (when (my-claude--active-session-p)
+      (pop-to-buffer current-buf)
+      (cl-return-from my/claude-toggle))
+    (let ((buf (my-claude--select-buffer "Open Claude chat: ")))
+      (if buf
+          (progn
+            (my-claude--set-current-buffer buf)
+            (pop-to-buffer buf))
+        (my/claude-chat)))))
 
 ;;;###autoload
 (defun my/claude-send-region (start end)
