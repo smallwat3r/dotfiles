@@ -85,7 +85,7 @@
         "on-click": "mako-ctl toggle-dnd",
         "on-click-right": "mako-ctl dismiss-all",
         "tooltip": true,
-        "tooltip-format": "Left: toggle DND, Right: dismiss all"
+        "tooltip-format": "L: DND, R: dismiss all"
     },
 
     "custom/power-profile": {

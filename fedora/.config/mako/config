@@ -5,10 +5,10 @@ anchor=top-right
 margin=10
 padding=10
 width=300
-max-visible=3
+max-visible=5
 
-# Auto-hide notifications after 10 seconds (10000ms)
-default-timeout=10000
+# Notifications persist until dismissed
+default-timeout=0
 
 # Left click to focus app, right click to dismiss
 on-button-left=invoke-default-action
