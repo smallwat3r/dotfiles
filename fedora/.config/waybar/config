@@ -10,6 +10,8 @@
         "cpu",
         "memory",
         "tray",
+        "custom/sep",
+        "custom/mako",
         "bluetooth",
         "network",
         "wireplumber",
@@ -54,6 +56,10 @@
         "spacing": 4
     },
 
+    "custom/sep": {
+        "format": "· "
+    },
+
     "network": {
         "format-wifi": "W:{essid} ·",
         "format-ethernet": "E:{ipaddr} ·",
@@ -69,6 +75,17 @@
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    "custom/mako": {
+        "exec": "mako-ctl status",
+        "exec-on-event": true,
+        "interval": 5,
+        "format": "{} ·",
+        "on-click": "mako-ctl toggle-dnd",
+        "on-click-right": "mako-ctl dismiss-all",
+        "tooltip": true,
+        "tooltip-format": "Left: toggle DND, Right: dismiss all"
     },
 
     "custom/power-profile": {

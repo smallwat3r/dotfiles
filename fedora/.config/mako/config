@@ -7,8 +7,8 @@ padding=10
 width=300
 max-visible=3
 
-# Auto-hide notifications after 5 seconds (5000ms)
-default-timeout=5000
+# Auto-hide notifications after 10 seconds (10000ms)
+default-timeout=10000
 
 # Left click to focus app, right click to dismiss
 on-button-left=invoke-default-action

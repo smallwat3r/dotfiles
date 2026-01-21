@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Control mako notifications.
+# Usage: mako-ctl [status|toggle-dnd|dismiss|dismiss-all]
+
+case "$1" in
+    status)
+        if makoctl mode | grep -q "do-not-disturb"; then
+            echo "DND"
+        else
+            count=$(makoctl list | grep -c "^Notification")
+            if [ "$count" -gt 0 ]; then
+                echo "N:$count"
+            else
+                echo "N"
+            fi
+        fi
+        ;;
+    toggle-dnd)
+        if makoctl mode | grep -q "do-not-disturb"; then
+            makoctl mode -r do-not-disturb
+        else
+            makoctl mode -a do-not-disturb
+        fi
+        ;;
+    dismiss)
+        makoctl dismiss
+        ;;
+    dismiss-all)
+        makoctl dismiss -a
+        ;;
+    *)
+        echo "Usage: mako-ctl [status|toggle-dnd|dismiss|dismiss-all]" >&2
+        exit 1
+        ;;
+esac
