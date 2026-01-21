@@ -7,8 +7,8 @@ padding=10
 width=300
 max-visible=5
 
-# Notifications persist until dismissed
-default-timeout=0
+# Auto-dismiss after 10 seconds
+default-timeout=10000
 
 # Left click to focus app, right click to dismiss
 on-button-left=invoke-default-action

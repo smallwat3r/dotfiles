@@ -46,6 +46,7 @@ sway                                     i3-compatible window manager for Waylan
 tailscale                                The easiest, most secure, cross platform way to use WireGuard + oauth2 + 2FA/SSO
 terraform                                Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned.
 tigervnc                                 A TigerVNC remote display system
+udiskie                                  Automounter for removable media
 uv                                       An extremely fast Python package installer and resolver, written in Rust
 waybar                                   Highly customizable Wayland bar for Sway and Wlroots based compositors
 wdisplays                                GUI display configurator for wlroots compositors

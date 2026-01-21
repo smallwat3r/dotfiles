@@ -10,8 +10,12 @@
 #   - swaylock: screen locker
 #   - swayidle: idle management
 #   - grim/slurp: screenshots
+#   - wl-clipboard: clipboard utilities (wl-copy, wl-paste)
+#   - cliphist: clipboard history
+#   - wlsunset: day/night gamma adjustments
 #   - wpctl: volume control (wireplumber)
 #   - brightnessctl: brightness control
+#   - udiskie: automount removable media
 
 # Variables
 set $mod Mod4
