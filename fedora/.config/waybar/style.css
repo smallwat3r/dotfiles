@@ -53,3 +53,8 @@ window#waybar {
 #network.disconnected {
     color: #666666;
 }
+
+#custom-recording {
+    color: #ff5555;
+    padding: 0 4px;
+}

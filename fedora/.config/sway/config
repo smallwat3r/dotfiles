@@ -10,6 +10,7 @@
 #   - swaylock: screen locker
 #   - swayidle: idle management
 #   - grim/slurp: screenshots
+#   - wf-recorder: screen recording
 #   - wl-clipboard: clipboard utilities (wl-copy, wl-paste)
 #   - cliphist: clipboard history
 #   - wlsunset: day/night gamma adjustments

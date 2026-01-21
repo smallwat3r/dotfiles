@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Control wf-recorder screen recording.
+# Usage: recording-ctl [status|stop]
+
+case "$1" in
+    status)
+        if pgrep -x wf-recorder > /dev/null; then
+            echo "REC"
+        else
+            echo ""
+        fi
+        ;;
+    stop)
+        pkill -SIGINT wf-recorder
+        ;;
+    *)
+        echo "Usage: recording-ctl [status|stop]" >&2
+        exit 1
+        ;;
+esac

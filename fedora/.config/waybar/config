@@ -7,6 +7,7 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": [],
     "modules-right": [
+        "custom/recording",
         "cpu",
         "memory",
         "tray",
@@ -58,6 +59,15 @@
 
     "custom/sep": {
         "format": "· "
+    },
+
+    "custom/recording": {
+        "exec": "~/.local/bin/recording-ctl status",
+        "exec-on-event": true,
+        "interval": 1,
+        "format": "{}",
+        "on-click": "~/.local/bin/recording-ctl stop",
+        "tooltip": false
     },
 
     "network": {

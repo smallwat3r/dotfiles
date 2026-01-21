@@ -51,6 +51,7 @@ uv                                       An extremely fast Python package instal
 waybar                                   Highly customizable Wayland bar for Sway and Wlroots based compositors
 wdisplays                                GUI display configurator for wlroots compositors
 wev                                      A tool for debugging events on a sway Wayland window
+wf-recorder                              Screen recorder for wlroots compositors
 wl-clipboard                             Wayland clipboard utilities (wl-copy, wl-paste)
 wlsunset                                 Day/night gamma adjustments for Wayland compositors
 xclip                                    Command line clipboard grabber
