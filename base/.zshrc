@@ -20,10 +20,16 @@ case $OSTYPE in
       case $ID in
         fedora)
           : "${TERMINAL:=foot}"
-          # fallback for SWAYSOCK if not inherited (only when running sway)
-          if [[ -z $SWAYSOCK && $XDG_CURRENT_DESKTOP == sway ]]; then
-            local sock=$(ls /run/user/$(id -u)/sway-ipc.*.sock 2>/dev/null | head -1)
-            [[ -S $sock ]] && export SWAYSOCK=$sock
+          # fallback for SWAYSOCK/WAYLAND_DISPLAY if not inherited (sway)
+          if [[ $XDG_CURRENT_DESKTOP == sway ]]; then
+            if [[ -z $SWAYSOCK ]]; then
+              local sock=$(ls /run/user/$(id -u)/sway-ipc.*.sock 2>/dev/null | head -1)
+              [[ -S $sock ]] && export SWAYSOCK=$sock
+            fi
+            if [[ -z $WAYLAND_DISPLAY ]]; then
+              local wl=$(ls /run/user/$(id -u)/wayland-* 2>/dev/null | grep -v lock | head -1)
+              [[ -S $wl ]] && export WAYLAND_DISPLAY=${wl:t}
+            fi
           fi
           ;;
         *)       : "${TERMINAL:=st}"   ;;

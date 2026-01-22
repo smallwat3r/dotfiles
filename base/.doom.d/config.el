@@ -65,6 +65,26 @@
 
 (add-hook! 'server-switch-hook #'raise-frame)
 
+;; Update Wayland environment from new frames (daemon mode under Sway).
+;;
+;; Problem: When Emacs daemon starts (e.g. via systemd), it may not have
+;; WAYLAND_DISPLAY or SWAYSOCK set. Subprocesses like Magit's git hooks then
+;; fail to access Wayland (e.g. wl-copy for clipboard). Even if emacsclient
+;; runs in a terminal with the correct env, the daemon's subprocesses don't
+;; inherit them.
+;;
+;; Solution: When a new frame is created via emacsclient, pull the Wayland
+;; env vars from that frame into the daemon's global environment.
+(when (and (daemonp) (eq system-type 'gnu/linux))
+  (defun my/update-wayland-env-from-frame ()
+    "Update WAYLAND_DISPLAY and SWAYSOCK from the current frame's environment."
+    (when-let ((runtime-dir (getenv "XDG_RUNTIME_DIR")))
+      (when (directory-files runtime-dir nil "^sway-ipc\\..*\\.sock$")
+        (dolist (var '("WAYLAND_DISPLAY" "SWAYSOCK"))
+          (when-let ((val (getenv var (selected-frame))))
+            (setenv var val))))))
+  (add-hook! 'server-after-make-frame-hook #'my/update-wayland-env-from-frame))
+
 ;;
 ;;; Frame
 

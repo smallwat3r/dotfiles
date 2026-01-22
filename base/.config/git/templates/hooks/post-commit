@@ -4,7 +4,7 @@
 copy_clipboard() {
     if [[ "$OSTYPE" =~ ^darwin ]]; then
         pbcopy <<< "$1"
-    elif command -v wl-copy >/dev/null 2>&1; then
+    elif command -v wl-copy >/dev/null 2>&1 && [[ -n "$WAYLAND_DISPLAY" ]]; then
         wl-copy <<< "$1"
     elif command -v xclip >/dev/null 2>&1 && [[ -n "$DISPLAY" ]]; then
         xclip -selection clipboard <<< "$1"
