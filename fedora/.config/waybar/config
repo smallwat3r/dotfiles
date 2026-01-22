@@ -40,7 +40,8 @@
     },
 
     "custom/sep": {
-        "format": "·"
+        "format": "·",
+        "tooltip": false
     },
 
     "custom/recording": {
