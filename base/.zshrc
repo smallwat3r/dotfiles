@@ -74,7 +74,7 @@ load_zsh_functions() {
 
 load_zsh_config() {
   if [[ -d $ZSH_ROOT ]]; then
-    for dir in core extensions; do
+    for dir in core tools; do
       load_zsh_dir "$ZSH_ROOT/$dir"
     done
     load_zsh_functions "$ZSH_ROOT"
