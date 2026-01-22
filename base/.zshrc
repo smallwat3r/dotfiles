@@ -18,7 +18,14 @@ case $OSTYPE in
     if [[ -r /etc/os-release ]]; then
       . /etc/os-release
       case $ID in
-        fedora)  : "${TERMINAL:=foot}" ;;
+        fedora)
+          : "${TERMINAL:=foot}"
+          # fallback for SWAYSOCK if not inherited (only when running sway)
+          if [[ -z $SWAYSOCK && $XDG_CURRENT_DESKTOP == sway ]]; then
+            local sock=$(ls /run/user/$(id -u)/sway-ipc.*.sock 2>/dev/null | head -1)
+            [[ -S $sock ]] && export SWAYSOCK=$sock
+          fi
+          ;;
         *)       : "${TERMINAL:=st}"   ;;
       esac
     else
