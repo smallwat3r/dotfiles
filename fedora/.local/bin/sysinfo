@@ -61,5 +61,5 @@ tooltip+="----------\\n"
 tooltip+="${temp_detail%\\n}"
 
 # Output JSON
-printf '{"text": "dsk %s tmp %s° gpu %s mem %s cpu %s%%", "tooltip": "%s"}' \
+printf '{"text": "dsk %s tmp %s° gpu %s mem %s cpu %s%% ", "tooltip": "%s"}' \
     "$disk" "$temp" "$gpu" "$mem" "$cpu" "$tooltip"
