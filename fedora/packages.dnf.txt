@@ -31,9 +31,11 @@ libusb1-devel                            Development files for libusb1
 mako                                     Lightweight Wayland notification daemon
 meson                                    High productivity build system
 msmtp                                    SMTP client
+network-manager-applet                   NetworkManager system tray applet
 notmuch                                  System for indexing, searching, and tagging email
 nwg-look                                 GTK3 settings editor adapted to work in the wlroots environment
 openscad                                 The Programmers Solid 3D CAD Modeller
+pasystray                                PulseAudio/PipeWire system tray applet
 protobuf-compiler                        Protocol Buffers compiler
 prusa-slicer                             3D printing slicer optimized for Prusa printers
 python3.13                               Version 3.13 of the Python interpreter

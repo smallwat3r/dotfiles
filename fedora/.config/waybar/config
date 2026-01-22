@@ -7,19 +7,11 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": [],
     "modules-right": [
-        "cpu",
-        "custom/sep",
-        "memory",
+        "custom/sysinfo",
         "custom/sep",
         "tray",
         "custom/sep",
         "custom/mako",
-        "custom/sep",
-        "bluetooth",
-        "custom/sep",
-        "network",
-        "custom/sep",
-        "wireplumber",
         "custom/sep",
         "custom/power-profile",
         "custom/sep",
@@ -39,25 +31,10 @@
         "format": "{}"
     },
 
-    "cpu": {
+    "custom/sysinfo": {
+        "exec": "~/.local/bin/sysinfo",
         "interval": 5,
-        "format": "C{usage}%",
         "on-click": "foot --title=floating htop"
-    },
-
-    "memory": {
-        "interval": 5,
-        "format": "M{percentage}%",
-        "on-click": "foot --title=floating htop"
-    },
-
-    "bluetooth": {
-        "format": "B",
-        "format-connected": "B:{device_alias}",
-        "format-disabled": "B-",
-        "format-off": "B-",
-        "on-click": "blueman-manager",
-        "tooltip-format": "{controller_alias}\n{status}"
     },
 
     "tray": {

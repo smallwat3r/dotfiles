@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# System info for waybar.
+
+cpu=$(awk '{u=$2+$4; t=$2+$4+$5; if(NR==1){u1=u; t1=t;} else printf "%.0f", (u-u1)/(t-t1)*100}' \
+    <(grep 'cpu ' /proc/stat) <(sleep 1; grep 'cpu ' /proc/stat))
+mem=$(free -h | awk '/Mem:/{print $3}')
+
+printf 'C%s%% M%s' "$cpu" "$mem"
