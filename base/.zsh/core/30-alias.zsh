@@ -19,24 +19,6 @@ alias \
   sl="ls -pF --color" \
   lss="ls -l *(@)"
 
-# create short `g<alias>` versions of all git aliases.
-() {
-  command -v git >/dev/null 2>&1 || return
-
-  local line key name
-  local git_alias_lines
-
-  git_alias_lines=("${(@f)$(git config --get-regexp '^alias\.' 2>/dev/null)}")
-
-  for line in $git_alias_lines; do
-    key=${line%% *}       # "alias.co"
-    name=${key#alias.}    # "co"
-    alias "g${name}=git ${name}"
-  done
-
-  alias g="git"
-}
-
 # Use Neovim over Vim
 alias \
   vim="nvim" \
@@ -60,7 +42,6 @@ alias dots="cd $HOME/dotfiles"
 # macOS-only helpers
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias fonts="open $HOME/Library/Fonts"
-  alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 fi
 
 # Global aliases
