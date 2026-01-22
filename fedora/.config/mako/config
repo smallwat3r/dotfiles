@@ -25,3 +25,7 @@ max-icon-size=48
 # Critical notifications don't auto-dismiss
 [urgency=critical]
 ignore-timeout=1
+
+# Suppress raop_sink (AirPlay) notifications
+[body~="raop_sink"]
+invisible=1
