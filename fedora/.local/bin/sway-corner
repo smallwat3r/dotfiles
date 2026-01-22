@@ -1,0 +1,26 @@
+#!/bin/bash
+# Move floating window to corner
+# Usage: sway-corner [1-4]
+# 1=top-left, 2=bottom-left, 3=top-right, 4=bottom-right
+
+corner=$1
+
+eval "$(swaymsg -t get_tree | jq -r '
+  .. | select(.focused?) |
+  "win_w=\(.rect.width) win_h=\(.rect.height)"
+')"
+
+eval "$(swaymsg -t get_outputs | jq -r '
+  .[] | select(.focused) |
+  "out_w=\(.rect.width) out_h=\(.rect.height)"
+')"
+
+case $corner in
+    1) x=0; y=0 ;;
+    2) x=0; y=$((out_h - win_h)) ;;
+    3) x=$((out_w - win_w)); y=0 ;;
+    4) x=$((out_w - win_w)); y=$((out_h - win_h)) ;;
+    *) exit 1 ;;
+esac
+
+swaymsg "move position $x $y"
