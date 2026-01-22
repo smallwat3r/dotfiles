@@ -3,12 +3,15 @@
 # Ensure Poetry virtualenvs are created in the project directory
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
-# Add Poetry's bin dir to PATH
-if [[ -d "$HOME/.poetry/bin" ]]; then
-  if (( ${path[(Ie)$HOME/.poetry/bin]} == 0 )); then
-    path=("$HOME/.poetry/bin" $path)
+# Add Poetry's bin dir to PATH (old and new install locations)
+for _poetry_bin in "$HOME/.poetry/bin" "$HOME/.local/bin"; do
+  if [[ -d "$_poetry_bin" ]]; then
+    if (( ${path[(Ie)$_poetry_bin]} == 0 )); then
+      path=("$_poetry_bin" $path)
+    fi
   fi
-fi
+done
+unset _poetry_bin
 
 # YOLO
 export PIP_BREAK_SYSTEM_PACKAGES=1
