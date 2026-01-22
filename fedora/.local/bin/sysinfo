@@ -2,18 +2,33 @@
 # System info for waybar (JSON output with tooltip).
 
 # CPU usage (requires 1s sleep to measure delta)
-cpu=$(awk '{u=$2+$4; t=$2+$4+$5; if(NR==1){u1=u; t1=t;} else printf "%.0f", (u-u1)/(t-t1)*100}' \
-    <(grep 'cpu ' /proc/stat) <(sleep 1; grep 'cpu ' /proc/stat))
+cpu=$(
+    awk '{
+        u=$2+$4; t=$2+$4+$5
+        if (NR==1) { u1=u; t1=t }
+        else printf "%.0f", (u-u1)/(t-t1)*100
+    }' \
+        <(grep 'cpu ' /proc/stat) \
+        <(sleep 1; grep 'cpu ' /proc/stat)
+)
 
-# Memory (single call)
-read -r mem mem_detail < <(free -h | awk '/Mem:/{printf "%s %s / %s", $3, $3, $2}')
+# Memory
+read -r mem mem_detail < <(
+    free -h | awk '/Mem:/ { printf "%s %s / %s", $3, $3, $2 }'
+)
 
 # GPU memory (AMD)
 gpu_used=$(head -1 /sys/class/drm/card*/device/mem_info_vram_used 2>/dev/null)
 gpu_total=$(head -1 /sys/class/drm/card*/device/mem_info_vram_total 2>/dev/null)
 if [[ -n "$gpu_used" && -n "$gpu_total" ]]; then
-    read -r gpu gpu_detail < <(awk -v u="$gpu_used" -v t="$gpu_total" \
-        'BEGIN {printf "%.1fGi %.1fGi / %.1fGi", u/1024/1024/1024, u/1024/1024/1024, t/1024/1024/1024}')
+    read -r gpu gpu_detail < <(
+        awk -v u="$gpu_used" -v t="$gpu_total" 'BEGIN {
+            printf "%.1fGi %.1fGi / %.1fGi",
+                u/1024/1024/1024,
+                u/1024/1024/1024,
+                t/1024/1024/1024
+        }'
+    )
 else
     gpu="-"
     gpu_detail="N/A"
@@ -23,13 +38,15 @@ fi
 temp=$(awk '{printf "%.0f", $1/1000}' /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
 temp_detail=""
 for zone in /sys/class/thermal/thermal_zone*; do
-    name=$(<"$zone/type") 2>/dev/null
+    name=$(cat "$zone/type" 2>/dev/null)
     val=$(awk '{printf "%.0f", $1/1000}' "$zone/temp" 2>/dev/null)
     temp_detail+="$name: ${val}°C\\n"
 done
 
-# Disk (single call)
-read -r disk disk_detail < <(df -h / | awk 'NR==2{printf "%s %s / %s", $5, $3, $2}')
+# Disk
+read -r disk disk_detail < <(
+    df -h / | awk 'NR==2 { printf "%s %s / %s", $5, $3, $2 }'
+)
 
 # Build tooltip
 tooltip="System Info\\n"
@@ -41,7 +58,7 @@ tooltip+="dsk: ${disk_detail}\\n"
 tooltip+="\\n"
 tooltip+="Temperature\\n"
 tooltip+="----------\\n"
-tooltip+="${temp_detail%\\\\n}"
+tooltip+="${temp_detail%\\n}"
 
 # Output JSON
 printf '{"text": "dsk %s tmp %s° gpu %s mem %s cpu %s%%", "tooltip": "%s"}' \
