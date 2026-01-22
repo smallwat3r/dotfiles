@@ -4,6 +4,8 @@ if [[ -d $HOME/balena/bin ]]; then
   fi
 fi
 
+(( $+commands[balena] )) || return
+
 alias bal='balena'
 alias bald='balena device list'
 alias balf='balena fleet list'
