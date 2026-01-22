@@ -28,7 +28,7 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-    color: #ffffff;
+    color: #666666;
 }
 
 #mode {
