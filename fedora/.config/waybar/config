@@ -32,8 +32,8 @@
 
     "custom/sysinfo": {
         "exec": "~/.local/bin/sysinfo",
-        "interval": 5,
-        "on-click": "foot --title=floating htop"
+        "return-type": "json",
+        "interval": 5
     },
 
     "tray": {

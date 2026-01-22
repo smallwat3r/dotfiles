@@ -64,3 +64,12 @@ window#waybar {
     font-weight: bold;
     padding: 0 4px;
 }
+
+tooltip {
+    background-color: #000000;
+    border: 1px solid #333333;
+}
+
+tooltip label {
+    padding: 6px;
+}

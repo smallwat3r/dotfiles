@@ -1,8 +1,50 @@
 #!/usr/bin/env bash
-# System info for waybar.
+# System info for waybar (JSON output with tooltip).
 
+# CPU usage
 cpu=$(awk '{u=$2+$4; t=$2+$4+$5; if(NR==1){u1=u; t1=t;} else printf "%.0f", (u-u1)/(t-t1)*100}' \
     <(grep 'cpu ' /proc/stat) <(sleep 1; grep 'cpu ' /proc/stat))
-mem=$(free -h | awk '/Mem:/{print $3}')
 
-printf 'C%s%% M%s' "$cpu" "$mem"
+# Memory
+mem=$(free -h | awk '/Mem:/{print $3}')
+mem_detail=$(free -h | awk '/Mem:/{printf "%s / %s", $3, $2}')
+
+# GPU memory (AMD)
+gpu_used=$(cat /sys/class/drm/card*/device/mem_info_vram_used 2>/dev/null | head -1)
+gpu_total=$(cat /sys/class/drm/card*/device/mem_info_vram_total 2>/dev/null | head -1)
+if [[ -n "$gpu_used" && -n "$gpu_total" ]]; then
+    gpu=$(awk "BEGIN {printf \"%.1fGi\", $gpu_used/1024/1024/1024}")
+    gpu_detail=$(awk "BEGIN {printf \"%.1fGi / %.1fGi\", $gpu_used/1024/1024/1024, $gpu_total/1024/1024/1024}")
+else
+    gpu="-"
+    gpu_detail="N/A"
+fi
+
+# Temperature (main zone for display, all zones for tooltip)
+temp=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null | awk '{printf "%.0f", $1/1000}')
+temp_detail=""
+for zone in /sys/class/thermal/thermal_zone*; do
+    name=$(cat "$zone/type" 2>/dev/null)
+    val=$(cat "$zone/temp" 2>/dev/null | awk '{printf "%.0f", $1/1000}')
+    temp_detail+="$name: ${val}°C\\n"
+done
+
+# Disk
+disk=$(df -h / | awk 'NR==2{print $5}')
+disk_detail=$(df -h / | awk 'NR==2{printf "%s / %s", $3, $2}')
+
+# Build tooltip
+tooltip="System Info\\n"
+tooltip+="----------\\n"
+tooltip+="cpu: ${cpu}%\\n"
+tooltip+="mem: ${mem_detail}\\n"
+tooltip+="gpu: ${gpu_detail}\\n"
+tooltip+="dsk: ${disk_detail}\\n"
+tooltip+="\\n"
+tooltip+="Temperature\\n"
+tooltip+="----------\\n"
+tooltip+="${temp_detail%\\\\n}"
+
+# Output JSON
+printf '{"text": "dsk %s tmp %s° gpu %s mem %s cpu %s%%", "tooltip": "%s"}' \
+    "$disk" "$temp" "$gpu" "$mem" "$cpu" "$tooltip"
