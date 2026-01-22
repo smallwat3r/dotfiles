@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+#
+# launcher-window - Navigate to open windows in Sway
+#
+# Interactively select from all open windows and focus the selected one.
+# Window titles often include browser tab names, making this useful for
+# tab navigation as well.
+#
+# Dependencies:
+#   - fzf: Fuzzy finder
+#   - swaymsg: Sway IPC client
+#   - jq: JSON processor
+#
+# Usage:
+#   launcher-window
+#
+set -euo pipefail
+
+# Helpers
+
+die() { echo "$1" >&2; exit 1; }
+
+has() { command -v "$1" >/dev/null 2>&1; }
+
+# Dependencies
+
+has fzf || die "fzf is required"
+has swaymsg || die "swaymsg is required"
+has jq || die "jq is required"
+
+# Config
+
+fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
+fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
+
+# Functions
+
+fzf_pick() {
+  fzf --reverse --delimiter=$'\t' --with-nth=2.. \
+    --bind="$fzf_bind" --color="$fzf_colors"
+}
+
+list_windows() {
+  swaymsg -t get_tree | jq -r '
+    recurse(.nodes[]?, .floating_nodes[]?)
+    | select(.type == "con" and .name != null and .name != "")
+    | "\(.id)\t\(.app_id // .window_properties.class // "unknown"): \(.name)"
+  '
+}
+
+focus_window() {
+  local con_id="$1"
+  swaymsg "[con_id=$con_id] focus"
+}
+
+# Main
+
+selected="$(list_windows | fzf_pick)" || exit 0
+[[ -z "$selected" ]] && exit 0
+
+con_id="${selected%%$'\t'*}"
+focus_window "$con_id"
