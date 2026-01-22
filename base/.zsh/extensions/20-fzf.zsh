@@ -1,16 +1,15 @@
 # FZF configs and helper functions
-# Dependencies: fzf
 
 # Make sure fzf's bin is on PATH (Homebrew /usr/local layout)
 if [[ -d /usr/local/opt/fzf/bin ]] && (( ${path[(Ie)/usr/local/opt/fzf/bin]} == 0 )); then
   path+=("/usr/local/opt/fzf/bin")
 fi
 
-if (( $+commands[fzf] )); then
-  # ease access of history binding by remapping it.
-  bindkey -r '^R'
-  bindkey '^W' fzf-history-widget
-fi
+(( $+commands[fzf] )) || return
+
+# Ease access of history binding by remapping it.
+bindkey -r '^R'
+bindkey '^W' fzf-history-widget
 
 __fzf_source_first() {
   local f

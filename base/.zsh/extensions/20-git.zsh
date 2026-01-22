@@ -1,5 +1,7 @@
 # Git related configurations
 
+(( $+commands[git] )) || return
+
 export GIT_SSH_COMMAND='ssh -4 \
   -o ConnectTimeout=10 \
   -o ServerAliveInterval=20 \
@@ -10,8 +12,6 @@ export GIT_SSH_COMMAND='ssh -4 \
 
 # Create short `g<alias>` versions of all git aliases.
 () {
-  command -v git >/dev/null 2>&1 || return
-
   local line key name
   local git_alias_lines
 
