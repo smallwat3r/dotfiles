@@ -1,37 +1,35 @@
 #!/usr/bin/env bash
 # System info for waybar (JSON output with tooltip).
 
-# CPU usage
+# CPU usage (requires 1s sleep to measure delta)
 cpu=$(awk '{u=$2+$4; t=$2+$4+$5; if(NR==1){u1=u; t1=t;} else printf "%.0f", (u-u1)/(t-t1)*100}' \
     <(grep 'cpu ' /proc/stat) <(sleep 1; grep 'cpu ' /proc/stat))
 
-# Memory
-mem=$(free -h | awk '/Mem:/{print $3}')
-mem_detail=$(free -h | awk '/Mem:/{printf "%s / %s", $3, $2}')
+# Memory (single call)
+read -r mem mem_detail < <(free -h | awk '/Mem:/{printf "%s %s / %s", $3, $3, $2}')
 
 # GPU memory (AMD)
-gpu_used=$(cat /sys/class/drm/card*/device/mem_info_vram_used 2>/dev/null | head -1)
-gpu_total=$(cat /sys/class/drm/card*/device/mem_info_vram_total 2>/dev/null | head -1)
+gpu_used=$(head -1 /sys/class/drm/card*/device/mem_info_vram_used 2>/dev/null)
+gpu_total=$(head -1 /sys/class/drm/card*/device/mem_info_vram_total 2>/dev/null)
 if [[ -n "$gpu_used" && -n "$gpu_total" ]]; then
-    gpu=$(awk "BEGIN {printf \"%.1fGi\", $gpu_used/1024/1024/1024}")
-    gpu_detail=$(awk "BEGIN {printf \"%.1fGi / %.1fGi\", $gpu_used/1024/1024/1024, $gpu_total/1024/1024/1024}")
+    read -r gpu gpu_detail < <(awk -v u="$gpu_used" -v t="$gpu_total" \
+        'BEGIN {printf "%.1fGi %.1fGi / %.1fGi", u/1024/1024/1024, u/1024/1024/1024, t/1024/1024/1024}')
 else
     gpu="-"
     gpu_detail="N/A"
 fi
 
 # Temperature (main zone for display, all zones for tooltip)
-temp=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null | awk '{printf "%.0f", $1/1000}')
+temp=$(awk '{printf "%.0f", $1/1000}' /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
 temp_detail=""
 for zone in /sys/class/thermal/thermal_zone*; do
-    name=$(cat "$zone/type" 2>/dev/null)
-    val=$(cat "$zone/temp" 2>/dev/null | awk '{printf "%.0f", $1/1000}')
+    name=$(<"$zone/type") 2>/dev/null
+    val=$(awk '{printf "%.0f", $1/1000}' "$zone/temp" 2>/dev/null)
     temp_detail+="$name: ${val}°C\\n"
 done
 
-# Disk
-disk=$(df -h / | awk 'NR==2{print $5}')
-disk_detail=$(df -h / | awk 'NR==2{printf "%s / %s", $3, $2}')
+# Disk (single call)
+read -r disk disk_detail < <(df -h / | awk 'NR==2{printf "%s %s / %s", $5, $3, $2}')
 
 # Build tooltip
 tooltip="System Info\\n"
