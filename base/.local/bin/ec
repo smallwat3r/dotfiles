@@ -7,14 +7,13 @@ set -euo pipefail
 # Start daemon if not running and wait for it to be ready
 if ! emacsclient -e '(progn)' &>/dev/null; then
   emacs --daemon &>/dev/null || true
-  timeout=100  # 10 seconds (100 x 0.1s)
+  SECONDS=0  # Bash built-in that auto-increments each second
   while ! emacsclient -e '(progn)' &>/dev/null; do
-    sleep 0.1
-    ((timeout--))
-    if ((timeout <= 0)); then
+    if ((SECONDS >= 10)); then
       echo "Error: Emacs daemon failed to start" >&2
       exit 1
     fi
+    sleep 0.1
   done
 fi
 
