@@ -18,8 +18,15 @@ if ! emacsclient -e '(progn)' &>/dev/null; then
 fi
 
 # Reuse existing frame if one exists, otherwise create a new one
-if emacsclient -e '(> (length (visible-frame-list)) 0)' 2>/dev/null | grep -q 't'; then
-  emacsclient -n "$@"
+has_gui_frame=$(emacsclient -e \
+  '(cl-some (lambda (f) (frame-parameter f '\''window-system)) (frame-list))' 2>/dev/null)
+if [[ "$has_gui_frame" != "nil" && -n "$has_gui_frame" ]]; then
+  if [[ $# -eq 0 ]]; then
+    # No files, just focus existing frame
+    emacsclient -e '(select-frame-set-input-focus (selected-frame))' >/dev/null
+  else
+    emacsclient -n "$@"
+  fi
 else
   emacsclient -c -n "$@"
 fi
