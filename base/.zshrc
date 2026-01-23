@@ -15,31 +15,24 @@ case $OSTYPE in
     : "${TERMINAL:=alacritty}"
     ;;
   linux*)
-    if [[ -r /etc/os-release ]]; then
-      . /etc/os-release
-      case $ID in
-        fedora)
-          : "${TERMINAL:=foot}"
-          # fallback for SWAYSOCK/WAYLAND_DISPLAY if not inherited (sway)
-          if [[ $XDG_CURRENT_DESKTOP == sway ]]; then
-            if [[ -z $SWAYSOCK ]]; then
-              local sock=$(ls /run/user/$(id -u)/sway-ipc.*.sock 2>/dev/null | head -1)
-              [[ -S $sock ]] && export SWAYSOCK=$sock
-            fi
-            if [[ -z $WAYLAND_DISPLAY ]]; then
-              local wl=$(ls /run/user/$(id -u)/wayland-* 2>/dev/null | grep -v lock | head -1)
-              [[ -S $wl ]] && export WAYLAND_DISPLAY=${wl:t}
-            fi
-          fi
-          ;;
-        *)       : "${TERMINAL:=st}"   ;;
-      esac
-    else
-      : "${TERMINAL:=st}"
+    [[ -r /etc/os-release ]] && . /etc/os-release
+    if [[ $ID == fedora ]]; then
+      : "${TERMINAL:=foot}"
+      if [[ $XDG_CURRENT_DESKTOP == sway ]]; then
+        if [[ -z $SWAYSOCK ]]; then
+          local sock=(/run/user/$(id -u)/sway-ipc.*.sock(N[1]))
+          [[ -S $sock ]] && export SWAYSOCK=$sock
+        fi
+        if [[ -z $WAYLAND_DISPLAY ]]; then
+          local wl=(/run/user/$(id -u)/wayland-*~*lock*(N[1]))
+          [[ -S $wl ]] && export WAYLAND_DISPLAY=${wl:t}
+        fi
+      fi
     fi
     ;;
-  *) : "${TERMINAL:=st}" ;;
 esac
+
+: "${TERMINAL:=st}"
 
 : "${TERM:=xterm-256color}"
 export TERM TERMINAL
