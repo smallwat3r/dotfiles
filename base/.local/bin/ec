@@ -12,4 +12,9 @@ if ! emacsclient -e '(progn)' &>/dev/null; then
   done
 fi
 
-emacsclient -n -c "$@"
+# Reuse existing frame if one exists, otherwise create a new one
+if emacsclient -e '(> (length (visible-frame-list)) 0)' 2>/dev/null | grep -q 't'; then
+  emacsclient -n "$@"
+else
+  emacsclient -c -n "$@"
+fi
