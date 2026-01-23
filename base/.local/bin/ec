@@ -17,16 +17,22 @@ if ! emacsclient -e '(progn)' &>/dev/null; then
   done
 fi
 
-# Reuse existing frame if one exists, otherwise create a new one
+# Reuse existing visible GUI frame if one exists, otherwise create a new one
+# The daemon creates an invisible frame by default - we only want visible GUI frames
+# Note: Use (framep f) instead of (frame-parameter f 'window-system) because pgtk
+# Emacs returns nil for window-system even on GUI frames. framep returns t for tty
+# frames and the toolkit name (pgtk, x, ns, etc.) for GUI frames.
 has_gui_frame=$(emacsclient -e \
-  '(cl-some (lambda (f) (frame-parameter f '\''window-system)) (frame-list))' 2>/dev/null)
-if [[ "$has_gui_frame" != "nil" && -n "$has_gui_frame" ]]; then
-  if [[ $# -eq 0 ]]; then
-    # No files, just focus existing frame
-    emacsclient -e '(select-frame-set-input-focus (selected-frame))' >/dev/null
-  else
-    emacsclient -n "$@"
-  fi
+  '(let ((found nil))
+     (dolist (f (frame-list))
+       (when (and (not (eq (framep f) t))
+                  (eq (frame-visible-p f) t))
+         (setq found f)))
+     (when found (select-frame-set-input-focus found))
+     (not (null found)))' 2>/dev/null)
+
+if [[ "$has_gui_frame" == "t" ]]; then
+  [[ $# -gt 0 ]] && emacsclient -n "$@"
 else
   emacsclient -c -n "$@"
 fi
