@@ -35,6 +35,7 @@ network-manager-applet                   NetworkManager system tray applet
 notmuch                                  System for indexing, searching, and tagging email
 nwg-look                                 GTK3 settings editor adapted to work in the wlroots environment
 openscad                                 The Programmers Solid 3D CAD Modeller
+pam-u2f                                  PAM module for U2F/FIDO2 authentication (YubiKey)
 pasystray                                PulseAudio/PipeWire system tray applet
 protobuf-compiler                        Protocol Buffers compiler
 prusa-slicer                             3D printing slicer optimized for Prusa printers
