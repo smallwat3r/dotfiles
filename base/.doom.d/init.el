@@ -96,7 +96,7 @@
        (python +lsp +tree-sitter)
        rest
        (rust +lsp +tree-sitter)
-       (sh +lsp +tree-sitter)
+       (sh +lsp)
        (web +lsp +tree-sitter)
        (yaml +tree-sitter)
 
