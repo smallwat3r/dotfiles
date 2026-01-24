@@ -54,3 +54,6 @@
 
 ;; Conky config files are Lua
 (add-to-list 'auto-mode-alist '("conky\\.conf\\'" . lua-mode))
+
+;; Djot (use markdown-mode as syntax is similar)
+(add-to-list 'auto-mode-alist '("\\.dj\\'" . markdown-mode))

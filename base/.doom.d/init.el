@@ -79,6 +79,7 @@
        pass
        pdf
        (terraform +lsp)
+       tree-sitter
 
        :os
        (:if IS-MAC macos)
@@ -86,18 +87,18 @@
 
        :lang
        emacs-lisp
-       (go +lsp)
-       (javascript +lsp)
-       json
-       lua
-       markdown
+       (go +lsp +tree-sitter)
+       (javascript +lsp +tree-sitter)
+       (json +tree-sitter)
+       (lua +tree-sitter)
+       (markdown +tree-sitter)
        (org +journal +pandoc)
-       (python +lsp)
+       (python +lsp +tree-sitter)
        rest
-       (rust +lsp)
-       (sh +lsp)
-       (web +lsp)
-       yaml
+       (rust +lsp +tree-sitter)
+       (sh +lsp +tree-sitter)
+       (web +lsp +tree-sitter)
+       (yaml +tree-sitter)
 
        :email
        notmuch
