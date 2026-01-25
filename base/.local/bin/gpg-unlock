@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# gpg-unlock - Unlock GPG agent by prompting for passphrase
+#
+# Encrypts dummy content to force the password prompt, caching the
+# passphrase in gpg-agent for the session.
+#
+# Usage:
+#   gpg-unlock
+#
+set -euo pipefail
+
+printf '%s\n' foo | gpg --clearsign >/dev/null && echo 'OK'

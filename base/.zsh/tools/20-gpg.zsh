@@ -23,12 +23,6 @@ if (( $+commands[gpg] )); then
     gpg --list-keys --keyid-format=short
   }
 
-  # encrypt dummy content to force the password prompt to appear
-  # in order to unlock the session.
-  gpg-unlock() {
-    printf '%s\n' foo | gpg --clearsign >/dev/null && echo 'OK'
-  }
-
   # copy the GPG SSH key to the clipboard.
   gpg-ssh-key() {
     local key
