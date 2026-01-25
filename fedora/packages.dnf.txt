@@ -18,6 +18,7 @@ fzf                                      A command-line fuzzy finder written in 
 gdal                                     GIS file format library
 gnome-tweaks                             Customize advanced GNOME 3 options
 golang                                   The Go Programming Language
+gpgme-devel                              Development headers for gpgme (yubikey-touch-detector)
 google-authenticator                     One-time pass-code support using open standards
 gparted                                  Gnome Partition Editor
 gpaste                                   Clipboard management system

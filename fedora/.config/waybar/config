@@ -9,6 +9,7 @@
     "modules-right": [
         "custom/sysinfo",
         "custom/sep",
+        "custom/yubikey",
         "tray",
         "custom/sep",
         "custom/power-profile",
@@ -41,6 +42,12 @@
 
     "custom/sep": {
         "format": "·",
+        "tooltip": false
+    },
+
+    "custom/yubikey": {
+        "exec": "lsusb -d 1050: >/dev/null 2>&1 && echo 'YK' || echo ''",
+        "interval": 2,
         "tooltip": false
     },
 
