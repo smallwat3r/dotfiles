@@ -65,14 +65,24 @@ generate_u2f_keys() {
 show_pam_instructions() {
     local hostname
     hostname=$(hostname)
+    local pam_line="auth       sufficient   pam_u2f.so cue origin=pam://${hostname} appid=pam://${hostname}"
 
     echo ""
     info "YubiKey registered. Now configure PAM."
     echo ""
-    echo "Edit /etc/pam.d/sudo and add the highlighted line:"
+    echo "Add the highlighted line to these files:"
+    echo ""
+    echo "1. /etc/pam.d/sudo (touch to sudo):"
     echo ""
     echo "  #%PAM-1.0"
-    echo -e "  ${YELLOW}auth       sufficient   pam_u2f.so cue origin=pam://${hostname} appid=pam://${hostname}${NC}"
+    echo -e "  ${YELLOW}${pam_line}${NC}"
+    echo "  auth       include      system-auth"
+    echo "  ..."
+    echo ""
+    echo "2. /etc/pam.d/swaylock (touch to unlock screen):"
+    echo ""
+    echo "  #%PAM-1.0"
+    echo -e "  ${YELLOW}${pam_line}${NC}"
     echo "  auth       include      system-auth"
     echo "  ..."
     echo ""
@@ -81,7 +91,7 @@ show_pam_instructions() {
     echo "  - 'required': Always requires YubiKey (can lock you out)"
     echo "  - 'cue': Shows 'Please touch the device' prompt"
     echo ""
-    echo "To edit: sudo vi /etc/pam.d/sudo"
+    echo "To edit: sudo vi /etc/pam.d/sudo /etc/pam.d/swaylock"
     echo ""
     echo "Test in a NEW terminal before closing your current session!"
 }

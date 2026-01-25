@@ -29,3 +29,15 @@ yk-fido-reset() {
     echo "This will reset all FIDO2 credentials on the YubiKey."
     read -q "?Are you sure? [y/N] " && echo && ykman fido reset
 }
+
+# Generate FIDO2 SSH key (resident on YubiKey, requires touch)
+yk-ssh-keygen() {
+    local keyfile="${HOME}/.ssh/id_yubikey"
+    if [[ -f "$keyfile" ]]; then
+        echo "Key already exists: $keyfile"
+        read -q "?Overwrite? [y/N] " || return 1
+        echo
+    fi
+    echo "Touch your YubiKey when it blinks..."
+    ssh-keygen -t ed25519-sk -O resident -O verify-required -f "$keyfile" -C "yubikey"
+}
