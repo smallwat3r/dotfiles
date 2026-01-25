@@ -5,56 +5,22 @@
 # Interactively select an OATH account from your YubiKey and copy the code
 # to clipboard.
 #
-# Dependencies:
-#   - fzf: Fuzzy finder
-#   - ykman: YubiKey Manager
-#   - wl-copy: Wayland clipboard
-#
-# Usage:
-#   launcher-yubikey-otp
+# Dependencies: fzf, ykman, wl-copy
 #
 set -euo pipefail
 
-# Helpers
+. "${HOME}/.local/lib/launcher.sh"
 
-die() { echo "$1" >&2; exit 1; }
-
-has() { command -v "$1" >/dev/null 2>&1; }
-
-require() { has "$1" || die "$1 is required"; }
-
-# Dependencies
-
-require fzf
-require ykman
-require wl-copy
-
-# Config
-
-fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
-fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
-
-# Functions
-
-fzf_pick() {
-  fzf --reverse --wrap --tiebreak=index \
-    --bind="$fzf_bind" --color="$fzf_colors"
-}
+require fzf ykman
 
 list_accounts() {
-  ykman oath accounts list 2>/dev/null || die "No YubiKey detected"
+    ykman oath accounts list 2>/dev/null || die "No YubiKey detected"
 }
-
-get_code() {
-  ykman oath accounts code -s "$1" 2>/dev/null
-}
-
-# Main
 
 selected="$(list_accounts | fzf_pick)" || exit 0
 [[ -z "$selected" ]] && exit 0
 
-code="$(get_code "$selected")" || die "Failed to get code"
+code="$(ykman oath accounts code -s "$selected" 2>/dev/null)" || die "Failed to get code"
 [[ -z "$code" ]] && die "Empty code"
 
-echo -n "$code" | wl-copy
+printf '%s' "$code" | clip

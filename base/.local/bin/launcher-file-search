@@ -1,30 +1,28 @@
 #!/usr/bin/env bash
-# Search and open files from home directory using fzf.
-# Requires: fzf, ripgrep
+#
+# launcher-file-search - Search and open files from home directory
+#
+# Dependencies: fzf, rg (ripgrep), ec (emacsclient wrapper)
+#
 set -euo pipefail
 
-command -v fzf >/dev/null || { echo "fzf required" >&2; exit 1; }
+. "${HOME}/.local/lib/launcher.sh"
+
+require fzf rg
 
 EXCLUDES='--glob "!.git/*" --glob "!*.pyc" --glob "!.npm/*" --glob "!.cache/*"'
 
-case "$(uname -s)" in
-  Darwin)
+if is_macos; then
     EXCLUDES+=' --glob "!Library/*" --glob "!Movies/*"'
-    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
-    ;;
-  *)
+else
     EXCLUDES+=' --glob "!.local/share/*" --glob "!snap/*"'
-    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
-    ;;
-esac
-
-fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
+fi
 
 cd "$HOME" || exit 1
 
 target=$(
-  FZF_DEFAULT_COMMAND="rg --files --hidden $EXCLUDES" \
-  fzf --reverse --wrap --bind="$fzf_bind" --color="$fzf_colors"
+    FZF_DEFAULT_COMMAND="rg --files --hidden $EXCLUDES" \
+    fzf --reverse --wrap --bind="$FZF_BIND" --color="$FZF_COLORS"
 ) || exit 0
 
 [[ -n $target ]] && setsid -f ec "$HOME/$target"

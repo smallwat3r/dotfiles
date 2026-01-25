@@ -5,89 +5,57 @@
 # Interactively select and run a command from PATH or installed
 # Flatpak applications. Commands are sorted by usage frequency.
 #
-# Dependencies:
-#   - fzf: Fuzzy finder
-#   - flatpak: (optional) For Flatpak app support
-#
-# Usage:
-#   launcher-bin
+# Dependencies: fzf, flatpak (optional)
 #
 PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 set -euo pipefail
 
-# Helpers
+. "${HOME}/.local/lib/launcher.sh"
 
-die() { echo "$1" >&2; exit 1; }
-
-has() { command -v "$1" >/dev/null 2>&1; }
-
-is_flatpak() { has flatpak && flatpak info "$1" >/dev/null 2>&1; }
-
-# Dependencies
-
-has fzf || die "fzf is required"
-
-# Config
+require fzf
 
 HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bin-history"
 HISTORY_MAX_LINES=1000
 
-case "$(uname -s)" in
-  Darwin)
-    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
-    ;;
-  *)
-    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
-    ;;
-esac
-
-fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
-
-# Functions
-
-fzf_pick() {
-  fzf --reverse --bind="$fzf_bind" --color="$fzf_colors"
-}
+is_flatpak() { has flatpak && flatpak info "$1" >/dev/null 2>&1; }
 
 trim_history() {
-  [[ -f $HISTORY_FILE ]] || return 0
-  local lines
-  lines=$(wc -l < "$HISTORY_FILE")
-  if (( lines > HISTORY_MAX_LINES )); then
-    local tmp="${HISTORY_FILE}.tmp"
-    tail -n "$HISTORY_MAX_LINES" "$HISTORY_FILE" > "$tmp" && mv "$tmp" "$HISTORY_FILE"
-  fi
+    [[ -f $HISTORY_FILE ]] || return 0
+    local lines
+    lines=$(wc -l < "$HISTORY_FILE")
+    if (( lines > HISTORY_MAX_LINES )); then
+        local tmp="${HISTORY_FILE}.tmp"
+        tail -n "$HISTORY_MAX_LINES" "$HISTORY_FILE" > "$tmp" && mv "$tmp" "$HISTORY_FILE"
+    fi
 }
 
 run() {
-  echo "$1" >> "$HISTORY_FILE"
-  trim_history
-  if is_flatpak "$1"; then
-    flatpak run "$1" &
-  else
-    "$1" &
-  fi
+    echo "$1" >> "$HISTORY_FILE"
+    trim_history
+    if is_flatpak "$1"; then
+        flatpak run "$1" &
+    else
+        "$1" &
+    fi
 }
 
 list_commands() {
-  compgen -c
-  if [[ $OSTYPE == linux* ]] && has flatpak; then
-    flatpak list --app --columns=application
-  fi
+    compgen -c
+    if is_linux && has flatpak; then
+        flatpak list --app --columns=application
+    fi
 }
 
 sort_by_frequency() {
-  if [[ -f $HISTORY_FILE ]]; then
-    awk -v hist="$HISTORY_FILE" '
-      BEGIN { while ((getline line < hist) > 0) freq[line]++ }
-      !seen[$0]++ { print freq[$0]+0, $0 }
-    ' | sort -rn | cut -d' ' -f2-
-  else
-    sort -u
-  fi
+    if [[ -f $HISTORY_FILE ]]; then
+        awk -v hist="$HISTORY_FILE" '
+            BEGIN { while ((getline line < hist) > 0) freq[line]++ }
+            !seen[$0]++ { print freq[$0]+0, $0 }
+        ' | sort -rn | cut -d' ' -f2-
+    else
+        sort -u
+    fi
 }
-
-# Main
 
 trap "" HUP
 

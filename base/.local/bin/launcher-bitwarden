@@ -6,136 +6,96 @@
 # a field (password, username, or TOTP) to the clipboard. The clipboard
 # is automatically cleared after the first paste for security.
 #
-# Dependencies:
-#   - rbw: Unofficial Bitwarden CLI (https://github.com/doy/rbw)
-#   - fzf: Fuzzy finder
-#   - jq: JSON processor
-#   - wl-copy, xclip, or pbcopy: Clipboard utility
-#
-# Usage:
-#   launcher-bitwarden
-#
-#   1. Select an item from the vault (logins show username, notes are labeled)
-#   2. If multiple fields available, select which one to copy
-#   3. Field is copied to clipboard and cleared after first paste
-#
-# Note: If cliphist is installed, copied content is automatically removed
-# from clipboard history to prevent sensitive data from being stored.
+# Dependencies: rbw, fzf, jq, wl-copy/xclip/pbcopy
 #
 set -euo pipefail
 
-# Helpers
+. "${HOME}/.local/lib/launcher.sh"
 
-die() { echo "$1" >&2; exit 1; }
-
-has() { command -v "$1" >/dev/null 2>&1; }
-
-require() { has "$1" || die "$1 is required"; }
-
-# Dependencies
-
-require rbw
-require fzf
-require jq
-
-# Config
+require rbw fzf jq
 
 history_file="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bitwarden-history"
 history_max=50
 
-case "$(uname -s)" in
-  Darwin)
-    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
-    ;;
-  *)
-    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
-    ;;
-esac
-
-fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
-
-# Functions
-
 record_history() {
-  local entry="$1"
-  mkdir -p "$(dirname "$history_file")"
+    local entry="$1"
+    mkdir -p "$(dirname "$history_file")"
 
-  # Remove existing entry if present, then prepend
-  if [[ -f $history_file ]]; then
-    grep -vxF "$entry" "$history_file" 2>/dev/null | head -n "$((history_max - 1))" \
-      > "$history_file.tmp" || true
-    { printf '%s\n' "$entry"; cat "$history_file.tmp"; } > "$history_file"
-    rm -f "$history_file.tmp"
-  else
-    printf '%s\n' "$entry" > "$history_file"
-  fi
+    if [[ -f $history_file ]]; then
+        grep -vxF "$entry" "$history_file" 2>/dev/null | head -n "$((history_max - 1))" \
+            > "$history_file.tmp" || true
+        { printf '%s\n' "$entry"; cat "$history_file.tmp"; } > "$history_file"
+        rm -f "$history_file.tmp"
+    else
+        printf '%s\n' "$entry" > "$history_file"
+    fi
 }
 
 load_history() {
-  declare -gA history_rank
-  [[ -f $history_file ]] || return
-  local rank=1
-  while IFS= read -r entry; do
-    [[ -z ${history_rank[$entry]+x} ]] && history_rank[$entry]=$rank
-    ((rank++))
-  done < "$history_file"
+    declare -gA history_rank
+    [[ -f $history_file ]] || return
+    local rank=1
+    while IFS= read -r entry; do
+        [[ -z ${history_rank[$entry]+x} ]] && history_rank[$entry]=$rank
+        ((rank++))
+    done < "$history_file"
 }
 
-clip() {
-  local content
-  content=$(cat)
+clip_with_clear() {
+    local content
+    content=$(cat)
 
-  if has wl-copy; then
-    printf '%s' "$content" | wl-copy
-    if has cliphist; then
-      sleep 0.1
-      cliphist delete-query "$content" >/dev/null 2>&1 || true
+    if has wl-copy; then
+        printf '%s' "$content" | wl-copy
+        if has cliphist; then
+            sleep 0.1
+            cliphist delete-query "$content" >/dev/null 2>&1 || true
+        fi
+        (sleep 45 && wl-copy --clear) &
+    elif has xclip; then
+        printf '%s' "$content" | xclip -selection clipboard
+        (sleep 45 && xclip -selection clipboard < /dev/null) &
+    elif has pbcopy; then
+        printf '%s' "$content" | pbcopy
+        (sleep 45 && pbcopy < /dev/null) &
+    else
+        die "No clipboard tool found"
     fi
-    (sleep 45 && wl-copy --clear) &
-  elif has xclip; then
-    printf '%s' "$content" | xclip -selection clipboard
-    (sleep 45 && xclip -selection clipboard < /dev/null) &
-  elif has pbcopy; then
-    printf '%s' "$content" | pbcopy
-    (sleep 45 && pbcopy < /dev/null) &
-  else
-    die "No clipboard tool found (wl-copy, xclip, pbcopy)"
-  fi
 }
 
-fzf_pick() {
-  fzf --reverse --wrap --prompt="$1" --bind="$fzf_bind" --color="$fzf_colors"
+fzf_pick_item() {
+    fzf --reverse --wrap --prompt="$1" --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 
 list_items() {
-  load_history
-  for i in "${!items[@]}"; do
-    IFS=$'\t' read -r name user <<< "${items[$i]}"
-    local entry="$name${user:+	$user}"
-    local rank=${history_rank[$entry]:-999999}
+    load_history
+    for i in "${!items[@]}"; do
+        IFS=$'\t' read -r name user <<< "${items[$i]}"
+        local entry="$name${user:+	$user}"
+        local rank=${history_rank[$entry]:-999999}
 
-    if [[ -n $user ]]; then
-      printf '%s\t%d\t[login] %s (%s)\n' "$rank" "$i" "$name" "$user"
-    else
-      printf '%s\t%d\t[note]  %s\n' "$rank" "$i" "$name"
-    fi
-  done | sort -t$'\t' -k1,1n | cut -f2-
+        if [[ -n $user ]]; then
+            printf '%s\t%d\t[login] %s (%s)\n' "$rank" "$i" "$name" "$user"
+        else
+            printf '%s\t%d\t[note]  %s\n' "$rank" "$i" "$name"
+        fi
+    done | sort -t$'\t' -k1,1n | cut -f2-
 }
 
 get_fields() {
-  local name="$1" user="$2"
-  local raw pw un totp notes
+    local name="$1" user="$2"
+    local raw pw un totp notes
 
-  raw="$(rbw get --raw "$name" ${user:+"$user"} 2>/dev/null)" || return
-  pw="$(jq -r '.data.password // empty' <<< "$raw" 2>/dev/null)" || true
-  un="$(jq -r '.data.username // empty' <<< "$raw" 2>/dev/null)" || true
-  notes="$(jq -r '.notes // empty' <<< "$raw" 2>/dev/null)" || true
-  totp="$(rbw code "$name" ${user:+"$user"} 2>/dev/null || true)"
+    raw="$(rbw get --raw "$name" ${user:+"$user"} 2>/dev/null)" || return
+    pw="$(jq -r '.data.password // empty' <<< "$raw" 2>/dev/null)" || true
+    un="$(jq -r '.data.username // empty' <<< "$raw" 2>/dev/null)" || true
+    notes="$(jq -r '.notes // empty' <<< "$raw" 2>/dev/null)" || true
+    totp="$(rbw code "$name" ${user:+"$user"} 2>/dev/null || true)"
 
-  [[ -n $pw ]] && fields[password]="$pw" || true
-  [[ -n $un ]] && fields[username]="$un" || true
-  [[ -n $notes ]] && fields[notes]="$notes" || true
-  [[ -n $totp ]] && fields[totp]="$totp" || true
+    [[ -n $pw ]] && fields[password]="$pw" || true
+    [[ -n $un ]] && fields[username]="$un" || true
+    [[ -n $notes ]] && fields[notes]="$notes" || true
+    [[ -n $totp ]] && fields[totp]="$totp" || true
 }
 
 # Main
@@ -145,7 +105,7 @@ rbw unlocked 2>/dev/null || rbw unlock
 mapfile -t items < <(rbw list --fields name,user)
 (( ${#items[@]} )) || die "No items found in vault"
 
-target="$(list_items | fzf_pick "rbw> " | cut -f1)" || exit 0
+target="$(list_items | fzf_pick_item "rbw> " | cut -f1)" || exit 0
 [[ -z $target ]] && exit 0
 
 IFS=$'\t' read -r name user <<< "${items[$target]}"
@@ -155,11 +115,11 @@ get_fields "$name" "$user"
 (( ${#fields[@]} )) || die "No fields available"
 
 if (( ${#fields[@]} == 1 )); then
-  selected="${!fields[@]}"
+    selected="${!fields[@]}"
 else
-  selected="$(printf '%s\n' "${!fields[@]}" | fzf_pick "field> ")" || exit 0
-  [[ -z $selected ]] && exit 0
+    selected="$(printf '%s\n' "${!fields[@]}" | fzf_pick_item "field> ")" || exit 0
+    [[ -z $selected ]] && exit 0
 fi
 
-printf '%s' "${fields[$selected]}" | clip
+printf '%s' "${fields[$selected]}" | clip_with_clear
 record_history "$name${user:+	$user}"

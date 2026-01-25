@@ -5,88 +5,42 @@
 # Interactively select an entry from your clipboard history and copy
 # it back to the clipboard.
 #
-# Dependencies:
-#   - fzf: Fuzzy finder
-#   - gpaste-client (GNOME), cliphist (wlroots), or greenclip (X11)
-#
-# Usage:
-#   launcher-clipboard-history
+# Dependencies: fzf, (cliphist + wl-copy) or (gpaste-client) or (greenclip + xclip)
 #
 set -euo pipefail
 
-# Helpers
-
-die() { echo "$1" >&2; exit 1; }
-
-has() { command -v "$1" >/dev/null 2>&1; }
-
-require() { has "$1" || die "$1 is required"; }
-
-# Dependencies
+. "${HOME}/.local/lib/launcher.sh"
 
 require fzf
 
-# Config
-
-# On wlroots compositors (Sway, Hyprland, etc.), prefer cliphist over gpaste
-is_wlroots() {
-  [[ -n "${SWAYSOCK:-}" ]] || [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]
-}
-
+# Select backend based on environment
 if is_wlroots && has cliphist && has wl-copy; then
-  list_history() { cliphist list; }
-
-  select_item() {
-    printf '%s' "$1" | cliphist decode | wl-copy
-  }
+    list_history() { cliphist list; }
+    select_item() { printf '%s' "$1" | cliphist decode | wl-copy; }
 elif has gpaste-client && ! is_wlroots; then
-  list_history() {
-    gpaste-client --oneline | while IFS=: read -r uuid content; do
-      printf '%s\t%s\n' "$uuid" "${content# }"
-    done
-  }
-
-  select_item() {
-    gpaste-client select "${1%%$'\t'*}"
-  }
+    list_history() {
+        gpaste-client --oneline | while IFS=: read -r uuid content; do
+            printf '%s\t%s\n' "$uuid" "${content# }"
+        done
+    }
+    select_item() { gpaste-client select "${1%%$'\t'*}"; }
 elif has cliphist && has wl-copy; then
-  list_history() { cliphist list; }
-
-  select_item() {
-    printf '%s' "$1" | cliphist decode | wl-copy
-  }
+    list_history() { cliphist list; }
+    select_item() { printf '%s' "$1" | cliphist decode | wl-copy; }
 elif has greenclip && has xclip; then
-  list_history() { greenclip print; }
-
-  select_item() {
-    printf '%s' "$1" | xclip -selection clipboard
-  }
+    list_history() { greenclip print; }
+    select_item() { printf '%s' "$1" | xclip -selection clipboard; }
 else
-  die "No supported clipboard history tool found (gpaste-client, cliphist, or greenclip)"
+    die "No clipboard history tool found (cliphist, gpaste-client, or greenclip)"
 fi
 
-case "$(uname -s)" in
-  Darwin)
-    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
-    ;;
-  *)
-    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
-    ;;
-esac
-
-fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
-
-# Functions
-
-fzf_pick() {
-  fzf --reverse --wrap --tiebreak=index \
-    --delimiter=$'\t' --with-nth=2.. \
-    --bind="$fzf_bind" --color="$fzf_colors"
+fzf_pick_clip() {
+    fzf --reverse --wrap --tiebreak=index \
+        --delimiter=$'\t' --with-nth=2.. \
+        --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 
-# Main
-
-selected="$(list_history | fzf_pick)" || exit 0
+selected="$(list_history | fzf_pick_clip)" || exit 0
 [[ -z "$selected" ]] && exit 0
 
 select_item "$selected"
