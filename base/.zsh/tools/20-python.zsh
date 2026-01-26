@@ -1,8 +1,5 @@
 # Python related configuration
 
-# Ensure Poetry virtualenvs are created in the project directory
-export POETRY_VIRTUALENVS_IN_PROJECT=true
-
 # Add Poetry's bin dir to PATH (old and new install locations)
 for _poetry_bin in "$HOME/.poetry/bin" "$HOME/.local/bin"; do
   if [[ -d "$_poetry_bin" ]]; then
@@ -12,9 +9,6 @@ for _poetry_bin in "$HOME/.poetry/bin" "$HOME/.local/bin"; do
   fi
 done
 unset _poetry_bin
-
-# YOLO
-export PIP_BREAK_SYSTEM_PACKAGES=1
 
 # Activate the nearest python venv (.venv) up the directory tree
 avenv() {

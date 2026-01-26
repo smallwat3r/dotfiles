@@ -18,6 +18,7 @@
 #   - brightnessctl: brightness control
 #   - udiskie: automount removable media
 #   - fcitx5: input method framework
+#   - gnome-keyring: secrets storage (for Chromium, etc.)
 
 # Variables
 set $mod Mod4

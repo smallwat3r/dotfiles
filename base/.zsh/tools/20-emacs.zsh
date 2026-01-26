@@ -13,11 +13,6 @@ fi
 
 export EMACS_DOOM="$HOME/.emacs.d"
 
-# lsp-mode can be compiled in 2 modes: plist- and hash-table-based.
-# plists provide better performance and less pressure than hash-tables.
-# NOTE: lsp-mode related packages may need to be reinstalled after changing this.
-export LSP_USE_PLISTS=true
-
 # Ensure Doom's bin directory is on PATH
 if (( ${path[(Ie)$EMACS_DOOM/bin]} == 0 )); then
   path+=("$EMACS_DOOM/bin")
