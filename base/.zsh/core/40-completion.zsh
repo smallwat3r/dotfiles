@@ -13,6 +13,7 @@ autoload -Uz compinit
     # -C: skip re-checking functions, trust dump file
     compinit -C -d "$_zcompdump"
   fi
+  _zsh_compile_if_needed "$_zcompdump"
 }
 
 setopt COMPLETE_IN_WORD  # complete from both end of a word

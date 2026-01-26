@@ -15,7 +15,6 @@ __load_plugins() {
   local -a plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
-    zsh-history-substring-search
   )
 
   local plugin dir path loaded
@@ -63,7 +62,18 @@ __set_zsh_highlight_styles() {
   ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' fg=164,bold)
 }
 
+# pre-set config vars before plugins load
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets regexp)
-__load_plugins
-__set_zsh_highlight_styles
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+
+# defer plugin loading until first prompt for faster shell startup
+__deferred_load_plugins() {
+  __load_plugins
+  __set_zsh_highlight_styles
+  # unhook after first run
+  add-zle-hook-widget -d zle-line-init __deferred_load_plugins
+  unfunction __deferred_load_plugins
+}
+
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget zle-line-init __deferred_load_plugins
