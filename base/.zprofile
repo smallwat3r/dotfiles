@@ -4,7 +4,8 @@
 export EDITOR="ec"
 
 # Chromium flags (Fedora uses this env var)
-export CHROMIUM_USER_FLAGS="--enable-features=WebRTCPipeWireCapture"
+export CHROMIUM_USER_FLAGS="--enable-features=WebRTCPipeWireCapture \
+    --disable-gpu-memory-buffer-video-frames"
 
 # Go
 export GOPATH="$HOME/go"

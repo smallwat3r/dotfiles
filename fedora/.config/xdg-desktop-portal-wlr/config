@@ -1,4 +1,4 @@
 [screencast]
-max_fps=10
-chooser_type=dmenu
-chooser_cmd=fuzzel --dmenu
+max_fps=30
+chooser_type=simple
+chooser_cmd=slurp -f %o -or
