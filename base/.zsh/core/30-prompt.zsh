@@ -12,25 +12,19 @@ __is_venv() {
 #   - * if working tree has uncommitted changes
 #   - ~ if current directory is the repository root
 #   - [PAUSED] badge if last commit subject starts with "PAUSED" (for git-pause workflow)
-#
-# Uses porcelain v2 format for reliable parsing. All git calls run in a single
-# subshell with NUL separators to minimize fork overhead. --no-optional-locks
-# prevents git from acquiring locks, avoiding delays on busy repos.
 __git_prompt_segment() {
-  local info gstatus prefix subject branch dirty root paused
+  local info gstatus subject branch dirty root paused
 
   info=$(
-    git --no-optional-locks status --porcelain=v2 -b 2>/dev/null
+    # Prevent git from acquiring locks, avoiding delays on busy repos
+    export GIT_OPTIONAL_LOCKS=0
+    git status --porcelain=v2 -b --no-ahead-behind 2>/dev/null
     printf '\0'
-    git --no-optional-locks rev-parse --show-prefix 2>/dev/null
-    printf '\0'
-    git --no-optional-locks log -1 --format=%s 2>/dev/null
-  ) || return
+    git log -1 --format=%s 2>/dev/null
+  )
 
-  # Parse NUL-separated output: gstatus\0prefix\0subject
+  # Parse NUL-separated output: gstatus\0subject
   gstatus=${info%%$'\x00'*}
-  info=${info#*$'\x00'}
-  prefix=${info%%$'\x00'*}
   subject=${info#*$'\x00'}
 
   # Branch from "# branch.head <name>" line in porcelain v2 output
@@ -40,10 +34,8 @@ __git_prompt_segment() {
 
   # Dirty if any non-header line exists (file status lines don't start with #)
   [[ $gstatus == *$'\n'[^#]* ]] && dirty='*'
-
-  # At root if prefix is empty (rev-parse --show-prefix returns empty at root)
-  [[ "$prefix" == $'\n' || -z "$prefix" ]] && root='~'
-
+  # At root if .git exists in current directory
+  [[ -e .git ]] && root='~'
   # PAUSED badge for git-pause workflow (commit with "PAUSED: ..." message)
   [[ $subject == PAUSED* ]] && paused=' %B%F{198}%K{52}[PAUSED]%b%f%k'
 
