@@ -10,7 +10,7 @@
   :type 'string
   :group 'my-claude)
 
-(defcustom my-claude-buffer-prefix "*Claude"
+(defcustom my-claude-buffer-prefix "Claude"
   "Prefix for Claude buffer names."
   :type 'string
   :group 'my-claude)
@@ -41,10 +41,11 @@
 (defun my-claude--buffer-list (&optional all-projects)
   "Return list of active Claude buffers for the current project.
 If ALL-PROJECTS is non-nil, return buffers from all projects."
-  (let ((project (my-claude--project-root)))
+  (let ((project (my-claude--project-root))
+        (prefix (format "*%s" my-claude-buffer-prefix)))
     (cl-remove-if-not
      (lambda (buf)
-       (and (string-prefix-p my-claude-buffer-prefix (buffer-name buf))
+       (and (string-prefix-p prefix (buffer-name buf))
             (get-buffer-process buf)
             (or all-projects
                 (equal project (buffer-local-value 'my-claude--project-root buf)))))
@@ -95,7 +96,7 @@ Prompts for selection if multiple exist."
            (cl-loop for buf in (buffer-list)
                     for name = (buffer-name buf)
                     when (string-match
-                          (format "^%s-\\([0-9]+\\)\\*$"
+                          (format "^\\*%s-\\([0-9]+\\)\\*$"
                                   (regexp-quote my-claude-buffer-prefix))
                           name)
                     collect (string-to-number (match-string 1 name))))))
@@ -105,10 +106,11 @@ Prompts for selection if multiple exist."
 
 (defun my-claude--generate-buffer-name (&optional name)
   "Generate a unique buffer name for a new Claude chat.
-If NAME is provided, use it instead of a number."
+If NAME is provided, use it instead of a number.
+Note: `ansi-term' wraps this in *...* automatically."
   (if name
-      (format "%s:%s*" my-claude-buffer-prefix name)
-    (format "%s-%d*" my-claude-buffer-prefix (my-claude--next-buffer-number))))
+      (format "%s:%s" my-claude-buffer-prefix name)
+    (format "%s-%d" my-claude-buffer-prefix (my-claude--next-buffer-number))))
 
 (defun my-claude--start-chat (dir &optional new-session name)
   "Start a Claude chat session in DIR.
@@ -116,16 +118,14 @@ If NEW-SESSION is non-nil, always create a new session.
 If NAME is provided, use it as the buffer name."
   (unless (executable-find my-claude-cli-program)
     (error "Claude CLI not found. Install it and run `claude login`"))
-  (require 'vterm)
+  (require 'term)
   (if (and (not new-session) (my-claude--active-session-p))
       (pop-to-buffer (my-claude--get-current-buffer))
     (let* ((project-root (my-claude--project-root))
            (buf-name (my-claude--generate-buffer-name name))
-           (default-directory dir)
-           (vterm-buffer-name buf-name)
-           (vterm-shell my-claude-cli-program))
-      (vterm)
-      (let ((buf (get-buffer buf-name)))
+           (default-directory dir))
+      (ansi-term my-claude-cli-program buf-name)
+      (let ((buf (get-buffer (format "*%s*" buf-name))))
         (with-current-buffer buf
           (setq my-claude--project-root project-root))
         (my-claude--set-current-buffer buf)))))
@@ -136,18 +136,18 @@ If NAME is provided, use it as the buffer name."
   (let ((buf (my-claude--get-current-buffer)))
     (discard-input)
     (with-current-buffer buf
-      (vterm-send-string text))
+      (term-send-string (get-buffer-process buf) text))
     (pop-to-buffer buf)))
 
 ;;;###autoload
 (defun my/claude-chat ()
-  "Open a Claude chat buffer in vterm from current directory."
+  "Open a Claude chat buffer from current directory."
   (interactive)
   (my-claude--start-chat default-directory))
 
 ;;;###autoload
 (defun my/claude-chat-project-root ()
-  "Open a Claude chat buffer in vterm from project root."
+  "Open a Claude chat buffer from project root."
   (interactive)
   (my-claude--start-chat (my-claude--project-root)))
 
