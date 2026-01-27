@@ -73,10 +73,10 @@
       (vterm-copy-mode -1)))
 
   (add-hook 'evil-visual-state-entry-hook #'my/vterm-visual-enter)
-  (add-hook 'evil-visual-state-exit-hook #'my/vterm-visual-exit))
+  (add-hook 'evil-visual-state-exit-hook #'my/vterm-visual-exit)
 
-;; always display the modeline in vterm (depth 90 ensures it runs last)
-(add-hook 'vterm-mode-hook (lambda () (hide-mode-line-mode -1)) 90)
+  ;; Always display the modeline in vterm
+  (add-hook 'vterm-mode-hook (lambda () (hide-mode-line-mode -1)) 90))
 
 (setq vterm-always-compile-module t)
 
