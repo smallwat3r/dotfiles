@@ -1,6 +1,6 @@
 aspell                                   Spell checker
-balena-etcher                            balenaEtcher is a powerful OS image flasher built with web technologies to ensure flashing an SDCard or USB drive is a pleasant and safe experience. It protects you from accidentally writing to your hard-drives, ensures every byte of data was written correctly and much more.
-chromium                                 A WebKit (Blink) powered web browser that Google doesn't want you to use
+balena-etcher                            OS image flasher for SD cards and USB drives
+chromium                                 Open-source Chromium web browser
 clamav                                   End-user tools for the Clam Antivirus scanner
 clamd                                    The Clam AntiVirus Daemon
 cliphist                                 Clipboard history for Wayland
@@ -23,9 +23,9 @@ google-authenticator                     One-time pass-code support using open s
 gparted                                  Gnome Partition Editor
 gpaste                                   Clipboard management system
 gtk4-devel                               Development files for GTK
-input-remapper                           An easy to use tool to change the behaviour of your input devices
+input-remapper                           Tool to remap input devices
 kanshi                                   Dynamic display configuration for Wayland
-kicad                                    EDA software suite for creation of schematic diagrams and PCBs
+kicad                                    EDA software for schematic diagrams and PCBs
 kicad-packages3d                         3D Models for KiCad
 libtool                                  The GNU Portable Library Tool
 libusb1-devel                            Development files for libusb1
@@ -34,7 +34,7 @@ meson                                    High productivity build system
 msmtp                                    SMTP client
 network-manager-applet                   NetworkManager system tray applet
 notmuch                                  System for indexing, searching, and tagging email
-nwg-look                                 GTK3 settings editor adapted to work in the wlroots environment
+nwg-look                                 GTK3 settings editor for wlroots
 openscad                                 The Programmers Solid 3D CAD Modeller
 pam-u2f                                  PAM module for U2F/FIDO2 authentication (YubiKey)
 pasystray                                PulseAudio/PipeWire system tray applet
@@ -42,19 +42,20 @@ protobuf-compiler                        Protocol Buffers compiler
 prusa-slicer                             3D printing slicer optimized for Prusa printers
 python3.13                               Version 3.13 of the Python interpreter
 python3-pip                              A tool for installing and managing Python3 packages
-qflipper                                 Desktop application for updating Flipper Zero firmware via PC
+qflipper                                 Flipper Zero firmware updater
 radeontop                                AMD Radeon video cards monitoring utility
 rbw                                      Unofficial Bitwarden CLI
 shfmt                                    Shell formatter
 sqlite                                   Library that implements an embeddable SQL database engine
 stow                                     Manage the installation of software packages from source
 sway                                     i3-compatible window manager for Wayland
-tailscale                                The easiest, most secure, cross platform way to use WireGuard + oauth2 + 2FA/SSO
-terraform                                Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned.
+swayosd                                  Volume/brightness OSD (COPR: erikreider/swayosd)
+tailscale                                WireGuard-based VPN with SSO
+terraform                                Infrastructure as code tool
 tigervnc                                 A TigerVNC remote display system
 udiskie                                  Automounter for removable media
-uv                                       An extremely fast Python package installer and resolver, written in Rust
-waybar                                   Highly customizable Wayland bar for Sway and Wlroots based compositors
+uv                                       Fast Python package installer written in Rust
+waybar                                   Customizable Wayland bar for Sway
 wdisplays                                GUI display configurator for wlroots compositors
 wev                                      A tool for debugging events on a sway Wayland window
 wf-recorder                              Screen recorder for wlroots compositors
@@ -62,7 +63,7 @@ wl-clipboard                             Wayland clipboard utilities (wl-copy, w
 wlsunset                                 Day/night gamma adjustments for Wayland compositors
 xclip                                    Command line clipboard grabber
 xorriso                                  ISO-9660 and Rock Ridge image manipulation tool
-yubikey-manager                          Python library and command line tool for configuring a YubiKey
+yubikey-manager                          CLI tool for configuring YubiKeys
 zsh                                      Powerful interactive shell
 zsh-autosuggestions                      Fish-like autosuggestions for zsh
 zsh-syntax-highlighting                  Fish shell like syntax highlighting for Zsh
