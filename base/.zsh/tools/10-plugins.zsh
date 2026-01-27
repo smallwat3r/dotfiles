@@ -70,10 +70,12 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 __deferred_load_plugins() {
   __load_plugins
   __set_zsh_highlight_styles
+  # reinitialize autosuggestions after deferred load
+  (( $+functions[_zsh_autosuggest_start] )) && _zsh_autosuggest_start
   # unhook after first run
-  add-zle-hook-widget -d zle-line-init __deferred_load_plugins
+  add-zsh-hook -d precmd __deferred_load_plugins
   unfunction __deferred_load_plugins
 }
 
-autoload -Uz add-zle-hook-widget
-add-zle-hook-widget zle-line-init __deferred_load_plugins
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd __deferred_load_plugins
