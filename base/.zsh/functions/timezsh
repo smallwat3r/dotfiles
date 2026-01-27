@@ -1,19 +1,16 @@
 #!/usr/bin/env zsh
 
+zmodload zsh/datetime
 runs=${1:-10}
 total_ms=0
 
 for i in {1..$runs}; do
-  start=$(date +%s.%N)
+  start=$EPOCHREALTIME
   zsh -i -c exit >/dev/null 2>&1
-  end=$(date +%s.%N)
-
-  # compute delta in ms
-  delta_ms=$(printf "%.0f" "$(echo "($end - $start) * 1000" | bc -l)")
+  end=$EPOCHREALTIME
+  delta_ms=$(( (end - start) * 1000 ))
   total_ms=$(( total_ms + delta_ms ))
-
-  printf "run %2d: %3d ms\n" "$i" "$delta_ms"
+  printf "run %2d: %3.0f ms\n" "$i" "$delta_ms"
 done
 
-avg=$(( total_ms / runs ))
-printf "\nAverage: %d ms\n" "$avg"
+printf "\nAverage: %.0f ms\n" "$(( total_ms / runs ))"

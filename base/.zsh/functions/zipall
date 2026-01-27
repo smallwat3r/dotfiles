@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # Zip all files from current directory into their own zipfile
 
-for file in $(echo *(^/)); do
+for file in *(^/); do
   zip "${file%.*}.zip" "$file"
 done

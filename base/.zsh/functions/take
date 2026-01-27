@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 # Create and cd into directory
 
-mkdir -p "$@" && cd "$@" || return
+mkdir -p "$1" && cd "$1" || return
