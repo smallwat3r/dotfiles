@@ -17,6 +17,11 @@ setopt SHARE_HISTORY        # share history across all sessions in real-time
 setopt HIST_REDUCE_BLANKS   # get rid of superfluous blank lines
 setopt HIST_VERIFY          # perform history expansion and reload the line into the editing buffer
 setopt HISTIGNORESPACE      # do not save in history commands that starts by a space
+
+# Explicitly unset to keep duplicate entries, allowing to audit commands ran on
+# this machine in the right order
+unsetopt HIST_IGNORE_ALL_DUPS
+
 export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=1000000
 export SAVEHIST="${HISTSIZE}"
