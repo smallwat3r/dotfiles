@@ -35,3 +35,22 @@ ts-send() {
   local device=$(_ts_select_device)
   [[ -n "$device" ]] && tailscale file cp "$@" "${device}:"
 }
+
+ts-switch() {
+  local -A accounts=(
+    work  d52c
+    home  a195
+  )
+  if [[ -z $1 ]]; then
+    echo "Usage: ts-switch <alias>"
+    echo "Available aliases: ${(k)accounts}"
+    return 1
+  fi
+  local account_id=${accounts[$1]}
+  if [[ -z $account_id ]]; then
+    echo "Unknown alias: $1"
+    echo "Available aliases: ${(k)accounts}"
+    return 1
+  fi
+  sudo tailscale switch "$account_id"
+}
