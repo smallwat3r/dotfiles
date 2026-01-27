@@ -13,9 +13,7 @@
 ;; doc: https://github.com/akermu/emacs-libvterm
 (after! vterm
   (setq vterm-max-scrollback 6000
-        vterm-timer-delay 0.03
-        ;; Use eterm-color for better compatibility with some CLI tools
-        vterm-term-environment-variable "eterm-color")
+        vterm-timer-delay 0.03)
 
   ;; HACK: Fix for copying text from CLI tools that do their own line wrapping
   ;; (e.g., Claude CLI). vterm uses libvterm which stores screen content as a
