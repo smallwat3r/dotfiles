@@ -7,11 +7,11 @@
 
 ;; Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
-(package! applescript-mode :pin "3dbbb8b48e519a5208ce237db577056c7a5a5943")
+(package! applescript-mode :pin "82e5c35d0de9c8db6281aed21105f09acbb69eba")
 
 ;; Log files syntax highlighting
 ;; https://github.com/doublep/logview/commits/master
-(package! logview :pin "faac12ff45ef796d4ebc9587be6abcd7c32db0aa")
+(package! logview :pin "9c97221dd04d7398df098e9f942efff016b60bbf")
 
 ;; Nginx config files
 ;; https://github.com/ajc/nginx-mode/commits/master
@@ -19,7 +19,7 @@
 
 ;; SSH config files
 ;; https://github.com/jhgorrell/ssh-config-mode-el/commits/master
-(package! ssh-config-mode :pin "d0596f5fbeab3d2c3c30eb83527316403bc5b2f7")
+(package! ssh-config-mode :pin "f21726d6f44a0e769a15f0a94620078a326774f7")
 
 ;; Vim script syntax highlighting
 ;; https://github.com/mcandre/vimrc-mode/commits/master

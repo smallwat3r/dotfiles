@@ -3,4 +3,4 @@
 
 ;; PET (Python Executable Tracker)
 ;; https://github.com/wyuenho/emacs-pet/commits/main
-(package! pet :pin "1f7450237549ad9850543fbc78d12f9fd375324d")
+(package! pet :pin "222f1da892462d7bea5c7a7bbcb6b5a5f4cb2158")

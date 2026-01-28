@@ -3,7 +3,7 @@
 
 ;; Display keycast
 ;; https://github.com/tarsius/keycast/commits/main
-(package! keycast :pin "090ade99c1c03830d45cc763e5733a1ca001c4e5")
+(package! keycast :pin "b831e380c4deb1d51ce5db0a965b96427aec52e4")
 
 ;; Bitwarden support
 ;; https://github.com/seanfarley/emacs-bitwarden/commits/main

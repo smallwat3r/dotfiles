@@ -2,4 +2,4 @@
 ;;; smallwat3r/slack/packages.el
 
 ;; https://github.com/yuya373/emacs-slack/commits/master
-(package! slack :pin "4c34c526a7f5fa51a78bf21c0d3420f74d79df58")
+(package! slack :pin "a35c605a2fe98e95d82a80f0f320fd4913418f52")
