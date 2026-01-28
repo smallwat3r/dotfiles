@@ -1,3 +1,8 @@
+# Balena CLI for IoT device management
+#
+# Aliases and helpers for managing balenaCloud devices. Includes fuzzy
+# device selection for SSH, logs, and tunnel commands.
+
 path_add "$HOME/balena/bin"
 
 has balena || return

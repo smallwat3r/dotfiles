@@ -1,9 +1,9 @@
-# For comptatibility reasons this file needs to be loaded last
-# Move up directories easily
-# i.e.:
+# Rationalise dots for easy directory navigation
+#
+# Typing multiple dots expands to parent directories:
 #   ...  becomes ../..
 #   .... becomes ../../..
-#   etc...
+# Must be loaded last for compatibility with other key bindings.
 
 __rationalise-dot() {
   [[ $LBUFFER = *.. ]] && LBUFFER+=/.. || LBUFFER+=.

@@ -1,4 +1,7 @@
-# FZF configs and helper functions
+# FZF fuzzy finder
+#
+# Configures fzf with custom colors, key bindings, and ripgrep integration.
+# Ctrl+W for history search. OS-specific word navigation bindings.
 
 # Make sure fzf's bin is on PATH (Homebrew /usr/local layout)
 path_add /usr/local/opt/fzf/bin

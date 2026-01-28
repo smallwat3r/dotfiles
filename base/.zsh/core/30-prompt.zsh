@@ -1,4 +1,8 @@
-# ZSH prompt
+# Prompt configuration
+#
+# Minimal prompt with git status, virtualenv indicator, and optional
+# session tags. Also auto-starts tmux for interactive terminal sessions
+# (unless inside Emacs or Hammerspoon).
 
 # Display Python virtual environment name.
 __is_venv() {

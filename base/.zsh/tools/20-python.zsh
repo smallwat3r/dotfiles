@@ -1,4 +1,7 @@
-# Python related configuration
+# Python development
+#
+# Poetry PATH setup and virtualenv helpers. avenv activates the nearest
+# .venv up the directory tree. vrun/vpython/vpip run commands in venv.
 
 # Add Poetry's bin dir to PATH (old and new install locations)
 path_prepend "$HOME/.poetry/bin"

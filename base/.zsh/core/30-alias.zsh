@@ -1,3 +1,8 @@
+# Shell aliases and named directories
+#
+# Common shortcuts, global aliases (G, L, C, etc.), and hash directories
+# for quick navigation (~d for dotfiles, ~c for code, etc.).
+
 alias c='clear'
 alias p='pwd'
 alias qq='exit'

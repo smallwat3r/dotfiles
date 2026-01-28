@@ -1,5 +1,7 @@
-# GPG configs and helper functions
-# Dependencies: gpg, keybase
+# GPG and Keybase helpers
+#
+# Sets GPG_TTY for pinentry, provides key export/import functions,
+# and clipboard integration for SSH public keys.
 
 # only set GPG_TTY when we actually have a terminal
 if [[ -t 1 ]]; then

@@ -1,4 +1,7 @@
-# Tailscale helper functions and aliases
+# Tailscale VPN helpers
+#
+# Aliases for common commands and fuzzy device selection for SSH,
+# ping, and file transfer. ts-switch for multi-account support.
 
 is_macos && alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 

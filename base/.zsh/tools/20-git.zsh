@@ -1,4 +1,7 @@
-# Git related configurations
+# Git configuration
+#
+# SSH settings for reliability and auto-generates g<alias> shortcuts
+# from git aliases (e.g., gco for git checkout).
 
 has git || return
 

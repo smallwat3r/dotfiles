@@ -1,5 +1,7 @@
-# Tmux helper functions
-# Dependencies: tmux
+# Tmux session management
+#
+# Quick shortcuts for session control: tks (kill), tksa (kill all),
+# tls (list), sp/vs (split panes).
 
 has tmux || return
 

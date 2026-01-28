@@ -1,4 +1,7 @@
-# Manage any external tools / scripts, such as autosuggestions and syntax highlighting.
+# External zsh plugins
+#
+# Loads zsh-autosuggestions and zsh-syntax-highlighting with deferred
+# loading for faster shell startup. Plugins are sourced on first prompt.
 
 __load_plugins() {
   emulate -L zsh

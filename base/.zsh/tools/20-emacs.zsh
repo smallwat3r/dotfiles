@@ -1,4 +1,7 @@
-# Emacs configs and helper functions
+# Emacs configuration
+#
+# Sets up Emacs paths, Doom Emacs bin directory, and Eat terminal
+# integration for shell features like directory tracking.
 
 # Prefer a Homebrew Emacs on macOS, otherwise fall back to /usr/bin/emacs
 if is_macos; then

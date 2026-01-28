@@ -1,5 +1,7 @@
-# Docker helper functions
-# Dependencies: docker
+# Docker helpers
+#
+# Formatted container/image listings, quick exec/logs access, and
+# cleanup commands. dps/dim for pretty output, dlog/dexe for quick access.
 
 has docker || return
 

@@ -1,4 +1,8 @@
-# General configurations
+# General zsh configuration
+#
+# Shell options, history settings, and key bindings for a comfortable
+# interactive experience. Includes Ctrl+E to edit command line,
+# Ctrl+O to toggle quotes, and smart history search with arrow keys.
 
 unsetopt BEEP               # do no beep on errors
 unsetopt LIST_BEEP          # do not beep on anbiguous completion

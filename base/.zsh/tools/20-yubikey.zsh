@@ -1,4 +1,7 @@
-# YubiKey helpers
+# YubiKey management
+#
+# Helpers for OATH codes (with fzf selection), GPG card status,
+# FIDO2 operations, and SSH key generation with resident keys.
 
 has ykman || return
 

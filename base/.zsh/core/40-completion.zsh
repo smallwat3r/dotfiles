@@ -1,4 +1,7 @@
-# ZSH completion configuration
+# Completion configuration
+#
+# Sets up zsh completion with caching, case-insensitive matching,
+# menu selection, and styled output. Ctrl+A expands aliases.
 
 autoload -Uz compinit
 
