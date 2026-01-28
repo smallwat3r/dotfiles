@@ -1,11 +1,9 @@
 # FZF configs and helper functions
 
 # Make sure fzf's bin is on PATH (Homebrew /usr/local layout)
-if [[ -d /usr/local/opt/fzf/bin ]] && (( ${path[(Ie)/usr/local/opt/fzf/bin]} == 0 )); then
-  path+=("/usr/local/opt/fzf/bin")
-fi
+path_add /usr/local/opt/fzf/bin
 
-(( $+commands[fzf] )) || return
+has fzf || return
 
 # Ease access of history binding by remapping it.
 bindkey -r '^R'
@@ -76,7 +74,7 @@ export FZF_DEFAULT_OPTS="
   --bind=$__fzf_word_binds
 "
 unset __fzf_word_binds
-if (( $+commands[rg] )); then
+if has rg; then
   export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi

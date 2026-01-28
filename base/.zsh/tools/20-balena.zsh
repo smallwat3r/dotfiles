@@ -1,10 +1,6 @@
-if [[ -d $HOME/balena/bin ]]; then
-  if (( ${path[(Ie)$HOME/balena/bin]} == 0 )); then
-    path+=("$HOME/balena/bin")
-  fi
-fi
+path_add "$HOME/balena/bin"
 
-(( $+commands[balena] )) || return
+has balena || return
 
 alias bal='balena'
 alias bald='balena device list'

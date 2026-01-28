@@ -1,6 +1,6 @@
 # Git related configurations
 
-(( $+commands[git] )) || return
+has git || return
 
 export GIT_SSH_COMMAND='ssh -4 \
   -o ConnectTimeout=10 \

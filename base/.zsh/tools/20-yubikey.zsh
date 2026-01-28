@@ -1,6 +1,6 @@
 # YubiKey helpers
 
-(( $+commands[ykman] )) || return
+has ykman || return
 
 # Show YubiKey info
 yk() { ykman info 2>/dev/null || echo "No YubiKey detected" }
@@ -13,7 +13,7 @@ yk-code() {
     local account
     if [[ -n "$1" ]]; then
         account="$1"
-    elif (( $+commands[fzf] )); then
+    elif has fzf; then
         account=$(ykman oath accounts list 2>/dev/null | fzf --prompt="Account: ")
     else
         echo "Usage: yk-code <account>" && return 1

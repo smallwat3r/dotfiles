@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 # Open in file manager
 
-if [[ "$OSTYPE" == darwin* ]]; then
+if is_macos; then
   program="open"
-elif command -v xdg-open >/dev/null 2>&1; then
+elif has xdg-open; then
   program="xdg-open"
 else
   printf "Can't find an appropriate file opener\n" >&2

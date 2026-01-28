@@ -1,7 +1,7 @@
 # Tmux helper functions
 # Dependencies: tmux
 
-(( $+commands[tmux] )) || return
+has tmux || return
 
 # Kill all Tmux sessions except the current one.
 tksa() {

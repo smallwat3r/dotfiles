@@ -7,13 +7,13 @@ if [[ -t 1 ]]; then
   export GPG_TTY
 fi
 
-if (( $+commands[gpg-connect-agent] )); then
+if has gpg-connect-agent; then
   gpg-clear-cache() {
     gpg-connect-agent reloadagent /bye
   }
 fi
 
-if (( $+commands[gpg] )); then
+if has gpg; then
   gpg-pubkey() {
     local id=${1:-matt@smallwat3r.com}
     gpg --armor --export "$id"
@@ -27,24 +27,11 @@ if (( $+commands[gpg] )); then
   gpg-ssh-key() {
     local key
     key="$(gpg --export-ssh-key "$USER")" || return
-
-    if [[ "$OSTYPE" =~ ^darwin ]]; then
-      printf "%s" "$key" | pbcopy
-    elif command -v wl-copy >/dev/null 2>&1; then
-      printf "%s" "$key" | wl-copy
-    elif command -v xclip >/dev/null 2>&1; then
-      printf "%s" "$key" | xclip -selection clipboard
-    else
-      printf '%s\n' "$key"
-      echo 'No clipboard tool found, printed key to stdout.' >&2
-      return 1
-    fi
-
-    echo 'Key copied to clipboard!'
+    printf "%s" "$key" | clip && echo 'Key copied to clipboard!'
   }
 fi
 
-if (( $+commands[keybase] )); then
+if has keybase; then
   gpg-keybase-import() {
     keybase pgp export | gpg --import -
   }

@@ -1,14 +1,8 @@
 # Python related configuration
 
 # Add Poetry's bin dir to PATH (old and new install locations)
-for _poetry_bin in "$HOME/.poetry/bin" "$HOME/.local/bin"; do
-  if [[ -d "$_poetry_bin" ]]; then
-    if (( ${path[(Ie)$_poetry_bin]} == 0 )); then
-      path=("$_poetry_bin" $path)
-    fi
-  fi
-done
-unset _poetry_bin
+path_prepend "$HOME/.poetry/bin"
+path_prepend "$HOME/.local/bin"
 
 # Activate the nearest python venv (.venv) up the directory tree
 avenv() {

@@ -1,7 +1,7 @@
 # Emacs configs and helper functions
 
 # Prefer a Homebrew Emacs on macOS, otherwise fall back to /usr/bin/emacs
-if [[ $OSTYPE == darwin* ]]; then
+if is_macos; then
   if [[ -x /opt/homebrew/bin/emacs ]]; then
     export EMACS='/opt/homebrew/bin/emacs'
   else
@@ -13,10 +13,7 @@ fi
 
 export EMACS_DOOM="$HOME/.emacs.d"
 
-# Ensure Doom's bin directory is on PATH
-if (( ${path[(Ie)$EMACS_DOOM/bin]} == 0 )); then
-  path+=("$EMACS_DOOM/bin")
-fi
+path_add "$EMACS_DOOM/bin"
 
 # Eat is a terminal emulator for Emacs. It provides shell integration for
 # directory tracking, command tracking, and prompt annotation.

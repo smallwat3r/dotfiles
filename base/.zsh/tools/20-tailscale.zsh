@@ -1,10 +1,8 @@
 # Tailscale helper functions and aliases
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
-fi
+is_macos && alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 
-(( $+commands[tailscale] )) || return
+has tailscale || return
 
 alias ts='tailscale'
 alias tss='tailscale status'

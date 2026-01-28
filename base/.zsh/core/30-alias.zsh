@@ -40,9 +40,7 @@ alias diskspace="df -P -kHl"
 alias dots="cd $HOME/dotfiles"
 
 # macOS-only helpers
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  alias fonts="open $HOME/Library/Fonts"
-fi
+is_macos && alias fonts="open $HOME/Library/Fonts"
 
 # Global aliases
 alias \
@@ -53,13 +51,7 @@ alias \
     -g T="| tail" \
     -g S="| sort"
 
-  if [[ "$OSTYPE" =~ ^darwin ]]; then
-    alias -g C="| pbcopy"
-  elif command -v wl-copy >/dev/null 2>&1; then
-    alias -g C="| wl-copy"
-  else
-    alias -g C="| xclip -selection clipboard"
-fi
+alias -g C="| $(_clip_cmd)"
 
 # Tracked aliases (named directories)
 hash -d \
@@ -74,6 +66,4 @@ hash -d \
   etc="/etc" \
   opt="/opt"
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  hash -d fonts="$HOME/Library/Fonts"
-fi
+is_macos && hash -d fonts="$HOME/Library/Fonts"

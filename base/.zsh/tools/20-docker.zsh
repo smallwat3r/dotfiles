@@ -1,7 +1,7 @@
 # Docker helper functions
 # Dependencies: docker
 
-(( $+commands[docker] )) || return
+has docker || return
 
 _docker_cols() {
   tput cols 2>/dev/null || echo 120
