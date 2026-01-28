@@ -127,9 +127,19 @@
     (when eat-terminal
       (eat-term-send-string eat-terminal (current-kill 0))))
 
+  (defun my/eat-backward-kill-word ()
+    "Send backward-kill-word to terminal.
+In Claude Code buffers, send M-backspace (ESC DEL) since Claude Code
+doesn't recognize C-backspace. Otherwise send C-backspace normally."
+    (interactive)
+    (when eat-terminal
+      (if (string-prefix-p "*claude:" (buffer-name))
+          (eat-term-send-string eat-terminal "\e\C-?")
+        (eat-self-input 1))))
+
   ;; Keybindings for semi-char mode
   (define-key eat-semi-char-mode-map (kbd "<escape>") #'evil-normal-state)
-  (define-key eat-semi-char-mode-map (kbd "C-<backspace>") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "C-<backspace>") #'my/eat-backward-kill-word)
   (define-key eat-semi-char-mode-map (kbd "M-<backspace>") #'eat-self-input)
   (define-key eat-semi-char-mode-map (kbd "M-d") #'eat-self-input)
   (define-key eat-semi-char-mode-map (kbd "M-f") #'eat-self-input)
