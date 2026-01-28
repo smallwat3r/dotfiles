@@ -275,7 +275,6 @@
   (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
   (goto-address-mail-face 'my-goto-address-mail-face))
 
-
 ;; Zen mode. Implements a distraction free writing mode.
 ;; doc: https://github.com/joostkremers/writeroom-mode
 (after! writeroom-mode
@@ -302,6 +301,7 @@
 
 ;; Show default "Wrote file" message on save.
 (setq save-silently nil)
+
 
 ;;
 ;;; Custom templates
