@@ -17,6 +17,10 @@
         claude-code-toggle-auto-select t
         claude-code-display-window-fn #'my/claude-display-buffer-full-frame)
 
+  ;; Include claude buffers in workspace buffer list
+  (add-hook 'doom-real-buffer-functions
+            (lambda (buf) (string-prefix-p "*claude:" (buffer-name buf))))
+
   (defun my/claude-code-toggle ()
     "Show or hide the Claude window in full frame."
     (interactive)
