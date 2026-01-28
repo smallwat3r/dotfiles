@@ -2,8 +2,8 @@
 # Pinentry wrapper - uses GUI when available, falls back to curses.
 
 for prog in pinentry-gnome3 pinentry-gtk-2 pinentry-qt pinentry-mac; do
-  if [ -n "$DISPLAY$WAYLAND_DISPLAY" ] && command -v $prog >/dev/null 2>&1; then
-    exec $prog "$@"
+  if [ -n "$DISPLAY$WAYLAND_DISPLAY" ] && command -v "$prog" >/dev/null 2>&1; then
+    exec "$prog" "$@"
   fi
 done
 

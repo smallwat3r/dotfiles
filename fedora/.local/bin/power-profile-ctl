@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Control tuned power profiles.
 # Usage: power-profile-ctl [status|cycle]
+set -euo pipefail
+
+command -v tuned-adm >/dev/null || { echo "tuned-adm required" >&2; exit 1; }
 
 get_profile() {
     tuned-adm active 2>/dev/null | sed 's/Current active profile: //'
