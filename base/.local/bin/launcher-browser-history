@@ -15,27 +15,15 @@
 #
 set -euo pipefail
 
-# Helpers
+. "${HOME}/.local/lib/launcher.sh"
 
-die() { echo "$1" >&2; exit 1; }
-
-has() { command -v "$1" >/dev/null 2>&1; }
-
-require() { has "$1" || die "$1 is required"; }
-
-# Dependencies
-
-require fzf
-require sqlite3
-require jq
+require fzf sqlite3 jq
 
 # Config
 
 case "$(uname -s)" in
   Darwin)
     HISTORY="$HOME/Library/Application Support/Google/Chrome/Default/History"
-    fzf_bind="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
-
     open_url() { open -a "/Applications/Google Chrome.app" "$1"; }
     ;;
   Linux)
@@ -49,8 +37,6 @@ case "$(uname -s)" in
     do
       [[ -f "$path" ]] && HISTORY="$path" && break
     done
-    fzf_bind="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
-
     open_url() { setsid xdg-open "$1" >/dev/null 2>&1; }
     ;;
   *)
@@ -62,13 +48,7 @@ esac
 
 BOOKMARKS="${HISTORY%History}Bookmarks"
 
-fzf_colors="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
-
 # Functions
-
-fzf_pick() {
-  fzf --reverse --wrap --tiebreak=index --bind="$fzf_bind" --color="$fzf_colors"
-}
 
 list_entries() {
   local jq_filter='.. | select(.type? == "url") | "🔖 [\(.name)]\t\(.url)"'

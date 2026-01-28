@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 # Switch to a running application using fzf.
-# Requires: fzf
 set -euo pipefail
 
-command -v fzf >/dev/null || { echo "fzf required" >&2; exit 1; }
+. "${HOME}/.local/lib/launcher.sh"
 
-apps=$(osascript -e 'tell application "Finder" to get name of every process whose visible is true' | tr ',' '\n' | sed 's/^ //')
+require fzf
 
-target=$(echo "$apps" | fzf --color=fg+:186,hl:115,hl+:115 --bind=alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last) || exit 0
+apps=$(osascript -e 'tell application "Finder" to get name of every process whose visible is true' |
+       tr ',' '\n' | sed 's/^ //')
+
+target=$(echo "$apps" | fzf_pick) || exit 0
 
 osascript -e "tell application \"$target\" to activate"
