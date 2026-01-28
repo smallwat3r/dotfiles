@@ -53,33 +53,6 @@
   (define-key term-raw-map (kbd "M-b") #'my/term-send-backward-word)
   (define-key term-raw-map (kbd "C-y") #'my/term-yank))
 
-;; vterm
-;; doc: https://github.com/akermu/emacs-libvterm
-(after! vterm
-  (setq vterm-max-scrollback 6000
-        vterm-timer-delay 0.03)
-
-  ;; Auto-enable vterm-copy-mode when entering evil visual state
-  (defun my/vterm-visual-enter ()
-    "Enable vterm-copy-mode when entering visual state in vterm."
-    (when (and (derived-mode-p 'vterm-mode)
-               (not vterm-copy-mode))
-      (vterm-copy-mode 1)))
-
-  (defun my/vterm-visual-exit ()
-    "Disable vterm-copy-mode when exiting visual state in vterm."
-    (when (and (derived-mode-p 'vterm-mode)
-               vterm-copy-mode)
-      (vterm-copy-mode -1)))
-
-  (add-hook 'evil-visual-state-entry-hook #'my/vterm-visual-enter)
-  (add-hook 'evil-visual-state-exit-hook #'my/vterm-visual-exit)
-
-  ;; Always display the modeline in vterm
-  (add-hook 'vterm-mode-hook (lambda () (hide-mode-line-mode -1)) 90))
-
-(setq vterm-always-compile-module t)
-
 ;; remote file access
 (after! tramp
   (tramp-set-completion-function
@@ -101,45 +74,146 @@
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp)))
 
-(defun my/vterm-tramp-base-path ()
-  "Return the Tramp prefix (e.g., /ssh:user@host) without the directory."
-  (let* ((vec (or (car (tramp-list-connections))
-                  (when (tramp-tramp-file-p default-directory)
-                    (tramp-dissect-file-name default-directory))))
-         (method (and vec (tramp-file-name-method vec)))
-         (user   (and vec (tramp-file-name-user vec)))
-         (host   (and vec (tramp-file-name-host vec))))
-    (when (and method host)
-      (format "/%s:%s%s"
-              method
-              (if (and user (not (string-empty-p user))) (concat user "@") "")
-              host))))
+;; eat - Emulate A Terminal
+;; doc: https://codeberg.org/akib/emacs-eat
+(use-package! eat
+  :config
+  (setq eat-kill-buffer-on-exit t
+        eat-enable-mouse t
+        eat-tramp-shells '(("ssh" . "/bin/bash")
+                           ("scp" . "/bin/bash")
+                           ("sshx" . "/bin/bash")
+                           ("docker" . "/bin/sh"))
+        ;; Point to the correct integration directory (repos, not build)
+        eat-term-shell-integration-directory
+        (expand-file-name "straight/repos/eat/integration" doom-local-dir)
+        ;; Use xterm-256color for better remote compatibility
+        eat-term-name "xterm-256color"
+        ;; Disable left margin prompt annotation (removes left padding)
+        eat-enable-shell-prompt-annotation nil)
 
-(defun my/vterm-buffer-hooks-on-tramp ()
-  "Set up vterm for remote Tramp connections.
-Renames the buffer to include the remote host, and injects an `e'
-shell function that opens remote files in a local Emacs buffer
-via vterm's OSC 51 escape sequence (e.g., `e .bashrc')."
-  (when (and (eq major-mode 'vterm-mode)
-             default-directory
-             (file-remote-p default-directory))
-    (let ((tramp-base-path (my/vterm-tramp-base-path)))
-      (rename-buffer (format "*vterm@%s*" tramp-base-path) t)
-      ;; Inject `e' function: converts relative paths to absolute, then uses
-      ;; OSC 51 (a terminal escape sequence for shell-to-Emacs communication)
-      ;; to tell vterm to run find-file with the full Tramp path.
-      (vterm-send-string
-       (format
-        "e() { local f=\"$1\"; [[ \"$f\" != /* ]] && f=\"$PWD/$f\"; \
-printf '\\033]51;Efind-file %s:%%s\\007' \"$f\"; }\n"
-        tramp-base-path)))
-    (vterm-send-string "clear\n")))
-(add-hook! 'vterm-mode-hook #'my/vterm-buffer-hooks-on-tramp)
+  ;; Evil integration: switch eat modes based on evil state
+  ;; - Insert state: semi-char mode (keys go to terminal)
+  ;; - Normal/visual state: emacs mode (keys go to Emacs for navigation)
+  (defun my/eat-evil-insert-enter ()
+    "Switch to semi-char mode when entering insert state in eat."
+    (when (and (derived-mode-p 'eat-mode)
+               (boundp 'eat--input-mode)
+               (not (eq eat--input-mode 'semi-char)))
+      (eat-semi-char-mode)))
 
-;; provides extra convenience functions for vterm
-;; doc: https://github.com/Sbozzolo/vterm-extra
-(use-package! vterm-extra
-  :after vterm
-  :bind (("s-t" . vterm-extra-dispatcher)
-         :map vterm-mode-map
-         (("C-c C-e" . vterm-extra-edit-command-in-new-buffer))))
+  (defun my/eat-evil-insert-exit ()
+    "Switch to emacs mode when exiting insert state in eat."
+    (when (and (derived-mode-p 'eat-mode)
+               (boundp 'eat--input-mode)
+               (not (eq eat--input-mode 'emacs)))
+      (eat-emacs-mode)))
+
+  (add-hook 'evil-insert-state-entry-hook #'my/eat-evil-insert-enter)
+  (add-hook 'evil-insert-state-exit-hook #'my/eat-evil-insert-exit)
+
+  ;; Start in insert state (semi-char mode) when opening eat
+  (add-hook 'eat-mode-hook #'evil-insert-state)
+
+  ;; Always display the modeline in eat
+  (defun my/eat-show-modeline ()
+    "Ensure modeline is visible in eat buffers."
+    (hide-mode-line-mode -1)
+    (setq-local mode-line-format (default-value 'mode-line-format)))
+  (add-hook 'eat-mode-hook #'my/eat-show-modeline 100)
+
+  ;; Yank from kill ring into terminal
+  (defun my/eat-yank ()
+    "Yank the last killed text into eat terminal."
+    (interactive)
+    (when eat-terminal
+      (eat-term-send-string eat-terminal (current-kill 0))))
+
+  ;; Keybindings for semi-char mode
+  (define-key eat-semi-char-mode-map (kbd "<escape>") #'evil-normal-state)
+  (define-key eat-semi-char-mode-map (kbd "C-<backspace>") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "M-<backspace>") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "M-d") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "M-f") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "M-b") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "C-k") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "C-j") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "C-y") #'my/eat-yank)
+  (define-key eat-semi-char-mode-map (kbd "C-,") #'my/eat-zsh-history-pick)
+
+  ;; Tramp integration for remote connections
+  (defun my/eat--tramp-base-path ()
+    "Return the Tramp prefix (e.g., /ssh:user@host:) without the directory."
+    (let* ((vec (when (tramp-tramp-file-p default-directory)
+                  (tramp-dissect-file-name default-directory)))
+           (method (and vec (tramp-file-name-method vec)))
+           (user   (and vec (tramp-file-name-user vec)))
+           (host   (and vec (tramp-file-name-host vec))))
+      (when (and method host)
+        (format "/%s:%s%s:"
+                method
+                (if (and user (not (string-empty-p user))) (concat user "@") "")
+                host))))
+
+  ;; Message handler for opening files from remote shells
+  (defun my/eat-find-file-handler (path)
+    "Open PATH in Emacs."
+    (when (and path (not (string-empty-p path)))
+      (find-file path)))
+
+  (add-to-list 'eat-message-handler-alist '("find-file" . my/eat-find-file-handler))
+
+  (defun my/eat-setup-tramp (proc)
+    "Set up eat for remote Tramp connections.
+
+Renames the buffer to include the remote host, and injects an `e' shell
+function that opens remote files in a local Emacs buffer.
+
+The `e' function works by sending an escape sequence that eat interprets:
+  - User runs: e myfile.txt
+  - Shell resolves to absolute path: /home/user/myfile.txt
+  - Shell sends OSC 51 escape sequence with base64-encoded message
+  - Eat receives and decodes the message
+  - Eat calls the registered `find-file' handler with the full tramp path
+  - Emacs opens: /ssh:user@host:/home/user/myfile.txt
+
+Escape sequence format (eat message protocol):
+  \\033]51;e;M;<base64:handler>;<base64:path>\\033\\\\
+
+Example for `e myfile.txt' on ssh:pi@myhost in /home/pi:
+  - handler: \"find-file\" -> base64 -> \"ZmluZC1maWxl\"
+  - path: \"/ssh:pi@myhost:/home/pi/myfile.txt\" -> base64 -> \"L3NzaDpwaUB...\"
+  - full sequence: \\033]51;e;M;ZmluZC1maWxl;L3NzaDpwaUB...\\033\\\\
+
+Eat decodes both base64 strings, looks up \"find-file\" in
+`eat-message-handler-alist', and calls the handler with the decoded path.
+
+PROC is the process started by eat."
+    (when-let* ((buf (process-buffer proc))
+                (_ (buffer-live-p buf)))
+      (with-current-buffer buf
+        (when (file-remote-p default-directory)
+          (let ((tramp-base-path (my/eat--tramp-base-path)))
+            (when tramp-base-path
+              (rename-buffer (format "*eat@%s*" tramp-base-path) t)
+              ;; Delay injection to let the shell initialize
+              (run-at-time
+               0.5 nil
+               (lambda (process tramp-path)
+                 (when (and (process-live-p process)
+                            (buffer-live-p (process-buffer process)))
+                   (with-current-buffer (process-buffer process)
+                     (process-send-string
+                      process
+                      (concat
+                       "e() { "
+                       "local f=\"$1\"; "
+                       "[[ \"$f\" != /* ]] && f=\"$PWD/$f\"; "
+                       "printf '\\033]51;e;M;%s;%s\\033\\\\' "
+                       "\"$(printf 'find-file' | base64)\" "
+                       "\"$(printf '" tramp-path "%s' \"$f\" | base64)\"; "
+                       "}\n"))
+                     (process-send-string process "clear\n"))))
+               proc tramp-base-path)))))))
+
+  (add-hook 'eat-exec-hook #'my/eat-setup-tramp))

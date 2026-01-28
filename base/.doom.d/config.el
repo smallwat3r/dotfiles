@@ -273,7 +273,7 @@
     :group 'basic-faces)
   :hook
   (prog-mode . goto-address-prog-mode)
-  ((text-mode vterm-mode restclient-mode compilation-mode) . goto-address-mode)
+  ((text-mode eat-mode restclient-mode compilation-mode) . goto-address-mode)
   :custom
   (goto-address-mail-regexp "\\w+\\(\\.\\w+\\)?\\(\\+\\w+\\)?@\\(\\w\\|\\.\\)+\\.\\w+")
   (goto-address-mail-face 'my-goto-address-mail-face))

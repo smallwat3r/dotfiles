@@ -18,12 +18,10 @@ if (( ${path[(Ie)$EMACS_DOOM/bin]} == 0 )); then
   path+=("$EMACS_DOOM/bin")
 fi
 
-# Vterm is used as a terminal emulator within Emacs. It provides by default some
-# useful functions and configurations for Zsh.
-if [[ $INSIDE_EMACS == 'vterm' ]] \
-  && [[ -n $EMACS_VTERM_PATH ]] \
-  && [[ -f $EMACS_VTERM_PATH/etc/emacs-vterm-zsh.sh ]]; then
-  source "$EMACS_VTERM_PATH/etc/emacs-vterm-zsh.sh"
+# Eat is a terminal emulator for Emacs. It provides shell integration for
+# directory tracking, command tracking, and prompt annotation.
+if [[ -n $EAT_SHELL_INTEGRATION_DIR ]]; then
+  source "$EAT_SHELL_INTEGRATION_DIR/zsh"
 fi
 
 # Projectile builds a cache that sometimes needs to be cleared for Emacs to see

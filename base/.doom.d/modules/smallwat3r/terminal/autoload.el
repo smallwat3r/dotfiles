@@ -34,18 +34,6 @@
    (my/terminal-here--command))
   (message "Terminal is ready!"))
 
-;;;###autoload
-(defun my/vterm/toggle-current-buffer ()
-  "Toggles a vterm buffer from the current directory."
-  (interactive)
-  (+vterm/toggle t))
-
-;;;###autoload
-(defun my/vterm/here-current-buffer ()
-  "Open a vterm buffer from the current directory."
-  (interactive)
-  (+vterm/here t))
-
 (defun my/ssh-config-hosts ()
   "Return a list of SSH host aliases from the files in `my-ssh-config-files`."
   (let ((hosts '()))
@@ -102,28 +90,121 @@ Sets INSIDE_EMACS so the remote shell knows it was launched from Emacs."
     (split-string (shell-command-to-string cmd) "\n" t)))
 
 ;;;###autoload
-(defun my/vterm-zsh-history-pick ()
-  "Prompt from zsh history and insert into vterm (recency preserved)."
-  (interactive)
-  (let* ((history (my/zsh-history-candidates))
-         ;; tell Emacs to keep given order
-         (collection (lambda (string pred action)
-                       (if (eq action 'metadata)
-                           '(metadata
-                             (display-sort-function . identity)
-                             (cycle-sort-function . identity))
-                         (complete-with-action action history string pred))))
-         (initial (or (thing-at-point 'symbol t) "")))
-    (let ((choice (completing-read "zsh history: " collection nil nil initial)))
-      (when (and (fboundp 'vterm-send-meta-backspace)
-                 (thing-at-point 'symbol))
-        (vterm-send-meta-backspace))
-      (vterm-send-string choice))))
-
-;;;###autoload
 (defun my/open-remote-conn ()
   "Open remote SSH connection with Tramp."
   (interactive)
   (let ((tramp-path "/ssh:")
         (prompt "Pick target: "))
     (find-file (read-file-name prompt tramp-path))))
+
+;;
+;;; eat
+
+(defun my/eat--project-root ()
+  "Return the project root directory or `default-directory'.
+For remote directories, returns the remote default-directory."
+  (if (file-remote-p default-directory)
+      default-directory
+    (or (vc-root-dir)
+        (and (fboundp 'projectile-project-root) (projectile-project-root))
+        default-directory)))
+
+(defun my/eat--buffer-for-dir (dir)
+  "Return buffer name for eat in DIR."
+  (if (file-remote-p dir)
+      (format "*eat@%s*" (file-remote-p dir))
+    (format "*eat:%s*" (abbreviate-file-name dir))))
+
+(defun my/eat--get-buffer (dir)
+  "Get or create an eat buffer for DIR."
+  (require 'eat)
+  (let ((buf-name (my/eat--buffer-for-dir dir)))
+    (or (get-buffer buf-name)
+        (my/eat--new-buffer dir buf-name))))
+
+(defun my/eat--new-buffer (dir &optional name)
+  "Create a new eat buffer for DIR with optional NAME."
+  (require 'eat)
+  (let* ((default-directory dir)
+         (buf-name (or name (generate-new-buffer-name (my/eat--buffer-for-dir dir))))
+         (program (funcall eat-default-shell-function))
+         (buffer (get-buffer-create buf-name)))
+    (with-current-buffer buffer
+      (unless (eq major-mode #'eat-mode)
+        (eat-mode))
+      (unless (and (bound-and-true-p eat-terminal)
+                   (eat-term-parameter eat-terminal 'eat--process))
+        (eat-exec buffer buf-name "/usr/bin/env" nil
+                  (list "sh" "-c" program))))
+    buffer))
+
+;;;###autoload
+(defun my/eat/here (&optional here)
+  "Open a new eat buffer at the project root, replacing the current buffer.
+If HERE is non-nil, open at current buffer's directory.
+For remote directories, opens a shell on the remote host."
+  (interactive "P")
+  (require 'eat)
+  (let* ((dir (if here
+                  (or (and buffer-file-name (file-name-directory buffer-file-name))
+                      default-directory)
+                (my/eat--project-root)))
+         (buf (my/eat--new-buffer dir)))
+    (switch-to-buffer buf)))
+
+;;;###autoload
+(defun my/eat/toggle (&optional here)
+  "Toggle eat buffer visibility.
+If HERE is non-nil, use buffer-specific directory.
+For remote directories, opens a shell on the remote host."
+  (interactive "P")
+  (require 'eat)
+  (let* ((dir (if here
+                  (or (and buffer-file-name (file-name-directory buffer-file-name))
+                      default-directory)
+                (my/eat--project-root)))
+         (buf-name (my/eat--buffer-for-dir dir))
+         (buf (get-buffer buf-name)))
+    (if-let ((win (and buf (get-buffer-window buf))))
+        (delete-window win)
+      (pop-to-buffer (my/eat--get-buffer dir)))))
+
+;;;###autoload
+(defun my/eat/here-current-buffer ()
+  "Open an eat buffer from the current directory."
+  (interactive)
+  (my/eat/here t))
+
+;;;###autoload
+(defun my/eat/toggle-current-buffer ()
+  "Toggle an eat buffer from the current directory."
+  (interactive)
+  (my/eat/toggle t))
+
+;;;###autoload
+(defun my/eat-zsh-history-pick ()
+  "Prompt from zsh history and insert into eat (recency preserved)."
+  (interactive)
+  (require 'eat)
+  (unless (bound-and-true-p eat-terminal)
+    (user-error "No eat process in current buffer"))
+  (let* ((history (my/zsh-history-candidates))
+         (collection (lambda (string pred action)
+                       (if (eq action 'metadata)
+                           '(metadata
+                             (display-sort-function . identity)
+                             (cycle-sort-function . identity))
+                         (complete-with-action action history string pred))))
+         (initial (or (thing-at-point 'symbol t) ""))
+         (choice (completing-read "zsh history: " collection nil nil initial)))
+    (when (thing-at-point 'symbol)
+      (eat-term-send-string eat-terminal "\C-w"))
+    (eat-term-send-string eat-terminal choice)))
+
+;;;###autoload
+(defun my/eat-interrupt ()
+  "Send interrupt (C-c) to the eat terminal."
+  (interactive)
+  (require 'eat)
+  (when (bound-and-true-p eat-terminal)
+    (eat-term-send-string eat-terminal "\C-c")))

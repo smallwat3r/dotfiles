@@ -79,25 +79,26 @@
   (map!
    :leader
    (:prefix "o"
-    :desc "Terminal"                "1" #'my/terminal-here
-    :desc "Vterm at root"           "T" #'+vterm/here
-    :desc "Toggle vterm at root"    "t" #'+vterm/toggle
-    :desc "Vterm at buffer"         "V" #'my/vterm/here-current-buffer
-    :desc "Toggle vterm at buffer"  "v" #'my/vterm/toggle-current-buffer
-    :desc "Tramp SSH conn"          "." #'my/open-remote-conn
-    :desc "Term SSH conn"           "s" #'my/ssh-external))
-  (map! :map vterm-mode-map
-        :n "B" #'vterm-beginning-of-line
-        :n "<return>" #'evil-insert-resume
-        [remap delete-forward-char] #'vterm-send-delete
-        :in "<M-backspace>" #'vterm-send-meta-backspace
-        :n "<M-backspace>" #'vterm-send-meta-backspace
-        :in "C-k" #'vterm-send-up
-        :in "C-j" #'vterm-send-down
-        "C-;" #'my/vterm-zsh-history-pick)
-  (add-hook! 'vterm-mode-hook
-    (defun my/vterm-dd-binding ()
-      (evil-local-set-key 'normal "dd" (cmd! (vterm-send-C-c))))))
+    :desc "Terminal"             "1" #'my/terminal-here
+    :desc "Eat at root"          "T" #'my/eat/here
+    :desc "Toggle eat at root"   "t" #'my/eat/toggle
+    :desc "Eat at buffer"        "V" #'my/eat/here-current-buffer
+    :desc "Toggle eat at buffer" "v" #'my/eat/toggle-current-buffer
+    :desc "Tramp SSH conn"       "." #'my/open-remote-conn
+    :desc "Term SSH conn"        "s" #'my/ssh-external))
+  (map! :map eat-mode-map
+        :n "B" #'beginning-of-line
+        :n "E" #'end-of-line
+        :n "0" #'beginning-of-line
+        :n "$" #'end-of-line
+        :n "G" #'end-of-buffer
+        :n "gg" #'beginning-of-buffer
+        :n "C-u" #'evil-scroll-up
+        :n "C-d" #'evil-scroll-down
+        :n "RET" #'evil-insert-state
+        :ni "C-," #'my/eat-zsh-history-pick)
+  (after! eat
+    (evil-define-key 'normal eat-mode-map "dd" #'my/eat-interrupt)))
 
 ;; Google (:smallwat3r google)
 (when (modulep! :smallwat3r google)
@@ -135,19 +136,21 @@
   (map!
    :leader
    (:prefix ("r" . "AI")
-    :desc "Claude chat"                 "c" #'my/claude-chat
-    :desc "Claude chat at root"         "C" #'my/claude-chat-project-root
-    :desc "New Claude chat"             "n" #'my/claude-new-chat
-    :desc "New Claude chat at root"     "N" #'my/claude-new-chat-project-root
-    :desc "New named chat"              "a" #'my/claude-new-chat-named
-    :desc "New named chat at root"      "A" #'my/claude-new-chat-named-project-root
-    :desc "Rename chat"                 "R" #'my/claude-rename-chat
-    :desc "Switch Claude chat"          "s" #'my/claude-switch-chat
-    :desc "Toggle Claude"               "t" #'my/claude-toggle
-    :desc "Send region"                 "r" #'my/claude-send-region
-    :desc "Send buffer"                 "b" #'my/claude-send-buffer
-    :desc "Send region with context"    "x" #'my/claude-send-region-with-context
-    :desc "Send region with prompt"     "p" #'my/claude-send-region-with-prompt)))
+    :desc "Claude chat"              "c" #'claude-code
+    :desc "Claude continue"          "C" #'claude-code-continue
+    :desc "Claude resume"            "R" #'claude-code-resume
+    :desc "New instance"             "n" #'claude-code-new-instance
+    :desc "Start in directory"       "d" #'claude-code-start-in-directory
+    :desc "Switch buffer"            "s" #'claude-code-switch-to-buffer
+    :desc "Toggle Claude"            "t" #'claude-code-toggle
+    :desc "Send region"              "r" #'claude-code-send-region
+    :desc "Send command"             "p" #'claude-code-send-command
+    :desc "Send with context"        "x" #'claude-code-send-command-with-context
+    :desc "Send buffer file"         "b" #'claude-code-send-buffer-file
+    :desc "Fix error at point"       "e" #'claude-code-fix-error-at-point
+    :desc "Cycle mode"               "m" #'claude-code-cycle-mode
+    :desc "Transient menu"           "M" #'claude-code-transient
+    :desc "Kill session"             "k" #'claude-code-kill)))
 
 ;; Evil (:smallwat3r evil-ext)
 (when (modulep! :smallwat3r evil-ext)

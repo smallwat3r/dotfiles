@@ -61,9 +61,6 @@
        undo
        vc
 
-       :term
-       vterm
-
        :checkers
        (spell +aspell)
        syntax

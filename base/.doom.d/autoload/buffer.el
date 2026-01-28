@@ -12,18 +12,22 @@
 
 ;;;###autoload
 (defun my/kill-buffer (&optional buffer)
-  "Kill current buffer or BUFFER without prompts for term/vterm/eshell."
+  "Kill current buffer or BUFFER without prompts for term/eat/eshell.
+Also closes the window if it was a split."
   (interactive
    (list (when current-prefix-arg
            (read-buffer "Kill buffer: " (current-buffer) t))))
   (let* ((buf (or buffer (current-buffer)))
-         (bufname (buffer-name buf)))
+         (bufname (buffer-name buf))
+         (win (get-buffer-window buf)))
     (with-current-buffer buf
-      (when (derived-mode-p 'vterm-mode 'term-mode 'eshell-mode)
+      (when (derived-mode-p 'eat-mode 'term-mode 'eshell-mode)
         (set-buffer-modified-p nil)
         (when-let ((proc (get-buffer-process buf)))
           (set-process-query-on-exit-flag proc nil))))
     (kill-buffer buf)
+    (when (and win (not (one-window-p)))
+      (delete-window win))
     (message "Killed buffer: %s" bufname)))
 
 ;;;###autoload
