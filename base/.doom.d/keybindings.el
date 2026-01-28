@@ -98,7 +98,8 @@
         :n "RET" #'evil-insert-state
         :ni "C-," #'my/eat-zsh-history-pick)
   (after! eat
-    (evil-define-key 'normal eat-mode-map "dd" #'my/eat-interrupt)))
+    (evil-define-key 'normal eat-mode-map "dd" #'my/eat-interrupt)
+    (evil-define-key 'normal eat-mode-map "p" #'my/eat-yank)))
 
 ;; Google (:smallwat3r google)
 (when (modulep! :smallwat3r google)

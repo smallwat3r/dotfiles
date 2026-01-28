@@ -87,8 +87,6 @@
         ;; Point to the correct integration directory (repos, not build)
         eat-term-shell-integration-directory
         (expand-file-name "straight/repos/eat/integration" doom-local-dir)
-        ;; Use xterm-256color for better remote compatibility
-        eat-term-name "xterm-256color"
         ;; Disable left margin prompt annotation (removes left padding)
         eat-enable-shell-prompt-annotation nil)
 
@@ -136,6 +134,8 @@
   (define-key eat-semi-char-mode-map (kbd "M-d") #'eat-self-input)
   (define-key eat-semi-char-mode-map (kbd "M-f") #'eat-self-input)
   (define-key eat-semi-char-mode-map (kbd "M-b") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "C-<left>") #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "C-<right>") #'eat-self-input)
   (define-key eat-semi-char-mode-map (kbd "C-k") #'eat-self-input)
   (define-key eat-semi-char-mode-map (kbd "C-j") #'eat-self-input)
   (define-key eat-semi-char-mode-map (kbd "C-y") #'my/eat-yank)
