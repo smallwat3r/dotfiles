@@ -1,5 +1,10 @@
 ;;; smallwat3r/filetypes/config.el -*- lexical-binding: t; -*-
 
+;; CSV
+;; doc: https://elpa.gnu.org/packages/csv-mode.html
+(use-package! csv-mode
+  :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode))
+
 ;; Applescript
 ;; doc: https://github.com/emacsorphanage/applescript-mode
 (use-package! applescript-mode

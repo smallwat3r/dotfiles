@@ -52,11 +52,6 @@
             (goto-char string-start)
             (insert "f")))))))
 
-  (map! :map python-mode-map
-        :leader
-        :localleader
-        :desc "Toggle f-string" "f" #'my/python-toggle-fstring)
-
   (after! lookup
     (add-to-list '+lookup-provider-url-alist
                  '("Python Docs" "https://docs.python.org/3/search.html?q=%s"))))

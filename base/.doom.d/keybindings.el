@@ -123,7 +123,11 @@
   (map!
    :leader
    (:prefix ("P" . "password")
-    :desc "Open password-store buffer" "p" #'pass)))
+    :desc "Open password-store buffer" "p" #'pass
+    :desc "Bitwarden login"            "l" #'bitwarden-login
+    :desc "Bitwarden unlock"           "u" #'bitwarden-unlock
+    :desc "Bitwarden lock"             "L" #'bitwarden-lock
+    :desc "Bitwarden list all"         "b" #'bitwarden-list-all)))
 
 ;; Debug (:smallwat3r debug)
 (when (modulep! :smallwat3r debug)
@@ -216,3 +220,26 @@
           :g "k" #'evil-snipe-repeat-reverse
           :g "n" #'evil-snipe-repeat         ; custom layout
           :g "a" #'evil-snipe-repeat-reverse)))
+
+;; Filetypes (:smallwat3r filetypes)
+(when (modulep! :smallwat3r filetypes)
+  (map! :map csv-mode-map
+        :leader
+        :localleader
+        :desc "CSV align fields" "a" #'csv-align-fields
+        :desc "CSV unalign fields" "A" #'csv-unalign-fields
+        :desc "CSV toggle sticky header" "h" #'csv-header-line))
+
+;; Highlighting (:smallwat3r highlighting)
+(when (modulep! :smallwat3r highlighting)
+  (map! :leader
+        :prefix "c"
+        :desc "Add overlay"     "h" #'symbol-overlay-put
+        :desc "Remove overlays" "H" #'symbol-overlay-remove-all))
+
+;; Python (:smallwat3r python-ext)
+(when (modulep! :smallwat3r python-ext)
+  (map! :map python-mode-map
+        :leader
+        :localleader
+        :desc "Toggle f-string" "f" #'my/python-toggle-fstring))

@@ -1,6 +1,10 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; smallwat3r/filetypes/packages.el
 
+;; CSV
+;; https://git.savannah.gnu.org/cgit/emacs/elpa.git
+(package! csv-mode :pin "1695ee17521d55dbe94caacaef5a94dfa933cd9f")
+
 ;; Applescript
 ;; https://github.com/emacsorphanage/applescript-mode/commits/master
 (package! applescript-mode :pin "3dbbb8b48e519a5208ce237db577056c7a5a5943")

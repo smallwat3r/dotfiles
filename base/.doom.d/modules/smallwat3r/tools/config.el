@@ -12,14 +12,7 @@
   :custom
   (bitwarden-user user-mail-address)
   (bitwarden-automatic-unlock
-   (lambda () (auth-source-pass-get 'secret "bitwarden/password")))
-  :init
-  (map! :leader
-        :prefix "P"
-        :desc "Bitwarden login"    "l" #'bitwarden-login
-        :desc "Bitwarden unlock"   "u" #'bitwarden-unlock
-        :desc "Bitwarden lock"     "L" #'bitwarden-lock
-        :desc "Bitwarden list all" "b" #'bitwarden-list-all))
+   (lambda () (auth-source-pass-get 'secret "bitwarden/password"))))
 
 ;; Copy the active region and add it to the kill ring formatted for
 ;; Github, Slack etc...

@@ -10,7 +10,6 @@
 
 (doom! :smallwat3r
        claude
-       csv
        debug
        dired
        docker
