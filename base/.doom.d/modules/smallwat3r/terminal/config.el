@@ -78,6 +78,25 @@
 ;; doc: https://codeberg.org/akib/emacs-eat
 (use-package! eat
   :config
+  ;; Terminal colors optimized for light backgrounds
+  (custom-set-faces!
+    '(eat-term-color-0 :foreground "#000000")   ; black
+    '(eat-term-color-1 :foreground "#aa0000")   ; red
+    '(eat-term-color-2 :foreground "#00aa00")   ; green
+    '(eat-term-color-3 :foreground "#aa5500")   ; yellow/brown
+    '(eat-term-color-4 :foreground "#0000aa")   ; blue
+    '(eat-term-color-5 :foreground "#aa00aa")   ; magenta
+    '(eat-term-color-6 :foreground "#00aaaa")   ; cyan
+    '(eat-term-color-7 :foreground "#555555")   ; white (dimmed for light bg)
+    '(eat-term-color-8 :foreground "#444444")   ; bright black
+    '(eat-term-color-9 :foreground "#cc0000")   ; bright red
+    '(eat-term-color-10 :foreground "#00cc00")  ; bright green
+    '(eat-term-color-11 :foreground "#cc7700")  ; bright yellow
+    '(eat-term-color-12 :foreground "#0000cc")  ; bright blue
+    '(eat-term-color-13 :foreground "#cc00cc")  ; bright magenta
+    '(eat-term-color-14 :foreground "#00cccc")  ; bright cyan
+    '(eat-term-color-15 :foreground "#333333")) ; bright white
+
   (setq eat-kill-buffer-on-exit t
         eat-enable-mouse t
         eat-tramp-shells '(("ssh" . "/bin/bash")
