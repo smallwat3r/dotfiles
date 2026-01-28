@@ -27,13 +27,13 @@ else
     FZF_BIND="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
 fi
 
-FZF_COLORS="bg:-1,bg+:-1,fg+:-1:underline,gutter:-1,pointer:166:bold,hl:166:bold,hl+:166:bold,info:166"
+FZF_COLORS="bg:-1,bg+:-1,fg+:-1:underline,gutter:-1,pointer:166:bold,hl:166:bold,hl+:166:bold:underline,info:166"
 
 # FZF picker with standard options
 # Usage: fzf_pick [prompt]
 fzf_pick() {
     fzf --reverse --wrap --tiebreak=index \
-        --pointer='→' --prompt="${1:-}" \
+        --pointer=▌ --prompt="${1:-}" \
         --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 
