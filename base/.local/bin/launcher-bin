@@ -2,10 +2,10 @@
 #
 # launcher-bin - Custom command launcher
 #
-# Interactively select and run a command from PATH or installed
-# Flatpak applications. Commands are sorted by usage frequency.
+# Interactively select and run a command from PATH, desktop applications,
+# or installed Flatpak apps. Commands are sorted by usage frequency.
 #
-# Dependencies: fzf, flatpak (optional)
+# Dependencies: fzf, flatpak (optional), gtk-launch (optional)
 #
 PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 set -euo pipefail
@@ -18,6 +18,8 @@ HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bin-history"
 HISTORY_MAX_LINES=1000
 
 is_flatpak() { has flatpak && flatpak info "$1" >/dev/null 2>&1; }
+is_desktop() { [[ -f "/usr/share/applications/$1.desktop" ]] || \
+               [[ -f "${HOME}/.local/share/applications/$1.desktop" ]]; }
 
 trim_history() {
     [[ -f $HISTORY_FILE ]] || return 0
@@ -33,14 +35,29 @@ run() {
     echo "$1" >> "$HISTORY_FILE"
     trim_history
     if is_flatpak "$1"; then
-        flatpak run "$1" &
+        setsid flatpak run "$1" >/dev/null 2>&1 &
+    elif is_desktop "$1"; then
+        setsid gtk-launch "$1" >/dev/null 2>&1 &
     else
-        "$1" &
+        setsid "$1" >/dev/null 2>&1 &
     fi
+}
+
+list_desktop_apps() {
+    local dir name
+    for dir in /usr/share/applications ~/.local/share/applications; do
+        [[ -d $dir ]] || continue
+        for f in "$dir"/*.desktop; do
+            [[ -f $f ]] || continue
+            name=$(grep -m1 '^Name=' "$f" 2>/dev/null | cut -d= -f2-)
+            [[ -n $name ]] && echo "${f##*/}" | sed 's/\.desktop$//'
+        done
+    done
 }
 
 list_commands() {
     compgen -c
+    list_desktop_apps
     if is_linux && has flatpak; then
         flatpak list --app --columns=application
     fi
