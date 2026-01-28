@@ -24,9 +24,6 @@
       "-")
     :modes '(python-mode))
 
-  ;; Debugger
-  (after! dap-mode
-    (setq dap-python-debugger 'debugpy))
 
   (defun my/python-toggle-fstring ()
     "Toggle f-string prefix on the current Python string literal."
@@ -57,14 +54,23 @@
     (add-to-list '+lookup-provider-url-alist
                  '("Python Docs" "https://docs.python.org/3/search.html?q=%s"))))
 
+;; DAP (Debug Adapter Protocol)
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy)
+  (require 'dap-python))
+
 ;; PET (Python Executable Tracker)
 ;; Automatically finds and uses the correct Python executable for the project
-;; (e.g. from virtualenv, poetry, pyenv).
+;; (e.g. from virtualenv, poetry, pyenv). Also configures eglot and dap-mode
+;; to use the correct Python.
 ;; doc: https://github.com/wyuenho/emacs-pet/
 (use-package! pet
   :config
   (add-hook! 'python-mode-hook
     (pet-mode)
     (when-let ((python (pet-executable-find "python")))
+      ;; Eglot/basedpyright
       (setq-local eglot-workspace-configuration
-                  `(:basedpyright (:pythonPath ,python))))))
+                  `(:basedpyright (:pythonPath ,python)))
+      ;; DAP debugger
+      (setq-local dap-python-executable python))))
