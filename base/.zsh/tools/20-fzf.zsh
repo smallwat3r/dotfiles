@@ -65,8 +65,8 @@ esac
 
 export FZF_DEFAULT_OPTS="
   --reverse
-  --color=bg:-1,bg+:-1
-  --color=fg:-1,fg+:-1
+  --color=bg:-1,bg+:254
+  --color=fg:-1,fg+:0
   --color=hl:33,hl+:33
   --color=info:30
   --color=prompt:30

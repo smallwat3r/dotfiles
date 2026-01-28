@@ -27,7 +27,7 @@ else
     FZF_BIND="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
 fi
 
-FZF_COLORS="bg:-1,bg+:-1,fg:-1,fg+:-1,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
+FZF_COLORS="bg:-1,bg+:254,fg:-1,fg+:0,hl:33,hl+:33,info:30,prompt:30,pointer:32,marker:32,spinner:32"
 
 # FZF picker with standard options
 # Usage: fzf_pick [prompt]

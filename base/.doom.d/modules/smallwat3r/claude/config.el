@@ -15,4 +15,20 @@
   (setq claude-code-terminal-backend 'eat
         claude-code-notification-function #'my/claude-notify
         claude-code-toggle-auto-select t
-        claude-code-display-window-fn #'my/claude-display-buffer-full-frame))
+        claude-code-display-window-fn #'my/claude-display-buffer-full-frame)
+
+  (defun my/claude-code-toggle ()
+    "Show or hide the Claude window in full frame."
+    (interactive)
+    (let ((claude-code-buffer (claude-code--get-or-prompt-for-buffer)))
+      (if claude-code-buffer
+          (if (get-buffer-window claude-code-buffer)
+              (delete-window (get-buffer-window claude-code-buffer))
+            (let ((window (my/claude-display-buffer-full-frame claude-code-buffer)))
+              (set-window-parameter window 'no-delete-other-windows
+                                    claude-code-no-delete-other-windows)
+              (when claude-code-toggle-auto-select
+                (select-window window))))
+        (claude-code--show-not-running-message))))
+
+  (advice-add 'claude-code-toggle :override #'my/claude-code-toggle))
