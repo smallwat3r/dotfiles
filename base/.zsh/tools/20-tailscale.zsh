@@ -12,8 +12,10 @@ alias tsdn='tailscale down'
 alias tsnc='tailscale netcheck'
 
 _ts_select_device() {
-  tailscale status --json \
-    | jq -r '.Peer[] | "\(.DNSName | split(".")[0])\t\(.TailscaleIPs[0])\t\(.Online)"' \
+  has jq fzf || { echo "jq and fzf required" >&2; return 1; }
+  local status
+  status=$(tailscale status --json 2>/dev/null) || { echo "Failed to get status" >&2; return 1; }
+  jq -r '.Peer[] | "\(.DNSName | split(".")[0])\t\(.TailscaleIPs[0])\t\(.Online)"' <<< "$status" \
     | fzf --with-nth=1.. \
     | cut -f1
 }

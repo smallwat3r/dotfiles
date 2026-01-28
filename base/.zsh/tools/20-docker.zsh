@@ -53,6 +53,7 @@ dlog() {
     echo "Usage: dlog <container> [lines]" >&2
     return 1
   fi
+  docker inspect "$1" &>/dev/null || { echo "Container '$1' not found" >&2; return 1; }
   docker logs --follow --tail "${2:-10}" "$1"
 }
 
@@ -61,6 +62,7 @@ dexe() {
     echo "Usage: dexe <container> [shell]" >&2
     return 1
   fi
+  docker inspect "$1" &>/dev/null || { echo "Container '$1' not found" >&2; return 1; }
   docker exec -it "$1" "${2:-/bin/sh}"
 }
 
