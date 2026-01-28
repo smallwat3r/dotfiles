@@ -66,16 +66,17 @@ esac
 
 export FZF_DEFAULT_OPTS="
   --reverse
-  --color=bg:-1,bg+:254
-  --color=fg:-1,fg+:0
+  --pointer='→'
+  --color=bg:-1,fg:-1
   --color=hl:33,hl+:33
   --color=info:30
   --color=prompt:30
-  --color=pointer:32
+  --color=pointer:36
   --color=marker:32
   --color=spinner:32
   --bind=$__fzf_word_binds
 "
+
 unset __fzf_word_binds
 if has rg; then
   export FZF_DEFAULT_COMMAND='rg --smart-case --files --hidden --glob "!.git/*"'
