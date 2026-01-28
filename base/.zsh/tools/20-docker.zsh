@@ -12,13 +12,8 @@ _docker_ps() {
   docker ps "$@" --format "$fmt" | column -t -s '¬¬¬' -c "$(_docker_cols)"
 }
 
-dps() {
-  _docker_ps
-}
-
-dpsa() {
-  _docker_ps -a
-}
+alias dps='_docker_ps'
+alias dpsa='_docker_ps -a'
 
 dpsq() {
   docker ps -q

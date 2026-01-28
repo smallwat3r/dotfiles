@@ -28,17 +28,12 @@ _avenv_ensure() {
   fi
 }
 
-# Run python from the (nearest) activated venv
-vpython() {
-  _avenv_ensure && python "$@"
+# Run command from the (nearest) activated venv
+# Usage: vrun python script.py
+vrun() {
+  _avenv_ensure && "$@"
 }
 
-# Run pip from the (nearest) activated venv
-vpip() {
-  _avenv_ensure && pip "$@"
-}
-
-# Run pytest from the (nearest) activated venv
-vpytest() {
-  _avenv_ensure && pytest "$@"
-}
+alias vpython='vrun python'
+alias vpip='vrun pip'
+alias vpytest='vrun pytest'
