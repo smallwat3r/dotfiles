@@ -2,9 +2,12 @@
 # Sync emails with mbsync and update notmuch database.
 # Can be triggered by cron:
 #   */1 * * * * email-sync >/tmp/email-sync.log 2>&1
-set -eo pipefail
+set -euo pipefail
 
-pkill -x mbsync 2>/dev/null || true
+# Gracefully terminate any running mbsync and wait for it to exit
+if pkill -x mbsync 2>/dev/null; then
+    sleep 2
+fi
 
 mbsync -a || { echo "mbsync failed" >&2; exit 1; }
 

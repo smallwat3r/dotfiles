@@ -19,16 +19,16 @@ history_max=50
 
 record_history() {
     local entry="$1"
+    local tmp_file
     mkdir -p "$(dirname "$history_file")"
 
-    if [[ -f $history_file ]]; then
-        grep -vxF "$entry" "$history_file" 2>/dev/null | head -n "$((history_max - 1))" \
-            > "$history_file.tmp" || true
-        { printf '%s\n' "$entry"; cat "$history_file.tmp"; } > "$history_file"
-        rm -f "$history_file.tmp"
-    else
-        printf '%s\n' "$entry" > "$history_file"
-    fi
+    tmp_file="${history_file}.$$"
+    {
+        printf '%s\n' "$entry"
+        if [[ -f $history_file ]]; then
+            grep -vxF "$entry" "$history_file" 2>/dev/null | head -n "$((history_max - 1))" || true
+        fi
+    } > "$tmp_file" && mv -f "$tmp_file" "$history_file" || rm -f "$tmp_file"
 }
 
 load_history() {
