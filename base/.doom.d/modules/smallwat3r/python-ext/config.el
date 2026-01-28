@@ -1,26 +1,27 @@
 ;;; smallwat3r/python-ext/config.el -*- lexical-binding: t; -*-
 
-;; Python
-(after! python
-  (defvar my-default-python-line-length 88
-    "Default python line length.")
+(defvar my-python-line-length 88
+  "Default Python line length for formatters.")
 
-  ;; Disable annoying warnings about `python-shell-interpreter' readline
-  ;; support.
+(defvar my-python-target-version "py310"
+  "Target Python version for black formatter.")
+
+(after! python
+  ;; Disable annoying warnings about `python-shell-interpreter' readline support
   (setq python-shell-completion-native-enable nil)
 
   ;; Isort
   (after! py-isort
-    (setq py-isort-options '("--trailing-comma" "--use-parentheses"))
-    (add-to-list 'py-isort-options (format "-l %s" my-default-python-line-length)))
+    (setq py-isort-options
+          `("--trailing-comma" "--use-parentheses"
+            ,(format "-l %s" my-python-line-length))))
 
   ;; Formatter
   (set-formatter! 'black
-    '("black"
-      "--quiet"
-      "--line-length" (format "%s" my-default-python-line-length)
-      "--target-version" "py310"
-      "-")  ; apply in file changes
+    `("black" "--quiet"
+      "--line-length" ,(number-to-string my-python-line-length)
+      "--target-version" ,my-python-target-version
+      "-")
     :modes '(python-mode))
 
   ;; Debugger
