@@ -5,27 +5,8 @@
 
 has tmux || return
 
-# Kill all Tmux sessions except the current one.
-tksa() {
-  tmux kill-session -a
-}
-
-# Kill current Tmux session.
-tks() {
-  tmux kill-session
-}
-
-# List all Tmux sessions.
-tls() {
-  tmux list-sessions
-}
-
-# Split current Tmux window horizontally.
-sp() {
-  tmux split-window -v
-}
-
-# Split current Tmux window vertically.
-vs() {
-  tmux split-window -h
-}
+tksa() { tmux kill-session -a }  # Kill all sessions except current
+tks() { tmux kill-session }      # Kill current session
+tls() { tmux list-sessions }     # List all sessions
+sp() { tmux split-window -v }    # Split pane horizontally
+vs() { tmux split-window -h }    # Split pane vertically

@@ -7,7 +7,6 @@ has ykman || return
 
 # Show YubiKey info
 yk() { ykman info 2>/dev/null || echo "No YubiKey detected" }
-
 # List OATH accounts
 yk-oath() { ykman oath accounts list 2>/dev/null }
 

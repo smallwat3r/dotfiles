@@ -4,12 +4,7 @@
 # session tags. Also auto-starts tmux for interactive terminal sessions
 # (unless inside Emacs or Hammerspoon).
 
-# Display Python virtual environment name.
-__is_venv() {
-  if (( ${+VIRTUAL_ENV} )); then
-    printf '%s' "venv(${VIRTUAL_ENV##*/}) "
-  fi
-}
+__is_venv() { (( ${+VIRTUAL_ENV} )) && printf '%s' "venv(${VIRTUAL_ENV##*/}) " }
 
 # Git prompt segment showing:
 #   - branch name
@@ -54,12 +49,8 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 setopt PROMPT_SUBST
 autoload -U colors && colors
 
-# Display a custom tag in the prompt. Useful for labeling terminal sessions
-# (e.g., "api", "frontend", "debug"). Set via `tag "label"`, clear with `tag`.
-__tag() {
-  [[ -n "$_PROMPT_TAG" ]] && echo "%B%F{87}%K{20}[${(U)_PROMPT_TAG}]%b%f%k "
-}
-
+# Session tags for prompt labeling. Set via `tag "label"`, clear with `tag`.
+__tag() { [[ -n "$_PROMPT_TAG" ]] && echo "%B%F{87}%K{20}[${(U)_PROMPT_TAG}]%b%f%k " }
 tag() { _PROMPT_TAG="$1" }
 
 PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f$(__git_prompt_segment)%# '

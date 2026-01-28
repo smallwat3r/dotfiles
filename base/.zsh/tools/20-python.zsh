@@ -24,18 +24,10 @@ avenv() {
   return 1
 }
 
-# Only walk the tree if we're not already inside a venv
-_avenv_ensure() {
-  if [[ -z "$VIRTUAL_ENV" ]]; then
-    avenv || return 1
-  fi
-}
-
-# Run command from the (nearest) activated venv
-# Usage: vrun python script.py
-vrun() {
-  _avenv_ensure && "$@"
-}
+# Activate venv if needed
+_avenv_ensure() { [[ -z "$VIRTUAL_ENV" ]] && avenv || return 0 }
+# Run command in venv
+vrun() { _avenv_ensure && "$@" }
 
 alias vpython='vrun python'
 alias vpip='vrun pip'

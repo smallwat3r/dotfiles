@@ -24,19 +24,18 @@ _ts_select_device() {
 }
 
 ts-ssh() {
-  local user=$1
-  local device=$(_ts_select_device)
-  [[ -n "$device" ]] && ssh "${user:+$user@}$device"
+  local user=$1 device=$(_ts_select_device)
+  [[ -n $device ]] && ssh "${user:+$user@}$device"
 }
 
 ts-ping() {
   local device=$(_ts_select_device)
-  [[ -n "$device" ]] && tailscale ping "$device" "$@"
+  [[ -n $device ]] && tailscale ping "$device" "$@"
 }
 
 ts-send() {
   local device=$(_ts_select_device)
-  [[ -n "$device" ]] && tailscale file cp "$@" "${device}:"
+  [[ -n $device ]] && tailscale file cp "$@" "${device}:"
 }
 
 ts-switch() {

@@ -5,9 +5,7 @@
 
 has docker || return
 
-_docker_cols() {
-  tput cols 2>/dev/null || echo 120
-}
+_docker_cols() { tput cols 2>/dev/null || echo 120 }
 
 _docker_ps() {
   local fmt='{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}} ¬¬¬ {{.Ports}}'
@@ -17,9 +15,7 @@ _docker_ps() {
 alias dps='_docker_ps'
 alias dpsa='_docker_ps -a'
 
-dpsq() {
-  docker ps -q
-}
+dpsq() { docker ps -q }
 
 dim() {
   docker images --format '{{.Repository}} ¬¬¬ {{.Tag}} ¬¬¬ {{.ID}} ¬¬¬ {{.Size}}' \

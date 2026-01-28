@@ -23,16 +23,16 @@ _bal_select_device() {
 }
 
 bal-ssh() {
-  local device=$(_bal_select_device)
-  [[ -n "$device" ]] && balena ssh "$device" "$@"
+  local d=$(_bal_select_device)
+  [[ -n $d ]] && balena ssh "$d" "$@"
 }
 
 bal-logs() {
-  local device=$(_bal_select_device)
-  [[ -n "$device" ]] && balena device logs "$device" --tail "$@"
+  local d=$(_bal_select_device)
+  [[ -n $d ]] && balena device logs "$d" --tail "$@"
 }
 
 bal-tunnel() {
-  local device=$(_bal_select_device)
-  [[ -n "$device" ]] && balena tunnel "$device" "$@"
+  local d=$(_bal_select_device)
+  [[ -n $d ]] && balena tunnel "$d" "$@"
 }

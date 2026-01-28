@@ -34,10 +34,7 @@ if has gpg; then
 fi
 
 if has keybase; then
-  gpg-keybase-import() {
-    keybase pgp export | gpg --import -
-  }
-
+  gpg-keybase-import() { keybase pgp export | gpg --import - }
   gpg-keybase-import-secret() {
     keybase pgp export --secret | gpg --allow-secret-key-import --import -
   }
