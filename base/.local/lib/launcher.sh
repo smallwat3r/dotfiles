@@ -27,14 +27,13 @@ else
     FZF_BIND="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
 fi
 
-FZF_COLORS="bg:-1,fg:-1,hl:33,hl+:33,info:30,prompt:30,pointer:36,marker:32,spinner:32"
+FZF_COLORS="bg:-1,bg+:-1,fg+:-1:underline,gutter:-1,pointer:166:bold,hl:166:bold,hl+:166:bold,info:166"
 
 # FZF picker with standard options
 # Usage: fzf_pick [prompt]
 fzf_pick() {
-    local prompt="${1:-}"
-    fzf --reverse --wrap --tiebreak=index --pointer='→' \
-        ${prompt:+--prompt="$prompt"} \
+    fzf --reverse --wrap --tiebreak=index \
+        --pointer='→' --prompt="${1:-}" \
         --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 
