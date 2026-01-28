@@ -241,7 +241,6 @@
           (case-fn . downcase))
         deft-use-filename-as-title t))
 
-
 ;; Icons
 ;; doc: https://github.com/domtronn/all-the-icons.el
 (after! all-the-icons
@@ -251,12 +250,10 @@
     (setq all-the-icons-scale-factor 0.8))
   (setq all-the-icons-default-adjust 0))
 
-
 ;; Show keybindings in a pop-up
 ;; doc: https://github.com/justbur/emacs-which-key
 (after! which-key
   (setq which-key-idle-delay 0.2))
-
 
 (defvar my-global-window-divider-width 2
   "Default global width size (in pixels) of a window divider.")
