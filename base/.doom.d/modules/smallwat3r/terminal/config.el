@@ -157,9 +157,9 @@
 
   ;; Message handler for opening files from remote shells
   (defun my/eat-find-file-handler (path)
-    "Open PATH in Emacs."
+    "Open PATH in Emacs in another window."
     (when (and path (not (string-empty-p path)))
-      (find-file path)))
+      (find-file-other-window path)))
 
   (add-to-list 'eat-message-handler-alist '("find-file" . my/eat-find-file-handler))
 
