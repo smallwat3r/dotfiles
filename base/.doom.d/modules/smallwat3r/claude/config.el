@@ -9,4 +9,5 @@
 (use-package! claude-code
   :config
   (setq claude-code-terminal-backend 'eat
-        claude-code-notification-function #'my/claude-notify))
+        claude-code-notification-function #'my/claude-notify
+        claude-code-toggle-auto-select t))
