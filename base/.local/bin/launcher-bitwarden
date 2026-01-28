@@ -41,25 +41,14 @@ load_history() {
     done < "$history_file"
 }
 
-clip_with_clear() {
+clip_secret() {
     local content
     content=$(cat)
-
-    if has wl-copy; then
-        printf '%s' "$content" | wl-copy
-        if has cliphist; then
-            sleep 0.1
-            cliphist delete-query "$content" >/dev/null 2>&1 || true
-        fi
-        (sleep 45 && wl-copy --clear) &
-    elif has xclip; then
-        printf '%s' "$content" | xclip -selection clipboard
-        (sleep 45 && xclip -selection clipboard < /dev/null) &
-    elif has pbcopy; then
-        printf '%s' "$content" | pbcopy
-        (sleep 45 && pbcopy < /dev/null) &
-    else
-        die "No clipboard tool found"
+    printf '%s' "$content" | clip_secure
+    # Remove from clipboard history if cliphist is available
+    if has cliphist; then
+        sleep 0.1
+        cliphist delete-query "$content" >/dev/null 2>&1 || true
     fi
 }
 
@@ -121,5 +110,5 @@ else
     [[ -z $selected ]] && exit 0
 fi
 
-printf '%s' "${fields[$selected]}" | clip_with_clear
+printf '%s' "${fields[$selected]}" | clip_secret
 record_history "$name${user:+	$user}"
