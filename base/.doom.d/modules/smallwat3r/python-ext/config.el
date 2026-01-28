@@ -62,4 +62,8 @@
 ;; doc: https://github.com/wyuenho/emacs-pet/
 (use-package! pet
   :config
-  (add-hook 'python-mode-hook 'pet-mode -10))
+  (add-hook! 'python-mode-hook
+    (pet-mode)
+    (when-let ((python (pet-executable-find "python")))
+      (setq-local eglot-workspace-configuration
+                  `(:basedpyright (:pythonPath ,python))))))
