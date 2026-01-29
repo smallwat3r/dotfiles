@@ -228,6 +228,9 @@ PROC is the process started by eat."
                  (when (and (process-live-p process)
                             (buffer-live-p (process-buffer process)))
                    (with-current-buffer (process-buffer process)
+                     ;; Set TERM to xterm-256color for compatibility (remote
+                     ;; machines don't have eat terminfo)
+                     (process-send-string process "export TERM=xterm-256color\n")
                      (process-send-string
                       process
                       (concat
