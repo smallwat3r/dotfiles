@@ -5,6 +5,8 @@
 # Interactively select and run a command from PATH, desktop applications,
 # or installed Flatpak apps. Commands are sorted by usage frequency.
 #
+# Usage: launcher-bin [--refresh]
+#
 # Dependencies: fzf, flatpak (optional), gtk-launch (optional)
 #
 PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
@@ -14,8 +16,11 @@ set -euo pipefail
 
 require fzf
 
-HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bin-history"
-HISTORY_MAX_LINES=1000
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
+CACHE_FILE="$CACHE_DIR/launcher-bin-commands"
+HISTORY_FILE="$CACHE_DIR/launcher-bin-history"
+CACHE_MAX_AGE=86400  # 1 day
+HISTORY_MAX_LINES=50
 
 is_flatpak() { has flatpak && flatpak info "$1" >/dev/null 2>&1; }
 is_desktop() { [[ -f "/usr/share/applications/$1.desktop" ]] || \
@@ -44,13 +49,13 @@ run() {
 }
 
 list_desktop_apps() {
-    local dir name
+    local dir f base
     for dir in /usr/share/applications ~/.local/share/applications; do
         [[ -d $dir ]] || continue
         for f in "$dir"/*.desktop; do
             [[ -f $f ]] || continue
-            name=$(grep -m1 '^Name=' "$f" 2>/dev/null | cut -d= -f2-)
-            [[ -n $name ]] && echo "${f##*/}" | sed 's/\.desktop$//'
+            base="${f##*/}"
+            echo "${base%.desktop}"
         done
     done
 }
@@ -63,6 +68,24 @@ list_commands() {
     fi
 }
 
+cache_is_stale() {
+    [[ ! -f $CACHE_FILE ]] && return 0
+    local age
+    age=$(( $(date +%s) - $(stat -c %Y "$CACHE_FILE" 2>/dev/null || echo 0) ))
+    (( age > CACHE_MAX_AGE ))
+}
+
+refresh_cache() {
+    list_commands | sort -u > "$CACHE_FILE"
+}
+
+get_commands() {
+    if [[ "${1:-}" == "--refresh" ]] || cache_is_stale; then
+        refresh_cache
+    fi
+    cat "$CACHE_FILE"
+}
+
 sort_by_frequency() {
     if [[ -f $HISTORY_FILE ]]; then
         awk -v hist="$HISTORY_FILE" '
@@ -70,12 +93,12 @@ sort_by_frequency() {
             !seen[$0]++ { print freq[$0]+0, $0 }
         ' | sort -rn | cut -d' ' -f2-
     else
-        sort -u
+        cat
     fi
 }
 
 trap "" HUP
 
-target="$(list_commands | sort_by_frequency | fzf_pick)" || exit 0
+target="$(get_commands "${1:-}" | sort_by_frequency | fzf_pick)" || exit 0
 
 [[ -n $target ]] && run "$target"
