@@ -38,6 +38,7 @@ list_hosts() {
 fzf_pick_host() {
     fzf --reverse --wrap --tiebreak=index \
         --delimiter=$'\t' --with-nth=2.. \
+        --highlight-line \
         --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 

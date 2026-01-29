@@ -22,7 +22,7 @@ cd "$HOME" || exit 1
 
 target=$(
     FZF_DEFAULT_COMMAND="rg --files --hidden $EXCLUDES" \
-    fzf --reverse --wrap --bind="$FZF_BIND" --color="$FZF_COLORS"
+    fzf --reverse --wrap --highlight-line --bind="$FZF_BIND" --color="$FZF_COLORS"
 ) || exit 0
 
 [[ -n $target ]] && setsid -f ec "$HOME/$target"

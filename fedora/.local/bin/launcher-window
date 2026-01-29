@@ -16,6 +16,7 @@ require fzf swaymsg jq
 
 fzf_pick_window() {
     fzf --reverse --delimiter=$'\t' --with-nth=2.. \
+        --highlight-line \
         --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 

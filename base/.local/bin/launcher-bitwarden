@@ -53,7 +53,7 @@ clip_secret() {
 }
 
 fzf_pick_item() {
-    fzf --reverse --wrap --prompt="$1" --bind="$FZF_BIND" --color="$FZF_COLORS"
+    fzf --reverse --wrap --prompt="$1" --highlight-line --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 
 list_items() {
