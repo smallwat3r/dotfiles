@@ -24,7 +24,11 @@
   (global-flycheck-mode -1))
 
 (after! flycheck-eglot
-  (global-flycheck-eglot-mode -1))
+  (global-flycheck-eglot-mode -1)
+  (remove-hook 'eglot-managed-mode-hook #'flycheck-eglot--setup-checker))
+
+;; Forcibly disable flycheck in prog-mode buffers
+(add-hook! 'prog-mode-hook :append (flycheck-mode -1))
 
 (after! flycheck-popup-tip
   (setq flycheck-popup-tip-error-prefix "(!) "))
