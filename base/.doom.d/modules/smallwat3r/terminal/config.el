@@ -221,6 +221,8 @@ PROC is the process started by eat."
           (let ((tramp-base-path (my/eat--tramp-base-path)))
             (when tramp-base-path
               (rename-buffer (format "*eat@%s*" tramp-base-path) t)
+              ;; Disable shell integration for TRAMP (not available on remote)
+              (setq-local eat-enable-shell-integration nil)
               ;; Delay injection to let the shell initialize
               (run-at-time
                0.5 nil
