@@ -35,11 +35,11 @@ make help       # list available commands
 
 These configurations support multiple platforms:
 
-| Directory | Description                                        |
-|-----------+----------------------------------------------------|
-| ~base~    | Shared configs, always applied (zsh, Emacs, SSH)   |
-| ~macos~   | macOS-specific overrides (~_root/~ for system)     |
-| ~fedora~  | Fedora-specific overrides (~_root/~ for system)    |
+| Directory | Description                                           |
+|-----------+-------------------------------------------------------|
+| ~base~    | Shared configs, always applied (zsh, Emacs, SSH, etc) |
+| ~macos~   | macOS-specific overrides                              |
+| ~fedora~  | Fedora-specific overrides                             |
 
 Platform directories may contain a ~_root/~ subdirectory for system-level configs
 (e.g. udev rules, launchd plists). These are stowed to ~/~ with sudo.

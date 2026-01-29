@@ -23,7 +23,8 @@
         '(("https://www.reddit.com/r/emacs.rss" reddit emacs)
           ("https://github.com/doomemacs/doomemacs/commits/master.atom" emacs doom)
           ("https://realpython.com/atom.xml?format=xml" python)
-          ("http://feeds.feedburner.com/PythonInsider" python)))
+          ("http://feeds.feedburner.com/PythonInsider" python)
+          ("https://smallwat3r.com/feed.xml" perso)))
 
   ;; Private Github feed from pass
   (when-let ((token (auth-source-pass-get 'secret "github/rss/token")))
