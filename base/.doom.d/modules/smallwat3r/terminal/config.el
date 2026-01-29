@@ -166,84 +166,35 @@
   (define-key eat-semi-char-mode-map (kbd "C-y") #'my/eat-yank)
   (define-key eat-semi-char-mode-map (kbd "C-,") #'my/eat-zsh-history-pick)
 
-  ;; Tramp integration for remote connections
-  (defun my/eat--tramp-base-path ()
-    "Return the Tramp prefix (e.g., /ssh:user@host:) without the directory."
-    (let* ((vec (when (tramp-tramp-file-p default-directory)
-                  (tramp-dissect-file-name default-directory)))
-           (method (and vec (tramp-file-name-method vec)))
-           (user   (and vec (tramp-file-name-user vec)))
-           (host   (and vec (tramp-file-name-host vec))))
-      (when (and method host)
-        (format "/%s:%s%s:"
-                method
-                (if (and user (not (string-empty-p user))) (concat user "@") "")
-                host))))
-
-  ;; Message handler for opening files from remote shells
+  ;; Tramp integration: rename buffer, inject `e` function to open remote files
   (defun my/eat-find-file-handler (path)
-    "Open PATH in Emacs in another window."
+    "Open PATH in another window."
     (when (and path (not (string-empty-p path)))
       (find-file-other-window path)))
 
   (add-to-list 'eat-message-handler-alist '("find-file" . my/eat-find-file-handler))
 
   (defun my/eat-setup-tramp (proc)
-    "Set up eat for remote Tramp connections.
-
-Renames the buffer to include the remote host, and injects an `e' shell
-function that opens remote files in a local Emacs buffer.
-
-The `e' function works by sending an escape sequence that eat interprets:
-  - User runs: e myfile.txt
-  - Shell resolves to absolute path: /home/user/myfile.txt
-  - Shell sends OSC 51 escape sequence with base64-encoded message
-  - Eat receives and decodes the message
-  - Eat calls the registered `find-file' handler with the full tramp path
-  - Emacs opens: /ssh:user@host:/home/user/myfile.txt
-
-Escape sequence format (eat message protocol):
-  \\033]51;e;M;<base64:handler>;<base64:path>\\033\\\\
-
-Example for `e myfile.txt' on ssh:pi@myhost in /home/pi:
-  - handler: \"find-file\" -> base64 -> \"ZmluZC1maWxl\"
-  - path: \"/ssh:pi@myhost:/home/pi/myfile.txt\" -> base64 -> \"L3NzaDpwaUB...\"
-  - full sequence: \\033]51;e;M;ZmluZC1maWxl;L3NzaDpwaUB...\\033\\\\
-
-Eat decodes both base64 strings, looks up \"find-file\" in
-`eat-message-handler-alist', and calls the handler with the decoded path.
-
-PROC is the process started by eat."
+    "Configure eat for TRAMP: rename buffer, set TERM, inject `e` file opener."
     (when-let* ((buf (process-buffer proc))
-                (_ (buffer-live-p buf)))
+                (_ (buffer-live-p buf))
+                (_ (file-remote-p default-directory))
+                (tramp-prefix (file-remote-p default-directory)))
       (with-current-buffer buf
-        (when (file-remote-p default-directory)
-          (let ((tramp-base-path (my/eat--tramp-base-path)))
-            (when tramp-base-path
-              (rename-buffer (format "*eat@%s*" tramp-base-path) t)
-              ;; Disable shell integration for TRAMP (not available on remote)
-              (setq-local eat-enable-shell-integration nil)
-              ;; Delay injection to let the shell initialize
-              (run-at-time
-               0.5 nil
-               (lambda (process tramp-path)
-                 (when (and (process-live-p process)
-                            (buffer-live-p (process-buffer process)))
-                   (with-current-buffer (process-buffer process)
-                     ;; Set TERM to xterm-256color for compatibility (remote
-                     ;; machines don't have eat terminfo)
-                     (process-send-string process "export TERM=xterm-256color\n")
-                     (process-send-string
-                      process
-                      (concat
-                       "e() { "
-                       "local f=\"$1\"; "
-                       "[[ \"$f\" != /* ]] && f=\"$PWD/$f\"; "
-                       "printf '\\033]51;e;M;%s;%s\\033\\\\' "
-                       "\"$(printf 'find-file' | base64)\" "
-                       "\"$(printf '" tramp-path "%s' \"$f\" | base64)\"; "
-                       "}\n"))
-                     (process-send-string process "clear\n"))))
-               proc tramp-base-path)))))))
+        (rename-buffer (format "*eat@%s*" tramp-prefix) t)
+        (setq-local eat-enable-shell-integration nil)
+        (run-at-time
+         0.5 nil
+         (lambda (process prefix)
+           (when (and (process-live-p process)
+                      (buffer-live-p (process-buffer process)))
+             (process-send-string
+              process
+              (format "export TERM=xterm-256color
+e() { local f=\"$1\"; [[ \"$f\" != /* ]] && f=\"$PWD/$f\"; \
+printf '\\033]51;e;M;%%s;%%s\\033\\\\' \"$(printf 'find-file' | base64)\" \
+\"$(printf '%s%%s' \"$f\" | base64)\"; }
+clear\n" prefix))))
+         proc tramp-prefix))))
 
   (add-hook 'eat-exec-hook #'my/eat-setup-tramp))
