@@ -3,7 +3,6 @@
 #
 # Dependencies:
 #   - foot: terminal emulator
-#   - wmenu: application launcher
 #   - waybar: status bar
 #   - kanshi: dynamic output configuration
 #   - mako: notification daemon
@@ -23,6 +22,5 @@
 # Variables
 set $mod Mod4
 set $term foot
-set $menu wmenu-run -f 'MonacoB 10' -l 10 -N '#222222' -n '#bbbbbb' -S '#005577' -s '#eeeeee'
 
 include ~/.config/sway/config.d/*.conf
