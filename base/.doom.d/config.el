@@ -163,12 +163,12 @@
         (when doom-font
           (doom/reload-font))
         (setq my--fonts-configured t)
-        (remove-hook 'focus-in-hook #'my/configure-fonts)
+        (remove-function after-focus-change-function #'my/configure-fonts)
         (remove-hook 'window-setup-hook #'my/configure-fonts)))))
 
 ;; Defer font configuration until the frame is ready
 (if (daemonp)
-    (add-hook 'focus-in-hook #'my/configure-fonts)
+    (add-function :after after-focus-change-function #'my/configure-fonts)
   (add-hook 'window-setup-hook #'my/configure-fonts))
 
 ;; Enable proportional fonts for text-mode buffers.
