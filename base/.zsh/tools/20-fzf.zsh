@@ -66,9 +66,13 @@ esac
 
 export FZF_DEFAULT_OPTS="
   --reverse
-  --pointer=▌
+  --pointer=' '
   --prompt=
-  --color=bg:-1,bg+:-1,fg+:-1:underline,gutter:-1,pointer:166:bold,hl:166:bold,hl+:166:bold:underline,info:166
+  --highlight-line
+  --no-separator
+  --no-scrollbar
+  --info=inline-right
+  --color=bg:-1,fg:-1,bg+:#005577,fg+:#eeeeee,hl:#cc5500,hl+:#cc5500,pointer:-1,prompt:-1,info:-1,gutter:-1
   --bind=$__fzf_word_binds"
 unset __fzf_word_binds
 if has rg; then
