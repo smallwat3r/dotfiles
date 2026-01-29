@@ -66,7 +66,7 @@ esac
 
 export FZF_DEFAULT_OPTS="
   --reverse
-  --pointer=' '
+  --pointer=''
   --prompt=
   --highlight-line
   --no-separator
