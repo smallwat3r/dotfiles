@@ -22,6 +22,7 @@
        mail-ext
        modeline
        org-ext
+       programming-ext
        python-ext
        slack
        tools
