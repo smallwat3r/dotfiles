@@ -33,8 +33,8 @@ FZF_COLORS="bg:#222222,fg:#bbbbbb,bg+:#005577,fg+:#eeeeee,hl:#eeeeee,hl+:#eeeeee
 # Usage: fzf_pick [prompt]
 fzf_pick() {
     fzf --reverse --wrap --tiebreak=index \
-        --pointer=▌ --prompt="${1:-}" \
-        --highlight-line \
+        --pointer=' ' --prompt="${1:-}" \
+        --highlight-line --no-separator --no-scrollbar --info=inline-right \
         --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 
