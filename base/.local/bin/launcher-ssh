@@ -12,10 +12,19 @@ set -euo pipefail
 
 require fzf ssh
 
-SSH_CONFIG="${SSH_CONFIG:-$HOME/.ssh/config}"
-[[ -f "$SSH_CONFIG" ]] || die "SSH config not found: $SSH_CONFIG"
+SSH_CONFIGS=(
+    "$HOME/.ssh/config"
+    "$HOME/.ssh/work"
+    "$HOME/.ssh/private"
+)
 
 list_hosts() {
+    local configs=()
+    for cfg in "${SSH_CONFIGS[@]}"; do
+        [[ -f "$cfg" ]] && configs+=("$cfg")
+    done
+    [[ ${#configs[@]} -eq 0 ]] && die "No SSH config files found"
+
     awk '
         BEGIN { IGNORECASE = 1 }
         /^[Hh]ost / {
@@ -32,7 +41,7 @@ list_hosts() {
                     printf "%s\t%s\n", h, h
             }
         }
-    ' "$SSH_CONFIG"
+    ' "${configs[@]}"
 }
 
 fzf_pick_host() {
@@ -47,4 +56,10 @@ selected="$(list_hosts | fzf_pick_host)" || exit 0
 
 host="${selected%%$'\t'*}"
 
-exec ssh "$host"
+term="${TERMINAL:-foot}"
+if [[ -n "$SWAYSOCK" ]]; then
+    swaymsg exec "$term -e ssh $host"
+else
+    "$term" -e ssh "$host" &
+    disown
+fi

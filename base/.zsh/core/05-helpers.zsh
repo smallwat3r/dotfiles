@@ -61,3 +61,13 @@ _clip_cmd() {
     echo "cat"
   fi
 }
+
+# Preferred terminal emulator
+# Usage: $TERMINAL -e htop
+if [[ -z "$TERMINAL" ]]; then
+  if is_linux; then
+    export TERMINAL="foot"
+  elif is_macos; then
+    export TERMINAL="alacritty"
+  fi
+fi
