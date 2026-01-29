@@ -1,29 +1,23 @@
 ;;; smallwat3r/elfeed-ext/config.el -*- lexical-binding: t; -*-
 
-;; Elfeed, web feed reader (RSS)
-;; doc: https://github.com/skeeto/elfeed
 (after! elfeed
   (setq elfeed-search-filter "@1-month-ago")
 
-  (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :feed-url "github.com/smallwat3r.private"
-                                :add '(github perso)))
+  ;; Tag faces
+  (defface my-github-elfeed-entry-face '((t :foreground "cyan4")) "Github entries.")
+  (defface my-python-elfeed-entry-face '((t :foreground "IndianRed4")) "Python entries.")
+  (defface my-emacs-elfeed-entry-face '((t :foreground "purple")) "Emacs entries.")
 
-  (defface my-github-elfeed-entry-face '((t :foreground "cyan4"))
-    "Face for a Github related Elfeed entry.")
+  (dolist (entry '((github my-github-elfeed-entry-face)
+                   (python my-python-elfeed-entry-face)
+                   (emacs my-emacs-elfeed-entry-face)))
+    (cl-pushnew entry elfeed-search-face-alist :test #'equal))
 
-  (defface my-python-elfeed-entry-face '((t :foreground "IndianRed4"))
-    "Face for a Python related Elfeed entry.")
-
-  (defface my-emacs-elfeed-entry-face '((t :foreground "purple"))
-    "Face for an Emacs related Elfeed entry.")
-
-  (cl-pushnew '(github my-github-elfeed-entry-face)
-              elfeed-search-face-alist :test #'equal)
-  (cl-pushnew '(python my-python-elfeed-entry-face)
-              elfeed-search-face-alist :test #'equal)
-  (cl-pushnew '(emacs my-emacs-elfeed-entry-face)
-              elfeed-search-face-alist :test #'equal)
+  ;; Feeds
+  (defvar my-elfeed-feed-titles
+    '(("doomemacs/doomemacs/commits" . "Doom Emacs")
+      ("smallwat3r.private" . "Github"))
+    "Alist mapping URL substrings to display titles.")
 
   (setq elfeed-feeds
         '(("https://www.reddit.com/r/emacs.rss" reddit emacs)
@@ -31,32 +25,26 @@
           ("https://realpython.com/atom.xml?format=xml" python)
           ("http://feeds.feedburner.com/PythonInsider" python)))
 
-  ;; add private Github RSS feed, using token from pass.
-  (let ((token (auth-source-pass-get 'secret "github/rss/token")))
-    (when token
-      (setq my-github-rss-feed
-            (format "https://github.com/smallwat3r.private.atom?token=%s" token))
-      (add-to-list 'elfeed-feeds (list my-github-rss-feed))))
+  ;; Private Github feed from pass
+  (when-let ((token (auth-source-pass-get 'secret "github/rss/token")))
+    (add-to-list 'elfeed-feeds
+                 (list (format "https://github.com/smallwat3r.private.atom?token=%s" token)
+                       'github 'perso)))
 
-  (defconst my-elfeed-doom-feed-url
-    "https://github.com/doomemacs/doomemacs/commits/master.atom")
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :feed-url "github.com/smallwat3r.private"
+                                :add '(github perso)))
 
-  ;; Custom print function: same as default, but with nicer feed titles.
+  ;; Custom entry display with nicer feed titles
   (defun my/elfeed-search-print-entry (entry)
-    "Print ENTRY to the Elfeed search buffer with custom feed titles."
-    (let* ((orig-feed-title (symbol-function 'elfeed-feed-title)))
+    "Print ENTRY with custom feed titles."
+    (let ((orig-feed-title (symbol-function 'elfeed-feed-title)))
       (cl-letf (((symbol-function 'elfeed-feed-title)
                  (lambda (feed)
                    (let ((url (elfeed-feed-url feed)))
-                     (cond
-                      ((and (boundp 'my-github-rss-feed)
-                            my-github-rss-feed
-                            (string= url my-github-rss-feed))
-                       "Github feed")
-                      ((string= url my-elfeed-doom-feed-url)
-                       "Doom Emacs commits")
-                      (t
-                       (funcall orig-feed-title feed)))))))
-        (elfeed-search-print-entry--default entry)))
+                     (or (cdr (cl-find-if (lambda (x) (string-match-p (car x) url))
+                                          my-elfeed-feed-titles))
+                         (funcall orig-feed-title feed))))))
+        (elfeed-search-print-entry--default entry))))
 
-  (setq elfeed-search-print-entry-function #'my/elfeed-search-print-entry)))
+  (setq elfeed-search-print-entry-function #'my/elfeed-search-print-entry))

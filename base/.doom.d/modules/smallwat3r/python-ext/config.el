@@ -24,7 +24,6 @@
       "-")
     :modes '(python-mode))
 
-
   (defun my/python-toggle-fstring ()
     "Toggle f-string prefix on the current Python string literal."
     (interactive)
