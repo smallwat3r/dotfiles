@@ -20,8 +20,11 @@
         :desc "Flycheck list errors" "l" #'flycheck-list-errors))
 
 ;; Only activate flycheck on demand
-(remove-hook! 'eglot-managed-mode-hook #'flycheck-eglot-mode)
-(remove-hook! 'doom-first-buffer-hook #'global-flycheck-mode)
+(after! flycheck
+  (global-flycheck-mode -1))
+
+(after! flycheck-eglot
+  (global-flycheck-eglot-mode -1))
 
 (after! flycheck-popup-tip
   (setq flycheck-popup-tip-error-prefix "(!) "))

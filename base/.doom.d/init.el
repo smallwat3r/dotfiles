@@ -1,37 +1,10 @@
 ;;; init.el -*- lexical-binding: t; -*-
 ;;
 ;; Doom Emacs module configuration.
-;; Modules are loaded in order: personal modules first, then Doom's built-in
-;; modules. Each module can have packages.el (dependencies) and config.el
-;; (configuration).
+;; Modules are loaded in order. Personal modules are placed at the end so
+;; their config runs after Doom's built-in modules, allowing overrides.
 
-;;
-;;; Personal modules
-
-(doom! :smallwat3r
-       claude
-       debug
-       dired
-       docker
-       elfeed-ext
-       evil-ext
-       filetypes
-       git-ext
-       google
-       highlighting
-       mail-ext
-       modeline
-       org-ext
-       programming-ext
-       python-ext
-       slack
-       tools
-       terminal
-
-       ;;
-       ;;; Doom modules
-
-       :completion
+(doom! :completion
        (corfu +orderless +icons +dabbrev)
        (vertico +icons)
 
@@ -102,6 +75,29 @@
 
        :app
        rss
+
+       ;;
+       ;;; Personal modules (loaded last for override priority)
+
+       :smallwat3r
+       claude
+       debug
+       dired
+       docker
+       elfeed-ext
+       evil-ext
+       filetypes
+       git-ext
+       google
+       highlighting
+       mail-ext
+       modeline
+       org-ext
+       programming-ext
+       python-ext
+       slack
+       terminal
+       tools
 
        :config
        (default +bindings +smartparens))
