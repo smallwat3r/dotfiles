@@ -65,7 +65,7 @@
        syntax
 
        :tools
-       (debugger +lsp)
+       debugger
        (eval +overlay)
        ; llm
        (lookup +dictionary +docsets)

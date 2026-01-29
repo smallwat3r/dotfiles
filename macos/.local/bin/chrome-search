@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Perform a Google search in Chrome.
-# Usage: chrome-search
 set -euo pipefail
 
 read -rp "Google: " query
 [[ -z $query ]] && exit 0
 
-open -a "/Applications/Google Chrome.app" "https://google.com/search?q=${query}"
+encoded=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$query")
+open -a "/Applications/Google Chrome.app" "https://google.com/search?q=${encoded}"

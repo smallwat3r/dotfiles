@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 # Configure the macOS Dock with preferred applications.
-# Requires: dockutil
 set -euo pipefail
 
 [[ $OSTYPE == darwin* ]] || { echo "macOS only" >&2; exit 1; }
 command -v dockutil &>/dev/null || { echo "dockutil required: brew install dockutil" >&2; exit 1; }
 
-dockutil --no-restart --remove all
-dockutil --no-restart --add "/Applications/Emacs.app"
-dockutil --no-restart --add "/Applications/Google Chrome.app"
-dockutil --no-restart --add "/Applications/Slack.app"
-dockutil --no-restart --add "/Applications/Bitwarden.app"
-dockutil --no-restart --add "/System/Applications/Utilities/Activity Monitor.app"
+apps=(
+  "/Applications/Emacs.app"
+  "/Applications/Google Chrome.app"
+  "/Applications/Slack.app"
+  "/Applications/Bitwarden.app"
+  "/System/Applications/Utilities/Activity Monitor.app"
+)
 
+dockutil --no-restart --remove all
+for app in "${apps[@]}"; do dockutil --no-restart --add "$app"; done
 killall Dock

@@ -1,27 +1,11 @@
 #!/usr/bin/env bash
 # Show battery levels of connected Bluetooth devices.
-# Works with Magic Mouse, Magic Keyboard, etc.
 # Usage: bluebatt [filter]
-# Note: May not work with AirPods.
 
-data=$(ioreg -r -k BatteryPercent | grep -E '("BatteryPercent"|"Product")')
+output=$(ioreg -r -k BatteryPercent | awk -F'"' '
+  /"Product"/ { name = $4 }
+  /"BatteryPercent"/ { gsub(/[^0-9]/, "", $0); print name ": " $0 "%" }
+')
 
-output=""
-name=""
-
-while IFS= read -r line; do
-  value=$(echo "$line" | xargs | sed 's/^.*= //')
-  if [[ $line == *"Product"* ]]; then
-    [[ -n $output ]] && output+=$'\n'
-    name=$value
-    output+="$name"
-  else
-    output+=": ${value}%"
-  fi
-done <<< "$data"
-
-if [[ -n $1 ]]; then
-  echo "$output" | grep -i "$1"
-else
-  echo "$output"
-fi
+[[ -n $1 ]] && output=$(grep -i "$1" <<< "$output")
+echo "$output"
