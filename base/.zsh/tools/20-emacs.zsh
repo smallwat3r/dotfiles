@@ -18,12 +18,6 @@ export EMACS_DOOM="$HOME/.emacs.d"
 
 path_add "$EMACS_DOOM/bin"
 
-# Eat is a terminal emulator for Emacs. It provides shell integration for
-# directory tracking, command tracking, and prompt annotation.
-if [[ -n $EAT_SHELL_INTEGRATION_DIR ]]; then
-  source "$EAT_SHELL_INTEGRATION_DIR/zsh"
-fi
-
 # Projectile builds a cache that sometimes needs to be cleared for Emacs to see
 # new files and directories. This clears the cache for all projectile projects.
 clear-cache-emacs-projectile() {

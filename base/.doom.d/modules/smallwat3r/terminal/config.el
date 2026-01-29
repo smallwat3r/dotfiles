@@ -99,13 +99,12 @@
 
   (setq eat-kill-buffer-on-exit t
         eat-enable-mouse t
+        ;; Shell integration causes prompt rendering issues with complex prompts
+        eat-enable-shell-integration nil
         eat-tramp-shells '(("ssh" . "/bin/bash")
                            ("scp" . "/bin/bash")
                            ("sshx" . "/bin/bash")
                            ("docker" . "/bin/sh"))
-        ;; Point to the correct integration directory (repos, not build)
-        eat-term-shell-integration-directory
-        (expand-file-name "straight/repos/eat/integration" doom-local-dir)
         ;; Disable left margin prompt annotation (removes left padding)
         eat-enable-shell-prompt-annotation nil)
 
