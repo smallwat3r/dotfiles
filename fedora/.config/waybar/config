@@ -46,17 +46,16 @@
     },
 
     "custom/yubikey": {
-        "exec": "lsusb -d 1050: >/dev/null 2>&1 && echo 'YK' || echo ''",
-        "interval": 2,
+        "exec": "grep -qrs 1050 /sys/bus/usb/devices/*/idVendor && echo 'YK' || echo ''",
+        "interval": 30,
         "tooltip": false
     },
 
     "custom/recording": {
-        "exec": "~/.local/bin/recording-ctl status",
-        "exec-on-event": true,
-        "interval": 1,
+        "exec": "pgrep -x wf-recorder >/dev/null && echo 'REC' || echo ''",
+        "interval": 5,
         "format": "{}",
-        "on-click": "~/.local/bin/recording-ctl stop",
+        "on-click": "pkill -SIGINT wf-recorder",
         "tooltip": false
     },
 
