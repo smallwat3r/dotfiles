@@ -46,8 +46,8 @@ Platform directories may contain a ~_root/~ subdirectory for system-level config
 
 ** Emacs
 
-I use Emacs 30.x with [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
-Configuration is stored in [[file:base/.doom.d][base/.doom.d]].
+I use Emacs 30.x with a [[https://github.com/smallwat3r/emacs][vanilla configuration]].
+The Emacs config is managed separately (not via stow) to allow direct development.
 
 *** Installing Emacs
 
@@ -63,9 +63,17 @@ brew tap d12frosted/emacs-plus && brew install emacs-plus@30
 sudo dnf install emacs
 #+end_src
 
-*** Installing Doom Emacs
+*** Setting up the Emacs config
+
+Clone the config and symlink it to =~/.emacs.d=:
 
 #+begin_src shell
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-~/.emacs.d/bin/doom install
+git clone https://github.com/smallwat3r/emacs.git ~/code/emacs
+ln -s ~/code/emacs ~/.emacs.d
 #+end_src
+
+*** Historical Doom Emacs Config
+
+I previously used [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+The old configuration is preserved in [[file:base/.doom.d][base/.doom.d]] for reference, but is no longer
+actively used.
