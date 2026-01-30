@@ -27,7 +27,6 @@ Other available commands:
 #+begin_src shell
 make unstow     # remove all symlinks
 make dry-run    # preview changes without modifying the filesystem
-make dconf-load # load dconf settings (Fedora only)
 make help       # list available commands
 #+end_src
 
@@ -37,7 +36,7 @@ These configurations support multiple platforms:
 
 | Directory | Description                                           |
 |-----------+-------------------------------------------------------|
-| ~base~    | Shared configs, always applied (zsh, Emacs, SSH, etc) |
+| ~base~    | Shared configs, always applied (zsh, git, SSH, etc)   |
 | ~macos~   | macOS-specific overrides                              |
 | ~fedora~  | Fedora-specific overrides                             |
 
@@ -46,34 +45,9 @@ Platform directories may contain a ~_root/~ subdirectory for system-level config
 
 ** Emacs
 
-I use Emacs 30.x with a [[https://github.com/smallwat3r/emacs][vanilla configuration]].
-The Emacs config is managed separately (not via stow) to allow direct development.
-
-*** Installing Emacs
-
-**** macOS
-
-#+begin_src shell
-brew tap d12frosted/emacs-plus && brew install emacs-plus@30
-#+end_src
-
-**** Fedora
-
-#+begin_src shell
-sudo dnf install emacs
-#+end_src
-
-*** Setting up the Emacs config
-
-Clone the config and symlink it to =~/.emacs.d=:
+Emacs configuration is managed in a [[https://github.com/smallwat3r/emacs][separate repository]].
 
 #+begin_src shell
 git clone https://github.com/smallwat3r/emacs.git ~/.config/smallwat3r-emacs
 ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
 #+end_src
-
-*** Historical Doom Emacs Config
-
-I previously used [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
-The old configuration is preserved in [[file:base/.doom.d][base/.doom.d]] for reference, but is no longer
-actively used.

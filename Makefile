@@ -12,7 +12,7 @@ SGR0    := $(shell tput sgr0)
 
 STOW_OPTS := --verbose=1 --restow --target
 
-.PHONY: help stow unstow dry-run dconf-load _dirs _requirements
+.PHONY: help stow unstow dry-run _dirs _requirements
 
 help: ## Show this help menu and exit
 	@echo "Usage: make [TARGET ...]"
@@ -62,28 +62,9 @@ ifeq ($(DISTRO),fedora)
 	@stow -n -v2 --restow -d fedora --target '/' _root 2>&1 || true
 endif
 
-DCONF_KEYS_PATH := /org/gnome/settings-daemon/plugins/media-keys
-DCONF_KEYS_FILE := fedora/dconf/custom-keybindings.dconf
-
-dconf-load: ## Load dconf settings (Fedora only)
-ifneq ($(DISTRO),fedora)
-	@echo '$(WARNING)*** dconf-load is only available on Fedora$(SGR0)'
-else
-	@echo '$(INFO)** Loading dconf settings$(SGR0)'
-	@dconf load $(DCONF_KEYS_PATH)/custom-keybindings/ < $(DCONF_KEYS_FILE)
-	@dconf write $(DCONF_KEYS_PATH)/custom-keybindings "$$(                     \
-		grep -oE '^\[custom[0-9]+\]' $(DCONF_KEYS_FILE)                     \
-		| sed "s|\[\(.*\)\]|'$(DCONF_KEYS_PATH)/custom-keybindings/\1/'|"   \
-		| paste -sd,                                                        \
-		| sed 's/^/[/;s/$$/]/'                                              \
-	)"
-	@echo '$(SUCCESS)*** dconf settings loaded$(SGR0)'
-endif
-
 _dirs:
 	@mkdir -p ~/.local/bin
 	@mkdir -p ~/.ssh/sockets
-	@mkdir -p ~/Maildir/personal ~/Maildir/sws
 
 _requirements:
 	@stow --version >/dev/null 2>&1 || (echo '$(WARNING)*** Stow is required$(SGR0)'; exit 1)
