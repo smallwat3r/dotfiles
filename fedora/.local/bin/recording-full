@@ -1,0 +1,9 @@
+#!/bin/bash
+# Record the entire screen
+
+dir=~/Videos/Recordings
+mkdir -p "$dir"
+f="$dir/$(date +%Y%m%d-%H%M%S).mp4"
+
+wf-recorder -f "$f"
+notify-send "Recording saved" "$f"

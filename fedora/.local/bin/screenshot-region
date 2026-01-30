@@ -1,0 +1,12 @@
+#!/bin/bash
+# Screenshot a selected region using slurp
+
+dir=~/Pictures/Screenshots
+mkdir -p "$dir"
+f="$dir/$(date +%Y%m%d-%H%M%S).png"
+
+geometry=$(slurp)
+[ -z "$geometry" ] && exit 1
+
+grim -g "$geometry" - | tee "$f" | wl-copy
+notify-send "Screenshot" "$f"

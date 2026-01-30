@@ -1,0 +1,16 @@
+#!/bin/bash
+# Screenshot a selected window using slurp
+
+dir=~/Pictures/Screenshots
+mkdir -p "$dir"
+f="$dir/$(date +%Y%m%d-%H%M%S).png"
+
+geometry=$(swaymsg -t get_tree \
+    | jq -r '.. | select(.pid? and .visible?) | .rect
+        | "\(.x),\(.y) \(.width)x\(.height)"' \
+    | slurp)
+
+[ -z "$geometry" ] && exit 1
+
+grim -g "$geometry" - | tee "$f" | wl-copy
+notify-send "Screenshot" "$f"

@@ -1,0 +1,9 @@
+#!/bin/bash
+# Screenshot the entire screen
+
+dir=~/Pictures/Screenshots
+mkdir -p "$dir"
+f="$dir/$(date +%Y%m%d-%H%M%S).png"
+
+grim - | tee "$f" | wl-copy
+notify-send "Screenshot" "$f"
