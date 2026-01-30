@@ -68,8 +68,8 @@ sudo dnf install emacs
 Clone the config and symlink it to =~/.emacs.d=:
 
 #+begin_src shell
-git clone https://github.com/smallwat3r/emacs.git ~/code/emacs
-ln -s ~/code/emacs ~/.emacs.d
+git clone https://github.com/smallwat3r/emacs.git ~/.config/smallwat3r-emacs
+ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
 #+end_src
 
 *** Historical Doom Emacs Config
