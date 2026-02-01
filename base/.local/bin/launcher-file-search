@@ -20,10 +20,6 @@ fi
 
 cd "$HOME" || exit 1
 
-target=$(
-    FZF_DEFAULT_COMMAND="rg --files --hidden $EXCLUDES" \
-    fzf --reverse --wrap --prompt='' --pointer='' --highlight-line --no-separator --no-scrollbar \
-        --info=inline-right --bind="$FZF_BIND" --color="$FZF_COLORS"
-) || exit 0
+target=$(eval "rg --files --hidden $EXCLUDES" | fzf_pick) || exit 0
 
 [[ -n $target ]] && setsid -f ec "$HOME/$target"

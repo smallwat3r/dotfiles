@@ -38,6 +38,16 @@ fzf_pick() {
         --bind="$FZF_BIND" --color="$FZF_COLORS"
 }
 
+# FZF picker for tab-delimited input where first column is an ID to hide
+# Usage: fzf_pick_id [prompt]
+fzf_pick_id() {
+    fzf --reverse --wrap --tiebreak=index \
+        --delimiter=$'\t' --with-nth=2.. \
+        --pointer='' --prompt="${1:-}" \
+        --highlight-line --no-separator --no-scrollbar --info=inline-right \
+        --bind="$FZF_BIND" --color="$FZF_COLORS"
+}
+
 # Clipboard operations
 
 clip() {

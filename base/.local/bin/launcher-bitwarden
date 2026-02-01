@@ -52,11 +52,6 @@ clip_secret() {
     fi
 }
 
-fzf_pick_item() {
-    fzf --reverse --wrap --prompt="$1" --pointer='' --highlight-line --no-separator --no-scrollbar \
-        --info=inline-right --bind="$FZF_BIND" --color="$FZF_COLORS"
-}
-
 list_items() {
     load_history
     for i in "${!items[@]}"; do
@@ -95,7 +90,7 @@ rbw unlocked 2>/dev/null || rbw unlock
 mapfile -t items < <(rbw list --fields name,user)
 (( ${#items[@]} )) || die "No items found in vault"
 
-target="$(list_items | fzf_pick_item "rbw> " | cut -f1)" || exit 0
+target="$(list_items | fzf_pick "rbw> " | cut -f1)" || exit 0
 [[ -z $target ]] && exit 0
 
 IFS=$'\t' read -r name user <<< "${items[$target]}"
@@ -107,7 +102,7 @@ get_fields "$name" "$user"
 if (( ${#fields[@]} == 1 )); then
     selected="${!fields[@]}"
 else
-    selected="$(printf '%s\n' "${!fields[@]}" | fzf_pick_item "field> ")" || exit 0
+    selected="$(printf '%s\n' "${!fields[@]}" | fzf_pick "field> ")" || exit 0
     [[ -z $selected ]] && exit 0
 fi
 

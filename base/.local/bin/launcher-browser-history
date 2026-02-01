@@ -37,7 +37,7 @@ case "$(uname -s)" in
     do
       [[ -f "$path" ]] && HISTORY="$path" && break
     done
-    open_url() { setsid xdg-open "$1" >/dev/null 2>&1; }
+    open_url() { setsid gio open "$1" >/dev/null 2>&1; }
     ;;
   *)
     die "Unsupported OS"

@@ -34,14 +34,7 @@ else
     die "No clipboard history tool found (cliphist, gpaste-client, or greenclip)"
 fi
 
-fzf_pick_clip() {
-    fzf --reverse --wrap --tiebreak=index \
-        --delimiter=$'\t' --with-nth=2.. \
-        --prompt='' --pointer='' --highlight-line --no-separator --no-scrollbar --info=inline-right \
-        --bind="$FZF_BIND" --color="$FZF_COLORS"
-}
-
-selected="$(list_history | fzf_pick_clip)" || exit 0
+selected="$(list_history | fzf_pick_id)" || exit 0
 [[ -z "$selected" ]] && exit 0
 
 select_item "$selected"

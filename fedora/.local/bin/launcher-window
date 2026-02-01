@@ -14,12 +14,6 @@ set -euo pipefail
 
 require fzf swaymsg jq
 
-fzf_pick_window() {
-    fzf --reverse --delimiter=$'\t' --with-nth=2.. \
-        --prompt='' --pointer='' --highlight-line --no-separator --no-scrollbar --info=inline-right \
-        --bind="$FZF_BIND" --color="$FZF_COLORS"
-}
-
 list_windows() {
     swaymsg -t get_tree | jq -r '
         recurse(.nodes[]?, .floating_nodes[]?)
@@ -28,7 +22,7 @@ list_windows() {
     '
 }
 
-selected="$(list_windows | fzf_pick_window)" || exit 0
+selected="$(list_windows | fzf_pick_id)" || exit 0
 [[ -z "$selected" ]] && exit 0
 
 con_id="${selected%%$'\t'*}"
