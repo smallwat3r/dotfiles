@@ -1,0 +1,1595 @@
+😀;grinning;grinning face
+😃;smiley;grinning face with big eyes
+😄;smile;grinning face with smiling eyes
+😁;grin;beaming face with smiling eyes
+😆;laughing;grinning squinting face
+😅;sweat_smile;grinning face with sweat
+🤣;rofl;rolling on the floor laughing
+😂;joy;face with tears of joy
+🙂;slightly_smiling;slightly smiling face
+🙃;upside_down;upside down face
+😉;wink;winking face
+😊;blush;smiling face with smiling eyes
+😇;innocent;smiling face with halo
+🥰;smiling_hearts;smiling face with hearts
+😍;heart_eyes;smiling face with heart eyes
+🤩;star_struck;star struck
+😘;kissing_heart;face blowing a kiss
+😗;kissing;kissing face
+😚;kissing_closed_eyes;kissing face with closed eyes
+😙;kissing_smiling_eyes;kissing face with smiling eyes
+🥲;smiling_tear;smiling face with tear
+😋;yum;face savoring food
+😛;stuck_out_tongue;face with tongue
+😜;stuck_out_tongue_winking;winking face with tongue
+🤪;zany;zany face
+😝;stuck_out_tongue_closed_eyes;squinting face with tongue
+🤑;money_mouth;money mouth face
+🤗;hugging;hugging face
+🤭;hand_over_mouth;face with hand over mouth
+🤫;shushing;shushing face
+🤔;thinking;thinking face
+🤐;zipper_mouth;zipper mouth face
+🤨;raised_eyebrow;face with raised eyebrow
+😐;neutral;neutral face
+😑;expressionless;expressionless face
+😶;no_mouth;face without mouth
+😏;smirk;smirking face
+😒;unamused;unamused face
+🙄;rolling_eyes;face with rolling eyes
+😬;grimacing;grimacing face
+🤥;lying;lying face
+😌;relieved;relieved face
+😔;pensive;pensive face
+😪;sleepy;sleepy face
+🤤;drooling;drooling face
+😴;sleeping;sleeping face
+😷;mask;face with medical mask
+🤒;thermometer;face with thermometer
+🤕;bandage;face with head bandage
+🤢;nauseated;nauseated face
+🤮;vomiting;face vomiting
+🤧;sneezing;sneezing face
+🥵;hot;hot face
+🥶;cold;cold face
+🥴;woozy;woozy face
+😵;dizzy;dizzy face
+🤯;exploding_head;exploding head
+🤠;cowboy;cowboy hat face
+🥳;partying;partying face
+🥸;disguised;disguised face
+😎;sunglasses;smiling face with sunglasses
+🤓;nerd;nerd face
+🧐;monocle;face with monocle
+😕;confused;confused face
+😟;worried;worried face
+🙁;slightly_frowning;slightly frowning face
+😮;open_mouth;face with open mouth
+😯;hushed;hushed face
+😲;astonished;astonished face
+😳;flushed;flushed face
+🥺;pleading;pleading face
+😦;frowning;frowning face with open mouth
+😧;anguished;anguished face
+😨;fearful;fearful face
+😰;cold_sweat;anxious face with sweat
+😥;sad_relieved;sad but relieved face
+😢;cry;crying face
+😭;sob;loudly crying face
+😱;scream;face screaming in fear
+😖;confounded;confounded face
+😣;persevere;persevering face
+😞;disappointed;disappointed face
+😓;sweat;downcast face with sweat
+😩;weary;weary face
+😫;tired;tired face
+🥱;yawning;yawning face
+😤;triumph;face with steam from nose
+😡;rage;pouting face
+😠;angry;angry face
+🤬;cursing;face with symbols on mouth
+😈;smiling_imp;smiling face with horns
+👿;imp;angry face with horns
+💀;skull;skull
+☠️;skull_crossbones;skull and crossbones
+💩;poop;pile of poo
+🤡;clown;clown face
+👹;ogre;ogre
+👺;goblin;goblin
+👻;ghost;ghost
+👽;alien;alien
+👾;space_invader;alien monster
+🤖;robot;robot
+😺;smiley_cat;grinning cat
+😸;smile_cat;grinning cat with smiling eyes
+😹;joy_cat;cat with tears of joy
+😻;heart_eyes_cat;smiling cat with heart eyes
+😼;smirk_cat;cat with wry smile
+😽;kissing_cat;kissing cat
+🙀;scream_cat;weary cat
+😿;crying_cat;crying cat
+😾;pouting_cat;pouting cat
+🙈;see_no_evil;see no evil monkey
+🙉;hear_no_evil;hear no evil monkey
+🙊;speak_no_evil;speak no evil monkey
+💋;kiss;kiss mark
+💌;love_letter;love letter
+💘;cupid;heart with arrow
+💝;gift_heart;heart with ribbon
+💖;sparkling_heart;sparkling heart
+💗;heartpulse;growing heart
+💓;heartbeat;beating heart
+💞;revolving_hearts;revolving hearts
+💕;two_hearts;two hearts
+💟;heart_decoration;heart decoration
+❣️;heart_exclamation;heart exclamation
+💔;broken_heart;broken heart
+❤️;heart;red heart
+🧡;orange_heart;orange heart
+💛;yellow_heart;yellow heart
+💚;green_heart;green heart
+💙;blue_heart;blue heart
+💜;purple_heart;purple heart
+🤎;brown_heart;brown heart
+🖤;black_heart;black heart
+🤍;white_heart;white heart
+💯;100;hundred points
+💢;anger;anger symbol
+💥;boom;collision
+💫;dizzy_symbol;dizzy
+💦;sweat_drops;sweat droplets
+💨;dash;dashing away
+🕳️;hole;hole
+💣;bomb;bomb
+💬;speech_balloon;speech balloon
+👁️‍🗨️;eye_speech;eye in speech bubble
+🗨️;left_speech;left speech bubble
+🗯️;right_anger;right anger bubble
+💭;thought_balloon;thought balloon
+💤;zzz;zzz
+👋;wave;waving hand
+🤚;raised_back_hand;raised back of hand
+🖐️;hand_splayed;hand with fingers splayed
+✋;hand;raised hand
+🖖;vulcan;vulcan salute
+👌;ok_hand;ok hand
+🤌;pinched_fingers;pinched fingers
+🤏;pinching_hand;pinching hand
+✌️;v;victory hand
+🤞;crossed_fingers;crossed fingers
+🤟;love_you;love you gesture
+🤘;metal;sign of the horns
+🤙;call_me;call me hand
+👈;point_left;backhand index pointing left
+👉;point_right;backhand index pointing right
+👆;point_up_2;backhand index pointing up
+🖕;middle_finger;middle finger
+👇;point_down;backhand index pointing down
+☝️;point_up;index pointing up
+👍;thumbsup;thumbs up
+👎;thumbsdown;thumbs down
+✊;fist;raised fist
+👊;punch;oncoming fist
+🤛;left_fist;left facing fist
+🤜;right_fist;right facing fist
+👏;clap;clapping hands
+🙌;raised_hands;raising hands
+👐;open_hands;open hands
+🤲;palms_up;palms up together
+🤝;handshake;handshake
+🙏;pray;folded hands
+✍️;writing_hand;writing hand
+💅;nail_care;nail polish
+🤳;selfie;selfie
+💪;muscle;flexed biceps
+🦾;mechanical_arm;mechanical arm
+🦿;mechanical_leg;mechanical leg
+🦵;leg;leg
+🦶;foot;foot
+👂;ear;ear
+🦻;hearing_aid;ear with hearing aid
+👃;nose;nose
+🧠;brain;brain
+🫀;heart_organ;anatomical heart
+🫁;lungs;lungs
+🦷;tooth;tooth
+🦴;bone;bone
+👀;eyes;eyes
+👁️;eye;eye
+👅;tongue;tongue
+👄;lips;mouth
+👶;baby;baby
+🧒;child;child
+👦;boy;boy
+👧;girl;girl
+🧑;person;person
+👱;blond_person;person with blond hair
+👨;man;man
+🧔;bearded_person;person with beard
+👩;woman;woman
+🧓;older_person;older person
+👴;older_man;old man
+👵;older_woman;old woman
+🙍;frowning_person;person frowning
+🙎;pouting_person;person pouting
+🙅;no_gesture;person gesturing no
+🙆;ok_gesture;person gesturing ok
+💁;tipping_hand;person tipping hand
+🙋;raising_hand;person raising hand
+🧏;deaf_person;deaf person
+🙇;bowing;person bowing
+🤦;facepalm;person facepalming
+🤷;shrug;person shrugging
+👮;police;police officer
+🕵️;detective;detective
+💂;guard;guard
+🥷;ninja;ninja
+👷;construction_worker;construction worker
+🤴;prince;prince
+👸;princess;princess
+👳;turban;person wearing turban
+👲;man_chinese_cap;person with skullcap
+🧕;headscarf;woman with headscarf
+🤵;tuxedo;person in tuxedo
+👰;bride;person with veil
+🤰;pregnant;pregnant woman
+🤱;breastfeeding;breast feeding
+👼;angel;baby angel
+🎅;santa;santa claus
+🤶;mrs_claus;mrs claus
+🦸;superhero;superhero
+🦹;supervillain;supervillain
+🧙;mage;mage
+🧚;fairy;fairy
+🧛;vampire;vampire
+🧜;merperson;merperson
+🧝;elf;elf
+🧞;genie;genie
+🧟;zombie;zombie
+💆;massage;person getting massage
+💇;haircut;person getting haircut
+🚶;walking;person walking
+🧍;standing;person standing
+🧎;kneeling;person kneeling
+🏃;running;person running
+💃;dancer;woman dancing
+🕺;man_dancing;man dancing
+🕴️;levitating;person in suit levitating
+👯;dancers;people with bunny ears
+🧖;sauna;person in steamy room
+🧗;climbing;person climbing
+🤺;fencing;person fencing
+🏇;horse_racing;horse racing
+⛷️;skier;skier
+🏂;snowboarder;snowboarder
+🏋️;weight_lifting;person lifting weights
+🤼;wrestling;people wrestling
+🤸;cartwheel;person cartwheeling
+🤽;water_polo;person playing water polo
+🤾;handball;person playing handball
+🤹;juggling;person juggling
+🧘;lotus_position;person in lotus position
+🛀;bath;person taking bath
+🛌;sleeping_bed;person in bed
+👭;women_holding_hands;women holding hands
+👫;couple;woman and man holding hands
+👬;men_holding_hands;men holding hands
+💏;couplekiss;kiss
+💑;couple_heart;couple with heart
+👪;family;family
+👨‍👩‍👦;family_mwb;family man woman boy
+👨‍👩‍👧;family_mwg;family man woman girl
+👨‍👩‍👧‍👦;family_mwgb;family man woman girl boy
+👨‍👩‍👦‍👦;family_mwbb;family man woman boy boy
+👨‍👩‍👧‍👧;family_mwgg;family man woman girl girl
+🗣️;speaking_head;speaking head
+👤;bust_silhouette;bust in silhouette
+👥;busts_silhouette;busts in silhouette
+🫂;people_hugging;people hugging
+👣;footprints;footprints
+🐵;monkey_face;monkey face
+🐒;monkey;monkey
+🦍;gorilla;gorilla
+🦧;orangutan;orangutan
+🐶;dog;dog face
+🐕;dog2;dog
+🦮;guide_dog;guide dog
+🐕‍🦺;service_dog;service dog
+🐩;poodle;poodle
+🐺;wolf;wolf
+🦊;fox;fox
+🦝;raccoon;raccoon
+🐱;cat;cat face
+🐈;cat2;cat
+🐈‍⬛;black_cat;black cat
+🦁;lion;lion
+🐯;tiger;tiger face
+🐅;tiger2;tiger
+🐆;leopard;leopard
+🐴;horse;horse face
+🐎;racehorse;horse
+🦄;unicorn;unicorn
+🦓;zebra;zebra
+🦌;deer;deer
+🦬;bison;bison
+🐮;cow;cow face
+🐂;ox;ox
+🐃;water_buffalo;water buffalo
+🐄;cow2;cow
+🐷;pig;pig face
+🐖;pig2;pig
+🐗;boar;boar
+🐽;pig_nose;pig nose
+🐏;ram;ram
+🐑;sheep;ewe
+🐐;goat;goat
+🐪;dromedary_camel;camel
+🐫;camel;two hump camel
+🦙;llama;llama
+🦒;giraffe;giraffe
+🐘;elephant;elephant
+🦣;mammoth;mammoth
+🦏;rhino;rhinoceros
+🦛;hippo;hippopotamus
+🐭;mouse;mouse face
+🐁;mouse2;mouse
+🐀;rat;rat
+🐹;hamster;hamster
+🐰;rabbit;rabbit face
+🐇;rabbit2;rabbit
+🐿️;chipmunk;chipmunk
+🦫;beaver;beaver
+🦔;hedgehog;hedgehog
+🦇;bat;bat
+🐻;bear;bear
+🐻‍❄️;polar_bear;polar bear
+🐨;koala;koala
+🐼;panda;panda
+🦥;sloth;sloth
+🦦;otter;otter
+🦨;skunk;skunk
+🦘;kangaroo;kangaroo
+🦡;badger;badger
+🐾;paw_prints;paw prints
+🦃;turkey;turkey
+🐔;chicken;chicken
+🐓;rooster;rooster
+🐣;hatching_chick;hatching chick
+🐤;baby_chick;baby chick
+🐥;front_facing_chick;front facing baby chick
+🐦;bird;bird
+🐧;penguin;penguin
+🕊️;dove;dove
+🦅;eagle;eagle
+🦆;duck;duck
+🦢;swan;swan
+🦉;owl;owl
+🦤;dodo;dodo
+🪶;feather;feather
+🦩;flamingo;flamingo
+🦚;peacock;peacock
+🦜;parrot;parrot
+🐸;frog;frog
+🐊;crocodile;crocodile
+🐢;turtle;turtle
+🦎;lizard;lizard
+🐍;snake;snake
+🐲;dragon_face;dragon face
+🐉;dragon;dragon
+🦕;sauropod;sauropod
+🦖;trex;t rex
+🐳;whale;spouting whale
+🐋;whale2;whale
+🐬;dolphin;dolphin
+🦭;seal;seal
+🐟;fish;fish
+🐠;tropical_fish;tropical fish
+🐡;blowfish;blowfish
+🦈;shark;shark
+🐙;octopus;octopus
+🐚;shell;spiral shell
+🐌;snail;snail
+🦋;butterfly;butterfly
+🐛;bug;bug
+🐜;ant;ant
+🐝;bee;honeybee
+🪲;beetle;beetle
+🐞;ladybug;lady beetle
+🦗;cricket;cricket
+🪳;cockroach;cockroach
+🕷️;spider;spider
+🕸️;spider_web;spider web
+🦂;scorpion;scorpion
+🦟;mosquito;mosquito
+🪰;fly;fly
+🪱;worm;worm
+🦠;microbe;microbe
+💐;bouquet;bouquet
+🌸;cherry_blossom;cherry blossom
+💮;white_flower;white flower
+🏵️;rosette;rosette
+🌹;rose;rose
+🥀;wilted_flower;wilted flower
+🌺;hibiscus;hibiscus
+🌻;sunflower;sunflower
+🌼;blossom;blossom
+🌷;tulip;tulip
+🌱;seedling;seedling
+🪴;potted_plant;potted plant
+🌲;evergreen_tree;evergreen tree
+🌳;deciduous_tree;deciduous tree
+🌴;palm_tree;palm tree
+🌵;cactus;cactus
+🌾;ear_of_rice;sheaf of rice
+🌿;herb;herb
+☘️;shamrock;shamrock
+🍀;four_leaf_clover;four leaf clover
+🍁;maple_leaf;maple leaf
+🍂;fallen_leaf;fallen leaf
+🍃;leaves;leaf fluttering in wind
+🍇;grapes;grapes
+🍈;melon;melon
+🍉;watermelon;watermelon
+🍊;tangerine;tangerine
+🍋;lemon;lemon
+🍌;banana;banana
+🍍;pineapple;pineapple
+🥭;mango;mango
+🍎;apple;red apple
+🍏;green_apple;green apple
+🍐;pear;pear
+🍑;peach;peach
+🍒;cherries;cherries
+🍓;strawberry;strawberry
+🫐;blueberries;blueberries
+🥝;kiwi;kiwi fruit
+🍅;tomato;tomato
+🫒;olive;olive
+🥥;coconut;coconut
+🥑;avocado;avocado
+🍆;eggplant;eggplant
+🥔;potato;potato
+🥕;carrot;carrot
+🌽;corn;ear of corn
+🌶️;hot_pepper;hot pepper
+🫑;bell_pepper;bell pepper
+🥒;cucumber;cucumber
+🥬;leafy_green;leafy green
+🥦;broccoli;broccoli
+🧄;garlic;garlic
+🧅;onion;onion
+🍄;mushroom;mushroom
+🥜;peanuts;peanuts
+🌰;chestnut;chestnut
+🍞;bread;bread
+🥐;croissant;croissant
+🥖;baguette;baguette bread
+🫓;flatbread;flatbread
+🥨;pretzel;pretzel
+🥯;bagel;bagel
+🥞;pancakes;pancakes
+🧇;waffle;waffle
+🧀;cheese;cheese wedge
+🍖;meat_on_bone;meat on bone
+🍗;poultry_leg;poultry leg
+🥩;steak;cut of meat
+🥓;bacon;bacon
+🍔;hamburger;hamburger
+🍟;fries;french fries
+🍕;pizza;pizza
+🌭;hotdog;hot dog
+🥪;sandwich;sandwich
+🌮;taco;taco
+🌯;burrito;burrito
+🫔;tamale;tamale
+🥙;stuffed_flatbread;stuffed flatbread
+🧆;falafel;falafel
+🥚;egg;egg
+🍳;cooking;cooking
+🥘;shallow_pan;shallow pan of food
+🍲;stew;pot of food
+🫕;fondue;fondue
+🥣;bowl_spoon;bowl with spoon
+🥗;salad;green salad
+🍿;popcorn;popcorn
+🧈;butter;butter
+🧂;salt;salt
+🥫;canned_food;canned food
+🍱;bento;bento box
+🍘;rice_cracker;rice cracker
+🍙;rice_ball;rice ball
+🍚;rice;cooked rice
+🍛;curry;curry rice
+🍜;ramen;steaming bowl
+🍝;spaghetti;spaghetti
+🍠;sweet_potato;roasted sweet potato
+🍢;oden;oden
+🍣;sushi;sushi
+🍤;fried_shrimp;fried shrimp
+🍥;fish_cake;fish cake with swirl
+🥮;moon_cake;moon cake
+🍡;dango;dango
+🥟;dumpling;dumpling
+🥠;fortune_cookie;fortune cookie
+🥡;takeout_box;takeout box
+🦀;crab;crab
+🦞;lobster;lobster
+🦐;shrimp;shrimp
+🦑;squid;squid
+🦪;oyster;oyster
+🍦;icecream;soft ice cream
+🍧;shaved_ice;shaved ice
+🍨;ice_cream;ice cream
+🍩;doughnut;doughnut
+🍪;cookie;cookie
+🎂;birthday;birthday cake
+🍰;cake;shortcake
+🧁;cupcake;cupcake
+🥧;pie;pie
+🍫;chocolate_bar;chocolate bar
+🍬;candy;candy
+🍭;lollipop;lollipop
+🍮;custard;custard
+🍯;honey_pot;honey pot
+🍼;baby_bottle;baby bottle
+🥛;milk;glass of milk
+☕;coffee;hot beverage
+🫖;teapot;teapot
+🍵;tea;teacup without handle
+🍶;sake;sake
+🍾;champagne;bottle with popping cork
+🍷;wine_glass;wine glass
+🍸;cocktail;cocktail glass
+🍹;tropical_drink;tropical drink
+🍺;beer;beer mug
+🍻;beers;clinking beer mugs
+🥂;champagne_glasses;clinking glasses
+🥃;tumbler_glass;tumbler glass
+🥤;cup_straw;cup with straw
+🧋;bubble_tea;bubble tea
+🧃;juice_box;beverage box
+🧉;mate;mate
+🧊;ice;ice
+🥢;chopsticks;chopsticks
+🍽️;plate_cutlery;fork and knife with plate
+🍴;fork_knife;fork and knife
+🥄;spoon;spoon
+🔪;knife;kitchen knife
+🏺;amphora;amphora
+🌍;earth_africa;globe showing europe africa
+🌎;earth_americas;globe showing americas
+🌏;earth_asia;globe showing asia australia
+🌐;globe_meridians;globe with meridians
+🗺️;world_map;world map
+🧭;compass;compass
+🏔️;mountain_snow;snow capped mountain
+⛰️;mountain;mountain
+🌋;volcano;volcano
+🗻;mount_fuji;mount fuji
+🏕️;camping;camping
+🏖️;beach;beach with umbrella
+🏜️;desert;desert
+🏝️;island;desert island
+🏞️;national_park;national park
+🏟️;stadium;stadium
+🏛️;classical_building;classical building
+🏗️;construction_site;building construction
+🧱;bricks;brick
+🪨;rock;rock
+🪵;wood;wood
+🛖;hut;hut
+🏘️;houses;houses
+🏚️;derelict_house;derelict house
+🏠;house;house
+🏡;house_garden;house with garden
+🏢;office;office building
+🏣;post_office;japanese post office
+🏤;european_post_office;post office
+🏥;hospital;hospital
+🏦;bank;bank
+🏨;hotel;hotel
+🏩;love_hotel;love hotel
+🏪;convenience_store;convenience store
+🏫;school;school
+🏬;department_store;department store
+🏭;factory;factory
+🏯;japanese_castle;japanese castle
+🏰;european_castle;castle
+💒;wedding;wedding
+🗼;tokyo_tower;tokyo tower
+🗽;statue_liberty;statue of liberty
+⛪;church;church
+🕌;mosque;mosque
+🛕;hindu_temple;hindu temple
+🕍;synagogue;synagogue
+⛩️;shinto_shrine;shinto shrine
+🕋;kaaba;kaaba
+⛲;fountain;fountain
+⛺;tent;tent
+🌁;foggy;foggy
+🌃;night_stars;night with stars
+🏙️;cityscape;cityscape
+🌄;sunrise_mountains;sunrise over mountains
+🌅;sunrise;sunrise
+🌆;city_sunset;cityscape at dusk
+🌇;city_sunrise;sunset
+🌉;bridge_night;bridge at night
+♨️;hotsprings;hot springs
+🎠;carousel_horse;carousel horse
+🎡;ferris_wheel;ferris wheel
+🎢;roller_coaster;roller coaster
+💈;barber;barber pole
+🎪;circus_tent;circus tent
+🚂;steam_locomotive;locomotive
+🚃;railway_car;railway car
+🚄;bullettrain_side;high speed train
+🚅;bullettrain_front;bullet train
+🚆;train2;train
+🚇;metro;metro
+🚈;light_rail;light rail
+🚉;station;station
+🚊;tram;tram
+🚝;monorail;monorail
+🚞;mountain_railway;mountain railway
+🚋;train;tram car
+🚌;bus;bus
+🚍;oncoming_bus;oncoming bus
+🚎;trolleybus;trolleybus
+🚐;minibus;minibus
+🚑;ambulance;ambulance
+🚒;fire_engine;fire engine
+🚓;police_car;police car
+🚔;oncoming_police_car;oncoming police car
+🚕;taxi;taxi
+🚖;oncoming_taxi;oncoming taxi
+🚗;car;automobile
+🚘;oncoming_car;oncoming automobile
+🚙;suv;sport utility vehicle
+🛻;pickup_truck;pickup truck
+🚚;truck;delivery truck
+🚛;articulated_lorry;articulated lorry
+🚜;tractor;tractor
+🏎️;racing_car;racing car
+🏍️;motorcycle;motorcycle
+🛵;motor_scooter;motor scooter
+🦽;manual_wheelchair;manual wheelchair
+🦼;motorized_wheelchair;motorized wheelchair
+🛺;auto_rickshaw;auto rickshaw
+🚲;bike;bicycle
+🛴;scooter;kick scooter
+🛹;skateboard;skateboard
+🛼;roller_skate;roller skate
+🚏;busstop;bus stop
+🛣️;motorway;motorway
+🛤️;railway_track;railway track
+🛢️;oil_drum;oil drum
+⛽;fuelpump;fuel pump
+🚨;rotating_light;police car light
+🚥;traffic_light;horizontal traffic light
+🚦;vertical_traffic_light;vertical traffic light
+🛑;stop_sign;stop sign
+🚧;construction;construction
+⚓;anchor;anchor
+⛵;sailboat;sailboat
+🛶;canoe;canoe
+🚤;speedboat;speedboat
+🛳️;passenger_ship;passenger ship
+⛴️;ferry;ferry
+🛥️;motor_boat;motor boat
+🚢;ship;ship
+✈️;airplane;airplane
+🛩️;small_airplane;small airplane
+🛫;airplane_departure;airplane departure
+🛬;airplane_arrival;airplane arrival
+🪂;parachute;parachute
+💺;seat;seat
+🚁;helicopter;helicopter
+🚟;suspension_railway;suspension railway
+🚠;mountain_cableway;mountain cableway
+🚡;aerial_tramway;aerial tramway
+🛰️;satellite;satellite
+🚀;rocket;rocket
+🛸;flying_saucer;flying saucer
+🛎️;bellhop_bell;bellhop bell
+🧳;luggage;luggage
+⌛;hourglass;hourglass done
+⏳;hourglass_flowing;hourglass not done
+⌚;watch;watch
+⏰;alarm_clock;alarm clock
+⏱️;stopwatch;stopwatch
+⏲️;timer_clock;timer clock
+🕰️;mantelpiece_clock;mantelpiece clock
+🕛;clock12;twelve oclock
+🕧;clock1230;twelve thirty
+🕐;clock1;one oclock
+🕜;clock130;one thirty
+🕑;clock2;two oclock
+🕝;clock230;two thirty
+🕒;clock3;three oclock
+🕞;clock330;three thirty
+🕓;clock4;four oclock
+🕟;clock430;four thirty
+🕔;clock5;five oclock
+🕠;clock530;five thirty
+🕕;clock6;six oclock
+🕡;clock630;six thirty
+🕖;clock7;seven oclock
+🕢;clock730;seven thirty
+🕗;clock8;eight oclock
+🕣;clock830;eight thirty
+🕘;clock9;nine oclock
+🕤;clock930;nine thirty
+🕙;clock10;ten oclock
+🕥;clock1030;ten thirty
+🕚;clock11;eleven oclock
+🕦;clock1130;eleven thirty
+🌑;new_moon;new moon
+🌒;waxing_crescent_moon;waxing crescent moon
+🌓;first_quarter_moon;first quarter moon
+🌔;waxing_gibbous_moon;waxing gibbous moon
+🌕;full_moon;full moon
+🌖;waning_gibbous_moon;waning gibbous moon
+🌗;last_quarter_moon;last quarter moon
+🌘;waning_crescent_moon;waning crescent moon
+🌙;crescent_moon;crescent moon
+🌚;new_moon_face;new moon face
+🌛;first_quarter_moon_face;first quarter moon face
+🌜;last_quarter_moon_face;last quarter moon face
+🌡️;thermometer;thermometer
+☀️;sunny;sun
+🌝;full_moon_face;full moon face
+🌞;sun_face;sun with face
+🪐;ringed_planet;ringed planet
+⭐;star;star
+🌟;star2;glowing star
+🌠;stars;shooting star
+🌌;milky_way;milky way
+☁️;cloud;cloud
+⛅;partly_sunny;sun behind cloud
+⛈️;thunder_cloud_rain;cloud with lightning and rain
+🌤️;sun_small_cloud;sun behind small cloud
+🌥️;sun_behind_cloud;sun behind large cloud
+🌦️;sun_rain_cloud;sun behind rain cloud
+🌧️;cloud_rain;cloud with rain
+🌨️;cloud_snow;cloud with snow
+🌩️;cloud_lightning;cloud with lightning
+🌪️;tornado;tornado
+🌫️;fog;fog
+🌬️;wind_face;wind face
+🌀;cyclone;cyclone
+🌈;rainbow;rainbow
+🌂;closed_umbrella;closed umbrella
+☂️;umbrella;umbrella
+☔;umbrella_rain;umbrella with rain drops
+⛱️;beach_umbrella;umbrella on ground
+⚡;zap;high voltage
+❄️;snowflake;snowflake
+☃️;snowman;snowman
+⛄;snowman_no_snow;snowman without snow
+☄️;comet;comet
+🔥;fire;fire
+💧;droplet;droplet
+🌊;ocean;water wave
+🎃;jack_o_lantern;jack o lantern
+🎄;christmas_tree;christmas tree
+🎆;fireworks;fireworks
+🎇;sparkler;sparkler
+🧨;firecracker;firecracker
+✨;sparkles;sparkles
+🎈;balloon;balloon
+🎉;tada;party popper
+🎊;confetti_ball;confetti ball
+🎋;tanabata_tree;tanabata tree
+🎍;bamboo;pine decoration
+🎎;dolls;japanese dolls
+🎏;flags;carp streamer
+🎐;wind_chime;wind chime
+🎑;rice_scene;moon viewing ceremony
+🧧;red_envelope;red envelope
+🎀;ribbon;ribbon
+🎁;gift;wrapped gift
+🎗️;reminder_ribbon;reminder ribbon
+🎟️;admission_tickets;admission tickets
+🎫;ticket;ticket
+🎖️;medal_military;military medal
+🏆;trophy;trophy
+🏅;sports_medal;sports medal
+🥇;first_place;first place medal
+🥈;second_place;second place medal
+🥉;third_place;third place medal
+⚽;soccer;soccer ball
+⚾;baseball;baseball
+🥎;softball;softball
+🏀;basketball;basketball
+🏐;volleyball;volleyball
+🏈;football;american football
+🏉;rugby;rugby football
+🎾;tennis;tennis
+🥏;flying_disc;flying disc
+🎳;bowling;bowling
+🏏;cricket_game;cricket game
+🏑;field_hockey;field hockey
+🏒;ice_hockey;ice hockey
+🥍;lacrosse;lacrosse
+🏓;ping_pong;ping pong
+🏸;badminton;badminton
+🥊;boxing_glove;boxing glove
+🥋;martial_arts_uniform;martial arts uniform
+🥅;goal_net;goal net
+⛳;golf;flag in hole
+⛸️;ice_skate;ice skate
+🎣;fishing_pole;fishing pole and fish
+🤿;diving_mask;diving mask
+🎽;running_shirt;running shirt
+🎿;ski;skis
+🛷;sled;sled
+🥌;curling_stone;curling stone
+🎯;dart;direct hit
+🪀;yo_yo;yo yo
+🪁;kite;kite
+🎱;8ball;pool 8 ball
+🔮;crystal_ball;crystal ball
+🪄;magic_wand;magic wand
+🧿;nazar_amulet;nazar amulet
+🎮;video_game;video game
+🕹️;joystick;joystick
+🎰;slot_machine;slot machine
+🎲;game_die;game die
+🧩;puzzle_piece;puzzle piece
+🧸;teddy_bear;teddy bear
+🪅;pinata;pinata
+🪆;nesting_dolls;nesting dolls
+♠️;spades;spade suit
+♥️;hearts;heart suit
+♦️;diamonds;diamond suit
+♣️;clubs;club suit
+♟️;chess_pawn;chess pawn
+🃏;joker;joker
+🀄;mahjong;mahjong red dragon
+🎴;flower_playing_cards;flower playing cards
+🎭;performing_arts;performing arts
+🖼️;frame_picture;framed picture
+🎨;art;artist palette
+🧵;thread;thread
+🪡;sewing_needle;sewing needle
+🧶;yarn;yarn
+🪢;knot;knot
+👓;eyeglasses;glasses
+🕶️;sunglasses_dark;sunglasses
+🥽;goggles;goggles
+🥼;lab_coat;lab coat
+🦺;safety_vest;safety vest
+👔;necktie;necktie
+👕;shirt;t shirt
+👖;jeans;jeans
+🧣;scarf;scarf
+🧤;gloves;gloves
+🧥;coat;coat
+🧦;socks;socks
+👗;dress;dress
+👘;kimono;kimono
+🥻;sari;sari
+🩱;one_piece_swimsuit;one piece swimsuit
+🩲;briefs;briefs
+🩳;shorts;shorts
+👙;bikini;bikini
+👚;womans_clothes;womans clothes
+👛;purse;purse
+👜;handbag;handbag
+👝;pouch;clutch bag
+🛍️;shopping_bags;shopping bags
+🎒;backpack;backpack
+🩴;thong_sandal;thong sandal
+👞;mans_shoe;mans shoe
+👟;athletic_shoe;running shoe
+🥾;hiking_boot;hiking boot
+🥿;flat_shoe;flat shoe
+👠;high_heel;high heeled shoe
+👡;sandal;womans sandal
+🩰;ballet_shoes;ballet shoes
+👢;boot;womans boot
+👑;crown;crown
+👒;womans_hat;womans hat
+🎩;tophat;top hat
+🎓;mortar_board;graduation cap
+🧢;billed_cap;billed cap
+🪖;military_helmet;military helmet
+⛑️;rescue_helmet;rescue workers helmet
+📿;prayer_beads;prayer beads
+💄;lipstick;lipstick
+💍;ring;ring
+💎;gem;gem stone
+🔇;mute;muted speaker
+🔈;speaker;speaker low volume
+🔉;sound;speaker medium volume
+🔊;loud_sound;speaker high volume
+📢;loudspeaker;loudspeaker
+📣;mega;megaphone
+📯;postal_horn;postal horn
+🔔;bell;bell
+🔕;no_bell;bell with slash
+🎼;musical_score;musical score
+🎵;musical_note;musical note
+🎶;notes;musical notes
+🎙️;studio_microphone;studio microphone
+🎚️;level_slider;level slider
+🎛️;control_knobs;control knobs
+🎤;microphone;microphone
+🎧;headphones;headphones
+📻;radio;radio
+🎷;saxophone;saxophone
+🪗;accordion;accordion
+🎸;guitar;guitar
+🎹;musical_keyboard;musical keyboard
+🎺;trumpet;trumpet
+🎻;violin;violin
+🪕;banjo;banjo
+🥁;drum;drum
+🪘;long_drum;long drum
+📱;iphone;mobile phone
+📲;calling;mobile phone with arrow
+☎️;phone;telephone
+📞;telephone_receiver;telephone receiver
+📟;pager;pager
+📠;fax;fax machine
+🔋;battery;battery
+🔌;electric_plug;electric plug
+💻;computer;laptop
+🖥️;desktop;desktop computer
+🖨️;printer;printer
+⌨️;keyboard;keyboard
+🖱️;mouse_computer;computer mouse
+🖲️;trackball;trackball
+💽;minidisc;computer disk
+💾;floppy_disk;floppy disk
+💿;cd;optical disk
+📀;dvd;dvd
+🧮;abacus;abacus
+🎥;movie_camera;movie camera
+🎞️;film_frames;film frames
+📽️;projector;film projector
+🎬;clapper;clapper board
+📺;tv;television
+📷;camera;camera
+📸;camera_flash;camera with flash
+📹;video_camera;video camera
+📼;vhs;videocassette
+🔍;mag;magnifying glass tilted left
+🔎;mag_right;magnifying glass tilted right
+🕯️;candle;candle
+💡;bulb;light bulb
+🔦;flashlight;flashlight
+🏮;lantern;red paper lantern
+🪔;diya_lamp;diya lamp
+📔;notebook_decorative;notebook with decorative cover
+📕;closed_book;closed book
+📖;book;open book
+📗;green_book;green book
+📘;blue_book;blue book
+📙;orange_book;orange book
+📚;books;books
+📓;notebook;notebook
+📒;ledger;ledger
+📃;page_curl;page with curl
+📜;scroll;scroll
+📄;page_facing_up;page facing up
+📰;newspaper;newspaper
+🗞️;rolled_newspaper;rolled up newspaper
+📑;bookmark_tabs;bookmark tabs
+🔖;bookmark;bookmark
+🏷️;label;label
+💰;moneybag;money bag
+🪙;coin;coin
+💴;yen;yen banknote
+💵;dollar;dollar banknote
+💶;euro;euro banknote
+💷;pound;pound banknote
+💸;money_wings;money with wings
+💳;credit_card;credit card
+🧾;receipt;receipt
+💹;chart;chart increasing with yen
+✉️;envelope;envelope
+📧;email;e mail
+📨;incoming_envelope;incoming envelope
+📩;envelope_arrow;envelope with arrow
+📤;outbox_tray;outbox tray
+📥;inbox_tray;inbox tray
+📦;package;package
+📫;mailbox;closed mailbox with raised flag
+📪;mailbox_closed;closed mailbox with lowered flag
+📬;mailbox_mail;open mailbox with raised flag
+📭;mailbox_no_mail;open mailbox with lowered flag
+📮;postbox;postbox
+🗳️;ballot_box;ballot box with ballot
+✏️;pencil2;pencil
+✒️;black_nib;black nib
+🖋️;fountain_pen;fountain pen
+🖊️;pen;pen
+🖌️;paintbrush;paintbrush
+🖍️;crayon;crayon
+📝;memo;memo
+💼;briefcase;briefcase
+📁;file_folder;file folder
+📂;open_file_folder;open file folder
+🗂️;dividers;card index dividers
+📅;calendar;calendar
+📆;torn_calendar;tear off calendar
+🗒️;spiral_notepad;spiral notepad
+🗓️;spiral_calendar;spiral calendar
+📇;card_index;card index
+📈;chart_up;chart increasing
+📉;chart_down;chart decreasing
+📊;bar_chart;bar chart
+📋;clipboard;clipboard
+📌;pushpin;pushpin
+📍;round_pushpin;round pushpin
+📎;paperclip;paperclip
+🖇️;paperclips;linked paperclips
+📏;straight_ruler;straight ruler
+📐;triangular_ruler;triangular ruler
+✂️;scissors;scissors
+🗃️;card_file_box;card file box
+🗄️;file_cabinet;file cabinet
+🗑️;wastebasket;wastebasket
+🔒;lock;locked
+🔓;unlock;unlocked
+🔏;lock_pen;locked with pen
+🔐;lock_key;locked with key
+🔑;key;key
+🗝️;old_key;old key
+🔨;hammer;hammer
+🪓;axe;axe
+⛏️;pick;pick
+⚒️;hammer_pick;hammer and pick
+🛠️;tools;hammer and wrench
+🗡️;dagger;dagger
+⚔️;crossed_swords;crossed swords
+🔫;gun;water pistol
+🪃;boomerang;boomerang
+🏹;bow_arrow;bow and arrow
+🛡️;shield;shield
+🪚;carpentry_saw;carpentry saw
+🔧;wrench;wrench
+🪛;screwdriver;screwdriver
+🔩;nut_bolt;nut and bolt
+⚙️;gear;gear
+🗜️;clamp;clamp
+⚖️;scales;balance scale
+🦯;probing_cane;white cane
+🔗;link;link
+⛓️;chains;chains
+🪝;hook;hook
+🧰;toolbox;toolbox
+🧲;magnet;magnet
+🪜;ladder;ladder
+⚗️;alembic;alembic
+🧪;test_tube;test tube
+🧫;petri_dish;petri dish
+🧬;dna;dna
+🔬;microscope;microscope
+🔭;telescope;telescope
+📡;satellite_antenna;satellite antenna
+💉;syringe;syringe
+🩸;drop_blood;drop of blood
+💊;pill;pill
+🩹;bandage_adhesive;adhesive bandage
+🩺;stethoscope;stethoscope
+🚪;door;door
+🛗;elevator;elevator
+🪞;mirror;mirror
+🪟;window;window
+🛏️;bed;bed
+🛋️;couch;couch and lamp
+🪑;chair;chair
+🚽;toilet;toilet
+🪠;plunger;plunger
+🚿;shower;shower
+🛁;bathtub;bathtub
+🪤;mouse_trap;mouse trap
+🪒;razor;razor
+🧴;lotion_bottle;lotion bottle
+🧷;safety_pin;safety pin
+🧹;broom;broom
+🧺;basket;basket
+🧻;roll_paper;roll of paper
+🪣;bucket;bucket
+🧼;soap;soap
+🪥;toothbrush;toothbrush
+🧽;sponge;sponge
+🧯;fire_extinguisher;fire extinguisher
+🛒;shopping_cart;shopping cart
+🚬;smoking;cigarette
+⚰️;coffin;coffin
+🪦;headstone;headstone
+⚱️;urn;funeral urn
+🗿;moyai;moai
+🪧;placard;placard
+🏧;atm;atm sign
+🚮;litter;put litter in its place
+🚰;potable_water;potable water
+♿;wheelchair;wheelchair symbol
+🚹;mens;mens room
+🚺;womens;womens room
+🚻;restroom;restroom
+🚼;baby_symbol;baby symbol
+🚾;wc;water closet
+🛂;passport_control;passport control
+🛃;customs;customs
+🛄;baggage_claim;baggage claim
+🛅;left_luggage;left luggage
+⚠️;warning;warning
+🚸;children_crossing;children crossing
+⛔;no_entry;no entry
+🚫;prohibited;prohibited
+🚳;no_bicycles;no bicycles
+🚭;no_smoking;no smoking
+🚯;no_littering;no littering
+🚱;non_potable;non potable water
+🚷;no_pedestrians;no pedestrians
+📵;no_phones;no mobile phones
+🔞;underage;no one under eighteen
+☢️;radioactive;radioactive
+☣️;biohazard;biohazard
+⬆️;arrow_up;up arrow
+↗️;arrow_upper_right;up right arrow
+➡️;arrow_right;right arrow
+↘️;arrow_lower_right;down right arrow
+⬇️;arrow_down;down arrow
+↙️;arrow_lower_left;down left arrow
+⬅️;arrow_left;left arrow
+↖️;arrow_upper_left;up left arrow
+↕️;arrow_up_down;up down arrow
+↔️;left_right_arrow;left right arrow
+↩️;leftwards_arrow;right arrow curving left
+↪️;arrow_right_hook;left arrow curving right
+⤴️;arrow_heading_up;right arrow curving up
+⤵️;arrow_heading_down;right arrow curving down
+🔃;arrows_clockwise;clockwise vertical arrows
+🔄;arrows_counterclockwise;counterclockwise arrows
+🔙;back;back arrow
+🔚;end;end arrow
+🔛;on;on arrow
+🔜;soon;soon arrow
+🔝;top;top arrow
+🛐;place_worship;place of worship
+⚛️;atom;atom symbol
+🕉️;om;om
+✡️;star_david;star of david
+☸️;dharma_wheel;wheel of dharma
+☯️;yin_yang;yin yang
+✝️;cross;latin cross
+☦️;orthodox_cross;orthodox cross
+☪️;star_crescent;star and crescent
+☮️;peace;peace symbol
+🕎;menorah;menorah
+🔯;six_pointed_star;dotted six pointed star
+♈;aries;aries
+♉;taurus;taurus
+♊;gemini;gemini
+♋;cancer;cancer
+♌;leo;leo
+♍;virgo;virgo
+♎;libra;libra
+♏;scorpio;scorpio
+♐;sagittarius;sagittarius
+♑;capricorn;capricorn
+♒;aquarius;aquarius
+♓;pisces;pisces
+⛎;ophiuchus;ophiuchus
+🔀;shuffle;shuffle tracks
+🔁;repeat;repeat
+🔂;repeat_one;repeat single
+▶️;play;play button
+⏩;fast_forward;fast forward
+⏭️;next_track;next track
+⏯️;play_pause;play or pause
+◀️;reverse;reverse button
+⏪;rewind;fast reverse
+⏮️;previous_track;last track
+🔼;up_button;upwards button
+⏫;double_up;fast up button
+🔽;down_button;downwards button
+⏬;double_down;fast down button
+⏸️;pause;pause button
+⏹️;stop;stop button
+⏺️;record;record button
+⏏️;eject;eject button
+🎦;cinema;cinema
+🔅;low_brightness;dim button
+🔆;high_brightness;bright button
+📶;signal_strength;antenna bars
+📳;vibration_mode;vibration mode
+📴;mobile_phone_off;mobile phone off
+♀️;female;female sign
+♂️;male;male sign
+⚧️;transgender;transgender symbol
+✖️;multiply;multiply
+➕;plus;plus
+➖;minus;minus
+➗;divide;divide
+♾️;infinity;infinity
+‼️;bangbang;double exclamation mark
+⁉️;interrobang;exclamation question mark
+❓;question;red question mark
+❔;grey_question;white question mark
+❕;grey_exclamation;white exclamation mark
+❗;exclamation;red exclamation mark
+〰️;wavy_dash;wavy dash
+💱;currency_exchange;currency exchange
+💲;dollar_sign;heavy dollar sign
+⚕️;medical;medical symbol
+♻️;recycle;recycling symbol
+⚜️;fleur_de_lis;fleur de lis
+🔱;trident;trident emblem
+📛;name_badge;name badge
+🔰;beginner;japanese symbol for beginner
+⭕;o;hollow red circle
+✅;check;check mark button
+☑️;ballot_check;check box with check
+✔️;checkmark;check mark
+❌;x;cross mark
+❎;negative_squared;cross mark button
+➰;curly_loop;curly loop
+➿;double_curly_loop;double curly loop
+〽️;part_alternation;part alternation mark
+✳️;eight_spoked;eight spoked asterisk
+✴️;eight_pointed;eight pointed star
+❇️;sparkle;sparkle
+©️;copyright;copyright
+®️;registered;registered
+™️;tm;trade mark
+#️⃣;hash;hash key
+*️⃣;asterisk_keycap;keycap asterisk
+0️⃣;zero;keycap digit zero
+1️⃣;one;keycap digit one
+2️⃣;two;keycap digit two
+3️⃣;three;keycap digit three
+4️⃣;four;keycap digit four
+5️⃣;five;keycap digit five
+6️⃣;six;keycap digit six
+7️⃣;seven;keycap digit seven
+8️⃣;eight;keycap digit eight
+9️⃣;nine;keycap digit nine
+🔟;keycap_ten;keycap ten
+🔠;capital_abcd;input latin uppercase
+🔡;abcd;input latin lowercase
+🔢;1234;input numbers
+🔣;symbols;input symbols
+🔤;abc;input latin letters
+🅰️;a;a button
+🆎;ab;ab button
+🅱️;b;b button
+🆑;cl;cl button
+🆒;cool;cool button
+🆓;free;free button
+ℹ️;information;information
+🆔;id;id button
+Ⓜ️;m;circled m
+🆕;new;new button
+🆖;ng;ng button
+🅾️;o_button;o button
+🆗;ok;ok button
+🅿️;parking;p button
+🆘;sos;sos button
+🆙;up;up button
+🆚;vs;vs button
+🈁;koko;japanese here button
+🈂️;sa;japanese service charge button
+🈷️;monthly;japanese monthly amount button
+🈶;u6709;japanese not free of charge button
+🈯;u6307;japanese reserved button
+🉐;ideograph_advantage;japanese bargain button
+🈹;u5272;japanese discount button
+🈚;u7121;japanese free of charge button
+🈲;u7981;japanese prohibited button
+🉑;accept;japanese acceptable button
+🈸;u7533;japanese application button
+🈴;u5408;japanese passing grade button
+🈳;u7a7a;japanese vacancy button
+㊗️;congratulations;japanese congratulations button
+㊙️;secret;japanese secret button
+🈺;u55b6;japanese open for business button
+🈵;u6e80;japanese no vacancy button
+🔴;red_circle;red circle
+🟠;orange_circle;orange circle
+🟡;yellow_circle;yellow circle
+🟢;green_circle;green circle
+🔵;blue_circle;blue circle
+🟣;purple_circle;purple circle
+🟤;brown_circle;brown circle
+⚫;black_circle;black circle
+⚪;white_circle;white circle
+🟥;red_square;red square
+🟧;orange_square;orange square
+🟨;yellow_square;yellow square
+🟩;green_square;green square
+🟦;blue_square;blue square
+🟪;purple_square;purple square
+🟫;brown_square;brown square
+⬛;black_large_square;black large square
+⬜;white_large_square;white large square
+◼️;black_medium_square;black medium square
+◻️;white_medium_square;white medium square
+◾;black_medium_small_square;black medium small square
+◽;white_medium_small_square;white medium small square
+▪️;black_small_square;black small square
+▫️;white_small_square;white small square
+🔶;large_orange_diamond;large orange diamond
+🔷;large_blue_diamond;large blue diamond
+🔸;small_orange_diamond;small orange diamond
+🔹;small_blue_diamond;small blue diamond
+🔺;red_triangle_up;red triangle pointed up
+🔻;red_triangle_down;red triangle pointed down
+💠;diamond_dot;diamond with a dot
+🔘;radio_button;radio button
+🔳;white_square_button;white square button
+🔲;black_square_button;black square button
+🏁;checkered_flag;chequered flag
+🚩;triangular_flag;triangular flag
+🎌;crossed_flags;crossed flags
+🏴;black_flag;black flag
+🏳️;white_flag;white flag
+🏳️‍🌈;rainbow_flag;rainbow flag
+🏳️‍⚧️;transgender_flag;transgender flag
+🏴‍☠️;pirate_flag;pirate flag
+🇦🇨;flag_ac;flag ascension island
+🇦🇩;flag_ad;flag andorra
+🇦🇪;flag_ae;flag united arab emirates
+🇦🇫;flag_af;flag afghanistan
+🇦🇬;flag_ag;flag antigua barbuda
+🇦🇮;flag_ai;flag anguilla
+🇦🇱;flag_al;flag albania
+🇦🇲;flag_am;flag armenia
+🇦🇴;flag_ao;flag angola
+🇦🇶;flag_aq;flag antarctica
+🇦🇷;flag_ar;flag argentina
+🇦🇸;flag_as;flag american samoa
+🇦🇹;flag_at;flag austria
+🇦🇺;flag_au;flag australia
+🇦🇼;flag_aw;flag aruba
+🇦🇽;flag_ax;flag aland islands
+🇦🇿;flag_az;flag azerbaijan
+🇧🇦;flag_ba;flag bosnia herzegovina
+🇧🇧;flag_bb;flag barbados
+🇧🇩;flag_bd;flag bangladesh
+🇧🇪;flag_be;flag belgium
+🇧🇫;flag_bf;flag burkina faso
+🇧🇬;flag_bg;flag bulgaria
+🇧🇭;flag_bh;flag bahrain
+🇧🇮;flag_bi;flag burundi
+🇧🇯;flag_bj;flag benin
+🇧🇱;flag_bl;flag st barthelemy
+🇧🇲;flag_bm;flag bermuda
+🇧🇳;flag_bn;flag brunei
+🇧🇴;flag_bo;flag bolivia
+🇧🇶;flag_bq;flag caribbean netherlands
+🇧🇷;flag_br;flag brazil
+🇧🇸;flag_bs;flag bahamas
+🇧🇹;flag_bt;flag bhutan
+🇧🇻;flag_bv;flag bouvet island
+🇧🇼;flag_bw;flag botswana
+🇧🇾;flag_by;flag belarus
+🇧🇿;flag_bz;flag belize
+🇨🇦;flag_ca;flag canada
+🇨🇨;flag_cc;flag cocos islands
+🇨🇩;flag_cd;flag congo kinshasa
+🇨🇫;flag_cf;flag central african republic
+🇨🇬;flag_cg;flag congo brazzaville
+🇨🇭;flag_ch;flag switzerland
+🇨🇮;flag_ci;flag cote divoire
+🇨🇰;flag_ck;flag cook islands
+🇨🇱;flag_cl;flag chile
+🇨🇲;flag_cm;flag cameroon
+🇨🇳;flag_cn;flag china
+🇨🇴;flag_co;flag colombia
+🇨🇵;flag_cp;flag clipperton island
+🇨🇷;flag_cr;flag costa rica
+🇨🇺;flag_cu;flag cuba
+🇨🇻;flag_cv;flag cape verde
+🇨🇼;flag_cw;flag curacao
+🇨🇽;flag_cx;flag christmas island
+🇨🇾;flag_cy;flag cyprus
+🇨🇿;flag_cz;flag czechia
+🇩🇪;flag_de;flag germany
+🇩🇬;flag_dg;flag diego garcia
+🇩🇯;flag_dj;flag djibouti
+🇩🇰;flag_dk;flag denmark
+🇩🇲;flag_dm;flag dominica
+🇩🇴;flag_do;flag dominican republic
+🇩🇿;flag_dz;flag algeria
+🇪🇦;flag_ea;flag ceuta melilla
+🇪🇨;flag_ec;flag ecuador
+🇪🇪;flag_ee;flag estonia
+🇪🇬;flag_eg;flag egypt
+🇪🇭;flag_eh;flag western sahara
+🇪🇷;flag_er;flag eritrea
+🇪🇸;flag_es;flag spain
+🇪🇹;flag_et;flag ethiopia
+🇪🇺;flag_eu;flag european union
+🇫🇮;flag_fi;flag finland
+🇫🇯;flag_fj;flag fiji
+🇫🇰;flag_fk;flag falkland islands
+🇫🇲;flag_fm;flag micronesia
+🇫🇴;flag_fo;flag faroe islands
+🇫🇷;flag_fr;flag france
+🇬🇦;flag_ga;flag gabon
+🇬🇧;flag_gb;flag united kingdom
+🇬🇩;flag_gd;flag grenada
+🇬🇪;flag_ge;flag georgia
+🇬🇫;flag_gf;flag french guiana
+🇬🇬;flag_gg;flag guernsey
+🇬🇭;flag_gh;flag ghana
+🇬🇮;flag_gi;flag gibraltar
+🇬🇱;flag_gl;flag greenland
+🇬🇲;flag_gm;flag gambia
+🇬🇳;flag_gn;flag guinea
+🇬🇵;flag_gp;flag guadeloupe
+🇬🇶;flag_gq;flag equatorial guinea
+🇬🇷;flag_gr;flag greece
+🇬🇸;flag_gs;flag south georgia south sandwich islands
+🇬🇹;flag_gt;flag guatemala
+🇬🇺;flag_gu;flag guam
+🇬🇼;flag_gw;flag guinea bissau
+🇬🇾;flag_gy;flag guyana
+🇭🇰;flag_hk;flag hong kong sar china
+🇭🇲;flag_hm;flag heard mcdonald islands
+🇭🇳;flag_hn;flag honduras
+🇭🇷;flag_hr;flag croatia
+🇭🇹;flag_ht;flag haiti
+🇭🇺;flag_hu;flag hungary
+🇮🇨;flag_ic;flag canary islands
+🇮🇩;flag_id;flag indonesia
+🇮🇪;flag_ie;flag ireland
+🇮🇱;flag_il;flag israel
+🇮🇲;flag_im;flag isle of man
+🇮🇳;flag_in;flag india
+🇮🇴;flag_io;flag british indian ocean territory
+🇮🇶;flag_iq;flag iraq
+🇮🇷;flag_ir;flag iran
+🇮🇸;flag_is;flag iceland
+🇮🇹;flag_it;flag italy
+🇯🇪;flag_je;flag jersey
+🇯🇲;flag_jm;flag jamaica
+🇯🇴;flag_jo;flag jordan
+🇯🇵;flag_jp;flag japan
+🇰🇪;flag_ke;flag kenya
+🇰🇬;flag_kg;flag kyrgyzstan
+🇰🇭;flag_kh;flag cambodia
+🇰🇮;flag_ki;flag kiribati
+🇰🇲;flag_km;flag comoros
+🇰🇳;flag_kn;flag st kitts nevis
+🇰🇵;flag_kp;flag north korea
+🇰🇷;flag_kr;flag south korea
+🇰🇼;flag_kw;flag kuwait
+🇰🇾;flag_ky;flag cayman islands
+🇰🇿;flag_kz;flag kazakhstan
+🇱🇦;flag_la;flag laos
+🇱🇧;flag_lb;flag lebanon
+🇱🇨;flag_lc;flag st lucia
+🇱🇮;flag_li;flag liechtenstein
+🇱🇰;flag_lk;flag sri lanka
+🇱🇷;flag_lr;flag liberia
+🇱🇸;flag_ls;flag lesotho
+🇱🇹;flag_lt;flag lithuania
+🇱🇺;flag_lu;flag luxembourg
+🇱🇻;flag_lv;flag latvia
+🇱🇾;flag_ly;flag libya
+🇲🇦;flag_ma;flag morocco
+🇲🇨;flag_mc;flag monaco
+🇲🇩;flag_md;flag moldova
+🇲🇪;flag_me;flag montenegro
+🇲🇫;flag_mf;flag st martin
+🇲🇬;flag_mg;flag madagascar
+🇲🇭;flag_mh;flag marshall islands
+🇲🇰;flag_mk;flag north macedonia
+🇲🇱;flag_ml;flag mali
+🇲🇲;flag_mm;flag myanmar
+🇲🇳;flag_mn;flag mongolia
+🇲🇴;flag_mo;flag macao sar china
+🇲🇵;flag_mp;flag northern mariana islands
+🇲🇶;flag_mq;flag martinique
+🇲🇷;flag_mr;flag mauritania
+🇲🇸;flag_ms;flag montserrat
+🇲🇹;flag_mt;flag malta
+🇲🇺;flag_mu;flag mauritius
+🇲🇻;flag_mv;flag maldives
+🇲🇼;flag_mw;flag malawi
+🇲🇽;flag_mx;flag mexico
+🇲🇾;flag_my;flag malaysia
+🇲🇿;flag_mz;flag mozambique
+🇳🇦;flag_na;flag namibia
+🇳🇨;flag_nc;flag new caledonia
+🇳🇪;flag_ne;flag niger
+🇳🇫;flag_nf;flag norfolk island
+🇳🇬;flag_ng;flag nigeria
+🇳🇮;flag_ni;flag nicaragua
+🇳🇱;flag_nl;flag netherlands
+🇳🇴;flag_no;flag norway
+🇳🇵;flag_np;flag nepal
+🇳🇷;flag_nr;flag nauru
+🇳🇺;flag_nu;flag niue
+🇳🇿;flag_nz;flag new zealand
+🇴🇲;flag_om;flag oman
+🇵🇦;flag_pa;flag panama
+🇵🇪;flag_pe;flag peru
+🇵🇫;flag_pf;flag french polynesia
+🇵🇬;flag_pg;flag papua new guinea
+🇵🇭;flag_ph;flag philippines
+🇵🇰;flag_pk;flag pakistan
+🇵🇱;flag_pl;flag poland
+🇵🇲;flag_pm;flag st pierre miquelon
+🇵🇳;flag_pn;flag pitcairn islands
+🇵🇷;flag_pr;flag puerto rico
+🇵🇸;flag_ps;flag palestinian territories
+🇵🇹;flag_pt;flag portugal
+🇵🇼;flag_pw;flag palau
+🇵🇾;flag_py;flag paraguay
+🇶🇦;flag_qa;flag qatar
+🇷🇪;flag_re;flag reunion
+🇷🇴;flag_ro;flag romania
+🇷🇸;flag_rs;flag serbia
+🇷🇺;flag_ru;flag russia
+🇷🇼;flag_rw;flag rwanda
+🇸🇦;flag_sa;flag saudi arabia
+🇸🇧;flag_sb;flag solomon islands
+🇸🇨;flag_sc;flag seychelles
+🇸🇩;flag_sd;flag sudan
+🇸🇪;flag_se;flag sweden
+🇸🇬;flag_sg;flag singapore
+🇸🇭;flag_sh;flag st helena
+🇸🇮;flag_si;flag slovenia
+🇸🇯;flag_sj;flag svalbard jan mayen
+🇸🇰;flag_sk;flag slovakia
+🇸🇱;flag_sl;flag sierra leone
+🇸🇲;flag_sm;flag san marino
+🇸🇳;flag_sn;flag senegal
+🇸🇴;flag_so;flag somalia
+🇸🇷;flag_sr;flag suriname
+🇸🇸;flag_ss;flag south sudan
+🇸🇹;flag_st;flag sao tome principe
+🇸🇻;flag_sv;flag el salvador
+🇸🇽;flag_sx;flag sint maarten
+🇸🇾;flag_sy;flag syria
+🇸🇿;flag_sz;flag eswatini
+🇹🇦;flag_ta;flag tristan da cunha
+🇹🇨;flag_tc;flag turks caicos islands
+🇹🇩;flag_td;flag chad
+🇹🇫;flag_tf;flag french southern territories
+🇹🇬;flag_tg;flag togo
+🇹🇭;flag_th;flag thailand
+🇹🇯;flag_tj;flag tajikistan
+🇹🇰;flag_tk;flag tokelau
+🇹🇱;flag_tl;flag timor leste
+🇹🇲;flag_tm;flag turkmenistan
+🇹🇳;flag_tn;flag tunisia
+🇹🇴;flag_to;flag tonga
+🇹🇷;flag_tr;flag turkey
+🇹🇹;flag_tt;flag trinidad tobago
+🇹🇻;flag_tv;flag tuvalu
+🇹🇼;flag_tw;flag taiwan
+🇹🇿;flag_tz;flag tanzania
+🇺🇦;flag_ua;flag ukraine
+🇺🇬;flag_ug;flag uganda
+🇺🇲;flag_um;flag us outlying islands
+🇺🇳;flag_un;flag united nations
+🇺🇸;flag_us;flag united states
+🇺🇾;flag_uy;flag uruguay
+🇺🇿;flag_uz;flag uzbekistan
+🇻🇦;flag_va;flag vatican city
+🇻🇨;flag_vc;flag st vincent grenadines
+🇻🇪;flag_ve;flag venezuela
+🇻🇬;flag_vg;flag british virgin islands
+🇻🇮;flag_vi;flag us virgin islands
+🇻🇳;flag_vn;flag vietnam
+🇻🇺;flag_vu;flag vanuatu
+🇼🇫;flag_wf;flag wallis futuna
+🇼🇸;flag_ws;flag samoa
+🇽🇰;flag_xk;flag kosovo
+🇾🇪;flag_ye;flag yemen
+🇾🇹;flag_yt;flag mayotte
+🇿🇦;flag_za;flag south africa
+🇿🇲;flag_zm;flag zambia
+🇿🇼;flag_zw;flag zimbabwe
+🏴󠁧󠁢󠁥󠁮󠁧󠁿;flag_england;flag england
+🏴󠁧󠁢󠁳󠁣󠁴󠁿;flag_scotland;flag scotland
+🏴󠁧󠁢󠁷󠁬󠁳󠁿;flag_wales;flag wales

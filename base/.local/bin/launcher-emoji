@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+#
+# launcher-emoji - Emoji picker
+#
+# Interactively select an emoji and copy it to the clipboard.
+# Recently used emojis are shown first (up to 20 in history).
+#
+# Dependencies: fzf, wl-copy/xclip/pbcopy
+#
+set -euo pipefail
+
+. "${HOME}/.local/lib/launcher.sh"
+
+require fzf
+
+EMOJI_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/emoji/list.txt"
+HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/emoji/history.txt"
+HISTORY_MAX=20
+
+if [[ ! -f "$EMOJI_FILE" ]]; then
+    die "Emoji list not found at $EMOJI_FILE"
+fi
+
+mkdir -p "$(dirname "$HISTORY_FILE")"
+touch "$HISTORY_FILE"
+
+# Build list: history first, then rest (excluding history entries)
+build_list() {
+    if [[ -s "$HISTORY_FILE" ]]; then
+        cat "$HISTORY_FILE"
+        awk -F';' -v hist="$HISTORY_FILE" '
+            BEGIN { while ((getline line < hist) > 0) { split(line, a, " "); seen[a[1]] } }
+            !($1 in seen) { print $1, $3 }
+        ' "$EMOJI_FILE"
+    else
+        awk -F';' '{ print $1, $3 }' "$EMOJI_FILE"
+    fi
+}
+
+selected=$(build_list | fzf_pick | cut -d' ' -f1) || exit 0
+
+[[ -z "$selected" ]] && exit 0
+
+# Update history: add selected to top, remove duplicates, keep max entries
+update_history() {
+    local emoji="$1"
+    local desc
+    desc=$(grep "^${emoji};" "$EMOJI_FILE" | cut -d';' -f3)
+    {
+        printf '%s %s\n' "$emoji" "$desc"
+        grep -v "^${emoji} " "$HISTORY_FILE" 2>/dev/null || true
+    } | head -n "$HISTORY_MAX" > "${HISTORY_FILE}.tmp"
+    mv "${HISTORY_FILE}.tmp" "$HISTORY_FILE"
+}
+
+update_history "$selected"
+
+printf '%s' "$selected" | clip
