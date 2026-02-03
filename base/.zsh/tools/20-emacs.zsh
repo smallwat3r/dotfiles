@@ -13,3 +13,13 @@ if is_macos; then
 else
   export EMACS='/usr/bin/emacs'
 fi
+
+# Eat terminal integration (directory tracking, command tracking)
+# Skip entirely on TRAMP remotes (TERM won't be eat-*)
+if [[ $TERM == eat-* ]]; then
+  for __eat_f in ~/.emacs.d/elpaca/repos/eat/integration/zsh \
+                 ~/.emacs.d/elpa/eat-*/integration/zsh(N[-1]); do
+    [[ -r $__eat_f ]] && source "$__eat_f" && break
+  done
+  unset __eat_f
+fi
