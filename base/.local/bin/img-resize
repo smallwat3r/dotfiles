@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# Resize an image to specified dimensions or scale.
+# Usage: img-resize <image> <width>x<height> | <scale%> | <width>
+set -euo pipefail
+
+usage() {
+  cat >&2 <<EOF
+Usage: ${0##*/} <image> <size>
+
+Size formats:
+  800x600    Resize to exact dimensions (may distort)
+  800x600!   Resize to exact dimensions (force)
+  800x600>   Shrink only if larger (preserve aspect)
+  800x       Resize width, auto height (preserve aspect)
+  x600       Resize height, auto width (preserve aspect)
+  50%        Scale by percentage
+
+Examples:
+  ${0##*/} screenshot.png 800x600>
+  ${0##*/} photo.jpg 50%
+  ${0##*/} image.png 1200x
+EOF
+  exit 1
+}
+
+[[ $# -ne 2 ]] && usage
+
+img=$1
+size=$2
+
+[[ -f $img ]] || { echo "File not found: $img" >&2; exit 1; }
+
+if command -v magick >/dev/null 2>&1; then
+  im_convert="magick"
+  im_identify="magick identify"
+elif command -v convert >/dev/null 2>&1; then
+  im_convert="convert"
+  im_identify="identify"
+else
+  echo "ImageMagick is required but not installed." >&2
+  echo "Install with: sudo dnf install ImageMagick" >&2
+  echo "         or: brew install imagemagick" >&2
+  exit 1
+fi
+
+format_size() {
+  numfmt --to=iec "$1" 2>/dev/null || echo "${1}B"
+}
+
+filesize() {
+  stat -c%s "$1" 2>/dev/null || stat -f%z "$1"
+}
+
+original_size=$(filesize "$img")
+original_dims=$($im_identify -format "%wx%h" "$img")
+
+$im_convert "$img" -resize "$size" "$img"
+
+new_size=$(filesize "$img")
+new_dims=$($im_identify -format "%wx%h" "$img")
+
+printf "Resized: %s (%s -> %s)\n" "$img" "$original_dims" "$new_dims"
+printf "Size: %s -> %s\n" "$(format_size "$original_size")" "$(format_size "$new_size")"

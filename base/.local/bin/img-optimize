@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+# Optimize image file size (PNG, JPEG, WebP).
+# Usage: img-optimize <image> [image...]
+set -euo pipefail
+
+usage() {
+  echo "Usage: ${0##*/} <image> [image...]" >&2
+  echo "Supported formats: PNG, JPEG, WebP" >&2
+  exit 1
+}
+
+[[ $# -lt 1 ]] && usage
+
+format_size() {
+  numfmt --to=iec "$1" 2>/dev/null || echo "${1}B"
+}
+
+print_result() {
+  local fmt=$1 file=$2 old=$3 new=$4
+  local pct=0
+  [[ $old -gt 0 ]] && pct=$(awk "BEGIN { printf \"%.0f\", (1 - $new / $old) * 100 }")
+  printf "%s: %s (%s -> %s, %s%% reduction)\n" \
+    "$fmt" "$file" "$(format_size "$old")" "$(format_size "$new")" "$pct"
+}
+
+require() {
+  command -v "$1" >/dev/null 2>&1 || {
+    echo "Required tool not found: $1" >&2
+    exit 1
+  }
+}
+
+filesize() {
+  stat -c%s "$1" 2>/dev/null || stat -f%z "$1"
+}
+
+optimize_png() {
+  local f=$1 original_size
+  require pngquant
+  require optipng
+  original_size=$(filesize "$f")
+  pngquant --quality=65-80 --skip-if-larger --force --ext .png "$f" 2>/dev/null || true
+  optipng -o2 -quiet "$f"
+  print_result "PNG" "$f" "$original_size" "$(filesize "$f")"
+}
+
+optimize_jpeg() {
+  local f=$1 original_size
+  require jpegoptim
+  original_size=$(filesize "$f")
+  jpegoptim --strip-all --max=85 --quiet "$f"
+  print_result "JPEG" "$f" "$original_size" "$(filesize "$f")"
+}
+
+optimize_webp() {
+  local f=$1 original_size tmp
+  require cwebp
+  original_size=$(filesize "$f")
+  tmp="${f}.tmp.webp"
+  cwebp -q 80 -quiet "$f" -o "$tmp"
+  mv "$tmp" "$f"
+  print_result "WebP" "$f" "$original_size" "$(filesize "$f")"
+}
+
+for img in "$@"; do
+  [[ -f $img ]] || { echo "File not found: $img" >&2; continue; }
+
+  case "${img,,}" in
+    *.png)        optimize_png "$img" ;;
+    *.jpg|*.jpeg) optimize_jpeg "$img" ;;
+    *.webp)       optimize_webp "$img" ;;
+    *)            echo "Unsupported format: $img" >&2 ;;
+  esac
+done

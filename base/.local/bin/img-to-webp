@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# Convert images to WebP format (typically 25-35% smaller than PNG).
+# Usage: img-to-webp <image> [image...]
+set -euo pipefail
+
+usage() {
+  echo "Usage: ${0##*/} <image> [image...]" >&2
+  echo "Converts PNG, JPEG, GIF, TIFF to WebP format" >&2
+  exit 1
+}
+
+[[ $# -lt 1 ]] && usage
+
+command -v cwebp >/dev/null 2>&1 || {
+  echo "cwebp is required but not installed." >&2
+  echo "Install with: sudo dnf install libwebp-tools" >&2
+  echo "         or: brew install webp" >&2
+  exit 1
+}
+
+format_size() {
+  numfmt --to=iec "$1" 2>/dev/null || echo "${1}B"
+}
+
+filesize() {
+  stat -c%s "$1" 2>/dev/null || stat -f%z "$1"
+}
+
+for img in "$@"; do
+  [[ -f $img ]] || { echo "File not found: $img" >&2; continue; }
+
+  case "${img,,}" in
+    *.png|*.jpg|*.jpeg|*.gif|*.tiff)
+      out="${img%.*}.webp"
+      original_size=$(filesize "$img")
+
+      cwebp -q 85 -quiet "$img" -o "$out"
+
+      new_size=$(filesize "$out")
+      pct=0
+      [[ $original_size -gt 0 ]] && \
+        pct=$(awk "BEGIN { printf \"%.0f\", (1 - $new_size / $original_size) * 100 }")
+      printf "Converted: %s -> %s (%s -> %s, %s%% reduction)\n" \
+        "$img" "$out" \
+        "$(format_size "$original_size")" "$(format_size "$new_size")" "$pct"
+      ;;
+    *.webp)
+      echo "Already WebP: $img" >&2
+      ;;
+    *)
+      echo "Unsupported format: $img" >&2
+      ;;
+  esac
+done
