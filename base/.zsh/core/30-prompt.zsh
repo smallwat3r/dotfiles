@@ -50,9 +50,17 @@ __prompt_precmd() {
   [[ $gstatus == *$'\n'[^#]* ]] && dirty='*'
   [[ -e .git ]] && root='~'
 
-  local subject
-  subject=$(git log -1 --format=%s 2>/dev/null)
-  [[ $subject == PAUSED* ]] && \
+  # Cache PAUSED check by OID (porcelain v2 includes branch.oid).
+  # Skips the git log fork when HEAD hasn't changed.
+  local oid=${gstatus#*branch.oid }
+  oid=${oid%%$'\n'*}
+  if [[ $oid != "${__git_prev_oid-}" ]]; then
+    __git_prev_oid=$oid
+    __git_prev_subject=$(
+      git log -1 --format=%s 2>/dev/null
+    )
+  fi
+  [[ $__git_prev_subject == PAUSED* ]] && \
     paused=' %B%F{198}%K{52}[PAUSED]%b%f%k'
 
   __ps_git="${paused}%F{yellow} (${branch}${dirty}${root})%f "
