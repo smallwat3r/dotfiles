@@ -14,7 +14,7 @@ __syntax_hl() {
 
   (( $#BUFFER )) || return
 
-  # -- first word (skip leading whitespace) --
+  # first word (skip leading whitespace)
   local cmd=${BUFFER##[[:space:]]#}
   local -i offset=$(( $#BUFFER - $#cmd ))
   cmd=${cmd%%[[:space:]]*}

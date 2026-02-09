@@ -47,7 +47,6 @@ __git_prompt_segment() {
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
 setopt PROMPT_SUBST
-autoload -U colors && colors
 
 # Session tags for prompt labeling. Set via `tag "label"`, clear with `tag`.
 __tag() { [[ -n "$_PROMPT_TAG" ]] && echo "%B%F{87}%K{20}[${(U)_PROMPT_TAG}]%b%f%k " }
