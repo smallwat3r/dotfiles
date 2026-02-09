@@ -6,57 +6,63 @@
 
 __syntax_hl() {
   emulate -L zsh
+
+  # Skip if buffer unchanged (redraws without edits).
+  [[ $BUFFER == "${__syntax_hl_prev-}" ]] && return
+  __syntax_hl_prev=$BUFFER
   region_highlight=()
 
-  local buf=$BUFFER len=${#BUFFER}
-  (( len == 0 )) && return
-
-  # -- quoted strings (yellow) --
-  local i=1 q
-  while (( i <= len )); do
-    q=${buf[i]}
-    if [[ $q == "'" || $q == '"' ]]; then
-      local start=$i
-      (( i++ ))
-      while (( i <= len )) && [[ ${buf[i]} != "$q" ]]; do
-        (( i++ ))
-      done
-      region_highlight+=(
-        "$(( start - 1 )) $i fg=yellow"
-      )
-    fi
-    (( i++ ))
-  done
+  (( $#BUFFER )) || return
 
   # -- first word (skip leading whitespace) --
-  local cmd
-  cmd=${buf##[[:space:]]#}
+  local cmd=${BUFFER##[[:space:]]#}
+  local -i offset=$(( $#BUFFER - $#cmd ))
   cmd=${cmd%%[[:space:]]*}
-  [[ -z $cmd ]] && return
+  [[ -n $cmd ]] || return
 
-  local offset=$(( len - ${#${buf##[[:space:]]#}} ))
-  local cmd_end=$(( offset + ${#cmd} ))
+  local -i cmd_end=$(( offset + $#cmd ))
 
   # rm: dim bold on the whole line
   if [[ $cmd == rm ]]; then
-    region_highlight+=("0 $len fg=90,bold")
+    region_highlight+=("0 $#BUFFER fg=90,bold")
     return
   fi
 
   # sudo: purple bold
   if [[ $cmd == sudo ]]; then
-    region_highlight+=(
-      "$offset $cmd_end fg=164,bold"
-    )
+    region_highlight+=("$offset $cmd_end fg=164,bold")
     return
   fi
 
   # unknown command: red bold
   if ! whence -- "$cmd" >/dev/null 2>&1; then
-    region_highlight+=(
-      "$offset $cmd_end fg=red,bold"
-    )
+    region_highlight+=("$offset $cmd_end fg=red,bold")
   fi
+
+  # quoted strings - jump between quotes via (ib:n:)
+  local QS="'" QD='"'
+  local -i pos=1 sq dq next close
+  while (( pos <= $#BUFFER )); do
+    sq=${BUFFER[(ib:$pos:)$QS]}
+    dq=${BUFFER[(ib:$pos:)$QD]}
+    if (( sq < dq )); then
+      next=$sq
+      close=${BUFFER[(ib:$((next + 1)):)$QS]}
+    elif (( dq <= $#BUFFER )); then
+      next=$dq
+      close=${BUFFER[(ib:$((next + 1)):)$QD]}
+    else
+      break
+    fi
+    if (( close <= $#BUFFER )); then
+      region_highlight+=(
+        "$(( next - 1 )) $close fg=yellow"
+      )
+      pos=$(( close + 1 ))
+    else
+      break
+    fi
+  done
 }
 
 zle -N zle-line-pre-redraw __syntax_hl
