@@ -1,68 +1,62 @@
-# zsh-syntax-highlighting
+# Minimal syntax highlighting using region_highlight
 #
-# Deferred loading for faster shell startup. Plugin is sourced on
-# first prompt.
+# Highlights unknown commands (red), quoted strings (yellow),
+# sudo (purple), and rm (dim bold on entire line).
+# No external dependencies.
 
-__load_syntax_highlighting() {
+__syntax_hl() {
   emulate -L zsh
+  region_highlight=()
 
-  local -a candidates
-  case $OSTYPE in
-    darwin*)
-      candidates=(
-        /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-      ) ;;
-    linux*)
-      candidates=(
-        /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-      ) ;;
-  esac
+  local buf=$BUFFER len=${#BUFFER}
+  (( len == 0 )) && return
 
-  local f
-  for f in $candidates; do
-    if [[ -f $f ]]; then
-      source "$f"
-      return
+  # -- quoted strings (yellow) --
+  local i=1 q
+  while (( i <= len )); do
+    q=${buf[i]}
+    if [[ $q == "'" || $q == '"' ]]; then
+      local start=$i
+      (( i++ ))
+      while (( i <= len )) && [[ ${buf[i]} != "$q" ]]; do
+        (( i++ ))
+      done
+      region_highlight+=(
+        "$(( start - 1 )) $i fg=yellow"
+      )
     fi
+    (( i++ ))
   done
-  print -u2 "Plugin not found: zsh-syntax-highlighting"
+
+  # -- first word (skip leading whitespace) --
+  local cmd
+  cmd=${buf##[[:space:]]#}
+  cmd=${cmd%%[[:space:]]*}
+  [[ -z $cmd ]] && return
+
+  local offset=$(( len - ${#${buf##[[:space:]]#}} ))
+  local cmd_end=$(( offset + ${#cmd} ))
+
+  # rm: dim bold on the whole line
+  if [[ $cmd == rm ]]; then
+    region_highlight+=("0 $len fg=90,bold")
+    return
+  fi
+
+  # sudo: purple bold
+  if [[ $cmd == sudo ]]; then
+    region_highlight+=(
+      "$offset $cmd_end fg=164,bold"
+    )
+    return
+  fi
+
+  # unknown command: red bold
+  if ! whence -- "$cmd" >/dev/null 2>&1; then
+    region_highlight+=(
+      "$offset $cmd_end fg=red,bold"
+    )
+  fi
 }
 
-__set_zsh_highlight_styles() {
-  ZSH_HIGHLIGHT_STYLES[default]=none
-  ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
-  ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=green
-  ZSH_HIGHLIGHT_STYLES[alias]=none
-  ZSH_HIGHLIGHT_STYLES[builtin]=none
-  ZSH_HIGHLIGHT_STYLES[function]=none
-  ZSH_HIGHLIGHT_STYLES[command]=none
-  ZSH_HIGHLIGHT_STYLES[precommand]=none
-  ZSH_HIGHLIGHT_STYLES[commandseparator]=none
-  ZSH_HIGHLIGHT_STYLES[hashed-command]=none
-  ZSH_HIGHLIGHT_STYLES[path]=none
-  ZSH_HIGHLIGHT_STYLES[globbing]=none
-  ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue
-  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
-  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
-  ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
-  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
-  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
-  ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
-  ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
-  ZSH_HIGHLIGHT_STYLES[assign]=none
-  ZSH_HIGHLIGHT_REGEXP+=('^rm .*' fg=90,bold)
-  ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' fg=164,bold)
-}
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets regexp)
-
-__deferred_load_plugins() {
-  __load_syntax_highlighting
-  __set_zsh_highlight_styles
-  add-zsh-hook -d precmd __deferred_load_plugins
-  unfunction __deferred_load_plugins
-}
-
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd __deferred_load_plugins
+zle -N zle-line-pre-redraw __syntax_hl
