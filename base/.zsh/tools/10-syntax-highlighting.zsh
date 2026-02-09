@@ -1,42 +1,32 @@
-# External zsh plugins
+# zsh-syntax-highlighting
 #
-# Loads zsh-autosuggestions and zsh-syntax-highlighting with deferred
-# loading for faster shell startup. Plugins are sourced on first prompt.
+# Deferred loading for faster shell startup. Plugin is sourced on
+# first prompt.
 
-__load_plugins() {
+__load_syntax_highlighting() {
   emulate -L zsh
 
-  # plugin directory roots to probe per OS
-  local -a basedirs
+  local -a candidates
   case $OSTYPE in
-    darwin*) basedirs=(/opt/homebrew/share) ;;
-    linux*) basedirs=(/usr/share /usr/share/zsh) ;;
-    *) basedirs=() ;;
+    darwin*)
+      candidates=(
+        /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      ) ;;
+    linux*)
+      candidates=(
+        /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+      ) ;;
   esac
 
-  # plugin names, used to build paths
-  local -a plugins=(
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-  )
-
-  local plugin dir path loaded
-  for plugin in $plugins; do
-    loaded=0
-    for dir in $basedirs; do
-      for path in \
-        "$dir/$plugin/$plugin.zsh" \
-        "$dir/plugins/$plugin/$plugin.plugin.zsh"
-      do
-        if [[ -f $path ]]; then
-          source "$path"
-          loaded=1
-          break 2   # break out of both inner loops
-        fi
-      done
-    done
-    (( loaded )) || print -u2 "Plugin not found: $plugin"
+  local f
+  for f in $candidates; do
+    if [[ -f $f ]]; then
+      source "$f"
+      return
+    fi
   done
+  print -u2 "Plugin not found: zsh-syntax-highlighting"
 }
 
 __set_zsh_highlight_styles() {
@@ -65,17 +55,11 @@ __set_zsh_highlight_styles() {
   ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' fg=164,bold)
 }
 
-# pre-set config vars before plugins load
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets regexp)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
-# defer plugin loading until first prompt for faster shell startup
 __deferred_load_plugins() {
-  __load_plugins
+  __load_syntax_highlighting
   __set_zsh_highlight_styles
-  # reinitialize autosuggestions after deferred load
-  (( $+functions[_zsh_autosuggest_start] )) && _zsh_autosuggest_start
-  # unhook after first run
   add-zsh-hook -d precmd __deferred_load_plugins
   unfunction __deferred_load_plugins
 }
