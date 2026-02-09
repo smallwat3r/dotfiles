@@ -1,5 +1,8 @@
 # ~/.zshenv
 
+# Skip /etc/zsh* system configs
+setopt no_global_rcs
+
 : "${XDG_CONFIG_HOME:=$HOME/.config}"
 export XDG_CONFIG_HOME
 
