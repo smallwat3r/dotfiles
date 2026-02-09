@@ -3,60 +3,71 @@
 # Minimal prompt with git status, virtualenv indicator, and optional
 # session tags. Also auto-starts tmux for interactive terminal sessions
 # (unless inside Emacs or Hammerspoon).
+#
+# All dynamic segments are computed in a precmd hook and stored in
+# variables, avoiding subshell forks on each prompt render.
 
-__is_venv() { (( ${+VIRTUAL_ENV} )) && printf '%s' "venv(${VIRTUAL_ENV##*/}) " }
-
-# Git prompt segment showing:
-#   - branch name
-#   - * if working tree has uncommitted changes
-#   - ~ if current directory is the repository root
-#   - [PAUSED] badge if last commit subject starts with "PAUSED" (for git-pause workflow)
-__git_prompt_segment() {
-  local info gstatus subject branch dirty root paused
-
-  info=$(
-    # Prevent git from acquiring locks, avoiding delays on busy repos
-    export GIT_OPTIONAL_LOCKS=0
-    git status --porcelain=v2 -b --no-ahead-behind 2>/dev/null
-    printf '\0'
-    git log -1 --format=%s 2>/dev/null
-  )
-
-  # Parse NUL-separated output: gstatus\0subject
-  gstatus=${info%%$'\x00'*}
-  subject=${info#*$'\x00'}
-
-  # Branch from "# branch.head <name>" line in porcelain v2 output
-  branch=${gstatus#*branch.head }
-  branch=${branch%%$'\n'*}
-  [[ -z "$branch" || "$branch" == "# "* ]] && return
-
-  # Dirty if any non-header line exists (file status lines don't start with #)
-  [[ $gstatus == *$'\n'[^#]* ]] && dirty='*'
-  # At root if .git exists in current directory
-  [[ -e .git ]] && root='~'
-  # PAUSED badge for git-pause workflow (commit with "PAUSED: ..." message)
-  [[ $subject == PAUSED* ]] && paused=' %B%F{198}%K{52}[PAUSED]%b%f%k'
-
-  printf '%s%%F{yellow} (%s%s%s)%%f ' "$paused" "$branch" "$dirty" "$root"
-}
-
-# Disable the default virtualenv prompt modification. Python's venv activation
-# script prepends "(venv)" to PS1, but we handle this ourselves in __is_venv
-# for consistent styling.
+# Disable the default virtualenv prompt modification. Python's venv
+# activation script prepends "(venv)" to PS1, but we handle this
+# ourselves for consistent styling.
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
 setopt PROMPT_SUBST
 
-# Session tags for prompt labeling. Set via `tag "label"`, clear with `tag`.
-__tag() { [[ -n "$_PROMPT_TAG" ]] && echo "%B%F{87}%K{20}[${(U)_PROMPT_TAG}]%b%f%k " }
+# Session tags for prompt labeling. Set via `tag "label"`, clear
+# with `tag`.
 tag() { _PROMPT_TAG="$1" }
 
-PROMPT='%(?..%F{red}?%? )$(__tag)$(__is_venv)%f%3~%f$(__git_prompt_segment)%# '
+__prompt_precmd() {
+  local last_status=$?
 
-# Auto-start tmux for interactive terminal sessions, unless inside Emacs
-# (which has its own window management) or Hammerspoon (macOS automation).
-# Conditions: stdin is a tty, not already in tmux, shell is interactive.
+  __ps_err='' __ps_tag='' __ps_venv='' __ps_git=''
+
+  # exit status
+  (( last_status )) && __ps_err="%F{red}?${last_status} "
+
+  # session tag
+  [[ -n $_PROMPT_TAG ]] && \
+    __ps_tag="%B%F{87}%K{20}[${(U)_PROMPT_TAG}]%b%f%k "
+
+  # virtualenv
+  (( ${+VIRTUAL_ENV} )) && \
+    __ps_venv="venv(${VIRTUAL_ENV##*/}) "
+
+  # git
+  local gstatus branch dirty root paused
+
+  gstatus=$(
+    GIT_OPTIONAL_LOCKS=0 \
+    git status --porcelain=v2 -b \
+      --no-ahead-behind 2>/dev/null
+  ) || return
+
+  branch=${gstatus#*branch.head }
+  branch=${branch%%$'\n'*}
+  [[ -z $branch || $branch == "# "* ]] && return
+
+  [[ $gstatus == *$'\n'[^#]* ]] && dirty='*'
+  [[ -e .git ]] && root='~'
+
+  local subject
+  subject=$(git log -1 --format=%s 2>/dev/null)
+  [[ $subject == PAUSED* ]] && \
+    paused=' %B%F{198}%K{52}[PAUSED]%b%f%k'
+
+  __ps_git="${paused}%F{yellow} (${branch}${dirty}${root})%f "
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd __prompt_precmd
+
+PROMPT='${__ps_err}${__ps_tag}${__ps_venv}%f%3~%f${__ps_git}%# '
+
+# Auto-start tmux for interactive terminal sessions, unless inside
+# Emacs (which has its own window management) or Hammerspoon (macOS
+# automation).
+# Conditions: stdin is a tty, not already in tmux, shell is
+# interactive.
 if (( ! ${+INSIDE_EMACS} && ! ${+INSIDE_HS} )); then
   if [[ -t 0 && -z "$TMUX" && $- == *i* ]]; then
     exec tmux
