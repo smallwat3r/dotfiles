@@ -43,14 +43,14 @@ __syntax_hl() {
   local QS="'" QD='"'
   local -i pos=1 sq dq next close
   while (( pos <= $#BUFFER )); do
-    sq=${BUFFER[(ib:$pos:)$QS]}
-    dq=${BUFFER[(ib:$pos:)$QD]}
+    sq=${BUFFER[(ib:pos:)$QS]}
+    dq=${BUFFER[(ib:pos:)$QD]}
     if (( sq < dq )); then
       next=$sq
-      close=${BUFFER[(ib:$((next + 1)):)$QS]}
+      close=${BUFFER[(ib:next+1:)$QS]}
     elif (( dq <= $#BUFFER )); then
       next=$dq
-      close=${BUFFER[(ib:$((next + 1)):)$QD]}
+      close=${BUFFER[(ib:next+1:)$QD]}
     else
       break
     fi
