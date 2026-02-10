@@ -1,6 +1,7 @@
 # smallwat3r's ZSH config entrypoint
 
 # optional profiling (enable by setting DEBUG_ZSH_PERF in env)
+# DEBUG_ZSH_PERF=1 zsh -i
 if (( ${+DEBUG_ZSH_PERF} )); then
   zmodload zsh/zprof
 fi
