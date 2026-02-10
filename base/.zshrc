@@ -16,17 +16,16 @@ case $OSTYPE in
     ;;
   linux*)
     [[ -r /etc/os-release ]] && . /etc/os-release
-    if [[ $ID == fedora ]]; then
-      : "${TERMINAL:=foot}"
-      if [[ $XDG_CURRENT_DESKTOP == sway ]]; then
-        if [[ -z $SWAYSOCK ]]; then
-          local sock=(/run/user/$(id -u)/sway-ipc.*.sock(N[1]))
-          [[ -S $sock ]] && export SWAYSOCK=$sock
-        fi
-        if [[ -z $WAYLAND_DISPLAY ]]; then
-          local wl=(/run/user/$(id -u)/wayland-*~*lock*(N[1]))
-          [[ -S $wl ]] && export WAYLAND_DISPLAY=${wl:t}
-        fi
+    [[ $ID == fedora ]] && : "${TERMINAL:=foot}"
+    if [[ $XDG_CURRENT_DESKTOP == sway ]]; then
+      local rundir=/run/user/$UID
+      if [[ -z $SWAYSOCK ]]; then
+        local sock=($rundir/sway-ipc.*.sock(N[1]))
+        [[ -S $sock ]] && export SWAYSOCK=$sock
+      fi
+      if [[ -z $WAYLAND_DISPLAY ]]; then
+        local wl=($rundir/wayland-*~*lock*(N[1]))
+        [[ -S $wl ]] && export WAYLAND_DISPLAY=${wl:t}
       fi
     fi
     ;;
