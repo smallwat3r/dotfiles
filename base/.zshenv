@@ -39,7 +39,8 @@ manpath=(
 [[ -d "$HOME/.npm-global/bin" ]] && path=("$HOME/.npm-global/bin" $path)
 
 # ssh-agent socket (systemd user service on Linux)
-[[ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+[[ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]] \
+  && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export PATH  # syncs with $path
 
