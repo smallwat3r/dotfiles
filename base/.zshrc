@@ -5,6 +5,7 @@ if (( ${+DEBUG_ZSH_PERF} )); then
   zmodload zsh/zprof
 fi
 
+# enable extended glob qualifiers (N, [1], ~, etc.)
 setopt extended_glob
 
 : "${ZSH_ROOT:=$HOME/.zsh}"
