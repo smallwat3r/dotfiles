@@ -14,11 +14,18 @@ __syntax_hl() {
 
   (( $#BUFFER )) || return
 
-  # first word (skip leading whitespace)
+  # first word (skip leading whitespace and VAR=val prefixes)
   local cmd=${BUFFER##[[:space:]]#}
   local -i offset=$(( $#BUFFER - $#cmd ))
   cmd=${cmd%%[[:space:]]*}
   [[ -n $cmd ]] || return
+  while [[ $cmd == *=* ]]; do
+    local rest=${BUFFER:$(( offset + $#cmd ))}
+    rest=${rest##[[:space:]]#}
+    offset=$(( $#BUFFER - $#rest ))
+    cmd=${rest%%[[:space:]]*}
+    [[ -n $cmd ]] || return
+  done
 
   local -i cmd_end=$(( offset + $#cmd ))
 
