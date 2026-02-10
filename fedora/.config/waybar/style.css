@@ -40,8 +40,6 @@ window#waybar {
 #memory,
 #tray,
 #bluetooth,
-#network,
-#wireplumber,
 #custom-mako,
 #custom-power-profile,
 #battery,
@@ -53,10 +51,8 @@ window#waybar {
     padding: 0 2px;
 }
 
-#wireplumber.muted,
 #bluetooth.disabled,
-#bluetooth.off,
-#network.disconnected {
+#bluetooth.off {
     color: #666666;
 }
 
