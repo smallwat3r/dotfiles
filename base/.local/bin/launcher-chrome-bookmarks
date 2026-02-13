@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+#
+# launcher-chrome-bookmarks - Browse Chrome/Chromium bookmarks
+#
+# Interactively select a bookmark and open it in Chrome/Chromium.
+# Bookmarks are displayed with their folder path for context,
+# URLs are hidden from search.
+#
+# Dependencies:
+#   - fzf: Fuzzy finder
+#   - jq: For parsing bookmarks JSON
+#
+# Usage:
+#   launcher-chrome-bookmarks
+#
+set -euo pipefail
+
+. "${HOME}/.local/lib/launcher.sh"
+
+require fzf jq
+
+# Config
+
+case "$(uname -s)" in
+  Darwin)
+    BOOKMARKS="$HOME/Library/Application Support"
+    BOOKMARKS+="/Google/Chrome/Default/Bookmarks"
+    open_url() { open -a "/Applications/Google Chrome.app" "$1"; }
+    ;;
+  Linux)
+    BOOKMARKS=""
+    for path in \
+      "$HOME/.config/chromium/Default/Bookmarks" \
+      "$HOME/.config/google-chrome/Default/Bookmarks" \
+      "$HOME/.var/app/org.chromium.Chromium/config/chromium/Default/Bookmarks" \
+      "$HOME/.var/app/com.google.Chrome/config/google-chrome/Default/Bookmarks" \
+      "$HOME/snap/chromium/common/chromium/Default/Bookmarks"
+    do
+      [[ -f "$path" ]] && BOOKMARKS="$path" && break
+    done
+    open_url() { setsid gio open "$1" >/dev/null 2>&1; }
+    ;;
+  *)
+    die "Unsupported OS"
+    ;;
+esac
+
+[[ -f "$BOOKMARKS" ]] || die "Bookmarks file not found"
+
+# Functions
+
+list_bookmarks() {
+  local jq_filter='
+    def walk(path):
+      if .type == "folder" then
+        (if path == "" then .name
+         else path + "/" + .name end) as $p |
+        .children[]? | walk($p)
+      elif .type == "url" then
+        (if path == "" then .name
+         else path + "/" + .name end) as $d |
+        "\(.url)\t\($d)"
+      else empty end;
+    .roots[] | .children[]? | walk("")
+  '
+  jq -r "$jq_filter" "$BOOKMARKS"
+}
+
+# Main
+
+target="$(list_bookmarks | fzf_pick_id)" || exit 0
+
+url="$(printf '%s' "$target" | cut -f1)"
+
+open_url "$url"
