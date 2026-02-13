@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
-# launcher-browser-history - Browse Chrome/Chromium history
+# launcher-browser-history - Browse browser history
 #
-# Interactively select a URL from your browser history
-# and open it in Chrome/Chromium.
+# Interactively select a URL from your browser history and
+# open it. Supports Chrome, Chromium and Firefox.
 #
 # Dependencies:
 #   - fzf: Fuzzy finder
@@ -20,6 +20,8 @@ require fzf sqlite3
 
 # Config
 
+BROWSER="chrome"
+
 case "$(uname -s)" in
   Darwin)
     HISTORY="$HOME/Library/Application Support/Google/Chrome/Default/History"
@@ -27,15 +29,27 @@ case "$(uname -s)" in
     ;;
   Linux)
     HISTORY=""
-    for path in \
-      "$HOME/.config/chromium/Default/History" \
-      "$HOME/.config/google-chrome/Default/History" \
-      "$HOME/.var/app/org.chromium.Chromium/config/chromium/Default/History" \
-      "$HOME/.var/app/com.google.Chrome/config/google-chrome/Default/History" \
-      "$HOME/snap/chromium/common/chromium/Default/History"
-    do
-      [[ -f "$path" ]] && HISTORY="$path" && break
-    done
+    ff_dir="$HOME/.mozilla/firefox"
+    if [[ -f "$ff_dir/profiles.ini" ]]; then
+      ff_profile=$(awk -F= '
+        /^\[Install/ { f=1 }
+        f && /^Default=/ { print $2; exit }
+      ' "$ff_dir/profiles.ini")
+      path="$ff_dir/$ff_profile/places.sqlite"
+      [[ -f "$path" ]] \
+        && HISTORY="$path" && BROWSER="firefox"
+    fi
+    if [[ -z "$HISTORY" ]]; then
+      for path in \
+        "$HOME/.config/chromium/Default/History" \
+        "$HOME/.config/google-chrome/Default/History" \
+        "$HOME/.var/app/org.chromium.Chromium/config/chromium/Default/History" \
+        "$HOME/.var/app/com.google.Chrome/config/google-chrome/Default/History" \
+        "$HOME/snap/chromium/common/chromium/Default/History"
+      do
+        [[ -f "$path" ]] && HISTORY="$path" && break
+      done
+    fi
     open_url() { setsid gio open "$1" >/dev/null 2>&1; }
     ;;
   *)
@@ -48,13 +62,26 @@ esac
 # Functions
 
 list_history() {
-  local sql_query="
-    SELECT date(last_visit_time/1000000 - 11644473600, 'unixepoch')
-      || ' ' || url
-    FROM urls
-    ORDER BY last_visit_time DESC
-    LIMIT 100000
-  "
+  if [[ "$BROWSER" == "firefox" ]]; then
+    local sql_query="
+      SELECT date(v.visit_date/1000000, 'unixepoch')
+        || ' ' || p.url
+      FROM moz_places p
+      JOIN moz_historyvisits v ON p.id = v.place_id
+      ORDER BY v.visit_date DESC
+      LIMIT 100000
+    "
+  else
+    local sql_query="
+      SELECT date(
+        last_visit_time/1000000 - 11644473600,
+        'unixepoch'
+      ) || ' ' || url
+      FROM urls
+      ORDER BY last_visit_time DESC
+      LIMIT 100000
+    "
+  fi
   sqlite3 "file:$HISTORY?immutable=1" "$sql_query"
 }
 

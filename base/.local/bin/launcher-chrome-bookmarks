@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 #
-# launcher-chrome-bookmarks - Browse Chrome/Chromium bookmarks
+# launcher-chrome-bookmarks - Browse browser bookmarks
 #
-# Interactively select a bookmark and open it in Chrome/Chromium.
-# Bookmarks are displayed with their folder path for context,
-# URLs are hidden from search.
+# Interactively select a bookmark and open it.
+# Supports Chrome, Chromium and Firefox. Bookmarks are
+# displayed with their folder path for context, URLs are
+# hidden from search.
 #
 # Dependencies:
 #   - fzf: Fuzzy finder
-#   - jq: For parsing bookmarks JSON
+#   - jq: For parsing bookmarks JSON (Chrome/Chromium)
+#   - sqlite3: For reading bookmarks database (Firefox)
 #
 # Usage:
 #   launcher-chrome-bookmarks
@@ -17,27 +19,42 @@ set -euo pipefail
 
 . "${HOME}/.local/lib/launcher.sh"
 
-require fzf jq
+require fzf
 
 # Config
 
+BROWSER="chrome"
+
 case "$(uname -s)" in
   Darwin)
+    require jq
     BOOKMARKS="$HOME/Library/Application Support"
     BOOKMARKS+="/Google/Chrome/Default/Bookmarks"
     open_url() { open -a "/Applications/Google Chrome.app" "$1"; }
     ;;
   Linux)
     BOOKMARKS=""
-    for path in \
-      "$HOME/.config/chromium/Default/Bookmarks" \
-      "$HOME/.config/google-chrome/Default/Bookmarks" \
-      "$HOME/.var/app/org.chromium.Chromium/config/chromium/Default/Bookmarks" \
-      "$HOME/.var/app/com.google.Chrome/config/google-chrome/Default/Bookmarks" \
-      "$HOME/snap/chromium/common/chromium/Default/Bookmarks"
-    do
-      [[ -f "$path" ]] && BOOKMARKS="$path" && break
-    done
+    ff_dir="$HOME/.mozilla/firefox"
+    if [[ -f "$ff_dir/profiles.ini" ]]; then
+      ff_profile=$(awk -F= '
+        /^\[Install/ { f=1 }
+        f && /^Default=/ { print $2; exit }
+      ' "$ff_dir/profiles.ini")
+      path="$ff_dir/$ff_profile/places.sqlite"
+      [[ -f "$path" ]] \
+        && BOOKMARKS="$path" && BROWSER="firefox"
+    fi
+    if [[ -z "$BOOKMARKS" ]]; then
+      for path in \
+        "$HOME/.config/chromium/Default/Bookmarks" \
+        "$HOME/.config/google-chrome/Default/Bookmarks" \
+        "$HOME/.var/app/org.chromium.Chromium/config/chromium/Default/Bookmarks" \
+        "$HOME/.var/app/com.google.Chrome/config/google-chrome/Default/Bookmarks" \
+        "$HOME/snap/chromium/common/chromium/Default/Bookmarks"
+      do
+        [[ -f "$path" ]] && BOOKMARKS="$path" && break
+      done
+    fi
     open_url() { setsid gio open "$1" >/dev/null 2>&1; }
     ;;
   *)
@@ -50,20 +67,44 @@ esac
 # Functions
 
 list_bookmarks() {
-  local jq_filter='
-    def walk(path):
-      if .type == "folder" then
-        (if path == "" then .name
-         else path + "/" + .name end) as $p |
-        .children[]? | walk($p)
-      elif .type == "url" then
-        (if path == "" then .name
-         else path + "/" + .name end) as $d |
-        "\(.url)\t\($d)"
-      else empty end;
-    .roots[] | .children[]? | walk("")
-  '
-  jq -r "$jq_filter" "$BOOKMARKS"
+  if [[ "$BROWSER" == "firefox" ]]; then
+    require sqlite3
+    local sql_query="
+      WITH RECURSIVE paths(id, path) AS (
+        SELECT id, title FROM moz_bookmarks
+        WHERE parent = 1 AND type = 2
+        UNION ALL
+        SELECT b.id, paths.path || '/' || b.title
+        FROM moz_bookmarks b
+        JOIN paths ON b.parent = paths.id
+        WHERE b.type = 2
+      )
+      SELECT p.url || char(9)
+        || COALESCE(pa.path || '/', '') || b.title
+      FROM moz_bookmarks b
+      JOIN moz_places p ON b.fk = p.id
+      LEFT JOIN paths pa ON b.parent = pa.id
+      WHERE b.type = 1
+        AND p.url NOT LIKE 'place:%'
+    "
+    sqlite3 "file:$BOOKMARKS?immutable=1" "$sql_query"
+  else
+    require jq
+    local jq_filter='
+      def walk(path):
+        if .type == "folder" then
+          (if path == "" then .name
+           else path + "/" + .name end) as $p |
+          .children[]? | walk($p)
+        elif .type == "url" then
+          (if path == "" then .name
+           else path + "/" + .name end) as $d |
+          "\(.url)\t\($d)"
+        else empty end;
+      .roots[] | .children[]? | walk("")
+    '
+    jq -r "$jq_filter" "$BOOKMARKS"
+  fi
 }
 
 # Main
