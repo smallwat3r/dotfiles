@@ -55,7 +55,11 @@ case "$(uname -s)" in
         [[ -f "$path" ]] && BOOKMARKS="$path" && break
       done
     fi
-    open_url() { setsid gio open "$1" >/dev/null 2>&1; }
+    if [[ "$BROWSER" == "firefox" ]]; then
+      open_url() { setsid firefox "$1" >/dev/null 2>&1; }
+    else
+      open_url() { setsid gio open "$1" >/dev/null 2>&1; }
+    fi
     ;;
   *)
     die "Unsupported OS"
