@@ -1,6 +1,6 @@
 ignore-empty-password
 color=1a1a2e
-font=ocrab
+font=Ocrab Nerd Font Mono
 
 indicator-caps-lock
 show-failed-attempts
