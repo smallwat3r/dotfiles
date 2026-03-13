@@ -1,6 +1,6 @@
 ignore-empty-password
 color=1a1a2e
-font=monacoB
+font=ocrab
 
 indicator-caps-lock
 show-failed-attempts
