@@ -3,6 +3,8 @@
 
 if is_macos; then
   open "${@:-.}"
+elif has thunar; then
+  thunar "${@:-.}"
 elif has gio; then
   gio open "${@:-.}"
 else
