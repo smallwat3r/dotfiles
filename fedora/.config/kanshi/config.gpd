@@ -9,8 +9,8 @@ profile home-desk {
 }
 
 profile home-desk-dp1 {
-    output DP-1 position 0,0 scale 1.5 transform 180
-    output HDMI-A-1 position 0,1440 scale 1.5
+    output DP-1 position 0,0 scale 1.75 transform 180
+    output HDMI-A-1 position 0,1440 scale 1.75
     output eDP-1 position 764,2880 scale 2.5
 }
 
@@ -47,8 +47,8 @@ profile home-desk-lid-closed {
 }
 
 profile home-desk-dp1-lid-closed {
-    output DP-1 position 0,0 scale 1.5 transform 180
-    output HDMI-A-1 position 0,1440 scale 1.5
+    output DP-1 position 0,0 scale 1.75 transform 180
+    output HDMI-A-1 position 0,1440 scale 1.75
 }
 
 profile hp-monitor-lid-closed {
