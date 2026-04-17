@@ -46,7 +46,7 @@
     },
 
     "custom/yubikey": {
-        "exec": "grep -qrs 1050 /sys/bus/usb/devices/*/idVendor && echo 'YK' || echo ''",
+        "exec": "grep -qrs 1050 /sys/bus/usb/devices/*/idVendor && echo '🔑' || echo ''",
         "interval": 30,
         "tooltip": false
     },

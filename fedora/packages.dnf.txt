@@ -8,6 +8,7 @@ clang                                    A C language family front-end for LLVM
 clang-tools-extra                        Extra tools for clang
 cmake                                    Cross-platform make system
 docker-ce                                The open-source application container engine
+earlyoom                                 Early OOM daemon to prevent system freeze under memory pressure
 emacs                                    GNU Emacs text editor
 fontforge                                Outline and bitmap font editor
 freetype-devel                           FreeType development libraries and header files
