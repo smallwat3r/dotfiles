@@ -2,25 +2,28 @@ profile laptop {
     output eDP-1 enable scale 2.5
 }
 
+# DVI-I-* share EDID with the LG monitors, so disable them by name first,
+# before the LG monitors are matched by description (make/model/serial).
+
 profile home-desk {
-    output DP-6 mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output DP-7 mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
     output DVI-I-1 disable
     output DVI-I-2 disable
     output eDP-1 disable
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
 }
 
 profile home-desk-no-dvi-2 {
-    output DP-6 mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output DP-7 mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
     output DVI-I-1 disable
     output eDP-1 disable
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
 }
 
 profile home-desk-no-dvi {
-    output DP-6 mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output DP-7 mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
     output eDP-1 disable
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
 }
 
 profile hp-monitor {
@@ -51,21 +54,21 @@ profile samsung-tv {
 # Lid closed profiles (no eDP-1)
 
 profile home-desk-lid-closed {
-    output DP-6 mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output DP-7 mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
     output DVI-I-1 disable
     output DVI-I-2 disable
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
 }
 
 profile home-desk-lid-closed-no-dvi-2 {
-    output DP-6 mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output DP-7 mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
     output DVI-I-1 disable
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
 }
 
 profile home-desk-lid-closed-no-dvi {
-    output DP-6 mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output DP-7 mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
 }
 
 profile hp-monitor-lid-closed {
