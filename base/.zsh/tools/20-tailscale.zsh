@@ -7,6 +7,11 @@ is_macos && alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscal
 
 has tailscale || return
 
+# Tailscale account IDs for ts-switch. Override in the environment to
+# change on demand (e.g. export TS_ACCOUNT_WORK=xxxx).
+: "${TS_ACCOUNT_WORK:=d52c}"
+: "${TS_ACCOUNT_HOME:=a195}"
+
 alias ts='tailscale'
 alias tss='tailscale status'
 alias tsip='tailscale ip'
@@ -40,8 +45,8 @@ ts-send() {
 
 ts-switch() {
   local -A accounts=(
-    work  d52c
-    home  a195
+    work  "$TS_ACCOUNT_WORK"
+    home  "$TS_ACCOUNT_HOME"
   )
   if [[ -z $1 ]]; then
     echo "Usage: ts-switch <alias>"
