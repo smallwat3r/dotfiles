@@ -10,14 +10,14 @@ export XDG_CONFIG_HOME
 typeset -U path cdpath manpath
 
 path=(
+  "$HOME/.local/bin"
+  "$HOME/go/bin"
   /usr/local/bin
   /usr/local/sbin
   /usr/bin
   /bin
   /sbin
   /usr/sbin
-  "$HOME/.local/bin"
-  "$HOME/go/bin"
 )
 
 cdpath=(
