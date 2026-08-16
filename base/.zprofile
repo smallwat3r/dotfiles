@@ -18,6 +18,7 @@ export PIP_BREAK_SYSTEM_PACKAGES=1
 typeset -U path
 path=(
   $HOME/.local/bin
+  $HOME/.emacs.d/bin
   $HOME/.cargo/bin
   $GOPATH/bin
   $path
