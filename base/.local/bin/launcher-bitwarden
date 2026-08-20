@@ -100,7 +100,7 @@ get_fields "$name" "$user"
 (( ${#fields[@]} )) || die "No fields available"
 
 if (( ${#fields[@]} == 1 )); then
-    selected="${!fields[@]}"
+    selected="${!fields[*]}"
 else
     selected="$(printf '%s\n' "${!fields[@]}" | fzf_pick "field> ")" || exit 0
     [[ -z $selected ]] && exit 0

@@ -1,0 +1,4 @@
+# SC1091: sourced files (launcher.sh) are resolved at runtime via $HOME
+# SC2015: `A && B || true` guards under set -e are used deliberately
+# SC2016: single-quoted jq/awk programs legitimately contain $vars
+disable=SC1091,SC2015,SC2016

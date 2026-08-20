@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Shared library for launcher scripts
 # Source this file: . "${HOME}/.local/lib/launcher.sh"
 
