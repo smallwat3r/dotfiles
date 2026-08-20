@@ -56,7 +56,7 @@ alias \
   -g T='| tail' \
   -g S='| sort'
 
-alias -g C="| $(_clip_cmd)"
+alias -g C='| clip'
 
 # Tracked aliases (named directories)
 hash -d \

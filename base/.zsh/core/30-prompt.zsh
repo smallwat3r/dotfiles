@@ -1,8 +1,7 @@
 # Prompt configuration
 #
 # Minimal prompt with git status, virtualenv indicator, and optional
-# session tags. Also auto-starts tmux for interactive terminal sessions
-# (unless inside Emacs or Hammerspoon).
+# session tags.
 #
 # All dynamic segments are computed in a precmd hook and stored in
 # variables, avoiding subshell forks on each prompt render.
@@ -70,14 +69,3 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd __prompt_precmd
 
 PROMPT='${__ps_err}${__ps_tag}${__ps_venv}%f%3~%f${__ps_git}%# '
-
-# Auto-start tmux for interactive terminal sessions, unless inside
-# Emacs (which has its own window management) or Hammerspoon (macOS
-# automation).
-# Conditions: stdin is a tty, not already in tmux, shell is
-# interactive.
-if (( ! ${+INSIDE_EMACS} && ! ${+INSIDE_HS} )); then
-  if [[ -t 0 && -z "$TMUX" && $- == *i* ]]; then
-    exec tmux
-  fi
-fi

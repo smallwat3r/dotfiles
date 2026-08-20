@@ -30,22 +30,20 @@ fi
 FZF_COLORS="bg:#222222,fg:#bbbbbb,bg+:#005577,fg+:#eeeeee,hl:#eeeeee,hl+:#eeeeee,pointer:#eeeeee,prompt:#eeeeee,info:#eeeeee,gutter:#222222"
 
 # FZF picker with standard options
-# Usage: fzf_pick [prompt]
+# Usage: fzf_pick [prompt] [extra fzf options...]
 fzf_pick() {
+    local prompt="${1:-}"
+    (( $# )) && shift
     fzf --reverse --wrap --tiebreak=index \
-        --pointer='' --prompt="${1:-}" \
+        --pointer='' --prompt="$prompt" \
         --highlight-line --no-separator --no-scrollbar --info=inline-right \
-        --bind="$FZF_BIND" --color="$FZF_COLORS"
+        --bind="$FZF_BIND" --color="$FZF_COLORS" "$@"
 }
 
 # FZF picker for tab-delimited input where first column is an ID to hide
 # Usage: fzf_pick_id [prompt]
 fzf_pick_id() {
-    fzf --reverse --wrap --tiebreak=index \
-        --delimiter=$'\t' --with-nth=2.. \
-        --pointer='' --prompt="${1:-}" \
-        --highlight-line --no-separator --no-scrollbar --info=inline-right \
-        --bind="$FZF_BIND" --color="$FZF_COLORS"
+    fzf_pick "${1:-}" --delimiter=$'\t' --with-nth=2..
 }
 
 # Clipboard operations

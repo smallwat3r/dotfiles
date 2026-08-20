@@ -8,10 +8,6 @@ path_add /usr/local/opt/fzf/bin
 
 has fzf || return
 
-# Ease access of history binding by remapping it.
-bindkey -r '^R'
-bindkey '^W' fzf-history-widget
-
 __fzf_source_first() {
   local f
   for f in "$@"; do
@@ -54,6 +50,11 @@ __load_fzf_config() {
 }
 
 __load_fzf_config
+
+# Ease access of history binding by remapping it. Must run after
+# key-bindings.zsh is sourced, which binds ^R and defines the widget.
+bindkey -r '^R'
+bindkey '^W' fzf-history-widget
 
 case $OSTYPE in
   darwin*)

@@ -14,7 +14,6 @@
 
 [init]
 	defaultBranch = main
-	templatedir = ~/.config/git/templates
 
 [core]
 	autocrlf = input                    # Convert CRLF to LF on commit (keep LF on checkout)
@@ -126,7 +125,7 @@
 	cl = clone
 	co = checkout
 	cob = "!f() { git checkout -b $@ || (git checkout $@ && echo '!! Reusing existing branch'); }; f"
-	com = "!f() { git checkout master || git checkout main; }; f"
+	com = "!f() { git checkout main || git checkout master; }; f"
 	cp = cherry-pick
 	d = diff
 	find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep

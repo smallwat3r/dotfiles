@@ -9,8 +9,22 @@ export XDG_CONFIG_HOME
 # use unique arrays for paths
 typeset -U path cdpath manpath
 
+# Add directory to PATH if it exists and isn't already there
+# Usage: path_add ~/.local/bin
+path_add() {
+  [[ -d $1 ]] && (( ${path[(Ie)$1]} == 0 )) && path+=("$1")
+}
+
+# Prepend directory to PATH (for overriding system commands)
+# Usage: path_prepend /usr/local/opt/grep/libexec/gnubin
+path_prepend() {
+  [[ -d $1 ]] && (( ${path[(Ie)$1]} == 0 )) && path=("$1" $path)
+}
+
 path=(
   "$HOME/.local/bin"
+  "$HOME/.emacs.d/bin"
+  "$HOME/.cargo/bin"
   "$HOME/go/bin"
   /usr/local/bin
   /usr/local/sbin
@@ -31,12 +45,12 @@ manpath=(
 )
 
 # homebrew
-/opt/homebrew/bin(/N) && path=(/opt/homebrew/bin $path)
-/opt/homebrew/sbin(/N) && path=(/opt/homebrew/sbin $path)
-/opt/homebrew/opt/sphinx-doc/bin(/N) && path=(/opt/homebrew/opt/sphinx-doc/bin $path)
+path_prepend /opt/homebrew/bin
+path_prepend /opt/homebrew/sbin
+path_prepend /opt/homebrew/opt/sphinx-doc/bin
 
 # user npm global bin dir
-[[ -d "$HOME/.npm-global/bin" ]] && path=("$HOME/.npm-global/bin" $path)
+path_prepend "$HOME/.npm-global/bin"
 
 # ssh-agent socket (systemd user service on Linux)
 [[ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]] \

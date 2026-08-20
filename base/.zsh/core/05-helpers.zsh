@@ -20,18 +20,6 @@ has() {
   done
 }
 
-# Add directory to PATH if it exists and isn't already there
-# Usage: path_add ~/.local/bin
-path_add() {
-  [[ -d $1 ]] && (( ${path[(Ie)$1]} == 0 )) && path+=("$1")
-}
-
-# Prepend directory to PATH (for overriding system commands)
-# Usage: path_prepend /usr/local/opt/grep/libexec/gnubin
-path_prepend() {
-  [[ -d $1 ]] && (( ${path[(Ie)$1]} == 0 )) && path=("$1" $path)
-}
-
 # Clipboard operations
 # Usage: echo "text" | clip
 clip() {
@@ -47,27 +35,3 @@ clip() {
     return 1
   fi
 }
-
-# Returns the clipboard command for use in aliases
-# Usage: alias -g C="| $(_clip_cmd)"
-_clip_cmd() {
-  if is_macos; then
-    echo "pbcopy"
-  elif has wl-copy; then
-    echo "wl-copy"
-  elif has xclip; then
-    echo "xclip -selection clipboard"
-  else
-    echo "cat"
-  fi
-}
-
-# Preferred terminal emulator
-# Usage: $TERMINAL -e htop
-if [[ -z "$TERMINAL" ]]; then
-  if is_linux; then
-    export TERMINAL="foot"
-  elif is_macos; then
-    export TERMINAL="alacritty"
-  fi
-fi

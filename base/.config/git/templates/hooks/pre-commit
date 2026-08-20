@@ -2,7 +2,8 @@
 # Prevent from committing any line (or filename) containing the string NOCOMMIT.
 
 # if this hook file is staged, skip validation so we can commit it
-if git diff --cached --name-only | grep -q "^.*pre-commit$"; then
+if git diff --cached --name-only \
+        | grep -qxF "base/.config/git/templates/hooks/pre-commit"; then
     exit 0
 fi
 

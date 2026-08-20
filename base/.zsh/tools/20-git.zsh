@@ -1,17 +1,9 @@
 # Git configuration
 #
-# SSH settings for reliability and auto-generates g<alias> shortcuts
-# from git aliases (e.g., gco for git checkout).
+# Auto-generates g<alias> shortcuts from git aliases (e.g., gco for
+# git checkout). SSH reliability settings live in ~/.ssh/config.
 
 has git || return
-
-export GIT_SSH_COMMAND='ssh -4 \
-  -o ConnectTimeout=10 \
-  -o ServerAliveInterval=20 \
-  -o ServerAliveCountMax=3 \
-  -o TCPKeepAlive=yes \
-  -o GSSAPIAuthentication=no \
-  -o ControlMaster=no'
 
 # Create short `g<alias>` versions of all git aliases.
 # Deferred to first prompt so the git fork doesn't block startup.

@@ -24,8 +24,8 @@ avenv() {
   return 1
 }
 
-# Activate venv if needed
-_avenv_ensure() { [[ -z "$VIRTUAL_ENV" ]] && avenv || return 0 }
+# Activate venv if needed, fail if none can be found
+_avenv_ensure() { [[ -n "$VIRTUAL_ENV" ]] || avenv }
 # Run command in venv
 vrun() { _avenv_ensure && "$@" }
 

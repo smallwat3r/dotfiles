@@ -9,7 +9,7 @@ get_profile() {
     tuned-adm active 2>/dev/null | sed 's/Current active profile: //'
 }
 
-case "$1" in
+case "${1:-}" in
     status)
         case "$(get_profile)" in
             powersave) echo ECO ;;
