@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Quick email sync with mbsync and notmuch.
-# See: https://linux.die.net/man/1/mbsync
-# See: https://notmuchmail.org/
-exec mbsync -a && notmuch new

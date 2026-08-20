@@ -16,7 +16,11 @@ domain=$1
 echo "=== DNS Records ==="
 ns=$(dig @8.8.8.8 "$domain" ns +short +time="$TIMEOUT" | head -n1)
 if [[ -n $ns ]]; then
-  dig @"$ns" "$domain" ANY +noall +answer +time="$TIMEOUT"
+  # ANY queries are refused or minimised by most servers (RFC 8482),
+  # so query the useful record types explicitly
+  for type in A AAAA CNAME MX TXT NS; do
+    dig @"$ns" "$domain" "$type" +noall +answer +time="$TIMEOUT"
+  done
 else
   echo "No nameserver found"
 fi

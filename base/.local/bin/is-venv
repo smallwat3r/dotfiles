@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Print the active Python virtual environment name if inside one.
-# Output format: "(.venv-name) " - useful for shell prompts.
-
-[[ -n $VIRTUAL_ENV ]] && printf '(.%s) ' "${VIRTUAL_ENV##*/}"

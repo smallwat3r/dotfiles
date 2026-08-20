@@ -7,14 +7,13 @@
 defaults
 auth           on
 tls            on
-tls_nocertcheck
 logfile        ~/.msmtp.log
 
 # personal
 account        personal
 host           smtp.gmail.com
 port           587
-from           Matthieu Petiteau
+from           mpetiteau.pro@gmail.com
 user           mpetiteau.pro@gmail.com
 passwordeval   "pass email/personal.gmail"
 
@@ -22,7 +21,7 @@ passwordeval   "pass email/personal.gmail"
 account        sws
 host           smtp.gmail.com
 port           587
-from           Matt Smallwater
+from           matt@smallwat3r.com
 user           matt@smallwat3r.com
 passwordeval   "pass email/sws.gmail"
 

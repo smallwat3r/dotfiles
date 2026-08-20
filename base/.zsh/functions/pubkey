@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+# Copy your SSH public key to the clipboard
+
+local keys=($HOME/.ssh/id_*.pub(N))
+(( $#keys )) || { echo "No public key found in ~/.ssh" >&2; return 1 }
+clip < $keys[1] && echo "Public key copied to clipboard: ${keys[1]:t}"

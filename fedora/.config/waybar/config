@@ -52,10 +52,10 @@
     },
 
     "custom/recording": {
-        "exec": "pgrep -x wf-recorder >/dev/null && echo 'REC' || echo ''",
+        "exec": "recording-ctl status",
         "interval": 5,
         "format": "{}",
-        "on-click": "pkill -SIGINT wf-recorder",
+        "on-click": "recording-ctl stop",
         "tooltip": false
     },
 

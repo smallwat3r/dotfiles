@@ -36,11 +36,7 @@ window#waybar {
     padding: 0 6px;
 }
 
-#cpu,
-#memory,
 #tray,
-#bluetooth,
-#custom-mako,
 #custom-power-profile,
 #battery,
 #clock {
@@ -49,11 +45,6 @@ window#waybar {
 
 #custom-sep {
     padding: 0 2px;
-}
-
-#bluetooth.disabled,
-#bluetooth.off {
-    color: #666666;
 }
 
 #custom-recording {

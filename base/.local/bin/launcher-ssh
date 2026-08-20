@@ -50,7 +50,7 @@ selected="$(list_hosts | fzf_pick_id)" || exit 0
 host="${selected%%$'\t'*}"
 
 term="${TERMINAL:-foot}"
-if [[ -n "$SWAYSOCK" ]]; then
+if [[ -n "${SWAYSOCK:-}" ]]; then
     swaymsg exec "$term -e ssh $host"
 else
     "$term" -e ssh "$host" &

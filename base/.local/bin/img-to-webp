@@ -18,13 +18,7 @@ command -v cwebp >/dev/null 2>&1 || {
   exit 1
 }
 
-format_size() {
-  numfmt --to=iec "$1" 2>/dev/null || echo "${1}B"
-}
-
-filesize() {
-  stat -c%s "$1" 2>/dev/null || stat -f%z "$1"
-}
+. "${HOME}/.local/lib/img.sh"
 
 for img in "$@"; do
   [[ -f $img ]] || { echo "File not found: $img" >&2; continue; }

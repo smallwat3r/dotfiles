@@ -7,8 +7,8 @@
     <string>gnu.emacs.daemon</string>
     <key>ProgramArguments</key>
     <array>
-      <string>/usr/local/bin/emacs</string>
-      <string>--fg-daemon=work</string>
+      <string>/opt/homebrew/bin/emacs</string>
+      <string>--fg-daemon</string>
     </array>
     <key>RunAtLoad</key>
     <true />

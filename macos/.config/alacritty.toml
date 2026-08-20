@@ -1,21 +1,8 @@
+# Alt+J/K/H escape-sequence bindings were removed: Hammerspoon's
+# global Alt+hjkl resize hotkeys shadow them anyway
 [[keyboard.bindings]]
 chars = "#"
 key = "Key3"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001Bj"
-key = "J"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001Bk"
-key = "K"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001Bh"
-key = "H"
 mods = "Alt"
 
 [general]
@@ -56,5 +43,3 @@ lines = 40
 [window.padding]
 x = 0
 y = 0
-
-[keyboard]

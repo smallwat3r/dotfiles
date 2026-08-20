@@ -10,4 +10,4 @@ fi
 
 [[ -f $1 ]] || { echo "File not found: $1" >&2; exit 1; }
 
-sed 's/\(.\)/\1\n/g' "$1" | sort | uniq -c | sort -nr
+grep -o . "$1" | sort | uniq -c | sort -nr

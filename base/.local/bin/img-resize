@@ -43,13 +43,7 @@ else
   exit 1
 fi
 
-format_size() {
-  numfmt --to=iec "$1" 2>/dev/null || echo "${1}B"
-}
-
-filesize() {
-  stat -c%s "$1" 2>/dev/null || stat -f%z "$1"
-}
+. "${HOME}/.local/lib/img.sh"
 
 original_size=$(filesize "$img")
 original_dims=$($im_identify -format "%wx%h" "$img")

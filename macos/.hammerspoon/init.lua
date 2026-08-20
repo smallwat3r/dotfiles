@@ -8,7 +8,6 @@ local task = require 'hs.task'
 local eventtap = require 'hs.eventtap'
 local chooser = require 'hs.chooser'
 
-local mod_shift_alt = {'shift', 'alt'}
 local mod_alt = {'alt'}
 local mod_cmd = {'cmd'}
 local mod_ctrl = {'ctrl'}
@@ -130,7 +129,9 @@ end
 
 hotkey.bind(mod_cmd, 'm', function() launcherRunner('App launcher', 'launcher-app') end)
 hotkey.bind(mod_cmd, ',', function() launcherRunner('Bin launcher', 'launcher-bin') end)
-hotkey.bind(mod_cmd, 'h', function() launcherRunner('History launcher', 'launcher-browser-history') end)
+-- cmd+o matches the sway binding ($mod+o) for the history launcher;
+-- cmd+h stays free for the arrow-key remap above
+hotkey.bind(mod_cmd, 'o', function() launcherRunner('History launcher', 'launcher-browser-history') end)
 hotkey.bind(mod_cmd, 'space', function() launcherRunner('App switcher', 'launcher-running-app') end)
 hotkey.bind(mod_cmd, ';', function() launcherRunner('File launcher', 'launcher-file-search') end)
 hotkey.bind(mod_cmd, 'g', function() launcherRunner('Google search', 'chrome-search', 'window.dimensions.lines=3') end)

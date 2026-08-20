@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Start the Emacs daemon for use with emacsclient.
-exec emacs --daemon

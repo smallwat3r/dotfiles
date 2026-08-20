@@ -16,8 +16,6 @@ is_macos() { [[ "$(uname -s)" == "Darwin" ]]; }
 
 is_linux() { [[ "$(uname -s)" == "Linux" ]]; }
 
-is_wayland() { [[ -n "${WAYLAND_DISPLAY:-}" ]]; }
-
 is_wlroots() { [[ -n "${SWAYSOCK:-}" ]] || [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; }
 
 # FZF configuration

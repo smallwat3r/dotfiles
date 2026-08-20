@@ -11,9 +11,7 @@ usage() {
 
 [[ $# -lt 1 ]] && usage
 
-format_size() {
-  numfmt --to=iec "$1" 2>/dev/null || echo "${1}B"
-}
+. "${HOME}/.local/lib/img.sh"
 
 print_result() {
   local fmt=$1 file=$2 old=$3 new=$4
@@ -28,10 +26,6 @@ require() {
     echo "Required tool not found: $1" >&2
     exit 1
   }
-}
-
-filesize() {
-  stat -c%s "$1" 2>/dev/null || stat -f%z "$1"
 }
 
 optimize_png() {
