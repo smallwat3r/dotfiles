@@ -50,3 +50,43 @@ profile samsung-tv {
     output HDMI-A-1 position 0,0 scale 1.333
     output eDP-1 position 0,0 scale 1.333
 }
+
+# Lid closed profiles (no eDP-1)
+
+profile home-desk-lid-closed {
+    output DVI-I-1 disable
+    output DVI-I-2 disable
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
+}
+
+profile home-desk-lid-closed-no-dvi-2 {
+    output DVI-I-1 disable
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
+}
+
+profile home-desk-lid-closed-no-dvi {
+    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
+    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
+}
+
+profile hp-monitor-lid-closed {
+    output HDMI-A-1 position 0,0 scale 1.25
+}
+
+profile lg-tv-lid-closed {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1
+}
+
+profile dell-monitor-lid-closed {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1
+}
+
+profile viewsonic-lid-closed {
+    output HDMI-A-1 mode 1920x1080 position 0,0 scale 1.25
+}
+
+profile samsung-tv-lid-closed {
+    output HDMI-A-1 position 0,0 scale 1.333
+}
