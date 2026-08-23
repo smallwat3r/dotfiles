@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# GPG-sign all commits not yet pushed to the upstream branch.
+# Rewrites their hashes, so only use before pushing.
+# Usage: git sign-unpushed [<base>]   (base defaults to @{upstream})
+set -euo pipefail
+
+base=${1:-'@{upstream}'}
+
+if ! git rev-parse --verify --quiet "$base" >/dev/null; then
+  echo "No upstream found, pass a base explicitly: ${0##*/} origin/main" >&2
+  exit 1
+fi
+
+count=$(git rev-list --count "$base"..HEAD)
+if [[ $count -eq 0 ]]; then
+  echo "Nothing to sign, no commits ahead of $base"
+  exit 0
+fi
+
+git rebase --exec 'git commit --amend --no-edit -S' "$base"
+echo "Signed $count commit(s)"
