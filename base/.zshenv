@@ -52,6 +52,9 @@ path_prepend /opt/homebrew/opt/sphinx-doc/bin
 # user npm global bin dir
 path_prepend "$HOME/.npm-global/bin"
 
+# snap packages (Linux)
+path_add /snap/bin
+
 # ssh-agent socket (systemd user service on Linux)
 [[ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]] \
   && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
