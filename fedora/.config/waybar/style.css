@@ -7,33 +7,43 @@
 }
 
 window#waybar {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #c0c0c0;
+    color: #000000;
+    border-bottom: 1px solid #808080;
 }
 
 #workspaces button {
     padding: 0 6px;
     background-color: transparent;
-    color: #666666;
-    border: none;
+    color: #000000;
+    border: 1px solid transparent;
     border-radius: 0;
 }
 
 #workspaces button:hover {
-    background-color: #333333;
+    background-color: #c0c0c0;
+    border: 1px solid #808080;
 }
 
+/* pressed/sunken bevel, like the active taskbar button */
 #workspaces button.focused {
-    color: #ffffff;
+    background-color: #dfdfdf;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    font-weight: bold;
 }
 
 #workspaces button.urgent {
-    background-color: #ff0000;
-    color: #000000;
+    background-color: #aa0000;
+    color: #ffffff;
 }
 
 #mode {
     padding: 0 6px;
+    background-color: #000080;
+    color: #ffffff;
 }
 
 #tray,
@@ -45,19 +55,22 @@ window#waybar {
 
 #custom-sep {
     padding: 0 2px;
+    color: #808080;
 }
 
 #custom-recording {
-    color: #ff5555;
+    color: #aa0000;
     font-weight: bold;
     padding: 0 4px;
 }
 
 tooltip {
-    background-color: #000000;
-    border: 1px solid #333333;
+    background-color: #ffffe1;
+    border: 1px solid #000000;
+    color: #000000;
 }
 
 tooltip label {
     padding: 6px;
+    color: #000000;
 }

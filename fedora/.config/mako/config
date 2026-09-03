@@ -1,5 +1,14 @@
 # Mako notification daemon config
 
+# Appearance (Windows 98, matches sway theme)
+font=Ocrab Nerd Font Mono 9
+background-color=#c0c0c0
+text-color=#000000
+border-color=#000080
+border-size=2
+border-radius=0
+progress-color=over #000080
+
 # Positioning and layout
 anchor=top-right
 margin=10
@@ -25,6 +34,9 @@ max-icon-size=48
 # Critical notifications don't auto-dismiss
 [urgency=critical]
 ignore-timeout=1
+background-color=#aa0000
+text-color=#ffffff
+border-color=#aa0000
 
 # Suppress raop_sink (AirPlay) notifications
 [body~="raop_sink"]

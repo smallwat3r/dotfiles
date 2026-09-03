@@ -32,8 +32,18 @@ else
     gpu_detail="N/A"
 fi
 
-# Temperature (main zone for display, all zones for tooltip)
-temp=$(awk '{printf "%.0f", $1/1000}' /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
+# CPU temperature from hwmon (thermal_zone0 is not necessarily the CPU)
+cpu_temp="N/A"
+for hw in /sys/class/hwmon/hwmon*; do
+    case "$(cat "$hw/name" 2>/dev/null)" in
+        k10temp|coretemp|zenpower)
+            cpu_temp="$(awk '{printf "%.0f°C", $1/1000}' "$hw"/temp1_input 2>/dev/null)"
+            break
+            ;;
+    esac
+done
+
+# Temperature (all zones for tooltip)
 temp_detail=""
 for zone in /sys/class/thermal/thermal_zone*; do
     name=$(cat "$zone/type" 2>/dev/null)
@@ -49,7 +59,7 @@ read -r disk disk_detail < <(
 # Build tooltip
 tooltip="System Info\\n"
 tooltip+="----------\\n"
-tooltip+="cpu: ${cpu}%\\n"
+tooltip+="cpu: ${cpu}% (${cpu_temp})\\n"
 tooltip+="mem: ${mem_detail}\\n"
 tooltip+="gpu: ${gpu_detail}\\n"
 tooltip+="dsk: ${disk_detail}\\n"
@@ -59,5 +69,5 @@ tooltip+="----------\\n"
 tooltip+="${temp_detail%\\n}"
 
 # Output JSON
-printf '{"text": "dsk %s tmp %s° gpu %s mem %s cpu %s%% ", "tooltip": "%s"}' \
-    "$disk" "$temp" "$gpu" "$mem" "$cpu" "$tooltip"
+printf '{"text": " %s %s%% ", "tooltip": "%s"}' \
+    "$mem" "$cpu" "$tooltip"

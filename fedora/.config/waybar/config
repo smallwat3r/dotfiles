@@ -5,7 +5,7 @@
     "spacing": 0,
 
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": [],
+    "modules-center": ["sway/window"],
     "modules-right": [
         "custom/sysinfo",
         "custom/sep",
@@ -27,6 +27,11 @@
 
     "sway/mode": {
         "format": "{}"
+    },
+
+    "sway/window": {
+        "max-length": 60,
+        "tooltip": false
     },
 
     "custom/sysinfo": {
