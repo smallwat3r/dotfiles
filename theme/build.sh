@@ -33,7 +33,7 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
   echo '# Generated from theme/palette by theme/build.sh - do not edit.'
   echo "set -g pane-border-style 'fg=#$shadow'"
   echo "set -g pane-active-border-style 'fg=#$face'"
-  echo "set -g status-style 'bg=#$face,fg=#$black'"
+  echo "set -g status-style 'bg=#$focus,fg=#$term_fg'"
 } > base/.config/tmux/theme.conf
 
 # Zsh: THEME_* env vars for fzf and anything else shell-side

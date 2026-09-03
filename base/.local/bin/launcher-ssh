@@ -49,10 +49,15 @@ selected="$(list_hosts | fzf_pick_id)" || exit 0
 
 host="${selected%%$'\t'*}"
 
+# Run ssh inside a fresh tmux session when tmux is available
+cmd="ssh $host"
+has tmux && cmd="tmux new-session $cmd"
+
 term="${TERMINAL:-foot}"
 if [[ -n "${SWAYSOCK:-}" ]]; then
-    swaymsg exec "$term -e ssh $host"
+    swaymsg exec "$term -e $cmd"
 else
-    "$term" -e ssh "$host" &
+    # shellcheck disable=SC2086
+    "$term" -e $cmd &
     disown
 fi
