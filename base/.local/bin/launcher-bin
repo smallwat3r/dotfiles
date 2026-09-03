@@ -3,11 +3,12 @@
 # launcher-bin - Custom command launcher
 #
 # Interactively select and run a command from PATH, desktop applications,
-# or installed Flatpak apps. Commands are sorted by usage frequency.
+# or installed Flatpak apps (via their exported desktop files). Commands
+# are sorted by usage frequency.
 #
-# Usage: launcher-bin [--refresh]
+# Usage: launcher-bin
 #
-# Dependencies: fzf, flatpak (optional), gtk-launch (optional)
+# Dependencies: fzf, gtk-launch (optional)
 #
 PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 set -euo pipefail
@@ -16,15 +17,24 @@ set -euo pipefail
 
 require fzf
 
-CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
-CACHE_FILE="$CACHE_DIR/launcher-bin-commands"
-HISTORY_FILE="$CACHE_DIR/launcher-bin-history"
-CACHE_MAX_AGE=86400  # 1 day
+HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bin-history"
 HISTORY_MAX_LINES=50
 
-is_flatpak() { has flatpak && flatpak info "$1" >/dev/null 2>&1; }
-is_desktop() { [[ -f "/usr/share/applications/$1.desktop" ]] || \
-               [[ -f "${HOME}/.local/share/applications/$1.desktop" ]]; }
+# Flatpak export dirs included so flatpaks list and launch as desktop apps
+DESKTOP_DIRS=(
+    /usr/share/applications
+    "$HOME/.local/share/applications"
+    /var/lib/flatpak/exports/share/applications
+    "$HOME/.local/share/flatpak/exports/share/applications"
+)
+
+is_desktop() {
+    local dir
+    for dir in "${DESKTOP_DIRS[@]}"; do
+        [[ -f "$dir/$1.desktop" ]] && return 0
+    done
+    return 1
+}
 
 trim_history() {
     [[ -f $HISTORY_FILE ]] || return 0
@@ -39,9 +49,7 @@ trim_history() {
 run() {
     echo "$1" >> "$HISTORY_FILE"
     trim_history
-    if is_flatpak "$1"; then
-        setsid flatpak run "$1" >/dev/null 2>&1 &
-    elif is_desktop "$1"; then
+    if is_desktop "$1"; then
         setsid gtk-launch "$1" >/dev/null 2>&1 &
     else
         setsid "$1" >/dev/null 2>&1 &
@@ -50,7 +58,7 @@ run() {
 
 list_desktop_apps() {
     local dir f base
-    for dir in /usr/share/applications ~/.local/share/applications; do
+    for dir in "${DESKTOP_DIRS[@]}"; do
         [[ -d $dir ]] || continue
         for f in "$dir"/*.desktop; do
             [[ -f $f ]] || continue
@@ -61,29 +69,7 @@ list_desktop_apps() {
 }
 
 list_commands() {
-    compgen -c
-    list_desktop_apps
-    if is_linux && has flatpak; then
-        flatpak list --app --columns=application
-    fi
-}
-
-cache_is_stale() {
-    [[ ! -f $CACHE_FILE ]] && return 0
-    local age
-    age=$(( $(date +%s) - $(stat -c %Y "$CACHE_FILE" 2>/dev/null || echo 0) ))
-    (( age > CACHE_MAX_AGE ))
-}
-
-refresh_cache() {
-    list_commands | sort -u > "$CACHE_FILE"
-}
-
-get_commands() {
-    if [[ "${1:-}" == "--refresh" ]] || cache_is_stale; then
-        refresh_cache
-    fi
-    cat "$CACHE_FILE"
+    { compgen -c; list_desktop_apps; } | sort -u
 }
 
 sort_by_frequency() {
@@ -99,6 +85,6 @@ sort_by_frequency() {
 
 trap "" HUP
 
-target="$(get_commands "${1:-}" | sort_by_frequency | fzf_pick)" || exit 0
+target="$(list_commands | sort_by_frequency | fzf_pick)" || exit 0
 
 [[ -n $target ]] && run "$target"

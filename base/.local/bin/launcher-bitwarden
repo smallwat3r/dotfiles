@@ -69,18 +69,20 @@ list_items() {
 
 get_fields() {
     local name="$1" user="$2"
-    local raw pw un totp notes
+    local raw totp f
 
     raw="$(rbw get --raw "$name" ${user:+"$user"} 2>/dev/null)" || return
-    pw="$(jq -r '.data.password // empty' <<< "$raw" 2>/dev/null)" || true
-    un="$(jq -r '.data.username // empty' <<< "$raw" 2>/dev/null)" || true
-    notes="$(jq -r '.notes // empty' <<< "$raw" 2>/dev/null)" || true
-    totp="$(rbw code "$name" ${user:+"$user"} 2>/dev/null || true)"
+    # NUL-joined so multiline notes survive; f: password, username, notes, has_totp
+    mapfile -d '' -t f < <(jq -j '[.data.password // "", .data.username // "",
+        .notes // "", (.data.totp != null | tostring)] | join("\u0000")' <<< "$raw")
 
-    [[ -n $pw ]] && fields[password]="$pw" || true
-    [[ -n $un ]] && fields[username]="$un" || true
-    [[ -n $notes ]] && fields[notes]="$notes" || true
-    [[ -n $totp ]] && fields[totp]="$totp" || true
+    [[ -n ${f[0]:-} ]] && fields[password]="${f[0]}" || true
+    [[ -n ${f[1]:-} ]] && fields[username]="${f[1]}" || true
+    [[ -n ${f[2]:-} ]] && fields[notes]="${f[2]}" || true
+    if [[ ${f[3]:-} == "true" ]]; then
+        totp="$(rbw code "$name" ${user:+"$user"} 2>/dev/null || true)"
+        [[ -n $totp ]] && fields[totp]="$totp" || true
+    fi
 }
 
 # Main

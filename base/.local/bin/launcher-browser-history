@@ -68,11 +68,11 @@ esac
 list_history() {
   if [[ "$BROWSER" == "firefox" ]]; then
     local sql_query="
-      SELECT date(v.visit_date/1000000, 'unixepoch')
-        || ' ' || p.url
-      FROM moz_places p
-      JOIN moz_historyvisits v ON p.id = v.place_id
-      ORDER BY v.visit_date DESC
+      SELECT date(last_visit_date/1000000, 'unixepoch')
+        || ' ' || url
+      FROM moz_places
+      WHERE last_visit_date IS NOT NULL
+      ORDER BY last_visit_date DESC
       LIMIT 100000
     "
   else

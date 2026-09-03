@@ -10,16 +10,16 @@ set -euo pipefail
 
 require fzf rg
 
-EXCLUDES='--glob "!.git/*" --glob "!*.pyc" --glob "!.npm/*" --glob "!.cache/*"'
+excludes=(--glob '!.git/*' --glob '!*.pyc' --glob '!.npm/*' --glob '!.cache/*')
 
 if is_macos; then
-    EXCLUDES+=' --glob "!Library/*" --glob "!Movies/*"'
+    excludes+=(--glob '!Library/*' --glob '!Movies/*')
 else
-    EXCLUDES+=' --glob "!.local/share/*" --glob "!snap/*"'
+    excludes+=(--glob '!.local/share/*' --glob '!snap/*')
 fi
 
 cd "$HOME" || exit 1
 
-target=$(eval "rg --files --hidden $EXCLUDES" | fzf_pick) || exit 0
+target=$(rg --files --hidden "${excludes[@]}" | fzf_pick) || exit 0
 
 [[ -n $target ]] && setsid -f ec "$HOME/$target"
