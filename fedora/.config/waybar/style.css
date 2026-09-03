@@ -1,3 +1,6 @@
+/* Colour names defined in colors.css, generated from theme/palette */
+@import "colors.css";
+
 * {
     font-family: Ocrab Nerd Font Mono, monospace;
     font-size: 9pt;
@@ -7,43 +10,43 @@
 }
 
 window#waybar {
-    background-color: #c0c0c0;
-    color: #000000;
-    border-bottom: 1px solid #808080;
+    background-color: @face;
+    color: @black;
+    border-bottom: 1px solid @shadow;
 }
 
 #workspaces button {
     padding: 0 6px;
     background-color: transparent;
-    color: #000000;
+    color: @black;
     border: 1px solid transparent;
     border-radius: 0;
 }
 
 #workspaces button:hover {
-    background-color: #c0c0c0;
-    border: 1px solid #808080;
+    background-color: @face;
+    border: 1px solid @shadow;
 }
 
 /* pressed/sunken bevel, like the active taskbar button */
 #workspaces button.focused {
-    background-color: #dfdfdf;
-    border-top: 1px solid #808080;
-    border-left: 1px solid #808080;
-    border-bottom: 1px solid #ffffff;
-    border-right: 1px solid #ffffff;
+    background-color: @highlight;
+    border-top: 1px solid @shadow;
+    border-left: 1px solid @shadow;
+    border-bottom: 1px solid @white;
+    border-right: 1px solid @white;
     font-weight: bold;
 }
 
 #workspaces button.urgent {
-    background-color: #aa0000;
-    color: #ffffff;
+    background-color: @urgent;
+    color: @white;
 }
 
 #mode {
     padding: 0 6px;
-    background-color: #000080;
-    color: #ffffff;
+    background-color: @navy;
+    color: @white;
 }
 
 #tray,
@@ -55,22 +58,22 @@ window#waybar {
 
 #custom-sep {
     padding: 0 2px;
-    color: #808080;
+    color: @shadow;
 }
 
 #custom-recording {
-    color: #aa0000;
+    color: @urgent;
     font-weight: bold;
     padding: 0 4px;
 }
 
 tooltip {
-    background-color: #ffffe1;
-    border: 1px solid #000000;
-    color: #000000;
+    background-color: @tooltip;
+    border: 1px solid @black;
+    color: @black;
 }
 
 tooltip label {
     padding: 6px;
-    color: #000000;
+    color: @black;
 }

@@ -1,0 +1,36 @@
+# Central colour palette (old school) - single source of truth.
+# Hex values without the leading '#'. Run `make theme` after editing.
+focus=2e3a52
+face=c0c0c0
+shadow=808080
+highlight=dfdfdf
+navy=000080
+teal=008080
+urgent=aa0000
+tooltip=ffffe1
+white=ffffff
+black=000000
+accent=cc5500
+gold=d4aa00
+term_fg=aaaaaa
+# same as focus (sway active window title)
+term_bg=2e3a52
+lock_bg=1a1a2e
+
+# ANSI terminal colours (VGA)
+ansi0=000000
+ansi1=aa0000
+ansi2=00aa00
+ansi3=aa5500
+ansi4=5f87af
+ansi5=aa00aa
+ansi6=00aaaa
+ansi7=aaaaaa
+ansi8=555555
+ansi9=ff5555
+ansi10=55ff55
+ansi11=ffff55
+ansi12=87afd7
+ansi13=ff55ff
+ansi14=55ffff
+ansi15=ffffff

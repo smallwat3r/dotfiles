@@ -73,7 +73,7 @@ export FZF_DEFAULT_OPTS="
   --no-separator
   --no-scrollbar
   --info=inline-right
-  --color=bg:-1,fg:-1,bg+:#005577,fg+:#eeeeee,hl:#cc5500,hl+:#cc5500,pointer:-1,prompt:-1,info:-1,gutter:-1
+  --color=bg:-1,fg:-1,bg+:$THEME_FOCUS,fg+:$THEME_WHITE,hl:$THEME_ACCENT,hl+:$THEME_ACCENT,pointer:-1,prompt:-1,info:-1,gutter:-1
   --bind=$__fzf_word_binds"
 unset __fzf_word_binds
 if has rg; then

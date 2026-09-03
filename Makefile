@@ -18,7 +18,7 @@ STOW_OPTS := --verbose=1 --restow --target
 ZSH_FILES := base/.zshenv base/.zprofile base/.zshrc \
     $(wildcard base/.zsh/core/*.zsh base/.zsh/tools/*.zsh base/.zsh/functions/*)
 
-.PHONY: help stow unstow dry-run lint _dirs _requirements
+.PHONY: help stow unstow dry-run theme lint _dirs _requirements
 
 help: ## Show this help menu and exit
 	@echo "Usage: make [TARGET ...]"
@@ -53,6 +53,10 @@ ifneq ($(PLATFORM),)
 	@stow -n -v2 --restow --ignore='_root' --target "$(HOME)" $(PLATFORM) 2>&1 || true
 	@stow -n -v2 --restow -d $(PLATFORM) --target '/' _root 2>&1 || true
 endif
+
+theme: ## Regenerate app colour configs from theme/palette
+	@sh theme/build.sh
+	@echo '$(SUCCESS)*** Theme files regenerated$(SGR0)'
 
 lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
 	@grep -rlE '^#!.*\b(ba)?sh$$' base fedora macos | xargs shellcheck
