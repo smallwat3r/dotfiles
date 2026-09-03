@@ -1,0 +1,16 @@
+#!/bin/bash
+# Record a selected window using slurp
+
+dir=~/Videos/Recordings
+mkdir -p "$dir"
+f="$dir/$(date +%Y%m%d-%H%M%S).mp4"
+
+geometry=$(swaymsg -t get_tree \
+    | jq -r '.. | select(.pid? and .visible?) | .rect
+        | "\(.x),\(.y) \(.width)x\(.height)"' \
+    | slurp)
+
+[ -z "$geometry" ] && exit 1
+
+wf-recorder -g "$geometry" -f "$f"
+notify-send "Recording saved" "$f"
