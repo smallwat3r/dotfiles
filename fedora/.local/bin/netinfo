@@ -6,7 +6,7 @@ route=$(ip -4 route get 1.1.1.1 2>/dev/null)
 [[ "$route" =~ dev\ ([^ ]+) ]] && dev=${BASH_REMATCH[1]}
 [[ "$route" =~ src\ ([^ ]+) ]] && ip=${BASH_REMATCH[1]}
 if [[ -z "$ip" || -z "$dev" ]]; then
-    printf '{"text": " offline ", "tooltip": "No network"}'
+    printf '{"text": ""}'
     exit 0
 fi
 
