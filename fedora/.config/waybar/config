@@ -9,6 +9,8 @@
     "modules-right": [
         "custom/sysinfo",
         "custom/sep",
+        "custom/netinfo",
+        "custom/sep",
         "custom/yubikey",
         "tray",
         "custom/sep",
@@ -38,6 +40,14 @@
         "exec": "~/.local/bin/sysinfo",
         "return-type": "json",
         "interval": 5
+    },
+
+    "custom/netinfo": {
+        "exec": "~/.local/bin/netinfo",
+        "return-type": "json",
+        "interval": 30,
+        "signal": 8,
+        "on-click": "~/.local/bin/netinfo scan"
     },
 
     "tray": {

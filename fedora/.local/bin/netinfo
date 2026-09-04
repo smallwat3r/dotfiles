@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Network info for waybar: own IP in the bar, LAN devices in the tooltip.
+# "netinfo scan" ping-sweeps the subnet then signals waybar to refresh.
+
+route=$(ip -4 route get 1.1.1.1 2>/dev/null)
+[[ "$route" =~ dev\ ([^ ]+) ]] && dev=${BASH_REMATCH[1]}
+[[ "$route" =~ src\ ([^ ]+) ]] && ip=${BASH_REMATCH[1]}
+if [[ -z "$ip" || -z "$dev" ]]; then
+    printf '{"text": " offline ", "tooltip": "No network"}'
+    exit 0
+fi
+
+if [[ "$1" == "scan" ]]; then
+    # ponytail: sweeps the /24 only, widen if you ever run a bigger subnet
+    seq 1 254 | xargs -P 64 -I{} ping -c 1 -W 1 -q "${ip%.*}.{}" >/dev/null 2>&1
+    pkill -RTMIN+8 waybar
+    exit 0
+fi
+
+devices=""
+while read -r nip _ mac state; do
+    [[ "$state" == FAILED || "$state" == INCOMPLETE || -z "$mac" ]] && continue
+    name=$(timeout 0.2 getent hosts "$nip" | awk '{print $2}')
+    [[ -z "$name" ]] && name=$(timeout 0.5 avahi-resolve-address "$nip" 2>/dev/null | awk '{print $2}')
+    devices+=$(printf '%-15s %s %s' "$nip" "$mac" "$name")'\n'
+done < <(ip -4 neigh show dev "$dev" | sort -t. -k4 -n)
+
+tooltip="LAN (${dev})\\n"
+tooltip+="----------\\n"
+tooltip+="$(printf '%-15s %s %s' "$ip" "$(cat /sys/class/net/"$dev"/address)" "$(hostname)")\\n"
+tooltip+="${devices%\\n}"
+
+printf '{"text": " %s ", "tooltip": "<tt>%s</tt>"}' "$ip" "$tooltip"

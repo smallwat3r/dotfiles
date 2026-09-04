@@ -1,4 +1,5 @@
 aspell                                   Spell checker
+avahi-tools                              Command line tools for mDNS browsing and resolving
 balena-etcher                            OS image flasher for SD cards and USB drives
 chromium                                 Open-source Chromium web browser
 clamav                                   End-user tools for the Clam Antivirus scanner
