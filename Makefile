@@ -33,6 +33,11 @@ ifneq ($(PLATFORM),)
 	@stow $(PLATFORM) --ignore='_root' $(STOW_OPTS) "$(HOME)"
 	@sudo stow -d $(PLATFORM) _root $(STOW_OPTS) '/'
 endif
+ifeq ($(PLATFORM),fedora)
+	@echo '$(INFO)** Labelling _root/etc as /etc for SELinux$(SGR0)'
+	-@sudo semanage fcontext -a -e /etc '$(CURDIR)/fedora/_root/etc' 2>/dev/null
+	@sudo restorecon -R '$(CURDIR)/fedora/_root/etc'
+endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 
@@ -42,6 +47,10 @@ ifneq ($(PLATFORM),)
 	@echo '$(INFO)** Unstowing $(PLATFORM) dotfiles$(SGR0)'
 	@stow -D $(PLATFORM) --ignore='_root' $(STOW_OPTS) "$(HOME)"
 	@sudo stow -D -d $(PLATFORM) _root $(STOW_OPTS) '/'
+endif
+ifeq ($(PLATFORM),fedora)
+	-@sudo semanage fcontext -d -e /etc '$(CURDIR)/fedora/_root/etc' 2>/dev/null
+	@sudo restorecon -R '$(CURDIR)/fedora/_root/etc'
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully removed all symlinks$(SGR0)'
