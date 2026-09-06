@@ -1,5 +1,15 @@
 #!/bin/sh
-# Pinentry wrapper - uses GUI when available, falls back to curses.
+# Pinentry wrapper - prompts inside Emacs when called from it, otherwise
+# uses GUI when available, falls back to curses.
+
+# Emacs sets INSIDE_EMACS for its subprocesses and pinentry.el listens on
+# this socket, so gpg prompts land in the minibuffer (git commit -S from
+# magit, sw-claude-commit re-signing). Skipped when the socket is absent
+# so a plain emacsclient terminal still gets a working pinentry.
+if [ -n "$INSIDE_EMACS" ] && [ -S "${TMPDIR:-/tmp}/emacs$(id -u)/pinentry" ] \
+   && command -v pinentry-emacs >/dev/null 2>&1; then
+  exec pinentry-emacs "$@"
+fi
 
 for prog in pinentry-gnome3 pinentry-gtk-2 pinentry-qt pinentry-mac; do
   if [ -n "$DISPLAY$WAYLAND_DISPLAY" ] && command -v "$prog" >/dev/null 2>&1; then
