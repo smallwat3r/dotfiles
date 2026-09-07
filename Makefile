@@ -8,10 +8,12 @@ DISTRO := $(shell \
 # Platform directory to stow alongside base (empty on unsupported distros)
 PLATFORM := $(filter macos fedora,$(DISTRO))
 
-SUCCESS := $(shell tput setaf 40)
-INFO    := $(shell tput setaf 111)
-WARNING := $(shell tput setaf 178)
-SGR0    := $(shell tput sgr0)
+# Colours only when there is a terminal to show them
+TPUT    := $(if $(TERM),tput,true)
+SUCCESS := $(shell $(TPUT) setaf 40)
+INFO    := $(shell $(TPUT) setaf 111)
+WARNING := $(shell $(TPUT) setaf 178)
+SGR0    := $(shell $(TPUT) sgr0)
 
 STOW_OPTS := --verbose=1 --restow --target
 
