@@ -23,14 +23,6 @@ known_hosts.*
 **/.config/nvim/*
 !**/.config/nvim/init.vim
 
-**/.config/qutebrowser/autoconfig.yml
-**/.config/qutebrowser/qsettings/*
-
-**/.doom.d/custom.el
-**/.doom.d/.custom.el
-
-**/.hammerspoon/Spoons/*
-
 **/Brewfile.lock.json
 
 **/.config/sway/outputs
