@@ -26,6 +26,7 @@ dprune() {
   local all=0
   [[ $1 == "-a" ]] && all=1
   docker system prune --force
+  docker builder prune --force --keep-storage 50GB
   (( all )) && docker volume prune --force && docker image prune -a --force
 }
 
