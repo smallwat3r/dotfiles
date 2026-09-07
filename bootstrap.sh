@@ -3,9 +3,10 @@
 # bootstrap.sh - provision a fresh Fedora install from these dotfiles
 #
 # Enables the third-party repositories, installs everything listed in
-# packages.dnf.txt and packages.flatpak.txt, enables the system services
-# those packages need, then stows the dotfiles. Safe to re-run, every
-# step is idempotent.
+# packages.dnf.txt and packages.flatpak.txt, installs the Ocrab Nerd Font
+# (github.com/smallwat3r/ocrab-font), enables the system services those
+# packages need, then stows the dotfiles. Safe to re-run, every step is
+# idempotent.
 #
 # Usage: ./bootstrap.sh
 #
@@ -98,6 +99,15 @@ install_packages() {
   awk '{print $1}' packages.flatpak.txt | xargs flatpak install -y flathub
 }
 
+install_fonts() {
+  step 'Installing fonts'
+  local dir="$HOME/.local/share/fonts"
+  mkdir -p "$dir"
+  curl -fsSL -o "$dir/ocrab-nerd-font.otf" \
+    https://github.com/smallwat3r/ocrab-font/releases/latest/download/ocrab-nerd-font.otf
+  fc-cache -f "$dir"
+}
+
 enable_services() {
   step 'Enabling system services'
   sudo systemctl enable --now "${SERVICES[@]}"
@@ -113,6 +123,7 @@ stow_dotfiles() {
 
 enable_repos
 install_packages
+install_fonts
 enable_services
 stow_dotfiles
 
