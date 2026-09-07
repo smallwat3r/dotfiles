@@ -7,7 +7,7 @@ setopt no_global_rcs
 export XDG_CONFIG_HOME
 
 # use unique arrays for paths
-typeset -U path cdpath manpath
+typeset -U path cdpath
 
 # Add directory to PATH if it exists and isn't already there
 # Usage: path_add ~/.local/bin
@@ -32,16 +32,11 @@ path=(
   /bin
   /sbin
   /usr/sbin
+  $path
 )
 
 cdpath=(
   "$HOME"
-)
-
-manpath=(
-  /usr/local/share/man
-  /usr/share/man
-  $manpath
 )
 
 # homebrew
