@@ -74,8 +74,7 @@ lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
 	@echo '$(SUCCESS)*** Lint passed$(SGR0)'
 
 _dirs:
-	@mkdir -p ~/.local/bin
-	@mkdir -p ~/.ssh/sockets
+	@mkdir -p ~/.local/bin ~/.ssh/sockets ~/.config/Yubico
 
 _requirements:
 	@stow --version >/dev/null 2>&1 || (echo '$(WARNING)*** Stow is required$(SGR0)'; exit 1)

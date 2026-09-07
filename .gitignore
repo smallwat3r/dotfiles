@@ -29,4 +29,3 @@ known_hosts.*
 **/.config/sway/workspaces
 
 **/.config/Yubico/*
-!**/.config/Yubico/.gitkeep
