@@ -14,7 +14,6 @@ avr-libc                                 C library for use with GCC on Atmel AVR
 avrdude                                  Software for programming Atmel AVR Microcontroller
 balena-etcher                            OS image flasher for SD cards and USB drives
 bdftopcf                                 Font compiler for the X server and font server
-bitwarden                                A secure and free password manager for all of your devices.
 blueman                                  GTK+ Bluetooth Manager
 brightnessctl                            Read and control device brightness
 cairo-devel                              Development files for cairo

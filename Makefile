@@ -12,13 +12,16 @@ STOW_OPTS := --verbose=1 --restow --target
 ZSH_FILES := home/.zshenv home/.zprofile home/.zshrc \
     $(wildcard home/.zsh/core/*.zsh home/.zsh/tools/*.zsh home/.zsh/functions/*)
 
-.PHONY: help stow unstow dry-run theme lint _dirs _requirements
+.PHONY: help bootstrap stow unstow dry-run theme lint _dirs _requirements
 
 help: ## Show this help menu and exit
 	@echo "Usage: make [TARGET ...]"
 	@echo ""
 	@grep --no-filename -E '^[a-zA-Z_%-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
+
+bootstrap: ## Provision a fresh Fedora install (repos, packages, services, stow)
+	@./bootstrap.sh
 
 stow: _requirements _dirs ## Stow all the dotfiles
 	@stow home $(STOW_OPTS) "$(HOME)"
@@ -52,7 +55,7 @@ theme: ## Regenerate app colour configs from theme/palette
 	@echo '$(SUCCESS)*** Theme files regenerated$(SGR0)'
 
 lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
-	@grep -rlE '^#!.*\b(ba)?sh$$' home root | xargs shellcheck
+	@grep -rlE '^#!.*\b(ba)?sh$$' bootstrap.sh home root | xargs shellcheck
 	@shellcheck home/.local/lib/launcher.sh
 	@printf '%s\0' $(ZSH_FILES) | xargs -0 -n1 zsh -n
 	@echo '$(SUCCESS)*** Lint passed$(SGR0)'

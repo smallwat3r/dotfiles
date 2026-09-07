@@ -1,3 +1,4 @@
+com.bitwarden.desktop                              Bitwarden
 com.github.maoschanz.drawing                       Drawing
 com.google.AndroidStudio                           Android Studio
 com.nomachine.nxplayer                             NoMachine Enterprise Client

@@ -16,7 +16,17 @@ Clone into your home directory:
 git clone https://github.com/smallwat3r/dotfiles.git ~/dotfiles
 #+end_src
 
-Stow all dotfiles (the Makefile detects the OS and selects the appropriate targets):
+On a fresh Fedora install, provision everything in one go. This enables the
+third-party repositories, installs the packages listed in ~packages.dnf.txt~ and
+~packages.flatpak.txt~, enables the system services they need and stows the
+dotfiles. It is safe to re-run.
+
+#+begin_src shell
+cd ~/dotfiles && make bootstrap
+#+end_src
+
+On an already provisioned machine, just stow the dotfiles (user configs to
+~$HOME~, system configs to ~/~ with sudo):
 
 #+begin_src shell
 cd ~/dotfiles && make stow
