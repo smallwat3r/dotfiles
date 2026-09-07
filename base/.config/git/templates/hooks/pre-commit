@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # Prevent from committing any line (or filename) containing the string NOCOMMIT.
 
-# if this hook file is staged, skip validation so we can commit it
-if git diff --cached --name-only \
-        | grep -qxF "base/.config/git/templates/hooks/pre-commit"; then
+# skip when this hook's own source is staged, it contains the marker
+if git diff --cached --name-only | grep -q 'templates/hooks/pre-commit$'; then
     exit 0
 fi
 

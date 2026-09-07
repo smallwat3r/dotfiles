@@ -14,11 +14,11 @@
 
 [init]
 	defaultBranch = main
+	templateDir = ~/.config/git/templates   # Hooks copied into new clones, repos keep their own
 
 [core]
 	autocrlf = input                    # Convert CRLF to LF on commit (keep LF on checkout)
 	editor = "ec"
-	hooksPath = ~/.config/git/templates/hooks
 
 [credential]
 	helper = !git-credential-pass       # Use pass password manager for credentials
@@ -82,9 +82,6 @@
 [url "https://gitlab.com/"]
 	insteadOf = gl:
 
-[url "https://aur.archlinux.org/"]
-	insteadOf = aur:
-
 # Output
 
 [column]
@@ -93,11 +90,6 @@
 [format]
 	pretty = format:%Cred%h%Creset - %Cgreen%an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset
 	date = relative
-
-[color]
-	branch = auto
-	diff = auto
-	status = auto
 
 [color "branch"]
 	current = yellow reverse
