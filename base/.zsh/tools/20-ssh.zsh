@@ -8,6 +8,8 @@ has ssh || return
 # where ssh prompts for the new fingerprint as usual. Any other
 # failure is passed through untouched.
 ssh() {
+  # nomultios, or zsh would copy stdout into the pipe as well as fd 3
+  setopt localoptions nomultios
   local err host rc
   err=$(mktemp)
   { command ssh "$@" 2>&1 >&3 | tee "$err" >&2; } 3>&1
