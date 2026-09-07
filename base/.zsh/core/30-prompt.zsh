@@ -29,9 +29,12 @@ __prompt_precmd() {
   [[ -n $_PROMPT_TAG ]] && \
     __ps_tag="%B%F{87}%K{20}[${(U)_PROMPT_TAG}]%b%f%k "
 
-  # virtualenv
-  (( ${+VIRTUAL_ENV} )) && \
-    __ps_venv="venv(${VIRTUAL_ENV##*/}) "
+  # virtualenv, show the project dir when the venv is an in-project .venv
+  if (( ${+VIRTUAL_ENV} )); then
+    local venv=${VIRTUAL_ENV:t}
+    [[ $venv == .venv ]] && venv=${VIRTUAL_ENV:h:t}
+    __ps_venv="venv(${venv}) "
+  fi
 
   # git
   local gstatus branch dirty root paused
