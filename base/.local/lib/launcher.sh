@@ -26,9 +26,10 @@ else
     FZF_BIND="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
 fi
 
-# Win98 palette on sway (matches the desktop theme), dark elsewhere (macOS)
+# Desktop palette on sway (THEME_* from theme/palette), dark elsewhere (macOS)
 if is_wlroots; then
-    FZF_COLORS="bg:#c0c0c0,fg:#000000,bg+:#000080,fg+:#ffffff,hl:#000080:bold,hl+:#d4aa00,pointer:#000000,prompt:#000000,info:#000000,gutter:#c0c0c0,query:#000000"
+    . "${HOME}/.zsh/tools/10-palette.zsh"
+    FZF_COLORS="bg:$THEME_FACE,fg:$THEME_BLACK,bg+:$THEME_NAVY,fg+:$THEME_WHITE,hl:$THEME_NAVY:bold,hl+:$THEME_GOLD,pointer:$THEME_BLACK,prompt:$THEME_BLACK,info:$THEME_BLACK,gutter:$THEME_FACE,query:$THEME_BLACK"
 else
     FZF_COLORS="bg:#222222,fg:#bbbbbb,bg+:#005577,fg+:#eeeeee,hl:#eeeeee,hl+:#eeeeee,pointer:#eeeeee,prompt:#eeeeee,info:#eeeeee,gutter:#222222"
 fi
