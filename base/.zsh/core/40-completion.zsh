@@ -2,11 +2,7 @@
 #
 # Sets up zsh completion with caching, case-insensitive matching,
 # menu selection, and styled output. Ctrl+A expands aliases.
-# compinit is deferred to first prompt to keep startup fast.
 
-autoload -Uz compinit
-
-# zstyles can be set before compinit runs
 setopt COMPLETE_IN_WORD  # complete from both end of a word
 setopt AUTO_MENU         # use menu after second consecutive tab
 setopt AUTO_LIST         # list choices on an ambiguous completion
@@ -15,7 +11,7 @@ setopt ALWAYS_TO_END     # move cursor to end after completion
 
 # enable caching for faster completion
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "${HOME}/.cache/.zcompcache"
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
 
 # completion matching behavior
 zstyle ':completion:*' matcher-list '' \
@@ -47,26 +43,18 @@ zstyle ':completion:*' group-name ''
 # expand aliases with C-a
 zstyle ':completion:alias-expansion:*' completer _expand_alias
 
-# Defer compinit to first prompt so it doesn't block startup.
-__deferred_compinit() {
-  local dump_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
-  local dump=$dump_dir/.zcompdump
-  mkdir -p "$dump_dir" 2>/dev/null
+# compinit -C skips the security check on the dump, the dump itself
+# is rebuilt only when missing.
+autoload -Uz compinit
+__zsh_dump_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+mkdir -p "$__zsh_dump_dir" 2>/dev/null
+if [[ -f $__zsh_dump_dir/.zcompdump ]]; then
+  compinit -C -d "$__zsh_dump_dir/.zcompdump"
+else
+  compinit -d "$__zsh_dump_dir/.zcompdump"
+fi
+_zsh_compile_if_needed "$__zsh_dump_dir/.zcompdump"
+unset __zsh_dump_dir
 
-  if [[ ! -f $dump ]]; then
-    compinit -d "$dump"
-  else
-    compinit -C -d "$dump"
-  fi
-  _zsh_compile_if_needed "$dump"
-
-  # wire up alias-expansion now that compinit has run
-  zle -C alias-expansion complete-word _generic
-  bindkey '^a' alias-expansion
-
-  add-zsh-hook -d precmd __deferred_compinit
-  unfunction __deferred_compinit
-}
-
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd __deferred_compinit
+zle -C alias-expansion complete-word _generic
+bindkey '^a' alias-expansion
