@@ -12,9 +12,9 @@ require() { for cmd in "$@"; do has "$cmd" || die "$cmd is required"; done; }
 
 # OS detection
 
-is_macos() { [[ "$(uname -s)" == "Darwin" ]]; }
+is_macos() { [[ "$OSTYPE" == darwin* ]]; }
 
-is_linux() { [[ "$(uname -s)" == "Linux" ]]; }
+is_linux() { [[ "$OSTYPE" == linux* ]]; }
 
 is_wlroots() { [[ -n "${SWAYSOCK:-}" ]] || [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; }
 

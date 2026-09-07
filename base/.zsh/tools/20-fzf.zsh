@@ -56,14 +56,11 @@ __load_fzf_config
 bindkey -r '^R'
 bindkey '^W' fzf-history-widget
 
-case $OSTYPE in
-  darwin*)
-    __fzf_word_binds="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
-    ;;
-  *)
-    __fzf_word_binds="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
-    ;;
-esac
+if is_macos; then
+  __fzf_word_binds="alt-left:backward-word,alt-right:forward-word,alt-bs:backward-kill-word,home:first,end:last"
+else
+  __fzf_word_binds="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
+fi
 
 export FZF_DEFAULT_OPTS="
   --reverse

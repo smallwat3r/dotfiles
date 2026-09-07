@@ -4,11 +4,8 @@
 # so all other config files can use these helpers.
 
 # OS detection
-[[ "$OSTYPE" =~ ^darwin ]] && __IS_MACOS=1 || __IS_MACOS=0
-[[ "$OSTYPE" =~ ^linux ]] && __IS_LINUX=1 || __IS_LINUX=0
-
-is_macos() { (( __IS_MACOS )); }
-is_linux() { (( __IS_LINUX )); }
+is_macos() { [[ $OSTYPE == darwin* ]] }
+is_linux() { [[ $OSTYPE == linux* ]] }
 
 # Command existence check
 # Usage: has git && git status
