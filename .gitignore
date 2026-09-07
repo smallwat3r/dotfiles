@@ -29,3 +29,6 @@ known_hosts.*
 **/.config/sway/workspaces
 
 **/.config/Yubico/*
+
+# created by systemctl --user enable (~/.config/systemd is stowed)
+**/systemd/user/*.wants/

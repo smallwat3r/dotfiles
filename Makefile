@@ -37,6 +37,9 @@ ifeq ($(PLATFORM),fedora)
 	@echo '$(INFO)** Labelling _root/etc as /etc for SELinux$(SGR0)'
 	-@sudo semanage fcontext -a -e /etc '$(CURDIR)/fedora/_root/etc' 2>/dev/null
 	@sudo restorecon -R '$(CURDIR)/fedora/_root/etc'
+	@echo '$(INFO)** Enabling user services$(SGR0)'
+	@systemctl --user daemon-reload
+	@systemctl --user enable emacs.service tailscale-systray.service ssh-agent.socket
 endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
