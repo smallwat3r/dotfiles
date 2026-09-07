@@ -32,16 +32,13 @@ make help       # list available commands
 
 ** Structure
 
-These configurations support multiple platforms:
+| Directory | Description                                              |
+|-----------+----------------------------------------------------------|
+| ~home~    | User configs, stowed to ~$HOME~ (zsh, git, sway, etc)    |
+| ~root~    | System configs, stowed to ~/~ with sudo (udev rules, etc) |
 
-| Directory | Description                                           |
-|-----------+-------------------------------------------------------|
-| ~base~    | Shared configs, always applied (zsh, git, SSH, etc)   |
-| ~macos~   | macOS-specific overrides                              |
-| ~fedora~  | Fedora-specific overrides                             |
-
-Platform directories may contain a ~_root/~ subdirectory for system-level configs
-(e.g. udev rules, launchd plists). These are stowed to ~/~ with sudo.
+These dotfiles target Fedora with sway. The macOS configuration was retired, it
+is preserved at the ~macos-last~ git tag.
 
 ** Emacs
 

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Show the current battery percentage on macOS.
-pmset -g ps | grep -Eo '[0-9]+%' | head -1

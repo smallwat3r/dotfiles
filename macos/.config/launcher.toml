@@ -1,8 +1,0 @@
-# Alacritty profile for launcher windows: the main config with
-# smaller window dimensions
-[general]
-import = ["~/.config/alacritty.toml"]
-
-[window.dimensions]
-columns = 80
-lines = 25

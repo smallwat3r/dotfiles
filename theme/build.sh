@@ -10,7 +10,7 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
 {
   echo '# Generated from theme/palette by theme/build.sh - do not edit.'
   vars | while IFS== read -r k v; do echo "set \$$k #$v"; done
-} > fedora/.config/sway/config.d/00-theme.conf
+} > home/.config/sway/config.d/00-theme.conf
 
 # Foot: included from foot.ini
 {
@@ -26,7 +26,7 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
       ansi*) echo "bright$(( ${k#ansi} - 8 ))=$v" ;;
     esac
   done
-} > fedora/.config/foot/theme.ini
+} > home/.config/foot/theme.ini
 
 # Tmux: sourced from tmux.conf
 {
@@ -34,7 +34,7 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
   echo "set -g pane-border-style 'fg=#$shadow'"
   echo "set -g pane-active-border-style 'fg=#$face'"
   echo "set -g status-style 'bg=#$focus,fg=#$term_fg'"
-} > base/.config/tmux/theme.conf
+} > home/.config/tmux/theme.conf
 
 # Zsh: THEME_* env vars for fzf and anything else shell-side
 {
@@ -42,13 +42,13 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
   vars | while IFS== read -r k v; do
     echo "export THEME_$(echo "$k" | tr '[:lower:]' '[:upper:]')='#$v'"
   done
-} > base/.zsh/tools/10-palette.zsh
+} > home/.zsh/tools/10-palette.zsh
 
 # Waybar: GTK CSS colour definitions, imported from style.css
 {
   echo '/* Generated from theme/palette by theme/build.sh - do not edit. */'
   vars | while IFS== read -r k v; do echo "@define-color $k #$v;"; done
-} > fedora/.config/waybar/colors.css
+} > home/.config/waybar/colors.css
 
 # Mako and swaylock have no include support: render their whole config
 # from a template, substituting {{name}} with the bare hex value.
@@ -63,8 +63,8 @@ render() {
     exit 1
   fi
 }
-render theme/mako.conf.in fedora/.config/mako/config
-render theme/swaylock.conf.in fedora/.config/swaylock/config
+render theme/mako.conf.in home/.config/mako/config
+render theme/swaylock.conf.in home/.config/swaylock/config
 
 # Slack: theme string to paste into Preferences -> Themes (no config file exists)
 # Order: column bg, menu hover, active item, active item text,

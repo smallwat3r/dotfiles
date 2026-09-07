@@ -1,13 +1,5 @@
 SHELL := /bin/bash
 
-DISTRO := $(shell \
-    if [[ "$$(uname)" == "Darwin" ]]; then echo macos; \
-    elif [[ -f /etc/os-release ]]; then . /etc/os-release && echo $$ID; \
-    else echo unknown; fi)
-
-# Platform directory to stow alongside base (empty on unsupported distros)
-PLATFORM := $(filter macos fedora,$(DISTRO))
-
 # Colours only when there is a terminal to show them
 TPUT    := $(if $(TERM),tput,true)
 SUCCESS := $(shell $(TPUT) setaf 40)
@@ -17,8 +9,8 @@ SGR0    := $(shell $(TPUT) sgr0)
 
 STOW_OPTS := --verbose=1 --restow --target
 
-ZSH_FILES := base/.zshenv base/.zprofile base/.zshrc \
-    $(wildcard base/.zsh/core/*.zsh base/.zsh/tools/*.zsh base/.zsh/functions/*)
+ZSH_FILES := home/.zshenv home/.zprofile home/.zshrc \
+    $(wildcard home/.zsh/core/*.zsh home/.zsh/tools/*.zsh home/.zsh/functions/*)
 
 .PHONY: help stow unstow dry-run theme lint _dirs _requirements
 
@@ -29,52 +21,39 @@ help: ## Show this help menu and exit
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
 stow: _requirements _dirs ## Stow all the dotfiles
-	@stow base $(STOW_OPTS) "$(HOME)"
-ifneq ($(PLATFORM),)
-	@echo '$(INFO)** Stowing $(PLATFORM) dotfiles$(SGR0)'
-	@stow $(PLATFORM) --ignore='_root' $(STOW_OPTS) "$(HOME)"
-	@sudo stow -d $(PLATFORM) _root $(STOW_OPTS) '/'
-endif
-ifeq ($(PLATFORM),fedora)
-	@echo '$(INFO)** Labelling _root/etc as /etc for SELinux$(SGR0)'
-	-@sudo semanage fcontext -a -e /etc '$(CURDIR)/fedora/_root/etc' 2>/dev/null
-	@sudo restorecon -R '$(CURDIR)/fedora/_root/etc'
+	@stow home $(STOW_OPTS) "$(HOME)"
+	@echo '$(INFO)** Stowing system files to /$(SGR0)'
+	@sudo stow root $(STOW_OPTS) '/'
+	@echo '$(INFO)** Labelling root/etc as /etc for SELinux$(SGR0)'
+	-@sudo semanage fcontext -a -e /etc '$(CURDIR)/root/etc' 2>/dev/null
+	@sudo restorecon -R '$(CURDIR)/root/etc'
 	@echo '$(INFO)** Enabling user services$(SGR0)'
 	@systemctl --user daemon-reload
 	@systemctl --user enable emacs.service tailscale-systray.service ssh-agent.socket
-endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 
 unstow: _requirements ## Remove all symlinks
-	@stow -D base $(STOW_OPTS) "$(HOME)"
-ifneq ($(PLATFORM),)
-	@echo '$(INFO)** Unstowing $(PLATFORM) dotfiles$(SGR0)'
-	@stow -D $(PLATFORM) --ignore='_root' $(STOW_OPTS) "$(HOME)"
-	@sudo stow -D -d $(PLATFORM) _root $(STOW_OPTS) '/'
-endif
-ifeq ($(PLATFORM),fedora)
-	-@sudo semanage fcontext -d -e /etc '$(CURDIR)/fedora/_root/etc' 2>/dev/null
-	@sudo restorecon -R '$(CURDIR)/fedora/_root/etc'
-endif
+	@stow -D home $(STOW_OPTS) "$(HOME)"
+	@echo '$(INFO)** Unstowing system files from /$(SGR0)'
+	@sudo stow -D root $(STOW_OPTS) '/'
+	-@sudo semanage fcontext -d -e /etc '$(CURDIR)/root/etc' 2>/dev/null
+	@sudo restorecon -R '$(CURDIR)/root/etc'
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully removed all symlinks$(SGR0)'
 
 dry-run: _requirements ## Show what would be linked (no changes made)
 	@echo '$(INFO)** Dry run - no changes will be made$(SGR0)'
-	@stow -n -v2 --restow --target "$(HOME)" base 2>&1 || true
-ifneq ($(PLATFORM),)
-	@stow -n -v2 --restow --ignore='_root' --target "$(HOME)" $(PLATFORM) 2>&1 || true
-	@stow -n -v2 --restow -d $(PLATFORM) --target '/' _root 2>&1 || true
-endif
+	@stow -n -v2 --restow --target "$(HOME)" home 2>&1 || true
+	@stow -n -v2 --restow --target '/' root 2>&1 || true
 
 theme: ## Regenerate app colour configs from theme/palette
 	@sh theme/build.sh
 	@echo '$(SUCCESS)*** Theme files regenerated$(SGR0)'
 
 lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
-	@grep -rlE '^#!.*\b(ba)?sh$$' base fedora macos | xargs shellcheck
-	@shellcheck base/.local/lib/launcher.sh
+	@grep -rlE '^#!.*\b(ba)?sh$$' home root | xargs shellcheck
+	@shellcheck home/.local/lib/launcher.sh
 	@printf '%s\0' $(ZSH_FILES) | xargs -0 -n1 zsh -n
 	@echo '$(SUCCESS)*** Lint passed$(SGR0)'
 

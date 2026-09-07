@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Check if Mac is connected to AC power. Prints "on" or "off".
-
-[[ $(pmset -g ac) != "No adapter attached." ]] && echo "on" || echo "off"

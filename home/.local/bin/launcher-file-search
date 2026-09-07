@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# launcher-file-search - Search and open files from home directory
+#
+# Dependencies: fzf, rg (ripgrep), ec (emacsclient wrapper)
+#
+set -euo pipefail
+
+. "${HOME}/.local/lib/launcher.sh"
+
+require fzf rg
+
+excludes=(--glob '!.git/*' --glob '!*.pyc' --glob '!.npm/*' --glob '!.cache/*'
+          --glob '!.local/share/*' --glob '!snap/*')
+
+cd "$HOME" || exit 1
+
+target=$(rg --files --hidden "${excludes[@]}" | fzf_pick) || exit 0
+
+[[ -n $target ]] && setsid -f ec "$HOME/$target"
