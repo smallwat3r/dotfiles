@@ -1,62 +1,137 @@
+akmod-VirtualBox                         Akmod package for VirtualBox kernel module(s)
+arm-none-eabi-binutils-cs                GNU Binutils for cross-compilation for arm-none-eabi target
+arm-none-eabi-gcc-cs                     GNU GCC for cross-compilation for arm-none-eabi target
+arm-none-eabi-gcc-cs-c++                 Cross Compiling GNU GCC targeted at arm-none-eabi
+arm-none-eabi-newlib                     C library intended for use on arm-none-eabi embedded systems
+arp-scan                                 Scanning and fingerprinting tool
 aspell                                   Spell checker
+aspell-en                                English dictionaries for Aspell
 avahi-tools                              Command line tools for mDNS browsing and resolving
+avr-binutils                             Cross Compiling GNU binutils targeted at avr
+avr-gcc                                  Cross Compiling GNU GCC targeted at avr
+avr-gcc-c++                              Cross Compiling GNU GCC targeted at avr
+avr-libc                                 C library for use with GCC on Atmel AVR microcontrollers
+avrdude                                  Software for programming Atmel AVR Microcontroller
 balena-etcher                            OS image flasher for SD cards and USB drives
+bdftopcf                                 Font compiler for the X server and font server
+bitwarden                                A secure and free password manager for all of your devices.
+blueman                                  GTK+ Bluetooth Manager
+brightnessctl                            Read and control device brightness
+cairo-devel                              Development files for cairo
+cheese                                   Application for taking pictures and movies from a webcam
 chromium                                 Open-source Chromium web browser
 clamav                                   End-user tools for the Clam Antivirus scanner
+clamav-freshclam                         Auto-updater for the Clam Antivirus scanner data-files
 clamd                                    The Clam AntiVirus Daemon
-cliphist                                 Clipboard history for Wayland
 clang                                    A C language family front-end for LLVM
 clang-tools-extra                        Extra tools for clang
+cliphist                                 Clipboard history for Wayland
 cmake                                    Cross-platform make system
+containerd.io                            An industry-standard container runtime
+dfu-programmer                           A Device Firmware Update based USB programmer for Atmel chips
+dfu-util                                 USB Device Firmware Upgrade tool
+discord                                  Free Voice and Text Chat for Gamers
+displaylink                              DisplayLink VGA/HDMI driver for DL-6xxx, DL-5xxx, DL-41xx and DL-3xxx adapters
+docker-buildx-plugin                     Docker Buildx plugin for the Docker CLI
 docker-ce                                The open-source application container engine
+docker-ce-cli                            The open-source application container engine
+docker-compose-plugin                    Docker Compose plugin for the Docker CLI
 earlyoom                                 Early OOM daemon to prevent system freeze under memory pressure
-emacs                                    GNU Emacs text editor
-fontforge                                Outline and bitmap font editor
-freetype-devel                           FreeType development libraries and header files
+emacs-pgtk                               GNU Emacs text editor with GTK toolkit for Wayland
 fcitx5                                   Input method framework
 fcitx5-gtk                               GTK input method module for fcitx5
+fd-find                                  Fd is a simple, fast and user-friendly alternative to find
+firefox                                  Mozilla Firefox Web browser
+fontforge                                Outline and bitmap font editor
+freetype-devel                           FreeType development libraries and header files
+fuzzel                                   App launcher and fuzzy finder for Wayland, inspired by rofi
 fzf                                      A command-line fuzzy finder written in Go
 gdal                                     GIS file format library
-gnome-tweaks                             Customize advanced GNOME 3 options
+gh                                       GitHub's official command line tool
+gnuplot                                  A program for plotting mathematical expressions and data
 golang                                   The Go Programming Language
-gpgme-devel                              Development headers for gpgme (yubikey-touch-detector)
 google-authenticator                     One-time pass-code support using open standards
+google-cloud-cli                         Google Cloud CLI
 gparted                                  Gnome Partition Editor
-gpaste                                   Clipboard management system
+gpgme-devel                              Development headers for gpgme (yubikey-touch-detector)
 gtk4-devel                               Development files for GTK
+ifuse                                    Mount Apple iPhone and iPod touch devices
 input-remapper                           Tool to remap input devices
+iperf3                                   Measurement tool for TCP/UDP bandwidth performance
+iptables-legacy                          Legacy tools for managing Linux kernel packet filtering capabilities
+isync                                    Tool to synchronize IMAP4 and Maildir mailboxes
+ivpn-ui                                  UI client for IVPN service (https://www.ivpn.net)
+jpegoptim                                Utility to optimize JPEG files
 kanshi                                   Dynamic display configuration for Wayland
+keybase                                  The Keybase Go client, filesystem, and GUI
 kicad                                    EDA software for schematic diagrams and PCBs
 kicad-packages3d                         3D Models for KiCad
+libinput-devel                           Development files for libinput
 libtool                                  The GNU Portable Library Tool
+libusb-compat-0.1-devel                  Development files for libusb-compat-0.1
 libusb1-devel                            Development files for libusb1
+libwebp-tools                            The WebP command line tools
+libxcrypt-compat                         Compatibility library providing legacy API functions
+libxkbcommon-devel                       X.Org X11 XKB parsing development package
+lxpolkit                                 Simple PolicyKit authentication agent
 mako                                     Lightweight Wayland notification daemon
 meson                                    High productivity build system
 msmtp                                    SMTP client
 network-manager-applet                   NetworkManager system tray applet
 notmuch                                  System for indexing, searching, and tagging email
+nwg-displays                             This program provides an intuitive GUI to manage multiple displays
 nwg-look                                 GTK3 settings editor for wlroots
+opencv-devel                             Development files for using the OpenCV library
 openscad                                 The Programmers Solid 3D CAD Modeller
+optipng                                  PNG optimizer and converter
 pam-u2f                                  PAM module for U2F/FIDO2 authentication (YubiKey)
+pamu2fcfg                                Configures PAM authentication over U2F
+pandoc-cli                               Markup conversion between documentation formats
+pango-devel                              Development files for pango
 pasystray                                PulseAudio/PipeWire system tray applet
+pavucontrol                              Volume control for PulseAudio
+pngquant                                 PNG quantization tool for reducing image file size
+potrace                                  Transform bitmaps into vector graphics
 protobuf-compiler                        Protocol Buffers compiler
 prusa-slicer                             3D printing slicer optimized for Prusa printers
-python3.13                               Version 3.13 of the Python interpreter
+pulseaudio-libs-devel                    Headers and libraries for PulseAudio client development
+python3-devel                            Libraries and header files needed for Python development
 python3-pip                              A tool for installing and managing Python3 packages
+python3.12                               Version 3.12 of the Python interpreter
+python3.13                               Version 3.13 of the Python interpreter
 qflipper                                 Flipper Zero firmware updater
+qgis                                     A user friendly Open Source Geographic Information System
+qgis-grass                               GRASS Support Libraries for QGIS
 radeontop                                AMD Radeon video cards monitoring utility
 rbw                                      Unofficial Bitwarden CLI
+scdoc                                    Tool for generating roff manual pages
+screen                                   A screen manager that supports multiple logins on one terminal
+ShellCheck                               Shell script analysis tool
 shfmt                                    Shell formatter
 sqlite                                   Library that implements an embeddable SQL database engine
+steam                                    Installer for the Steam software distribution service
 stow                                     Manage the installation of software packages from source
 sway                                     i3-compatible window manager for Wayland
+swaylock                                 Screen locker for Wayland
 swayosd                                  Volume/brightness OSD (COPR: erikreider/swayosd)
 tailscale                                WireGuard-based VPN with SSO
 terraform                                Infrastructure as code tool
+testdisk                                 Tool to check and undelete partition, PhotoRec recovers lost files
+texlive-collection-fontsrecommended      Recommended fonts
+texlive-lm                               Latin modern fonts in outline formats
+texlive-titlesec                         Select alternative section titles
+Thunar                                   Thunar File Manager
 tigervnc                                 A TigerVNC remote display system
+twitter-twemoji-fonts                    Twitter Emoji for everyone
+typst                                    New markup-based typesetting system that is powerful and easy to learn
 udiskie                                  Automounter for removable media
 uv                                       Fast Python package installer written in Rust
+v4l-utils                                Utilities for video4linux and DVB devices
+vips-devel                               Development files for vips
+VirtualBox                               A general-purpose full virtualizer for PC hardware
 waybar                                   Customizable Wayland bar for Sway
+wayland-devel                            Development files for wayland
+wayland-protocols-devel                  Wayland protocols that adds functionality not available in the core protocol
 wdisplays                                GUI display configurator for wlroots compositors
 wev                                      A tool for debugging events on a sway Wayland window
 wf-recorder                              Screen recorder for wlroots compositors

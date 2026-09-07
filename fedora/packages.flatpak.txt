@@ -1,6 +1,7 @@
+com.github.maoschanz.drawing                       Drawing
+com.google.AndroidStudio                           Android Studio
 com.nomachine.nxplayer                             NoMachine Enterprise Client
 com.slack.Slack                                    Slack
 com.spotify.Client                                 Spotify
 com.yubico.yubioath                                Yubico Authenticator
-io.github.seadve.Kooha                             Kooha
-org.gnome.Extensions                               Extensions
+org.freecad.FreeCAD                                FreeCAD
