@@ -6,9 +6,9 @@
 # packages.dnf.txt and packages.flatpak.txt, installs the Ocrab Nerd Font
 # (github.com/smallwat3r/ocrab-font), enables the system services those
 # packages need, stows the dotfiles, then sets up the Emacs config
-# (github.com/smallwat3r/emacs) and firefox-sway
-# (github.com/smallwat3r/firefox-sway). Safe to re-run, every step is
-# idempotent.
+# (github.com/smallwat3r/emacs), firefox-sway
+# (github.com/smallwat3r/firefox-sway) and the QMK CLI. Safe to re-run,
+# every step is idempotent.
 #
 # Usage: ./bootstrap.sh
 #
@@ -154,6 +154,21 @@ install_firefox_wm() {
   make -C ~/code/firefox-sway install
 }
 
+install_qmk() {
+  step 'Installing QMK'
+  # The toolchains (arm-none-eabi-*, avr-*, dfu-*) come from
+  # packages.dnf.txt, the CLI itself is only on PyPI. It installs under
+  # ~/.local/lib/python3.X, so re-run this after a Fedora upgrade bumps
+  # the system Python or `qmk` dies with "No module named 'qmk_cli'".
+  python3 -m pip install --user --upgrade qmk
+  # Clones ~/qmk_firmware if missing, syncs its submodules and runs
+  # qmk doctor. It only warns about the udev rules, so install them
+  # ourselves, they let `qmk flash` reach the boards without sudo.
+  qmk setup -y
+  sudo install -m 644 ~/qmk_firmware/util/udev/50-qmk.rules /etc/udev/rules.d/
+  sudo udevadm control --reload-rules
+}
+
 enable_repos
 install_packages
 install_fonts
@@ -161,6 +176,7 @@ enable_services
 stow_dotfiles
 install_emacs
 install_firefox_wm
+install_qmk
 
 step 'Done'
 cat <<'EOF'
