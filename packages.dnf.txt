@@ -86,6 +86,7 @@ pam-u2f                                  PAM module for U2F/FIDO2 authentication
 pamu2fcfg                                Configures PAM authentication over U2F
 pandoc-cli                               Markup conversion between documentation formats
 pango-devel                              Development files for pango
+pass                                     Stores, retrieves, generates, and synchronizes passwords securely
 pasystray                                PulseAudio/PipeWire system tray applet
 pavucontrol                              Volume control for PulseAudio
 pngquant                                 PNG quantization tool for reducing image file size
