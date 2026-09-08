@@ -50,7 +50,10 @@ run() {
     echo "$1" >> "$HISTORY_FILE"
     trim_history
     if is_desktop "$1"; then
-        setsid gtk-launch "$1" >/dev/null 2>&1 &
+        # Pass the full file name: gtk-launch only appends ".desktop" when the
+        # name lacks it, so an ID like com.bitwarden.desktop would otherwise
+        # be looked up verbatim and not found.
+        setsid gtk-launch "$1.desktop" >/dev/null 2>&1 &
     else
         setsid "$1" >/dev/null 2>&1 &
     fi
