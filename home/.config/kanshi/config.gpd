@@ -2,6 +2,11 @@ profile laptop {
     output eDP-1 enable scale 2.5
 }
 
+# GPD Pocket 3, its 1200x1920 panel is mounted in portrait
+profile pocket3 {
+    output DSI-1 enable transform 90 scale 2
+}
+
 # DVI-I-* share EDID with the LG monitors, so disable them by name first,
 # before the LG monitors are matched by description (make/model/serial).
 
