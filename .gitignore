@@ -29,3 +29,9 @@ known_hosts.*
 
 # created by systemctl --user enable (~/.config/systemd is stowed)
 **/systemd/user/*.wants/
+
+# runtime state written by fcitx5 and GTK into stowed dirs
+**/.config/fcitx5/profile
+**/.config/fcitx5/conf/cached_layouts
+**/.config/fcitx5/conf/notifications.conf
+**/.config/gtk-3.0/bookmarks
