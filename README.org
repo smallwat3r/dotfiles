@@ -19,7 +19,7 @@ git clone https://github.com/smallwat3r/dotfiles.git ~/dotfiles
 On a fresh Fedora install, provision everything in one go. This enables the
 third-party repositories, installs the packages listed in ~packages.dnf.txt~ and
 ~packages.flatpak.txt~, enables the system services they need, stows the
-dotfiles and sets up the Emacs config and firefox-wm (see below). It is safe to
+dotfiles and sets up the Emacs config and firefox-sway (see below). It is safe to
 re-run.
 
 #+begin_src shell
@@ -63,11 +63,11 @@ ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
 
 ** Firefox
 
-Firefox is stripped down for sway by [[https://github.com/smallwat3r/firefox-wm][firefox-wm]], which also provides the
+Firefox is stripped down for sway by [[https://github.com/smallwat3r/firefox-sway][firefox-sway]], which also provides the
 ~ff-launcher-*~ scripts bound in the sway config. ~make bootstrap~ sets it up, to
 do it by hand:
 
 #+begin_src shell
-git clone https://github.com/smallwat3r/firefox-wm.git ~/code/firefox-wm
-make -C ~/code/firefox-wm install
+git clone https://github.com/smallwat3r/firefox-sway.git ~/code/firefox-sway
+make -C ~/code/firefox-sway install
 #+end_src
