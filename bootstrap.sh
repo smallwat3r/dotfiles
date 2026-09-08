@@ -5,7 +5,8 @@
 # Enables the third-party repositories, installs everything listed in
 # packages.dnf.txt and packages.flatpak.txt, installs the Ocrab Nerd Font
 # (github.com/smallwat3r/ocrab-font), enables the system services those
-# packages need, then stows the dotfiles. Safe to re-run, every step is
+# packages need, stows the dotfiles, then sets up the Emacs config
+# (github.com/smallwat3r/emacs). Safe to re-run, every step is
 # idempotent.
 #
 # Usage: ./bootstrap.sh
@@ -121,11 +122,22 @@ stow_dotfiles() {
   make stow
 }
 
+clone() { [ -d "$2" ] || git clone "https://github.com/smallwat3r/$1.git" "$2"; }
+
+install_emacs() {
+  step 'Installing Emacs config'
+  clone emacs ~/.config/smallwat3r-emacs
+  [ -e ~/.emacs.d ] || ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
+  # Packages are installed by elpaca on first start, emacs.service is
+  # enabled by make stow and does that on next login
+}
+
 enable_repos
 install_packages
 install_fonts
 enable_services
 stow_dotfiles
+install_emacs
 
 step 'Done'
 cat <<'EOF'

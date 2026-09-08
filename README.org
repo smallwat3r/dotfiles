@@ -18,8 +18,8 @@ git clone https://github.com/smallwat3r/dotfiles.git ~/dotfiles
 
 On a fresh Fedora install, provision everything in one go. This enables the
 third-party repositories, installs the packages listed in ~packages.dnf.txt~ and
-~packages.flatpak.txt~, enables the system services they need and stows the
-dotfiles. It is safe to re-run.
+~packages.flatpak.txt~, enables the system services they need, stows the
+dotfiles and sets up the Emacs config (see below). It is safe to re-run.
 
 #+begin_src shell
 cd ~/dotfiles && make bootstrap
@@ -52,7 +52,8 @@ is preserved at the ~macos-last~ git tag.
 
 ** Emacs
 
-Emacs configuration is managed in a [[https://github.com/smallwat3r/emacs][separate repository]].
+Emacs configuration is managed in a [[https://github.com/smallwat3r/emacs][separate repository]]. ~make bootstrap~
+sets it up, to do it by hand:
 
 #+begin_src shell
 git clone https://github.com/smallwat3r/emacs.git ~/.config/smallwat3r-emacs
