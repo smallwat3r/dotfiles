@@ -6,7 +6,8 @@
 # packages.dnf.txt and packages.flatpak.txt, installs the Ocrab Nerd Font
 # (github.com/smallwat3r/ocrab-font), enables the system services those
 # packages need, stows the dotfiles, then sets up the Emacs config
-# (github.com/smallwat3r/emacs). Safe to re-run, every step is
+# (github.com/smallwat3r/emacs) and firefox-wm
+# (github.com/smallwat3r/firefox-wm). Safe to re-run, every step is
 # idempotent.
 #
 # Usage: ./bootstrap.sh
@@ -132,12 +133,23 @@ install_emacs() {
   # enabled by make stow and does that on next login
 }
 
+install_firefox_wm() {
+  step 'Installing firefox-wm'
+  clone firefox-wm ~/code/firefox-wm
+  # firefox-wm links into the default profile, which only exists once
+  # Firefox has been started at least once
+  [ -f ~/.mozilla/firefox/profiles.ini ] || \
+    firefox --headless --screenshot /dev/null about:blank >/dev/null 2>&1 || true
+  make -C ~/code/firefox-wm install
+}
+
 enable_repos
 install_packages
 install_fonts
 enable_services
 stow_dotfiles
 install_emacs
+install_firefox_wm
 
 step 'Done'
 cat <<'EOF'
@@ -147,4 +159,6 @@ Remaining manual steps:
   - tailscale up           join the tailnet
   - rbw login              Bitwarden CLI, used by the launcher
   - keybase login
+  - WEB_EXT_API_KEY=... WEB_EXT_API_SECRET=... make -C ~/code/firefox-wm install
+                           install the Tabs to Windows extension from AMO
 EOF

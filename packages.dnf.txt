@@ -18,7 +18,6 @@ blueman                                  GTK+ Bluetooth Manager
 brightnessctl                            Read and control device brightness
 cairo-devel                              Development files for cairo
 cheese                                   Application for taking pictures and movies from a webcam
-chromium                                 Open-source Chromium web browser
 clamav                                   End-user tools for the Clam Antivirus scanner
 clamav-freshclam                         Auto-updater for the Clam Antivirus scanner data-files
 clamd                                    The Clam AntiVirus Daemon
