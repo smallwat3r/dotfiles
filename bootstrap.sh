@@ -45,6 +45,7 @@ SERVICES=(
 GROUPS_=(docker vboxusers)
 
 step() { printf '\n\033[1;34m==> %s\033[0m\n' "$1"; }
+warn() { printf '\033[1;33m!!  %s\033[0m\n' "$1" >&2; }
 
 installed() { rpm -q "$1" >/dev/null 2>&1; }
 
@@ -128,7 +129,17 @@ clone() { [ -d "$2" ] || git clone "https://github.com/smallwat3r/$1.git" "$2"; 
 install_emacs() {
   step 'Installing Emacs config'
   clone emacs ~/.config/smallwat3r-emacs
-  [ -e ~/.emacs.d ] || ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
+  # make stow enables emacs.service, so an Emacs may already have started
+  # and created an empty ~/.emacs.d by the time we get here. Testing -e
+  # alone reads that as "already set up" and skips the symlink, which
+  # leaves Emacs running against an empty config, so clear it out first.
+  if [ -d ~/.emacs.d ] && [ ! -L ~/.emacs.d ] && ! rmdir ~/.emacs.d 2>/dev/null; then
+    warn "$HOME/.emacs.d exists and is not empty, leaving it alone"
+    return 0
+  fi
+  if [ ! -e ~/.emacs.d ] && [ ! -L ~/.emacs.d ]; then
+    ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
+  fi
   # Packages are installed by elpaca on first start, emacs.service is
   # enabled by make stow and does that on next login
 }
