@@ -4,7 +4,39 @@ profile laptop {
 
 # GPD Pocket 3, its 1200x1920 panel is mounted in portrait
 profile pocket3 {
-    output DSI-1 enable transform 90 scale 2
+    output DSI-1 enable transform 270 scale 2
+}
+
+# ALOLG portable monitor (1920x1280, 3:2) sat above the laptop.
+#
+# Matched by description glob rather than by HDMI-A-1, and listed before
+# the connector-name profiles below: kanshi applies the first profile
+# whose output set matches, and "HDMI-A-1" matches any HDMI monitor, so
+# a name-matched profile down there would otherwise claim this one.
+# At scale 2 the monitor is 960x640 logical.
+
+# GPD Pocket 3. Its panel is 960x600 logical, same width as the monitor,
+# so it sits flush underneath.
+profile pocket3-hdmi {
+    output "* ALOLG Unknown" mode 1920x1280@60Hz position 0,0 scale 2
+    output DSI-1 enable transform 270 scale 2 position 0,640
+}
+
+# GPD Pocket 4. Its panel is 1024x640 logical (2560x1600 at scale 2.5),
+# 64px wider than the monitor, so the monitor is nudged right to centre
+# the two on each other.
+profile pocket4-hdmi {
+    output "* ALOLG Unknown" mode 1920x1280@60Hz position 32,0 scale 2
+    output eDP-1 enable scale 2.5 position 0,640
+}
+
+# Lid closed on either machine. sway/config.d/07-lid.conf disables the
+# internal output, and kanshi leaves that alone (a disabled head is still
+# a connected head, so the profile above stays matched and is not
+# reapplied) - the monitor simply keeps its position. This profile is the
+# fallback for the case where the internal head disappears entirely.
+profile alolg-lid-closed {
+    output "* ALOLG Unknown" mode 1920x1280@60Hz position 0,0 scale 2
 }
 
 # DVI-I-* share EDID with the LG monitors, so disable them by name first,
