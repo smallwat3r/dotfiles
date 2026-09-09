@@ -30,27 +30,21 @@ size=$2
 
 [[ -f $img ]] || { echo "File not found: $img" >&2; exit 1; }
 
-if command -v magick >/dev/null 2>&1; then
-  im_convert="magick"
-  im_identify="magick identify"
-elif command -v convert >/dev/null 2>&1; then
-  im_convert="convert"
-  im_identify="identify"
-else
+command -v magick >/dev/null 2>&1 || {
   echo "ImageMagick is required but not installed." >&2
   echo "Install with: sudo dnf install ImageMagick" >&2
   exit 1
-fi
+}
 
 . "${HOME}/.local/lib/img.sh"
 
 original_size=$(filesize "$img")
-original_dims=$($im_identify -format "%wx%h" "$img")
+original_dims=$(magick identify -format "%wx%h" "$img")
 
-$im_convert "$img" -resize "$size" "$img"
+magick "$img" -resize "$size" "$img"
 
 new_size=$(filesize "$img")
-new_dims=$($im_identify -format "%wx%h" "$img")
+new_dims=$(magick identify -format "%wx%h" "$img")
 
 printf "Resized: %s (%s -> %s)\n" "$img" "$original_dims" "$new_dims"
 printf "Size: %s -> %s\n" "$(format_size "$original_size")" "$(format_size "$new_size")"

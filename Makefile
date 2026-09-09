@@ -58,7 +58,7 @@ theme: ## Regenerate app colour configs from theme/palette
 
 lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
 	@grep -rlE '^#!.*\b(ba)?sh$$' bootstrap.sh home root | xargs shellcheck
-	@shellcheck home/.local/lib/launcher.sh
+	@shellcheck home/.local/lib/*.sh
 	@printf '%s\0' $(ZSH_FILES) | xargs -0 -n1 zsh -n
 	@echo '$(SUCCESS)*** Lint passed$(SGR0)'
 

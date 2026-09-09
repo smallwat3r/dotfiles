@@ -10,16 +10,12 @@ has() { command -v "$1" >/dev/null 2>&1; }
 
 require() { for cmd in "$@"; do has "$cmd" || die "$cmd is required"; done; }
 
-# Environment detection
-
-is_wlroots() { [[ -n "${SWAYSOCK:-}" ]] || [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; }
-
 # FZF configuration
 
 FZF_BIND="ctrl-left:backward-word,ctrl-right:forward-word,ctrl-bs:backward-kill-word,home:first,end:last"
 
 # Desktop palette on sway (THEME_* from theme/palette), dark elsewhere
-if is_wlroots; then
+if [[ -n "${SWAYSOCK:-}" ]]; then
     . "${HOME}/.zsh/tools/10-palette.zsh"
     FZF_COLORS="bg:$THEME_FACE,fg:$THEME_BLACK,bg+:$THEME_NAVY,fg+:$THEME_WHITE,hl:$THEME_NAVY:bold,hl+:$THEME_GOLD,pointer:$THEME_BLACK,prompt:$THEME_BLACK,info:$THEME_BLACK,gutter:$THEME_FACE,query:$THEME_BLACK"
 else
@@ -45,24 +41,9 @@ fzf_pick_id() {
 
 # Clipboard operations
 
-clip() {
-    if has wl-copy; then
-        wl-copy
-    elif has xclip; then
-        xclip -selection clipboard
-    else
-        die "No clipboard tool found (wl-copy, xclip)"
-    fi
-}
+clip() { wl-copy; }
 
-clip_clear() {
-    local delay="${1:-45}"
-    if has wl-copy; then
-        (sleep "$delay" && wl-copy --clear) &
-    elif has xclip; then
-        (sleep "$delay" && xclip -selection clipboard < /dev/null) &
-    fi
-}
+clip_clear() { (sleep "${1:-45}" && wl-copy --clear) & }
 
 # Copy content and auto-clear after delay
 # Usage: echo "secret" | clip_secure [delay]

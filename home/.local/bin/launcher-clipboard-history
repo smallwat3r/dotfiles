@@ -5,31 +5,15 @@
 # Interactively select an entry from your clipboard history and copy
 # it back to the clipboard.
 #
-# Dependencies: fzf, (cliphist + wl-copy) or (gpaste-client)
+# Dependencies: fzf, cliphist, wl-copy
 #
 set -euo pipefail
 
 . "${HOME}/.local/lib/launcher.sh"
 
-require fzf
+require fzf cliphist wl-copy
 
-# Select backend based on environment. GPaste is preferred outside
-# wlroots compositors (cliphist needs the wlr-data-control protocol).
-if has gpaste-client && ! is_wlroots; then
-    list_history() {
-        gpaste-client --oneline | while IFS=: read -r uuid content; do
-            printf '%s\t%s\n' "$uuid" "${content# }"
-        done
-    }
-    select_item() { gpaste-client select "${1%%$'\t'*}"; }
-elif has cliphist && has wl-copy; then
-    list_history() { cliphist list; }
-    select_item() { printf '%s' "$1" | cliphist decode | wl-copy; }
-else
-    die "No clipboard history tool found (cliphist or gpaste-client)"
-fi
-
-selected="$(list_history | fzf_pick_id)" || exit 0
+selected="$(cliphist list | fzf_pick_id)" || exit 0
 [[ -z "$selected" ]] && exit 0
 
-select_item "$selected"
+printf '%s' "$selected" | cliphist decode | wl-copy

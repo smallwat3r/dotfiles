@@ -11,7 +11,7 @@ if [ -n "$INSIDE_EMACS" ] && [ -S "${TMPDIR:-/tmp}/emacs$(id -u)/pinentry" ] \
   exec pinentry-emacs "$@"
 fi
 
-for prog in pinentry-gnome3 pinentry-gtk-2 pinentry-qt pinentry-mac; do
+for prog in pinentry-gnome3 pinentry-gtk-2 pinentry-qt; do
   if [ -n "$DISPLAY$WAYLAND_DISPLAY" ] && command -v "$prog" >/dev/null 2>&1; then
     exec "$prog" "$@"
   fi
