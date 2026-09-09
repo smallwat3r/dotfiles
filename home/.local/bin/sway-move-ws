@@ -1,0 +1,18 @@
+#!/bin/bash
+# Move the focused window(s) to a workspace and follow
+# Usage: sway-move-ws N
+#
+# Moving a parent container (after "focus parent") into a workspace that
+# already has windows nests it as a sub-group inside that workspace's tab
+# group. Moving each window on its own keeps the tab bar flat.
+
+ws=$1
+
+for id in $(swaymsg -t get_tree | jq -r '
+  .. | select(.focused?) |
+  .. | select(.pid?) | .id
+'); do
+    swaymsg "[con_id=$id] move container to workspace number $ws" >/dev/null
+done
+
+swaymsg "workspace number $ws"
