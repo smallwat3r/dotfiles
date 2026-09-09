@@ -5,11 +5,8 @@
 
 has docker || return
 
-_docker_cols() { tput cols 2>/dev/null || echo 120 }
-
 _docker_ps() {
-  local fmt='{{.ID}} ¬¬¬ {{.Image}} ¬¬¬ {{.Names}} ¬¬¬ {{.Status}} ¬¬¬ {{.Ports}}'
-  docker ps "$@" --format "$fmt" | column -t -s '¬¬¬' -c "$(_docker_cols)"
+  docker ps "$@" --format 'table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}'
 }
 
 alias dps='_docker_ps'
@@ -18,8 +15,7 @@ alias dpsa='_docker_ps -a'
 dpsq() { docker ps -q }
 
 dim() {
-  docker images --format '{{.Repository}} ¬¬¬ {{.Tag}} ¬¬¬ {{.ID}} ¬¬¬ {{.Size}}' \
-    | column -t -s '¬¬¬' -c "$(_docker_cols)"
+  docker images --format 'table {{.Repository}}\t{{.Tag}}\t{{.ID}}\t{{.Size}}'
 }
 
 dprune() {
@@ -69,7 +65,5 @@ dip() {
 }
 
 dstat() {
-  docker stats --no-stream --format \
-    '{{.Name}} ¬¬¬ {{.CPUPerc}} ¬¬¬ {{.MemUsage}} ¬¬¬ {{.NetIO}}' \
-    | column -t -s '¬¬¬' -c "$(_docker_cols)"
+  docker stats --no-stream --format 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}'
 }
