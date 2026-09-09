@@ -14,6 +14,7 @@ avr-libc                                 C library for use with GCC on Atmel AVR
 avrdude                                  Software for programming Atmel AVR Microcontroller
 balena-etcher                            OS image flasher for SD cards and USB drives
 bdftopcf                                 Font compiler for the X server and font server
+bind-utils                               Utilities for querying DNS name servers (dig, used by dns-inspect)
 blueman                                  GTK+ Bluetooth Manager
 brightnessctl                            Read and control device brightness
 cairo-devel                              Development files for cairo
@@ -41,41 +42,49 @@ fcitx5-gtk                               GTK input method module for fcitx5
 fd-find                                  Fd is a simple, fast and user-friendly alternative to find
 firefox                                  Mozilla Firefox Web browser
 fontforge                                Outline and bitmap font editor
+foot                                     Fast, lightweight and minimalistic Wayland terminal emulator
 freetype-devel                           FreeType development libraries and header files
 fuzzel                                   App launcher and fuzzy finder for Wayland, inspired by rofi
 fzf                                      A command-line fuzzy finder written in Go
 gdal                                     GIS file format library
 gh                                       GitHub's official command line tool
+gnome-keyring                            Framework for managing passwords and other secrets
 gnuplot                                  A program for plotting mathematical expressions and data
 golang                                   The Go Programming Language
 google-authenticator                     One-time pass-code support using open standards
 google-cloud-cli                         Google Cloud CLI
 gparted                                  Gnome Partition Editor
 gpgme-devel                              Development headers for gpgme (yubikey-touch-detector)
+grim                                     Screenshot tool for Wayland compositors
 gtk4-devel                               Development files for GTK
 ifuse                                    Mount Apple iPhone and iPod touch devices
+ImageMagick                              Image manipulation toolkit (magick, used by img-resize)
 input-remapper                           Tool to remap input devices
 iperf3                                   Measurement tool for TCP/UDP bandwidth performance
 iptables-legacy                          Legacy tools for managing Linux kernel packet filtering capabilities
 isync                                    Tool to synchronize IMAP4 and Maildir mailboxes
 ivpn-ui                                  UI client for IVPN service (https://www.ivpn.net)
 jpegoptim                                Utility to optimize JPEG files
+jq                                       Command-line JSON processor
 kanshi                                   Dynamic display configuration for Wayland
 keybase                                  The Keybase Go client, filesystem, and GUI
 kicad                                    EDA software for schematic diagrams and PCBs
 kicad-packages3d                         3D Models for KiCad
 libinput-devel                           Development files for libinput
+libnotify                                Desktop notification library (notify-send)
 libtool                                  The GNU Portable Library Tool
 libusb-compat-0.1-devel                  Development files for libusb-compat-0.1
 libusb1-devel                            Development files for libusb1
 libwebp-tools                            The WebP command line tools
 libxcrypt-compat                         Compatibility library providing legacy API functions
 libxkbcommon-devel                       X.Org X11 XKB parsing development package
+lsof                                     A utility which lists open files on a Linux/UNIX system
 lxpolkit                                 Simple PolicyKit authentication agent
 mako                                     Lightweight Wayland notification daemon
 meson                                    High productivity build system
 msmtp                                    SMTP client
 network-manager-applet                   NetworkManager system tray applet
+nmap                                     Network exploration tool and security scanner (ls-hosts)
 notmuch                                  System for indexing, searching, and tagging email
 nwg-displays                             This program provides an intuitive GUI to manage multiple displays
 nwg-look                                 GTK3 settings editor for wlroots
@@ -107,10 +116,12 @@ scdoc                                    Tool for generating roff manual pages
 screen                                   A screen manager that supports multiple logins on one terminal
 ShellCheck                               Shell script analysis tool
 shfmt                                    Shell formatter
+slurp                                    Select a region in a Wayland compositor
 sqlite                                   Library that implements an embeddable SQL database engine
 steam                                    Installer for the Steam software distribution service
 stow                                     Manage the installation of software packages from source
 sway                                     i3-compatible window manager for Wayland
+swayidle                                 Idle management daemon for Wayland
 swaylock                                 Screen locker for Wayland
 swayosd                                  Volume/brightness OSD (COPR: erikreider/swayosd)
 tailscale                                WireGuard-based VPN with SSO
@@ -121,6 +132,8 @@ texlive-lm                               Latin modern fonts in outline formats
 texlive-titlesec                         Select alternative section titles
 Thunar                                   Thunar File Manager
 tigervnc                                 A TigerVNC remote display system
+tmux                                     A terminal multiplexer
+tuned                                    A system tuning service for Linux (power-profile-ctl)
 twitter-twemoji-fonts                    Twitter Emoji for everyone
 typst                                    New markup-based typesetting system that is powerful and easy to learn
 udiskie                                  Automounter for removable media
