@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Screenshot to ~/Pictures/Screenshots and the clipboard.
+# Usage: screenshot full|region|window
+set -euo pipefail
+
+geometry=
+case "${1:-}" in
+  full) ;;
+  region) geometry=$(slurp) ;;
+  window)
+    geometry=$(swaymsg -t get_tree \
+      | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
+      | slurp)
+    ;;
+  *) echo "Usage: ${0##*/} full|region|window" >&2; exit 1 ;;
+esac
+
+dir=~/Pictures/Screenshots
+mkdir -p "$dir"
+f="$dir/$(date +%Y%m%d-%H%M%S).png"
+
+grim ${geometry:+-g "$geometry"} - | tee "$f" | wl-copy
+notify-send "Screenshot" "$f"

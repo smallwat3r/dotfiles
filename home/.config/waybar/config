@@ -67,10 +67,10 @@
     },
 
     "custom/recording": {
-        "exec": "recording-ctl status",
+        "exec": "recording status",
         "interval": 5,
         "format": "{}",
-        "on-click": "recording-ctl stop",
+        "on-click": "recording stop",
         "tooltip": false
     },
 

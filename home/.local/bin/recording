@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Record the screen with wf-recorder to ~/Videos/Recordings.
+# Usage: recording full|region|window|stop|status
+set -euo pipefail
+
+geometry=
+case "${1:-}" in
+  status) pgrep -x wf-recorder >/dev/null && echo REC || echo; exit 0 ;;
+  stop) pkill -INT wf-recorder; exit ;;
+  full) ;;
+  region) geometry=$(slurp) ;;
+  window)
+    geometry=$(swaymsg -t get_tree \
+      | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
+      | slurp)
+    ;;
+  *) echo "Usage: ${0##*/} full|region|window|stop|status" >&2; exit 1 ;;
+esac
+
+dir=~/Videos/Recordings
+mkdir -p "$dir"
+f="$dir/$(date +%Y%m%d-%H%M%S).mp4"
+
+wf-recorder ${geometry:+-g "$geometry"} -f "$f"
+notify-send "Recording saved" "$f"
