@@ -14,7 +14,7 @@ avenv() {
       return 0
     fi
     [[ "$dir" == / ]] && break
-    dir=$(dirname "$dir")
+    dir=${dir:h}
   done
   echo "No .venv found" >&2
   return 1
