@@ -23,10 +23,8 @@ if [[ $XDG_CURRENT_DESKTOP == sway ]]; then
   fi
 fi
 
-: "${TERMINAL:=foot}"
-
 : "${TERM:=xterm-256color}"
-export TERM TERMINAL
+export TERM
 
 # compile a .zsh file to .zwc if needed
 _zsh_compile_if_needed() {
