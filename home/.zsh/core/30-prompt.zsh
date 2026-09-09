@@ -14,8 +14,9 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 setopt PROMPT_SUBST
 
 # Session tags for prompt labeling. Set via `tag "label"`, clear
-# with `tag`.
+# with `tag`. A remote shell (over ssh) starts tagged with its hostname.
 tag() { _PROMPT_TAG="$1" }
+[[ -n $SSH_CONNECTION ]] && _PROMPT_TAG=${HOST%%.*}
 
 __prompt_precmd() {
   local last_status=$?
