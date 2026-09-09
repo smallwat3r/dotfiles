@@ -13,10 +13,11 @@ sp() { tmux split-window -v }    # Split pane horizontally
 vs() { tmux split-window -h }    # Split pane vertically
 
 # Auto-start tmux for interactive terminal sessions, unless inside
-# Emacs (which has its own window management).
+# Emacs (which has its own window management) or over ssh (the local
+# side already runs one).
 # Conditions: stdin is a tty, not already in tmux, shell is
 # interactive.
-if (( ! ${+INSIDE_EMACS} )); then
+if (( ! ${+INSIDE_EMACS} && ! ${+SSH_CONNECTION} )); then
   if [[ -t 0 && -z "$TMUX" && $- == *i* ]]; then
     exec tmux
   fi
