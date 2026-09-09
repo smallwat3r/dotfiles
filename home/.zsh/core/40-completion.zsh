@@ -44,11 +44,11 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:alias-expansion:*' completer _expand_alias
 
 # compinit -C skips the security check on the dump, the dump itself
-# is rebuilt only when missing.
+# is rebuilt only when missing or older than a day (new completions).
 autoload -Uz compinit
 __zsh_dump_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 mkdir -p "$__zsh_dump_dir" 2>/dev/null
-if [[ -f $__zsh_dump_dir/.zcompdump ]]; then
+if [[ -n $__zsh_dump_dir/.zcompdump(#qN.mh-24) ]]; then
   compinit -C -d "$__zsh_dump_dir/.zcompdump"
 else
   compinit -d "$__zsh_dump_dir/.zcompdump"
