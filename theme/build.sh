@@ -50,7 +50,7 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
   vars | while IFS== read -r k v; do echo "@define-color $k #$v;"; done
 } > home/.config/waybar/colors.css
 
-# Mako and swaylock have no include support: render their whole config
+# Mako, swaylock and the foot launcher profile: render the whole config
 # from a template, substituting {{name}} with the bare hex value.
 subst() { sed "$(vars | sed 's|^\(.*\)=\(.*\)$|s/{{\1}}/\2/g|')" "$1"; }
 
@@ -65,6 +65,7 @@ render() {
 }
 render theme/mako.conf.in home/.config/mako/config
 render theme/swaylock.conf.in home/.config/swaylock/config
+render theme/foot-launcher.ini.in home/.config/foot/launcher.ini
 
 # Slack: theme string to paste into Preferences -> Themes (no config file exists)
 # Order: column bg, menu hover, active item, active item text,
