@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# SSH to the device plugged into the laptop's ethernet port.
+# Usage: eth-ssh [user] [ssh-args...]   (default user: current user)
+set -euo pipefail
+
+user=${1:-$USER}
+shift || true
+
+ip=$(eth-ip | head -n1)
+exec ssh "$@" "$user@$ip"

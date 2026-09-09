@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Print the IP of the device plugged into the laptop's ethernet port.
+# The port is in NetworkManager shared mode (192.168.123.0/24), so the
+# device shows up in the neighbour table once it has taken a DHCP lease.
+# Usage: eth-ip [iface]   (default: enp196s0)
+set -euo pipefail
+
+iface=${1:-enp196s0}
+
+ips=$(ip -4 neigh show dev "$iface" \
+  | awk '$NF ~ /REACHABLE|STALE|DELAY|PROBE/ {print $1}')
+
+# neigh table can be empty right after plugging in, fall back to
+# the dnsmasq leases, which need root to read
+if [[ -z $ips ]]; then
+  ips=$(sudo awk '{print $3}' "/var/lib/NetworkManager/dnsmasq-$iface.leases" 2>/dev/null || true)
+fi
+
+if [[ -z $ips ]]; then
+  echo "Error: no device found on $iface" >&2
+  exit 1
+fi
+
+echo "$ips"
