@@ -12,6 +12,8 @@ ssh() {
   # localtraps so the cleanup trap does not leak into the shell.
   setopt localoptions nomultios localtraps
   local err host rc
+  # Remote hosts have no terminfo for Emacs's Eat terminal
+  [[ $TERM == eat-* ]] && local -x TERM=xterm-256color
   err=$(mktemp)
   trap 'rm -f "$err"' EXIT
   { command ssh "$@" 2>&1 >&3 | tee "$err" >&2; } 3>&1
