@@ -19,9 +19,6 @@ known_hosts.*
 **/.ssh/*
 !**/.ssh/config
 
-**/.config/nvim/*
-!**/.config/nvim/init.vim
-
 **/.config/sway/outputs
 **/.config/sway/workspaces
 
