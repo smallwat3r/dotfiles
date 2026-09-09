@@ -7,7 +7,9 @@ INFO    := $(shell $(TPUT) setaf 111)
 WARNING := $(shell $(TPUT) setaf 178)
 SGR0    := $(shell $(TPUT) sgr0)
 
-STOW_OPTS := --verbose=1 --restow --target
+# --no-folding keeps every directory real under the target, so files apps
+# write into stowed dirs (ssh keys, systemd wants, zwc) never land in the repo
+STOW_OPTS := --verbose=1 --restow --no-folding --target
 
 ZSH_FILES := home/.zshenv home/.zprofile home/.zshrc \
     $(wildcard home/.zsh/core/*.zsh home/.zsh/tools/*.zsh home/.zsh/functions/*)
@@ -47,8 +49,8 @@ unstow: _requirements ## Remove all symlinks
 
 dry-run: _requirements ## Show what would be linked (no changes made)
 	@echo '$(INFO)** Dry run - no changes will be made$(SGR0)'
-	@stow -n -v2 --restow --target "$(HOME)" home 2>&1 || true
-	@stow -n -v2 --restow --target '/' root 2>&1 || true
+	@stow -n -v2 --restow --no-folding --target "$(HOME)" home 2>&1 || true
+	@stow -n -v2 --restow --no-folding --target '/' root 2>&1 || true
 
 theme: ## Regenerate app colour configs from theme/palette
 	@sh theme/build.sh
@@ -61,6 +63,7 @@ lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
 	@echo '$(SUCCESS)*** Lint passed$(SGR0)'
 
 _dirs:
+	@install -d -m 700 ~/.ssh ~/.gnupg
 	@mkdir -p ~/.local/bin ~/.ssh/sockets ~/.config/Yubico
 
 _requirements:
