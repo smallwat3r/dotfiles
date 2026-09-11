@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Commit and push ~/notes to Forgejo on the NAS, run by notes-sync.timer.
+set -euo pipefail
+
+# auto commits are unsigned, gpg-agent is not unlocked from a timer
+export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=commit.gpgsign GIT_CONFIG_VALUE_0=false
+
+cd "$HOME/notes"
+[[ -d .git ]] || { echo "notes-sync: ~/notes is not a git repo" >&2; exit 1; }
+
+git add -A
+if ! git diff --cached --quiet; then
+    git commit -qm "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+fi
+
+git remote get-url origin >/dev/null 2>&1 || { echo "notes-sync: no origin, push by hand once" >&2; exit 1; }
+git pull -q --rebase || {
+    git rebase --abort 2>/dev/null || true
+    echo "notes-sync: pull failed, offline or conflict" >&2
+    exit 1
+}
+git push -q

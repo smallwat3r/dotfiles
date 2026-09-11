@@ -34,7 +34,7 @@ stow: _requirements _dirs ## Stow all the dotfiles
 	@sudo restorecon -R '$(CURDIR)/root/etc'
 	@echo '$(INFO)** Enabling user services$(SGR0)'
 	@systemctl --user daemon-reload
-	@systemctl --user enable emacs.service tailscale-systray.service ssh-agent.socket
+	@systemctl --user enable emacs.service tailscale-systray.service ssh-agent.socket notes-sync.timer
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully linked all dotfiles$(SGR0)'
 

@@ -1,0 +1,7 @@
+[Unit]
+Description=Commit and push ~/notes to Forgejo
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/notes-sync
