@@ -161,10 +161,11 @@ install_qmk() {
   # ~/.local/lib/python3.X, so re-run this after a Fedora upgrade bumps
   # the system Python or `qmk` dies with "No module named 'qmk_cli'".
   python3 -m pip install --user --upgrade qmk
-  # Clones ~/qmk_firmware if missing, syncs its submodules and runs
-  # qmk doctor. It only warns about the udev rules, so install them
-  # ourselves, they let `qmk flash` reach the boards without sudo.
-  qmk setup -y
+  # Clones ~/qmk_firmware, syncs its submodules and runs qmk doctor.
+  # Skip it once the clone exists, re-running would reset it. It only
+  # warns about the udev rules, so install them ourselves, they let
+  # `qmk flash` reach the boards without sudo.
+  [ -d ~/qmk_firmware ] || qmk setup -y
   sudo install -m 644 ~/qmk_firmware/util/udev/50-qmk.rules /etc/udev/rules.d/
   sudo udevadm control --reload-rules
 }
