@@ -164,10 +164,11 @@ install_qmk() {
   # Clones ~/qmk_firmware, syncs its submodules and runs qmk doctor.
   # Skip it once the clone exists, re-running would reset it. It only
   # warns about the udev rules, so install them ourselves, they let
-  # `qmk flash` reach the boards without sudo.
+  # `qmk flash` reach the boards without sudo. Since 0.32.12 the rules
+  # live in the qmk/qmk_udev repo, not in the tree: the script fetches
+  # the latest release, drops them in /etc/udev/rules.d and reloads udev.
   [ -d ~/qmk_firmware ] || qmk setup -y
-  sudo install -m 644 ~/qmk_firmware/util/udev/50-qmk.rules /etc/udev/rules.d/
-  sudo udevadm control --reload-rules
+  sh ~/qmk_firmware/util/install_udev.sh
 }
 
 enable_repos
