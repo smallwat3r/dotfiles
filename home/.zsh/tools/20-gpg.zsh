@@ -25,6 +25,20 @@ if has gpg; then
     gpg --list-keys --keyid-format=short
   }
 
+  # send secret subkeys and trust to another host over ssh, the primary
+  # key never leaves this machine. the host must be a full tailnet name
+  # (see TS_DOMAINS) so the key only ever travels over Tailscale.
+  # usage: gpg-send-subkeys <host>.<tailnet domain> [id]
+  gpg-send-subkeys() {
+    [[ "$1" == ?*.(${(~j:|:)TS_DOMAINS}) ]] || {
+      echo "usage: gpg-send-subkeys <host>.(${(j:|:)TS_DOMAINS}) [id]" >&2
+      return 1
+    }
+    local id=${2:-matt@smallwat3r.com}
+    gpg --armor --export-secret-subkeys "$id" | ssh "$1" 'gpg --import' &&
+      gpg --export-ownertrust | ssh "$1" 'gpg --import-ownertrust'
+  }
+
   # copy the GPG SSH key to the clipboard.
   gpg-ssh-key() {
     local key

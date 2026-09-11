@@ -3,6 +3,11 @@
 # Aliases for common commands and fuzzy device selection for SSH,
 # ping, and file transfer. ts-switch for multi-account support.
 
+# Tailnet DNS suffixes, ts.smallwat3r.com is the published domain and
+# feist-corn.ts.net the MagicDNS one. Kept above the guard so helpers in
+# other files (gpg-send-subkeys) can use them without the tailscale binary.
+TS_DOMAINS=(ts.smallwat3r.com feist-corn.ts.net)
+
 has tailscale || return
 
 # Tailscale account IDs for ts-switch. Override in the environment to
