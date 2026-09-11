@@ -184,6 +184,9 @@ Remaining manual steps:
   - log out and back in for the new group memberships to apply
   - yubikey-pam-setup      register the YubiKey for sudo and login
   - tailscale up           join the tailnet
+  - git clone https://nas.ts.smallwat3r.com/git/smallwat3r/notes.git ~/notes
+                           after the tailnet and a token from `make forgejo-token`
+                           in the homelab repo, notes-sync.timer fails until then
   - rbw login              Bitwarden CLI, used by the launcher
   - keybase login
   - WEB_EXT_API_KEY=... WEB_EXT_API_SECRET=... make -C ~/code/firefox-sway install
