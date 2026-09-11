@@ -64,6 +64,9 @@ lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
 
 _dirs:
 	@install -d -m 700 ~/.ssh ~/.gnupg
+	@# a dangling ~/.ssh/sockets link (old stow layout, home dir copied from
+	@# another machine) makes mkdir -p fail with 'File exists', drop it first
+	@if [ -L ~/.ssh/sockets ] && [ ! -e ~/.ssh/sockets ]; then rm ~/.ssh/sockets; fi
 	@mkdir -p ~/.local/bin ~/.ssh/sockets ~/.config/Yubico
 
 _requirements:
