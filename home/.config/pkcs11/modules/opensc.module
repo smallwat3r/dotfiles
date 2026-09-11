@@ -1,0 +1,4 @@
+# Firefox on Fedora loads every p11-kit module, OpenSC then keeps the YubiKey
+# PIV applet selected and breaks scdaemon (gpg --card-status: Card error).
+module: opensc-pkcs11.so
+disable-in: firefox

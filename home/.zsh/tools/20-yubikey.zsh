@@ -24,7 +24,11 @@ yk-code() {
 }
 
 # Show GPG card status
-yk-gpg() { gpg --card-status 2>/dev/null || echo "No GPG card detected, run gpg --card-status for details" }
+yk-gpg() {
+  # ykman or OpenSC leave another applet selected, reloading scdaemon reconnects
+  gpg --card-status 2>/dev/null && return
+  gpgconf --reload scdaemon && gpg --card-status 2>/dev/null || echo "No GPG card detected, run gpg --card-status for details"
+}
 
 # Reset FIDO2 credentials (use with caution)
 yk-fido-reset() {
