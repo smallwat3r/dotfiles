@@ -1,7 +1,8 @@
 # Tailscale VPN helpers
 #
 # Aliases for common commands and fuzzy device selection for SSH,
-# ping, and file transfer. ts-switch for multi-account support.
+# ping, and file transfer (ts-send/ts-receive). ts-switch for
+# multi-account support.
 
 # Tailnet DNS suffixes, ts.smallwat3r.com is the published domain and
 # feist-corn.ts.net the MagicDNS one. Kept above the guard so helpers in
@@ -44,6 +45,12 @@ ts-ping() {
 ts-send() {
   local device=$(_ts_select_device)
   [[ -n $device ]] && tailscale file cp "$@" "${device}:"
+}
+
+# Collect files sent via Taildrop into ~/taildrop or a given directory
+ts-receive() {
+  local dir=${1:-$HOME/taildrop}
+  mkdir -p "$dir" && sudo tailscale file get "$dir"
 }
 
 ts-switch() {

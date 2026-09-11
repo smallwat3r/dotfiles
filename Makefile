@@ -67,7 +67,7 @@ _dirs:
 	@# a dangling ~/.ssh/sockets link (old stow layout, home dir copied from
 	@# another machine) makes mkdir -p fail with 'File exists', drop it first
 	@if [ -L ~/.ssh/sockets ] && [ ! -e ~/.ssh/sockets ]; then rm ~/.ssh/sockets; fi
-	@mkdir -p ~/.local/bin ~/.ssh/sockets ~/.config/Yubico
+	@mkdir -p ~/.local/bin ~/.ssh/sockets ~/.config/Yubico ~/taildrop
 
 _requirements:
 	@stow --version >/dev/null 2>&1 || (echo '$(WARNING)*** Stow is required$(SGR0)'; exit 1)
