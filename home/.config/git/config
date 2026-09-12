@@ -23,6 +23,13 @@
 [credential]
 	helper = !git-credential-pass       # Use pass password manager for credentials
 
+# ~/notes is pushed by notes-sync.timer, pass would pop pinentry from the timer.
+# Empty helper resets the list so pass is not tried first. The file is
+# written by store itself after the first interactive login.
+[credential "https://nas.ts.smallwat3r.com"]
+	helper =
+	helper = store --file ~/.config/git/credentials-nas
+
 [http]
 	postBuffer = 157286400              # 150MB buffer for large pushes
 

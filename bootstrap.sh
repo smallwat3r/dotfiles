@@ -189,6 +189,10 @@ Remaining manual steps:
   - git clone https://nas.ts.smallwat3r.com/git/smallwat3r/notes.git ~/notes
                            after the tailnet and a token from `make forgejo-token`
                            in the homelab repo, notes-sync.timer fails until then
+  - git -C ~/notes pull    once, paste the token from `pass show git/nas.ts.smallwat3r.com`,
+                           git stores it in ~/.config/git/credentials-nas for the timer
+  - git clone https://nas.ts.smallwat3r.com/git/smallwat3r/password-store.git ~/.password-store
+                           pass entries, needs the gpg key first
   - rbw login              Bitwarden CLI, used by the launcher
   - keybase login
   - WEB_EXT_API_KEY=... WEB_EXT_API_SECRET=... make -C ~/code/firefox-sway install

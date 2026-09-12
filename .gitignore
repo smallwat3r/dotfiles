@@ -25,6 +25,9 @@ known_hosts.*
 
 **/.config/Yubico/*
 
+# plaintext NAS token saved by the git credential store helper
+**/.config/git/credentials-nas
+
 # created by systemctl --user enable (~/.config/systemd is stowed)
 **/systemd/user/*.wants/
 
