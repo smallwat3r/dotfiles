@@ -1,20 +1,25 @@
 #!/bin/sh
-# Generate per-app colour configs from theme/palette.
+# Generate per-app colour and font configs from theme/palette.
 set -eu
 cd "$(dirname "$0")/.."
 . ./theme/palette
 
 vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
+colours() { vars | grep -v '^font'; }
+fonts() { vars | grep '^font'; }
 
 # Sway: variables picked up by config.d/*.conf (included in order)
 {
   echo '# Generated from theme/palette by theme/build.sh - do not edit.'
-  vars | while IFS== read -r k v; do echo "set \$$k #$v"; done
+  colours | while IFS== read -r k v; do echo "set \$$k #$v"; done
+  fonts | while IFS== read -r k v; do echo "set \$$k $v"; done
 } > home/.config/sway/config.d/00-theme.conf
 
 # Foot: included from foot.ini
 {
   echo '# Generated from theme/palette by theme/build.sh - do not edit.'
+  echo '[main]'
+  echo "font=$font:size=$font_size_code, Symbols Nerd Font Mono:size=$font_size_code, Twemoji:size=$font_size_code"
   echo '[colors]'
   echo "foreground=$term_fg"
   echo "background=$term_bg"
@@ -39,7 +44,7 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
 # Zsh: THEME_* env vars for fzf and anything else shell-side
 {
   echo '# Generated from theme/palette by theme/build.sh - do not edit.'
-  vars | while IFS== read -r k v; do
+  colours | while IFS== read -r k v; do
     echo "export THEME_$(echo "$k" | tr '[:lower:]' '[:upper:]')='#$v'"
   done
 } > home/.zsh/tools/10-palette.zsh
@@ -47,8 +52,25 @@ vars() { grep -E '^[a-z_][a-z0-9_]*=' theme/palette; }
 # Waybar: GTK CSS colour definitions, imported from style.css
 {
   echo '/* Generated from theme/palette by theme/build.sh - do not edit. */'
-  vars | while IFS== read -r k v; do echo "@define-color $k #$v;"; done
+  colours | while IFS== read -r k v; do echo "@define-color $k #$v;"; done
 } > home/.config/waybar/colors.css
+
+# Waybar and GTK: font rules, imported from style.css / gtk.css
+{
+  echo '/* Generated from theme/palette by theme/build.sh - do not edit. */'
+  echo "* { font-family: $font, monospace; font-size: ${font_size}pt; }"
+} > home/.config/waybar/font.css
+{
+  echo '/* Generated from theme/palette by theme/build.sh - do not edit. */'
+  echo "headerbar { font-family: \"$font\", monospace; }"
+} > home/.config/gtk-3.0/font.css
+
+# Emacs: loaded by early-init.el when present (Linux only)
+mkdir -p home/.config/theme
+{
+  echo ';; Generated from theme/palette by theme/build.sh - do not edit.'
+  echo "(setq sw-font-family \"$font\" sw-font-size $font_size_code)"
+} > home/.config/theme/font.el
 
 # Mako, swaylock and the foot launcher profile: render the whole config
 # from a template, substituting {{name}} with the bare hex value.
@@ -72,3 +94,9 @@ render theme/foot-launcher.ini.in home/.config/foot/launcher.ini
 #        hover item, text, active presence, mention badge
 echo "#$face,#$shadow,#$navy,#$white,#$shadow,#$black,#$ansi2,#$urgent" \
   > theme/slack.txt
+
+# Apply live: sway's exec_always lines restart mako, waybar and the foot
+# launcher server. Open foot windows and emacs keep the old font until relaunched.
+if [ -n "${SWAYSOCK:-}" ]; then
+  swaymsg reload >/dev/null && echo 'sway reloaded'
+fi

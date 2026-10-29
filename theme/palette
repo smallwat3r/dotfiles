@@ -1,4 +1,4 @@
-# Central colour palette (old school) - single source of truth.
+# Central colour palette - single source of truth.
 # Hex values without the leading '#'. Run `make theme` after editing.
 focus=2e3a52
 face=c0c0c0
@@ -34,3 +34,9 @@ ansi12=87afd7
 ansi13=ff55ff
 ansi14=55ffff
 ansi15=ffffff
+
+# Fonts: family, UI size (bars, notifications) and code size (terminals,
+# emacs), both in points. Run `make theme` after editing.
+font=MonacoB
+font_size=10
+font_size_code=11

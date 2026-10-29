@@ -1,3 +1,6 @@
+/* Font rule in font.css, generated from theme/palette */
+@import "font.css";
+
 headerbar entry,
 headerbar spinbutton,
 headerbar button,
@@ -7,7 +10,6 @@ headerbar separator {
 }
 
 headerbar {
-    font-family: "Ocrab Nerd Font Mono", monospace;
     min-height: 20px;
     padding-left: 2px;
     padding-right: 2px;

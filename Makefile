@@ -52,7 +52,7 @@ dry-run: _requirements ## Show what would be linked (no changes made)
 	@stow -n -v2 --restow --no-folding --target "$(HOME)" home 2>&1 || true
 	@stow -n -v2 --restow --no-folding --target '/' root 2>&1 || true
 
-theme: ## Regenerate app colour configs from theme/palette
+theme: ## Regenerate app colour and font configs from theme/palette and reload sway
 	@sh theme/build.sh
 	@echo '$(SUCCESS)*** Theme files regenerated$(SGR0)'
 

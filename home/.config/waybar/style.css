@@ -1,9 +1,8 @@
 /* Colour names defined in colors.css, generated from theme/palette */
 @import "colors.css";
+@import "font.css";
 
 * {
-    font-family: Ocrab Nerd Font Mono, monospace;
-    font-size: 9pt;
     min-height: 0;
     margin: 0;
     padding: 0;

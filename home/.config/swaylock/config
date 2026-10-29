@@ -1,7 +1,7 @@
 # Generated from theme/swaylock.conf.in by theme/build.sh - edit that file instead.
 ignore-empty-password
 color=1a1a2e
-font=Ocrab Nerd Font Mono
+font=MonacoB
 
 indicator-caps-lock
 show-failed-attempts

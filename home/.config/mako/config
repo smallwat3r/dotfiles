@@ -2,7 +2,7 @@
 # Mako notification daemon config
 
 # Appearance (old school, matches sway theme)
-font=Ocrab Nerd Font Mono 9
+font=MonacoB 10
 background-color=#c0c0c0
 text-color=#000000
 border-color=#000080
