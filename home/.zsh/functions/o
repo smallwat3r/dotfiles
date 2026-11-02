@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 # Open in file manager
 
-if has thunar; then
-  thunar "${@:-.}"
+if has nautilus; then
+  nautilus "${@:-.}"
 elif has gio; then
   gio open "${@:-.}"
 else

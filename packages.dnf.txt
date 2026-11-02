@@ -83,6 +83,7 @@ lxpolkit                                 Simple PolicyKit authentication agent
 mako                                     Lightweight Wayland notification daemon
 meson                                    High productivity build system
 msmtp                                    SMTP client
+nautilus                                 File manager for GNOME
 network-manager-applet                   NetworkManager system tray applet
 nmap                                     Network exploration tool and security scanner (ls-hosts)
 notmuch                                  System for indexing, searching, and tagging email
