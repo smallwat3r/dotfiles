@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+#
+# launcher-dir - Search and open a directory from home in the file manager
+#
+# Recently opened directories are listed first, then the rest of the tree.
+#
+# Dependencies: fzf, fd, gio
+#
+set -euo pipefail
+
+. "${HOME}/.local/lib/launcher.sh"
+
+require fzf fd gio
+
+HISTORY_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-dir-history"
+HISTORY_MAX_LINES=50
+
+excludes=(--exclude .git --exclude .npm --exclude .cache --exclude .local/share
+          --exclude snap --exclude node_modules)
+
+cd "$HOME" || exit 1
+
+# Most recent first, de-duplicated, dropping directories that no longer exist
+list_recent() {
+    [[ -f $HISTORY_FILE ]] || return 0
+    tac "$HISTORY_FILE" | awk '!seen[$0]++' | while IFS= read -r d; do
+        [[ -d $d ]] && echo "$d"
+    done
+}
+
+list_dirs() {
+    local recent
+    recent=$(list_recent)
+    echo "$recent"
+    fd --type d --hidden "${excludes[@]}" | sed 's:/$::' | grep -vxF -f <(echo "$recent")
+}
+
+target=$(list_dirs | sed '/^$/d' | fzf_pick) || exit 0
+[[ -z $target ]] && exit 0
+
+echo "$target" >> "$HISTORY_FILE"
+tail -n "$HISTORY_MAX_LINES" "$HISTORY_FILE" > "$HISTORY_FILE.tmp" && mv "$HISTORY_FILE.tmp" "$HISTORY_FILE"
+
+setsid -f gio open "$HOME/$target" >/dev/null 2>&1
