@@ -39,4 +39,4 @@ ansi15=ffffff
 # emacs), both in points. Run `make theme` after editing.
 font=MonacoB
 font_size=10
-font_size_code=11
+font_size_code=10
