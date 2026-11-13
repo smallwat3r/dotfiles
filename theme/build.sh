@@ -60,10 +60,12 @@ fonts() { vars | grep '^font'; }
   echo '/* Generated from theme/palette by theme/build.sh - do not edit. */'
   echo "* { font-family: $font, monospace; font-size: ${font_size}pt; }"
 } > home/.config/waybar/font.css
-{
-  echo '/* Generated from theme/palette by theme/build.sh - do not edit. */'
-  echo "headerbar { font-family: \"$font\", monospace; }"
-} > home/.config/gtk-3.0/font.css
+for d in gtk-3.0 gtk-4.0; do
+  {
+    echo '/* Generated from theme/palette by theme/build.sh - do not edit. */'
+    echo "headerbar { font-family: \"$font\", monospace; }"
+  } > "home/.config/$d/font.css"
+done
 
 # Emacs: loaded by early-init.el when present (Linux only)
 mkdir -p home/.config/theme
