@@ -26,9 +26,9 @@ setopt HISTIGNORESPACE      # do not save in history commands that starts by a s
 # this machine in the right order
 unsetopt HIST_IGNORE_ALL_DUPS
 
-export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=1000000
-export SAVEHIST="${HISTSIZE}"
+HISTFILE="${HOME}/.zsh_history"
+HISTSIZE=1000000
+SAVEHIST="${HISTSIZE}"
 
 # ensure keys are mapped correctly
 bindkey "^[[1;5C" forward-word
