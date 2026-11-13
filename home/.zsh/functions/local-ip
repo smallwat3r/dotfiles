@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+# Show local IP addresses (excluding loopback), space separated when
+# there are several (VPN up, for instance)
+ip -4 addr show scope global | grep -oP 'inet \K[0-9.]+' | xargs

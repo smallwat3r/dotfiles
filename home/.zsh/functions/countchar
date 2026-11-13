@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# Count character occurrences in a file, sorted by frequency
+# Usage: countchar <file>
+[[ -f $1 ]] || { echo "Usage: countchar <file>" >&2; return 1 }
+grep -o . "$1" | sort | uniq -c | sort -nr

@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+# Print the current public IP address
+curl -s https://ipecho.net/plain && echo

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Print your current public IP address.
-curl -s https://ipecho.net/plain && echo
