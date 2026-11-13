@@ -32,7 +32,7 @@ has_gui_frame=$(emacsclient -e \
      (not (null found)))' 2>/dev/null)
 
 if [[ "$has_gui_frame" == "t" ]]; then
-  [[ $# -gt 0 ]] && emacsclient -n "$@"
+  if (( $# )); then emacsclient -n "$@"; fi
 else
   emacsclient -c -n "$@"
 fi
