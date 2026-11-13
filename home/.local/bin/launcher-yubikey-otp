@@ -13,14 +13,12 @@ set -euo pipefail
 
 require fzf ykman
 
-list_accounts() {
-    ykman oath accounts list 2>/dev/null || die "No YubiKey detected"
-}
+accounts="$(ykman oath accounts list 2>/dev/null)" || die "No YubiKey detected"
 
-selected="$(list_accounts | fzf_pick)" || exit 0
+selected="$(fzf_pick <<< "$accounts")" || exit 0
 [[ -z "$selected" ]] && exit 0
 
 code="$(ykman oath accounts code -s "$selected" 2>/dev/null)" || die "Failed to get code"
 [[ -z "$code" ]] && die "Empty code"
 
-printf '%s' "$code" | clip
+printf '%s' "$code" | clip_secure 30

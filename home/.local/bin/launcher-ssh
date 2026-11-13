@@ -12,19 +12,13 @@ set -euo pipefail
 
 require fzf ssh
 
-SSH_CONFIGS=(
-    "$HOME/.ssh/config"
-    "$HOME/.ssh/work"
-    "$HOME/.ssh/private"
-)
+configs=()
+for cfg in "$HOME/.ssh/config" "$HOME/.ssh/work" "$HOME/.ssh/private"; do
+    [[ -f "$cfg" ]] && configs+=("$cfg")
+done
+(( ${#configs[@]} )) || die "No SSH config files found"
 
 list_hosts() {
-    local configs=()
-    for cfg in "${SSH_CONFIGS[@]}"; do
-        [[ -f "$cfg" ]] && configs+=("$cfg")
-    done
-    [[ ${#configs[@]} -eq 0 ]] && die "No SSH config files found"
-
     awk '
         BEGIN { IGNORECASE = 1 }
         /^[Hh]ost / {
