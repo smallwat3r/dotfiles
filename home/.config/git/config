@@ -125,6 +125,7 @@
 	co = checkout
 	cob = "!f() { git checkout -b $@ || (git checkout $@ && echo '!! Reusing existing branch'); }; f"
 	com = "!f() { git checkout main || git checkout master; }; f"
+	conflicts = diff --name-only --diff-filter=U --relative
 	cp = cherry-pick
 	d = diff
 	find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
@@ -134,7 +135,9 @@
 	last-commit-msg = log -1 --format=%s
 	ours = "!f() { git co --ours $@ && git add $@; }; f"
 	p = push
+	pause = "commit --no-verify -a -m \"PAUSED: Use 'git resume' to continue working.\""
 	pu = pull
+	resume = "!git log -1 --format=%s | grep -q ^PAUSED && git reset HEAD^ || { echo 'Latest commit was not created by \"git pause\".' >&2; exit 1; }"
 	rf = reflog
 	rhh = reset --hard HEAD             # Reset to HEAD, discard all changes
 	rhr = "!f() { git reset --hard origin/$(git branch --show-current); }; f"

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Commit all current changes with a PAUSED marker for later resumption.
-# Useful for quick context switching between branches.
-# See also: git-resume
-# Source: https://github.com/ConradIrwin/git-aliae
-exec git commit --no-verify -a -m 'PAUSED: Use "git resume" to continue working.'
