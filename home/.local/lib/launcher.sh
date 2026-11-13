@@ -52,3 +52,23 @@ clip_secure() {
     clip
     clip_clear "$delay"
 }
+
+# History files: most recent first, deduplicated, capped
+
+# Usage: history_push file entry [max]
+history_push() {
+    local file=$1 entry=$2 max=${3:-50} tmp="$1.$$"
+    mkdir -p "${file%/*}"
+    {
+        printf '%s\n' "$entry"
+        [[ -f $file ]] && grep -vxF -- "$entry" "$file" | head -n "$((max - 1))" || true
+    } > "$tmp" && mv -f "$tmp" "$file"
+}
+
+# Print the history entries first, then stdin minus those entries
+# Usage: list_things | history_merge file
+history_merge() {
+    [[ -f $1 ]] || { cat; return; }
+    cat "$1"
+    grep -vxF -f "$1" || true
+}

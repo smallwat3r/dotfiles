@@ -17,20 +17,6 @@ require rbw fzf jq
 history_file="${XDG_CACHE_HOME:-$HOME/.cache}/launcher-bitwarden-history"
 history_max=50
 
-record_history() {
-    local entry="$1"
-    local tmp_file
-    mkdir -p "$(dirname "$history_file")"
-
-    tmp_file="${history_file}.$$"
-    {
-        printf '%s\n' "$entry"
-        if [[ -f $history_file ]]; then
-            grep -vxF "$entry" "$history_file" 2>/dev/null | head -n "$((history_max - 1))" || true
-        fi
-    } > "$tmp_file" && mv -f "$tmp_file" "$history_file" || rm -f "$tmp_file"
-}
-
 load_history() {
     declare -gA history_rank
     [[ -f $history_file ]] || return
@@ -45,10 +31,13 @@ clip_secret() {
     local content
     content=$(cat)
     printf '%s' "$content" | clip_secure
-    # Remove from clipboard history if cliphist is available
+    # Drop it from the clipboard history. The match goes through a pipe so
+    # the secret never appears in argv, after a pause for cliphist to store
+    # it. Matched on the first line, cliphist previews are single line.
     if has cliphist; then
-        sleep 0.1
-        cliphist delete-query "$content" >/dev/null 2>&1 || true
+        sleep 0.5
+        cliphist list | grep -F -f <(printf '%s\n' "$content" | grep -m1 .) \
+            | cliphist delete >/dev/null 2>&1 || true
     fi
 }
 
@@ -109,4 +98,4 @@ else
 fi
 
 printf '%s' "${fields[$selected]}" | clip_secret
-record_history "$name${user:+	$user}"
+history_push "$history_file" "$name${user:+	$user}" "$history_max"
