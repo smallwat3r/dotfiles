@@ -21,19 +21,13 @@ path_prepend() {
   [[ -d $1 ]] && (( ${path[(Ie)$1]} == 0 )) && path=("$1" $path)
 }
 
-path=(
-  "$HOME/.local/bin"
-  "$HOME/.emacs.d/bin"
-  "$HOME/.cargo/bin"
-  "$HOME/go/bin"
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/bin
-  /bin
-  /sbin
-  /usr/sbin
-  $path
-)
+# User bin dirs, only added when missing so a parent shell's PATH keeps
+# its order (an activated venv, sshd's environment). The session PATH
+# itself comes from environment.d/10-path.conf.
+for __dir in "$HOME/go/bin" "$HOME/.cargo/bin" "$HOME/.emacs.d/bin" "$HOME/.local/bin"; do
+  path_prepend "$__dir"
+done
+unset __dir
 
 cdpath=(
   "$HOME"
