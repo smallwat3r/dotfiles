@@ -43,9 +43,11 @@ __prompt_precmd() {
   # git
   local gstatus branch dirty root paused
 
+  # untracked files are not scanned, that walk dominates in big repos,
+  # so dirty only reflects tracked changes
   gstatus=$(
     GIT_OPTIONAL_LOCKS=0 \
-    git status --porcelain=v2 -b \
+    git status --porcelain=v2 -b --untracked-files=no \
       --no-ahead-behind 2>/dev/null
   ) || return
 
