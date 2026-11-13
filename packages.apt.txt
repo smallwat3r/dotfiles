@@ -31,6 +31,7 @@ fcitx5-frontend-gtk3                     GTK3 input method module for fcitx5
 fcitx5-frontend-gtk4                     GTK4 input method module for fcitx5
 fd-find                                  Simple, fast alternative to find (installed as fdfind)
 firefox                                  Mozilla Firefox Web browser
+flatpak                                  Application deployment framework (installs packages.flatpak.txt)
 fontforge                                Outline and bitmap font editor
 fonts-noto-color-emoji                   Colour emoji font (Twemoji is not packaged)
 foot                                     Fast, lightweight and minimalistic Wayland terminal emulator

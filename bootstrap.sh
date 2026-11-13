@@ -3,8 +3,8 @@
 # bootstrap.sh - provision a fresh Fedora or Debian install from these dotfiles
 #
 # Enables the third-party repositories, installs everything listed in
-# packages.dnf.txt and packages.flatpak.txt (Fedora) or packages.apt.txt
-# (Debian / Raspberry Pi OS), installs the Ocrab Nerd Font
+# packages.dnf.txt (Fedora) or packages.apt.txt (Debian / Raspberry Pi OS)
+# and packages.flatpak.txt, installs the Ocrab Nerd Font
 # (github.com/smallwat3r/ocrab-font), enables the system services those
 # packages need, stows the dotfiles, then sets up the Emacs config
 # (github.com/smallwat3r/emacs), firefox-sway
@@ -136,16 +136,32 @@ install_packages() {
     manifest packages.apt.txt |
       xargs sudo DEBIAN_FRONTEND=noninteractive apt-get install -y
     install_debian_extras
+    install_flatpaks
     return
   fi
 
   step 'Installing dnf packages'
   manifest packages.dnf.txt | xargs sudo dnf install -y
 
+  install_flatpaks
+}
+
+install_flatpaks() {
   step 'Installing flatpaks'
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   sudo flatpak remote-modify --no-filter flathub
-  manifest packages.flatpak.txt | xargs flatpak install -y flathub
+
+  # Some apps are x86_64 only, skip what Flathub does not build for this
+  # architecture (e.g. arm64 on a Raspberry Pi)
+  local app apps=()
+  while read -r app; do
+    if flatpak remote-info flathub "$app" >/dev/null 2>&1; then
+      apps+=("$app")
+    else
+      warn "$app is not available for $(flatpak --default-arch), skipping"
+    fi
+  done < <(manifest packages.flatpak.txt)
+  [ "${#apps[@]}" -eq 0 ] || flatpak install -y flathub "${apps[@]}"
 }
 
 # Things Fedora packages that Debian does not, or names differently
@@ -338,8 +354,9 @@ Debian / Raspberry Pi OS:
   - pick "Sway (dotfiles)" at the login screen, or make it the default by
     setting user-session and autologin-session to sway-session in
     /etc/lightdm/lightdm.conf
-  - flatpaks and the Fedora-only packages listed at the top of
-    packages.apt.txt are not installed
+  - the Fedora-only packages listed at the top of packages.apt.txt and
+    the flatpaks Flathub does not build for this architecture are not
+    installed
 
 EOF
 fi
