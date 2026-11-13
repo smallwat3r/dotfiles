@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Start sway with environment.d applied.
+#
+# GDM hands the session the systemd user environment, LightDM (Raspberry
+# Pi OS) does not, so PATH, EDITOR, SSH_AUTH_SOCK and the input method
+# variables from ~/.config/environment.d would be missing. Registered as a
+# wayland session by bootstrap.sh on Debian.
+set -euo pipefail
+
+generator=/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator
+if [[ -x $generator ]]; then
+  while IFS= read -r line; do
+    [[ $line == *=* ]] && export "$line"
+  done < <("$generator")
+fi
+
+export XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
+exec sway "$@"

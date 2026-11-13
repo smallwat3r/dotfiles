@@ -1,0 +1,121 @@
+# Debian / Raspberry Pi OS (trixie, arm64) counterpart of packages.dnf.txt.
+# Fedora-only or x86-only entries (VirtualBox, steam, displaylink, keybase,
+# ivpn, discord, balena-etcher, radeontop, google-cloud-cli, terraform, typst,
+# uv, qgis, kicad, prusa-slicer, qflipper) are left out. rbw and
+# sway-audio-idle-inhibit are not packaged and are built by bootstrap.sh.
+arp-scan                                 Scanning and fingerprinting tool
+aspell                                   Spell checker
+aspell-en                                English dictionaries for Aspell
+avahi-utils                              Command line tools for mDNS browsing and resolving
+avrdude                                  Software for programming Atmel AVR Microcontroller
+avr-libc                                 C library for use with GCC on Atmel AVR microcontrollers
+bind9-dnsutils                           Utilities for querying DNS name servers (dig, used by dns-inspect)
+blueman                                  GTK+ Bluetooth Manager
+brightnessctl                            Read and control device brightness
+cargo                                    Rust package manager (builds rbw)
+cheese                                   Application for taking pictures and movies from a webcam
+clang                                    A C language family front-end for LLVM
+clangd                                   Language server for C/C++
+clang-tidy                               Linter for C/C++
+cliphist                                 Clipboard history for Wayland
+cmake                                    Cross-platform make system
+dfu-programmer                           A Device Firmware Update based USB programmer for Atmel chips
+dfu-util                                 USB Device Firmware Upgrade tool
+docker.io                                The open-source application container engine
+docker-buildx                            Docker Buildx plugin for the Docker CLI
+docker-compose                           Docker Compose plugin for the Docker CLI
+earlyoom                                 Early OOM daemon to prevent system freeze under memory pressure
+emacs-pgtk                               GNU Emacs text editor with GTK toolkit for Wayland
+fcitx5                                   Input method framework
+fcitx5-frontend-gtk3                     GTK3 input method module for fcitx5
+fcitx5-frontend-gtk4                     GTK4 input method module for fcitx5
+fd-find                                  Simple, fast alternative to find (installed as fdfind)
+firefox                                  Mozilla Firefox Web browser
+fontforge                                Outline and bitmap font editor
+fonts-noto-color-emoji                   Colour emoji font (Twemoji is not packaged)
+foot                                     Fast, lightweight and minimalistic Wayland terminal emulator
+fuzzel                                   App launcher and fuzzy finder for Wayland
+fzf                                      Fuzzy finder (0.60, bootstrap.sh installs a newer one in ~/.local/bin)
+gcc-arm-none-eabi                        GNU GCC for cross-compilation for arm-none-eabi target
+gcc-avr                                  Cross Compiling GNU GCC targeted at avr
+gh                                       GitHub's official command line tool
+gnome-keyring                            Framework for managing passwords and other secrets
+gnuplot                                  A program for plotting mathematical expressions and data
+golang-go                                The Go Programming Language
+gparted                                  Gnome Partition Editor
+grim                                     Screenshot tool for Wayland compositors
+ifuse                                    Mount Apple iPhone and iPod touch devices
+imagemagick                              Image manipulation toolkit (magick, used by img-resize)
+input-remapper                           Tool to remap input devices
+iperf3                                   Measurement tool for TCP/UDP bandwidth performance
+isync                                    Tool to synchronize IMAP4 and Maildir mailboxes
+jpegoptim                                Utility to optimize JPEG files
+jq                                       Command-line JSON processor
+kanshi                                   Dynamic display configuration for Wayland
+libgtk-3-bin                             GTK 3 tools (gtk-launch, used by launcher-bin for desktop apps)
+libnotify-bin                            Desktop notification library (notify-send)
+libpam-u2f                               PAM module for U2F/FIDO2 authentication (YubiKey)
+libpulse-dev                             PulseAudio headers (builds sway-audio-idle-inhibit)
+libsystemd-dev                           systemd headers (builds sway-audio-idle-inhibit)
+systemd-dev                              systemd.pc, user unit dir (builds sway-audio-idle-inhibit)
+libtool                                  The GNU Portable Library Tool
+libwayland-dev                           Wayland headers (builds sway-audio-idle-inhibit)
+lsof                                     A utility which lists open files on a Linux/UNIX system
+lxpolkit                                 Simple PolicyKit authentication agent
+mako-notifier                            Lightweight Wayland notification daemon
+meson                                    High productivity build system
+msmtp                                    SMTP client
+nautilus                                 File manager for GNOME
+network-manager-applet                   NetworkManager system tray applet
+ninja-build                              Small build system (builds sway-audio-idle-inhibit)
+nmap                                     Network exploration tool and security scanner (ls-hosts)
+notmuch                                  System for indexing, searching, and tagging email
+nwg-displays                             GUI to manage multiple displays
+nwg-look                                 GTK3 settings editor for wlroots
+optipng                                  PNG optimizer and converter
+pamu2fcfg                                Configures PAM authentication over U2F
+pandoc                                   Markup conversion between documentation formats
+pass                                     Stores, retrieves, generates, and synchronizes passwords securely
+pasystray                                PulseAudio/PipeWire system tray applet
+pavucontrol                              Volume control for PulseAudio
+pcscd                                    Smart card daemon, needed by yubikey-manager
+pipx                                     Installs Python CLIs in isolated venvs (qmk)
+pkg-config                               Compiler flag helper (builds sway-audio-idle-inhibit)
+pngquant                                 PNG quantization tool for reducing image file size
+potrace                                  Transform bitmaps into vector graphics
+protobuf-compiler                        Protocol Buffers compiler
+python3-dev                              Libraries and header files needed for Python development
+python3-pip                              A tool for installing and managing Python3 packages
+scdoc                                    Tool for generating roff manual pages
+screen                                   A screen manager that supports multiple logins on one terminal
+shellcheck                               Shell script analysis tool
+shfmt                                    Shell formatter
+slurp                                    Select a region in a Wayland compositor
+sqlite3                                  Command line interface for SQLite
+stow                                     Manage the installation of software packages from source
+sway                                     i3-compatible window manager for Wayland
+swayidle                                 Idle management daemon for Wayland
+swaylock                                 Screen locker for Wayland
+swayosd                                  Volume/brightness OSD
+tailscale                                WireGuard-based VPN with SSO (pkgs.tailscale.com repo)
+thunar                                   Thunar File Manager
+tigervnc-viewer                          A TigerVNC remote display system
+tmux                                     A terminal multiplexer
+tuned                                    A system tuning service for Linux (power-profile-ctl)
+udiskie                                  Automounter for removable media
+unzip                                    Extracts zip archives (Nerd Font symbols)
+v4l-utils                                Utilities for video4linux and DVB devices
+waybar                                   Customizable Wayland bar for Sway
+wayland-protocols                        Wayland protocol XML (builds sway-audio-idle-inhibit)
+wdisplays                                GUI display configurator for wlroots compositors
+webp                                     The WebP command line tools
+wev                                      A tool for debugging events on a sway Wayland window
+wf-recorder                              Screen recorder for wlroots compositors
+wireplumber                              PipeWire session manager (wpctl)
+wl-clipboard                             Wayland clipboard utilities (wl-copy, wl-paste)
+wlsunset                                 Day/night gamma adjustments for Wayland compositors
+xclip                                    Command line clipboard grabber
+xdg-desktop-portal-wlr                   Screen sharing portal for wlroots compositors
+yubikey-manager                          CLI tool for configuring YubiKeys
+yubikey-touch-detector                   Notifies when the YubiKey waits for a touch
+zsh                                      Powerful interactive shell

@@ -22,16 +22,21 @@ help: ## Show this help menu and exit
 	@grep --no-filename -E '^[a-zA-Z_%-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
-bootstrap: ## Provision a fresh Fedora install (repos, packages, services, stow)
+# SELinux relabelling only applies on Fedora, Debian has no semanage/restorecon
+SELINUX := $(shell command -v selinuxenabled >/dev/null && selinuxenabled && echo yes)
+
+bootstrap: ## Provision a fresh Fedora or Debian install (repos, packages, services, stow)
 	@./bootstrap.sh
 
 stow: _requirements _dirs ## Stow all the dotfiles
 	@stow home $(STOW_OPTS) "$(HOME)"
 	@echo '$(INFO)** Stowing system files to /$(SGR0)'
 	@sudo stow root $(STOW_OPTS) '/'
+ifeq ($(SELINUX),yes)
 	@echo '$(INFO)** Labelling root/etc as /etc for SELinux$(SGR0)'
 	-@sudo semanage fcontext -a -e /etc '$(CURDIR)/root/etc' 2>/dev/null
 	@sudo restorecon -R '$(CURDIR)/root/etc'
+endif
 	@echo '$(INFO)** Enabling user services$(SGR0)'
 	@systemctl --user daemon-reload
 	@systemctl --user enable --now emacs.service tailscale-systray.service ssh-agent.socket notes-sync.timer email-sync.timer
@@ -42,8 +47,10 @@ unstow: _requirements ## Remove all symlinks
 	@stow -D home $(STOW_OPTS) "$(HOME)"
 	@echo '$(INFO)** Unstowing system files from /$(SGR0)'
 	@sudo stow -D root $(STOW_OPTS) '/'
+ifeq ($(SELINUX),yes)
 	-@sudo semanage fcontext -d -e /etc '$(CURDIR)/root/etc' 2>/dev/null
 	@sudo restorecon -R '$(CURDIR)/root/etc'
+endif
 	@echo ''
 	@echo '$(SUCCESS)*** Successfully removed all symlinks$(SGR0)'
 

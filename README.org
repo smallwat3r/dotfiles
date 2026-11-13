@@ -48,8 +48,11 @@ make help       # list available commands
 | ~home~    | User configs, stowed to ~$HOME~ (zsh, git, sway, etc)    |
 | ~root~    | System configs, stowed to ~/~ with sudo (udev rules, etc) |
 
-These dotfiles target Fedora with sway. The macOS configuration was retired, it
-is preserved at the ~macos-last~ git tag.
+These dotfiles target Fedora with sway. Debian is also supported: ~make
+bootstrap~ detects it and installs ~packages.apt.txt~ instead, builds what
+Debian does not package, and registers a "Sway (dotfiles)" login session that
+loads ~environment.d~ (LightDM does not). The macOS configuration was retired,
+it is preserved at the ~macos-last~ git tag.
 
 ** Emacs
 
