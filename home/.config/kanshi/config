@@ -44,7 +44,7 @@ profile alolg-lid-closed {
 # there and it falls through to this exact description. Newer kanshi on
 # Fedora matches alolg-lid-closed first and never reaches it.
 profile pi-alolg {
-    output "Invalid Vendor Codename - RTK ALOLG Unknown" mode 1920x1280@60Hz position 0,0 scale 1.5
+    output "Invalid Vendor Codename - RTK ALOLG Unknown" mode 1920x1280@60Hz position 0,0 scale 1.75
 }
 
 # DVI-I-* share EDID with the LG monitors, so disable them by name first,
