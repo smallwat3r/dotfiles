@@ -16,8 +16,8 @@ read -r mem mem_detail < <(
 )
 
 # GPU memory (AMD)
-gpu_used=$(head -1 /sys/class/drm/card*/device/mem_info_vram_used 2>/dev/null)
-gpu_total=$(head -1 /sys/class/drm/card*/device/mem_info_vram_total 2>/dev/null)
+gpu_used=$(cat /sys/class/drm/card*/device/mem_info_vram_used 2>/dev/null | head -1)
+gpu_total=$(cat /sys/class/drm/card*/device/mem_info_vram_total 2>/dev/null | head -1)
 if [[ -n "$gpu_used" && -n "$gpu_total" ]]; then
     gpu_detail=$(awk -v u="$gpu_used" -v t="$gpu_total" 'BEGIN {
         printf "%.1fGi / %.1fGi", u/1024/1024/1024, t/1024/1024/1024
