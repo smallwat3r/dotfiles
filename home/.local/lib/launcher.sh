@@ -61,14 +61,15 @@ history_push() {
     mkdir -p "${file%/*}"
     {
         printf '%s\n' "$entry"
-        [[ -f $file ]] && grep -vxF -- "$entry" "$file" | head -n "$((max - 1))" || true
-    } > "$tmp" && mv -f "$tmp" "$file"
+        [[ -f $file ]] && cat "$file"
+    } | awk '!seen[$0]++' | head -n "$max" > "$tmp" || true
+    mv -f "$tmp" "$file"
 }
 
 # Print the history entries first, then stdin minus those entries
 # Usage: list_things | history_merge file
 history_merge() {
     [[ -f $1 ]] || { cat; return; }
-    cat "$1"
-    grep -vxF -f "$1" || true
+    # Dedupe the history too, files written by older versions hold repeats
+    awk '!seen[$0]++' "$1" -
 }
