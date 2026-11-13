@@ -4,10 +4,7 @@
 # and clipboard integration for SSH public keys.
 
 # only set GPG_TTY when we actually have a terminal
-if [[ -t 1 ]]; then
-  GPG_TTY=$(tty)
-  export GPG_TTY
-fi
+[[ -n $TTY ]] && export GPG_TTY=$TTY
 
 if has gpg-connect-agent; then
   gpg-clear-cache() {
