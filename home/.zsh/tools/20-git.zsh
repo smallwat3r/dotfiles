@@ -7,10 +7,19 @@ has git || return
 
 alias g="git"
 
-# Create short `g<alias>` versions of all git aliases.
-local __git_line __git_name
-for __git_line in "${(@f)$(git config --get-regexp '^alias\.' 2>/dev/null)}"; do
-  __git_name=${${__git_line%% *}#alias.}
-  alias "g${__git_name}=git ${__git_name}"
-done
-unset __git_line __git_name
+# Create short `g<alias>` versions of all git aliases, read straight from
+# the [alias] section of the config file so no git process is forked.
+() {
+  local file=${XDG_CONFIG_HOME:-$HOME/.config}/git/config line name in_alias=0
+  [[ -r $file ]] || return 0
+  for line in "${(@f)$(<$file)}"; do
+    if [[ $line == '['* ]]; then
+      [[ $line == '[alias]' ]] && in_alias=1 || in_alias=0
+      continue
+    fi
+    (( in_alias )) || continue
+    name=${${line%%=*}//[[:space:]]/}
+    [[ -z $name || $name == '#'* ]] && continue
+    alias "g${name}=git ${name}"
+  done
+}
