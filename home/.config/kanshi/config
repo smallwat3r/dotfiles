@@ -39,6 +39,14 @@ profile alolg-lid-closed {
     output "* ALOLG Unknown" mode 1920x1280@60Hz position 0,0 scale 2
 }
 
+# Raspberry Pi 5 with the ALOLG monitor alone. Debian's kanshi (1.5) has
+# no glob matching, so the "* ALOLG Unknown" profiles above never match
+# there and it falls through to this exact description. Newer kanshi on
+# Fedora matches alolg-lid-closed first and never reaches it.
+profile pi-alolg {
+    output "Invalid Vendor Codename - RTK ALOLG Unknown" mode 1920x1280@60Hz position 0,0 scale 1.5
+}
+
 # DVI-I-* share EDID with the LG monitors, so disable them by name first,
 # before the LG monitors are matched by description (make/model/serial).
 
