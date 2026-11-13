@@ -1,0 +1,6 @@
+[Unit]
+Description=Sync email with mbsync and index it with notmuch
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/email-sync

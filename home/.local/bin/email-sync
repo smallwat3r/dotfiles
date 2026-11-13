@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-# Sync emails with mbsync and update notmuch database.
-# Can be triggered by cron:
-#   */1 * * * * email-sync >/tmp/email-sync.log 2>&1
+# Sync emails with mbsync and update the notmuch database, run by
+# email-sync.timer. systemd never starts a run while the previous one is
+# still active, so a running mbsync is never interrupted.
 set -euo pipefail
 
-# Gracefully terminate any running mbsync and wait for it to exit
-if pkill -x mbsync 2>/dev/null; then
-    sleep 2
-fi
-
-mbsync -a || { echo "mbsync failed" >&2; exit 1; }
-
+mbsync -a
 notmuch new
