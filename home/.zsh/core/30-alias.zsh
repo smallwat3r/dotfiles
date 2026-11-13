@@ -24,10 +24,8 @@ alias \
   sl='ls -pF --color' \
   lss='ls -l *(@)'
 
-# Use Neovim over Vim
-alias \
-  vim='nvim' \
-  v='nvim'
+# Use Neovim over Vim when installed
+has nvim && alias vim='nvim' v='nvim'
 
 # Ripgrep
 alias rg='rg \
