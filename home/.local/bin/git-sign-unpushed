@@ -17,7 +17,7 @@ if [[ $count -eq 0 ]]; then
   exit 0
 fi
 
-if ! git rebase --exec 'git commit --amend --no-edit -S' "$base"; then
+if ! git rebase --exec 'git commit --amend --no-edit -n -S' "$base"; then
   # Do not leave the repo detached mid-rebase when signing fails
   git rebase --abort
   echo "Signing failed, rebase aborted, commits left unsigned" >&2
