@@ -2,10 +2,27 @@
 # Print the IP of the device plugged into the laptop's ethernet port.
 # The port is in NetworkManager shared mode (192.168.123.0/24), so the
 # device shows up in the neighbour table once it has taken a DHCP lease.
-# Usage: eth-ip [iface]   (default: enp196s0)
+# Usage: eth-ip [iface]   (default: the first wired port with carrier)
 set -euo pipefail
 
-iface=${1:-enp196s0}
+# Physical ethernet ports only, veths and bridges have no backing device.
+# Reading carrier fails on a port that is administratively down.
+wired_iface_with_carrier() {
+  local dev
+  for dev in /sys/class/net/*; do
+    [[ -e $dev/device && ! -d $dev/wireless ]] || continue
+    [[ $(<"$dev/type") == 1 ]] || continue
+    [[ $(cat "$dev/carrier" 2>/dev/null) == 1 ]] || continue
+    echo "${dev##*/}"
+    return
+  done
+  return 1
+}
+
+iface=${1:-$(wired_iface_with_carrier)} || {
+  echo "Error: no wired port with carrier" >&2
+  exit 1
+}
 
 # Neighbour entries and leases are caches, an unplugged device lingers
 # there for hours, so only report candidates that answer a ping.
