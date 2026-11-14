@@ -99,7 +99,6 @@ swayidle                                 Idle management daemon for Wayland
 swaylock                                 Screen locker for Wayland
 swayosd                                  Volume/brightness OSD
 tailscale                                WireGuard-based VPN with SSO (pkgs.tailscale.com repo)
-thunar                                   Thunar File Manager
 tigervnc-viewer                          A TigerVNC remote display system
 tmux                                     A terminal multiplexer
 tuned                                    A system tuning service for Linux (power-profile-ctl)

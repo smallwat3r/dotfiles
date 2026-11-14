@@ -131,7 +131,6 @@ testdisk                                 Tool to check and undelete partition, P
 texlive-collection-fontsrecommended      Recommended fonts
 texlive-lm                               Latin modern fonts in outline formats
 texlive-titlesec                         Select alternative section titles
-Thunar                                   Thunar File Manager
 tigervnc                                 A TigerVNC remote display system
 tmux                                     A terminal multiplexer
 tuned                                    A system tuning service for Linux (power-profile-ctl)
