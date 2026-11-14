@@ -30,7 +30,9 @@ found=
 for ip in $(
   { ip -4 neigh show dev "$iface" | awk '{print $1}'
     sudo -n awk '{print $3}' "/var/lib/NetworkManager/dnsmasq-$iface.leases" 2>/dev/null || true
-  } | sort -u
+  # Numeric order on the last octet, so leased devices (.1 to .213) come
+  # before statically addressed gear above the pool, like the switch.
+  } | sort -u -t. -k4,4n
 ); do
   ping -c1 -W1 -I "$iface" "$ip" >/dev/null 2>&1 && echo "$ip" && found=1
 done
