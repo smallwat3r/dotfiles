@@ -47,25 +47,11 @@ profile pi-alolg {
     output "Invalid Vendor Codename - RTK ALOLG Unknown" mode 1920x1280@60Hz position 0,0 scale 1.75
 }
 
-# DVI-I-* share EDID with the LG monitors, so disable them by name first,
-# before the LG monitors are matched by description (make/model/serial).
-
+# Two LG monitors on the dock's native DP outputs. displaylink.service is
+# masked on this machine: its DVI-I-* heads report the same EDID as the
+# LGs, so these description matches would land on them whenever a DP
+# head failed to come up.
 profile home-desk {
-    output DVI-I-1 disable
-    output DVI-I-2 disable
-    output eDP-1 disable
-    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
-}
-
-profile home-desk-no-dvi-2 {
-    output DVI-I-1 disable
-    output eDP-1 disable
-    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
-}
-
-profile home-desk-no-dvi {
     output eDP-1 disable
     output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
     output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
@@ -99,19 +85,6 @@ profile samsung-tv {
 # Lid closed profiles (no eDP-1)
 
 profile home-desk-lid-closed {
-    output DVI-I-1 disable
-    output DVI-I-2 disable
-    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
-}
-
-profile home-desk-lid-closed-no-dvi-2 {
-    output DVI-I-1 disable
-    output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
-    output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
-}
-
-profile home-desk-lid-closed-no-dvi {
     output "LG Electronics LG Ultra HD 0x0009454C" mode 3840x2160@60Hz position 0,1200 scale 1.8
     output "LG Electronics LG Ultra HD 0x00088A81" mode 3840x2160@60Hz position 0,0 transform 180 scale 1.8
 }
