@@ -1,0 +1,36 @@
+#!/bin/sh
+# gpg for git (gpg.program). Signs with the YubiKey when it is plugged in
+# and holds the signing key, otherwise with the on-disk key as plain gpg.
+#
+# gpg-agent always prefers an on-disk secret key over the card, so the card
+# is reached through a second home, ~/.gnupg-card, that only ever holds the
+# public key and card stubs. It is filled in on first use, nothing to set up.
+
+card_home="$HOME/.gnupg-card"
+
+# git signs with: gpg --status-fd=2 -bsau <key>
+key=
+prev=
+for arg in "$@"; do
+  [ "$prev" = -bsau ] && key=$arg
+  prev=$arg
+done
+
+card_has_key() {
+  gpg --homedir "$card_home" --list-secret-keys "$key" >/dev/null 2>&1
+}
+
+# card-status doubles as the presence probe and creates the card stubs
+if [ -n "$key" ] && [ -d "$card_home" ] \
+   && gpg --homedir "$card_home" --card-status >/dev/null 2>&1; then
+  if ! card_has_key; then
+    gpg --export "$key" | gpg --homedir "$card_home" --import >/dev/null 2>&1
+    gpg --homedir "$card_home" --card-status >/dev/null 2>&1
+  fi
+  if card_has_key; then
+    GNUPGHOME=$card_home
+    export GNUPGHOME
+  fi
+fi
+
+exec gpg "$@"

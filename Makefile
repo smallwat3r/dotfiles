@@ -70,7 +70,7 @@ lint: ## Syntax-check all shell scripts (shellcheck + zsh -n)
 	@echo '$(SUCCESS)*** Lint passed$(SGR0)'
 
 _dirs:
-	@install -d -m 700 ~/.ssh ~/.gnupg
+	@install -d -m 700 ~/.ssh ~/.gnupg ~/.gnupg-card
 	@# a dangling ~/.ssh/sockets link (old stow layout, home dir copied from
 	@# another machine) makes mkdir -p fail with 'File exists', drop it first
 	@if [ -L ~/.ssh/sockets ] && [ ! -e ~/.ssh/sockets ]; then rm ~/.ssh/sockets; fi

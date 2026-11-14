@@ -41,6 +41,9 @@
 [tag]
 	gpgsign = true                      # Sign all tags with GPG
 
+[gpg]
+	program = gpg-git                   # YubiKey when plugged in, on-disk key otherwise
+
 # Workflow
 
 [fetch]
