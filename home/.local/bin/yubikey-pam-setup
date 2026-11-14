@@ -15,14 +15,31 @@ error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
 
 YUBICO_DIR="${HOME}/.config/Yubico"
 U2F_KEYS="${YUBICO_DIR}/u2f_keys"
+PAM_DIR="/etc/pam.d"
+# Services to enable the YubiKey for, the ones not installed are skipped.
+PAM_SERVICES=(sudo swaylock lightdm login)
+# First line pulling in the password stack: "@include common-auth" on
+# Debian, "auth include|substack system-auth" on Fedora. The pam_u2f line
+# must sit right before it.
+PAM_ANCHOR='^(@include[[:space:]]+common-auth|auth[[:space:]]+(include|substack)[[:space:]])'
+
+# Print the command installing the given packages, apt or dnf flavoured.
+install_hint() {
+    local apt_pkgs="$1" dnf_pkgs="$2"
+    if command -v apt-get &>/dev/null; then
+        echo "sudo apt install ${apt_pkgs}"
+    else
+        echo "sudo dnf install ${dnf_pkgs}"
+    fi
+}
 
 check_dependencies() {
     info "Checking dependencies..."
     if ! command -v pamu2fcfg &>/dev/null; then
-        error "pamu2fcfg not found. Install with: sudo dnf install pam-u2f pamu2fcfg"
+        error "pamu2fcfg not found. Install with: $(install_hint "libpam-u2f pamu2fcfg" "pam-u2f pamu2fcfg")"
     fi
     if ! command -v ykman &>/dev/null; then
-        warn "ykman not found. Install with: sudo dnf install yubikey-manager"
+        warn "ykman not found. Install with: $(install_hint "yubikey-manager" "yubikey-manager")"
     fi
 }
 
@@ -42,11 +59,11 @@ generate_u2f_keys() {
         read -rp "Add another key (a) or overwrite (o)? [a/o]: " choice
         case "${choice}" in
             a|A)
-                info "Touch your YubiKey when it blinks..."
+                info "Enter your FIDO2 PIN if asked, then touch your YubiKey when it blinks..."
                 pamu2fcfg -n >> "${U2F_KEYS}"
                 ;;
             o|O)
-                info "Touch your YubiKey when it blinks..."
+                info "Enter your FIDO2 PIN if asked, then touch your YubiKey when it blinks..."
                 pamu2fcfg > "${U2F_KEYS}"
                 ;;
             *)
@@ -54,7 +71,7 @@ generate_u2f_keys() {
                 ;;
         esac
     else
-        info "Generating u2f_keys. Touch your YubiKey when it blinks..."
+        info "Generating u2f_keys. Enter your FIDO2 PIN if asked, then touch your YubiKey when it blinks..."
         pamu2fcfg > "${U2F_KEYS}"
     fi
 
@@ -66,40 +83,65 @@ show_pam_instructions() {
     local hostname
     hostname=$(hostname)
     local pam_line="auth       sufficient   pam_u2f.so cue origin=pam://${hostname} appid=pam://${hostname}"
+    local service file line_number
+    local -a commands=()
 
     echo ""
     info "YubiKey registered. Now configure PAM."
     echo ""
-    echo "WARNING: 'sufficient' before system-auth means a YubiKey touch"
-    echo "ALONE satisfies authentication, replacing the password rather"
-    echo "than augmenting it. A stolen laptop with the key inserted then"
-    echo "unlocks with no secret. Use 'required' instead to demand both"
-    echo "password and touch."
+    echo "WARNING: 'sufficient' before the password stack means a YubiKey"
+    echo "touch ALONE satisfies authentication, replacing the password"
+    echo "rather than augmenting it. A stolen laptop with the key inserted"
+    echo "then unlocks with no secret. Use 'required' instead to demand"
+    echo "both password and touch."
     echo ""
-    echo "Add the highlighted line to these files:"
+
+    for service in "${PAM_SERVICES[@]}"; do
+        file="${PAM_DIR}/${service}"
+        if [[ ! -r "${file}" ]]; then
+            continue
+        fi
+        if grep -q 'pam_u2f\.so' "${file}"; then
+            info "${file} already uses pam_u2f, skipping."
+            continue
+        fi
+        line_number=$(grep -nE -m1 "${PAM_ANCHOR}" "${file}" | cut -d: -f1 || true)
+        if [[ -z "${line_number}" ]]; then
+            warn "No password stack line found in ${file}, add the line by hand."
+            continue
+        fi
+        commands+=("sudo sed -i.bak '${line_number}i ${pam_line}' ${file}")
+    done
+
+    if (( ${#commands[@]} == 0 )); then
+        info "Nothing left to configure."
+        return
+    fi
+
+    echo "1. Open a root shell in ANOTHER terminal and keep it open, it is"
+    echo "   your way back in if a PAM file ends up broken:"
     echo ""
-    echo "1. /etc/pam.d/sudo (touch to sudo):"
+    echo -e "  ${YELLOW}sudo -s${NC}"
     echo ""
-    echo "  #%PAM-1.0"
-    echo -e "  ${YELLOW}${pam_line}${NC}"
-    echo "  auth       include      system-auth"
-    echo "  ..."
+    echo "2. Insert the pam_u2f line before the password stack of each"
+    echo "   service (a .bak copy of every file is kept):"
     echo ""
-    echo "2. /etc/pam.d/swaylock (touch to unlock screen):"
+    printf "  ${YELLOW}%s${NC}\n" "${commands[@]}"
     echo ""
-    echo "  #%PAM-1.0"
-    echo -e "  ${YELLOW}${pam_line}${NC}"
-    echo "  auth       include      system-auth"
-    echo "  ..."
+    echo "3. Test in a NEW terminal, it should ask for a touch, not a password:"
     echo ""
-    echo "Options:"
+    echo -e "  ${YELLOW}sudo -k; sudo true${NC}"
+    echo ""
+    echo "   Then lock the screen and unlock it with a touch."
+    echo ""
+    echo "4. To roll back a file, restore its copy from the root shell:"
+    echo ""
+    echo -e "  ${YELLOW}mv ${PAM_DIR}/sudo.bak ${PAM_DIR}/sudo${NC}"
+    echo ""
+    echo "Options of the pam_u2f line:"
     echo "  - 'sufficient': Falls back to password if YubiKey absent"
     echo "  - 'required': Always requires YubiKey (can lock you out)"
     echo "  - 'cue': Shows 'Please touch the device' prompt"
-    echo ""
-    echo "To edit: sudo vi /etc/pam.d/sudo /etc/pam.d/swaylock"
-    echo ""
-    echo "Test in a NEW terminal before closing your current session!"
 }
 
 main() {
