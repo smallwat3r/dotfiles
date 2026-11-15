@@ -28,3 +28,14 @@ vrun() { _avenv_ensure && "$@" }
 alias vpython='vrun python'
 alias vpip='vrun pip'
 alias vpytest='vrun pytest'
+
+# Run a command with the PyPI token from pass, e.g. with-pypi make release.
+# Fetched per call, so the token never sits in the shell environment.
+with-pypi() {
+  local token
+  token=$(pass show pypi/token | head -n1) && [[ -n $token ]] || {
+    echo "Could not read pypi/token from pass" >&2
+    return 1
+  }
+  UV_PUBLISH_TOKEN=$token "$@"
+}
