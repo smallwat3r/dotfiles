@@ -42,5 +42,12 @@ export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 export CLICOLOR=1
 
+# claude-sandbox defaults, mirrors environment.d/claude-sandbox.conf for
+# shells started outside the sway session. The := form keeps a value set
+# for one run, e.g. CLAUDE_DOCKER_SOCKET=full claude-docker
+export CLAUDE_DOCKER_SOCKET="${CLAUDE_DOCKER_SOCKET:=1}"
+export CLAUDE_DOCKER_NET_FILTER="${CLAUDE_DOCKER_NET_FILTER:=0}"
+export CLAUDE_DOCKER_CACHE="${CLAUDE_DOCKER_CACHE:=1}"
+
 # private environment overrides
 [[ -f "$HOME/.zshenv.private" ]] && source "$HOME/.zshenv.private"
