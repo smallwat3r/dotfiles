@@ -7,7 +7,8 @@
 # and packages.flatpak.txt, installs the Ocrab Nerd Font
 # (github.com/smallwat3r/ocrab-font), enables the system services those
 # packages need, stows the dotfiles, then sets up the Emacs config
-# (github.com/smallwat3r/emacs), firefox-sway
+# (github.com/smallwat3r/emacs), claude-sandbox
+# (github.com/smallwat3r/claude-sandbox), firefox-sway
 # (github.com/smallwat3r/firefox-sway) and the QMK CLI. Safe to re-run,
 # every step is idempotent.
 #
@@ -303,6 +304,14 @@ install_emacs() {
   # enabled by make stow and does that on next login
 }
 
+install_claude_sandbox() {
+  step 'Installing claude-sandbox'
+  # Its bin/ is on PATH through environment.d/10-path.conf and .zshenv,
+  # not symlinked, claude-docker finds its Dockerfile relative to itself.
+  # The image is built on the first claude-docker run.
+  clone claude-sandbox ~/code/claude-sandbox
+}
+
 install_firefox_wm() {
   step 'Installing firefox-sway'
   clone firefox-sway ~/code/firefox-sway
@@ -343,6 +352,7 @@ install_fonts
 enable_services
 stow_dotfiles
 install_emacs
+install_claude_sandbox
 install_firefox_wm
 install_qmk
 

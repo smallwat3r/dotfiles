@@ -19,7 +19,7 @@ git clone https://github.com/smallwat3r/dotfiles.git ~/dotfiles
 On a fresh Fedora install, provision everything in one go. This enables the
 third-party repositories, installs the packages listed in ~packages.dnf.txt~ and
 ~packages.flatpak.txt~, enables the system services they need, stows the
-dotfiles and sets up the Emacs config and firefox-sway (see below). It is safe to
+dotfiles and sets up the Emacs config, claude-sandbox and firefox-sway (see below). It is safe to
 re-run.
 
 #+begin_src shell
@@ -62,6 +62,16 @@ sets it up, to do it by hand:
 #+begin_src shell
 git clone https://github.com/smallwat3r/emacs.git ~/.config/smallwat3r-emacs
 ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
+#+end_src
+
+** Claude sandbox
+
+Claude Code runs in a Docker sandbox from [[https://github.com/smallwat3r/claude-sandbox][claude-sandbox]], used by the Emacs
+config. Its ~bin/~ (~claude-docker~, ~claude-statusline~) is on the ~PATH~. ~make
+bootstrap~ sets it up, to do it by hand:
+
+#+begin_src shell
+git clone https://github.com/smallwat3r/claude-sandbox.git ~/code/claude-sandbox
 #+end_src
 
 ** Firefox

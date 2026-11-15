@@ -24,7 +24,7 @@ path_prepend() {
 # User bin dirs, only added when missing so a parent shell's PATH keeps
 # its order (an activated venv, sshd's environment). The session PATH
 # itself comes from environment.d/10-path.conf.
-for __dir in "$HOME/go/bin" "$HOME/.cargo/bin" "$HOME/.emacs.d/bin" "$HOME/.local/bin"; do
+for __dir in "$HOME/go/bin" "$HOME/.cargo/bin" "$HOME/code/claude-sandbox/bin" "$HOME/.emacs.d/bin" "$HOME/.local/bin"; do
   path_prepend "$__dir"
 done
 unset __dir
