@@ -6,10 +6,19 @@
 # this socket, so gpg prompts land in the minibuffer (git commit -S from
 # magit, sw-claude-commit re-signing). Skipped when the socket is absent
 # so a plain emacsclient terminal still gets a working pinentry.
-if [ -n "$INSIDE_EMACS" ] && [ -S "${TMPDIR:-/tmp}/emacs$(id -u)/pinentry" ] \
-   && command -v pinentry-emacs >/dev/null 2>&1; then
-  exec pinentry-emacs "$@"
-fi
+#
+# Terminals running inside Emacs (eat, vterm, term) are left out, there the
+# minibuffer prompt gets cancelled or goes unnoticed, which made pass fail
+# and git fall back to asking for a username and password.
+case $INSIDE_EMACS in
+  '' | *,eat* | *vterm* | *,term*) ;;
+  *)
+    if [ -S "${TMPDIR:-/tmp}/emacs$(id -u)/pinentry" ] \
+       && command -v pinentry-emacs >/dev/null 2>&1; then
+      exec pinentry-emacs "$@"
+    fi
+    ;;
+esac
 
 for prog in pinentry-gnome3 pinentry-gtk-2 pinentry-qt; do
   if [ -n "$DISPLAY$WAYLAND_DISPLAY" ] && command -v "$prog" >/dev/null 2>&1; then
