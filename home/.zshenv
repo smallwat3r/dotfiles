@@ -48,6 +48,7 @@ export CLICOLOR=1
 export CLAUDE_DOCKER_SOCKET="${CLAUDE_DOCKER_SOCKET:=1}"
 export CLAUDE_DOCKER_NET_FILTER="${CLAUDE_DOCKER_NET_FILTER:=0}"
 export CLAUDE_DOCKER_CACHE="${CLAUDE_DOCKER_CACHE:=1}"
+export CLAUDE_DOCKER_LINE_MODE="${CLAUDE_DOCKER_LINE_MODE:=1}"
 
 # private environment overrides
 [[ -f "$HOME/.zshenv.private" ]] && source "$HOME/.zshenv.private"
