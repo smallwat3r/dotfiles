@@ -44,11 +44,14 @@ export CLICOLOR=1
 
 # claude-sandbox defaults, mirrors environment.d/claude-sandbox.conf for
 # shells started outside the sway session. The := form keeps a value set
-# for one run, e.g. CLAUDE_DOCKER_SOCKET=full claude-docker
+# for one run, e.g. CLAUDE_DOCKER_SOCKET=full claude-docker. The runtime
+# uses = so that an empty value is kept too, CLAUDE_DOCKER_RUNTIME=
+# claude-docker runs a session under Docker's own runtime, not gVisor.
 export CLAUDE_DOCKER_SOCKET="${CLAUDE_DOCKER_SOCKET:=1}"
 export CLAUDE_DOCKER_NET_FILTER="${CLAUDE_DOCKER_NET_FILTER:=0}"
 export CLAUDE_DOCKER_CACHE="${CLAUDE_DOCKER_CACHE:=1}"
 export CLAUDE_DOCKER_LINE_MODE="${CLAUDE_DOCKER_LINE_MODE:=1}"
+export CLAUDE_DOCKER_RUNTIME="${CLAUDE_DOCKER_RUNTIME=runsc-hostnet}"
 
 # private environment overrides
 [[ -f "$HOME/.zshenv.private" ]] && source "$HOME/.zshenv.private"
