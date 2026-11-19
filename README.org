@@ -74,6 +74,39 @@ bootstrap~ sets it up, to do it by hand:
 git clone https://github.com/smallwat3r/claude-sandbox.git ~/code/claude-sandbox
 #+end_src
 
+Sessions run under [[https://gvisor.dev][gVisor]] by default (~CLAUDE_DOCKER_RUNTIME=runsc-hostnet~ in
+~environment.d/claude-sandbox.conf~ and ~.zshenv~). This needs ~runsc~ installed and
+registered with Docker under that name, see ~docs/sandbox.md~ in claude-sandbox.
+~CLAUDE_DOCKER_RUNTIME= claude-docker~ runs one session under Docker's own runtime.
+
+gVisor is not packaged for Fedora and ~make bootstrap~ does not install it. Install the
+latest release by hand (x86_64 and aarch64 only), ~runsc~ and its ~gvisor-bin/~ directory
+have to stay next to each other:
+
+#+begin_src shell
+(
+  set -e
+  cd "$(mktemp -d)"
+  URL=https://storage.googleapis.com/gvisor/releases/release/latest/$(uname -m)
+  curl -fsSLO "$URL/gvisor.tar.zstd" -O "$URL/gvisor.tar.zstd.sha512"
+  sha512sum -c gvisor.tar.zstd.sha512
+  sudo tar --zstd --no-same-owner -xf gvisor.tar.zstd -C /usr/local/bin
+)
+#+end_src
+
+Then register the runtime in ~/etc/docker/daemon.json~ with the two arguments the sandbox
+needs, and restart Docker (this stops the running containers):
+
+#+begin_src shell
+sudo /usr/local/bin/runsc install --runtime runsc-hostnet -- --network=host --host-uds=open
+sudo systemctl restart docker
+docker run --rm --runtime=runsc-hostnet hello-world
+#+end_src
+
+On Debian, gVisor's own apt repository provides a ~runsc~ package (see the [[https://gvisor.dev/docs/user_guide/install/][install guide]]),
+installed in ~/usr/bin~, the registration step is the same with that path. To update,
+run the first block again.
+
 ** Firefox
 
 Firefox is stripped down for sway by [[https://github.com/smallwat3r/firefox-sway][firefox-sway]], which also provides the
