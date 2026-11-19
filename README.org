@@ -19,7 +19,7 @@ git clone https://github.com/smallwat3r/dotfiles.git ~/dotfiles
 On a fresh Fedora install, provision everything in one go. This enables the
 third-party repositories, installs the packages listed in ~packages.dnf.txt~ and
 ~packages.flatpak.txt~, enables the system services they need, stows the
-dotfiles and sets up the Emacs config, claude-sandbox and firefox-sway (see below). It is safe to
+dotfiles and sets up the Emacs config, claude-airlock and firefox-sway (see below). It is safe to
 re-run.
 
 #+begin_src shell
@@ -64,20 +64,20 @@ git clone https://github.com/smallwat3r/emacs.git ~/.config/smallwat3r-emacs
 ln -s ~/.config/smallwat3r-emacs ~/.emacs.d
 #+end_src
 
-** Claude sandbox
+** Claude airlock
 
-Claude Code runs in a Docker sandbox from [[https://github.com/smallwat3r/claude-sandbox][claude-sandbox]], used by the Emacs
-config. Its ~bin/~ (~claude-docker~, ~claude-statusline~) is on the ~PATH~. ~make
+Claude Code runs in a Docker sandbox from [[https://github.com/smallwat3r/claude-airlock][claude-airlock]], used by the Emacs
+config. Its ~bin/~ (~claude-airlock~, ~claude-statusline~) is on the ~PATH~. ~make
 bootstrap~ sets it up, to do it by hand:
 
 #+begin_src shell
-git clone https://github.com/smallwat3r/claude-sandbox.git ~/code/claude-sandbox
+git clone https://github.com/smallwat3r/claude-airlock.git ~/code/claude-airlock
 #+end_src
 
-Sessions run under [[https://gvisor.dev][gVisor]] by default (~CLAUDE_DOCKER_RUNTIME=runsc-hostnet~ in
-~environment.d/claude-sandbox.conf~ and ~.zshenv~). This needs ~runsc~ installed and
-registered with Docker under that name, see ~docs/sandbox.md~ in claude-sandbox.
-~CLAUDE_DOCKER_RUNTIME= claude-docker~ runs one session under Docker's own runtime.
+Sessions run under [[https://gvisor.dev][gVisor]] by default (~CLAUDE_AIRLOCK_RUNTIME=runsc-hostnet~ in
+~environment.d/claude-airlock.conf~ and ~.zshenv~). This needs ~runsc~ installed and
+registered with Docker under that name, see ~docs/sandbox.md~ in claude-airlock.
+~CLAUDE_AIRLOCK_RUNTIME= claude-airlock~ runs one session under Docker's own runtime.
 
 gVisor is not packaged for Fedora and ~make bootstrap~ does not install it. Install the
 latest release by hand (x86_64 and aarch64 only), ~runsc~ and its ~gvisor-bin/~ directory
